@@ -60,7 +60,8 @@ window.MathJax = {
 },
 };
 </script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><link href="https://webwork-ptx.aimath.org/webwork2_files/js/apps/MathView/mathview.css" rel="stylesheet">
-<script src="https://pretextbook.org/js/0.13/pretext-webwork/2./pretext-webwork.js"></script><script src="https://webwork-ptx.aimath.org/webwork2_files/node_modules/iframe-resizer/js/iframeResizer.min.js"></script><script async="" src="https://cse.google.com/cse.js?cx=015103900096539427448:ngwuia10qci"></script><script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.13/pretext.js"></script><script>miniversion=0.674</script><script src="https://pretextbook.org/js/0.13/pretext_add_on.js?x=1"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
+<script src="https://pretextbook.org/js/0.13/pretext-webwork/2./pretext-webwork.js"></script><script src="https://webwork-ptx.aimath.org/webwork2_files/node_modules/iframe-resizer/js/iframeResizer.min.js"></script><script async="" src="https://cse.google.com/cse.js?cx=015103900096539427448:ngwuia10qci"></script><script src="https://unpkg.com/lunr/lunr.js"></script><script src="lunr-pretext-search-index.js"></script><script src="https://pretextbook.org/js/0.13/pretext_search.js"></script><link href="https://pretextbook.org/css/0.4/pretext_search.css" rel="stylesheet" type="text/css">
+<script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.13/pretext.js"></script><script>miniversion=0.674</script><script src="https://pretextbook.org/js/0.13/pretext_add_on.js?x=1"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
 </script><link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic" rel="stylesheet" type="text/css">
 <link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
 <link href="https://pretextbook.org/css/0.4/pretext.css" rel="stylesheet" type="text/css">
@@ -122,6 +123,15 @@ window.MathJax = {
 <p class="byline">Steve Schlicker, Mitchel T. Keller, Nicholas Long</p>
 </div>
 <div class="searchwrapper" role="search"><div class="gcse-search"></div></div>
+<div class="searchbox"><div class="searchwidget">
+<input id="ptxsearch" type="text" name="terms" placeholder="Search" onchange="doSearch()"><button id="searchbutton" type="button" onclick="doSearch()">🔍</button>
+</div></div>
+<div id="searchresultsplaceholder" style="display: none">
+<button id="closesearchresults" onclick="document.getElementById('searchresultsplaceholder').style.display = 'none'; return false;">x</button><h2>Search Results: <span id="searchterms"></span>
+</h2>
+<div id="searchempty"><span>No results.</span></div>
+<ol id="searchresults"></ol>
+</div>
 </div></div>
 <nav id="primary-navbar" class="navbar"><div class="container">
 <div class="navbar-top-buttons">
@@ -210,8 +220,7 @@ window.MathJax = {
 <li id="li-1668"><p id="p-5210">What does a scalar surface integral measure?</p></li>
 <li id="li-1669"><p id="p-5211">How can you efficently calculate scalar surface integrals?</p></li>
 <li id="li-1670"><p id="p-5212">How do scalar surface integrals relate to flux integrals?</p></li>
-</ul></article><section class="introduction" id="introduction-83"><p id="p-5213">In <a href="S_Vector_FluxInt.html" class="internal" title="Section 12.9: Flux Integrals">Section 12.9</a>, the idea of a flux integral was introduced by looking at how much of a vector field flows through a given section of a surface in space. In particular, the flux integral measured the accumulated amount of the vector field that is orthogonal to the surface (which changes at different points on the surface.) <a href="" class="xref" data-knowl="./knowl/thm_flux_int_calc.html" title="Theorem 12.9.7">Theorem 12.9.7</a> shows the best way to calculate the flux integral in terms of a parameterization of the surface. This was an extension of the method for computing the surface area given in <a href="S-11-6-Parametric-Surfaces-Surface-Area.html" class="internal" title="Section 11.6: Surfaces Defined Parametrically and Surface Area">Section 11.6</a>.</p>
-<p id="p-5214">Just as we generalized line integrals of vector fields into scalar line integrals in <a href="S_ScalarLineIntegral.html" class="internal" title="Section 12.4: Line Integrals of Scalar Functions">Section 12.4</a>, we will spend this section looking at the following questions:</p>
+</ul></article><section class="introduction" id="introduction-83"><p id="p-5213">In <a href="S_Vector_FluxInt.html" class="internal" title="Section 12.9: Flux Integrals">Section 12.9</a>, the idea of a flux integral was introduced by looking at how much of a vector field flows through a given section of a surface in space. In particular, the flux integral measured the accumulated amount of the vector field that is orthogonal to the surface (which changes at different points on the surface.) <a href="" class="xref" data-knowl="./knowl/thm_flux_int_calc.html" title="Theorem 12.9.7">Theorem 12.9.7</a> shows the best way to calculate the flux integral in terms of a parameterization of the surface. This was an extension of the method for computing the surface area given in <a href="S-11-6-Parametric-Surfaces-Surface-Area.html" class="internal" title="Section 11.6: Surfaces Defined Parametrically and Surface Area">Section 11.6</a>.</p> <p id="p-5214">Just as we generalized line integrals of vector fields into scalar line integrals in <a href="S_ScalarLineIntegral.html" class="internal" title="Section 12.4: Line Integrals of Scalar Functions">Section 12.4</a>, we will spend this section looking at the following questions:</p>
 <ul class="disc">
 <li id="li-1671"><p id="p-derived-li-1671">How could we measure the accumulation of a scalar valued function along a surface in space?</p></li>
 <li id="li-1672"><p id="p-derived-li-1672">What would that accmulation measure?</p></li>
@@ -295,15 +304,13 @@ window.MathJax = {
 \vr_s \times \vr_t =\sin(t) \langle \cos(s)\sin(t),\sin(s)\sin(t),\cos(t) \rangle 
 \end{equation*}
 </div>
-<p class="continuation">Note that <span class="process-math">\(\vr_s \times \vr_t = \sin(t) \vr(s,t)\text{.}\)</span> This should make sense because the normal vector to a sphere should be the outward pointing vector from the center of the sphere. Note here that <span class="process-math">\(\Vert{\vr_s \times \vr_t}\Vert = \sin(t)\)</span> because <span class="process-math">\(\Vert{\vr(s,t)}\Vert = 1\)</span> for any <span class="process-math">\(s\)</span> or <span class="process-math">\(t\text{.}\)</span></p>
-<p id="p-5249">We can now use <a href="" class="xref" data-knowl="./knowl/ScalarSurfaceIntDef.html" title="Theorem 12.10.2">Theorem 12.10.2</a> to compute the scalar surface integral as</p>
+<p class="continuation">Note that <span class="process-math">\(\vr_s \times \vr_t = \sin(t) \vr(s,t)\text{.}\)</span> This should make sense because the normal vector to a sphere should be the outward pointing vector from the center of the sphere. Note here that <span class="process-math">\(\Vert{\vr_s \times \vr_t}\Vert = \sin(t)\)</span> because <span class="process-math">\(\Vert{\vr(s,t)}\Vert = 1\)</span> for any <span class="process-math">\(s\)</span> or <span class="process-math">\(t\text{.}\)</span></p> <p id="p-5249">We can now use <a href="" class="xref" data-knowl="./knowl/ScalarSurfaceIntDef.html" title="Theorem 12.10.2">Theorem 12.10.2</a> to compute the scalar surface integral as</p>
 <div class="displaymath process-math" data-contains-math-knowls="./knowl/ScalarSurfaceIntDef.html" id="md-62">
 \begin{gather*}
 \iint_{S_1} x \enspace dS = \int_0^{\pi}\int_0^{2\pi} \cos(s)\sin(t) (\sin(t)) \enspace ds dt\\
 = \int_0^{\pi}(\sin(t))^2 dt [\sin(s)]|_{0}^{2\pi} = \int_0^{\pi}(\sin(t))^2 dt [0] =0
 \end{gather*}
-</div>
-<p id="p-5250">This result should match your answer for <a href="" class="xref" data-knowl="./knowl/task_SSIS_2.html" title="Task 12.10.1.b">Task 12.10.1.b</a> since the output of the function <span class="process-math">\(f(x,y,z)=x\)</span> would be symmetric but opposite in sign for the parts of the surface in octants 1 and 4 as compared to octants 2 and 3.</p></article><article class="example example-like" id="ScalarSurfaceInt_Example2"><h4 class="heading">
+</div> <p id="p-5250">This result should match your answer for <a href="" class="xref" data-knowl="./knowl/task_SSIS_2.html" title="Task 12.10.1.b">Task 12.10.1.b</a> since the output of the function <span class="process-math">\(f(x,y,z)=x\)</span> would be symmetric but opposite in sign for the parts of the surface in octants 1 and 4 as compared to octants 2 and 3.</p></article><article class="example example-like" id="ScalarSurfaceInt_Example2"><h4 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">12.10.4</span><span class="period">.</span>
 </h4>
 <p id="p-5251">For this example, we will compute the answer to <a href="" class="xref" data-knowl="./knowl/task_SSIS_4.html" title="Task 12.10.1.d">Task 12.10.1.d</a>. We will compute <span class="process-math">\(\iint_{S_3} x+z \enspace dS\)</span> where <span class="process-math">\(S_3\)</span> is the disc of radius one centered at <span class="process-math">\((1,0,0)\)</span> on the <span class="process-math">\(x=1\)</span> fundamental plane. Our surface can be parameterized by <span class="process-math">\(\vr(s,t)=\langle 1,s\cos(t),s\sin(t)\rangle\)</span> where <span class="process-math">\(s \in [0,1]\)</span> and <span class="process-math">\(t \in [0,2\pi]\text{.}\)</span> Using  <a href="" class="xref" data-knowl="./knowl/ScalarSurfaceIntDef.html" title="Theorem 12.10.2">Theorem 12.10.2</a>, we need to compute the partial derivatives of <span class="process-math">\(\vr\)</span> with respect to <span class="process-math">\(s\)</span> and <span class="process-math">\(t\text{,}\)</span> then compute <span class="process-math">\(\Vert{\vr_s \times \vr_t}\Vert \text{.}\)</span> For our parameterization, we get</p>
@@ -320,8 +327,7 @@ window.MathJax = {
 \vr_s \times \vr_t =s \langle 0, 0, 1 \rangle 
 \end{equation*}
 </div>
-<p class="continuation">and thus <span class="process-math">\(\Vert{\vr_s \times \vr_t}\Vert = s\text{.}\)</span> This may be a familiar result from a change of coordinates between rectangular coordinates and polar coordinates, <span class="process-math">\(dA = dx dy = r dr d\theta\text{.}\)</span></p>
-<p id="p-5252">We can now use  <a href="" class="xref" data-knowl="./knowl/ScalarSurfaceIntDef.html" title="Theorem 12.10.2">Theorem 12.10.2</a> to compute the scalar surface integral as</p>
+<p class="continuation">and thus <span class="process-math">\(\Vert{\vr_s \times \vr_t}\Vert = s\text{.}\)</span> This may be a familiar result from a change of coordinates between rectangular coordinates and polar coordinates, <span class="process-math">\(dA = dx dy = r dr d\theta\text{.}\)</span></p> <p id="p-5252">We can now use  <a href="" class="xref" data-knowl="./knowl/ScalarSurfaceIntDef.html" title="Theorem 12.10.2">Theorem 12.10.2</a> to compute the scalar surface integral as</p>
 <div class="displaymath process-math" data-contains-math-knowls="./knowl/ScalarSurfaceIntDef.html" id="md-64">
 \begin{gather*}
 \iint_{S_3} x+z \enspace dS = \int_0^{2\pi}\int_0^{1} (1+s\sin(t)) (s) ds dt \\
@@ -329,8 +335,7 @@ window.MathJax = {
 = \int_0^{2\pi} \frac{1}{2}+\frac{1}{3}\sin(t) dt \\
 = \frac{1}{2} (2\pi) + 0 = \pi 
 \end{gather*}
-</div>
-<p id="p-5253">This result should match your answer for <a href="" class="xref" data-knowl="./knowl/task_SSIS_4.html" title="Task 12.10.1.d">Task 12.10.1.d</a> since the output of the function <span class="process-math">\(f(x,y,z) = x+z\)</span> equals <span class="process-math">\(1+z\text{.}\)</span> The values of <span class="process-math">\(z\)</span> will be symmetric but opposite in sign for the parts of the surface above and below the <span class="process-math">\(xy\)</span>-plane. Thus the scalar surface integral will be one times the area of <span class="process-math">\(S_3\)</span> which gives the value <span class="process-math">\(\pi\text{.}\)</span></p></article></section></section></div></main>
+</div> <p id="p-5253">This result should match your answer for <a href="" class="xref" data-knowl="./knowl/task_SSIS_4.html" title="Task 12.10.1.d">Task 12.10.1.d</a> since the output of the function <span class="process-math">\(f(x,y,z) = x+z\)</span> equals <span class="process-math">\(1+z\text{.}\)</span> The values of <span class="process-math">\(z\)</span> will be symmetric but opposite in sign for the parts of the surface above and below the <span class="process-math">\(xy\)</span>-plane. Thus the scalar surface integral will be one times the area of <span class="process-math">\(S_3\)</span> which gives the value <span class="process-math">\(\pi\text{.}\)</span></p></article></section></section></div></main>
 </div>
 <!--Start: Google Global Site Tag code--><!--*** DO NOT COPY ANOTHER PROJECT'S MAGIC NUMBERS/ID ***--><!--***           GET YOUR OWN FROM GOOGLE             ***-->
 <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-QJKN634F7R"></script><script>  window.dataLayer = window.dataLayer || [];

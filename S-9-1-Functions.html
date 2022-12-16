@@ -60,7 +60,8 @@ window.MathJax = {
 },
 };
 </script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><link href="https://webwork-ptx.aimath.org/webwork2_files/js/apps/MathView/mathview.css" rel="stylesheet">
-<script src="https://pretextbook.org/js/0.13/pretext-webwork/2./pretext-webwork.js"></script><script src="https://webwork-ptx.aimath.org/webwork2_files/node_modules/iframe-resizer/js/iframeResizer.min.js"></script><script async="" src="https://cse.google.com/cse.js?cx=015103900096539427448:ngwuia10qci"></script><script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.13/pretext.js"></script><script>miniversion=0.674</script><script src="https://pretextbook.org/js/0.13/pretext_add_on.js?x=1"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
+<script src="https://pretextbook.org/js/0.13/pretext-webwork/2./pretext-webwork.js"></script><script src="https://webwork-ptx.aimath.org/webwork2_files/node_modules/iframe-resizer/js/iframeResizer.min.js"></script><script async="" src="https://cse.google.com/cse.js?cx=015103900096539427448:ngwuia10qci"></script><script src="https://unpkg.com/lunr/lunr.js"></script><script src="lunr-pretext-search-index.js"></script><script src="https://pretextbook.org/js/0.13/pretext_search.js"></script><link href="https://pretextbook.org/css/0.4/pretext_search.css" rel="stylesheet" type="text/css">
+<script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.13/pretext.js"></script><script>miniversion=0.674</script><script src="https://pretextbook.org/js/0.13/pretext_add_on.js?x=1"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
 </script><link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic" rel="stylesheet" type="text/css">
 <link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
 <link href="https://pretextbook.org/css/0.4/pretext.css" rel="stylesheet" type="text/css">
@@ -122,6 +123,15 @@ window.MathJax = {
 <p class="byline">Steve Schlicker, Mitchel T. Keller, Nicholas Long</p>
 </div>
 <div class="searchwrapper" role="search"><div class="gcse-search"></div></div>
+<div class="searchbox"><div class="searchwidget">
+<input id="ptxsearch" type="text" name="terms" placeholder="Search" onchange="doSearch()"><button id="searchbutton" type="button" onclick="doSearch()">🔍</button>
+</div></div>
+<div id="searchresultsplaceholder" style="display: none">
+<button id="closesearchresults" onclick="document.getElementById('searchresultsplaceholder').style.display = 'none'; return false;">x</button><h2>Search Results: <span id="searchterms"></span>
+</h2>
+<div id="searchempty"><span>No results.</span></div>
+<ol id="searchresults"></ol>
+</div>
 </div></div>
 <nav id="primary-navbar" class="navbar"><div class="container">
 <div class="navbar-top-buttons">
@@ -212,8 +222,7 @@ window.MathJax = {
 <li id="li-28"><p id="p-40">How do we find the distance between two points in <span class="process-math">\(\R^3\text{?}\)</span> What is the equation of a sphere in <span class="process-math">\(\R^3\text{?}\)</span></p></li>
 <li id="li-29"><p id="p-41">What is a trace of a function of two variables? What does a trace tell us about a function?</p></li>
 <li id="li-30"><p id="p-42">What is a level curve of a function of two variables? What does a level curve tell us about a function?</p></li>
-</ul></article><section class="introduction" id="introduction-1"><p id="p-43">Throughout our mathematical careers we have studied functions of a single variable. We define a function of one variable as a rule that assigns exactly one output to each input. We analyze these functions by looking at their graphs, calculating limits, differentiating, integrating, and more. Functions of several variables will be the main focus of Chapters 10 and 11, where we will analyze these functions by looking at their graphs, calculating limits, differentiating, integrating, and more. We will see that many of the ideas from single variable calculus translate well to functions of several variables, but we will have to make some adjustments as well. In this chapter we introduce functions of several variables and then discuss some of the tools (vectors and vector-valued functions) that will help us understand and analyze functions of several variables.</p>
-<article class="exploration project-like" id="PA-9-1"><h3 class="heading">
+</ul></article><section class="introduction" id="introduction-1"><p id="p-43">Throughout our mathematical careers we have studied functions of a single variable. We define a function of one variable as a rule that assigns exactly one output to each input. We analyze these functions by looking at their graphs, calculating limits, differentiating, integrating, and more. Functions of several variables will be the main focus of Chapters 10 and 11, where we will analyze these functions by looking at their graphs, calculating limits, differentiating, integrating, and more. We will see that many of the ideas from single variable calculus translate well to functions of several variables, but we will have to make some adjustments as well. In this chapter we introduce functions of several variables and then discuss some of the tools (vectors and vector-valued functions) that will help us understand and analyze functions of several variables.</p> <article class="exploration project-like" id="PA-9-1"><h3 class="heading">
 <span class="type">Preview Activity</span><span class="space"> </span><span class="codenumber">9.1.1</span><span class="period">.</span>
 </h3>
 <p id="p-44">Suppose you invest money in an account that pays 5% interest compounded continuously. If you invest <span class="process-math">\(P\)</span> dollars in the account, the amount <span class="process-math">\(A\)</span> of money in the account after <span class="process-math">\(t\)</span> years is given by</p>
@@ -221,8 +230,7 @@ window.MathJax = {
 \begin{equation*}
 A = Pe^{0.05t}.
 \end{equation*}
-</div>
-<p id="p-45">The variables <span class="process-math">\(P\)</span> and <span class="process-math">\(t\)</span> are independent of each other, so using functional notation we write</p>
+</div> <p id="p-45">The variables <span class="process-math">\(P\)</span> and <span class="process-math">\(t\)</span> are independent of each other, so using functional notation we write</p>
 <div class="displaymath process-math" data-contains-math-knowls="./knowl/T-9-1-Fixed-Investment.html ./knowl/T-9-1-Payments-years.html">
 \begin{equation*}
 A(P,t) = Pe^{0.05t}.
@@ -457,8 +465,7 @@ f(x,y) = \frac{x^2 \sin(2 y)}{g},
 <div class="sidebyside"><div class="sbsrow" style="margin-left:0%;margin-right:0%;">
 <div class="sbspanel top" style="width:47%;"><p id="p-77">Let <span class="process-math">\(P=(x_0, y_0, z_0)\)</span> and <span class="process-math">\(Q=(x_1, y_1, z_1)\)</span> be two points in <span class="process-math">\(\R^3\text{.}\)</span> These two points form opposite vertices of a rectangular box whose sides are planes parallel to the coordinate planes as illustrated in <a href="" class="xref" data-knowl="./knowl/F-9-1-Distance-3D.html" title="Figure 9.1.10">Figure 9.1.10</a>, and the distance between <span class="process-math">\(P\)</span> and <span class="process-math">\(Q\)</span> is the length of the blue diagonal shown in <a href="" class="xref" data-knowl="./knowl/F-9-1-Distance-3D.html" title="Figure 9.1.10">Figure 9.1.10</a>.</p></div>
 <div class="sbspanel top" style="width:53%;"><figure class="figure figure-like" id="F-9-1-Distance-3D"><img src="external/images/fig_9_1_distance.svg" role="img" class="contained"><figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">9.1.10<span class="period">.</span></span><span class="space"> </span>The distance formula in <span class="process-math">\(\R^3\text{.}\)</span></figcaption></figure></div>
-</div></div>
-<ol class="lower-alpha">
+</div></div> <ol class="lower-alpha">
 <li id="li-43"><p id="p-78">Consider the right triangle <span class="process-math">\(PRS\)</span> in the base of the box whose hypotenuse is shown as the red line in <a href="" class="xref" data-knowl="./knowl/F-9-1-Distance-3D.html" title="Figure 9.1.10">Figure 9.1.10</a>. What are the coordinates of the vertices of this triangle? Since this right triangle lies in a plane, we can use the Pythagorean Theorem to find a formula for the length of the hypotenuse of this triangle. Find such a formula, which will be in terms of <span class="process-math">\(x_0\text{,}\)</span> <span class="process-math">\(y_0\text{,}\)</span> <span class="process-math">\(x_1\text{,}\)</span> and <span class="process-math">\(y_1\text{.}\)</span></p></li>
 <li id="li-44">
 <p id="p-79">Now notice that the triangle <span class="process-math">\(PRQ\)</span> whose hypotenuse is the blue segment connecting the points <span class="process-math">\(P\)</span> and <span class="process-math">\(Q\)</span> with a leg as the hypotenuse <span class="process-math">\(PR\)</span> of the triangle found in part (a) lies entirely in a plane, so we can again use the Pythagorean Theorem to find the length of its hypotenuse. Explain why the length of this hypotenuse, which is the distance between the points <span class="process-math">\(P\)</span> and <span class="process-math">\(Q\text{,}\)</span> is</p>
@@ -568,7 +575,7 @@ f(y) = \frac{150^2 \sin(2y)}{32}.
 <div class="sbspanel top" style="width:50%;"><img src="external/images/fig_9_1_activity_empty_1.svg" role="img" class="contained"></div>
 <div class="sbspanel top" style="width:50%;"><img src="external/images/fig_9_1_activity_empty_2.svg" role="img" class="contained"></div>
 </div></div>
-<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">9.1.17<span class="period">.</span></span><span class="space"> </span>Left: Level curves for <span class="process-math">\(f(x,y) = x^2+y^2\text{.}\)</span> Right: Level curves for <span class="process-math">\(g(x,y) = \sqrt{x^2+y^2}\text{.}\)</span></figcaption></figure><ol class="lower-alpha">
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">9.1.17<span class="period">.</span></span><span class="space"> </span>Left: Level curves for <span class="process-math">\(f(x,y) = x^2+y^2\text{.}\)</span> Right: Level curves for <span class="process-math">\(g(x,y) = \sqrt{x^2+y^2}\text{.}\)</span></figcaption></figure> <ol class="lower-alpha">
 <li id="li-53"><p id="p-109">Let <span class="process-math">\(f(x,y) = x^2+y^2\text{.}\)</span> Draw the level curves <span class="process-math">\(f(x,y) = k\)</span> for <span class="process-math">\(k=1\text{,}\)</span> <span class="process-math">\(k=2\text{,}\)</span> <span class="process-math">\(k=3\text{,}\)</span> and <span class="process-math">\(k=4\)</span> on the left set of axes given in <a href="" class="xref" data-knowl="./knowl/F-9-1-contour-activity.html" title="Figure 9.1.17">Figure 9.1.17</a>. (You decide on the scale of the axes.) Explain what the surface defined by <span class="process-math">\(f\)</span> looks like.</p></li>
 <li id="li-54"><p id="p-110">Let <span class="process-math">\(g(x,y) = \sqrt{x^2+y^2}\text{.}\)</span> Draw the level curves <span class="process-math">\(g(x,y) = k\)</span> for <span class="process-math">\(k=1\text{,}\)</span> <span class="process-math">\(k=2\text{,}\)</span> <span class="process-math">\(k=3\text{,}\)</span> and <span class="process-math">\(k=4\)</span> on the right set of axes given in <a href="" class="xref" data-knowl="./knowl/F-9-1-contour-activity.html" title="Figure 9.1.17">Figure 9.1.17</a>. (You decide on the scale of the axes.) Explain what the surface defined by <span class="process-math">\(g\)</span> looks like.</p></li>
 <li id="li-55"><p id="p-111">Compare and contrast the graphs of <span class="process-math">\(f\)</span> and <span class="process-math">\(g\text{.}\)</span> How are they alike? How are they different? Use traces for each function to help answer these questions.</p></li>
@@ -631,18 +638,13 @@ f(y) = \frac{150^2 \sin(2y)}{32}.
 <article class="exercise exercise-like" id="ex-9-1-WW-evaluate"><h4 class="heading"><span class="codenumber">1<span class="period">.</span></span></h4>
 <div id="webwork-7" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="7" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/WHFreeman/Rogawski_Calculus_Early_Transcendentals_Second_Edition/14_Differentiation_in_Several_Variables/14.1_Functions_of_Two_or_More_Variables/14.1.1.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-contents">
-<p id="p-118">Evaluate the function at the specified points.</p>
-<p id="p-119"><span class="process-math">\(f(x,y) = y+xy^{5}, \left(2,-3\right), \left(3,-1\right), \left(-5,-2\right)\)</span></p>
-<p id="p-120">At <span class="process-math">\(\left(2,-3\right)\text{:}\)</span> <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span></p>
-<p id="p-121">At <span class="process-math">\(\left(3,-1\right)\text{:}\)</span> <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span></p>
-<p id="p-122">At <span class="process-math">\(\left(-5,-2\right)\text{:}\)</span> <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span></p>
+<p id="p-118">Evaluate the function at the specified points.</p> <p id="p-119"><span class="process-math">\(f(x,y) = y+xy^{5}, \left(2,-3\right), \left(3,-1\right), \left(-5,-2\right)\)</span></p> <p id="p-120">At <span class="process-math">\(\left(2,-3\right)\text{:}\)</span> <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span></p> <p id="p-121">At <span class="process-math">\(\left(3,-1\right)\text{:}\)</span> <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span></p> <p id="p-122">At <span class="process-math">\(\left(-5,-2\right)\text{:}\)</span> <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span></p>
 </div>
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-7')">Activate</button></div>
 </div></article><article class="exercise exercise-like" id="ex-9-1-WW-draw-contours"><h4 class="heading"><span class="codenumber">2<span class="period">.</span></span></h4>
 <div id="webwork-8" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="8" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/FortLewis/Calc3/12-3-Contour-diagrams/HGM4-12-3-22-Contour-diagrams.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-contents">
-<p id="p-126">Sketch a contour diagram of each function.  Then, decide whether its contours are predominantly lines, parabolas, ellipses, or hyperbolas.</p>
-<ol id="p-127" class="lower-alpha">
+<p id="p-126">Sketch a contour diagram of each function.  Then, decide whether its contours are predominantly lines, parabolas, ellipses, or hyperbolas.</p> <ol id="p-127" class="lower-alpha">
 <li id="li-60"><p id="p-128"><span class="process-math">\(\displaystyle z = x^2 - 5 y^2\)</span></p></li>
 <li id="li-61"><p id="p-129"><span class="process-math">\(\displaystyle z = x^2 + 2 y^2\)</span></p></li>
 <li id="li-62"><p id="p-130"><span class="process-math">\(\displaystyle z = y - 3 x^2\)</span></p></li>
@@ -662,8 +664,7 @@ f(y) = \frac{150^2 \sin(2y)}{32}.
 <li id="li-68"><p id="p-142"><span class="process-math">\(\displaystyle z = 2x + 3y\)</span></p></li>
 <li id="li-69"><p id="p-143"><span class="process-math">\(\displaystyle z = \sqrt{(x^2 + y^2)}\)</span></p></li>
 <li id="li-70"><p id="p-144"><span class="process-math">\(\displaystyle z = xy\)</span></p></li>
-</ol>
-<ol id="p-145" class="upper-alpha">
+</ol> <ol id="p-145" class="upper-alpha">
 <li id="li-71"><p id="p-146">a collection of unequally spaced concentric circles</p></li>
 <li id="li-72"><p id="p-147">a collection of unequally spaced parallel lines</p></li>
 <li id="li-73"><p id="p-148">a collection of equally spaced concentric circles</p></li>
@@ -680,46 +681,32 @@ f(y) = \frac{150^2 \sin(2y)}{32}.
 </div></article><article class="exercise exercise-like" id="ex-9-1-WW-sphere-plane"><h4 class="heading"><span class="codenumber">5<span class="period">.</span></span></h4>
 <div id="webwork-11" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="11" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/272/setStewart12_1/problem_3.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-contents">
-<p id="p-154">Find the equation of the sphere centered at <span class="process-math">\((-6, -4, -3)\)</span> with radius 3.  Normalize your equations so that the coefficient of <span class="process-math">\(x^2\)</span> is 1.</p>
-<p id="p-155"><span class="fillin underline" role="img" aria-label="60-character blank" style="width: 27.2727272727273em;"></span> = 0.</p>
-<p id="p-156">Give an equation which describes the intersection of this sphere with the plane <span class="process-math">\(z = -2\text{.}\)</span></p>
-<p id="p-157"><span class="fillin underline" role="img" aria-label="60-character blank" style="width: 27.2727272727273em;"></span> = 0.</p>
+<p id="p-154">Find the equation of the sphere centered at <span class="process-math">\((-6, -4, -3)\)</span> with radius 3.  Normalize your equations so that the coefficient of <span class="process-math">\(x^2\)</span> is 1.</p> <p id="p-155"><span class="fillin underline" role="img" aria-label="60-character blank" style="width: 27.2727272727273em;"></span> = 0.</p> <p id="p-156">Give an equation which describes the intersection of this sphere with the plane <span class="process-math">\(z = -2\text{.}\)</span></p> <p id="p-157"><span class="fillin underline" role="img" aria-label="60-character blank" style="width: 27.2727272727273em;"></span> = 0.</p>
 </div>
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-11')">Activate</button></div>
 </div></article><article class="exercise exercise-like" id="ex-9-1-WW-plane-equations"><h4 class="heading"><span class="codenumber">6<span class="period">.</span></span></h4>
 <div id="webwork-12" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="12" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/FortLewis/Calc3/12-1-Two-variable-functions/HGM4-12-1-00-Functions-of-two-variables.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-contents">
-<p id="p-160">(A) If the positive z-axis points upward, an equation for a horizontal plane through the point <span class="process-math">\(\left(-2,5,3\right)\)</span> is</p>
-<p id="p-161"><span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span>.</p>
-<p id="p-162">(B) An equation for the plane perpendicular to the x-axis and passing through the point <span class="process-math">\(\left(-2,5,3\right)\)</span> is</p>
-<p id="p-163"><span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span>.</p>
-<p id="p-164">(C) An equation for the plane parallel to the xz-plane and passing through the point <span class="process-math">\(\left(-2,5,3\right)\)</span> is</p>
-<p id="p-165"><span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span>.</p>
+<p id="p-160">(A) If the positive z-axis points upward, an equation for a horizontal plane through the point <span class="process-math">\(\left(-2,5,3\right)\)</span> is</p> <p id="p-161"><span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span>.</p> <p id="p-162">(B) An equation for the plane perpendicular to the x-axis and passing through the point <span class="process-math">\(\left(-2,5,3\right)\)</span> is</p> <p id="p-163"><span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span>.</p> <p id="p-164">(C) An equation for the plane parallel to the xz-plane and passing through the point <span class="process-math">\(\left(-2,5,3\right)\)</span> is</p> <p id="p-165"><span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span>.</p>
 </div>
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-12')">Activate</button></div>
 </div></article><article class="exercise exercise-like" id="ex-9-1-WW-Car-rental-cost"><h4 class="heading"><span class="codenumber">7<span class="period">.</span></span></h4>
 <div id="webwork-13" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="13" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/FortLewis/Calc3/12-1-Two-variable-functions/HGM4-12-1-22-Functions-of-two-variables.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-contents">
-<p id="p-169">A car rental company charges a one-time application fee of 30 dollars, 50 dollars per day, and 11 cents per mile for its cars.</p>
-<p id="p-170">(a) Write a formula for the cost, <span class="process-math">\(C\text{,}\)</span> of renting a car as a function of the number of days, <span class="process-math">\(d\text{,}\)</span> and the number of miles driven, <span class="process-math">\(m\text{.}\)</span></p>
-<p id="p-171"><span class="process-math">\(C =\)</span> <span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span></p>
-<p id="p-172">(b) If <span class="process-math">\(C = f(d, m)\text{,}\)</span> then <span class="process-math">\(f(4, 870) =\)</span> <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span></p>
+<p id="p-169">A car rental company charges a one-time application fee of 30 dollars, 50 dollars per day, and 11 cents per mile for its cars.</p> <p id="p-170">(a) Write a formula for the cost, <span class="process-math">\(C\text{,}\)</span> of renting a car as a function of the number of days, <span class="process-math">\(d\text{,}\)</span> and the number of miles driven, <span class="process-math">\(m\text{.}\)</span></p> <p id="p-171"><span class="process-math">\(C =\)</span> <span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span></p> <p id="p-172">(b) If <span class="process-math">\(C = f(d, m)\text{,}\)</span> then <span class="process-math">\(f(4, 870) =\)</span> <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span></p>
 </div>
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-13')">Activate</button></div>
 </div></article><article class="exercise exercise-like" id="ex-9-1-WW-Matching-distances"><h4 class="heading"><span class="codenumber">8<span class="period">.</span></span></h4>
 <div id="webwork-14" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="14" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/FortLewis/Calc3/12-1-Two-variable-functions/HGM4-12-1-28-Functions-of-two-variables.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-contents">
-<p id="p-175">(a) Describe the set of points whose distance from the y-axis equals the distance from the xz-plane.</p>
-<p id="p-176"><ul style="list-style:circle;">
+<p id="p-175">(a) Describe the set of points whose distance from the y-axis equals the distance from the xz-plane.</p> <p id="p-176"><ul style="list-style:circle;">
 <li id="li-77"><p id="p-177">A cylinder opening along the x-axis</p></li>
 <li id="li-78"><p id="p-178">A cylinder opening along the y-axis</p></li>
 <li id="li-79"><p id="p-179">A cone opening along the z-axis</p></li>
 <li id="li-80"><p id="p-180">A cylinder opening along the z-axis</p></li>
 <li id="li-81"><p id="p-181">A cone opening along the y-axis</p></li>
 <li id="li-82"><p id="p-182">A cone opening along the x-axis</p></li>
-</ul></p>
-<p id="p-183">(b) Find the equation for the set of points whose distance from the y-axis equals the distance from the xz-plane.</p>
-<p id="p-184"><ul style="list-style:circle;">
+</ul></p> <p id="p-183">(b) Find the equation for the set of points whose distance from the y-axis equals the distance from the xz-plane.</p> <p id="p-184"><ul style="list-style:circle;">
 <li id="li-83"><p id="p-185"><span class="process-math">\(\displaystyle y^2 = x^2 + z^2\)</span></p></li>
 <li id="li-84"><p id="p-186"><span class="process-math">\(\displaystyle x^2 + z^2 = r^2\)</span></p></li>
 <li id="li-85"><p id="p-187"><span class="process-math">\(\displaystyle x^2 = y^2 + z^2\)</span></p></li>
@@ -732,8 +719,7 @@ f(y) = \frac{150^2 \sin(2y)}{32}.
 </div></article><article class="exercise exercise-like" id="ex-9-1-WW-Describing-surfaces"><h4 class="heading"><span class="codenumber">9<span class="period">.</span></span></h4>
 <div id="webwork-15" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="15" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/FortLewis/Calc3/12-2-Multivariable-graphs/HGM4-12-2-11-Multivariable-functions-graphs.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-contents">
-<p id="p-191">For each surface, decide whether it could be a bowl, a plate, or neither. Consider a plate to be any fairly flat surface and a bowl to be anything that could hold water, assuming the positive z-axis is up.</p>
-<ol id="p-192" class="lower-alpha">
+<p id="p-191">For each surface, decide whether it could be a bowl, a plate, or neither. Consider a plate to be any fairly flat surface and a bowl to be anything that could hold water, assuming the positive z-axis is up.</p> <ol id="p-192" class="lower-alpha">
 <li id="li-89"><p id="p-193"><span class="process-math">\(\displaystyle z = 1 - x^2 - y^2\)</span></p></li>
 <li id="li-90"><p id="p-194"><span class="process-math">\(\displaystyle z = x^2 + y^2\)</span></p></li>
 <li id="li-91"><p id="p-195"><span class="process-math">\(\displaystyle x + y + z = 5\)</span></p></li>
@@ -750,9 +736,7 @@ f(y) = \frac{150^2 \sin(2y)}{32}.
 \begin{equation*}
 C = f(x,t) = 28te^{-\left(6-x\right)t}
 \end{equation*}
-</div>
-<p id="p-199"><span class="process-math">\(f(2,3) =\)</span> <span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span></p>
-<p id="p-200">Give a practical interpretation of your answer: <span class="process-math">\(f(2, 3)\)</span> is <ul style="list-style:circle;">
+</div> <p id="p-199"><span class="process-math">\(f(2,3) =\)</span> <span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span></p> <p id="p-200">Give a practical interpretation of your answer: <span class="process-math">\(f(2, 3)\)</span> is <ul style="list-style:circle;">
 <li id="li-94"><p id="p-201">the concentration of a 3 mg dose in the blood 2 hours after injection.</p></li>
 <li id="li-95"><p id="p-202">the amount of a 2 mg dose in the blood 3 hours after injection.</p></li>
 <li id="li-96"><p id="p-203">the amount of a 3 mg dose in the blood 2 hours after injection.</p></li>
@@ -765,10 +749,7 @@ C = f(x,t) = 28te^{-\left(6-x\right)t}
 </div></article><article class="exercise exercise-like" id="ex-9-1-WW-Aardvark"><h4 class="heading"><span class="codenumber">11<span class="period">.</span></span></h4>
 <div id="webwork-17" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="17" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/FortLewis/Calc3/12-3-Contour-diagrams/HGM4-12-3-24-Contour-diagrams.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-contents">
-<p id="p-208">A manufacturer sells aardvark masks at a price of $140 per mask and butterfly masks at a price of $570 per mask.  A quantity of <em class="emphasis">a</em> aardvark masks and <em class="emphasis">b</em> butterfly masks is sold at a total cost of $600 to the manufacturer.</p>
-<p id="p-209">(a) Express the manufacturer's profit, <em class="emphasis">P</em>, as a function of <em class="emphasis">a</em> and <em class="emphasis">b</em>.</p>
-<p id="p-210"><span class="process-math">\(P(a,b) =\)</span> <span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span> dollars.</p>
-<p id="p-211">(b) The curves of constant profit in the ab-plane are <ul style="list-style:circle;">
+<p id="p-208">A manufacturer sells aardvark masks at a price of $140 per mask and butterfly masks at a price of $570 per mask.  A quantity of <em class="emphasis">a</em> aardvark masks and <em class="emphasis">b</em> butterfly masks is sold at a total cost of $600 to the manufacturer.</p> <p id="p-209">(a) Express the manufacturer's profit, <em class="emphasis">P</em>, as a function of <em class="emphasis">a</em> and <em class="emphasis">b</em>.</p> <p id="p-210"><span class="process-math">\(P(a,b) =\)</span> <span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span> dollars.</p> <p id="p-211">(b) The curves of constant profit in the ab-plane are <ul style="list-style:circle;">
 <li id="li-100"><p id="p-212">circles</p></li>
 <li id="li-101"><p id="p-213">hyperbolas</p></li>
 <li id="li-102"><p id="p-214">ellipses</p></li>
@@ -780,28 +761,13 @@ C = f(x,t) = 28te^{-\left(6-x\right)t}
 </div></article><article class="exercise exercise-like" id="ex-9-1-WW-Drug-traces"><h4 class="heading"><span class="codenumber">12<span class="period">.</span></span></h4>
 <div id="webwork-18" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="18" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Michigan/Chap12Sec2/Q12.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-contents">
-<p id="p-218">Consider the concentration, <span class="process-math">\(C\text{,}\)</span> in mg per liter (L), of a drug in the blood as a function of <span class="process-math">\(x\text{,}\)</span> the amount, in mg, of the drug given and <span class="process-math">\(t\text{,}\)</span> the time in hours since the injection. For <span class="process-math">\(0 \leq x \leq 4\)</span> and <span class="process-math">\(t \geq 0\text{,}\)</span> we have <span class="process-math">\(C = f(x,t) = t e^{-t(5-x)}\text{.}\)</span></p>
-<p id="p-219">Graph the following two single variable functions on a separate page, being sure that you can explain their significance in terms of drug concentration.</p>
-<p id="p-220"><em class="alert">(a)</em> <span class="process-math">\(f(2,t)\)</span></p>
-<p id="p-221"><em class="alert">(b)</em> <span class="process-math">\(f(x,3.5)\)</span></p>
-<p id="p-222">Using your graph in <em class="alert">(a)</em>, where is <span class="process-math">\(f(2,t)\)</span></p>
-<p id="p-223">a maximum?  <span class="process-math">\(t =\)</span> <span class="fillin underline" role="img" aria-label="15-character blank" style="width: 6.818181818181818em;"></span></p>
-<p id="p-224">a minimum?  <span class="process-math">\(t =\)</span> <span class="fillin underline" role="img" aria-label="15-character blank" style="width: 6.818181818181818em;"></span></p>
-<p id="p-225">Using your graph in <em class="alert">(b)</em>, where is <span class="process-math">\(f(x,3.5)\)</span></p>
-<p id="p-226">a maximum?  <span class="process-math">\(x =\)</span> <span class="fillin underline" role="img" aria-label="15-character blank" style="width: 6.818181818181818em;"></span></p>
-<p id="p-227">a minimum?  <span class="process-math">\(x =\)</span> <span class="fillin underline" role="img" aria-label="15-character blank" style="width: 6.818181818181818em;"></span></p>
+<p id="p-218">Consider the concentration, <span class="process-math">\(C\text{,}\)</span> in mg per liter (L), of a drug in the blood as a function of <span class="process-math">\(x\text{,}\)</span> the amount, in mg, of the drug given and <span class="process-math">\(t\text{,}\)</span> the time in hours since the injection. For <span class="process-math">\(0 \leq x \leq 4\)</span> and <span class="process-math">\(t \geq 0\text{,}\)</span> we have <span class="process-math">\(C = f(x,t) = t e^{-t(5-x)}\text{.}\)</span></p> <p id="p-219">Graph the following two single variable functions on a separate page, being sure that you can explain their significance in terms of drug concentration.</p> <p id="p-220"><em class="alert">(a)</em> <span class="process-math">\(f(2,t)\)</span></p> <p id="p-221"><em class="alert">(b)</em> <span class="process-math">\(f(x,3.5)\)</span></p> <p id="p-222">Using your graph in <em class="alert">(a)</em>, where is <span class="process-math">\(f(2,t)\)</span></p> <p id="p-223">a maximum?  <span class="process-math">\(t =\)</span> <span class="fillin underline" role="img" aria-label="15-character blank" style="width: 6.818181818181818em;"></span></p> <p id="p-224">a minimum?  <span class="process-math">\(t =\)</span> <span class="fillin underline" role="img" aria-label="15-character blank" style="width: 6.818181818181818em;"></span></p> <p id="p-225">Using your graph in <em class="alert">(b)</em>, where is <span class="process-math">\(f(x,3.5)\)</span></p> <p id="p-226">a maximum?  <span class="process-math">\(x =\)</span> <span class="fillin underline" role="img" aria-label="15-character blank" style="width: 6.818181818181818em;"></span></p> <p id="p-227">a minimum?  <span class="process-math">\(x =\)</span> <span class="fillin underline" role="img" aria-label="15-character blank" style="width: 6.818181818181818em;"></span></p>
 </div>
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-18')">Activate</button></div>
 </div></article><article class="exercise exercise-like" id="ex-9-1-WW-traces-contours"><h4 class="heading"><span class="codenumber">13<span class="period">.</span></span></h4>
 <div id="webwork-19" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="19" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Michigan/Chap12Sec2/Q23.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-contents">
-<p id="p-232">By setting one variable constant, find a plane that intersects the graph of <span class="process-math">\(z = 6x^{2}-2y^{2}+5\)</span> in a:</p>
-<p id="p-233"><em class="alert">(a)</em> Parabola opening upward: the plane <span class="fillin underline" role="img" aria-label="5-character blank" style="width: 2.272727272727273em;"></span> = <span class="fillin underline" role="img" aria-label="5-character blank" style="width: 2.272727272727273em;"></span></p>
-<p id="p-234"><em class="emphasis">(Give your answer by specifying the variable in the first answer blank and a value for it in the second.)</em></p>
-<p id="p-235"><em class="alert">(b)</em> Parabola opening downward: the plane <span class="fillin underline" role="img" aria-label="5-character blank" style="width: 2.272727272727273em;"></span> = <span class="fillin underline" role="img" aria-label="5-character blank" style="width: 2.272727272727273em;"></span></p>
-<p id="p-236"><em class="emphasis">(Give your answer by specifying the variable in the first answer blank and a value for it in the second.)</em></p>
-<p id="p-237"><em class="alert">(c)</em> Pair of intersecting straight lines: the plane <span class="fillin underline" role="img" aria-label="5-character blank" style="width: 2.272727272727273em;"></span> = <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span></p>
-<p id="p-238"><em class="emphasis">(Give your answer by specifying the variable in the first answer blank and a value for it in the second.)</em></p>
+<p id="p-232">By setting one variable constant, find a plane that intersects the graph of <span class="process-math">\(z = 6x^{2}-2y^{2}+5\)</span> in a:</p> <p id="p-233"><em class="alert">(a)</em> Parabola opening upward: the plane <span class="fillin underline" role="img" aria-label="5-character blank" style="width: 2.272727272727273em;"></span> = <span class="fillin underline" role="img" aria-label="5-character blank" style="width: 2.272727272727273em;"></span></p> <p id="p-234"><em class="emphasis">(Give your answer by specifying the variable in the first answer blank and a value for it in the second.)</em></p> <p id="p-235"><em class="alert">(b)</em> Parabola opening downward: the plane <span class="fillin underline" role="img" aria-label="5-character blank" style="width: 2.272727272727273em;"></span> = <span class="fillin underline" role="img" aria-label="5-character blank" style="width: 2.272727272727273em;"></span></p> <p id="p-236"><em class="emphasis">(Give your answer by specifying the variable in the first answer blank and a value for it in the second.)</em></p> <p id="p-237"><em class="alert">(c)</em> Pair of intersecting straight lines: the plane <span class="fillin underline" role="img" aria-label="5-character blank" style="width: 2.272727272727273em;"></span> = <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span></p> <p id="p-238"><em class="emphasis">(Give your answer by specifying the variable in the first answer blank and a value for it in the second.)</em></p>
 </div>
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-19')">Activate</button></div>
 </div></article><article class="exercise exercise-like" id="Ez-9-1-1"><h4 class="heading"><span class="codenumber">14<span class="period">.</span></span></h4>

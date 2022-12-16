@@ -60,7 +60,8 @@ window.MathJax = {
 },
 };
 </script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><link href="https://webwork-ptx.aimath.org/webwork2_files/js/apps/MathView/mathview.css" rel="stylesheet">
-<script src="https://pretextbook.org/js/0.13/pretext-webwork/2./pretext-webwork.js"></script><script src="https://webwork-ptx.aimath.org/webwork2_files/node_modules/iframe-resizer/js/iframeResizer.min.js"></script><script async="" src="https://cse.google.com/cse.js?cx=015103900096539427448:ngwuia10qci"></script><script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.13/pretext.js"></script><script>miniversion=0.674</script><script src="https://pretextbook.org/js/0.13/pretext_add_on.js?x=1"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
+<script src="https://pretextbook.org/js/0.13/pretext-webwork/2./pretext-webwork.js"></script><script src="https://webwork-ptx.aimath.org/webwork2_files/node_modules/iframe-resizer/js/iframeResizer.min.js"></script><script async="" src="https://cse.google.com/cse.js?cx=015103900096539427448:ngwuia10qci"></script><script src="https://unpkg.com/lunr/lunr.js"></script><script src="lunr-pretext-search-index.js"></script><script src="https://pretextbook.org/js/0.13/pretext_search.js"></script><link href="https://pretextbook.org/css/0.4/pretext_search.css" rel="stylesheet" type="text/css">
+<script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.13/pretext.js"></script><script>miniversion=0.674</script><script src="https://pretextbook.org/js/0.13/pretext_add_on.js?x=1"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
 </script><link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic" rel="stylesheet" type="text/css">
 <link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
 <link href="https://pretextbook.org/css/0.4/pretext.css" rel="stylesheet" type="text/css">
@@ -122,6 +123,15 @@ window.MathJax = {
 <p class="byline">Steve Schlicker, Mitchel T. Keller, Nicholas Long</p>
 </div>
 <div class="searchwrapper" role="search"><div class="gcse-search"></div></div>
+<div class="searchbox"><div class="searchwidget">
+<input id="ptxsearch" type="text" name="terms" placeholder="Search" onchange="doSearch()"><button id="searchbutton" type="button" onclick="doSearch()">🔍</button>
+</div></div>
+<div id="searchresultsplaceholder" style="display: none">
+<button id="closesearchresults" onclick="document.getElementById('searchresultsplaceholder').style.display = 'none'; return false;">x</button><h2>Search Results: <span id="searchterms"></span>
+</h2>
+<div id="searchempty"><span>No results.</span></div>
+<ol id="searchresults"></ol>
+</div>
 </div></div>
 <nav id="primary-navbar" class="navbar"><div class="container">
 <div class="navbar-top-buttons">
@@ -210,14 +220,12 @@ window.MathJax = {
 <li id="li-511"><p id="p-1415">What do we mean by the limit of a function <span class="process-math">\(f\)</span> of two variables at a point <span class="process-math">\((a,b)\text{?}\)</span></p></li>
 <li id="li-512"><p id="p-1416">What techniques can we use to show that a function of two variables does not have a limit at a point <span class="process-math">\((a,b)\text{?}\)</span></p></li>
 <li id="li-513"><p id="p-1417">What does it mean for a function <span class="process-math">\(f\)</span> of two variables to be continuous at a point <span class="process-math">\((a,b)\text{?}\)</span></p></li>
-</ul></article><section class="introduction" id="introduction-9"><p id="p-1418">In this section, we will study limits of functions of several variables, with a focus on limits of functions of two variables. In single variable calculus, we studied the notion of limit, which turned out to be a critical concept that formed the basis for the derivative and the definite integral. In this section we will begin to understand how the concept of limit for functions of two variables is similar to what we encountered for functions of a single variable. The limit will again be the fundamental idea in multivariable calculus, and we will use this notion of the limit of a function of several variables to define the important concept of differentiability later in this chapter. We have already seen its use in the derivatives of vector-valued functions in <a href="S-9-7-Vector-Valued-Functions-Derivatives.html" class="internal" title="Section 9.7: Derivatives and Integrals of Vector-Valued Functions">Section 9.7</a>.</p>
-<p id="p-1419">Let's begin by reviewing what we mean by the limit of a function of one variable. We say that a function <span class="process-math">\(f\)</span> has a limit <span class="process-math">\(L\)</span> as <span class="process-math">\(x\)</span> approaches <span class="process-math">\(a\)</span> provided that we can make the values <span class="process-math">\(f(x)\)</span> as close to <span class="process-math">\(L\)</span> as we like by taking <span class="process-math">\(x\)</span> sufficiently close (but not equal) to <span class="process-math">\(a\text{.}\)</span> We denote this behavior by writing</p>
+</ul></article><section class="introduction" id="introduction-9"><p id="p-1418">In this section, we will study limits of functions of several variables, with a focus on limits of functions of two variables. In single variable calculus, we studied the notion of limit, which turned out to be a critical concept that formed the basis for the derivative and the definite integral. In this section we will begin to understand how the concept of limit for functions of two variables is similar to what we encountered for functions of a single variable. The limit will again be the fundamental idea in multivariable calculus, and we will use this notion of the limit of a function of several variables to define the important concept of differentiability later in this chapter. We have already seen its use in the derivatives of vector-valued functions in <a href="S-9-7-Vector-Valued-Functions-Derivatives.html" class="internal" title="Section 9.7: Derivatives and Integrals of Vector-Valued Functions">Section 9.7</a>.</p> <p id="p-1419">Let's begin by reviewing what we mean by the limit of a function of one variable. We say that a function <span class="process-math">\(f\)</span> has a limit <span class="process-math">\(L\)</span> as <span class="process-math">\(x\)</span> approaches <span class="process-math">\(a\)</span> provided that we can make the values <span class="process-math">\(f(x)\)</span> as close to <span class="process-math">\(L\)</span> as we like by taking <span class="process-math">\(x\)</span> sufficiently close (but not equal) to <span class="process-math">\(a\text{.}\)</span> We denote this behavior by writing</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 \lim_{x\to a}f(x) = L.
 \end{equation*}
-</div>
-<article class="exploration project-like" id="PA_10_1"><h3 class="heading">
+</div> <article class="exploration project-like" id="PA_10_1"><h3 class="heading">
 <span class="type">Preview Activity</span><span class="space"> </span><span class="codenumber">10.1.1</span><span class="period">.</span>
 </h3>
 <p id="p-1420">We investigate the limits of several different functions by working with tables and graphs.</p>
@@ -433,9 +441,8 @@ a}f(x)\text{,}\)</span> we often consider the behavior of <span class="process-m
 f(x,y) = \frac{y}{\sqrt{x^2+y^2}},
 \end{equation*}
 </div>
-<p class="continuation">whose graph is shown below in <a href="" class="xref" data-knowl="./knowl/F_10_1_disc_2.html" title="Figure 10.1.10">Figure 10.1.10</a></p>
-<figure class="figure figure-like" id="F_10_1_disc_2"><div class="image-box" style="width: 50%; margin-left: 25%; margin-right: 25%;"><img src="external/images/fig_10_1_disc_2.svg" role="img" class="contained"></div>
-<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">10.1.10<span class="period">.</span></span><span class="space"> </span>The graph of <span class="process-math">\(f(x,y) = \frac{y}{\sqrt{x^2+y^2}}\text{.}\)</span></figcaption></figure><ol class="lower-alpha">
+<p class="continuation">whose graph is shown below in <a href="" class="xref" data-knowl="./knowl/F_10_1_disc_2.html" title="Figure 10.1.10">Figure 10.1.10</a></p> <figure class="figure figure-like" id="F_10_1_disc_2"><div class="image-box" style="width: 50%; margin-left: 25%; margin-right: 25%;"><img src="external/images/fig_10_1_disc_2.svg" role="img" class="contained"></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">10.1.10<span class="period">.</span></span><span class="space"> </span>The graph of <span class="process-math">\(f(x,y) = \frac{y}{\sqrt{x^2+y^2}}\text{.}\)</span></figcaption></figure> <ol class="lower-alpha">
 <li id="li-522"><p id="p-1437">Is <span class="process-math">\(f\)</span> defined at the point <span class="process-math">\((0,0)\text{?}\)</span>  What, if anything, does this say about whether <span class="process-math">\(f\)</span> has a limit at the point <span class="process-math">\((0,0)\text{?}\)</span></p></li>
 <li id="li-523"><p id="p-1438">Values of <span class="process-math">\(f\)</span> (to three decimal places) at several points close to <span class="process-math">\((0,0)\)</span> are shown in <a href="" class="xref" data-knowl="./knowl/T-10-1-data.html" title="Table 10.1.11: Values of a function f">Table 10.1.11</a>. <figure class="table table-like" id="T-10-1-data"><figcaption><span class="type">Table</span><span class="space"> </span><span class="codenumber">10.1.11<span class="period">.</span></span><span class="space"> </span>Values of a function <span class="process-math">\(f\text{.}\)</span></figcaption><div class="tabular-box natural-width"><table class="tabular">
 <tr>
@@ -534,15 +541,13 @@ g(x,y) = \frac{x^2y}{x^4 + y^2}
 f(x,y) = \frac{x^2y^2}{x^2+y^2}.
 \end{equation*}
 </div>
-<p class="continuation">We want to know  whether <span class="process-math">\(\lim_{(x,y)\to(0,0)}f(x,y)\)</span> exists.</p>
-<p id="p-1458">Note that if either <span class="process-math">\(x\)</span> or <span class="process-math">\(y\)</span> is 0, then <span class="process-math">\(f(x,y) = 0\text{.}\)</span> Therefore, if <span class="process-math">\(f\)</span> has a limit at <span class="process-math">\((0,0)\text{,}\)</span> it must be 0. We will therefore argue that</p>
+<p class="continuation">We want to know  whether <span class="process-math">\(\lim_{(x,y)\to(0,0)}f(x,y)\)</span> exists.</p> <p id="p-1458">Note that if either <span class="process-math">\(x\)</span> or <span class="process-math">\(y\)</span> is 0, then <span class="process-math">\(f(x,y) = 0\text{.}\)</span> Therefore, if <span class="process-math">\(f\)</span> has a limit at <span class="process-math">\((0,0)\text{,}\)</span> it must be 0. We will therefore argue that</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 \lim_{(x,y)\to(0,0)}f(x,y) = 0,
 \end{equation*}
 </div>
-<p class="continuation">by showing that we can make <span class="process-math">\(f(x,y)\)</span> as close to <span class="process-math">\(0\)</span> as we wish by taking <span class="process-math">\((x,y)\)</span> sufficiently close (but not equal) to <span class="process-math">\((0,0)\text{.}\)</span> In what follows, we view <span class="process-math">\(x\)</span> and <span class="process-math">\(y\)</span> as being real numbers that are close, but not equal, to 0.</p>
-<p id="p-1459">Since <span class="process-math">\(0 \leq x^2\text{,}\)</span> we have</p>
+<p class="continuation">by showing that we can make <span class="process-math">\(f(x,y)\)</span> as close to <span class="process-math">\(0\)</span> as we wish by taking <span class="process-math">\((x,y)\)</span> sufficiently close (but not equal) to <span class="process-math">\((0,0)\text{.}\)</span> In what follows, we view <span class="process-math">\(x\)</span> and <span class="process-math">\(y\)</span> as being real numbers that are close, but not equal, to 0.</p> <p id="p-1459">Since <span class="process-math">\(0 \leq x^2\text{,}\)</span> we have</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 y^2 \leq x^2+y^2,
@@ -553,15 +558,13 @@ y^2 \leq x^2+y^2,
 \begin{equation*}
 \frac{y^2}{x^2+y^2} \leq 1.
 \end{equation*}
-</div>
-<p id="p-1460">Multiplying both sides by <span class="process-math">\(x^2\)</span> and observing that <span class="process-math">\(f(x,y) \ge 0\)</span> for all <span class="process-math">\((x,y)\)</span> gives</p>
+</div> <p id="p-1460">Multiplying both sides by <span class="process-math">\(x^2\)</span> and observing that <span class="process-math">\(f(x,y) \ge 0\)</span> for all <span class="process-math">\((x,y)\)</span> gives</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 0\leq f(x,y) = \frac{x^2y^2}{x^2+y^2} =
 x^2\left(\frac{y^2}{x^2+y^2}\right) \leq x^2.
 \end{equation*}
-</div>
-<p id="p-1461">Thus, <span class="process-math">\(0 \leq f(x,y) \leq x^2\text{.}\)</span> Since <span class="process-math">\(x^2 \to 0\)</span> as <span class="process-math">\(x \to 0\text{,}\)</span> we can make <span class="process-math">\(f(x,y)\)</span> as close to <span class="process-math">\(0\)</span> as we like by taking <span class="process-math">\(x\)</span> sufficiently close to <span class="process-math">\(0\)</span> (for this example, it turns out that we don't even need to worry about making <span class="process-math">\(y\)</span> close to 0). Therefore,</p>
+</div> <p id="p-1461">Thus, <span class="process-math">\(0 \leq f(x,y) \leq x^2\text{.}\)</span> Since <span class="process-math">\(x^2 \to 0\)</span> as <span class="process-math">\(x \to 0\text{,}\)</span> we can make <span class="process-math">\(f(x,y)\)</span> as close to <span class="process-math">\(0\)</span> as we like by taking <span class="process-math">\(x\)</span> sufficiently close to <span class="process-math">\(0\)</span> (for this example, it turns out that we don't even need to worry about making <span class="process-math">\(y\)</span> close to 0). Therefore,</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 \lim_{(x,y) \to (0,0)} \frac{x^2y^2}{x^2+y^2} = 0.
@@ -642,17 +645,12 @@ f(a,b) = \lim_{(x,y) \to (a,b)} f(x,y).
 <article class="exercise exercise-like" id="ex-10-1-WW-limit_paths"><h4 class="heading"><span class="codenumber">1<span class="period">.</span></span></h4>
 <div id="webwork-93" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="93" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/272/setStewart14_2/UR_VC_5_4.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-contents">
-<p id="p-1492">Find the limits, if they exist, or type <em class="emphasis">DNE</em>  for any which do not exist.</p>
-<div class="displaymath process-math" data-contains-math-knowls="" id="p-1493">
+<p id="p-1492">Find the limits, if they exist, or type <em class="emphasis">DNE</em>  for any which do not exist.</p> <div class="displaymath process-math" data-contains-math-knowls="" id="p-1493">
 \begin{equation*}
 \displaystyle \lim_{(x, y) \rightarrow (0, 0)} 
 \frac{2 x^2}{ 4 x^2+ 3 y^2}
 \end{equation*}
-</div>
-<p id="p-1494">1) Along the <span class="process-math">\(x\)</span>-axis:    <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span></p>
-<p id="p-1495">2) Along the <span class="process-math">\(y\)</span>-axis:    <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span></p>
-<p id="p-1496">3) Along the line <span class="process-math">\(y=mx\)</span> :    <span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span></p>
-<p id="p-1497">4) The limit is:    <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span></p>
+</div> <p id="p-1494">1) Along the <span class="process-math">\(x\)</span>-axis:    <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span></p> <p id="p-1495">2) Along the <span class="process-math">\(y\)</span>-axis:    <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span></p> <p id="p-1496">3) Along the line <span class="process-math">\(y=mx\)</span> :    <span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span></p> <p id="p-1497">4) The limit is:    <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span></p>
 </div>
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-93')">Activate</button></div>
 </div></article><article class="exercise exercise-like" id="ex-10-1-WW-limit-ex-0"><h4 class="heading">
@@ -666,15 +664,7 @@ f(a,b) = \lim_{(x,y) \to (a,b)} f(x,y).
 f(x,y) = \frac{2x-y^{2}}{x+y^{2}}
 \end{equation*}
 </div>
-<p class="continuation">does not have a limit as <span class="process-math">\((x,y)\to (0,0)\text{.}\)</span></p>
-<p id="p-1503"><em class="alert">(a)</em> Suppose that we consider <span class="process-math">\((x,y)\to (0,0)\)</span> along the curve <span class="process-math">\(y = 4 x^{1/2}\text{.}\)</span>  Find the limit in this case:</p>
-<p id="p-1504"><span class="process-math">\(\lim\limits_{(x,4 x^{1/2})\to(0,0)} \frac{2x-y^{2}}{x+y^{2}} =\)</span> <span class="fillin underline" role="img" aria-label="35-character blank" style="width: 15.9090909090909em;"></span></p>
-<p id="p-1505"><em class="alert">(b)</em> Now consider <span class="process-math">\((x,y)\to (0,0)\)</span> along the curve <span class="process-math">\(y = 5 x^{1/2}\text{.}\)</span>  Find the limit in this case:</p>
-<p id="p-1506"><span class="process-math">\(\lim\limits_{(x,5 x^{1/2})\to(0,0)} \frac{2x-y^{2}}{x+y^{2}} =\)</span> <span class="fillin underline" role="img" aria-label="35-character blank" style="width: 15.9090909090909em;"></span></p>
-<p id="p-1507"><em class="alert">(c)</em> Note that the results from <em class="alert">(a)</em> and <em class="alert">(b)</em> indicate that <span class="process-math">\(f\)</span> has no limit as <span class="process-math">\((x,y)\to (0,0)\)</span> <em class="emphasis">(be sure you can explain why!)</em>.</p>
-<p id="p-1508">To show this more generally, consider <span class="process-math">\((x,y)\to (0,0)\)</span> along the curve <span class="process-math">\(y = m x^{1/2}\text{,}\)</span> for arbitrary <span class="process-math">\(m\text{.}\)</span>  Find the limit in this case:</p>
-<p id="p-1509"><span class="process-math">\(\lim\limits_{(x,m x^{1/2})\to(0,0)} \frac{2x-y^{2}}{x+y^{2}} =\)</span> <span class="fillin underline" role="img" aria-label="35-character blank" style="width: 15.9090909090909em;"></span></p>
-<p id="p-1510"><em class="emphasis">(Be sure that you can explain how this result also indicates that <span class="process-math">\(f\)</span> has no limit as <span class="process-math">\((x,y)\to(0,0)\text{.}\)</span></em></p>
+<p class="continuation">does not have a limit as <span class="process-math">\((x,y)\to (0,0)\text{.}\)</span></p> <p id="p-1503"><em class="alert">(a)</em> Suppose that we consider <span class="process-math">\((x,y)\to (0,0)\)</span> along the curve <span class="process-math">\(y = 4 x^{1/2}\text{.}\)</span>  Find the limit in this case:</p> <p id="p-1504"><span class="process-math">\(\lim\limits_{(x,4 x^{1/2})\to(0,0)} \frac{2x-y^{2}}{x+y^{2}} =\)</span> <span class="fillin underline" role="img" aria-label="35-character blank" style="width: 15.9090909090909em;"></span></p> <p id="p-1505"><em class="alert">(b)</em> Now consider <span class="process-math">\((x,y)\to (0,0)\)</span> along the curve <span class="process-math">\(y = 5 x^{1/2}\text{.}\)</span>  Find the limit in this case:</p> <p id="p-1506"><span class="process-math">\(\lim\limits_{(x,5 x^{1/2})\to(0,0)} \frac{2x-y^{2}}{x+y^{2}} =\)</span> <span class="fillin underline" role="img" aria-label="35-character blank" style="width: 15.9090909090909em;"></span></p> <p id="p-1507"><em class="alert">(c)</em> Note that the results from <em class="alert">(a)</em> and <em class="alert">(b)</em> indicate that <span class="process-math">\(f\)</span> has no limit as <span class="process-math">\((x,y)\to (0,0)\)</span> <em class="emphasis">(be sure you can explain why!)</em>.</p> <p id="p-1508">To show this more generally, consider <span class="process-math">\((x,y)\to (0,0)\)</span> along the curve <span class="process-math">\(y = m x^{1/2}\text{,}\)</span> for arbitrary <span class="process-math">\(m\text{.}\)</span>  Find the limit in this case:</p> <p id="p-1509"><span class="process-math">\(\lim\limits_{(x,m x^{1/2})\to(0,0)} \frac{2x-y^{2}}{x+y^{2}} =\)</span> <span class="fillin underline" role="img" aria-label="35-character blank" style="width: 15.9090909090909em;"></span></p> <p id="p-1510"><em class="emphasis">(Be sure that you can explain how this result also indicates that <span class="process-math">\(f\)</span> has no limit as <span class="process-math">\((x,y)\to(0,0)\text{.}\)</span></em></p>
 </div>
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-94')">Activate</button></div>
 </div></article><article class="exercise exercise-like" id="ex-10-1-WW-limit_directions"><h4 class="heading"><span class="codenumber">3<span class="period">.</span></span></h4>
@@ -686,55 +676,44 @@ f(x,y) = \frac{2x-y^{2}}{x+y^{2}}
 f(x,y) = \frac{x^{4}y}{x^{8}+y^{4}}.
 \end{equation*}
 </div>
-<p class="continuation">does not have a limit at <span class="process-math">\((0,0)\)</span> by examining the following limits.</p>
-<p id="p-1515"><em class="alert">(a)</em> Find the limit of <span class="process-math">\(f\)</span> as <span class="process-math">\((x,y) \to (0,0)\)</span> along the line <span class="process-math">\(y = x\text{.}\)</span></p>
-<p id="p-1516"><span class="process-math">\(\lim\limits_{{}^{(x,y)\to(0,0)}_{y=x}} f(x,y) =\)</span> <span class="fillin underline" role="img" aria-label="35-character blank" style="width: 15.9090909090909em;"></span></p>
-<p id="p-1517"><em class="alert">(b)</em> Find the limit of <span class="process-math">\(f\)</span> as <span class="process-math">\((x,y)\to(0,0)\)</span> along the curve <span class="process-math">\(y = x^4\text{.}\)</span></p>
-<p id="p-1518"><span class="process-math">\(\lim\limits_{{}^{(x,y)\to(0,0)}_{y=x^4}} f(x,y) =\)</span> <span class="fillin underline" role="img" aria-label="35-character blank" style="width: 15.9090909090909em;"></span></p>
-<p id="p-1519"><em class="emphasis">(Be sure that you are able to explain why the results in <em class="alert">(a)</em> and <em class="alert">(b)</em> indicate that <span class="process-math">\(f\)</span> does not have a limit at (0,0)!</em></p>
+<p class="continuation">does not have a limit at <span class="process-math">\((0,0)\)</span> by examining the following limits.</p> <p id="p-1515"><em class="alert">(a)</em> Find the limit of <span class="process-math">\(f\)</span> as <span class="process-math">\((x,y) \to (0,0)\)</span> along the line <span class="process-math">\(y = x\text{.}\)</span></p> <p id="p-1516"><span class="process-math">\(\lim\limits_{{}^{(x,y)\to(0,0)}_{y=x}} f(x,y) =\)</span> <span class="fillin underline" role="img" aria-label="35-character blank" style="width: 15.9090909090909em;"></span></p> <p id="p-1517"><em class="alert">(b)</em> Find the limit of <span class="process-math">\(f\)</span> as <span class="process-math">\((x,y)\to(0,0)\)</span> along the curve <span class="process-math">\(y = x^4\text{.}\)</span></p> <p id="p-1518"><span class="process-math">\(\lim\limits_{{}^{(x,y)\to(0,0)}_{y=x^4}} f(x,y) =\)</span> <span class="fillin underline" role="img" aria-label="35-character blank" style="width: 15.9090909090909em;"></span></p> <p id="p-1519"><em class="emphasis">(Be sure that you are able to explain why the results in <em class="alert">(a)</em> and <em class="alert">(b)</em> indicate that <span class="process-math">\(f\)</span> does not have a limit at (0,0)!</em></p>
 </div>
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-95')">Activate</button></div>
 </div></article><article class="exercise exercise-like" id="ex-10-1-WW-limit_ex_1"><h4 class="heading"><span class="codenumber">4<span class="period">.</span></span></h4>
 <div id="webwork-96" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="96" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Rochester/setVmultivariable2Limits/UR_VC_5_4.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-contents">
-<p id="p-1522">Find the limit, if it exists, or type N if it does not exist.</p>
-<p id="p-1523"><span class="process-math">\(\displaystyle \lim_{(x, y) \rightarrow (0, 0)} \frac{4 x^2}{ 4 x^2 + 4 y^2} =\)</span> <span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span></p>
+<p id="p-1522">Find the limit, if it exists, or type N if it does not exist.</p> <p id="p-1523"><span class="process-math">\(\displaystyle \lim_{(x, y) \rightarrow (0, 0)} \frac{4 x^2}{ 4 x^2 + 4 y^2} =\)</span> <span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span></p>
 </div>
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-96')">Activate</button></div>
 </div></article><article class="exercise exercise-like" id="ex-10-1-WW-limit_ex_2"><h4 class="heading"><span class="codenumber">5<span class="period">.</span></span></h4>
 <div id="webwork-97" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="97" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Rochester/setVmultivariable2Limits/UR_VC_5_5.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-contents">
-<p id="p-1525">Find the limit, if it exists, or type N if it does not exist.</p>
-<p id="p-1526"><span class="process-math">\(\displaystyle \lim_{(x, y) \rightarrow (0, 0)} \frac{(x + 19y)^2}{x^2 + {19}^2y^2} =\)</span> <span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span></p>
+<p id="p-1525">Find the limit, if it exists, or type N if it does not exist.</p> <p id="p-1526"><span class="process-math">\(\displaystyle \lim_{(x, y) \rightarrow (0, 0)} \frac{(x + 19y)^2}{x^2 + {19}^2y^2} =\)</span> <span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span></p>
 </div>
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-97')">Activate</button></div>
 </div></article><article class="exercise exercise-like" id="ex-10-1-WW-limit_ex_3"><h4 class="heading"><span class="codenumber">6<span class="period">.</span></span></h4>
 <div id="webwork-98" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="98" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/maCalcDB/setVmultivariable2Limits/UR_VC_5_3.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-contents">
-<p id="p-1528">Find the limit, if it exists, or type 'DNE' if it does not exist.</p>
-<p id="p-1529"><span class="process-math">\(\displaystyle \lim_{(x, y) \rightarrow (4, -5)} e^{\sqrt{4x^2 + 1y^2}} =\)</span> <span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span></p>
+<p id="p-1528">Find the limit, if it exists, or type 'DNE' if it does not exist.</p> <p id="p-1529"><span class="process-math">\(\displaystyle \lim_{(x, y) \rightarrow (4, -5)} e^{\sqrt{4x^2 + 1y^2}} =\)</span> <span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span></p>
 </div>
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-98')">Activate</button></div>
 </div></article><article class="exercise exercise-like" id="ex-10-1-WW-limit_ex_4"><h4 class="heading"><span class="codenumber">7<span class="period">.</span></span></h4>
 <div id="webwork-99" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="99" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Rochester/setVmultivariable2Limits/UR_VC_5_8.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-contents">
-<p id="p-1531">Find the limit, if it exists, or type N if it does not exist.</p>
-<p id="p-1532"><span class="process-math">\(\displaystyle \lim_{(x, y, z) \rightarrow (0, 0, 0)} \frac{5 xy+ 4 yz+ xz
+<p id="p-1531">Find the limit, if it exists, or type N if it does not exist.</p> <p id="p-1532"><span class="process-math">\(\displaystyle \lim_{(x, y, z) \rightarrow (0, 0, 0)} \frac{5 xy+ 4 yz+ xz
 }{25 x^2+ 16 y^2+ z^2} =\)</span> <span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span></p>
 </div>
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-99')">Activate</button></div>
 </div></article><article class="exercise exercise-like" id="ex-10-1-WW-limit_ex_4-b"><h4 class="heading"><span class="codenumber">8<span class="period">.</span></span></h4>
 <div id="webwork-100" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="100" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/maCalcDB/setVmultivariable2Limits/UR_VC_5_7.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-contents">
-<p id="p-1534">Find the limit, if it exists, or type N if it does not exist.</p>
-<p id="p-1535"><span class="process-math">\(\displaystyle \lim_{(x, y, z) \rightarrow (1, 2, 3)} \frac{3 z e^{x^2+y^2}}{x^2+ 2 y^2+ 3 z^2} =\)</span> <span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span></p>
+<p id="p-1534">Find the limit, if it exists, or type N if it does not exist.</p> <p id="p-1535"><span class="process-math">\(\displaystyle \lim_{(x, y, z) \rightarrow (1, 2, 3)} \frac{3 z e^{x^2+y^2}}{x^2+ 2 y^2+ 3 z^2} =\)</span> <span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span></p>
 </div>
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-100')">Activate</button></div>
 </div></article><article class="exercise exercise-like" id="ex-10-1-WW-limit_ex_5"><h4 class="heading"><span class="codenumber">9<span class="period">.</span></span></h4>
 <div id="webwork-101" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="101" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/272/setStewart14_2/problem_3.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-contents">
-<p id="p-1537">Find the limit (enter 'DNE' if the limit does not exist)</p>
-<p id="p-1538">Hint: rationalize the denominator.</p>
+<p id="p-1537">Find the limit (enter 'DNE' if the limit does not exist)</p> <p id="p-1538">Hint: rationalize the denominator.</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 \lim_{(x,y) \to (0, 0)}
@@ -746,8 +725,7 @@ f(x,y) = \frac{x^{4}y}{x^{8}+y^{4}}.
 </div></article><article class="exercise exercise-like" id="ex-10-1-WW-continuity"><h4 class="heading"><span class="codenumber">10<span class="period">.</span></span></h4>
 <div id="webwork-102" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="102" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/272/setStewart14_2/problem_4.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-contents">
-<p id="p-1540">The largest set on which the function <span class="process-math">\(f(x,y) = 1/(7 - x^2 - y^2)\)</span> is continuous is <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span></p>
-<ol id="p-1541" class="upper-alpha">
+<p id="p-1540">The largest set on which the function <span class="process-math">\(f(x,y) = 1/(7 - x^2 - y^2)\)</span> is continuous is <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span></p> <ol id="p-1541" class="upper-alpha">
 <li id="li-554"><p id="p-1542">The exterior of the circle <span class="process-math">\(x^2 + y^2 = 7\)</span></p></li>
 <li id="li-555"><p id="p-1543">All of the xy-plane</p></li>
 <li id="li-556"><p id="p-1544">The interior of the circle <span class="process-math">\(x^2 + y^2 = 7\text{,}\)</span> plus the circle</p></li>

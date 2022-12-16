@@ -60,7 +60,8 @@ window.MathJax = {
 },
 };
 </script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><link href="https://webwork-ptx.aimath.org/webwork2_files/js/apps/MathView/mathview.css" rel="stylesheet">
-<script src="https://pretextbook.org/js/0.13/pretext-webwork/2./pretext-webwork.js"></script><script src="https://webwork-ptx.aimath.org/webwork2_files/node_modules/iframe-resizer/js/iframeResizer.min.js"></script><script async="" src="https://cse.google.com/cse.js?cx=015103900096539427448:ngwuia10qci"></script><script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.13/pretext.js"></script><script>miniversion=0.674</script><script src="https://pretextbook.org/js/0.13/pretext_add_on.js?x=1"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
+<script src="https://pretextbook.org/js/0.13/pretext-webwork/2./pretext-webwork.js"></script><script src="https://webwork-ptx.aimath.org/webwork2_files/node_modules/iframe-resizer/js/iframeResizer.min.js"></script><script async="" src="https://cse.google.com/cse.js?cx=015103900096539427448:ngwuia10qci"></script><script src="https://unpkg.com/lunr/lunr.js"></script><script src="lunr-pretext-search-index.js"></script><script src="https://pretextbook.org/js/0.13/pretext_search.js"></script><link href="https://pretextbook.org/css/0.4/pretext_search.css" rel="stylesheet" type="text/css">
+<script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.13/pretext.js"></script><script>miniversion=0.674</script><script src="https://pretextbook.org/js/0.13/pretext_add_on.js?x=1"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
 </script><link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic" rel="stylesheet" type="text/css">
 <link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
 <link href="https://pretextbook.org/css/0.4/pretext.css" rel="stylesheet" type="text/css">
@@ -122,6 +123,15 @@ window.MathJax = {
 <p class="byline">Steve Schlicker, Mitchel T. Keller, Nicholas Long</p>
 </div>
 <div class="searchwrapper" role="search"><div class="gcse-search"></div></div>
+<div class="searchbox"><div class="searchwidget">
+<input id="ptxsearch" type="text" name="terms" placeholder="Search" onchange="doSearch()"><button id="searchbutton" type="button" onclick="doSearch()">🔍</button>
+</div></div>
+<div id="searchresultsplaceholder" style="display: none">
+<button id="closesearchresults" onclick="document.getElementById('searchresultsplaceholder').style.display = 'none'; return false;">x</button><h2>Search Results: <span id="searchterms"></span>
+</h2>
+<div id="searchempty"><span>No results.</span></div>
+<ol id="searchresults"></ol>
+</div>
 </div></div>
 <nav id="primary-navbar" class="navbar"><div class="container">
 <div class="navbar-top-buttons">
@@ -219,8 +229,7 @@ dz = \frac{dz}{dy}~dy
 \ 
 dy = \frac{dy}{dx}~dx.
 \end{equation*}
-</div>
-<p id="p-2136">In terms of instantaneous rates of change, we then have</p>
+</div> <p id="p-2136">In terms of instantaneous rates of change, we then have</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 dz = \frac{dz}{dy}\frac{dy}{dx}~dx = \frac{dz}{dx}~dx
@@ -231,10 +240,7 @@ dz = \frac{dz}{dy}\frac{dy}{dx}~dx = \frac{dz}{dx}~dx
 \begin{equation*}
 \frac{dz}{dx} = \frac{dz}{dy}\frac{dy}{dx}.
 \end{equation*}
-</div>
-<p id="p-2137">This most recent equation we call the <em class="emphasis">Chain Rule</em>.</p>
-<p id="p-2138">In the case of a function <span class="process-math">\(f\)</span> of two variables where <span class="process-math">\(z = f(x,y)\text{,}\)</span> it might be that both <span class="process-math">\(x\)</span> and <span class="process-math">\(y\)</span> depend on another variable <span class="process-math">\(t\text{.}\)</span> A change in <span class="process-math">\(t\)</span> then produces changes in both <span class="process-math">\(x\)</span> and <span class="process-math">\(y\text{,}\)</span> which then cause <span class="process-math">\(z\)</span> to change. In this section we will see how to find the change in <span class="process-math">\(z\)</span> that is caused by a change in <span class="process-math">\(t\text{,}\)</span> leading us to multivariable versions of the Chain Rule involving both regular and partial derivatives.</p>
-<article class="exploration project-like" id="PA_10_5"><h3 class="heading">
+</div> <p id="p-2137">This most recent equation we call the <em class="emphasis">Chain Rule</em>.</p> <p id="p-2138">In the case of a function <span class="process-math">\(f\)</span> of two variables where <span class="process-math">\(z = f(x,y)\text{,}\)</span> it might be that both <span class="process-math">\(x\)</span> and <span class="process-math">\(y\)</span> depend on another variable <span class="process-math">\(t\text{.}\)</span> A change in <span class="process-math">\(t\)</span> then produces changes in both <span class="process-math">\(x\)</span> and <span class="process-math">\(y\text{,}\)</span> which then cause <span class="process-math">\(z\)</span> to change. In this section we will see how to find the change in <span class="process-math">\(z\)</span> that is caused by a change in <span class="process-math">\(t\text{,}\)</span> leading us to multivariable versions of the Chain Rule involving both regular and partial derivatives.</p> <article class="exploration project-like" id="PA_10_5"><h3 class="heading">
 <span class="type">Preview Activity</span><span class="space"> </span><span class="codenumber">10.5.1</span><span class="period">.</span>
 </h3>
 <p id="p-2139">Suppose you are driving around in the <span class="process-math">\(xy\)</span>-plane in such a way that your position <span class="process-math">\(\vr(t)\)</span> at time <span class="process-math">\(t\)</span> is given by function</p>
@@ -242,13 +248,11 @@ dz = \frac{dz}{dy}\frac{dy}{dx}~dx = \frac{dz}{dx}~dx
 \begin{equation*}
 \vr(t) = \langle x(t), y(t) \rangle = \langle 2-t^2, t^3 + 1\rangle.
 \end{equation*}
-</div>
-<p id="p-2140">The path taken is shown on the left of <a href="" class="xref" data-knowl="./knowl/F_10_5_preview.html" title="Figure 10.5.1">Figure 10.5.1</a>.</p>
-<figure class="figure figure-like" id="F_10_5_preview"><div class="sidebyside"><div class="sbsrow" style="margin-left:0%;margin-right:0%;">
+</div> <p id="p-2140">The path taken is shown on the left of <a href="" class="xref" data-knowl="./knowl/F_10_5_preview.html" title="Figure 10.5.1">Figure 10.5.1</a>.</p> <figure class="figure figure-like" id="F_10_5_preview"><div class="sidebyside"><div class="sbsrow" style="margin-left:0%;margin-right:0%;">
 <div class="sbspanel top" style="width:50%;"><img src="external/images/fig_10_5_preview_r.svg" role="img" class="contained"></div>
 <div class="sbspanel top" style="width:50%;"><img src="external/images/fig_10_5_preview_h.svg" role="img" class="contained"></div>
 </div></div>
-<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">10.5.1<span class="period">.</span></span><span class="space"> </span>Left: Your position in the plane. Right: The corresponding temperature.</figcaption></figure><p id="p-2141">Suppose, furthermore, that the temperature at a point in the plane is given by</p>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">10.5.1<span class="period">.</span></span><span class="space"> </span>Left: Your position in the plane. Right: The corresponding temperature.</figcaption></figure> <p id="p-2141">Suppose, furthermore, that the temperature at a point in the plane is given by</p>
 <div class="displaymath process-math" data-contains-math-knowls="./knowl/F_10_5_preview.html ./knowl/eq_PA_10_5_1.html ./knowl/eq_PA_10_5_2.html ./knowl/eq_PA_10_5_2.html">
 \begin{equation*}
 T(x,y) = 10 - \frac12x^2 -\frac15y^2,
@@ -318,8 +322,7 @@ dz = \frac{\partial z}{\partial x}\frac{dx}{dt}~dt
 <article class="activity project-like" id="PA_10_11"><h4 class="heading">
 <span class="type">Activity</span><span class="space"> </span><span class="codenumber">10.5.2</span><span class="period">.</span>
 </h4>
-<p id="p-2152">In the following questions, we apply the Chain Rule in several different contexts.</p>
-<ol class="lower-alpha">
+<p id="p-2152">In the following questions, we apply the Chain Rule in several different contexts.</p> <ol class="lower-alpha">
 <li id="li-779">
 <p id="p-2153">Suppose that we have a function <span class="process-math">\(z\)</span> defined by <span class="process-math">\(z(x,y) = x^2+xy^3\text{.}\)</span>  In addition, suppose that <span class="process-math">\(x\)</span> and <span class="process-math">\(y\)</span> are restricted to points that move around the plane by following a circle of radius <span class="process-math">\(2\)</span> centered at the origin that is parameterized by</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
@@ -418,14 +421,7 @@ y\amp =r\sin(\theta).
 \begin{equation*}
 z = x^2 y + x y^2,\quad  x = 4 - t^7,\quad y = -4 - t^5
 \end{equation*}
-</div>
-<p id="p-2173">First the pieces:</p>
-<p id="p-2174"><span class="process-math">\(\frac{\partial z}{\partial x} =\)</span> <span class="fillin underline" role="img" aria-label="30-character blank" style="width: 13.6363636363636em;"></span></p>
-<p id="p-2175"><span class="process-math">\(\frac{\partial z}{\partial y} =\)</span> <span class="fillin underline" role="img" aria-label="30-character blank" style="width: 13.6363636363636em;"></span></p>
-<p id="p-2176"><span class="process-math">\(\frac{dx}{dt} =\)</span> <span class="fillin underline" role="img" aria-label="30-character blank" style="width: 13.6363636363636em;"></span></p>
-<p id="p-2177"><span class="process-math">\(\frac{dy}{dt} =\)</span> <span class="fillin underline" role="img" aria-label="30-character blank" style="width: 13.6363636363636em;"></span></p>
-<p id="p-2178">End result (in terms of just <span class="process-math">\(t\)</span>):</p>
-<p id="p-2179"><span class="process-math">\(\frac{dz}{dt} =\)</span> <span class="fillin underline" role="img" aria-label="60-character blank" style="width: 27.2727272727273em;"></span></p>
+</div> <p id="p-2173">First the pieces:</p> <p id="p-2174"><span class="process-math">\(\frac{\partial z}{\partial x} =\)</span> <span class="fillin underline" role="img" aria-label="30-character blank" style="width: 13.6363636363636em;"></span></p> <p id="p-2175"><span class="process-math">\(\frac{\partial z}{\partial y} =\)</span> <span class="fillin underline" role="img" aria-label="30-character blank" style="width: 13.6363636363636em;"></span></p> <p id="p-2176"><span class="process-math">\(\frac{dx}{dt} =\)</span> <span class="fillin underline" role="img" aria-label="30-character blank" style="width: 13.6363636363636em;"></span></p> <p id="p-2177"><span class="process-math">\(\frac{dy}{dt} =\)</span> <span class="fillin underline" role="img" aria-label="30-character blank" style="width: 13.6363636363636em;"></span></p> <p id="p-2178">End result (in terms of just <span class="process-math">\(t\)</span>):</p> <p id="p-2179"><span class="process-math">\(\frac{dz}{dt} =\)</span> <span class="fillin underline" role="img" aria-label="60-character blank" style="width: 27.2727272727273em;"></span></p>
 </div>
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-134')">Activate</button></div>
 </div></article><article class="exercise exercise-like" id="ex-10-5-WW-chain-rule-pieces"><h4 class="heading"><span class="codenumber">2<span class="period">.</span></span></h4>
@@ -436,13 +432,7 @@ z = x^2 y + x y^2,\quad  x = 4 - t^7,\quad y = -4 - t^5
 \begin{equation*}
 z = e^{xy}\tan y, x = 5 s + 1 t, y = \frac{2 s}{6 t}
 \end{equation*}
-</div>
-<p id="p-2186">First the pieces:</p>
-<p id="p-2187"><span class="process-math">\(\frac{\partial z}{\partial x} =\)</span><span class="fillin underline" role="img" aria-label="30-character blank" style="width: 13.6363636363636em;"></span> <span class="process-math">\(\frac{\partial z}{\partial y} =\)</span><span class="fillin underline" role="img" aria-label="30-character blank" style="width: 13.6363636363636em;"></span></p>
-<p id="p-2188"><span class="process-math">\(\frac{\partial x}{\partial s} =\)</span><span class="fillin underline" role="img" aria-label="30-character blank" style="width: 13.6363636363636em;"></span> <span class="process-math">\(\frac{\partial x}{\partial t} =\)</span><span class="fillin underline" role="img" aria-label="30-character blank" style="width: 13.6363636363636em;"></span></p>
-<p id="p-2189"><span class="process-math">\(\frac{\partial y}{\partial s} =\)</span><span class="fillin underline" role="img" aria-label="30-character blank" style="width: 13.6363636363636em;"></span> <span class="process-math">\(\frac{\partial y}{\partial t} =\)</span><span class="fillin underline" role="img" aria-label="30-character blank" style="width: 13.6363636363636em;"></span></p>
-<p id="p-2190">And putting it all together:</p>
-<p id="p-2191"><span class="process-math">\(\frac{\partial z}{\partial s} = 
+</div> <p id="p-2186">First the pieces:</p> <p id="p-2187"><span class="process-math">\(\frac{\partial z}{\partial x} =\)</span><span class="fillin underline" role="img" aria-label="30-character blank" style="width: 13.6363636363636em;"></span> <span class="process-math">\(\frac{\partial z}{\partial y} =\)</span><span class="fillin underline" role="img" aria-label="30-character blank" style="width: 13.6363636363636em;"></span></p> <p id="p-2188"><span class="process-math">\(\frac{\partial x}{\partial s} =\)</span><span class="fillin underline" role="img" aria-label="30-character blank" style="width: 13.6363636363636em;"></span> <span class="process-math">\(\frac{\partial x}{\partial t} =\)</span><span class="fillin underline" role="img" aria-label="30-character blank" style="width: 13.6363636363636em;"></span></p> <p id="p-2189"><span class="process-math">\(\frac{\partial y}{\partial s} =\)</span><span class="fillin underline" role="img" aria-label="30-character blank" style="width: 13.6363636363636em;"></span> <span class="process-math">\(\frac{\partial y}{\partial t} =\)</span><span class="fillin underline" role="img" aria-label="30-character blank" style="width: 13.6363636363636em;"></span></p> <p id="p-2190">And putting it all together:</p> <p id="p-2191"><span class="process-math">\(\frac{\partial z}{\partial s} = 
 \frac{\partial z}{\partial x}\frac{\partial x}{\partial s} + 
 \frac{\partial z}{\partial y}\frac{\partial y}{\partial s}\)</span> and <span class="process-math">\(\frac{\partial z}{\partial t} =
 \frac{\partial z}{\partial x}\frac{\partial x}{\partial t} + 
@@ -452,22 +442,14 @@ z = e^{xy}\tan y, x = 5 s + 1 t, y = \frac{2 s}{6 t}
 </div></article><article class="exercise exercise-like" id="ex-10-5-WW-chain-rule-two-variable"><h4 class="heading"><span class="codenumber">3<span class="period">.</span></span></h4>
 <div id="webwork-136" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="136" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/maCalcDB/setVmultivariable5ChainRule/ur_vc_6_7.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-contents">
-<p id="p-2198">Suppose <span class="process-math">\(\displaystyle w = \frac{x}{y} + \frac{y}{z}\text{,}\)</span> where</p>
-<p id="p-2199"><span class="process-math">\(x = e^{t},\ y = 2 + \sin \left( 5t \right)\text{,}\)</span> and <span class="process-math">\(z = 2 + \cos \left( 5t \right)\text{.}\)</span></p>
-<p id="p-2200"><em class="alert">A</em>) Use the chain rule to find <span class="process-math">\(\frac{dw}{dt}\)</span> as a function of x, y, z, and t. Do not rewrite x, y, and z in terms of t, and do not rewrite <span class="process-math">\(e^{t}\)</span> as x.</p>
-<p id="p-2201"><span class="process-math">\(\frac{dw}{dt}\)</span> = <span class="fillin underline" role="img" aria-label="65-character blank" style="width: 29.5454545454545em;"></span></p>
-<p id="p-2202">Note: You may want to use exp() for the exponential function. Your answer should be an expression in x, y, z, and t; e.g. “3x - 4y”</p>
-<p id="p-2203"><em class="alert">B</em>) Use part A to evaluate <span class="process-math">\(\frac{dw}{dt}\)</span> when <span class="process-math">\(t
-= 0\text{.}\)</span></p>
-<p id="p-2204"><span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span></p>
+<p id="p-2198">Suppose <span class="process-math">\(\displaystyle w = \frac{x}{y} + \frac{y}{z}\text{,}\)</span> where</p> <p id="p-2199"><span class="process-math">\(x = e^{t},\ y = 2 + \sin \left( 5t \right)\text{,}\)</span> and <span class="process-math">\(z = 2 + \cos \left( 5t \right)\text{.}\)</span></p> <p id="p-2200"><em class="alert">A</em>) Use the chain rule to find <span class="process-math">\(\frac{dw}{dt}\)</span> as a function of x, y, z, and t. Do not rewrite x, y, and z in terms of t, and do not rewrite <span class="process-math">\(e^{t}\)</span> as x.</p> <p id="p-2201"><span class="process-math">\(\frac{dw}{dt}\)</span> = <span class="fillin underline" role="img" aria-label="65-character blank" style="width: 29.5454545454545em;"></span></p> <p id="p-2202">Note: You may want to use exp() for the exponential function. Your answer should be an expression in x, y, z, and t; e.g. “3x - 4y”</p> <p id="p-2203"><em class="alert">B</em>) Use part A to evaluate <span class="process-math">\(\frac{dw}{dt}\)</span> when <span class="process-math">\(t
+= 0\text{.}\)</span></p> <p id="p-2204"><span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span></p>
 </div>
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-136')">Activate</button></div>
 </div></article><article class="exercise exercise-like" id="ex-10-5-WW-chain-rule-partials"><h4 class="heading"><span class="codenumber">4<span class="period">.</span></span></h4>
 <div id="webwork-137" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="137" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/FortLewis/Calc3/14-6-Chain-rule/HGM4-14-6-10-Chain-rule.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-contents">
-<p id="p-2207">If <span class="process-math">\(z = \left(x+y\right)e^{y}\)</span> and <span class="process-math">\(x = u^{2}+v^{2}\)</span> and <span class="process-math">\(y = u^{2}-v^{2}\text{,}\)</span> find the following partial derivatives using the chain rule.  Enter your answers as functions of <span class="process-math">\(u\)</span> and <span class="process-math">\(v\text{.}\)</span></p>
-<p id="p-2208"><span class="process-math">\(\displaystyle \frac{\partial z}{\partial u} =\)</span> <span class="fillin underline" role="img" aria-label="80-character blank" style="width: 36.3636363636364em;"></span></p>
-<p id="p-2209"><span class="process-math">\(\displaystyle \frac{\partial z}{\partial v} =\)</span> <span class="fillin underline" role="img" aria-label="80-character blank" style="width: 36.3636363636364em;"></span></p>
+<p id="p-2207">If <span class="process-math">\(z = \left(x+y\right)e^{y}\)</span> and <span class="process-math">\(x = u^{2}+v^{2}\)</span> and <span class="process-math">\(y = u^{2}-v^{2}\text{,}\)</span> find the following partial derivatives using the chain rule.  Enter your answers as functions of <span class="process-math">\(u\)</span> and <span class="process-math">\(v\text{.}\)</span></p> <p id="p-2208"><span class="process-math">\(\displaystyle \frac{\partial z}{\partial u} =\)</span> <span class="fillin underline" role="img" aria-label="80-character blank" style="width: 36.3636363636364em;"></span></p> <p id="p-2209"><span class="process-math">\(\displaystyle \frac{\partial z}{\partial v} =\)</span> <span class="fillin underline" role="img" aria-label="80-character blank" style="width: 36.3636363636364em;"></span></p>
 </div>
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-137')">Activate</button></div>
 </div></article><article class="exercise exercise-like" id="ex-10-5-WW-chain-rule-example"><h4 class="heading"><span class="codenumber">5<span class="period">.</span></span></h4>
@@ -479,16 +461,13 @@ z = e^{xy}\tan y, x = 5 s + 1 t, y = \frac{2 s}{6 t}
 z = \sin\!\left(x^{2}+y^{2}\right),\qquad x = v\cos\!\left(u\right),\qquad y = v\sin\!\left(u\right),
 \end{equation*}
 </div>
-<p class="continuation">find <span class="process-math">\(\partial z/\partial u\)</span> and <span class="process-math">\(\partial z/\partial v\text{.}\)</span> The variables are restricted to domains on which the functions are defined.</p>
-<p id="p-2213"><span class="process-math">\(\partial z/\partial u =\)</span> <span class="fillin underline" role="img" aria-label="55-character blank" style="width: 25em;"></span></p>
-<p id="p-2214"><span class="process-math">\(\partial z/\partial v =\)</span> <span class="fillin underline" role="img" aria-label="55-character blank" style="width: 25em;"></span></p>
+<p class="continuation">find <span class="process-math">\(\partial z/\partial u\)</span> and <span class="process-math">\(\partial z/\partial v\text{.}\)</span> The variables are restricted to domains on which the functions are defined.</p> <p id="p-2213"><span class="process-math">\(\partial z/\partial u =\)</span> <span class="fillin underline" role="img" aria-label="55-character blank" style="width: 25em;"></span></p> <p id="p-2214"><span class="process-math">\(\partial z/\partial v =\)</span> <span class="fillin underline" role="img" aria-label="55-character blank" style="width: 25em;"></span></p>
 </div>
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-138')">Activate</button></div>
 </div></article><article class="exercise exercise-like" id="ex-10-5-WW-chain-rule-count"><h4 class="heading"><span class="codenumber">6<span class="period">.</span></span></h4>
 <div id="webwork-139" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="139" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Michigan/Chap14Sec6/Q23.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-contents">
-<p id="p-2217">Let <span class="process-math">\(z=g(u,v,w)\)</span> and <span class="process-math">\(u(r,s,t),v(r,s,t),w(r,s,t)\text{.}\)</span> How many terms are there in the expression for <span class="process-math">\(\partial z/\partial r\text{?}\)</span></p>
-<p id="p-2218"><span class="fillin underline" role="img" aria-label="35-character blank" style="width: 15.9090909090909em;"></span> terms</p>
+<p id="p-2217">Let <span class="process-math">\(z=g(u,v,w)\)</span> and <span class="process-math">\(u(r,s,t),v(r,s,t),w(r,s,t)\text{.}\)</span> How many terms are there in the expression for <span class="process-math">\(\partial z/\partial r\text{?}\)</span></p> <p id="p-2218"><span class="fillin underline" role="img" aria-label="35-character blank" style="width: 15.9090909090909em;"></span> terms</p>
 </div>
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-139')">Activate</button></div>
 </div></article><article class="exercise exercise-like" id="ex-10-5-WW-chain-rule-limited-data"><h4 class="heading"><span class="codenumber">7<span class="period">.</span></span></h4>
@@ -509,35 +488,26 @@ v(1,0) = -8, v_s(1,0) = 6, v_t(1,0) = -3
 \begin{equation*}
 F_u(-1, -8) = -2, F_v(-1, -8) = 2
 \end{equation*}
-</div>
-<p id="p-2221"><span class="process-math">\(W_s(1,0) =\)</span> <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span> <span class="process-math">\(W_t(1,0) =\)</span> <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span></p>
+</div> <p id="p-2221"><span class="process-math">\(W_s(1,0) =\)</span> <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span> <span class="process-math">\(W_t(1,0) =\)</span> <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span></p>
 </div>
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-140')">Activate</button></div>
 </div></article><article class="exercise exercise-like" id="ex-10-5-WW-chain-rule-volume-cone"><h4 class="heading"><span class="codenumber">8<span class="period">.</span></span></h4>
 <div id="webwork-141" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="141" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/maCalcDB/setVmultivariable5ChainRule/ur_vc_6_9.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-contents">
-<p id="p-2224">The radius of a right circular cone is increasing at a rate of 4 inches per second and its height is decreasing at a rate of 2 inches per second. At what rate is the volume of the cone changing when the radius is 30 inches and the height is 10 inches?</p>
-<p id="p-2225"><span class="fillin underline" role="img" aria-label="15-character blank" style="width: 6.818181818181818em;"></span> cubic inches per second</p>
+<p id="p-2224">The radius of a right circular cone is increasing at a rate of 4 inches per second and its height is decreasing at a rate of 2 inches per second. At what rate is the volume of the cone changing when the radius is 30 inches and the height is 10 inches?</p> <p id="p-2225"><span class="fillin underline" role="img" aria-label="15-character blank" style="width: 6.818181818181818em;"></span> cubic inches per second</p>
 </div>
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-141')">Activate</button></div>
 </div></article><article class="exercise exercise-like" id="ex-10-5-WW-chain-rule-current"><h4 class="heading"><span class="codenumber">9<span class="period">.</span></span></h4>
 <div id="webwork-142" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="142" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/maCalcDB/setVmultivariable5ChainRule/ur_vc_6_10.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-contents">
-<p id="p-2227">In a simple electric circuit, Ohm's law states that <span class="process-math">\(V = IR\text{,}\)</span> where V is the voltage in volts, I is the current in amperes, and R is the resistance in ohms. Assume that, as the battery wears out, the voltage decreases at 0.03 volts per second and, as the resistor heats up, the resistance is increasing at 0.03 ohms per second. When the resistance is 400 ohms and the current is 0.04 amperes, at what rate is the current changing?</p>
-<p id="p-2228"><span class="fillin underline" role="img" aria-label="35-character blank" style="width: 15.9090909090909em;"></span> amperes per second</p>
+<p id="p-2227">In a simple electric circuit, Ohm's law states that <span class="process-math">\(V = IR\text{,}\)</span> where V is the voltage in volts, I is the current in amperes, and R is the resistance in ohms. Assume that, as the battery wears out, the voltage decreases at 0.03 volts per second and, as the resistor heats up, the resistance is increasing at 0.03 ohms per second. When the resistance is 400 ohms and the current is 0.04 amperes, at what rate is the current changing?</p> <p id="p-2228"><span class="fillin underline" role="img" aria-label="35-character blank" style="width: 15.9090909090909em;"></span> amperes per second</p>
 </div>
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-142')">Activate</button></div>
 </div></article><article class="exercise exercise-like" id="ex-10-5-WW-chain-rule-at-a-point"><h4 class="heading"><span class="codenumber">10<span class="period">.</span></span></h4>
 <div id="webwork-143" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="143" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/maCalcDB/setVmultivariable5ChainRule/ur_vc_6_8.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-contents">
-<p id="p-2230">Suppose <span class="process-math">\(z = x^{2} \sin y\text{,}\)</span> <span class="process-math">\(x = 3 s^{2} + 2 t^{2}\text{,}\)</span> <span class="process-math">\(y = -2 s t\text{.}\)</span></p>
-<p id="p-2231">A. Use the chain rule to find <span class="process-math">\(\frac{\partial z}{\partial s}\)</span> and <span class="process-math">\(\frac{\partial z}{\partial t}\)</span> as functions of x, y, s and t.</p>
-<p id="p-2232"><span class="process-math">\(\frac{\partial z}{\partial s} =\)</span> <span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span></p>
-<p id="p-2233"><span class="process-math">\(\frac{\partial z}{\partial t} =\)</span> <span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span></p>
-<p id="p-2234">B. Find the numerical values of <span class="process-math">\(\frac{\partial z}{\partial s}\)</span> and <span class="process-math">\(\frac{\partial z}{\partial t}\)</span> when <span class="process-math">\(\left( s , t \right) = \left( -3 , 3
-\right)\text{.}\)</span></p>
-<p id="p-2235"><span class="process-math">\(\frac{\partial z}{\partial s} \left( -3 , 3 \right) =\)</span> <span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span></p>
-<p id="p-2236"><span class="process-math">\(\frac{\partial z}{\partial t} \left( -3 , 3 \right) =\)</span> <span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span></p>
+<p id="p-2230">Suppose <span class="process-math">\(z = x^{2} \sin y\text{,}\)</span> <span class="process-math">\(x = 3 s^{2} + 2 t^{2}\text{,}\)</span> <span class="process-math">\(y = -2 s t\text{.}\)</span></p> <p id="p-2231">A. Use the chain rule to find <span class="process-math">\(\frac{\partial z}{\partial s}\)</span> and <span class="process-math">\(\frac{\partial z}{\partial t}\)</span> as functions of x, y, s and t.</p> <p id="p-2232"><span class="process-math">\(\frac{\partial z}{\partial s} =\)</span> <span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span></p> <p id="p-2233"><span class="process-math">\(\frac{\partial z}{\partial t} =\)</span> <span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span></p> <p id="p-2234">B. Find the numerical values of <span class="process-math">\(\frac{\partial z}{\partial s}\)</span> and <span class="process-math">\(\frac{\partial z}{\partial t}\)</span> when <span class="process-math">\(\left( s , t \right) = \left( -3 , 3
+\right)\text{.}\)</span></p> <p id="p-2235"><span class="process-math">\(\frac{\partial z}{\partial s} \left( -3 , 3 \right) =\)</span> <span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span></p> <p id="p-2236"><span class="process-math">\(\frac{\partial z}{\partial t} \left( -3 , 3 \right) =\)</span> <span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span></p>
 </div>
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-143')">Activate</button></div>
 </div></article><article class="exercise exercise-like" id="exercise-201"><h4 class="heading"><span class="codenumber">11<span class="period">.</span></span></h4>
@@ -613,11 +583,8 @@ T(x,y) = 100-(x^2 + 4y^2),
 A(h,w) = 0.0072 h^{0.725}w^{0.425},
 \end{equation*}
 </div>
-<p class="continuation">where <span class="process-math">\(A\)</span> is the surface area in square meters, <span class="process-math">\(h\)</span> is the height in centimeters, and <span class="process-math">\(w\)</span> is the weight in kilograms.</p>
-<p id="p-2256">Since a person's height <span class="process-math">\(h\)</span> and weight <span class="process-math">\(w\)</span> change over time, <span class="process-math">\(h\)</span> and <span class="process-math">\(w\)</span> are functions of time <span class="process-math">\(t\text{.}\)</span> Let us think about what is happening to a child whose height is <span class="process-math">\(60\)</span> centimeters and weight is <span class="process-math">\(9\)</span> kilograms. Suppose, furthermore, that <span class="process-math">\(h\)</span> is increasing at an instantaneous rate of 20 centimeters per year and <span class="process-math">\(w\)</span> is increasing at an instantaneous rate of <span class="process-math">\(5\)</span> kg per year.</p>
-<p id="p-2257">Determine the instantaneous rate at which the child's surface area is changing at this point in time.</p></article><article class="exercise exercise-like" id="exercise-206"><h4 class="heading"><span class="codenumber">16<span class="period">.</span></span></h4>
-<p id="p-2258">Let <span class="process-math">\(z = f(x,y) = 50 - (x+1)^2 - (y+3)^2\)</span> and <span class="process-math">\(z = h(x,y) = 24 - 2x - 6y\text{.}\)</span></p>
-<p id="p-2259">Suppose a person is walking on the surface <span class="process-math">\(z = f(x,y)\)</span> in such a way that she walks the curve which is the intersection of <span class="process-math">\(f\)</span> and <span class="process-math">\(h\text{.}\)</span></p>
+<p class="continuation">where <span class="process-math">\(A\)</span> is the surface area in square meters, <span class="process-math">\(h\)</span> is the height in centimeters, and <span class="process-math">\(w\)</span> is the weight in kilograms.</p> <p id="p-2256">Since a person's height <span class="process-math">\(h\)</span> and weight <span class="process-math">\(w\)</span> change over time, <span class="process-math">\(h\)</span> and <span class="process-math">\(w\)</span> are functions of time <span class="process-math">\(t\text{.}\)</span> Let us think about what is happening to a child whose height is <span class="process-math">\(60\)</span> centimeters and weight is <span class="process-math">\(9\)</span> kilograms. Suppose, furthermore, that <span class="process-math">\(h\)</span> is increasing at an instantaneous rate of 20 centimeters per year and <span class="process-math">\(w\)</span> is increasing at an instantaneous rate of <span class="process-math">\(5\)</span> kg per year.</p> <p id="p-2257">Determine the instantaneous rate at which the child's surface area is changing at this point in time.</p></article><article class="exercise exercise-like" id="exercise-206"><h4 class="heading"><span class="codenumber">16<span class="period">.</span></span></h4>
+<p id="p-2258">Let <span class="process-math">\(z = f(x,y) = 50 - (x+1)^2 - (y+3)^2\)</span> and <span class="process-math">\(z = h(x,y) = 24 - 2x - 6y\text{.}\)</span></p> <p id="p-2259">Suppose a person is walking on the surface <span class="process-math">\(z = f(x,y)\)</span> in such a way that she walks the curve which is the intersection of <span class="process-math">\(f\)</span> and <span class="process-math">\(h\text{.}\)</span></p>
 <ol class="lower-alpha">
 <li id="li-806"><p id="p-2260">Show that <span class="process-math">\(x(t) = 4 \cos(t)\)</span> and <span class="process-math">\(y(t) = 4 \sin(t)\)</span> is a parameterization of the “shadow” in the <span class="process-math">\(xy\)</span>-plane of the curve that is the intersection of the graphs of <span class="process-math">\(f\)</span> and <span class="process-math">\(h\text{.}\)</span></p></li>
 <li id="li-807"><p id="p-2261">Use the parameterization from part (a) to find the instantaneous rate at which her height is changing with respect to time at the instant <span class="process-math">\(t = 2\pi/3\text{.}\)</span></p></li>
@@ -627,8 +594,7 @@ A(h,w) = 0.0072 h^{0.725}w^{0.425},
 \begin{equation*}
 \frac{1}{R} = \frac{1}{R_1} + \frac{1}{R_2}.
 \end{equation*}
-</div>
-<div class="sidebyside"><div class="sbsrow" style="margin-left:0%;margin-right:0%;">
+</div> <div class="sidebyside"><div class="sbsrow" style="margin-left:0%;margin-right:0%;">
 <div class="sbspanel top" style="width:50%;"><ol class="lower-alpha">
 <li id="li-808"><p id="p-2263">Assume that the current, <span class="process-math">\(I\text{,}\)</span> and the resistances, <span class="process-math">\(R_1\)</span> and <span class="process-math">\(R_2\text{,}\)</span> are changing over time, <span class="process-math">\(t\text{.}\)</span> Use the Chain Rule to write a formula for <span class="process-math">\(\frac{dV}{dt}\text{.}\)</span></p></li>
 <li id="li-809"><p id="p-2264">Suppose that, at some particular point in time, we measure the current to be 3 amps and that the current is increasing at <span class="process-math">\(\frac{1}{10}\)</span> amps per second, while resistance <span class="process-math">\(R_1\)</span> is 2 ohms and decreasing at the rate of 0.2 ohms per second and <span class="process-math">\(R_2\)</span> is 1 ohm and increasing at the rate of <span class="process-math">\(0.5\)</span> ohms per second. At what rate is the voltage changing at this point in time?</p></li>

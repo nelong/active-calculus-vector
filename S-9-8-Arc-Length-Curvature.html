@@ -60,7 +60,8 @@ window.MathJax = {
 },
 };
 </script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><link href="https://webwork-ptx.aimath.org/webwork2_files/js/apps/MathView/mathview.css" rel="stylesheet">
-<script src="https://pretextbook.org/js/0.13/pretext-webwork/2./pretext-webwork.js"></script><script src="https://webwork-ptx.aimath.org/webwork2_files/node_modules/iframe-resizer/js/iframeResizer.min.js"></script><script async="" src="https://cse.google.com/cse.js?cx=015103900096539427448:ngwuia10qci"></script><script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.13/pretext.js"></script><script>miniversion=0.674</script><script src="https://pretextbook.org/js/0.13/pretext_add_on.js?x=1"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
+<script src="https://pretextbook.org/js/0.13/pretext-webwork/2./pretext-webwork.js"></script><script src="https://webwork-ptx.aimath.org/webwork2_files/node_modules/iframe-resizer/js/iframeResizer.min.js"></script><script async="" src="https://cse.google.com/cse.js?cx=015103900096539427448:ngwuia10qci"></script><script src="https://unpkg.com/lunr/lunr.js"></script><script src="lunr-pretext-search-index.js"></script><script src="https://pretextbook.org/js/0.13/pretext_search.js"></script><link href="https://pretextbook.org/css/0.4/pretext_search.css" rel="stylesheet" type="text/css">
+<script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.13/pretext.js"></script><script>miniversion=0.674</script><script src="https://pretextbook.org/js/0.13/pretext_add_on.js?x=1"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
 </script><link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic" rel="stylesheet" type="text/css">
 <link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
 <link href="https://pretextbook.org/css/0.4/pretext.css" rel="stylesheet" type="text/css">
@@ -122,6 +123,15 @@ window.MathJax = {
 <p class="byline">Steve Schlicker, Mitchel T. Keller, Nicholas Long</p>
 </div>
 <div class="searchwrapper" role="search"><div class="gcse-search"></div></div>
+<div class="searchbox"><div class="searchwidget">
+<input id="ptxsearch" type="text" name="terms" placeholder="Search" onchange="doSearch()"><button id="searchbutton" type="button" onclick="doSearch()">🔍</button>
+</div></div>
+<div id="searchresultsplaceholder" style="display: none">
+<button id="closesearchresults" onclick="document.getElementById('searchresultsplaceholder').style.display = 'none'; return false;">x</button><h2>Search Results: <span id="searchterms"></span>
+</h2>
+<div id="searchempty"><span>No results.</span></div>
+<ol id="searchresults"></ol>
+</div>
 </div></div>
 <nav id="primary-navbar" class="navbar"><div class="container">
 <div class="navbar-top-buttons">
@@ -210,24 +220,21 @@ window.MathJax = {
 <li id="li-464"><p id="p-1258">How can a definite integral be used to measure the length of a curve in 2- or 3-space?</p></li>
 <li id="li-465"><p id="p-1259">Why is arc length useful as a parameter?</p></li>
 <li id="li-466"><p id="p-1260">What is the curvature of a curve?</p></li>
-</ul></article><section class="introduction" id="introduction-8"><p id="p-1261">Given a space curve, there are two natural geometric questions one might ask: how long is the curve and how much does it bend? In this section, we answer both questions by developing techniques for measuring the length of a space curve as well as its curvature.</p>
-<article class="exploration project-like" id="PA_9_8"><h3 class="heading">
+</ul></article><section class="introduction" id="introduction-8"><p id="p-1261">Given a space curve, there are two natural geometric questions one might ask: how long is the curve and how much does it bend? In this section, we answer both questions by developing techniques for measuring the length of a space curve as well as its curvature.</p> <article class="exploration project-like" id="PA_9_8"><h3 class="heading">
 <span class="type">Preview Activity</span><span class="space"> </span><span class="codenumber">9.8.1</span><span class="period">.</span>
 </h3>
-<p id="p-1262">In earlier investigations, we have used integration to calculate quantities such as area, volume, mass, and work. We are now interested in determining the length of a space curve.</p>
-<p id="p-1263">Consider the smooth curve in 3-space defined by the vector-valued function <span class="process-math">\(\vr\text{,}\)</span> where</p>
+<p id="p-1262">In earlier investigations, we have used integration to calculate quantities such as area, volume, mass, and work. We are now interested in determining the length of a space curve.</p> <p id="p-1263">Consider the smooth curve in 3-space defined by the vector-valued function <span class="process-math">\(\vr\text{,}\)</span> where</p>
 <div class="displaymath process-math" data-contains-math-knowls="./knowl/F-9-8-Arclength.html ./knowl/F-9-8-Arclength.html">
 \begin{equation*}
 \vr(t) = \langle x(t), y(t), z(t) \rangle = \langle \cos(t), \sin(t), t \rangle
 \end{equation*}
 </div>
-<p class="continuation">for <span class="process-math">\(t\)</span> in the interval <span class="process-math">\([0,2\pi]\text{.}\)</span> Pictures of the graph of <span class="process-math">\(\vr\)</span> are shown in <a href="" class="xref" data-knowl="./knowl/F-9-8-Arclength.html" title="Figure 9.8.1">Figure 9.8.1</a>. We will use the integration process to calculate the length of this curve. In this situation we partition the interval <span class="process-math">\([0,2\pi]\)</span> into <span class="process-math">\(n\)</span> subintervals of equal length and let <span class="process-math">\(0 = t_0 \lt  t_1 \lt  t_2 \lt  \cdots \lt  t_n = b\)</span> be the endpoints of the subintervals. We then approximate the length of the curve on each subinterval with some related quantity that we can compute. In this case, we approximate the length of the curve on each subinterval with the length of the segment connecting the endpoints. <a href="" class="xref" data-knowl="./knowl/F-9-8-Arclength.html" title="Figure 9.8.1">Figure 9.8.1</a> illustrates the process in three different instances using increasing values of <span class="process-math">\(n\text{.}\)</span></p>
-<figure class="figure figure-like" id="F-9-8-Arclength"><div class="sidebyside"><div class="sbsrow" style="margin-left:0%;margin-right:0%;">
+<p class="continuation">for <span class="process-math">\(t\)</span> in the interval <span class="process-math">\([0,2\pi]\text{.}\)</span> Pictures of the graph of <span class="process-math">\(\vr\)</span> are shown in <a href="" class="xref" data-knowl="./knowl/F-9-8-Arclength.html" title="Figure 9.8.1">Figure 9.8.1</a>. We will use the integration process to calculate the length of this curve. In this situation we partition the interval <span class="process-math">\([0,2\pi]\)</span> into <span class="process-math">\(n\)</span> subintervals of equal length and let <span class="process-math">\(0 = t_0 \lt  t_1 \lt  t_2 \lt  \cdots \lt  t_n = b\)</span> be the endpoints of the subintervals. We then approximate the length of the curve on each subinterval with some related quantity that we can compute. In this case, we approximate the length of the curve on each subinterval with the length of the segment connecting the endpoints. <a href="" class="xref" data-knowl="./knowl/F-9-8-Arclength.html" title="Figure 9.8.1">Figure 9.8.1</a> illustrates the process in three different instances using increasing values of <span class="process-math">\(n\text{.}\)</span></p> <figure class="figure figure-like" id="F-9-8-Arclength"><div class="sidebyside"><div class="sbsrow" style="margin-left:0%;margin-right:0%;">
 <div class="sbspanel top" style="width:33%;"><img src="external/images/fig_9_8_length_animate_02.svg" role="img" class="contained"></div>
 <div class="sbspanel top" style="width:33%;"><img src="external/images/fig_9_8_length_animate_05.svg" role="img" class="contained"></div>
 <div class="sbspanel top" style="width:33%;"><img src="external/images/fig_9_8_length_animate_08.svg" role="img" class="contained"></div>
 </div></div>
-<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">9.8.1<span class="period">.</span></span><span class="space"> </span>Approximating the length of the curve with <span class="process-math">\(n=3\text{,}\)</span> <span class="process-math">\(n=6\text{,}\)</span> and <span class="process-math">\(n=9\text{.}\)</span></figcaption></figure><ol class="lower-alpha">
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">9.8.1<span class="period">.</span></span><span class="space"> </span>Approximating the length of the curve with <span class="process-math">\(n=3\text{,}\)</span> <span class="process-math">\(n=6\text{,}\)</span> and <span class="process-math">\(n=9\text{.}\)</span></figcaption></figure> <ol class="lower-alpha">
 <li id="li-467"><p id="p-1264">Write a formula for the length of the line segment that connects the endpoints of the curve on the <span class="process-math">\(i\)</span>th subinterval <span class="process-math">\([t_{i-1},t_i]\text{.}\)</span> (This length is our approximation of the length of the curve on this interval.)</p></li>
 <li id="li-468"><p id="p-1265">Use your formula in part (a) to write a sum that adds all of the approximations to the lengths on each subinterval.</p></li>
 <li id="li-469"><p id="p-1266">What do we need to do with the sum in part (b) in order to obtain the exact value of the length of the graph of <span class="process-math">\(\vr(t)\)</span> on the interval <span class="process-math">\([0,2\pi]\text{?}\)</span></p></li>
@@ -361,16 +368,14 @@ L(t) = \int_a^t \left| \frac{d}{dw}\vr(w)\right| \,dw.
 \begin{equation*}
 s=L(t) = \int_0^t |\vr'(w)|~dw = \int_0^t 5~dw = 5t.
 \end{equation*}
-</div>
-<p id="p-1289">Since <span class="process-math">\(s=L(t) = 5t\text{,}\)</span> we may solve for <span class="process-math">\(t\)</span> in terms of <span class="process-math">\(s\)</span> to obtain <span class="process-math">\(t(s)=L^{-1}(s) 
+</div> <p id="p-1289">Since <span class="process-math">\(s=L(t) = 5t\text{,}\)</span> we may solve for <span class="process-math">\(t\)</span> in terms of <span class="process-math">\(s\)</span> to obtain <span class="process-math">\(t(s)=L^{-1}(s) 
 = s/5\text{.}\)</span> We then find the arc length parametrization by composing</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 \vr(t(s))=\vr(L^{-1}(s)) = \left\langle 5\cos\left(\frac s5\right),
 5\sin\left(\frac s5\right)\right\rangle.
 \end{equation*}
-</div>
-<p id="p-1290">More generally, for a circle of radius <span class="process-math">\(a\)</span> centered at the origin, a similar computation shows that</p>
+</div> <p id="p-1290">More generally, for a circle of radius <span class="process-math">\(a\)</span> centered at the origin, a similar computation shows that</p>
 <div class="displaymath process-math" data-contains-math-knowls="" id="eq_9_8_circle_arc_length_parameterization">
 \begin{equation}
 \left\langle a\cos\left(\frac sa\right), a\sin\left(\frac sa\right)\right\rangle\tag{9.8.3}
@@ -442,8 +447,7 @@ s(t) \amp = \int_{0}^t \sqrt{(x'(w))^2 + (y'(w))^2 +(z'(w))^2} \, dw\\
 \amp = \left(w^2+4w\right)\biggm|_{0}^{t}\\
 \amp = t^2+4t.
 \end{align*}
-</div>
-<p id="p-1297">Since <span class="process-math">\(t \geq 0\text{,}\)</span> we can solve the equation <span class="process-math">\(s = t^2+4t\)</span> (or <span class="process-math">\(t^2+4t-s=0\)</span>) for <span class="process-math">\(t\)</span> to obtain <span class="process-math">\(t = \frac{-4 +\sqrt{16+4s}}{2} = -2 + \sqrt{4+s}\text{.}\)</span> So we can parameterize our curve in terms of arc length by</p>
+</div> <p id="p-1297">Since <span class="process-math">\(t \geq 0\text{,}\)</span> we can solve the equation <span class="process-math">\(s = t^2+4t\)</span> (or <span class="process-math">\(t^2+4t-s=0\)</span>) for <span class="process-math">\(t\)</span> to obtain <span class="process-math">\(t = \frac{-4 +\sqrt{16+4s}}{2} = -2 + \sqrt{4+s}\text{.}\)</span> So we can parameterize our curve in terms of arc length by</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 \vr(s) = \left\langle \left(-2 + \sqrt{4+s}\right)^2, \frac{8}{3}\left(-2 + \sqrt{4+s}\right)^{3/2}, 4\left(-2 + \sqrt{4+s}\right) \right\rangle.
@@ -583,18 +587,14 @@ L = \int_a^b |\vr'(t)| \, dt.
 x = -\left(3+3t\right),\quad y = -\left(1+4t\right), z = 4-4t,
 \end{equation*}
 </div>
-<p class="continuation">for <span class="process-math">\(4 \le t \le 5\text{.}\)</span></p>
-<p id="p-1326">length = <span class="fillin underline" role="img" aria-label="35-character blank" style="width: 15.9090909090909em;"></span></p>
-<p id="p-1327"><em class="emphasis">(Think of second way that you could calculate this length, too, and see that you get the same result.)</em></p>
+<p class="continuation">for <span class="process-math">\(4 \le t \le 5\text{.}\)</span></p> <p id="p-1326">length = <span class="fillin underline" role="img" aria-label="35-character blank" style="width: 15.9090909090909em;"></span></p> <p id="p-1327"><em class="emphasis">(Think of second way that you could calculate this length, too, and see that you get the same result.)</em></p>
 </div>
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-83')">Activate</button></div>
 </div></article><article class="exercise exercise-like" id="ex-9-8-WW-arc-length-function"><h4 class="heading"><span class="codenumber">2<span class="period">.</span></span></h4>
 <div id="webwork-84" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="84" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/272/setStewart13_3/problem_2.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-contents">
 <p id="p-1329">Consider the curve <span class="process-math">\(\displaystyle  \mathbf{r} = 
-(e^{-2 t} \cos(6 t), e^{-2 t} \sin(6 t), e^{-2 t})\text{.}\)</span></p>
-<p id="p-1330">Compute the arclength function <span class="process-math">\(s(t)\text{:}\)</span> (with initial point <span class="process-math">\(t=0\)</span>).</p>
-<p id="p-1331"><span class="fillin underline" role="img" aria-label="50-character blank" style="width: 22.7272727272727em;"></span></p>
+(e^{-2 t} \cos(6 t), e^{-2 t} \sin(6 t), e^{-2 t})\text{.}\)</span></p> <p id="p-1330">Compute the arclength function <span class="process-math">\(s(t)\text{:}\)</span> (with initial point <span class="process-math">\(t=0\)</span>).</p> <p id="p-1331"><span class="fillin underline" role="img" aria-label="50-character blank" style="width: 22.7272727272727em;"></span></p>
 </div>
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-84')">Activate</button></div>
 </div></article><article class="exercise exercise-like" id="ex-9-8-WW-arc-length-2"><h4 class="heading"><span class="codenumber">3<span class="period">.</span></span></h4>
@@ -606,71 +606,55 @@ x = -\left(3+3t\right),\quad y = -\left(1+4t\right), z = 4-4t,
 \mathbf{r} \left( t \right) = \left( 3 t, -4 \sin t, -4 \cos t \right)
 \end{equation*}
 </div>
-<p class="continuation">where <span class="process-math">\(-1 \leq t \leq 1\text{.}\)</span></p>
-<p id="p-1334"><span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span></p>
+<p class="continuation">where <span class="process-math">\(-1 \leq t \leq 1\text{.}\)</span></p> <p id="p-1334"><span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span></p>
 </div>
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-85')">Activate</button></div>
 </div></article><article class="exercise exercise-like" id="ex-9-8-WW-curvature-1"><h4 class="heading"><span class="codenumber">4<span class="period">.</span></span></h4>
 <div id="webwork-86" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="86" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Rochester/setVecFunction2Curvature/ur_vc_4_6.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-contents">
-<p id="p-1336">Find the curvature of <span class="process-math">\(y=\sin \left( -3 x \right)\)</span> at <span class="process-math">\(x = \frac{\pi}{4}\text{.}\)</span></p>
-<p id="p-1337"><span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span></p>
+<p id="p-1336">Find the curvature of <span class="process-math">\(y=\sin \left( -3 x \right)\)</span> at <span class="process-math">\(x = \frac{\pi}{4}\text{.}\)</span></p> <p id="p-1337"><span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span></p>
 </div>
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-86')">Activate</button></div>
 </div></article><article class="exercise exercise-like" id="ex-9-8-WW-arc-length-3"><h4 class="heading"><span class="codenumber">5<span class="period">.</span></span></h4>
 <div id="webwork-87" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="87" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Dartmouth/setMTWCh4S2/problem_3.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-contents">
-<p id="p-1339">Consider the path <span class="process-math">\(\mathbf{r}(t) = (14 t, 7 t^2, 7\ln t)\)</span> defined for <span class="process-math">\(t &gt; 0\text{.}\)</span></p>
-<p id="p-1340">Find the length of the curve between the points <span class="process-math">\((14, 7, 0)\)</span> and <span class="process-math">\((70, 175, 7 \ln(5))\text{.}\)</span></p>
-<p id="p-1341"><span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span></p>
+<p id="p-1339">Consider the path <span class="process-math">\(\mathbf{r}(t) = (14 t, 7 t^2, 7\ln t)\)</span> defined for <span class="process-math">\(t &gt; 0\text{.}\)</span></p> <p id="p-1340">Find the length of the curve between the points <span class="process-math">\((14, 7, 0)\)</span> and <span class="process-math">\((70, 175, 7 \ln(5))\text{.}\)</span></p> <p id="p-1341"><span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span></p>
 </div>
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-87')">Activate</button></div>
 </div></article><article class="exercise exercise-like" id="ex-9-8-WW-curvature-2"><h4 class="heading"><span class="codenumber">6<span class="period">.</span></span></h4>
 <div id="webwork-88" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="88" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Rochester/setVecFunction2Curvature/ur_vc_4_5.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-contents">
 <p id="p-1343">Find the curvature <span class="process-math">\(\kappa (t)\)</span> of the curve <span class="process-math">\(\mathbf{r} (t) = \left( 3 \sin t \right)
-\mathbf{i} + \left( 3 \sin t \right) \mathbf{j} + \left( -1 \cos t \right) \mathbf{k}\)</span></p>
-<p id="p-1344"><span class="fillin underline" role="img" aria-label="70-character blank" style="width: 31.8181818181818em;"></span></p>
+\mathbf{i} + \left( 3 \sin t \right) \mathbf{j} + \left( -1 \cos t \right) \mathbf{k}\)</span></p> <p id="p-1344"><span class="fillin underline" role="img" aria-label="70-character blank" style="width: 31.8181818181818em;"></span></p>
 </div>
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-88')">Activate</button></div>
 </div></article><article class="exercise exercise-like" id="ex-9-8-WW-curvature-wire"><h4 class="heading"><span class="codenumber">7<span class="period">.</span></span></h4>
 <div id="webwork-89" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="89" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Rochester/setVecFunction3Motion/ur_vc_4_10.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-contents">
-<p id="p-1346">A factory has a machine which bends wire at a rate of 2 unit(s) of curvature per second. How long does it take to bend a straight wire into a circle of radius 9?</p>
-<p id="p-1347"><span class="fillin underline" role="img" aria-label="15-character blank" style="width: 6.818181818181818em;"></span> seconds</p>
+<p id="p-1346">A factory has a machine which bends wire at a rate of 2 unit(s) of curvature per second. How long does it take to bend a straight wire into a circle of radius 9?</p> <p id="p-1347"><span class="fillin underline" role="img" aria-label="15-character blank" style="width: 6.818181818181818em;"></span> seconds</p>
 </div>
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-89')">Activate</button></div>
 </div></article><article class="exercise exercise-like" id="ex-9-8-WW-unit-tangent-1"><h4 class="heading"><span class="codenumber">8<span class="period">.</span></span></h4>
 <div id="webwork-90" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="90" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/272/setStewart13_2/problem_7.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-contents">
-<p id="p-1349">Find the unit tangent vector at the indicated point of the vector function</p>
-<div class="displaymath process-math" data-contains-math-knowls="" id="p-1350">
+<p id="p-1349">Find the unit tangent vector at the indicated point of the vector function</p> <div class="displaymath process-math" data-contains-math-knowls="" id="p-1350">
 \begin{equation*}
 \mathbf{r}(t) = e^{20 t}\cos t \,\mathbf i + 
 e^{20 t}\sin t \,\mathbf j + e^{20 t} \,\mathbf k
 \end{equation*}
-</div>
-<p id="p-1351"><span class="process-math">\(\mathbf T(\pi/2) = \langle\)</span> <span class="fillin underline" role="img" aria-label="25-character blank" style="width: 11.3636363636364em;"></span>, <span class="fillin underline" role="img" aria-label="25-character blank" style="width: 11.3636363636364em;"></span>, <span class="fillin underline" role="img" aria-label="25-character blank" style="width: 11.3636363636364em;"></span> <span class="process-math">\(\rangle\)</span></p>
+</div> <p id="p-1351"><span class="process-math">\(\mathbf T(\pi/2) = \langle\)</span> <span class="fillin underline" role="img" aria-label="25-character blank" style="width: 11.3636363636364em;"></span>, <span class="fillin underline" role="img" aria-label="25-character blank" style="width: 11.3636363636364em;"></span>, <span class="fillin underline" role="img" aria-label="25-character blank" style="width: 11.3636363636364em;"></span> <span class="process-math">\(\rangle\)</span></p>
 </div>
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-90')">Activate</button></div>
 </div></article><article class="exercise exercise-like" id="ex-9-8-WW-unit-tangent-2"><h4 class="heading"><span class="codenumber">9<span class="period">.</span></span></h4>
 <div id="webwork-91" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="91" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/272/setStewart13_2/problem_8.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-contents">
-<p id="p-1355">Consider the vector function</p>
-<p id="p-1356"><span class="process-math">\(\mathbf r(t) = \langle t, t^{2}, t^{5}\rangle\)</span></p>
-<p id="p-1357">Compute</p>
-<p id="p-1358"><span class="process-math">\(\mathbf r'(t) = \langle\)</span> <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>, <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>, <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span> <span class="process-math">\(\rangle\)</span></p>
-<p id="p-1359"><span class="process-math">\(\mathbf T(1) = \langle\)</span> <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>, <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>, <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span> <span class="process-math">\(\rangle\)</span></p>
-<p id="p-1360"><span class="process-math">\(\mathbf r''(t) = \langle\)</span> <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>, <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>, <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span> <span class="process-math">\(\rangle\)</span></p>
-<p id="p-1361"><span class="process-math">\(\mathbf r'(t)\times \mathbf r''(t) = \langle\)</span> <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>, <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>, <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span> <span class="process-math">\(\rangle\)</span></p>
+<p id="p-1355">Consider the vector function</p> <p id="p-1356"><span class="process-math">\(\mathbf r(t) = \langle t, t^{2}, t^{5}\rangle\)</span></p> <p id="p-1357">Compute</p> <p id="p-1358"><span class="process-math">\(\mathbf r'(t) = \langle\)</span> <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>, <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>, <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span> <span class="process-math">\(\rangle\)</span></p> <p id="p-1359"><span class="process-math">\(\mathbf T(1) = \langle\)</span> <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>, <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>, <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span> <span class="process-math">\(\rangle\)</span></p> <p id="p-1360"><span class="process-math">\(\mathbf r''(t) = \langle\)</span> <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>, <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>, <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span> <span class="process-math">\(\rangle\)</span></p> <p id="p-1361"><span class="process-math">\(\mathbf r'(t)\times \mathbf r''(t) = \langle\)</span> <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>, <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>, <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span> <span class="process-math">\(\rangle\)</span></p>
 </div>
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-91')">Activate</button></div>
 </div></article><article class="exercise exercise-like" id="ex-9-8-WW-arc-length-parameterization-1"><h4 class="heading"><span class="codenumber">10<span class="period">.</span></span></h4>
 <div id="webwork-92" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="92" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Dartmouth/setMTWCh4S2/problem_4.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-contents">
-<p id="p-1374">Starting from the point <span class="process-math">\(\left( -3, -4, -4 \right)\text{,}\)</span> reparametrize the curve</p>
-<p id="p-1375"><span class="process-math">\(\mathbf{x} (t) = ( -3 + t, -4 + t, -4 + t )\)</span> in terms of arclength.</p>
-<p id="p-1376"><span class="process-math">\(\mathbf{y}(s) = (\)</span> <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>, <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>,<span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span> <span class="process-math">\()\)</span></p>
+<p id="p-1374">Starting from the point <span class="process-math">\(\left( -3, -4, -4 \right)\text{,}\)</span> reparametrize the curve</p> <p id="p-1375"><span class="process-math">\(\mathbf{x} (t) = ( -3 + t, -4 + t, -4 + t )\)</span> in terms of arclength.</p> <p id="p-1376"><span class="process-math">\(\mathbf{y}(s) = (\)</span> <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>, <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>,<span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span> <span class="process-math">\()\)</span></p>
 </div>
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-92')">Activate</button></div>
 </div></article><article class="exercise exercise-like" id="Ez_9_8_1"><h4 class="heading"><span class="codenumber">11<span class="period">.</span></span></h4>

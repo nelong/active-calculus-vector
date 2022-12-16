@@ -60,7 +60,8 @@ window.MathJax = {
 },
 };
 </script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><link href="https://webwork-ptx.aimath.org/webwork2_files/js/apps/MathView/mathview.css" rel="stylesheet">
-<script src="https://pretextbook.org/js/0.13/pretext-webwork/2./pretext-webwork.js"></script><script src="https://webwork-ptx.aimath.org/webwork2_files/node_modules/iframe-resizer/js/iframeResizer.min.js"></script><script async="" src="https://cse.google.com/cse.js?cx=015103900096539427448:ngwuia10qci"></script><script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.13/pretext.js"></script><script>miniversion=0.674</script><script src="https://pretextbook.org/js/0.13/pretext_add_on.js?x=1"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
+<script src="https://pretextbook.org/js/0.13/pretext-webwork/2./pretext-webwork.js"></script><script src="https://webwork-ptx.aimath.org/webwork2_files/node_modules/iframe-resizer/js/iframeResizer.min.js"></script><script async="" src="https://cse.google.com/cse.js?cx=015103900096539427448:ngwuia10qci"></script><script src="https://unpkg.com/lunr/lunr.js"></script><script src="lunr-pretext-search-index.js"></script><script src="https://pretextbook.org/js/0.13/pretext_search.js"></script><link href="https://pretextbook.org/css/0.4/pretext_search.css" rel="stylesheet" type="text/css">
+<script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.13/pretext.js"></script><script>miniversion=0.674</script><script src="https://pretextbook.org/js/0.13/pretext_add_on.js?x=1"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
 </script><link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic" rel="stylesheet" type="text/css">
 <link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
 <link href="https://pretextbook.org/css/0.4/pretext.css" rel="stylesheet" type="text/css">
@@ -122,6 +123,15 @@ window.MathJax = {
 <p class="byline">Steve Schlicker, Mitchel T. Keller, Nicholas Long</p>
 </div>
 <div class="searchwrapper" role="search"><div class="gcse-search"></div></div>
+<div class="searchbox"><div class="searchwidget">
+<input id="ptxsearch" type="text" name="terms" placeholder="Search" onchange="doSearch()"><button id="searchbutton" type="button" onclick="doSearch()">🔍</button>
+</div></div>
+<div id="searchresultsplaceholder" style="display: none">
+<button id="closesearchresults" onclick="document.getElementById('searchresultsplaceholder').style.display = 'none'; return false;">x</button><h2>Search Results: <span id="searchterms"></span>
+</h2>
+<div id="searchempty"><span>No results.</span></div>
+<ol id="searchresults"></ol>
+</div>
 </div></div>
 <nav id="primary-navbar" class="navbar"><div class="container">
 <div class="navbar-top-buttons">
@@ -212,14 +222,11 @@ window.MathJax = {
 \iint_R f(x,y) \, dA = \lim_{m,n \to \infty} \sum_{j=1}^n \sum_{i=1}^m f\left(x_{ij}^*, y_{ij}^*\right) \cdot \Delta A,
 \end{equation*}
 </div>
-<p class="continuation">where the different variables and notation are as described in <a href="S-11-1-Double-Integrals-Rectangles.html" class="internal" title="Section 11.1: Double Riemann Sums and Double Integrals over Rectangles">Section 11.1</a>. Thus <span class="process-math">\(\iint_R f(x,y) \, dA\)</span> is a limit of double Riemann sums, but while this definition tells us exactly what a double integral is, it is not very helpful for determining the value of a double integral. Fortunately, there is a way to view a double integral as an <em class="emphasis">iterated integral</em>, which will make computations feasible in many cases.</p>
-<p id="p-3085">The viewpoint of an iterated integral is closely connected to an important idea from single-variable calculus. When we studied solids of revolution, such as the one shown in <a href="" class="xref" data-knowl="./knowl/F_6_2_Ex1.html" title="Figure 11.2.1">Figure 11.2.1</a>, we saw that in some circumstances we could slice the solid perpendicular to an axis and have each slice be approximately a circular disk. From there, we were able to find the volume of each disk, and then use an integral to add the volumes of the slices. In what follows, we are able to use single integrals to generalize this approach to handle even more general geometric shapes.</p>
-<figure class="figure figure-like" id="F_6_2_Ex1"><div class="image-box" style="width: 50%; margin-left: 25%; margin-right: 25%;"><img src="external/images/fig_11_2_volume_revolve.svg" role="img" class="contained"></div>
-<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">11.2.1<span class="period">.</span></span><span class="space"> </span>A solid of revolution.</figcaption></figure><article class="exploration project-like" id="PA_11_2"><h3 class="heading">
+<p class="continuation">where the different variables and notation are as described in <a href="S-11-1-Double-Integrals-Rectangles.html" class="internal" title="Section 11.1: Double Riemann Sums and Double Integrals over Rectangles">Section 11.1</a>. Thus <span class="process-math">\(\iint_R f(x,y) \, dA\)</span> is a limit of double Riemann sums, but while this definition tells us exactly what a double integral is, it is not very helpful for determining the value of a double integral. Fortunately, there is a way to view a double integral as an <em class="emphasis">iterated integral</em>, which will make computations feasible in many cases.</p> <p id="p-3085">The viewpoint of an iterated integral is closely connected to an important idea from single-variable calculus. When we studied solids of revolution, such as the one shown in <a href="" class="xref" data-knowl="./knowl/F_6_2_Ex1.html" title="Figure 11.2.1">Figure 11.2.1</a>, we saw that in some circumstances we could slice the solid perpendicular to an axis and have each slice be approximately a circular disk. From there, we were able to find the volume of each disk, and then use an integral to add the volumes of the slices. In what follows, we are able to use single integrals to generalize this approach to handle even more general geometric shapes.</p> <figure class="figure figure-like" id="F_6_2_Ex1"><div class="image-box" style="width: 50%; margin-left: 25%; margin-right: 25%;"><img src="external/images/fig_11_2_volume_revolve.svg" role="img" class="contained"></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">11.2.1<span class="period">.</span></span><span class="space"> </span>A solid of revolution.</figcaption></figure> <article class="exploration project-like" id="PA_11_2"><h3 class="heading">
 <span class="type">Preview Activity</span><span class="space"> </span><span class="codenumber">11.2.1</span><span class="period">.</span>
 </h3>
-<p id="p-3086">Let <span class="process-math">\(f(x,y) = 25-x^2-y^2\)</span> on the rectangular domain <span class="process-math">\(R = [-3,3] \times [-4,4]\text{.}\)</span></p>
-<p id="p-3087">As with partial derivatives, we may treat one of the variables in <span class="process-math">\(f\)</span> as constant and think of the resulting function as a function of a single variable. Now we investigate what happens if we integrate instead of differentiate.</p>
+<p id="p-3086">Let <span class="process-math">\(f(x,y) = 25-x^2-y^2\)</span> on the rectangular domain <span class="process-math">\(R = [-3,3] \times [-4,4]\text{.}\)</span></p> <p id="p-3087">As with partial derivatives, we may treat one of the variables in <span class="process-math">\(f\)</span> as constant and think of the resulting function as a function of a single variable. Now we investigate what happens if we integrate instead of differentiate.</p>
 <ol class="lower-alpha">
 <li id="li-1102">
 <p id="p-3088">Choose a fixed value of <span class="process-math">\(x\)</span> in the interior of <span class="process-math">\([-3,3]\text{.}\)</span> Let</p>
@@ -329,79 +336,61 @@ A(x) = \int_{-4}^4 f(x,y) \, dy.
 <article class="exercise exercise-like" id="ex-11-2-WW-polynomial"><h4 class="heading"><span class="codenumber">1<span class="period">.</span></span></h4>
 <div id="webwork-190" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="190" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/maCalcDB/setVMultIntegrals1Double/ur_vc_8_2.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-contents">
-<p id="p-3111">Evaluate the iterated integral <span class="process-math">\(\int_{0}^{1} \int_{0}^{1} 3x^2y^3 \, dx dy\)</span></p>
-<p id="p-3112"><span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span></p>
+<p id="p-3111">Evaluate the iterated integral <span class="process-math">\(\int_{0}^{1} \int_{0}^{1} 3x^2y^3 \, dx dy\)</span></p> <p id="p-3112"><span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span></p>
 </div>
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-190')">Activate</button></div>
 </div></article><article class="exercise exercise-like" id="ex-11-2-WW-rational"><h4 class="heading"><span class="codenumber">2<span class="period">.</span></span></h4>
 <div id="webwork-191" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="191" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/maCalcDB/setVMultIntegrals1Double/ur_vc_8_3.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-contents">
-<p id="p-3114">Evaluate the iterated integral <span class="process-math">\(\int_{1}^{2} \int_{3}^{4} (2x + y)^{-2} \: dy dx\)</span></p>
-<p id="p-3115"><span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span></p>
+<p id="p-3114">Evaluate the iterated integral <span class="process-math">\(\int_{1}^{2} \int_{3}^{4} (2x + y)^{-2} \: dy dx\)</span></p> <p id="p-3115"><span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span></p>
 </div>
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-191')">Activate</button></div>
 </div></article><article class="exercise exercise-like" id="ex-11-2-WW-log"><h4 class="heading"><span class="codenumber">3<span class="period">.</span></span></h4>
 <div id="webwork-192" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="192" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Dartmouth/setMTWCh5S1/problem_4.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-contents">
-<p id="p-3117">Find <span class="process-math">\(\int_{1}^{4} \int_{8}^{14}( x + \ln y) \,dydx\)</span></p>
-<p id="p-3118"><span class="fillin underline" role="img" aria-label="60-character blank" style="width: 27.2727272727273em;"></span></p>
+<p id="p-3117">Find <span class="process-math">\(\int_{1}^{4} \int_{8}^{14}( x + \ln y) \,dydx\)</span></p> <p id="p-3118"><span class="fillin underline" role="img" aria-label="60-character blank" style="width: 27.2727272727273em;"></span></p>
 </div>
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-192')">Activate</button></div>
 </div></article><article class="exercise exercise-like" id="ex-11-2-WW-exp"><h4 class="heading"><span class="codenumber">4<span class="period">.</span></span></h4>
 <div id="webwork-193" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="193" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/272/setStewart15_2/problem_13.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-contents">
-<p id="p-3120">Find <span class="process-math">\(\int_{2}^{3} \int_{1}^{6} xy e^{x+y} \,dydx\)</span></p>
-<p id="p-3121"><span class="fillin underline" role="img" aria-label="60-character blank" style="width: 27.2727272727273em;"></span></p>
+<p id="p-3120">Find <span class="process-math">\(\int_{2}^{3} \int_{1}^{6} xy e^{x+y} \,dydx\)</span></p> <p id="p-3121"><span class="fillin underline" role="img" aria-label="60-character blank" style="width: 27.2727272727273em;"></span></p>
 </div>
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-193')">Activate</button></div>
 </div></article><article class="exercise exercise-like" id="ex-11-2-WW-double"><h4 class="heading"><span class="codenumber">5<span class="period">.</span></span></h4>
 <div id="webwork-194" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="194" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/maCalcDB/setVMultIntegrals1Double/ur_vc_8_4.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-contents">
-<p id="p-3123">Calculate the double integral <span class="process-math">\(\int \int_{\mathbf{R}} (6x + 8y + 48 )\: dA\)</span> where <span class="process-math">\(\mathbf{R}\)</span> is the region: <span class="process-math">\(0 \leq x \leq 4, 0 \leq y \leq 3\text{.}\)</span></p>
-<p id="p-3124"><span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span></p>
+<p id="p-3123">Calculate the double integral <span class="process-math">\(\int \int_{\mathbf{R}} (6x + 8y + 48 )\: dA\)</span> where <span class="process-math">\(\mathbf{R}\)</span> is the region: <span class="process-math">\(0 \leq x \leq 4, 0 \leq y \leq 3\text{.}\)</span></p> <p id="p-3124"><span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span></p>
 </div>
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-194')">Activate</button></div>
 </div></article><article class="exercise exercise-like" id="ex-11-2-WW-double-2"><h4 class="heading"><span class="codenumber">6<span class="period">.</span></span></h4>
 <div id="webwork-195" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="195" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Rochester/setVMultIntegrals1Double/ur_vc_8_5.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-contents">
-<p id="p-3126">Calculate the double integral <span class="process-math">\(\int \int_{\mathbf{R}} x \cos(2x + y) \: dA\)</span> where <span class="process-math">\(\bf{R}\)</span> is the region: <span class="process-math">\(0 \leq x \leq \frac{\pi}{6}, 0 \leq y \leq \frac{\pi}{4}\)</span></p>
-<p id="p-3127"><span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span></p>
+<p id="p-3126">Calculate the double integral <span class="process-math">\(\int \int_{\mathbf{R}} x \cos(2x + y) \: dA\)</span> where <span class="process-math">\(\bf{R}\)</span> is the region: <span class="process-math">\(0 \leq x \leq \frac{\pi}{6}, 0 \leq y \leq \frac{\pi}{4}\)</span></p> <p id="p-3127"><span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span></p>
 </div>
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-195')">Activate</button></div>
 </div></article><article class="exercise exercise-like" id="ex-11-2-WW-estimate"><h4 class="heading"><span class="codenumber">7<span class="period">.</span></span></h4>
 <div id="webwork-196" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="196" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/maCalcDB/setVMultIntegrals1Double/ur_vc_8_1.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-contents">
-<p id="p-3129">Consider the solid that lies above the square (in the xy-plane) <span class="process-math">\(R = [0, 2] \times [0, 2]\text{,}\)</span></p>
-<p id="p-3130">and below the elliptic paraboloid <span class="process-math">\(z = 81 - x^{2} - 4y^2\text{.}\)</span></p>
-<p id="p-3131">(A) Estimate the volume by dividing R into 4 equal squares and choosing the sample points to lie in the lower left hand corners.</p>
-<p id="p-3132"><span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span></p>
-<p id="p-3133">(B) Estimate the volume by dividing R into 4 equal squares and choosing the sample points to lie in the upper right hand corners..</p>
-<p id="p-3134"><span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span></p>
-<p id="p-3135">(C) What is the average of the two answers from (A) and (B)?</p>
-<p id="p-3136"><span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span></p>
-<p id="p-3137">(D) Using iterated integrals, compute the exact value of the volume.</p>
-<p id="p-3138"><span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span></p>
+<p id="p-3129">Consider the solid that lies above the square (in the xy-plane) <span class="process-math">\(R = [0, 2] \times [0, 2]\text{,}\)</span></p> <p id="p-3130">and below the elliptic paraboloid <span class="process-math">\(z = 81 - x^{2} - 4y^2\text{.}\)</span></p> <p id="p-3131">(A) Estimate the volume by dividing R into 4 equal squares and choosing the sample points to lie in the lower left hand corners.</p> <p id="p-3132"><span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span></p> <p id="p-3133">(B) Estimate the volume by dividing R into 4 equal squares and choosing the sample points to lie in the upper right hand corners..</p> <p id="p-3134"><span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span></p> <p id="p-3135">(C) What is the average of the two answers from (A) and (B)?</p> <p id="p-3136"><span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span></p> <p id="p-3137">(D) Using iterated integrals, compute the exact value of the volume.</p> <p id="p-3138"><span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span></p>
 </div>
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-196')">Activate</button></div>
 </div></article><article class="exercise exercise-like" id="ex-11-2-WW-cross-sections"><h4 class="heading"><span class="codenumber">8<span class="period">.</span></span></h4>
 <div id="webwork-197" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="197" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Rochester/setVMultIntegrals1Double/ur_vc_8_14.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-contents">
-<p id="p-3143">If <span class="process-math">\(\displaystyle \int_{3}^{6} f(x) \: dx = -2\)</span> and <span class="process-math">\(\displaystyle \int_{4}^{7} g(x) \: dx = 4\text{,}\)</span> what is the value of <span class="process-math">\(\displaystyle \int\!\!\int_{D} f(x)\!g(y) \: dA\)</span> where <span class="process-math">\(D\)</span> is the rectangle: <span class="process-math">\(3 \leq x \leq 6, \ \ 4 \leq y \leq 7\text{?}\)</span></p>
-<p id="p-3144"><span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span></p>
+<p id="p-3143">If <span class="process-math">\(\displaystyle \int_{3}^{6} f(x) \: dx = -2\)</span> and <span class="process-math">\(\displaystyle \int_{4}^{7} g(x) \: dx = 4\text{,}\)</span> what is the value of <span class="process-math">\(\displaystyle \int\!\!\int_{D} f(x)\!g(y) \: dA\)</span> where <span class="process-math">\(D\)</span> is the rectangle: <span class="process-math">\(3 \leq x \leq 6, \ \ 4 \leq y \leq 7\text{?}\)</span></p> <p id="p-3144"><span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span></p>
 </div>
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-197')">Activate</button></div>
 </div></article><article class="exercise exercise-like" id="ex-11-2-WW-average-value"><h4 class="heading"><span class="codenumber">9<span class="period">.</span></span></h4>
 <div id="webwork-198" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="198" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/ASU-topics/setCalculus/stef/stef15_2p1.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-contents">
-<p id="p-3146">Find the average value of <span class="process-math">\(f(x,y) = 5 x^2 y^3\)</span> over the rectangle R with vertices <span class="process-math">\((-2,0), (-2,2), (2,0), (2,2)\text{.}\)</span></p>
-<p id="p-3147">Average value =  <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span></p>
+<p id="p-3146">Find the average value of <span class="process-math">\(f(x,y) = 5 x^2 y^3\)</span> over the rectangle R with vertices <span class="process-math">\((-2,0), (-2,2), (2,0), (2,2)\text{.}\)</span></p> <p id="p-3147">Average value =  <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span></p>
 </div>
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-198')">Activate</button></div>
 </div></article><article class="exercise exercise-like" id="ex-11-2-WW-average-value-2"><h4 class="heading"><span class="codenumber">10<span class="period">.</span></span></h4>
 <div id="webwork-199" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="199" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/ASU-topics/setCalculus/stef/stef15_2p2.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-contents">
-<p id="p-3149">Find the average value of <span class="process-math">\(f(x,y) = 2 e^{ y} \sqrt{x+e^{ y}}\)</span> over the rectangle   <span class="process-math">\(R = [0,6] \times [0,8]\text{.}\)</span></p>
-<p id="p-3150">Average value =  <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span></p>
+<p id="p-3149">Find the average value of <span class="process-math">\(f(x,y) = 2 e^{ y} \sqrt{x+e^{ y}}\)</span> over the rectangle   <span class="process-math">\(R = [0,6] \times [0,8]\text{.}\)</span></p> <p id="p-3150">Average value =  <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span></p>
 </div>
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-199')">Activate</button></div>
 </div></article><article class="exercise exercise-like" id="exercise-286"><h4 class="heading"><span class="codenumber">11<span class="period">.</span></span></h4>

@@ -60,7 +60,8 @@ window.MathJax = {
 },
 };
 </script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><link href="https://webwork-ptx.aimath.org/webwork2_files/js/apps/MathView/mathview.css" rel="stylesheet">
-<script src="https://pretextbook.org/js/0.13/pretext-webwork/2./pretext-webwork.js"></script><script src="https://webwork-ptx.aimath.org/webwork2_files/node_modules/iframe-resizer/js/iframeResizer.min.js"></script><script async="" src="https://cse.google.com/cse.js?cx=015103900096539427448:ngwuia10qci"></script><script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.13/pretext.js"></script><script>miniversion=0.674</script><script src="https://pretextbook.org/js/0.13/pretext_add_on.js?x=1"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
+<script src="https://pretextbook.org/js/0.13/pretext-webwork/2./pretext-webwork.js"></script><script src="https://webwork-ptx.aimath.org/webwork2_files/node_modules/iframe-resizer/js/iframeResizer.min.js"></script><script async="" src="https://cse.google.com/cse.js?cx=015103900096539427448:ngwuia10qci"></script><script src="https://unpkg.com/lunr/lunr.js"></script><script src="lunr-pretext-search-index.js"></script><script src="https://pretextbook.org/js/0.13/pretext_search.js"></script><link href="https://pretextbook.org/css/0.4/pretext_search.css" rel="stylesheet" type="text/css">
+<script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.13/pretext.js"></script><script>miniversion=0.674</script><script src="https://pretextbook.org/js/0.13/pretext_add_on.js?x=1"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
 </script><link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic" rel="stylesheet" type="text/css">
 <link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
 <link href="https://pretextbook.org/css/0.4/pretext.css" rel="stylesheet" type="text/css">
@@ -122,6 +123,15 @@ window.MathJax = {
 <p class="byline">Steve Schlicker, Mitchel T. Keller, Nicholas Long</p>
 </div>
 <div class="searchwrapper" role="search"><div class="gcse-search"></div></div>
+<div class="searchbox"><div class="searchwidget">
+<input id="ptxsearch" type="text" name="terms" placeholder="Search" onchange="doSearch()"><button id="searchbutton" type="button" onclick="doSearch()">🔍</button>
+</div></div>
+<div id="searchresultsplaceholder" style="display: none">
+<button id="closesearchresults" onclick="document.getElementById('searchresultsplaceholder').style.display = 'none'; return false;">x</button><h2>Search Results: <span id="searchterms"></span>
+</h2>
+<div id="searchempty"><span>No results.</span></div>
+<ol id="searchresults"></ol>
+</div>
 </div></div>
 <nav id="primary-navbar" class="navbar"><div class="container">
 <div class="navbar-top-buttons">
@@ -211,25 +221,20 @@ window.MathJax = {
 <li id="li-719"><p id="p-1967">What does it mean for a function of two variables to be locally linear at a point?</p></li>
 <li id="li-720"><p id="p-1968">How do we find the equation of the plane tangent to a locally linear function at a point?</p></li>
 <li id="li-721"><p id="p-1969">What is the differential of a multivariable function of two variables and what are its uses?</p></li>
-</ul></article><section class="introduction" id="introduction-12"><p id="p-1970">One of the central concepts in single variable calculus is that the graph of a differentiable function, when viewed on a very small scale, looks like a line. We call this line the tangent line and measure its slope with the derivative. In this section, we will extend this concept to functions of several variables.</p>
-<p id="p-1971">Let's see what happens when we look at the graph of a two-variable function on a small scale. To begin, let's consider the function <span class="process-math">\(f\)</span> defined by</p>
+</ul></article><section class="introduction" id="introduction-12"><p id="p-1970">One of the central concepts in single variable calculus is that the graph of a differentiable function, when viewed on a very small scale, looks like a line. We call this line the tangent line and measure its slope with the derivative. In this section, we will extend this concept to functions of several variables.</p> <p id="p-1971">Let's see what happens when we look at the graph of a two-variable function on a small scale. To begin, let's consider the function <span class="process-math">\(f\)</span> defined by</p>
 <div class="displaymath process-math" data-contains-math-knowls="./knowl/F_10_4_tangent_1.html">
 \begin{equation*}
 f(x,y) = 6 - \frac{x^2}2 - y^2,
 \end{equation*}
 </div>
-<p class="continuation">whose graph is shown in <a href="" class="xref" data-knowl="./knowl/F_10_4_tangent_1.html" title="Figure 10.4.1">Figure 10.4.1</a>.</p>
-<figure class="figure figure-like" id="F_10_4_tangent_1"><div class="image-box" style="width: 50%; margin-left: 25%; margin-right: 25%;"><img src="external/images/fig_10_4_tangent_1.svg" role="img" class="contained"></div>
-<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">10.4.1<span class="period">.</span></span><span class="space"> </span>The graph of <span class="process-math">\(f(x,y)=6-x^2/2 - y^2\text{.}\)</span></figcaption></figure><p id="p-1972">We choose to study the behavior of this function near the point <span class="process-math">\((x_0,
-y_0) = (1,1)\text{.}\)</span> In particular, we wish to view the graph on an increasingly small scale around this point, as shown in the two plots in <a href="" class="xref" data-knowl="./knowl/F_10_4_tangent_2.html" title="Figure 10.4.2">Figure 10.4.2</a></p>
-<figure class="figure figure-like" id="F_10_4_tangent_2"><div class="sidebyside"><div class="sbsrow" style="margin-left:0%;margin-right:0%;">
+<p class="continuation">whose graph is shown in <a href="" class="xref" data-knowl="./knowl/F_10_4_tangent_1.html" title="Figure 10.4.1">Figure 10.4.1</a>.</p> <figure class="figure figure-like" id="F_10_4_tangent_1"><div class="image-box" style="width: 50%; margin-left: 25%; margin-right: 25%;"><img src="external/images/fig_10_4_tangent_1.svg" role="img" class="contained"></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">10.4.1<span class="period">.</span></span><span class="space"> </span>The graph of <span class="process-math">\(f(x,y)=6-x^2/2 - y^2\text{.}\)</span></figcaption></figure> <p id="p-1972">We choose to study the behavior of this function near the point <span class="process-math">\((x_0,
+y_0) = (1,1)\text{.}\)</span> In particular, we wish to view the graph on an increasingly small scale around this point, as shown in the two plots in <a href="" class="xref" data-knowl="./knowl/F_10_4_tangent_2.html" title="Figure 10.4.2">Figure 10.4.2</a></p> <figure class="figure figure-like" id="F_10_4_tangent_2"><div class="sidebyside"><div class="sbsrow" style="margin-left:0%;margin-right:0%;">
 <div class="sbspanel top" style="width:50%;"><img src="external/images/fig_10_4_tangent_2.svg" role="img" class="contained"></div>
 <div class="sbspanel top" style="width:50%;"><img src="external/images/fig_10_4_tangent_3.svg" role="img" class="contained"></div>
 </div></div>
-<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">10.4.2<span class="period">.</span></span><span class="space"> </span>The graph of <span class="process-math">\(f(x,y)=6-x^2/2 - y^2\text{.}\)</span></figcaption></figure><p id="p-1973">Just as the graph of a differentiable single-variable function looks like a line when viewed on a small scale, we see that the graph of this particular two-variable function looks like a plane, as seen in <a href="" class="xref" data-knowl="./knowl/F_10_4_tangent_4.html" title="Figure 10.4.3">Figure 10.4.3</a>. In the following preview activity, we explore how to find the equation of this plane.</p>
-<figure class="figure figure-like" id="F_10_4_tangent_4"><div class="image-box" style="width: 50%; margin-left: 25%; margin-right: 25%;"><img src="external/images/fig_10_4_tangent_4.svg" role="img" class="contained"></div>
-<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">10.4.3<span class="period">.</span></span><span class="space"> </span>The graph of <span class="process-math">\(f(x,y)=6-x^2/2 - y^2\text{.}\)</span></figcaption></figure><p id="p-1974">In what follows, we will also use the important fact<a href="" data-knowl="" class="id-ref fn-knowl original" data-refid="hk-fn-15" id="fn-15"><sup> 1 </sup></a> that the plane passing through <span class="process-math">\((x_0, y_0, z_0)\)</span> may be expressed in the form <span class="process-math">\(z = z_0 + a(x-x_0) + b(y-y_0)\text{,}\)</span> where <span class="process-math">\(a\)</span> and <span class="process-math">\(b\)</span> are constants.</p>
-<article class="exploration project-like" id="PA_10_4"><h3 class="heading">
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">10.4.2<span class="period">.</span></span><span class="space"> </span>The graph of <span class="process-math">\(f(x,y)=6-x^2/2 - y^2\text{.}\)</span></figcaption></figure> <p id="p-1973">Just as the graph of a differentiable single-variable function looks like a line when viewed on a small scale, we see that the graph of this particular two-variable function looks like a plane, as seen in <a href="" class="xref" data-knowl="./knowl/F_10_4_tangent_4.html" title="Figure 10.4.3">Figure 10.4.3</a>. In the following preview activity, we explore how to find the equation of this plane.</p> <figure class="figure figure-like" id="F_10_4_tangent_4"><div class="image-box" style="width: 50%; margin-left: 25%; margin-right: 25%;"><img src="external/images/fig_10_4_tangent_4.svg" role="img" class="contained"></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">10.4.3<span class="period">.</span></span><span class="space"> </span>The graph of <span class="process-math">\(f(x,y)=6-x^2/2 - y^2\text{.}\)</span></figcaption></figure> <p id="p-1974">In what follows, we will also use the important fact<a href="" data-knowl="" class="id-ref fn-knowl original" data-refid="hk-fn-15" id="fn-15"><sup> 1 </sup></a> that the plane passing through <span class="process-math">\((x_0, y_0, z_0)\)</span> may be expressed in the form <span class="process-math">\(z = z_0 + a(x-x_0) + b(y-y_0)\text{,}\)</span> where <span class="process-math">\(a\)</span> and <span class="process-math">\(b\)</span> are constants.</p> <article class="exploration project-like" id="PA_10_4"><h3 class="heading">
 <span class="type">Preview Activity</span><span class="space"> </span><span class="codenumber">10.4.1</span><span class="period">.</span>
 </h3>
 <p id="p-1975">Let <span class="process-math">\(f(x,y) = 6 - \frac{x^2}2 - y^2\text{,}\)</span> and let <span class="process-math">\((x_0,y_0)
@@ -490,8 +495,7 @@ dy = y'~dx = \frac{dy}{dx}~dx.
 <article class="example example-like" id="example-4"><h4 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">10.4.11</span><span class="period">.</span>
 </h4>
-<p id="p-2010">Suppose we have a machine that manufactures rectangles of width <span class="process-math">\(x=20\)</span> cm and height <span class="process-math">\(y=10\)</span> cm. However, the machine isn't perfect, and therefore the width could be off by <span class="process-math">\(dx = \Delta x = 0.2\)</span> cm and the height could be off by <span class="process-math">\(dy = \Delta y = 0.4\)</span> cm.</p>
-<p id="p-2011">The area of the rectangle is</p>
+<p id="p-2010">Suppose we have a machine that manufactures rectangles of width <span class="process-math">\(x=20\)</span> cm and height <span class="process-math">\(y=10\)</span> cm. However, the machine isn't perfect, and therefore the width could be off by <span class="process-math">\(dx = \Delta x = 0.2\)</span> cm and the height could be off by <span class="process-math">\(dy = \Delta y = 0.4\)</span> cm.</p> <p id="p-2011">The area of the rectangle is</p>
 <div class="displaymath process-math" data-contains-math-knowls="./knowl/E_10_4_differential.html">
 \begin{equation*}
 A(x,y) = xy,
@@ -503,14 +507,12 @@ A(x,y) = xy,
 \begin{equation*}
 \Delta A \approx dA = A_x(20, 10)~dx + A_y(20,10)~dy.
 \end{equation*}
-</div>
-<p id="p-2012">Since <span class="process-math">\(A_x = y\)</span> and <span class="process-math">\(A_y = x\text{,}\)</span> we have</p>
+</div> <p id="p-2012">Since <span class="process-math">\(A_x = y\)</span> and <span class="process-math">\(A_y = x\text{,}\)</span> we have</p>
 <div class="displaymath process-math" data-contains-math-knowls="">
 \begin{equation*}
 \Delta A \approx dA = 10~dx + 20~dy = 10\cdot0.2 + 20\cdot0.4 = 10.
 \end{equation*}
-</div>
-<p id="p-2013">That is, we estimate that the area in our rectangles could be off by as much as 10 square centimeters.</p></article><article class="activity project-like" id="A_10_4_12"><h4 class="heading">
+</div> <p id="p-2013">That is, we estimate that the area in our rectangles could be off by as much as 10 square centimeters.</p></article><article class="activity project-like" id="A_10_4_12"><h4 class="heading">
 <span class="type">Activity</span><span class="space"> </span><span class="codenumber">10.4.4</span><span class="period">.</span>
 </h4>
 <p id="p-2014">The questions in this activity explore the differential in several different contexts.</p>
@@ -557,41 +559,32 @@ df = f_x(x_0,y_0) dx + f_y(x_0,y_0)dy.
 <div id="webwork-125" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="125" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/maCalcDB/setVmultivariable4Linearization/ur_vc_6_3.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-contents">
 <p id="p-2022">Find the linearization <span class="process-math">\(L \left( x, y \right)\)</span> of the function <span class="process-math">\(f\left( x,
-y \right) = \sqrt{ 52 - 16 x^{2} - 9 y^{2} }\)</span> at <span class="process-math">\(\left( 0, -2 \right)\text{.}\)</span></p>
-<p id="p-2023"><span class="process-math">\(L \left( x, y \right) =\)</span> <span class="fillin underline" role="img" aria-label="30-character blank" style="width: 13.6363636363636em;"></span></p>
-<p id="p-2024">Note: Your answer should be an expression in x and y; e.g. “3x - 5y + 9”</p>
+y \right) = \sqrt{ 52 - 16 x^{2} - 9 y^{2} }\)</span> at <span class="process-math">\(\left( 0, -2 \right)\text{.}\)</span></p> <p id="p-2023"><span class="process-math">\(L \left( x, y \right) =\)</span> <span class="fillin underline" role="img" aria-label="30-character blank" style="width: 13.6363636363636em;"></span></p> <p id="p-2024">Note: Your answer should be an expression in x and y; e.g. “3x - 5y + 9”</p>
 </div>
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-125')">Activate</button></div>
 </div></article><article class="exercise exercise-like" id="ex-10-4-WW-linearization_exponential"><h4 class="heading"><span class="codenumber">2<span class="period">.</span></span></h4>
 <div id="webwork-126" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="126" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/maCalcDB/setVmultivariable4Linearization/ur_vc_6_2.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-contents">
 <p id="p-2026">Find the equation of the tangent plane to the surface <span class="process-math">\(z = e^{4 x/17} \ln \left(
-2 y \right)\)</span> at the point <span class="process-math">\((-2,2,  0.8659)\text{.}\)</span></p>
-<p id="p-2027">z = <span class="fillin underline" role="img" aria-label="70-character blank" style="width: 31.8181818181818em;"></span></p>
-<p id="p-2028">Note: Your answer should be an expression of x and y; e.g. “5x + 2y - 3”</p>
+2 y \right)\)</span> at the point <span class="process-math">\((-2,2,  0.8659)\text{.}\)</span></p> <p id="p-2027">z = <span class="fillin underline" role="img" aria-label="70-character blank" style="width: 31.8181818181818em;"></span></p> <p id="p-2028">Note: Your answer should be an expression of x and y; e.g. “5x + 2y - 3”</p>
 </div>
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-126')">Activate</button></div>
 </div></article><article class="exercise exercise-like" id="ex-10-4-WW-linearization_mistake"><h4 class="heading"><span class="codenumber">3<span class="period">.</span></span></h4>
 <div id="webwork-127" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="127" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/FortLewis/Calc3/14-3-Local-linearity/HGM4-14-3-14-Local-linearity-differential.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-contents">
-<p id="p-2030">A student was asked to find the equation of the tangent plane to the surface <span class="process-math">\(z = x^{2}-y^{3}\)</span> at the point <span class="process-math">\((x,y) = (5,4)\text{.}\)</span>  The student's answer was <span class="process-math">\(z = -39 + 2x (x - 5)  - \left(3y^{2}\right) (y - 4).\)</span></p>
-<p id="p-2031">(a) At a glance, how do you know this is wrong.  What mistakes did the student make?  Select all that apply.</p>
-<p id="p-2032"><ul style="list-style:circle;">
+<p id="p-2030">A student was asked to find the equation of the tangent plane to the surface <span class="process-math">\(z = x^{2}-y^{3}\)</span> at the point <span class="process-math">\((x,y) = (5,4)\text{.}\)</span>  The student's answer was <span class="process-math">\(z = -39 + 2x (x - 5)  - \left(3y^{2}\right) (y - 4).\)</span></p> <p id="p-2031">(a) At a glance, how do you know this is wrong.  What mistakes did the student make?  Select all that apply.</p> <p id="p-2032"><ul style="list-style:circle;">
 <li id="li-741"><p id="p-2033">The partial derivatives were not evaluated a the point.</p></li>
 <li id="li-742"><p id="p-2034">The answer is not a linear function.</p></li>
 <li id="li-743"><p id="p-2035">The -39 should not be in the answer.</p></li>
 <li id="li-744"><p id="p-2036">The (x - 5) and (y - 4) should be x and y.</p></li>
 <li id="li-745"><p id="p-2037">All of the above</p></li>
-</ul></p>
-<p id="p-2038">(b) Find the correct equation for the tangent plane.</p>
-<p id="p-2039"><span class="process-math">\(z =\)</span> <span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span></p>
+</ul></p> <p id="p-2038">(b) Find the correct equation for the tangent plane.</p> <p id="p-2039"><span class="process-math">\(z =\)</span> <span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span></p>
 </div>
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-127')">Activate</button></div>
 </div></article><article class="exercise exercise-like" id="ex-10-4-WW-linearization_local_linearity"><h4 class="heading"><span class="codenumber">4<span class="period">.</span></span></h4>
 <div id="webwork-128" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="128" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Michigan/Chap14Sec3/Q19.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-contents">
-<p id="p-2041"><em class="alert">(a)</em> Check the local linearity of <span class="process-math">\(f(x,y) = e^{x}\sin\!\left(y\right)\)</span> near <span class="process-math">\(x=-1,\ y=2.5\)</span> by filling in the following table of values of <span class="process-math">\(f\)</span> for <span class="process-math">\(x=-1.1,\ -1,\ -0.9\)</span> and <span class="process-math">\(y=2.4,\ 2.5,\ 2.6\text{.}\)</span> Express values of <span class="process-math">\(f\)</span> with 4 digits after the decimal point.</p>
-<div class="tabular-box natural-width"><table class="tabular">
+<p id="p-2041"><em class="alert">(a)</em> Check the local linearity of <span class="process-math">\(f(x,y) = e^{x}\sin\!\left(y\right)\)</span> near <span class="process-math">\(x=-1,\ y=2.5\)</span> by filling in the following table of values of <span class="process-math">\(f\)</span> for <span class="process-math">\(x=-1.1,\ -1,\ -0.9\)</span> and <span class="process-math">\(y=2.4,\ 2.5,\ 2.6\text{.}\)</span> Express values of <span class="process-math">\(f\)</span> with 4 digits after the decimal point.</p> <div class="tabular-box natural-width"><table class="tabular">
 <tr>
 <td class="l m b2 r2 l2 t2 lines"><span class="process-math">\(x =\)</span></td>
 <td class="l m b2 r2 l0 t2 lines">-1.1</td>
@@ -616,9 +609,7 @@ y \right) = \sqrt{ 52 - 16 x^{2} - 9 y^{2} }\)</span> at <span class="process-ma
 <td class="l m b2 r2 l0 t0 lines"><span class="fillin underline" role="img" aria-label="6-character blank" style="width: 2.727272727272727em;"></span></td>
 <td class="l m b2 r2 l0 t0 lines"><span class="fillin underline" role="img" aria-label="6-character blank" style="width: 2.727272727272727em;"></span></td>
 </tr>
-</table></div>
-<p id="p-2042"><em class="alert">(b)</em> Next, fill in the table for the values <span class="process-math">\(x=-1.01,\ -1,\ -0.99\)</span> and <span class="process-math">\(y = 2.49,\ 2.5,\ 2.51,\)</span> again showing 4 digits after the decimal point.</p>
-<div class="tabular-box natural-width"><table class="tabular">
+</table></div> <p id="p-2042"><em class="alert">(b)</em> Next, fill in the table for the values <span class="process-math">\(x=-1.01,\ -1,\ -0.99\)</span> and <span class="process-math">\(y = 2.49,\ 2.5,\ 2.51,\)</span> again showing 4 digits after the decimal point.</p> <div class="tabular-box natural-width"><table class="tabular">
 <tr>
 <td class="l m b2 r2 l2 t2 lines"><span class="process-math">\(x =\)</span></td>
 <td class="l m b2 r2 l0 t2 lines">-1.01</td>
@@ -643,76 +634,55 @@ y \right) = \sqrt{ 52 - 16 x^{2} - 9 y^{2} }\)</span> at <span class="process-ma
 <td class="l m b2 r2 l0 t0 lines"><span class="fillin underline" role="img" aria-label="6-character blank" style="width: 2.727272727272727em;"></span></td>
 <td class="l m b2 r2 l0 t0 lines"><span class="fillin underline" role="img" aria-label="6-character blank" style="width: 2.727272727272727em;"></span></td>
 </tr>
-</table></div>
-<p id="p-2043">Notice if the two tables look nearly linear, and whether the second looks more linear than the first (in particular, think about how you would decide if they were linear, or if the one were more closely linear than the other).</p>
-<p id="p-2044"><em class="alert">(c)</em> Give the local linearization of <span class="process-math">\(f(x,y) = e^{x}\sin\!\left(y\right)\)</span> at <span class="process-math">\((-1,2.5)\text{:}\)</span></p>
-<p id="p-2045">Using the second of your tables:</p>
-<p id="p-2046"><span class="process-math">\(f(x,y) \approx\)</span> <span class="fillin underline" role="img" aria-label="55-character blank" style="width: 25em;"></span></p>
-<p id="p-2047">Using the fact that <span class="process-math">\(f_x(x,y) = e^{x}\sin\!\left(y\right)\)</span> and <span class="process-math">\(f_y(x,y) = e^{x}\cos\!\left(y\right)\text{:}\)</span></p>
-<p id="p-2048"><span class="process-math">\(f(x,y) \approx\)</span> <span class="fillin underline" role="img" aria-label="55-character blank" style="width: 25em;"></span></p>
+</table></div> <p id="p-2043">Notice if the two tables look nearly linear, and whether the second looks more linear than the first (in particular, think about how you would decide if they were linear, or if the one were more closely linear than the other).</p> <p id="p-2044"><em class="alert">(c)</em> Give the local linearization of <span class="process-math">\(f(x,y) = e^{x}\sin\!\left(y\right)\)</span> at <span class="process-math">\((-1,2.5)\text{:}\)</span></p> <p id="p-2045">Using the second of your tables:</p> <p id="p-2046"><span class="process-math">\(f(x,y) \approx\)</span> <span class="fillin underline" role="img" aria-label="55-character blank" style="width: 25em;"></span></p> <p id="p-2047">Using the fact that <span class="process-math">\(f_x(x,y) = e^{x}\sin\!\left(y\right)\)</span> and <span class="process-math">\(f_y(x,y) = e^{x}\cos\!\left(y\right)\text{:}\)</span></p> <p id="p-2048"><span class="process-math">\(f(x,y) \approx\)</span> <span class="fillin underline" role="img" aria-label="55-character blank" style="width: 25em;"></span></p>
 </div>
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-128')">Activate</button></div>
 </div></article><article class="exercise exercise-like" id="ex-10-4-WW-linearization_using_linearity"><h4 class="heading"><span class="codenumber">5<span class="period">.</span></span></h4>
 <div id="webwork-129" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="129" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Michigan/Chap12Sec4/Q13.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-contents">
-<p id="p-2069">Suppose that <span class="process-math">\(z\)</span> is a linear function of <span class="process-math">\(x\)</span> and <span class="process-math">\(y\)</span> with slope -2 in the <span class="process-math">\(x\)</span> direction and  slope -3 in the <span class="process-math">\(y\)</span> direction.</p>
-<p id="p-2070"><em class="alert">(a)</em> A change of <span class="process-math">\(-0.1\)</span> in <span class="process-math">\(x\)</span> and <span class="process-math">\(-0.3\)</span> in <span class="process-math">\(y\)</span> produces what change in <span class="process-math">\(z\text{?}\)</span></p>
-<p id="p-2071">change in <span class="process-math">\(z =\)</span> <span class="fillin underline" role="img" aria-label="25-character blank" style="width: 11.3636363636364em;"></span></p>
-<p id="p-2072"><em class="alert">(b)</em> If <span class="process-math">\(z=8\)</span> when <span class="process-math">\(x=2\)</span> and <span class="process-math">\(y=8\text{,}\)</span> what is the value of <span class="process-math">\(z\)</span> when <span class="process-math">\(x=1.7\)</span> and <span class="process-math">\(y=8\text{?}\)</span></p>
-<p id="p-2073"><span class="process-math">\(z =\)</span> <span class="fillin underline" role="img" aria-label="25-character blank" style="width: 11.3636363636364em;"></span></p>
+<p id="p-2069">Suppose that <span class="process-math">\(z\)</span> is a linear function of <span class="process-math">\(x\)</span> and <span class="process-math">\(y\)</span> with slope -2 in the <span class="process-math">\(x\)</span> direction and  slope -3 in the <span class="process-math">\(y\)</span> direction.</p> <p id="p-2070"><em class="alert">(a)</em> A change of <span class="process-math">\(-0.1\)</span> in <span class="process-math">\(x\)</span> and <span class="process-math">\(-0.3\)</span> in <span class="process-math">\(y\)</span> produces what change in <span class="process-math">\(z\text{?}\)</span></p> <p id="p-2071">change in <span class="process-math">\(z =\)</span> <span class="fillin underline" role="img" aria-label="25-character blank" style="width: 11.3636363636364em;"></span></p> <p id="p-2072"><em class="alert">(b)</em> If <span class="process-math">\(z=8\)</span> when <span class="process-math">\(x=2\)</span> and <span class="process-math">\(y=8\text{,}\)</span> what is the value of <span class="process-math">\(z\)</span> when <span class="process-math">\(x=1.7\)</span> and <span class="process-math">\(y=8\text{?}\)</span></p> <p id="p-2073"><span class="process-math">\(z =\)</span> <span class="fillin underline" role="img" aria-label="25-character blank" style="width: 11.3636363636364em;"></span></p>
 </div>
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-129')">Activate</button></div>
 </div></article><article class="exercise exercise-like" id="ex-10-4-WW-linearization_3var_differential"><h4 class="heading"><span class="codenumber">6<span class="period">.</span></span></h4>
 <div id="webwork-130" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="130" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/272/setStewart14_4/problem_5.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-contents">
-<p id="p-2076">Find the differential of the function <span class="process-math">\(w = x^{4} \sin(y^{7} z^{7})\)</span></p>
-<p id="p-2077"><span class="process-math">\(dw =\)</span><span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span><span class="process-math">\(dx +\)</span> <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span><span class="process-math">\(dy +\)</span> <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span><span class="process-math">\(dz\)</span></p>
+<p id="p-2076">Find the differential of the function <span class="process-math">\(w = x^{4} \sin(y^{7} z^{7})\)</span></p> <p id="p-2077"><span class="process-math">\(dw =\)</span><span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span><span class="process-math">\(dx +\)</span> <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span><span class="process-math">\(dy +\)</span> <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span><span class="process-math">\(dz\)</span></p>
 </div>
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-130')">Activate</button></div>
 </div></article><article class="exercise exercise-like" id="ex-10-4-WW-linearization_differential_surface_area"><h4 class="heading"><span class="codenumber">7<span class="period">.</span></span></h4>
 <div id="webwork-131" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="131" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/maCalcDB/setVmultivariable4Linearization/ur_vc_6_5.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-contents">
-<p id="p-2081">The dimensions of a closed rectangular box are measured as 80 centimeters, 80 centimeters, and 70 centimeters, respectively, with the error in each measurement at most .2 centimeters. Use differentials to estimate the maximum error in calculating the surface area of the box.</p>
-<p id="p-2082"><span class="fillin underline" role="img" aria-label="15-character blank" style="width: 6.818181818181818em;"></span> square centimeters</p>
+<p id="p-2081">The dimensions of a closed rectangular box are measured as 80 centimeters, 80 centimeters, and 70 centimeters, respectively, with the error in each measurement at most .2 centimeters. Use differentials to estimate the maximum error in calculating the surface area of the box.</p> <p id="p-2082"><span class="fillin underline" role="img" aria-label="15-character blank" style="width: 6.818181818181818em;"></span> square centimeters</p>
 </div>
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-131')">Activate</button></div>
 </div></article><article class="exercise exercise-like" id="ex-10-4-WW-linearization_differential_energy"><h4 class="heading"><span class="codenumber">8<span class="period">.</span></span></h4>
 <div id="webwork-132" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="132" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/FortLewis/Calc3/14-3-Local-linearity/HGM4-14-3-24-Local-linearity-differential.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-contents">
-<p id="p-2084">One mole of ammonia gas is contained in a vessel which is capable of changing its volume (a compartment sealed by a piston, for example).  The total energy <span class="process-math">\(U\)</span> (in Joules) of the ammonia is a function of the volume <span class="process-math">\(V\)</span> (in cubic meters) of the container, and the temperature <span class="process-math">\(T\)</span> (in degrees Kelvin) of the gas.  The differential <span class="process-math">\(dU\)</span> is given by <span class="process-math">\(dU = 840 dV + 27.32 dT\text{.}\)</span></p>
-<p id="p-2085">(a) How does the energy change if the volume is held constant and the temperature is increased slightly?</p>
-<p id="p-2086"><ul style="list-style:circle;">
+<p id="p-2084">One mole of ammonia gas is contained in a vessel which is capable of changing its volume (a compartment sealed by a piston, for example).  The total energy <span class="process-math">\(U\)</span> (in Joules) of the ammonia is a function of the volume <span class="process-math">\(V\)</span> (in cubic meters) of the container, and the temperature <span class="process-math">\(T\)</span> (in degrees Kelvin) of the gas.  The differential <span class="process-math">\(dU\)</span> is given by <span class="process-math">\(dU = 840 dV + 27.32 dT\text{.}\)</span></p> <p id="p-2085">(a) How does the energy change if the volume is held constant and the temperature is increased slightly?</p> <p id="p-2086"><ul style="list-style:circle;">
 <li id="li-746"><p id="p-2087">it decreases slightly</p></li>
 <li id="li-747"><p id="p-2088">it increases slightly</p></li>
 <li id="li-748"><p id="p-2089">it does not change</p></li>
-</ul></p>
-<p id="p-2090">(b) How does the energy change if the temperature is held constant and the volume is decreased slightly?</p>
-<p id="p-2091"><ul style="list-style:circle;">
+</ul></p> <p id="p-2090">(b) How does the energy change if the temperature is held constant and the volume is decreased slightly?</p> <p id="p-2091"><ul style="list-style:circle;">
 <li id="li-749"><p id="p-2092">it decreases slightly</p></li>
 <li id="li-750"><p id="p-2093">it increases slightly</p></li>
 <li id="li-751"><p id="p-2094">it does not change</p></li>
-</ul></p>
-<p id="p-2095">(c) Find the approximate change in energy if the gas is compressed by 350 cubic centimeters and heated by 3 degrees Kelvin.</p>
-<p id="p-2096">Change in energy = <span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span>.  Please include <a class="external" href="/webwork2_files/helpFiles/Units.html" target="_blank">units</a><a href="" data-knowl="" class="id-ref fn-knowl original" data-refid="hk-fn-16" id="fn-16"><sup> 2 </sup></a> in your answer.</p>
+</ul></p> <p id="p-2095">(c) Find the approximate change in energy if the gas is compressed by 350 cubic centimeters and heated by 3 degrees Kelvin.</p> <p id="p-2096">Change in energy = <span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span>.  Please include <a class="external" href="/webwork2_files/helpFiles/Units.html" target="_blank">units</a><a href="" data-knowl="" class="id-ref fn-knowl original" data-refid="hk-fn-16" id="fn-16"><sup> 2 </sup></a> in your answer.</p>
 </div>
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-132')">Activate</button></div>
 </div></article><article class="exercise exercise-like" id="ex-10-4-WW-linearization_differential_temperature"><h4 class="heading"><span class="codenumber">9<span class="period">.</span></span></h4>
 <div id="webwork-133" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="133" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/FortLewis/Calc3/14-3-Local-linearity/HGM4-14-3-18-Local-linearity-differential.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-contents">
-<p id="p-2098">An unevenly heated metal plate has temperature <span class="process-math">\(T(x,y)\)</span> in degrees Celsius at a point <span class="process-math">\((x,y)\text{.}\)</span>  If <span class="process-math">\(T(2,1) = 110\text{,}\)</span> <span class="process-math">\(T_x \, (2,1) = 12\text{,}\)</span> and <span class="process-math">\(T_y \, (2,1) = -14\text{,}\)</span> estimate the temperature at the point <span class="process-math">\((2.04,0.95)\text{.}\)</span></p>
-<p id="p-2099"><span class="process-math">\(T(2.04,0.95) \approx\)</span> <span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span>. Please include <a class="external" href="/webwork2_files/helpFiles/Units.html" target="_blank">units</a><a href="" data-knowl="" class="id-ref fn-knowl original" data-refid="hk-fn-17" id="fn-17"><sup> 3 </sup></a> in your answer.</p>
+<p id="p-2098">An unevenly heated metal plate has temperature <span class="process-math">\(T(x,y)\)</span> in degrees Celsius at a point <span class="process-math">\((x,y)\text{.}\)</span>  If <span class="process-math">\(T(2,1) = 110\text{,}\)</span> <span class="process-math">\(T_x \, (2,1) = 12\text{,}\)</span> and <span class="process-math">\(T_y \, (2,1) = -14\text{,}\)</span> estimate the temperature at the point <span class="process-math">\((2.04,0.95)\text{.}\)</span></p> <p id="p-2099"><span class="process-math">\(T(2.04,0.95) \approx\)</span> <span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span>. Please include <a class="external" href="/webwork2_files/helpFiles/Units.html" target="_blank">units</a><a href="" data-knowl="" class="id-ref fn-knowl original" data-refid="hk-fn-17" id="fn-17"><sup> 3 </sup></a> in your answer.</p>
 </div>
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-133')">Activate</button></div>
 </div></article><article class="exercise exercise-like" id="Ez_10_4_-1"><h4 class="heading"><span class="codenumber">10<span class="period">.</span></span></h4>
-<p id="p-2101">Let <span class="process-math">\(f\)</span> be the function defined by <span class="process-math">\(f(x,y) = 2x^2+3y^3\text{.}\)</span></p>
-<ol class="lower-alpha">
+<p id="p-2101">Let <span class="process-math">\(f\)</span> be the function defined by <span class="process-math">\(f(x,y) = 2x^2+3y^3\text{.}\)</span></p> <ol class="lower-alpha">
 <li id="li-752"><p id="p-2102">Find the equation of the tangent plane to <span class="process-math">\(f\)</span> at the point <span class="process-math">\((1,2)\text{.}\)</span></p></li>
 <li id="li-753"><p id="p-2103">Use the linearization to approximate the values of <span class="process-math">\(f\)</span> at the points <span class="process-math">\((1.1, 2.05)\)</span> and <span class="process-math">\((1.3,2.2)\text{.}\)</span></p></li>
 <li id="li-754"><p id="p-2104">Compare the approximations form part (b) to the exact values of <span class="process-math">\(f(1.1, 2.05)\)</span> and <span class="process-math">\(f(1.3, 2.2)\text{.}\)</span> Which approximation is more accurate. Explain why this should be expected.</p></li>
 </ol></article><article class="exercise exercise-like" id="Ez_10_4_0"><h4 class="heading"><span class="codenumber">11<span class="period">.</span></span></h4>
-<p id="p-2105">Let <span class="process-math">\(f\)</span> be the function defined by <span class="process-math">\(f(x,y) = x^{1/3}y^{1/3}\text{,}\)</span> whose graph is shown in <a href="" class="xref" data-knowl="./knowl/F_10_4_Not_diff.html" title="Figure 10.4.12">Figure 10.4.12</a>.</p>
-<figure class="figure figure-like" id="F_10_4_Not_diff"><div class="image-box" style="width: 50%; margin-left: 25%; margin-right: 25%;"><img src="external/images/fig_10_4_not_diff.svg" role="img" class="contained"></div>
-<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">10.4.12<span class="period">.</span></span><span class="space"> </span>The surface for <span class="process-math">\(f(x,y) = x^{1/3}y^{1/3}\text{.}\)</span></figcaption></figure><ol class="lower-alpha">
+<p id="p-2105">Let <span class="process-math">\(f\)</span> be the function defined by <span class="process-math">\(f(x,y) = x^{1/3}y^{1/3}\text{,}\)</span> whose graph is shown in <a href="" class="xref" data-knowl="./knowl/F_10_4_Not_diff.html" title="Figure 10.4.12">Figure 10.4.12</a>.</p> <figure class="figure figure-like" id="F_10_4_Not_diff"><div class="image-box" style="width: 50%; margin-left: 25%; margin-right: 25%;"><img src="external/images/fig_10_4_not_diff.svg" role="img" class="contained"></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">10.4.12<span class="period">.</span></span><span class="space"> </span>The surface for <span class="process-math">\(f(x,y) = x^{1/3}y^{1/3}\text{.}\)</span></figcaption></figure> <ol class="lower-alpha">
 <li id="li-755">
 <p id="p-2106">Determine</p>
 <div class="displaymath process-math" data-contains-math-knowls="">

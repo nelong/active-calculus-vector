@@ -60,7 +60,8 @@ window.MathJax = {
 },
 };
 </script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><link href="https://webwork-ptx.aimath.org/webwork2_files/js/apps/MathView/mathview.css" rel="stylesheet">
-<script src="https://pretextbook.org/js/0.13/pretext-webwork/2./pretext-webwork.js"></script><script src="https://webwork-ptx.aimath.org/webwork2_files/node_modules/iframe-resizer/js/iframeResizer.min.js"></script><script async="" src="https://cse.google.com/cse.js?cx=015103900096539427448:ngwuia10qci"></script><script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.13/pretext.js"></script><script>miniversion=0.674</script><script src="https://pretextbook.org/js/0.13/pretext_add_on.js?x=1"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
+<script src="https://pretextbook.org/js/0.13/pretext-webwork/2./pretext-webwork.js"></script><script src="https://webwork-ptx.aimath.org/webwork2_files/node_modules/iframe-resizer/js/iframeResizer.min.js"></script><script async="" src="https://cse.google.com/cse.js?cx=015103900096539427448:ngwuia10qci"></script><script src="https://unpkg.com/lunr/lunr.js"></script><script src="lunr-pretext-search-index.js"></script><script src="https://pretextbook.org/js/0.13/pretext_search.js"></script><link href="https://pretextbook.org/css/0.4/pretext_search.css" rel="stylesheet" type="text/css">
+<script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.13/pretext.js"></script><script>miniversion=0.674</script><script src="https://pretextbook.org/js/0.13/pretext_add_on.js?x=1"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
 </script><link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic" rel="stylesheet" type="text/css">
 <link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
 <link href="https://pretextbook.org/css/0.4/pretext.css" rel="stylesheet" type="text/css">
@@ -122,6 +123,15 @@ window.MathJax = {
 <p class="byline">Steve Schlicker, Mitchel T. Keller, Nicholas Long</p>
 </div>
 <div class="searchwrapper" role="search"><div class="gcse-search"></div></div>
+<div class="searchbox"><div class="searchwidget">
+<input id="ptxsearch" type="text" name="terms" placeholder="Search" onchange="doSearch()"><button id="searchbutton" type="button" onclick="doSearch()">🔍</button>
+</div></div>
+<div id="searchresultsplaceholder" style="display: none">
+<button id="closesearchresults" onclick="document.getElementById('searchresultsplaceholder').style.display = 'none'; return false;">x</button><h2>Search Results: <span id="searchterms"></span>
+</h2>
+<div id="searchempty"><span>No results.</span></div>
+<ol id="searchresults"></ol>
+</div>
 </div></div>
 <nav id="primary-navbar" class="navbar"><div class="container">
 <div class="navbar-top-buttons">
@@ -221,10 +231,7 @@ window.MathJax = {
 \begin{equation*}
 \int_0^2 2x(x^2+1)^3 \, dx = \int_1^5 u^3 \, du.
 \end{equation*}
-</div>
-<p id="p-4265">The latter integral, of course, is far easier to evaluate.</p>
-<p id="p-4266">Through our work with polar, cylindrical, and spherical coordinates, we have already implicitly seen some of the issues that arise in using a change of variables with two or three variables present. In what follows, we seek to understand the general ideas behind any change of variables in a multiple integral.</p>
-<article class="exploration project-like" id="PA_11_9"><h3 class="heading">
+</div> <p id="p-4265">The latter integral, of course, is far easier to evaluate.</p> <p id="p-4266">Through our work with polar, cylindrical, and spherical coordinates, we have already implicitly seen some of the issues that arise in using a change of variables with two or three variables present. In what follows, we seek to understand the general ideas behind any change of variables in a multiple integral.</p> <article class="exploration project-like" id="PA_11_9"><h3 class="heading">
 <span class="type">Preview Activity</span><span class="space"> </span><span class="codenumber">11.9.1</span><span class="period">.</span>
 </h3>
 <p id="p-4267">Consider the double integral</p>
@@ -233,8 +240,7 @@ window.MathJax = {
 I = \iint_D x^2+y^2 \, dA,\tag{11.9.1}
 \end{equation}
 </div>
-<p class="continuation">where <span class="process-math">\(D\)</span> is the upper half of the unit disk.</p>
-<ol class="lower-alpha">
+<p class="continuation">where <span class="process-math">\(D\)</span> is the upper half of the unit disk.</p> <ol class="lower-alpha">
 <li id="li-1467"><p id="p-derived-li-1467"><ol class="lower-roman">
 <li id="li-1468"><p id="p-4268">Write the double integral <span class="process-math">\(I\)</span> given in Equation <a href="" class="xref" data-knowl="./knowl/eq_11_9_COV_PA.html" title="Equation 11.9.1">(11.9.1)</a> as an iterated integral in rectangular coordinates.</p></li>
 <li id="li-1469"><p id="p-4269">Write the double integral <span class="process-math">\(I\)</span> given in Equation  <a href="" class="xref" data-knowl="./knowl/eq_11_9_COV_PA.html" title="Equation 11.9.1">(11.9.1)</a> as an iterated integral in polar coordinates.</p></li>
@@ -288,8 +294,7 @@ x = x(s, t) \ \ \ \ \ \text{ and }  \ \ \ \ \  y = y(s, t)
 \begin{equation*}
 x = s + 2 t \ \ \ \ \ \text{ and }  \ \ \ \ \ y = 2 s + \sqrt{t}.
 \end{equation*}
-</div>
-<p id="p-4280">Let's see what happens to the rectangle <span class="process-math">\(T = [0,1] \times [1,4]\)</span> in the <span class="process-math">\(st\)</span>-plane under this change of variable.</p>
+</div> <p id="p-4280">Let's see what happens to the rectangle <span class="process-math">\(T = [0,1] \times [1,4]\)</span> in the <span class="process-math">\(st\)</span>-plane under this change of variable.</p>
 <ol class="lower-alpha">
 <li id="li-1473"><p id="p-4281">Draw a labeled picture of <span class="process-math">\(T\)</span> in the <span class="process-math">\(st\)</span>-plane.</p></li>
 <li id="li-1474"><p id="p-4282">Find the image of the <span class="process-math">\(st\)</span>-vertex <span class="process-math">\((0,1)\)</span> in the <span class="process-math">\(xy\)</span>-plane.  Likewise, find the respective images of the other three vertices of the rectangle <span class="process-math">\(T\text{:}\)</span> <span class="process-math">\((0,4)\text{,}\)</span> <span class="process-math">\((1,1)\text{,}\)</span> and <span class="process-math">\((1,4)\text{.}\)</span></p></li>
@@ -379,8 +384,7 @@ dA = \left|\frac{\partial x}{\partial s} \frac{\partial y}{\partial t} - \frac{\
 \begin{equation*}
 \frac{\partial x}{\partial r} \frac{\partial y}{\partial \theta} - \frac{\partial x}{\partial \theta} \frac{\partial y}{\partial r}.
 \end{equation*}
-</div>
-<p id="p-4298">What do you observe about your result? How is this connected to our earlier work with double integrals in polar coordinates?</p></article><article class="activity project-like" id="A_11_9_4"><h4 class="heading">
+</div> <p id="p-4298">What do you observe about your result? How is this connected to our earlier work with double integrals in polar coordinates?</p></article><article class="activity project-like" id="A_11_9_4"><h4 class="heading">
 <span class="type">Activity</span><span class="space"> </span><span class="codenumber">11.9.4</span><span class="period">.</span>
 </h4>
 <p id="p-4299">Let <span class="process-math">\(D'\)</span> be the region in the <span class="process-math">\(xy\)</span>-plane bounded by the lines <span class="process-math">\(y=0\text{,}\)</span> <span class="process-math">\(x=0\text{,}\)</span> and <span class="process-math">\(x+y=1\text{.}\)</span> We will evaluate the double integral</p>
@@ -389,8 +393,7 @@ dA = \left|\frac{\partial x}{\partial s} \frac{\partial y}{\partial t} - \frac{\
 \iint_{D'} \sqrt{x+y}(x-y)^2 \, dA\tag{11.9.4}
 \end{equation}
 </div>
-<p class="continuation">with a change of variables.</p>
-<ol class="lower-alpha">
+<p class="continuation">with a change of variables.</p> <ol class="lower-alpha">
 <li id="li-1477"><p id="p-4300">Sketch the region <span class="process-math">\(D'\)</span> in the <span class="process-math">\(xy\)</span>-plane.</p></li>
 <li id="li-1478"><p id="p-4301">We would like to make a substitution that makes the integrand easier to antidifferentiate. Let <span class="process-math">\(s = x+y\)</span> and <span class="process-math">\(t = x-y\text{.}\)</span> Explain why this should make antidifferentiation easier by making the corresponding substitutions and writing the new integrand in terms of <span class="process-math">\(s\)</span> and <span class="process-math">\(t\text{.}\)</span></p></li>
 <li id="li-1479"><p id="p-4302">Solve the equations <span class="process-math">\(s = x+y\)</span> and <span class="process-math">\(t = x-y\)</span> for <span class="process-math">\(x\)</span> and <span class="process-math">\(y\text{.}\)</span> (Doing so determines the standard form of the transformation, since we will have <span class="process-math">\(x\)</span> as a function of <span class="process-math">\(s\)</span> and <span class="process-math">\(t\text{,}\)</span> and <span class="process-math">\(y\)</span> as a function of <span class="process-math">\(s\)</span> and <span class="process-math">\(t\text{.}\)</span>)</p></li>
@@ -435,8 +438,7 @@ dA = \left|\frac{\partial x}{\partial s} \frac{\partial y}{\partial t} - \frac{\
 \begin{equation*}
 \frac{\partial(x,y,z)}{\partial(r,\theta,z)}.
 \end{equation*}
-</div>
-<p id="p-4313">What do you observe about your result? How is this connected to our earlier work with triple integrals in cylindrial coordinates?</p></article><article class="activity project-like" id="A_11_9_5"><h4 class="heading">
+</div> <p id="p-4313">What do you observe about your result? How is this connected to our earlier work with triple integrals in cylindrial coordinates?</p></article><article class="activity project-like" id="A_11_9_5"><h4 class="heading">
 <span class="type">Activity</span><span class="space"> </span><span class="codenumber">11.9.6</span><span class="period">.</span>
 </h4>
 <p id="p-4314">Consider the solid <span class="process-math">\(S'\)</span> defined by the inequalities <span class="process-math">\(0 \leq x \leq 2\text{,}\)</span> <span class="process-math">\(\frac{x}{2} \leq y \leq \frac{x}{2}+1\text{,}\)</span> and <span class="process-math">\(0 \leq z \leq 6\text{.}\)</span> Consider the transformation defined by <span class="process-math">\(s = \frac{x}{2}\text{,}\)</span> <span class="process-math">\(t = \frac{x-2y}{2}\text{,}\)</span>  and <span class="process-math">\(u = \frac{z}{3}\text{.}\)</span> Let <span class="process-math">\(f(x,y,x) = x-2y+z\text{.}\)</span></p>
@@ -463,54 +465,40 @@ dA = \left|\frac{\partial x}{\partial s} \frac{\partial y}{\partial t} - \frac{\
 <article class="exercise exercise-like" id="ex-11-9-WW-Jacobian-2"><h4 class="heading"><span class="codenumber">1<span class="period">.</span></span></h4>
 <div id="webwork-270" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="270" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Michigan/Chap16Sec7/Q01.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-contents">
-<p id="p-4320">Find the absolute value of the Jacobian, <span class="process-math">\(\left|\frac{\partial (x,y)}{\partial (s,t)}\right|\text{,}\)</span> for the change of variables given by <span class="process-math">\(x = 8s+2t, y = 3s+3t\)</span></p>
-<p id="p-4321"><span class="process-math">\(\left|\frac{\partial(x,y)}{\partial(s,t)}\right| =\)</span><span class="fillin underline" role="img" aria-label="35-character blank" style="width: 15.9090909090909em;"></span></p>
+<p id="p-4320">Find the absolute value of the Jacobian, <span class="process-math">\(\left|\frac{\partial (x,y)}{\partial (s,t)}\right|\text{,}\)</span> for the change of variables given by <span class="process-math">\(x = 8s+2t, y = 3s+3t\)</span></p> <p id="p-4321"><span class="process-math">\(\left|\frac{\partial(x,y)}{\partial(s,t)}\right| =\)</span><span class="fillin underline" role="img" aria-label="35-character blank" style="width: 15.9090909090909em;"></span></p>
 </div>
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-270')">Activate</button></div>
 </div></article><article class="exercise exercise-like" id="ex-11-9-WW-Jacobian-3"><h4 class="heading"><span class="codenumber">2<span class="period">.</span></span></h4>
 <div id="webwork-271" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="271" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Michigan/Chap16Sec7/Q05.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-contents">
-<p id="p-4323">Find the Jacobian. <span class="process-math">\(\frac{\partial (x,y,z)}{\partial (s,t,u)}\text{,}\)</span> where <span class="process-math">\(x = 4t-5s+3u, y = u-\left(5s+t\right), z = 5t-4s-4u\text{.}\)</span></p>
-<p id="p-4324"><span class="process-math">\(\frac{\partial (x,y,z)}{\partial (s,t,u)} =\)</span> <span class="fillin underline" role="img" aria-label="35-character blank" style="width: 15.9090909090909em;"></span></p>
+<p id="p-4323">Find the Jacobian. <span class="process-math">\(\frac{\partial (x,y,z)}{\partial (s,t,u)}\text{,}\)</span> where <span class="process-math">\(x = 4t-5s+3u, y = u-\left(5s+t\right), z = 5t-4s-4u\text{.}\)</span></p> <p id="p-4324"><span class="process-math">\(\frac{\partial (x,y,z)}{\partial (s,t,u)} =\)</span> <span class="fillin underline" role="img" aria-label="35-character blank" style="width: 15.9090909090909em;"></span></p>
 </div>
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-271')">Activate</button></div>
 </div></article><article class="exercise exercise-like" id="ex-11-9-WW-square"><h4 class="heading"><span class="codenumber">3<span class="period">.</span></span></h4>
 <div id="webwork-272" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="272" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/maCalcDB/setVectorCalculus1/UR_VC_11_1.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-contents">
 <p id="p-4326">Consider the transformation <span class="process-math">\(T: x = \frac{12}{37}u - \frac{35}{37}v, \ \ y = \frac{35}{37}u +
-\frac{12}{37}v\)</span></p>
-<p id="p-4327">A. Compute the Jacobian:</p>
-<p id="p-4328"><span class="process-math">\(\frac{\partial(x, y)}{\partial(u, v)} =\)</span> <span class="fillin underline" role="img" aria-label="30-character blank" style="width: 13.6363636363636em;"></span></p>
-<p id="p-4329">B. The transformation is linear, which implies that it transforms lines into lines.  Thus, it transforms the square <span class="process-math">\(S:-37 \leq u \leq 37, -37 \leq v \leq
-37\)</span> into a square <span class="process-math">\(T(S)\)</span> with vertices:</p>
-<p id="p-4330">T(37, 37) = (<span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>, <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>)</p>
-<p id="p-4331">T(-37, 37) = (<span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>, <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>)</p>
-<p id="p-4332">T(-37, -37) = (<span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>, <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>)</p>
-<p id="p-4333">T(37, -37) = (<span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>, <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>)</p>
-<p id="p-4334">C. Use the transformation <span class="process-math">\(T\)</span> to evaluate the integral <span class="process-math">\(\int \!\!
-\int_{T(S)} \ x^2 + y^2 \ {dA}\)</span></p>
-<p id="p-4335"><span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span></p>
+\frac{12}{37}v\)</span></p> <p id="p-4327">A. Compute the Jacobian:</p> <p id="p-4328"><span class="process-math">\(\frac{\partial(x, y)}{\partial(u, v)} =\)</span> <span class="fillin underline" role="img" aria-label="30-character blank" style="width: 13.6363636363636em;"></span></p> <p id="p-4329">B. The transformation is linear, which implies that it transforms lines into lines.  Thus, it transforms the square <span class="process-math">\(S:-37 \leq u \leq 37, -37 \leq v \leq
+37\)</span> into a square <span class="process-math">\(T(S)\)</span> with vertices:</p> <p id="p-4330">T(37, 37) = (<span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>, <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>)</p> <p id="p-4331">T(-37, 37) = (<span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>, <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>)</p> <p id="p-4332">T(-37, -37) = (<span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>, <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>)</p> <p id="p-4333">T(37, -37) = (<span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>, <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>)</p> <p id="p-4334">C. Use the transformation <span class="process-math">\(T\)</span> to evaluate the integral <span class="process-math">\(\int \!\!
+\int_{T(S)} \ x^2 + y^2 \ {dA}\)</span></p> <p id="p-4335"><span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span></p>
 </div>
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-272')">Activate</button></div>
 </div></article><article class="exercise exercise-like" id="ex-11-9-WW-quadratics"><h4 class="heading"><span class="codenumber">4<span class="period">.</span></span></h4>
 <div id="webwork-273" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="273" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Michigan/Chap16Sec7/Q23.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-contents">
-<p id="p-4346">Use the change of variables <span class="process-math">\(s=y\text{,}\)</span> <span class="process-math">\(t=y-x^2\)</span> to evaluate <span class="process-math">\(\int\int_R x \,dx\,dy\)</span> over the region <span class="process-math">\(R\)</span> in the first quadrant bounded by <span class="process-math">\(y=0\text{,}\)</span> <span class="process-math">\(y=4\text{,}\)</span> <span class="process-math">\(y=x^2\text{,}\)</span> and <span class="process-math">\(y=x^2-3\text{.}\)</span></p>
-<p id="p-4347"><span class="process-math">\(\int\int_R x \,dx\,dy =\)</span> <span class="fillin underline" role="img" aria-label="35-character blank" style="width: 15.9090909090909em;"></span></p>
+<p id="p-4346">Use the change of variables <span class="process-math">\(s=y\text{,}\)</span> <span class="process-math">\(t=y-x^2\)</span> to evaluate <span class="process-math">\(\int\int_R x \,dx\,dy\)</span> over the region <span class="process-math">\(R\)</span> in the first quadrant bounded by <span class="process-math">\(y=0\text{,}\)</span> <span class="process-math">\(y=4\text{,}\)</span> <span class="process-math">\(y=x^2\text{,}\)</span> and <span class="process-math">\(y=x^2-3\text{.}\)</span></p> <p id="p-4347"><span class="process-math">\(\int\int_R x \,dx\,dy =\)</span> <span class="fillin underline" role="img" aria-label="35-character blank" style="width: 15.9090909090909em;"></span></p>
 </div>
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-273')">Activate</button></div>
 </div></article><article class="exercise exercise-like" id="ex-11-9-WW-ellipse"><h4 class="heading"><span class="codenumber">5<span class="period">.</span></span></h4>
 <div id="webwork-274" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="274" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Michigan/Chap16Sec7/Q21.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-contents">
-<p id="p-4349">Use the change of variables <span class="process-math">\(s = x + 2 y\text{,}\)</span> <span class="process-math">\(t = y\)</span> to find the area of the ellipse <span class="process-math">\(x^2 + 4 x y + 5 y^2 \le 1\text{.}\)</span></p>
-<p id="p-4350">area = <span class="fillin underline" role="img" aria-label="35-character blank" style="width: 15.9090909090909em;"></span></p>
+<p id="p-4349">Use the change of variables <span class="process-math">\(s = x + 2 y\text{,}\)</span> <span class="process-math">\(t = y\)</span> to find the area of the ellipse <span class="process-math">\(x^2 + 4 x y + 5 y^2 \le 1\text{.}\)</span></p> <p id="p-4350">area = <span class="fillin underline" role="img" aria-label="35-character blank" style="width: 15.9090909090909em;"></span></p>
 </div>
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-274')">Activate</button></div>
 </div></article><article class="exercise exercise-like" id="ex-11-9-WW-double"><h4 class="heading"><span class="codenumber">6<span class="period">.</span></span></h4>
 <div id="webwork-275" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="275" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Michigan/Chap16Sec7/Q25.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-contents">
-<p id="p-4352">Use the change of variables <span class="process-math">\(s=xy\text{,}\)</span> <span class="process-math">\(t=xy^2\)</span> to compute <span class="process-math">\(\int_R xy^2\,dA\text{,}\)</span> where <span class="process-math">\(R\)</span> is the region bounded by <span class="process-math">\(xy=2,\ xy=5,\ xy^2=2,\ xy^2=5\text{.}\)</span></p>
-<p id="p-4353"><span class="process-math">\(\int_R xy^2\,dA =\)</span> <span class="fillin underline" role="img" aria-label="35-character blank" style="width: 15.9090909090909em;"></span></p>
+<p id="p-4352">Use the change of variables <span class="process-math">\(s=xy\text{,}\)</span> <span class="process-math">\(t=xy^2\)</span> to compute <span class="process-math">\(\int_R xy^2\,dA\text{,}\)</span> where <span class="process-math">\(R\)</span> is the region bounded by <span class="process-math">\(xy=2,\ xy=5,\ xy^2=2,\ xy^2=5\text{.}\)</span></p> <p id="p-4353"><span class="process-math">\(\int_R xy^2\,dA =\)</span> <span class="fillin underline" role="img" aria-label="35-character blank" style="width: 15.9090909090909em;"></span></p>
 </div>
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-275')">Activate</button></div>
 </div></article><article class="exercise exercise-like" id="ex-11-9-WW-unknowns"><h4 class="heading"><span class="codenumber">7<span class="period">.</span></span></h4>
@@ -522,11 +510,7 @@ dA = \left|\frac{\partial x}{\partial s} \frac{\partial y}{\partial t} - \frac{\
 \int\int_T \left\vert \frac{\partial(x,y)}{\partial(s,t)}\right\vert \,ds\,dt
 \end{equation*}
 </div>
-<p class="continuation">for the region <span class="process-math">\(R\text{,}\)</span> the rectangle <span class="process-math">\(0\le x \le 45\text{,}\)</span> <span class="process-math">\(0\le y \le 20\)</span> and the region <span class="process-math">\(T\text{,}\)</span> the square <span class="process-math">\(0\le s, t \le 1\text{.}\)</span></p>
-<p id="p-4356"><span class="process-math">\(a =\)</span> <span class="fillin underline" role="img" aria-label="35-character blank" style="width: 15.9090909090909em;"></span></p>
-<p id="p-4357"><span class="process-math">\(b =\)</span> <span class="fillin underline" role="img" aria-label="35-character blank" style="width: 15.9090909090909em;"></span></p>
-<p id="p-4358">What is <span class="process-math">\(\left\vert \frac{\partial(x,y)}{\partial(s,t)}\right\vert\)</span> in this case?</p>
-<p id="p-4359"><span class="process-math">\(\left\vert \frac{\partial(x,y)}{\partial(s,t)}\right\vert =\)</span> <span class="fillin underline" role="img" aria-label="35-character blank" style="width: 15.9090909090909em;"></span></p>
+<p class="continuation">for the region <span class="process-math">\(R\text{,}\)</span> the rectangle <span class="process-math">\(0\le x \le 45\text{,}\)</span> <span class="process-math">\(0\le y \le 20\)</span> and the region <span class="process-math">\(T\text{,}\)</span> the square <span class="process-math">\(0\le s, t \le 1\text{.}\)</span></p> <p id="p-4356"><span class="process-math">\(a =\)</span> <span class="fillin underline" role="img" aria-label="35-character blank" style="width: 15.9090909090909em;"></span></p> <p id="p-4357"><span class="process-math">\(b =\)</span> <span class="fillin underline" role="img" aria-label="35-character blank" style="width: 15.9090909090909em;"></span></p> <p id="p-4358">What is <span class="process-math">\(\left\vert \frac{\partial(x,y)}{\partial(s,t)}\right\vert\)</span> in this case?</p> <p id="p-4359"><span class="process-math">\(\left\vert \frac{\partial(x,y)}{\partial(s,t)}\right\vert =\)</span> <span class="fillin underline" role="img" aria-label="35-character blank" style="width: 15.9090909090909em;"></span></p>
 </div>
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-276')">Activate</button></div>
 </div></article><article class="exercise exercise-like" id="ex-11-9-WW-unknown"><h4 class="heading"><span class="codenumber">8<span class="period">.</span></span></h4>
@@ -538,20 +522,13 @@ dA = \left|\frac{\partial x}{\partial s} \frac{\partial y}{\partial t} - \frac{\
 \int\int_T \left\vert \frac{\partial(x,y)}{\partial(s,t)}\right\vert\,ds\,dt
 \end{equation*}
 </div>
-<p class="continuation">over a rectangle <span class="process-math">\(T\)</span> in the <span class="process-math">\(st\)</span>-plane.</p>
-<p id="p-4364"><span class="process-math">\(a =\)</span><span class="fillin underline" role="img" aria-label="35-character blank" style="width: 15.9090909090909em;"></span></p>
-<p id="p-4365">What is <span class="process-math">\(\left\vert \frac{\partial(x,y)}{\partial(s,t)}\right\vert\)</span> in this case?</p>
-<p id="p-4366"><span class="process-math">\(\left\vert \frac{\partial(x,y)}{\partial(s,t)}\right\vert =\)</span> <span class="fillin underline" role="img" aria-label="35-character blank" style="width: 15.9090909090909em;"></span></p>
+<p class="continuation">over a rectangle <span class="process-math">\(T\)</span> in the <span class="process-math">\(st\)</span>-plane.</p> <p id="p-4364"><span class="process-math">\(a =\)</span><span class="fillin underline" role="img" aria-label="35-character blank" style="width: 15.9090909090909em;"></span></p> <p id="p-4365">What is <span class="process-math">\(\left\vert \frac{\partial(x,y)}{\partial(s,t)}\right\vert\)</span> in this case?</p> <p id="p-4366"><span class="process-math">\(\left\vert \frac{\partial(x,y)}{\partial(s,t)}\right\vert =\)</span> <span class="fillin underline" role="img" aria-label="35-character blank" style="width: 15.9090909090909em;"></span></p>
 </div>
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-277')">Activate</button></div>
 </div></article><article class="exercise exercise-like" id="ex-11-9-WW-parallelogram"><h4 class="heading"><span class="codenumber">9<span class="period">.</span></span></h4>
 <div id="webwork-278" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="278" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Michigan/Chap16Sec7/Q19.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-contents">
-<p id="p-4369">In this problem we use the change of variables <span class="process-math">\(x=5 s + t\text{,}\)</span> <span class="process-math">\(y = s - 2 t\)</span> to compute the integral <span class="process-math">\(\int_R (x+y)\,dA\text{,}\)</span> where <span class="process-math">\(R\)</span> is the parallelogram with vertices <span class="process-math">\((x,y)=(0,0)\text{,}\)</span> <span class="process-math">\((5,1)\text{,}\)</span> <span class="process-math">\((6,-1)\text{,}\)</span> and <span class="process-math">\((1,-2)\text{.}\)</span></p>
-<p id="p-4370">First find the magnitude of the Jacobian, <span class="process-math">\(\left|\frac{\partial(x,y)}{\partial(s,t)}\right| =\)</span> <span class="fillin underline" role="img" aria-label="15-character blank" style="width: 6.818181818181818em;"></span>.</p>
-<p id="p-4371">Then, with <span class="process-math">\(a =\)</span> <span class="fillin underline" role="img" aria-label="15-character blank" style="width: 6.818181818181818em;"></span>, <span class="process-math">\(b =\)</span> <span class="fillin underline" role="img" aria-label="15-character blank" style="width: 6.818181818181818em;"></span>,</p>
-<p id="p-4372"><span class="process-math">\(c =\)</span> <span class="fillin underline" role="img" aria-label="15-character blank" style="width: 6.818181818181818em;"></span>, and <span class="process-math">\(d =\)</span> <span class="fillin underline" role="img" aria-label="15-character blank" style="width: 6.818181818181818em;"></span>,</p>
-<p id="p-4373"><span class="process-math">\(\int_R (x+y)\,dA =
+<p id="p-4369">In this problem we use the change of variables <span class="process-math">\(x=5 s + t\text{,}\)</span> <span class="process-math">\(y = s - 2 t\)</span> to compute the integral <span class="process-math">\(\int_R (x+y)\,dA\text{,}\)</span> where <span class="process-math">\(R\)</span> is the parallelogram with vertices <span class="process-math">\((x,y)=(0,0)\text{,}\)</span> <span class="process-math">\((5,1)\text{,}\)</span> <span class="process-math">\((6,-1)\text{,}\)</span> and <span class="process-math">\((1,-2)\text{.}\)</span></p> <p id="p-4370">First find the magnitude of the Jacobian, <span class="process-math">\(\left|\frac{\partial(x,y)}{\partial(s,t)}\right| =\)</span> <span class="fillin underline" role="img" aria-label="15-character blank" style="width: 6.818181818181818em;"></span>.</p> <p id="p-4371">Then, with <span class="process-math">\(a =\)</span> <span class="fillin underline" role="img" aria-label="15-character blank" style="width: 6.818181818181818em;"></span>, <span class="process-math">\(b =\)</span> <span class="fillin underline" role="img" aria-label="15-character blank" style="width: 6.818181818181818em;"></span>,</p> <p id="p-4372"><span class="process-math">\(c =\)</span> <span class="fillin underline" role="img" aria-label="15-character blank" style="width: 6.818181818181818em;"></span>, and <span class="process-math">\(d =\)</span> <span class="fillin underline" role="img" aria-label="15-character blank" style="width: 6.818181818181818em;"></span>,</p> <p id="p-4373"><span class="process-math">\(\int_R (x+y)\,dA =
 \int_a^b\,\int_c^d\, (\)</span> <span class="fillin underline" role="img" aria-label="5-character blank" style="width: 2.272727272727273em;"></span> <span class="process-math">\(s +\)</span> <span class="fillin underline" role="img" aria-label="5-character blank" style="width: 2.272727272727273em;"></span> <span class="process-math">\(t +\)</span> <span class="fillin underline" role="img" aria-label="5-character blank" style="width: 2.272727272727273em;"></span> <span class="process-math">\()\; dt\, ds\)</span> = <span class="fillin underline" role="img" aria-label="25-character blank" style="width: 11.3636363636364em;"></span></p>
 </div>
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-278')">Activate</button></div>
