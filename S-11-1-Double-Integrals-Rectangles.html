@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<html lang="en-US">
+<head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Double Riemann Sums and Double Integrals over Rectangles</title>
+<meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:type" content="book">
+<meta property="book:title" content="Active Calculus - Multivariable + Vector">
+<meta property="book:author" content="Steve Schlicker">
+<meta property="book:author" content="Mitchel T. Keller">
+<meta property="book:author" content="Nicholas Long">
+<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
+window.MathJax = {
+  tex: {
+    inlineMath: [['\\(','\\)']],
+    tags: "none",
+    tagSide: "right",
+    tagIndent: ".8em",
+    packages: {'[+]': ['base', 'extpfeil', 'ams', 'amscd', 'newcommand', 'knowl']}
+  },
+  options: {
+    ignoreHtmlClass: "tex2jax_ignore|ignore-math",
+    processHtmlClass: "process-math",
+    renderActions: {
+        findScript: [10, function (doc) {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
+                var display = !!node.type.match(/; *mode=display/);
+                var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                var text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = {node: text, delim: '', n: 0};
+                math.end = {node: text, delim: '', n: 0};
+                doc.math.push(math);
+            });
+        }, '']
+    },
+  },
+  chtml: {
+    scale: 0.88,
+    mtextInheritFont: true
+  },
+  loader: {
+    load: ['input/asciimath', '[tex]/extpfeil', '[tex]/amscd', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
+    paths: {pretext: "https://pretextbook.org/js/lib"},
+  },
+  startup: {
+    pageReady() {
+      return MathJax.startup.defaultPageReady().then(function () {
+      console.log("in ready function");
+      rsMathReady();
+      }
+    )}
+},
+};
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><link href="https://webwork-ptx.aimath.org/webwork2_files/js/apps/MathView/mathview.css" rel="stylesheet">
+<script src="https://pretextbook.org/js/0.13/pretext-webwork/2./pretext-webwork.js"></script><script src="https://webwork-ptx.aimath.org/webwork2_files/node_modules/iframe-resizer/js/iframeResizer.min.js"></script><script async="" src="https://cse.google.com/cse.js?cx=015103900096539427448:ngwuia10qci"></script><script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.13/pretext.js"></script><script>miniversion=0.674</script><script src="https://pretextbook.org/js/0.13/pretext_add_on.js?x=1"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
+</script><link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/pretext.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/pretext_add_on.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/banner_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/toc_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/knowls_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/style_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/colors_blue_grey.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/setcolors.css" rel="stylesheet" type="text/css">
+</head>
+<body class="pretext-book ignore-math has-toc has-sidebar-left">
+<a class="assistive" href="#content">Skip to main content</a><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\newcommand{\R}{\mathbb{R}}
+\newcommand{\va}{\mathbf{a}}
+\newcommand{\vb}{\mathbf{b}}
+\newcommand{\vc}{\mathbf{c}}
+\newcommand{\vC}{\mathbf{C}}
+\newcommand{\vd}{\mathbf{d}}
+\newcommand{\ve}{\mathbf{e}}
+\newcommand{\vi}{\mathbf{i}}
+\newcommand{\vj}{\mathbf{j}}
+\newcommand{\vk}{\mathbf{k}}
+\newcommand{\vn}{\mathbf{n}}
+\newcommand{\vm}{\mathbf{m}}
+\newcommand{\vr}{\mathbf{r}}
+\newcommand{\vs}{\mathbf{s}}
+\newcommand{\vu}{\mathbf{u}}
+\newcommand{\vv}{\mathbf{v}}
+\newcommand{\vw}{\mathbf{w}}
+\newcommand{\vx}{\mathbf{x}}
+\newcommand{\vy}{\mathbf{y}}
+\newcommand{\vz}{\mathbf{z}}
+\newcommand{\vzero}{\mathbf{0}}
+\newcommand{\vF}{\mathbf{F}}
+\newcommand{\vG}{\mathbf{G}}
+\newcommand{\vH}{\mathbf{H}}
+\newcommand{\vR}{\mathbf{R}}
+\newcommand{\vT}{\mathbf{T}}
+\newcommand{\vN}{\mathbf{N}}
+\newcommand{\vL}{\mathbf{L}}
+\newcommand{\vB}{\mathbf{B}}
+\newcommand{\vS}{\mathbf{S}}
+\newcommand{\proj}{\text{proj}}
+\newcommand{\comp}{\text{comp}}
+\newcommand{\nin}{}
+\newcommand{\vecmag}[1]{|#1|}
+\newcommand{\grad}{\nabla}
+\DeclareMathOperator{\curl}{curl}
+\DeclareMathOperator{\divg}{div}
+\newcommand{\lt}{&lt;}
+\newcommand{\gt}{&gt;}
+\newcommand{\amp}{&amp;}
+\definecolor{fillinmathshade}{gray}{0.9}
+\newcommand{\fillinmath}[1]{\mathchoice{\colorbox{fillinmathshade}{$\displaystyle     \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\textstyle        \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptstyle      \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptscriptstyle\phantom{\,#1\,}$}}}
+\)</span></div>
+<header id="masthead" class="smallbuttons"><div class="banner"><div class="container">
+<a id="logo-link" href=""></a><div class="title-container">
+<h1 class="heading"><a href="book-1.html"><span class="title">Active Calculus - Multivariable + Vector</span></a></h1>
+<p class="byline">Steve Schlicker, Mitchel T. Keller, Nicholas Long</p>
+</div>
+<div class="searchwrapper" role="search"><div class="gcse-search"></div></div>
+</div></div>
+<nav id="primary-navbar" class="navbar"><div class="container">
+<div class="navbar-top-buttons">
+<button class="sidebar-left-toggle-button button active" aria-label="Show or hide table of contents sidebar">Contents</button><div class="tree-nav toolbar toolbar-divisor-3">
+<a class="index-button toolbar-item button" href="index-1.html" title="Index">Index</a><span class="threebuttons"><a id="previousbutton" class="previous-button toolbar-item button" href="C-11.html" title="Previous">Prev</a><a id="upbutton" class="up-button button toolbar-item" href="C-11.html" title="Up">Up</a><a id="nextbutton" class="next-button button toolbar-item" href="S-11-2-Iterated-Integrals.html" title="Next">Next</a></span>
+</div>
+</div>
+<div class="navbar-bottom-buttons toolbar toolbar-divisor-4">
+<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="C-11.html" title="Previous">Prev</a><a class="up-button button toolbar-item" href="C-11.html" title="Up">Up</a><a class="next-button button toolbar-item" href="S-11-2-Iterated-Integrals.html" title="Next">Next</a>
+</div>
+</div></nav></header><div class="page">
+<div id="sidebar-left" class="sidebar" role="navigation"><div class="sidebar-content">
+<nav id="toc"><ul>
+<li class="link frontmatter">
+<a href="frontmatter.html" data-scroll="frontmatter" class="internal"><span class="title">Front Matter</span></a><ul>
+<li><a href="colophon-1.html" data-scroll="colophon-1" class="internal">Colophon</a></li>
+<li><a href="preface-1.html" data-scroll="preface-1" class="internal">Features of the Text</a></li>
+<li><a href="preface-2.html" data-scroll="preface-2" class="internal">Vector Calculus Preface</a></li>
+<li><a href="preface-3.html" data-scroll="preface-3" class="internal">Acknowledgments</a></li>
+<li><a href="preface-4.html" data-scroll="preface-4" class="internal">Active Calculus - Multivariable: our goals</a></li>
+<li><a href="preface-5.html" data-scroll="preface-5" class="internal">How to Use this Text</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="C-9.html" data-scroll="C-9" class="internal"><span class="codenumber">9</span> <span class="title">Multivariable and Vector Functions</span></a><ul>
+<li><a href="S-9-1-Functions.html" data-scroll="S-9-1-Functions" class="internal">Functions of Several Variables and Three Dimensional Space</a></li>
+<li><a href="S-9-2-Vectors.html" data-scroll="S-9-2-Vectors" class="internal">Vectors</a></li>
+<li><a href="S-9-3-Dot-Product.html" data-scroll="S-9-3-Dot-Product" class="internal">The Dot Product</a></li>
+<li><a href="S-9-4-Cross-Product.html" data-scroll="S-9-4-Cross-Product" class="internal">The Cross Product</a></li>
+<li><a href="S-9-5-Lines-Planes.html" data-scroll="S-9-5-Lines-Planes" class="internal">Lines and Planes in Space</a></li>
+<li><a href="S-9-6-Vector-Valued-Functions.html" data-scroll="S-9-6-Vector-Valued-Functions" class="internal">Vector-Valued Functions</a></li>
+<li><a href="S-9-7-Vector-Valued-Functions-Derivatives.html" data-scroll="S-9-7-Vector-Valued-Functions-Derivatives" class="internal">Derivatives and Integrals of Vector-Valued Functions</a></li>
+<li><a href="S-9-8-Arc-Length-Curvature.html" data-scroll="S-9-8-Arc-Length-Curvature" class="internal">Arc Length and Curvature</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="C-10.html" data-scroll="C-10" class="internal"><span class="codenumber">10</span> <span class="title">Derivatives of Multivariable Functions</span></a><ul>
+<li><a href="S-10-1-Limits.html" data-scroll="S-10-1-Limits" class="internal">Limits</a></li>
+<li><a href="S-10-2-First-Order-Partial-Derivatives.html" data-scroll="S-10-2-First-Order-Partial-Derivatives" class="internal">First-Order Partial Derivatives</a></li>
+<li><a href="S-10-3-Second-Order-Partial-Derivatives.html" data-scroll="S-10-3-Second-Order-Partial-Derivatives" class="internal">Second-Order Partial Derivatives</a></li>
+<li><a href="S-10-4-Linearization.html" data-scroll="S-10-4-Linearization" class="internal">Linearization: Tangent Planes and Differentials</a></li>
+<li><a href="S-10-5-Chain-Rule.html" data-scroll="S-10-5-Chain-Rule" class="internal">The Chain Rule</a></li>
+<li><a href="S-10-6-Directional-Derivative.html" data-scroll="S-10-6-Directional-Derivative" class="internal">Directional Derivatives and the Gradient</a></li>
+<li><a href="S-10-7-Optimization.html" data-scroll="S-10-7-Optimization" class="internal">Optimization</a></li>
+<li><a href="S-10-8-Lagrange-Multipliers.html" data-scroll="S-10-8-Lagrange-Multipliers" class="internal">Constrained Optimization: Lagrange Multipliers</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="C-11.html" data-scroll="C-11" class="internal"><span class="codenumber">11</span> <span class="title">Multiple Integrals</span></a><ul>
+<li><a href="S-11-1-Double-Integrals-Rectangles.html" data-scroll="S-11-1-Double-Integrals-Rectangles" class="active">Double Riemann Sums and Double Integrals over Rectangles</a></li>
+<li><a href="S-11-2-Iterated-Integrals.html" data-scroll="S-11-2-Iterated-Integrals" class="internal">Iterated Integrals</a></li>
+<li><a href="S-11-3-Double-Integrals-General.html" data-scroll="S-11-3-Double-Integrals-General" class="internal">Double Integrals over General Regions</a></li>
+<li><a href="S-11-4-Double-Integrals-Applications.html" data-scroll="S-11-4-Double-Integrals-Applications" class="internal">Applications of Double Integrals</a></li>
+<li><a href="S-11-5-Double-Integrals-Polar.html" data-scroll="S-11-5-Double-Integrals-Polar" class="internal">Double Integrals in Polar Coordinates</a></li>
+<li><a href="S-11-6-Parametric-Surfaces-Surface-Area.html" data-scroll="S-11-6-Parametric-Surfaces-Surface-Area" class="internal">Surfaces Defined Parametrically and Surface Area</a></li>
+<li><a href="S-11-7-Triple-Integrals.html" data-scroll="S-11-7-Triple-Integrals" class="internal">Triple Integrals</a></li>
+<li><a href="S-11-8-Triple-Integrals-Cylindrical-Spherical.html" data-scroll="S-11-8-Triple-Integrals-Cylindrical-Spherical" class="internal">Triple Integrals in Cylindrical and Spherical Coordinates</a></li>
+<li><a href="S-11-9-Change-of-Variable.html" data-scroll="S-11-9-Change-of-Variable" class="internal">Change of Variables</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="C_Vector.html" data-scroll="C_Vector" class="internal"><span class="codenumber">12</span> <span class="title">Vector Calculus</span></a><ul>
+<li><a href="S_Vector_VectorFields.html" data-scroll="S_Vector_VectorFields" class="internal">Vector Fields</a></li>
+<li><a href="S_Vector_IdeaLineIntegral.html" data-scroll="S_Vector_IdeaLineIntegral" class="internal">The Idea of a Line Integral</a></li>
+<li><a href="S_Vector_ParamLineIntegrals.html" data-scroll="S_Vector_ParamLineIntegrals" class="internal">Using Parametrizations to Calculate Line Integrals</a></li>
+<li><a href="S_ScalarLineIntegral.html" data-scroll="S_ScalarLineIntegral" class="internal">Line Integrals of Scalar Functions</a></li>
+<li><a href="S_Vector_FTCLI.html" data-scroll="S_Vector_FTCLI" class="internal">Path-Independent Vector Fields and the Fundamental Theorem of Calculus for Line Integrals</a></li>
+<li><a href="S_Vector_Div.html" data-scroll="S_Vector_Div" class="internal">The Divergence of a Vector Field</a></li>
+<li><a href="S_Vector_Curl.html" data-scroll="S_Vector_Curl" class="internal">The Curl of a Vector Field</a></li>
+<li><a href="S_Vector_GreensTheorem.html" data-scroll="S_Vector_GreensTheorem" class="internal">Green's Theorem</a></li>
+<li><a href="S_Vector_FluxInt.html" data-scroll="S_Vector_FluxInt" class="internal">Flux Integrals</a></li>
+<li><a href="S_ScalarSurfaceIntegral.html" data-scroll="S_ScalarSurfaceIntegral" class="internal">Surface Integrals of Scalar Valued Functions</a></li>
+<li><a href="S_Vector_StokesThm.html" data-scroll="S_Vector_StokesThm" class="internal">Stokes' Theorem</a></li>
+<li><a href="S_Vector_DivThm.html" data-scroll="S_Vector_DivThm" class="internal">The Divergence Theorem</a></li>
+</ul>
+</li>
+<li class="link backmatter"><a href="backmatter-1.html" data-scroll="backmatter-1" class="internal"><span class="title">Back Matter</span></a></li>
+<li class="link"><a href="index-1.html" data-scroll="index-1" class="internal"><span class="title">Index</span></a></li>
+</ul></nav><div class="extras"><nav><a class="pretext-link" href="https://pretextbook.org">Authored in PreTeXt</a><a href="https://www.mathjax.org"><img title="Powered by MathJax" src="https://www.mathjax.org/badge/badge.gif" alt="Powered by MathJax"></a></nav></div>
+</div></div>
+<main class="main"><div id="content" class="pretext-content"><section class="section" id="S-11-1-Double-Integrals-Rectangles"><h2 class="heading hide-type">
+<span class="type">Section</span> <span class="codenumber">11.1</span> <span class="title">Double Riemann Sums and Double Integrals over Rectangles</span>
+</h2>
+<article class="objectives goal-like" id="objectives-17"><h3 class="heading"><span class="type">Motivating Questions</span></h3>
+<ul class="disc">
+<li id="li-1043"><p id="p-2940">What is a double Riemann sum?</p></li>
+<li id="li-1044"><p id="p-2941">How is the double integral of a continuous function <span class="process-math">\(f = f(x,y)\)</span> defined?</p></li>
+<li id="li-1045"><p id="p-2942">What are two things the double integral of a function can tell us?</p></li>
+</ul></article><section class="introduction" id="introduction-17"><p id="p-2943">In single-variable calculus, recall that we approximated the area under the graph of a positive function <span class="process-math">\(f\)</span> on an interval <span class="process-math">\([a,b]\)</span> by adding areas of rectangles whose heights are determined by the curve. The general process involved subdividing the interval <span class="process-math">\([a,b]\)</span> into smaller subintervals, constructing rectangles on each of these smaller intervals to approximate the region under the curve on that subinterval, then summing the areas of these rectangles to approximate the area under the curve. We will extend this process in this section to its three-dimensional analogs, double Riemann sums and double integrals over rectangles.</p>
+<article class="exploration project-like" id="PA_11_1"><h3 class="heading">
+<span class="type">Preview Activity</span><span class="space"> </span><span class="codenumber">11.1.1</span><span class="period">.</span>
+</h3>
+<p id="p-2944">In this activity we introduce the concept of a double Riemann sum.</p>
+<ol class="lower-alpha">
+<li id="li-1046"><p id="p-2945">Review the concept of the Riemann sum from single-variable calculus. Then, explain how we define the definite integral <span class="process-math">\(\int_a^b f(x) \ dx\)</span> of a continuous function of a single variable <span class="process-math">\(x\)</span> on an interval <span class="process-math">\([a,b]\text{.}\)</span> Include a sketch of a continuous function on an interval <span class="process-math">\([a,b]\)</span> with appropriate labeling in order to illustrate your definition.</p></li>
+<li id="li-1047">
+<p id="p-2946">In our upcoming study of integral calculus for multivariable functions, we will first extend the idea of the single-variable definite integral to functions of two variables over rectangular domains. To do so, we will need to understand how to partition a rectangle into subrectangles. Let <span class="process-math">\(R\)</span> be rectangular domain <span class="process-math">\(R = \{(x,y) : 0 \leq x \leq 6, 2 \leq y \leq 4\}\)</span> (we can also represent this domain with the notation <span class="process-math">\([0,6] \times [2,4]\)</span>), as pictured in <a href="" class="xref" data-knowl="./knowl/F_11_1_Domain.html" title="Figure 11.1.1">Figure 11.1.1</a>. <figure class="figure figure-like" id="F_11_1_Domain"><div class="image-box" style="width: 50%; margin-left: 25%; margin-right: 25%;"><img src="external/images/fig_11_1_rect_domain.svg" role="img" class="contained"></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">11.1.1<span class="period">.</span></span><span class="space"> </span>Rectangular domain <span class="process-math">\(R\)</span> with subrectangles.</figcaption></figure> <p id="p-2947"></p> To form a partition of the full rectangular region, <span class="process-math">\(R\text{,}\)</span> we will partition both intervals <span class="process-math">\([0,6]\)</span> and <span class="process-math">\([2,4]\text{;}\)</span> in particular, we choose to partition the interval <span class="process-math">\([0,6]\)</span> into three uniformly sized subintervals and the interval <span class="process-math">\([2,4]\)</span> into two evenly sized subintervals as shown in <a href="" class="xref" data-knowl="./knowl/F_11_1_Domain.html" title="Figure 11.1.1">Figure 11.1.1</a>. In the following questions, we discuss how to identify the endpoints of each subinterval and the resulting subrectangles.</p>
+<ol class="lower-roman">
+<li id="li-1048"><p id="p-2948">Let <span class="process-math">\(0=x_0 \lt  x_1 \lt  x_2 \lt  x_3=6\)</span> be the endpoints of the subintervals of <span class="process-math">\([0,6]\)</span> after partitioning. What is the length <span class="process-math">\(\Delta x\)</span> of each subinterval <span class="process-math">\([x_{i-1},x_i]\)</span> for <span class="process-math">\(i\)</span> from 1 to 3?</p></li>
+<li id="li-1049"><p id="p-2949">Explicitly identify <span class="process-math">\(x_0\text{,}\)</span> <span class="process-math">\(x_1\text{,}\)</span> <span class="process-math">\(x_2\text{,}\)</span> and <span class="process-math">\(x_3\text{.}\)</span> On <a href="" class="xref" data-knowl="./knowl/F_11_1_Domain.html" title="Figure 11.1.1">Figure 11.1.1</a> or your own version of the diagram, label these endpoints.</p></li>
+<li id="li-1050"><p id="p-2950">Let <span class="process-math">\(2=y_0 \lt  y_1 \lt  y_2=4\)</span> be the endpoints of the subintervals of <span class="process-math">\([2,4]\)</span> after partitioning. What is the length <span class="process-math">\(\Delta y\)</span> of each subinterval <span class="process-math">\([y_{j-1},y_j]\)</span> for <span class="process-math">\(j\)</span> from 1 to 2? Identify <span class="process-math">\(y_0\text{,}\)</span> <span class="process-math">\(y_1\text{,}\)</span> and <span class="process-math">\(y_2\)</span> and label these endpoints on <a href="" class="xref" data-knowl="./knowl/F_11_1_Domain.html" title="Figure 11.1.1">Figure 11.1.1</a>.</p></li>
+<li id="li-1051"><p id="p-2951">Let <span class="process-math">\(R_{ij}\)</span> denote the subrectangle <span class="process-math">\([x_{i-1},x_i] \times [y_{j-1},y_j]\text{.}\)</span>  Appropriately label each subrectangle in your drawing of <a href="" class="xref" data-knowl="./knowl/F_11_1_Domain.html" title="Figure 11.1.1">Figure 11.1.1</a>.  How does the total number of subrectangles depend on the partitions of the intervals <span class="process-math">\([0,6]\)</span> and <span class="process-math">\([2,4]\text{?}\)</span></p></li>
+<li id="li-1052"><p id="p-2952">What is area <span class="process-math">\(\Delta A\)</span> of each subrectangle?</p></li>
+</ol>
+</li>
+</ol></article></section><section class="subsection" id="subsection-73"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">11.1.1</span> <span class="title">Double Riemann Sums over Rectangles</span>
+</h3>
+<p id="p-2953">For the definite integral in single-variable calculus, we considered a continuous function over a closed, bounded interval <span class="process-math">\([a,b]\text{.}\)</span> In multivariable calculus, we will eventually develop the idea of a definite integral over a closed, bounded region (such as the interior of a circle). We begin with a simpler situation by thinking only about rectangular domains, and will address more complicated domains in <a href="S-11-3-Double-Integrals-General.html" class="internal" title="Section 11.3: Double Integrals over General Regions">Section 11.3</a>.</p>
+<p id="p-2954">Let <span class="process-math">\(f = f(x,y)\)</span> be a continuous function defined on a rectangular domain <span class="process-math">\(R = \{(x,y) : a \leq x \leq b, c \leq y \leq d\}\text{.}\)</span> As we saw in <a href="" class="xref" data-knowl="./knowl/PA_11_1.html" title="Preview Activity 11.1.1">Preview Activity 11.1.1</a>, the domain is a rectangle <span class="process-math">\(R\)</span> and we want to partition <span class="process-math">\(R\)</span> into subrectangles. We do this by partitioning each of the intervals <span class="process-math">\([a,b]\)</span> and <span class="process-math">\([c,d]\)</span> into subintervals and using those subintervals to create a partition of <span class="process-math">\(R\)</span> into subrectangles. In the first activity, we address the quantities and notations we will use in order to define double Riemann sums and double integrals.</p>
+<article class="activity project-like" id="A_11_1_1"><h4 class="heading">
+<span class="type">Activity</span><span class="space"> </span><span class="codenumber">11.1.2</span><span class="period">.</span>
+</h4>
+<p id="p-2955">Let <span class="process-math">\(f(x,y) = 100 - x^2-y^2\)</span> be defined on the rectangular domain <span class="process-math">\(R = [a,b] \times [c,d]\text{.}\)</span> Partition the interval <span class="process-math">\([a,b]\)</span> into four uniformly sized subintervals and the interval <span class="process-math">\([c,d]\)</span> into three evenly sized subintervals as shown in <a href="" class="xref" data-knowl="./knowl/F_11_1_Domain2.html" title="Figure 11.1.2">Figure 11.1.2</a>. As we did in <a href="" class="xref" data-knowl="./knowl/PA_11_1.html" title="Preview Activity 11.1.1">Preview Activity 11.1.1</a>, we will need a method for identifying the endpoints of each subinterval and the resulting subrectangles.</p>
+<figure class="figure figure-like" id="F_11_1_Domain2"><div class="image-box" style="width: 50%; margin-left: 25%; margin-right: 25%;"><img src="external/images/fig_11_1_rect_general.svg" role="img" class="contained"></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">11.1.2<span class="period">.</span></span><span class="space"> </span>Rectangular domain with subrectangles.</figcaption></figure><ol class="lower-alpha">
+<li id="li-1053"><p id="p-2956">Let <span class="process-math">\(a=x_0 \lt  x_1 \lt  x_2 \lt  x_3 \lt  x_4 =b\)</span> be the endpoints of the subintervals of <span class="process-math">\([a,b]\)</span> after partitioning. Label these endpoints in <a href="" class="xref" data-knowl="./knowl/F_11_1_Domain2.html" title="Figure 11.1.2">Figure 11.1.2</a>.</p></li>
+<li id="li-1054"><p id="p-2957">What is the length <span class="process-math">\(\Delta x\)</span> of each subinterval <span class="process-math">\([x_{i-1},x_i]\text{?}\)</span> Your answer should be in terms of <span class="process-math">\(a\)</span> and <span class="process-math">\(b\text{.}\)</span></p></li>
+<li id="li-1055"><p id="p-2958">Let <span class="process-math">\(c=y_0 \lt  y_1 \lt  y_2 \lt  y_3 =d\)</span> be the endpoints of the subintervals of <span class="process-math">\([c,d]\)</span> after partitioning. Label these endpoints in <a href="" class="xref" data-knowl="./knowl/F_11_1_Domain2.html" title="Figure 11.1.2">Figure 11.1.2</a>.</p></li>
+<li id="li-1056"><p id="p-2959">What is the length <span class="process-math">\(\Delta y\)</span> of each subinterval <span class="process-math">\([y_{j-1},y_j]\text{?}\)</span> Your answer should be in terms of <span class="process-math">\(c\)</span> and <span class="process-math">\(d\text{.}\)</span></p></li>
+<li id="li-1057"><p id="p-2960">The partitions of the intervals <span class="process-math">\([a,b]\)</span> and <span class="process-math">\([c,d]\)</span> partition the rectangle <span class="process-math">\(R\)</span> into subrectangles. How many subrectangles are there?</p></li>
+<li id="li-1058"><p id="p-2961">Let <span class="process-math">\(R_{ij}\)</span> denote the subrectangle <span class="process-math">\([x_{i-1},x_i] \times [y_{j-1},y_j]\text{.}\)</span> Label each subrectangle in <a href="" class="xref" data-knowl="./knowl/F_11_1_Domain2.html" title="Figure 11.1.2">Figure 11.1.2</a>.</p></li>
+<li id="li-1059"><p id="p-2962">What is area <span class="process-math">\(\Delta A\)</span> of each subrectangle?</p></li>
+<li id="li-1060">
+<p id="p-2963">Now let <span class="process-math">\([a,b] = [0,8]\)</span> and <span class="process-math">\([c,d] = [2,6]\text{.}\)</span>  Let <span class="process-math">\((x_{11}^*,y_{11}^*)\)</span> be the point in the upper right corner of the subrectangle <span class="process-math">\(R_{11}\text{.}\)</span> Identify and correctly label this point in <a href="" class="xref" data-knowl="./knowl/F_11_1_Domain2.html" title="Figure 11.1.2">Figure 11.1.2</a>. Calculate the product</p>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/F_11_1_Domain2.html">
+\begin{equation*}
+f(x_{11}^*,y_{11}^*) \Delta A.
+\end{equation*}
+</div>
+<p class="continuation">Explain, geometrically, what this product represents.</p>
+</li>
+<li id="li-1061">
+<p id="p-2964">For each <span class="process-math">\(i\)</span> and <span class="process-math">\(j\text{,}\)</span> choose a point <span class="process-math">\((x_{ij}^*,y_{ij}^*)\)</span> in the subrectangle <span class="process-math">\(R_{i,j}\text{.}\)</span> Identify and correctly label these points in <a href="" class="xref" data-knowl="./knowl/F_11_1_Domain2.html" title="Figure 11.1.2">Figure 11.1.2</a>. Explain what the product</p>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/F_11_1_Domain2.html">
+\begin{equation*}
+f(x_{ij}^*,y_{ij}^*) \Delta A
+\end{equation*}
+</div>
+<p class="continuation">represents.</p>
+</li>
+<li id="p_11_1_Rsum_1"><p id="p-2965">If we were to add all the values <span class="process-math">\(f(x_{ij}^*,y_{ij}^*) \Delta A\)</span> for each <span class="process-math">\(i\)</span> and <span class="process-math">\(j\text{,}\)</span> what does the resulting number approximate about the surface defined by <span class="process-math">\(f\)</span> on the domain <span class="process-math">\(R\text{?}\)</span> (You don't actually need to add these values.)</p></li>
+<li id="li-1063"><p id="p-2966">Write a double sum using summation notation that expresses the arbitrary sum from part (<span class="process-math">\(j\)</span>).</p></li>
+</ol></article></section><section class="subsection" id="subsection-74"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">11.1.2</span> <span class="title">Double Riemann Sums and Double Integrals</span>
+</h3>
+<p id="p-2967">Now we use the process from the most recent activity to formally define double Riemann sums and double integrals.</p>
+<article class="definition definition-like" id="definition-22"><h4 class="heading">
+<span class="type">Definition</span><span class="space"> </span><span class="codenumber">11.1.3</span><span class="period">.</span>
+</h4>
+<p id="p-2968">Let <span class="process-math">\(f\)</span> be a continuous function on a rectangle <span class="process-math">\(R = \{(x,y) : a \leq x \leq b, c \leq y \leq d\}\text{.}\)</span> A <dfn class="terminology">double Riemann sum for <span class="process-math">\(f\)</span> over <span class="process-math">\(R\)</span></dfn> is created as follows.</p>
+<ul class="disc">
+<li id="li-1064">
+<span class="heading"><span class="title">-.</span></span><p id="p-2969">Partition the interval <span class="process-math">\([a, b]\)</span> into <span class="process-math">\(m\)</span> subintervals of equal length <span class="process-math">\(\Delta x = \frac{b-a}{m}\text{.}\)</span> Let <span class="process-math">\(x_0\text{,}\)</span> <span class="process-math">\(x_1\text{,}\)</span> <span class="process-math">\(\ldots\text{,}\)</span> <span class="process-math">\(x_m\)</span> be the endpoints of these subintervals, where <span class="process-math">\(a = x_0\lt x_1\lt x_2 \lt  \cdots \lt  x_m = b\text{.}\)</span></p>
+</li>
+<li id="li-1065">
+<span class="heading"><span class="title">-.</span></span><p id="p-2970">Partition the interval <span class="process-math">\([c, d]\)</span> into <span class="process-math">\(n\)</span> subintervals of equal length <span class="process-math">\(\Delta y = \frac{d-c}{n}\text{.}\)</span> Let <span class="process-math">\(y_0\text{,}\)</span> <span class="process-math">\(y_1\text{,}\)</span> <span class="process-math">\(\ldots\text{,}\)</span> <span class="process-math">\(y_n\)</span> be the endpoints of these subintervals, where <span class="process-math">\(c = y_0\lt y_1\lt y_2 \lt  \cdots \lt  y_n = d\text{.}\)</span></p>
+</li>
+<li id="li-1066">
+<span class="heading"><span class="title">-.</span></span><p id="p-2971">These two partitions create a partition of the rectangle <span class="process-math">\(R\)</span> into <span class="process-math">\(mn\)</span> subrectangles <span class="process-math">\(R_{ij}\)</span> with opposite vertices <span class="process-math">\((x_{i-1},y_{j-1})\)</span> and <span class="process-math">\((x_i, y_j)\)</span> for <span class="process-math">\(i\)</span> between <span class="process-math">\(1\)</span> and <span class="process-math">\(m\)</span> and <span class="process-math">\(j\)</span> between <span class="process-math">\(1\)</span> and <span class="process-math">\(n\text{.}\)</span> These rectangles all have equal area <span class="process-math">\(\Delta A = \Delta x \cdot \Delta y\text{.}\)</span></p>
+</li>
+<li id="li-1067">
+<p id="p-2972">Choose a point <span class="process-math">\((x_{ij}^*, y_{ij}^*)\)</span> in each rectangle <span class="process-math">\(R_{ij}\text{.}\)</span> Then, a double Riemann sum for <span class="process-math">\(f\)</span> over <span class="process-math">\(R\)</span> is given by</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+\sum_{j=1}^n \sum_{i=1}^m f(x_{ij}^*, y_{ij}^*) \cdot \Delta A.
+\end{equation*}
+</div>
+</li>
+</ul></article><p id="p-2973">If <span class="process-math">\(f(x,y) \geq 0\)</span> on the rectangle <span class="process-math">\(R\text{,}\)</span> we may ask to find the volume of the solid bounded above by <span class="process-math">\(f\)</span> over <span class="process-math">\(R\text{,}\)</span> as illustrated on the left of <a href="" class="xref" data-knowl="./knowl/F_11_1_volume.html" title="Figure 11.1.4">Figure 11.1.4</a>. This volume is approximated by a Riemann sum, which sums the volumes of the rectangular boxes shown on the right of <a href="" class="xref" data-knowl="./knowl/F_11_1_volume.html" title="Figure 11.1.4">Figure 11.1.4</a>.</p>
+<figure class="figure figure-like" id="F_11_1_volume"><div class="sidebyside"><div class="sbsrow" style="margin-left:0%;margin-right:0%;">
+<div class="sbspanel top" style="width:50%;"><img src="external/images/fig_11_1_volume.svg" role="img" class="contained"></div>
+<div class="sbspanel top" style="width:50%;"><img src="external/images/fig_11_1_riemann_3_2.svg" role="img" class="contained"></div>
+</div></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">11.1.4<span class="period">.</span></span><span class="space"> </span>The volume under a graph approximated by a Riemann Sum.</figcaption></figure><p id="p-2974">As we let the number of subrectangles increase without bound (in other words, as both <span class="process-math">\(m\)</span> and <span class="process-math">\(n\)</span> in a double Riemann sum go to infinity), as illustrated in <a href="" class="xref" data-knowl="./knowl/F_11_1_rs.html" title="Figure 11.1.5">Figure 11.1.5</a>, the sum of the volumes of the rectangular boxes approaches the volume of the solid bounded above by <span class="process-math">\(f\)</span> over <span class="process-math">\(R\text{.}\)</span> The value of this limit, provided it exists, is the double integral.</p>
+<figure class="figure figure-like" id="F_11_1_rs"><div class="sidebyside"><div class="sbsrow" style="margin-left:0%;margin-right:0%;">
+<div class="sbspanel top" style="width:50%;"><img src="external/images/fig_11_1_riemann_4_4.svg" role="img" class="contained"></div>
+<div class="sbspanel top" style="width:50%;"><img src="external/images/fig_11_1_riemann_8_8.svg" role="img" class="contained"></div>
+</div></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">11.1.5<span class="period">.</span></span><span class="space"> </span>Finding better approximations by using smaller subrectangles.</figcaption></figure><article class="definition definition-like" id="definition-23"><h4 class="heading">
+<span class="type">Definition</span><span class="space"> </span><span class="codenumber">11.1.6</span><span class="period">.</span>
+</h4>
+<p id="p-2975">Let <span class="process-math">\(R\)</span> be a rectangular region in the <span class="process-math">\(xy\)</span>-plane and <span class="process-math">\(f\)</span> a continuous function over <span class="process-math">\(R\text{.}\)</span> With terms defined as in a double Riemann sum, the <dfn class="terminology">double integral of <span class="process-math">\(f\)</span> over <span class="process-math">\(R\)</span></dfn> is</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+\iint_R f(x,y) \, dA = \lim_{m,n \to \infty} \sum_{j=1}^n \sum_{i=1}^m f(x_{ij}^*, y_{ij}^*) \cdot \Delta A.
+\end{equation*}
+</div></article><p id="p-2976">Some textbooks use the notation <span class="process-math">\(\int_R f(x,y) \, dA\)</span> for a double integral. You will see this in some of the WeBWorK problems.</p></section><section class="subsection" id="subsection-75"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">11.1.3</span> <span class="title">Interpretation of Double Riemann Sums and Double integrals.</span>
+</h3>
+<p id="p-2977">At the moment, there are two ways we can interpret the value of the double integral.</p>
+<ul class="disc">
+<li id="li-1068">
+<p id="p-2978">Suppose that <span class="process-math">\(f(x,y)\)</span> assumes both positive and negatives values on the rectangle <span class="process-math">\(R\text{,}\)</span> as shown on the left of <a href="" class="xref" data-knowl="./knowl/F_11_1_signed.html" title="Figure 11.1.7">Figure 11.1.7</a>.  When constructing a Riemann sum, for each <span class="process-math">\(i\)</span> and <span class="process-math">\(j\text{,}\)</span> the product <span class="process-math">\(f(x_{ij}^*, y_{ij}^*) \cdot \Delta A\)</span> can be interpreted as a “signed” volume of a box with base area <span class="process-math">\(\Delta A\)</span> and “signed” height <span class="process-math">\(f(x_{ij}^*, y_{ij}^*)\text{.}\)</span> Since <span class="process-math">\(f\)</span> can have negative values, this “height” could be negative. The sum</p>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/F_11_1_signed.html ./knowl/F_11_1_signed.html">
+\begin{equation*}
+\sum_{j=1}^n \sum_{i=1}^m f(x_{ij}^*, y_{ij}^*) \cdot \Delta A
+\end{equation*}
+</div>
+<p class="continuation">can then be interpreted as a sum of “signed” volumes of boxes, with a negative sign attached to those boxes whose heights are below the <span class="process-math">\(xy\)</span>-plane. <figure class="figure figure-like" id="F_11_1_signed"><div class="sidebyside"><div class="sbsrow" style="margin-left:0%;margin-right:0%;">
+<div class="sbspanel top" style="width:50%;"><img src="external/images/fig_11_1_signed_graph.svg" role="img" class="contained"></div>
+<div class="sbspanel top" style="width:50%;"><img src="external/images/fig_11_1_signed_volume.svg" role="img" class="contained"></div>
+</div></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">11.1.7<span class="period">.</span></span><span class="space"> </span>The integral measures signed volume.</figcaption></figure> We can then realize the double integral <span class="process-math">\(\iint_R
+f(x,y) \, dA\)</span> as a difference in volumes: <span class="process-math">\(\iint_R f(x,y) \, dA\)</span> tells us the volume of the solids the graph of <span class="process-math">\(f\)</span> bounds above the <span class="process-math">\(xy\)</span>-plane over the rectangle <span class="process-math">\(R\)</span> minus the volume of the solids the graph of <span class="process-math">\(f\)</span> bounds below the <span class="process-math">\(xy\)</span>-plane under the rectangle <span class="process-math">\(R\text{.}\)</span>  This is shown on the right of <a href="" class="xref" data-knowl="./knowl/F_11_1_signed.html" title="Figure 11.1.7">Figure 11.1.7</a>.</p>
+</li>
+<li id="li-1069">
+<p id="p-2979">The average of the finitely many <span class="process-math">\(mn\)</span> values <span class="process-math">\(f(x_{ij}^*, y_{ij}^*)\)</span> that we take in a double Riemann sum is given by</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+\mbox{Avg} _{mn} = \frac{1}{mn} \sum_{j=1}^n \sum_{i=1}^m f(x_{ij}^*, y_{ij}^*).
+\end{equation*}
+</div>
+<p class="continuation">If we take the limit as <span class="process-math">\(m\)</span> and <span class="process-math">\(n\)</span> go to infinity, we obtain what we define as the average value of <span class="process-math">\(f\)</span> over the region <span class="process-math">\(R\text{,}\)</span> which is connected to the value of the double integral. First, to view <span class="process-math">\(\text{ Avg } _{mn}\)</span> as a double Riemann sum, note that</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+\Delta x = \frac{b-a}{m} \ \ \ \ \ \text{ and }  \ \ \ \ \ \Delta y = \frac{d-c}{n}.
+\end{equation*}
+</div>
+<p class="continuation">Thus,</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+\frac{1}{mn} = \frac{\Delta x \cdot \Delta y}{(b-a)(d-c)} = \frac{\Delta A}{A(R)},
+\end{equation*}
+</div>
+<p class="continuation">where <span class="process-math">\(A(R)\)</span> denotes the area of the rectangle <span class="process-math">\(R\text{.}\)</span> Then, the average value of the function <span class="process-math">\(f\)</span> over <span class="process-math">\(R\text{,}\)</span> <span class="process-math">\(f_{\operatorname{AVG}(R)}\text{,}\)</span> is given by</p>
+<div class="displaymath process-math" data-contains-math-knowls="" id="md-33">
+\begin{align*}
+f_{\operatorname{AVG}(R)} \amp  = \lim_{m,n \to \infty} \frac{1}{mn} \sum_{j=1}^n \sum_{i=1}^m f(x_{ij}^*, y_{ij}^*)\\
+\amp  = \lim_{m,n \to \infty} \frac{1}{A(R)} \sum_{j=1}^n \sum_{i=1}^m f(x_{ij}^*, y_{ij}^*) \cdot \Delta A\\
+\amp  = \frac{1}{A(R)} \iint_R f(x,y) \, dA.
+\end{align*}
+</div>
+<p class="continuation">Therefore, the double integral of <span class="process-math">\(f\)</span> over <span class="process-math">\(R\)</span> divided by the area of <span class="process-math">\(R\)</span> gives us the average value of the function <span class="process-math">\(f\)</span> on <span class="process-math">\(R\text{.}\)</span> Finally, if <span class="process-math">\(f(x, y) \geq  0\)</span> on <span class="process-math">\(R\text{,}\)</span> we can interpret this average value of <span class="process-math">\(f\)</span> on <span class="process-math">\(R\)</span> as the height of the box with base <span class="process-math">\(R\)</span> that has the same volume as the volume of the surface defined by <span class="process-math">\(f\)</span> over <span class="process-math">\(R\text{.}\)</span></p>
+</li>
+</ul>
+<article class="activity project-like" id="A_11_1_2"><h4 class="heading">
+<span class="type">Activity</span><span class="space"> </span><span class="codenumber">11.1.3</span><span class="period">.</span>
+</h4>
+<p id="p-2980">Let <span class="process-math">\(f(x,y) = x+2y\)</span> and let <span class="process-math">\(R = [0,2] \times [1,3]\text{.}\)</span></p>
+<ol class="lower-alpha">
+<li id="li-1070"><p id="p-2981">Draw a picture of <span class="process-math">\(R\text{.}\)</span> Partition <span class="process-math">\([0,2]\)</span> into 2 subintervals of equal length and the interval <span class="process-math">\([1,3]\)</span> into two subintervals of equal length. Draw these partitions on your picture of <span class="process-math">\(R\)</span> and label the resulting subrectangles using the labeling scheme we established in the definition of a double Riemann sum.</p></li>
+<li id="li-1071"><p id="p-2982">For each <span class="process-math">\(i\)</span> and <span class="process-math">\(j\text{,}\)</span> let <span class="process-math">\((x_{ij}^*, y_{ij}^*)\)</span> be the midpoint of the rectangle <span class="process-math">\(R_{ij}\text{.}\)</span> Identify the coordinates of each <span class="process-math">\((x_{ij}^*, y_{ij}^*)\text{.}\)</span> Draw these points on your picture of <span class="process-math">\(R\text{.}\)</span></p></li>
+<li id="li-1072">
+<p id="p-2983">Calculate the Riemann sum</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+\sum_{j=1}^n \sum_{i=1}^m f(x_{ij}^*, y_{ij}^*) \cdot \Delta A
+\end{equation*}
+</div>
+<p class="continuation">using the partitions we have described. If we let <span class="process-math">\((x_{ij}^*, y_{ij}^*)\)</span> be the midpoint of the rectangle <span class="process-math">\(R_{ij}\)</span> for each <span class="process-math">\(i\)</span> and <span class="process-math">\(j\text{,}\)</span> then the resulting Riemann sum is called a <em class="emphasis">midpoint sum</em>.</p>
+</li>
+<li id="li-1073"><p id="p-2984">Give two interpretations for the meaning of the sum you just calculated.</p></li>
+</ol></article><article class="activity project-like" id="A_11_1_3"><h4 class="heading">
+<span class="type">Activity</span><span class="space"> </span><span class="codenumber">11.1.4</span><span class="period">.</span>
+</h4>
+<p id="p-2985">Let <span class="process-math">\(f(x,y) = \sqrt{4-y^2}\)</span> on the rectangular domain <span class="process-math">\(R = [1,7] \times [-2,2]\text{.}\)</span> Partition <span class="process-math">\([1,7]\)</span> into 3 equal length subintervals and <span class="process-math">\([-2,2]\)</span> into 2 equal length subintervals. A table of values of <span class="process-math">\(f\)</span> at some points in <span class="process-math">\(R\)</span> is given in <a href="" class="xref" data-knowl="./knowl/DI_11_1_TOV.html" title="Table 11.1.8: Table of values of f(x,y) =  \sqrt{4-y^2}">Table 11.1.8</a>, and a graph of <span class="process-math">\(f\)</span> with the indicated partitions is shown in <a href="" class="xref" data-knowl="./knowl/F_11_1_DI_example.html" title="Figure 11.1.9">Figure 11.1.9</a>.</p>
+<div class="sidebyside"><div class="sbsrow" style="margin-left:0%;margin-right:0%;">
+<div class="sbspanel fixed-width top" style="width:50%;"><figure class="table table-like" id="DI_11_1_TOV"><figcaption><span class="type">Table</span><span class="space"> </span><span class="codenumber">11.1.8<span class="period">.</span></span><span class="space"> </span>Table of values of <span class="process-math">\(f(x,y) =  \sqrt{4-y^2}\text{.}\)</span></figcaption><table class="tabular">
+<tr>
+<td class="c m b2 r0 l0 t1 lines"></td>
+<td class="c m b2 r0 l0 t1 lines"><span class="process-math">\(-2\)</span></td>
+<td class="c m b2 r0 l0 t1 lines"><span class="process-math">\(-1\)</span></td>
+<td class="c m b2 r0 l0 t1 lines"><span class="process-math">\(0\)</span></td>
+<td class="c m b2 r0 l0 t1 lines"><span class="process-math">\(1\)</span></td>
+<td class="c m b2 r0 l0 t1 lines"><span class="process-math">\(2\)</span></td>
+</tr>
+<tr>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(1\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(0\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(\sqrt{3}\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(2\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(\sqrt{3}\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(0\)</span></td>
+</tr>
+<tr>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(2\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(0\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(\sqrt{3}\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(2\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(\sqrt{3}\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(0\)</span></td>
+</tr>
+<tr>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(3\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(0\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(\sqrt{3}\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(2\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(\sqrt{3}\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(0\)</span></td>
+</tr>
+<tr>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(4\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(0\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(\sqrt{3}\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(2\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(\sqrt{3}\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(0\)</span></td>
+</tr>
+<tr>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(5\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(0\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(\sqrt{3}\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(2\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(\sqrt{3}\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(0\)</span></td>
+</tr>
+<tr>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(6\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(0\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(\sqrt{3}\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(2\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(\sqrt{3}\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(0\)</span></td>
+</tr>
+<tr>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(7\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(0\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(\sqrt{3}\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(2\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(\sqrt{3}\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(0\)</span></td>
+</tr>
+</table></figure></div>
+<div class="sbspanel top" style="width:50%;"><figure class="figure figure-like" id="F_11_1_DI_example"><img src="external/images/fig_11_1_cylinder.svg" role="img" class="contained"><figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">11.1.9<span class="period">.</span></span><span class="space"> </span>Graph of <span class="process-math">\(f(x,y) =  \sqrt{4-y^2}\)</span> on <span class="process-math">\(R\text{.}\)</span></figcaption></figure></div>
+</div></div>
+<ol class="lower-alpha">
+<li id="li-1074"><p id="p-2986">Sketch the region <span class="process-math">\(R\)</span> in the plane using the values in <a href="" class="xref" data-knowl="./knowl/DI_11_1_TOV.html" title="Table 11.1.8: Table of values of f(x,y) =  \sqrt{4-y^2}">Table 11.1.8</a> as the partitions.</p></li>
+<li id="li-1075"><p id="p-2987">Calculate the double Riemann sum using the given partition of <span class="process-math">\(R\)</span> and the values of <span class="process-math">\(f\)</span> in the upper right corner of each subrectangle.</p></li>
+<li id="li-1076"><p id="p-2988">Use geometry to calculate the exact value of <span class="process-math">\(\iint_R f(x,y) \, dA\)</span> and compare it to your approximation. Describe one way we could obtain a better approximation using the given data.</p></li>
+</ol></article><p id="p-2989">We conclude this section with a list of properties of double integrals. Since similar properties are satisfied by single-variable integrals and the arguments for double integrals are essentially the same, we omit their justification.</p>
+<article class="assemblage assemblage-like" id="Double-integral-properties"><h4 class="heading"><span class="title">Properties of Double Integrals.</span></h4>
+<p id="p-2990">Let <span class="process-math">\(f\)</span> and <span class="process-math">\(g\)</span> be continuous functions on a rectangle <span class="process-math">\(R = \{(x,y) : a \leq x \leq b, c \leq y \leq d\}\text{,}\)</span> and let <span class="process-math">\(k\)</span> be a constant. Then</p>
+<ol class="decimal">
+<li id="li-1077"><p id="p-2991"><span class="process-math">\(\iint_R (f(x,y) + g(x,y)) \, dA = \iint_R f(x,y) \, dA + \iint_R g(x,y) \, dA\text{.}\)</span></p></li>
+<li id="li-1078"><p id="p-2992"><span class="process-math">\(\iint_R kf(x,y) \, dA = k \iint_R f(x,y) \, dA\text{.}\)</span></p></li>
+<li id="li-1079"><p id="p-2993">If <span class="process-math">\(f(x,y) \geq g(x,y)\)</span> on <span class="process-math">\(R\text{,}\)</span> then <span class="process-math">\(\iint_R f(x,y) \, dA \geq \iint_R g(x,y) \, dA\text{.}\)</span></p></li>
+</ol></article></section><section class="subsection" id="subsection-76"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">11.1.4</span> <span class="title">Summary</span>
+</h3>
+<ul class="disc">
+<li id="li-1080">
+<p id="p-2994">Let <span class="process-math">\(f\)</span> be a continuous function on a rectangle <span class="process-math">\(R = \{(x,y) : a \leq x \leq b, c \leq y \leq d\}\text{.}\)</span> The double Riemann sum for <span class="process-math">\(f\)</span> over <span class="process-math">\(R\)</span> is created as follows.</p>
+<ul class="circle">
+<li id="li-1081">
+<span class="heading"><span class="title">-.</span></span><p id="p-2995">Partition the interval <span class="process-math">\([a, b]\)</span> into <span class="process-math">\(m\)</span> subintervals of equal length <span class="process-math">\(\Delta x = \frac{b-a}{m}\text{.}\)</span> Let <span class="process-math">\(x_0\text{,}\)</span> <span class="process-math">\(x_1\text{,}\)</span> <span class="process-math">\(\ldots\text{,}\)</span> <span class="process-math">\(x_m\)</span> be the endpoints of these subintervals, where <span class="process-math">\(a = x_0\lt x_1\lt x_2 \lt  \cdots \lt  x_m = b\text{.}\)</span></p>
+</li>
+<li id="li-1082">
+<span class="heading"><span class="title">-.</span></span><p id="p-2996">Partition the interval <span class="process-math">\([c, d]\)</span> into <span class="process-math">\(n\)</span> subintervals of equal length <span class="process-math">\(\Delta y = \frac{d-c}{n}\text{.}\)</span> Let <span class="process-math">\(y_0\text{,}\)</span> <span class="process-math">\(y_1\text{,}\)</span> <span class="process-math">\(\ldots\text{,}\)</span> <span class="process-math">\(y_n\)</span> be the endpoints of these subintervals, where <span class="process-math">\(c = y_0\lt y_1\lt y_2 \lt  \cdots \lt  y_n = d\text{.}\)</span></p>
+</li>
+<li id="li-1083">
+<span class="heading"><span class="title">-.</span></span><p id="p-2997">These two partitions create a partition of the rectangle <span class="process-math">\(R\)</span> into <span class="process-math">\(mn\)</span> subrectangles <span class="process-math">\(R_{ij}\)</span> with opposite vertices <span class="process-math">\((x_{i-1},y_{j-1})\)</span> and <span class="process-math">\((x_i, y_j)\)</span> for <span class="process-math">\(i\)</span> between <span class="process-math">\(1\)</span> and <span class="process-math">\(m\)</span> and <span class="process-math">\(j\)</span> between <span class="process-math">\(1\)</span> and <span class="process-math">\(n\text{.}\)</span> These rectangles all have equal area <span class="process-math">\(\Delta A = \Delta x \cdot \Delta y\text{.}\)</span></p>
+</li>
+<li id="li-1084">
+<span class="heading"><span class="title">-.</span></span><p id="p-2998">Choose a point <span class="process-math">\((x_{ij}^*, y_{ij}^*)\)</span> in each rectangle <span class="process-math">\(R_{ij}\text{.}\)</span> Then a double Riemann sum for <span class="process-math">\(f\)</span> over <span class="process-math">\(R\)</span> is given by</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+\sum_{j=1}^n \sum_{i=1}^m f(x_{ij}^*, y_{ij}^*) \cdot \Delta A.
+\end{equation*}
+</div>
+</li>
+</ul>
+</li>
+<li id="li-1085">
+<p id="p-2999">With terms defined as in the Double Riemann Sum, the double integral of <span class="process-math">\(f\)</span> over <span class="process-math">\(R\)</span> is</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+\iint_R f(x,y) \, dA = \lim_{m,n \to \infty} \sum_{j=1}^n \sum_{i=1}^m f(x_{ij}^*, y_{ij}^*) \cdot \Delta A.
+\end{equation*}
+</div>
+</li>
+<li id="li-1086">
+<p id="p-3000">Two interpretations of the double integral <span class="process-math">\(\iint_R f(x,y) \, dA\)</span> are:</p>
+<ul class="circle">
+<li id="li-1087">
+<span class="heading"><span class="title">-.</span></span><p id="p-3001">The volume of the solids the graph of <span class="process-math">\(f\)</span> bounds above the <span class="process-math">\(xy\)</span>-plane over the rectangle <span class="process-math">\(R\)</span> minus the volume of the solids the graph of <span class="process-math">\(f\)</span> bounds below the <span class="process-math">\(xy\)</span>-plane under the rectangle <span class="process-math">\(R\text{;}\)</span></p>
+</li>
+<li id="li-1088">
+<span class="heading"><span class="title">-.</span></span><p id="p-3002">Dividing the double integral of <span class="process-math">\(f\)</span> over <span class="process-math">\(R\)</span> by the area of <span class="process-math">\(R\)</span> gives us the average value of the function <span class="process-math">\(f\)</span> on <span class="process-math">\(R\text{.}\)</span> If <span class="process-math">\(f(x, y) \geq  0\)</span> on <span class="process-math">\(R\text{,}\)</span> we can interpret this average value of <span class="process-math">\(f\)</span> on <span class="process-math">\(R\)</span> as the height of the box with base <span class="process-math">\(R\)</span> that has the same volume as the volume of the surface defined by <span class="process-math">\(f\)</span> over <span class="process-math">\(R\text{.}\)</span></p>
+</li>
+</ul>
+</li>
+</ul></section><section class="exercises" id="exercises-17"><h3 class="heading hide-type">
+<span class="type">Exercises</span> <span class="codenumber">11.1.5</span> <span class="title">Exercises</span>
+</h3>
+<article class="exercise exercise-like" id="ex-11-1-WW-polynoimial"><h4 class="heading"><span class="codenumber">1<span class="period">.</span></span></h4>
+<div id="webwork-181" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="181" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/FortLewis/Calc3/16-1-Double-integrals/HGM4-16-1-00-Double-integrals.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-contents">
+<p id="p-3003">Suppose <span class="process-math">\(f(x,y) = 1-x^{2}-y^{2}\)</span> and <span class="process-math">\(R\)</span> is the rectangle with vertices (0,0), (6,0), (6,4), (0,4).  In each part, estimate <span class="process-math">\(\displaystyle \iint\limits_R f(x,y) \, dA\)</span> using Riemann sums.  For underestimates or overestimates, consistently use either the lower left-hand corner or the upper right-hand corner of each rectangle in a subdivision, as appropriate.</p>
+<p id="p-3004">(a) Without subdividing <span class="process-math">\(R\text{,}\)</span></p>
+<p id="p-3005">Underestimate = <span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span></p>
+<p id="p-3006">Overestimate = <span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span></p>
+<p id="p-3007">(b) By partitioning <span class="process-math">\(R\)</span> into four equal-sized rectangles.</p>
+<p id="p-3008">Underestimate = <span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span></p>
+<p id="p-3009">Overestimate = <span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span></p>
+</div>
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-181')">Activate</button></div>
+</div></article><article class="exercise exercise-like" id="ex-11-1-WW-9-squares"><h4 class="heading"><span class="codenumber">2<span class="period">.</span></span></h4>
+<div id="webwork-182" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="182" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/272/setStewart15_1/problem_2.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-contents">
+<p id="p-3014">Consider the solid that lies above the square (in the <span class="process-math">\(xy\)</span>-plane) <span class="process-math">\(R = [0, 1] \times [0, 1]\text{,}\)</span> and below the elliptic paraboloid <span class="process-math">\(z = 25 - x^2+ xy - 4 y^2\text{.}\)</span></p>
+<p id="p-3015">Estimate the volume by dividing <span class="process-math">\(R\)</span> into 9 equal squares and choosing the sample points to lie in the midpoints of each square.</p>
+<p id="p-3016"><span class="fillin underline" role="img" aria-label="50-character blank" style="width: 22.7272727272727em;"></span></p>
+</div>
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-182')">Activate</button></div>
+</div></article><article class="exercise exercise-like" id="ex-11-1-WW-radical"><h4 class="heading"><span class="codenumber">3<span class="period">.</span></span></h4>
+<div id="webwork-183" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="183" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Michigan/Chap16Sec1/Q05.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-contents">
+<p id="p-3018">Let <span class="process-math">\(R\)</span> be the rectangle with vertices <span class="process-math">\((0,0)\text{,}\)</span> <span class="process-math">\((4,0)\text{,}\)</span> <span class="process-math">\((4,4)\text{,}\)</span> and <span class="process-math">\((0,4)\)</span> and let <span class="process-math">\(f(x,y) = \sqrt{xy}\text{.}\)</span></p>
+<p id="p-3019"><em class="alert">(a)</em> Find reasonable upper and lower bounds for <span class="process-math">\(\int_{R}f\,dA\)</span> without subdividing <span class="process-math">\(R\text{.}\)</span></p>
+<p id="p-3020">upper bound = <span class="fillin underline" role="img" aria-label="15-character blank" style="width: 6.818181818181818em;"></span></p>
+<p id="p-3021">lower bound = <span class="fillin underline" role="img" aria-label="15-character blank" style="width: 6.818181818181818em;"></span></p>
+<p id="p-3022"><em class="alert">(b)</em> Estimate <span class="process-math">\(\int_{R}f\,dA\)</span> three ways: by partitioning <span class="process-math">\(R\)</span> into four subrectangles and evaluating <span class="process-math">\(f\)</span> at its maximum and minimum values on each subrectangle, and then by considering the average of these (over and under) estimates.</p>
+<p id="p-3023">overestimate: <span class="process-math">\(\int_{R}f\,dA \approx\)</span> <span class="fillin underline" role="img" aria-label="55-character blank" style="width: 25em;"></span></p>
+<p id="p-3024">underestimate: <span class="process-math">\(\int_{R}f\,dA \approx\)</span> <span class="fillin underline" role="img" aria-label="55-character blank" style="width: 25em;"></span></p>
+<p id="p-3025">average: <span class="process-math">\(\int_{R}f\,dA \approx\)</span> <span class="fillin underline" role="img" aria-label="55-character blank" style="width: 25em;"></span></p>
+</div>
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-183')">Activate</button></div>
+</div></article><article class="exercise exercise-like" id="ex-11-1-WW-bounds-2"><h4 class="heading"><span class="codenumber">4<span class="period">.</span></span></h4>
+<div id="webwork-184" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="184" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Michigan/Chap16Sec1/Q07.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-contents">
+<p id="p-3031">Using Riemann sums with four subdivisions in each direction, find upper and lower bounds for the volume under the graph of <span class="process-math">\(f(x,y) = 4+xy\)</span> above the rectangle <span class="process-math">\(R\)</span> with <span class="process-math">\(0\le x\le 2,\quad 0\le y \le 3\text{.}\)</span></p>
+<p id="p-3032">upper bound = <span class="fillin underline" role="img" aria-label="55-character blank" style="width: 25em;"></span></p>
+<p id="p-3033">lower bound = <span class="fillin underline" role="img" aria-label="55-character blank" style="width: 25em;"></span></p>
+</div>
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-184')">Activate</button></div>
+</div></article><article class="exercise exercise-like" id="ex-11-1-WW-average"><h4 class="heading"><span class="codenumber">5<span class="period">.</span></span></h4>
+<div id="webwork-185" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="185" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/272/setStewart15_1/problem_1.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-contents">
+<p id="p-3036">Consider the solid that lies above the square (in the xy-plane) <span class="process-math">\(R = [0, 2] \times [0, 2]\text{,}\)</span></p>
+<p id="p-3037">and below the elliptic paraboloid <span class="process-math">\(z = 49 - x^{2} - 4y^2\text{.}\)</span></p>
+<p id="p-3038">(A) Estimate the volume by dividing R into 4 equal squares and choosing the sample points to lie in the lower left hand corners.</p>
+<p id="p-3039"><span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span></p>
+<p id="p-3040">(B) Estimate the volume by dividing R into 4 equal squares and choosing the sample points to lie in the upper right hand corners..</p>
+<p id="p-3041"><span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span></p>
+<p id="p-3042">(C) What is the average of the two answers from (A) and (B)?</p>
+<p id="p-3043"><span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span></p>
+</div>
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-185')">Activate</button></div>
+</div></article><article class="exercise exercise-like" id="ex-11-1-WW-contour"><h4 class="heading"><span class="codenumber">6<span class="period">.</span></span></h4>
+<div id="webwork-186" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="186" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Michigan/Chap16Sec1/Q03.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-contents">
+<p id="p-3047">The figure below shows contours of <span class="process-math">\(g(x,y)\)</span> on the region <span class="process-math">\(R\text{,}\)</span> with <span class="process-math">\(7 \le x\le 13\)</span> and <span class="process-math">\(4 \le y\le 10\text{.}\)</span></p>
+<div class="image-box" style="width: 50%; margin-left: 25%; margin-right: 25%;"><img src="generated/webwork%5Cimages%5Cwebwork-186-image-1.png" class="contained"></div>
+<p id="p-3048">Using <span class="process-math">\(\Delta x = \Delta y =2\text{,}\)</span> find an overestimate and an underestimate for <span class="process-math">\(\int_R g(x,y)\, dA\text{.}\)</span></p>
+<p id="p-3049">Overestimate = <span class="fillin underline" role="img" aria-label="55-character blank" style="width: 25em;"></span></p>
+<p id="p-3050">Underestimate = <span class="fillin underline" role="img" aria-label="55-character blank" style="width: 25em;"></span></p>
+</div>
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-186')">Activate</button></div>
+</div></article><article class="exercise exercise-like" id="ex-11-1-WW-temperature"><h4 class="heading"><span class="codenumber">7<span class="period">.</span></span></h4>
+<div id="webwork-187" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="187" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Michigan/Chap16Sec1/Q27.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-contents">
+<p id="p-3053">The figure below shows the distribution of temperature, in degrees C, in a 5 meter by 5 meter heated room.</p>
+<div class="image-box" style="width: 50%; margin-left: 25%; margin-right: 25%;"><img src="generated/webwork%5Cimages%5Cwebwork-187-image-1.png" class="contained"></div>
+<p id="p-3054">Using Riemann sums, estimate the average temperature in the room.</p>
+<p id="p-3055">average temperature = <span class="fillin underline" role="img" aria-label="55-character blank" style="width: 25em;"></span></p>
+</div>
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-187')">Activate</button></div>
+</div></article><article class="exercise exercise-like" id="ex-11-1-WW-table"><h4 class="heading"><span class="codenumber">8<span class="period">.</span></span></h4>
+<div id="webwork-188" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="188" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/FortLewis/Calc3/16-1-Double-integrals/HGM5-16-1-1-Double-integrals.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-contents">
+<p id="p-3057">Values of <span class="process-math">\(f(x,y)\)</span> are given in the table below.  Let <span class="process-math">\(R\)</span> be the rectangle <span class="process-math">\(1 \leq x \leq 1.6, 2 \leq y \leq 3.2\text{.}\)</span> Find a Riemann sum which is a reasonable estimate for <span class="process-math">\(\int_R f(x,y) \, da\)</span> with <span class="process-math">\(\Delta x = 0.2\)</span> and <span class="process-math">\(\Delta y = 0.4\text{.}\)</span>  Note that the values given in the table correspond to midpoints.</p>
+<div class="displaymath process-math" data-contains-math-knowls="" id="p-3058">
+\begin{equation*}
+\begin{array}{|c || c|c|c|}
+\hline
+y \backslash x \amp  1.1 \amp  1.3 \amp  1.5 \\ \hline \hline
+2.2 \amp  8 \amp  7 \amp  -3 \\ \hline
+2.6 \amp  -4 \amp  2 \amp  0 \\ \hline
+3.0 \amp  -4 \amp  8 \amp  10 \\ \hline
+\end{array}
+\end{equation*}
+</div>
+<p id="p-3059"><span class="process-math">\(\int_R f(x,y) \, da \approx\)</span> <span class="fillin underline" role="img" aria-label="30-character blank" style="width: 13.6363636363636em;"></span></p>
+</div>
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-188')">Activate</button></div>
+</div></article><article class="exercise exercise-like" id="ex-11-1-WW-table-over-under"><h4 class="heading"><span class="codenumber">9<span class="period">.</span></span></h4>
+<div id="webwork-189" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="189" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Michigan/Chap16Sec1/Q01.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-contents">
+<p id="p-3061">Values of <span class="process-math">\(f(x,y)\)</span> are shown in the table below.</p>
+<div class="tabular-box natural-width"><table class="tabular">
+<tr>
+<td class="l m b2 r2 l2 t2 lines"></td>
+<td class="l m b2 r2 l0 t2 lines"><span class="process-math">\(x = 3\)</span></td>
+<td class="l m b2 r2 l0 t2 lines"><span class="process-math">\(x = 3.2\)</span></td>
+<td class="l m b2 r2 l0 t2 lines"><span class="process-math">\(x = 3.4\)</span></td>
+</tr>
+<tr>
+<td class="l m b2 r2 l2 t0 lines"><span class="process-math">\(y = 4\)</span></td>
+<td class="l m b2 r2 l0 t0 lines">7</td>
+<td class="l m b2 r2 l0 t0 lines">9</td>
+<td class="l m b2 r2 l0 t0 lines">12</td>
+</tr>
+<tr>
+<td class="l m b2 r2 l2 t0 lines"><span class="process-math">\(y = 4.4\)</span></td>
+<td class="l m b2 r2 l0 t0 lines">5</td>
+<td class="l m b2 r2 l0 t0 lines">7</td>
+<td class="l m b2 r2 l0 t0 lines">9</td>
+</tr>
+<tr>
+<td class="l m b2 r2 l2 t0 lines"><span class="process-math">\(y = 4.8\)</span></td>
+<td class="l m b2 r2 l0 t0 lines">3</td>
+<td class="l m b2 r2 l0 t0 lines">5</td>
+<td class="l m b2 r2 l0 t0 lines">18</td>
+</tr>
+</table></div>
+<p id="p-3062">Let <span class="process-math">\(R\)</span> be the rectangle  <span class="process-math">\(3 \leq x \leq 3.4\text{,}\)</span> <span class="process-math">\(4 \leq y \leq 4.8\text{.}\)</span>  Find the values of Riemann sums which are reasonable over- and under-estimates for <span class="process-math">\(\int_R f(x,y) \,dA\)</span> with <span class="process-math">\(\Delta x=0.2\)</span> and <span class="process-math">\(\Delta y=0.4\text{.}\)</span></p>
+<p id="p-3063">over-estimate: <span class="fillin underline" role="img" aria-label="25-character blank" style="width: 11.3636363636364em;"></span></p>
+<p id="p-3064">under-estimate: <span class="fillin underline" role="img" aria-label="25-character blank" style="width: 11.3636363636364em;"></span></p>
+</div>
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-189')">Activate</button></div>
+</div></article><article class="exercise exercise-like" id="exercise-272"><h4 class="heading"><span class="codenumber">10<span class="period">.</span></span></h4>
+<p id="p-3067">The temperature at any point on a metal plate in the <span class="process-math">\(xy\)</span> plane is given by <span class="process-math">\(T(x,y) = 100-4x^2 - y^2\text{,}\)</span> where <span class="process-math">\(x\)</span> and <span class="process-math">\(y\)</span> are measured in inches and <span class="process-math">\(T\)</span> in degrees Celsius. Consider the portion of the plate that lies on the rectangular region <span class="process-math">\(R = [1,5] \times [3,6]\text{.}\)</span></p>
+<ol class="lower-alpha">
+<li id="li-1089"><p id="p-3068">Estimate the value of <span class="process-math">\(\iint_R T(x,y) \, dA\)</span> by using a double Riemann sum with two subintervals in each direction and choosing <span class="process-math">\((x_i^*, y_j^*)\)</span> to be the point that lies in the upper right corner of each subrectangle.</p></li>
+<li id="li-1090"><p id="p-3069">Determine the area of the rectangle <span class="process-math">\(R\text{.}\)</span></p></li>
+<li id="li-1091"><p id="p-3070">Estimate the average temperature, <span class="process-math">\(T_{\operatorname{AVG}(R)}\text{,}\)</span> over the region <span class="process-math">\(R\text{.}\)</span></p></li>
+<li id="li-1092"><p id="p-3071">Do you think your estimate in (c) is an over- or under-estimate of the true temperature?  Why?</p></li>
+</ol></article><article class="exercise exercise-like" id="exercise-273"><h4 class="heading"><span class="codenumber">11<span class="period">.</span></span></h4>
+<p id="p-3072">Let <span class="process-math">\(f\)</span> be a function of independent variables <span class="process-math">\(x\)</span> and <span class="process-math">\(y\)</span> that is increasing in both the positive <span class="process-math">\(x\)</span> and <span class="process-math">\(y\)</span> directions on a rectangular domain <span class="process-math">\(R\text{.}\)</span> For each of the following situations, determine if the double Riemann sum of <span class="process-math">\(f\)</span> over <span class="process-math">\(R\)</span> is an overestimate or underestimate of the double integral <span class="process-math">\(\iint_R f(x,y) \, dA\text{,}\)</span> or if it impossible to determine definitively. Provide justification for your responses.</p>
+<ol class="lower-alpha">
+<li id="li-1093"><p id="p-3073">The double Riemann sum of <span class="process-math">\(f\)</span> over <span class="process-math">\(R\)</span> where <span class="process-math">\(f\)</span> is evaluated at the lower left point of each subrectangle.</p></li>
+<li id="li-1094"><p id="p-3074">The double Riemann sum of <span class="process-math">\(f\)</span> over <span class="process-math">\(R\)</span> where <span class="process-math">\(f\)</span> is evaluated at the upper right point of each subrectangle.</p></li>
+<li id="li-1095"><p id="p-3075">The double Riemann sum of <span class="process-math">\(f\)</span> over <span class="process-math">\(R\)</span> where <span class="process-math">\(f\)</span> is evaluated at the midpoint of each subrectangle.</p></li>
+<li id="li-1096"><p id="p-3076">The double Riemann sum of <span class="process-math">\(f\)</span> over <span class="process-math">\(R\)</span> where <span class="process-math">\(f\)</span> is evaluated at the lower right point of each subrectangle.</p></li>
+</ol></article><article class="exercise exercise-like" id="exercise-274"><h4 class="heading"><span class="codenumber">12<span class="period">.</span></span></h4>
+<p id="p-3077">The wind chill, as frequently reported, is a measure of how cold it feels outside when the wind is blowing. In <a href="" class="xref" data-knowl="./knowl/T_11_1_Ex_wind_chill.html" title="Table 11.1.10: Wind chill as a function of wind speed and temperature.">Table 11.1.10</a>, the wind chill <span class="process-math">\(w=w(v,T)\text{,}\)</span> measured in degrees Fahrenheit, is a function of the wind speed <span class="process-math">\(v\text{,}\)</span> measured in miles per hour, and the ambient air temperature <span class="process-math">\(T\text{,}\)</span> also measured in degrees Fahrenheit. Approximate the average wind chill on the rectangle <span class="process-math">\([5,35] \times [-20,20]\)</span> using 3 subintervals in the <span class="process-math">\(v\)</span> direction, 4 subintervals in the <span class="process-math">\(T\)</span> direction, and the point in the lower left corner in each subrectangle.</p>
+<figure class="table table-like" id="T_11_1_Ex_wind_chill"><figcaption><span class="type">Table</span><span class="space"> </span><span class="codenumber">11.1.10<span class="period">.</span></span><span class="space"> </span>Wind chill as a function of wind speed and temperature.</figcaption><div class="tabular-box natural-width"><table class="tabular">
+<tr>
+<td class="c m b2 r0 l0 t1 lines"><span class="process-math">\(v \backslash T\)</span></td>
+<td class="c m b2 r0 l0 t1 lines"><span class="process-math">\(-20\)</span></td>
+<td class="c m b2 r0 l0 t1 lines"><span class="process-math">\(-15\)</span></td>
+<td class="c m b2 r0 l0 t1 lines"><span class="process-math">\(-10\)</span></td>
+<td class="c m b2 r0 l0 t1 lines"><span class="process-math">\(-5\)</span></td>
+<td class="c m b2 r0 l0 t1 lines"><span class="process-math">\(0\)</span></td>
+<td class="c m b2 r0 l0 t1 lines"><span class="process-math">\(5\)</span></td>
+<td class="c m b2 r0 l0 t1 lines"><span class="process-math">\(10\)</span></td>
+<td class="c m b2 r0 l0 t1 lines"><span class="process-math">\(15\)</span></td>
+<td class="c m b2 r0 l0 t1 lines"><span class="process-math">\(20\)</span></td>
+</tr>
+<tr>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(5\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(-34\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(-28\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(-22\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(-16\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(-11\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(-5\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(1\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(7\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(13\)</span></td>
+</tr>
+<tr>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(10\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(-41\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(-35\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(-28\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(-22\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(-16\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(-10\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(-4\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(3\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(9\)</span></td>
+</tr>
+<tr>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(15\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(-45\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(-39\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(-32\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(-26\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(-19\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(-13\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(-7\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(0\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(6\)</span></td>
+</tr>
+<tr>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(20\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(-48\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(-42\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(-35\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(-29\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(-22\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(-15\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(-9\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(-2\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(4\)</span></td>
+</tr>
+<tr>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(25\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(-51\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(-44\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(-37\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(-31\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(-24\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(-17\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(-11\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(-4\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(3\)</span></td>
+</tr>
+<tr>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(30\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(-53\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(-46\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(-39\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(-33\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(-26\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(-19\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(-12\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(-5\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(1\)</span></td>
+</tr>
+<tr>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(35\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(-55\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(-48\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(-41\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(-34\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(-27\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(-21\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(-14\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(-7\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(0\)</span></td>
+</tr>
+</table></div></figure></article><article class="exercise exercise-like" id="exercise-275"><h4 class="heading"><span class="codenumber">13<span class="period">.</span></span></h4>
+<p id="p-3078">Consider the box with a sloped top that is given by the following description: the base is the rectangle <span class="process-math">\(R = [0,4] \times [0,3]\text{,}\)</span> while the top is given by the plane <span class="process-math">\(z = p(x,y) = 20 - 2x - 3y\text{.}\)</span></p>
+<ol class="lower-alpha">
+<li id="li-1097"><p id="p-3079">Estimate the value of <span class="process-math">\(\iint_R p(x,y) \, dA\)</span> by using a double Riemann sum with four subintervals in the <span class="process-math">\(x\)</span> direction and three subintervals in the <span class="process-math">\(y\)</span> direction, and choosing <span class="process-math">\((x_i^*, y_j^*)\)</span> to be the point that is the midpoint of each subrectangle.</p></li>
+<li id="li-1098"><p id="p-3080">What important quantity does your double Riemann sum in (a) estimate?</p></li>
+<li id="li-1099"><p id="p-3081">Suppose it can be determined that <span class="process-math">\(\iint_R p(x,y) \, dA = 138\text{.}\)</span>  What is the exact average value of <span class="process-math">\(p\)</span> over <span class="process-math">\(R\text{?}\)</span></p></li>
+<li id="li-1100"><p id="p-3082">If you wanted to build a rectangular box (with the same base) that has the same volume as the box with the sloped top described here, how tall would the rectangular box have to be?</p></li>
+</ol></article></section></section></div></main>
+</div>
+<!--Start: Google Global Site Tag code--><!--*** DO NOT COPY ANOTHER PROJECT'S MAGIC NUMBERS/ID ***--><!--***           GET YOUR OWN FROM GOOGLE             ***-->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-QJKN634F7R"></script><script>  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-QJKN634F7R');
+</script><!--End: Google Global Site Tag code-->
+</body>
+</html>

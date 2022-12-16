@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<html lang="en-US">
+<head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Triple Integrals in Cylindrical and Spherical Coordinates</title>
+<meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:type" content="book">
+<meta property="book:title" content="Active Calculus - Multivariable + Vector">
+<meta property="book:author" content="Steve Schlicker">
+<meta property="book:author" content="Mitchel T. Keller">
+<meta property="book:author" content="Nicholas Long">
+<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
+window.MathJax = {
+  tex: {
+    inlineMath: [['\\(','\\)']],
+    tags: "none",
+    tagSide: "right",
+    tagIndent: ".8em",
+    packages: {'[+]': ['base', 'extpfeil', 'ams', 'amscd', 'newcommand', 'knowl']}
+  },
+  options: {
+    ignoreHtmlClass: "tex2jax_ignore|ignore-math",
+    processHtmlClass: "process-math",
+    renderActions: {
+        findScript: [10, function (doc) {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
+                var display = !!node.type.match(/; *mode=display/);
+                var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                var text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = {node: text, delim: '', n: 0};
+                math.end = {node: text, delim: '', n: 0};
+                doc.math.push(math);
+            });
+        }, '']
+    },
+  },
+  chtml: {
+    scale: 0.88,
+    mtextInheritFont: true
+  },
+  loader: {
+    load: ['input/asciimath', '[tex]/extpfeil', '[tex]/amscd', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
+    paths: {pretext: "https://pretextbook.org/js/lib"},
+  },
+  startup: {
+    pageReady() {
+      return MathJax.startup.defaultPageReady().then(function () {
+      console.log("in ready function");
+      rsMathReady();
+      }
+    )}
+},
+};
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><link href="https://webwork-ptx.aimath.org/webwork2_files/js/apps/MathView/mathview.css" rel="stylesheet">
+<script src="https://pretextbook.org/js/0.13/pretext-webwork/2./pretext-webwork.js"></script><script src="https://webwork-ptx.aimath.org/webwork2_files/node_modules/iframe-resizer/js/iframeResizer.min.js"></script><script async="" src="https://cse.google.com/cse.js?cx=015103900096539427448:ngwuia10qci"></script><script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.13/pretext.js"></script><script>miniversion=0.674</script><script src="https://pretextbook.org/js/0.13/pretext_add_on.js?x=1"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
+</script><link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/pretext.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/pretext_add_on.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/banner_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/toc_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/knowls_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/style_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/colors_blue_grey.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/setcolors.css" rel="stylesheet" type="text/css">
+</head>
+<body class="pretext-book ignore-math has-toc has-sidebar-left">
+<a class="assistive" href="#content">Skip to main content</a><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\newcommand{\R}{\mathbb{R}}
+\newcommand{\va}{\mathbf{a}}
+\newcommand{\vb}{\mathbf{b}}
+\newcommand{\vc}{\mathbf{c}}
+\newcommand{\vC}{\mathbf{C}}
+\newcommand{\vd}{\mathbf{d}}
+\newcommand{\ve}{\mathbf{e}}
+\newcommand{\vi}{\mathbf{i}}
+\newcommand{\vj}{\mathbf{j}}
+\newcommand{\vk}{\mathbf{k}}
+\newcommand{\vn}{\mathbf{n}}
+\newcommand{\vm}{\mathbf{m}}
+\newcommand{\vr}{\mathbf{r}}
+\newcommand{\vs}{\mathbf{s}}
+\newcommand{\vu}{\mathbf{u}}
+\newcommand{\vv}{\mathbf{v}}
+\newcommand{\vw}{\mathbf{w}}
+\newcommand{\vx}{\mathbf{x}}
+\newcommand{\vy}{\mathbf{y}}
+\newcommand{\vz}{\mathbf{z}}
+\newcommand{\vzero}{\mathbf{0}}
+\newcommand{\vF}{\mathbf{F}}
+\newcommand{\vG}{\mathbf{G}}
+\newcommand{\vH}{\mathbf{H}}
+\newcommand{\vR}{\mathbf{R}}
+\newcommand{\vT}{\mathbf{T}}
+\newcommand{\vN}{\mathbf{N}}
+\newcommand{\vL}{\mathbf{L}}
+\newcommand{\vB}{\mathbf{B}}
+\newcommand{\vS}{\mathbf{S}}
+\newcommand{\proj}{\text{proj}}
+\newcommand{\comp}{\text{comp}}
+\newcommand{\nin}{}
+\newcommand{\vecmag}[1]{|#1|}
+\newcommand{\grad}{\nabla}
+\DeclareMathOperator{\curl}{curl}
+\DeclareMathOperator{\divg}{div}
+\newcommand{\lt}{&lt;}
+\newcommand{\gt}{&gt;}
+\newcommand{\amp}{&amp;}
+\definecolor{fillinmathshade}{gray}{0.9}
+\newcommand{\fillinmath}[1]{\mathchoice{\colorbox{fillinmathshade}{$\displaystyle     \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\textstyle        \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptstyle      \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptscriptstyle\phantom{\,#1\,}$}}}
+\)</span></div>
+<header id="masthead" class="smallbuttons"><div class="banner"><div class="container">
+<a id="logo-link" href=""></a><div class="title-container">
+<h1 class="heading"><a href="book-1.html"><span class="title">Active Calculus - Multivariable + Vector</span></a></h1>
+<p class="byline">Steve Schlicker, Mitchel T. Keller, Nicholas Long</p>
+</div>
+<div class="searchwrapper" role="search"><div class="gcse-search"></div></div>
+</div></div>
+<nav id="primary-navbar" class="navbar"><div class="container">
+<div class="navbar-top-buttons">
+<button class="sidebar-left-toggle-button button active" aria-label="Show or hide table of contents sidebar">Contents</button><div class="tree-nav toolbar toolbar-divisor-3">
+<a class="index-button toolbar-item button" href="index-1.html" title="Index">Index</a><span class="threebuttons"><a id="previousbutton" class="previous-button toolbar-item button" href="S-11-7-Triple-Integrals.html" title="Previous">Prev</a><a id="upbutton" class="up-button button toolbar-item" href="C-11.html" title="Up">Up</a><a id="nextbutton" class="next-button button toolbar-item" href="S-11-9-Change-of-Variable.html" title="Next">Next</a></span>
+</div>
+</div>
+<div class="navbar-bottom-buttons toolbar toolbar-divisor-4">
+<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="S-11-7-Triple-Integrals.html" title="Previous">Prev</a><a class="up-button button toolbar-item" href="C-11.html" title="Up">Up</a><a class="next-button button toolbar-item" href="S-11-9-Change-of-Variable.html" title="Next">Next</a>
+</div>
+</div></nav></header><div class="page">
+<div id="sidebar-left" class="sidebar" role="navigation"><div class="sidebar-content">
+<nav id="toc"><ul>
+<li class="link frontmatter">
+<a href="frontmatter.html" data-scroll="frontmatter" class="internal"><span class="title">Front Matter</span></a><ul>
+<li><a href="colophon-1.html" data-scroll="colophon-1" class="internal">Colophon</a></li>
+<li><a href="preface-1.html" data-scroll="preface-1" class="internal">Features of the Text</a></li>
+<li><a href="preface-2.html" data-scroll="preface-2" class="internal">Vector Calculus Preface</a></li>
+<li><a href="preface-3.html" data-scroll="preface-3" class="internal">Acknowledgments</a></li>
+<li><a href="preface-4.html" data-scroll="preface-4" class="internal">Active Calculus - Multivariable: our goals</a></li>
+<li><a href="preface-5.html" data-scroll="preface-5" class="internal">How to Use this Text</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="C-9.html" data-scroll="C-9" class="internal"><span class="codenumber">9</span> <span class="title">Multivariable and Vector Functions</span></a><ul>
+<li><a href="S-9-1-Functions.html" data-scroll="S-9-1-Functions" class="internal">Functions of Several Variables and Three Dimensional Space</a></li>
+<li><a href="S-9-2-Vectors.html" data-scroll="S-9-2-Vectors" class="internal">Vectors</a></li>
+<li><a href="S-9-3-Dot-Product.html" data-scroll="S-9-3-Dot-Product" class="internal">The Dot Product</a></li>
+<li><a href="S-9-4-Cross-Product.html" data-scroll="S-9-4-Cross-Product" class="internal">The Cross Product</a></li>
+<li><a href="S-9-5-Lines-Planes.html" data-scroll="S-9-5-Lines-Planes" class="internal">Lines and Planes in Space</a></li>
+<li><a href="S-9-6-Vector-Valued-Functions.html" data-scroll="S-9-6-Vector-Valued-Functions" class="internal">Vector-Valued Functions</a></li>
+<li><a href="S-9-7-Vector-Valued-Functions-Derivatives.html" data-scroll="S-9-7-Vector-Valued-Functions-Derivatives" class="internal">Derivatives and Integrals of Vector-Valued Functions</a></li>
+<li><a href="S-9-8-Arc-Length-Curvature.html" data-scroll="S-9-8-Arc-Length-Curvature" class="internal">Arc Length and Curvature</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="C-10.html" data-scroll="C-10" class="internal"><span class="codenumber">10</span> <span class="title">Derivatives of Multivariable Functions</span></a><ul>
+<li><a href="S-10-1-Limits.html" data-scroll="S-10-1-Limits" class="internal">Limits</a></li>
+<li><a href="S-10-2-First-Order-Partial-Derivatives.html" data-scroll="S-10-2-First-Order-Partial-Derivatives" class="internal">First-Order Partial Derivatives</a></li>
+<li><a href="S-10-3-Second-Order-Partial-Derivatives.html" data-scroll="S-10-3-Second-Order-Partial-Derivatives" class="internal">Second-Order Partial Derivatives</a></li>
+<li><a href="S-10-4-Linearization.html" data-scroll="S-10-4-Linearization" class="internal">Linearization: Tangent Planes and Differentials</a></li>
+<li><a href="S-10-5-Chain-Rule.html" data-scroll="S-10-5-Chain-Rule" class="internal">The Chain Rule</a></li>
+<li><a href="S-10-6-Directional-Derivative.html" data-scroll="S-10-6-Directional-Derivative" class="internal">Directional Derivatives and the Gradient</a></li>
+<li><a href="S-10-7-Optimization.html" data-scroll="S-10-7-Optimization" class="internal">Optimization</a></li>
+<li><a href="S-10-8-Lagrange-Multipliers.html" data-scroll="S-10-8-Lagrange-Multipliers" class="internal">Constrained Optimization: Lagrange Multipliers</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="C-11.html" data-scroll="C-11" class="internal"><span class="codenumber">11</span> <span class="title">Multiple Integrals</span></a><ul>
+<li><a href="S-11-1-Double-Integrals-Rectangles.html" data-scroll="S-11-1-Double-Integrals-Rectangles" class="internal">Double Riemann Sums and Double Integrals over Rectangles</a></li>
+<li><a href="S-11-2-Iterated-Integrals.html" data-scroll="S-11-2-Iterated-Integrals" class="internal">Iterated Integrals</a></li>
+<li><a href="S-11-3-Double-Integrals-General.html" data-scroll="S-11-3-Double-Integrals-General" class="internal">Double Integrals over General Regions</a></li>
+<li><a href="S-11-4-Double-Integrals-Applications.html" data-scroll="S-11-4-Double-Integrals-Applications" class="internal">Applications of Double Integrals</a></li>
+<li><a href="S-11-5-Double-Integrals-Polar.html" data-scroll="S-11-5-Double-Integrals-Polar" class="internal">Double Integrals in Polar Coordinates</a></li>
+<li><a href="S-11-6-Parametric-Surfaces-Surface-Area.html" data-scroll="S-11-6-Parametric-Surfaces-Surface-Area" class="internal">Surfaces Defined Parametrically and Surface Area</a></li>
+<li><a href="S-11-7-Triple-Integrals.html" data-scroll="S-11-7-Triple-Integrals" class="internal">Triple Integrals</a></li>
+<li><a href="S-11-8-Triple-Integrals-Cylindrical-Spherical.html" data-scroll="S-11-8-Triple-Integrals-Cylindrical-Spherical" class="active">Triple Integrals in Cylindrical and Spherical Coordinates</a></li>
+<li><a href="S-11-9-Change-of-Variable.html" data-scroll="S-11-9-Change-of-Variable" class="internal">Change of Variables</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="C_Vector.html" data-scroll="C_Vector" class="internal"><span class="codenumber">12</span> <span class="title">Vector Calculus</span></a><ul>
+<li><a href="S_Vector_VectorFields.html" data-scroll="S_Vector_VectorFields" class="internal">Vector Fields</a></li>
+<li><a href="S_Vector_IdeaLineIntegral.html" data-scroll="S_Vector_IdeaLineIntegral" class="internal">The Idea of a Line Integral</a></li>
+<li><a href="S_Vector_ParamLineIntegrals.html" data-scroll="S_Vector_ParamLineIntegrals" class="internal">Using Parametrizations to Calculate Line Integrals</a></li>
+<li><a href="S_ScalarLineIntegral.html" data-scroll="S_ScalarLineIntegral" class="internal">Line Integrals of Scalar Functions</a></li>
+<li><a href="S_Vector_FTCLI.html" data-scroll="S_Vector_FTCLI" class="internal">Path-Independent Vector Fields and the Fundamental Theorem of Calculus for Line Integrals</a></li>
+<li><a href="S_Vector_Div.html" data-scroll="S_Vector_Div" class="internal">The Divergence of a Vector Field</a></li>
+<li><a href="S_Vector_Curl.html" data-scroll="S_Vector_Curl" class="internal">The Curl of a Vector Field</a></li>
+<li><a href="S_Vector_GreensTheorem.html" data-scroll="S_Vector_GreensTheorem" class="internal">Green's Theorem</a></li>
+<li><a href="S_Vector_FluxInt.html" data-scroll="S_Vector_FluxInt" class="internal">Flux Integrals</a></li>
+<li><a href="S_ScalarSurfaceIntegral.html" data-scroll="S_ScalarSurfaceIntegral" class="internal">Surface Integrals of Scalar Valued Functions</a></li>
+<li><a href="S_Vector_StokesThm.html" data-scroll="S_Vector_StokesThm" class="internal">Stokes' Theorem</a></li>
+<li><a href="S_Vector_DivThm.html" data-scroll="S_Vector_DivThm" class="internal">The Divergence Theorem</a></li>
+</ul>
+</li>
+<li class="link backmatter"><a href="backmatter-1.html" data-scroll="backmatter-1" class="internal"><span class="title">Back Matter</span></a></li>
+<li class="link"><a href="index-1.html" data-scroll="index-1" class="internal"><span class="title">Index</span></a></li>
+</ul></nav><div class="extras"><nav><a class="pretext-link" href="https://pretextbook.org">Authored in PreTeXt</a><a href="https://www.mathjax.org"><img title="Powered by MathJax" src="https://www.mathjax.org/badge/badge.gif" alt="Powered by MathJax"></a></nav></div>
+</div></div>
+<main class="main"><div id="content" class="pretext-content">
+<section class="section" id="S-11-8-Triple-Integrals-Cylindrical-Spherical"><h2 class="heading hide-type">
+<span class="type">Section</span> <span class="codenumber">11.8</span> <span class="title">Triple Integrals in Cylindrical and Spherical Coordinates</span>
+</h2>
+<article class="objectives goal-like" id="objectives-24"><h3 class="heading"><span class="type">Motivating Questions</span></h3>
+<ul class="disc">
+<li id="li-1382"><p id="p-4070">What are the cylindrical coordinates of a point, and how are they related to Cartesian coordinates?</p></li>
+<li id="li-1383"><p id="p-4071">What is the volume element in cylindrical coordinates? How does this inform us about evaluating a triple integral as an iterated integral in cylindrical coordinates?</p></li>
+<li id="li-1384"><p id="p-4072">What are the spherical coordinates of a point, and how are they related to Cartesian coordinates?</p></li>
+<li id="li-1385"><p id="p-4073">What is the volume element in spherical coordinates? How does this inform us about evaluating a triple integral as an iterated integral in spherical coordinates?</p></li>
+</ul></article><section class="introduction" id="introduction-24"><p id="p-4074">We have encountered two different coordinate systems in <span class="process-math">\(\R^2\)</span> — the rectangular and polar coordinates systems — and seen how in certain situations, polar coordinates form a convenient alternative. In a similar way, there are two additional natural coordinate systems in <span class="process-math">\(\R^3\text{.}\)</span> Given that we are already familiar with the Cartesian coordinate system for <span class="process-math">\(\R^3\text{,}\)</span> we next investigate the cylindrical and spherical coordinate systems (each of which builds upon polar coordinates in <span class="process-math">\(\R^2\)</span>). In what follows, we will see how to convert among the different coordinate systems, how to evaluate triple integrals using them, and some situations in which these other coordinate systems prove advantageous.</p>
+<article class="exploration project-like" id="PA_11_8"><h3 class="heading">
+<span class="type">Preview Activity</span><span class="space"> </span><span class="codenumber">11.8.1</span><span class="period">.</span>
+</h3>
+<p id="p-4075">In the following questions, we investigate the two new coordinate systems that are the subject of this section: cylindrical and spherical coordinates. Our goal is to consider some examples of how to convert from rectangular coordinates to each of these systems, and vice versa. Triangles and trigonometry prove to be particularly important.</p>
+<figure class="figure figure-like" id="F_11_8_Cylindrical_coords"><div class="sidebyside"><div class="sbsrow" style="margin-left:0%;margin-right:0%;">
+<div class="sbspanel top" style="width:50%;"><img src="external/images/fig_11_8_cylindrical.svg" role="img" class="contained"></div>
+<div class="sbspanel top" style="width:50%;"><img src="external/images/fig_11_8_spherical.svg" role="img" class="contained"></div>
+</div></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">11.8.1<span class="period">.</span></span><span class="space"> </span>The cylindrical (left) and spherical (right) coordinates of a point.</figcaption></figure><ol class="lower-alpha">
+<li id="li-1386">
+<p id="p-4076">The cylindrical coordinates of a point in <span class="process-math">\(\R^3\)</span> are given by <span class="process-math">\((r,\theta,z)\)</span> where <span class="process-math">\(r\)</span> and <span class="process-math">\(\theta\)</span> are the polar coordinates of the point <span class="process-math">\((x, y)\)</span> and <span class="process-math">\(z\)</span> is the same <span class="process-math">\(z\)</span> coordinate as in Cartesian coordinates. An illustration is given at left in <a href="" class="xref" data-knowl="./knowl/F_11_8_Cylindrical_coords.html" title="Figure 11.8.1">Figure 11.8.1</a>.</p>
+<ol class="lower-roman">
+<li id="li-1387"><p id="p-4077">Find cylindrical coordinates for the point whose Cartesian coordinates are <span class="process-math">\((-1, \sqrt{3}, 3)\text{.}\)</span> Draw a labeled picture illustrating all of the coordinates.</p></li>
+<li id="li-1388"><p id="p-4078">Find the Cartesian coordinates of the point whose cylindrical coordinates are <span class="process-math">\(\left(2, \frac{5\pi}{4}, 1\right)\text{.}\)</span> Draw a labeled picture illustrating all of the coordinates.</p></li>
+</ol>
+</li>
+<li id="li-1389">
+<p id="p-4079">The spherical coordinates of a point in <span class="process-math">\(\R^3\)</span> are <span class="process-math">\(\rho\)</span> (rho), <span class="process-math">\(\theta\text{,}\)</span> and <span class="process-math">\(\phi\)</span> (phi), where <span class="process-math">\(\rho\)</span> is the distance from the point to the origin, <span class="process-math">\(\theta\)</span> has the same interpretation it does in polar coordinates, and <span class="process-math">\(\phi\)</span> is the angle between the positive <span class="process-math">\(z\)</span> axis and the vector from the origin to the point, as illustrated at right in <a href="" class="xref" data-knowl="./knowl/F_11_8_Cylindrical_coords.html" title="Figure 11.8.1">Figure 11.8.1</a>. You should convince yourself that any point in <span class="process-math">\(\R^3\)</span> can be represented in spherical coordinates with <span class="process-math">\(\rho \geq 0\text{,}\)</span> <span class="process-math">\(0 \leq \theta \lt 2 \pi\text{,}\)</span> and <span class="process-math">\(0 \leq \phi \leq \pi\text{.}\)</span></p>
+<p id="p-4080">For the following questions, consider the point <span class="process-math">\(P\)</span> whose Cartesian coordinates are <span class="process-math">\((-2,2,\sqrt{8})\text{.}\)</span></p>
+<ol class="lower-roman">
+<li id="li-1390"><p id="p-4081">What is the distance from <span class="process-math">\(P\)</span> to the origin?  Your result is the value of <span class="process-math">\(\rho\)</span> in the spherical coordinates of <span class="process-math">\(P\text{.}\)</span></p></li>
+<li id="li-1391"><p id="p-4082">Determine the point that is the projection of <span class="process-math">\(P\)</span> onto the <span class="process-math">\(xy\)</span>-plane.  Then, use this projection to find the value of <span class="process-math">\(\theta\)</span> in the polar coordinates of the projection of <span class="process-math">\(P\)</span> that lies in the plane.  Your result is also the value of <span class="process-math">\(\theta\)</span> for the spherical coordinates of the point.</p></li>
+<li id="li-1392"><p id="p-4083">Based on the illustration in <a href="" class="xref" data-knowl="./knowl/F_11_8_Cylindrical_coords.html" title="Figure 11.8.1">Figure 11.8.1</a>, how is the angle <span class="process-math">\(\phi\)</span> determined by <span class="process-math">\(\rho\)</span> and the <span class="process-math">\(z\)</span> coordinate of <span class="process-math">\(P\text{?}\)</span> Use a well-chosen right triangle to find the value of <span class="process-math">\(\phi\text{,}\)</span> which is the final component in the spherical coordinates of <span class="process-math">\(P\text{.}\)</span> Draw a carefully labeled picture that clearly illustrates the values of <span class="process-math">\(\rho\text{,}\)</span> <span class="process-math">\(\theta\text{,}\)</span> and <span class="process-math">\(\phi\)</span> in this example, along with the original rectangular coordinates of <span class="process-math">\(P\text{.}\)</span></p></li>
+<li id="li-1393"><p id="p-4084">Based on your responses to i., ii., and iii., if we are given the Cartesian coordinates <span class="process-math">\((x,y,z)\)</span> of a point <span class="process-math">\(Q\text{,}\)</span> how are the values of <span class="process-math">\(\rho\text{,}\)</span> <span class="process-math">\(\theta\text{,}\)</span> and <span class="process-math">\(\phi\)</span> in the spherical coordinates of <span class="process-math">\(Q\)</span> determined by <span class="process-math">\(x\text{,}\)</span> <span class="process-math">\(y\text{,}\)</span> and <span class="process-math">\(z\text{?}\)</span></p></li>
+</ol>
+</li>
+</ol></article></section><section class="subsection" id="subsection-94"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">11.8.1</span> <span class="title">Cylindrical Coordinates</span>
+</h3>
+<p id="p-4085">As we stated in <a href="" class="xref" data-knowl="./knowl/PA_11_8.html" title="Preview Activity 11.8.1">Preview Activity 11.8.1</a>, the cylindrical coordinates of a point are <span class="process-math">\((r,\theta,z)\text{,}\)</span> where <span class="process-math">\(r\)</span> and <span class="process-math">\(\theta\)</span> are the polar coordinates of the point <span class="process-math">\((x, y)\text{,}\)</span> and <span class="process-math">\(z\)</span> is the same <span class="process-math">\(z\)</span> coordinate as in Cartesian coordinates. The general situation is illustrated <a href="" class="xref" data-knowl="./knowl/F_11_8_Cylindrical_coords.html" title="Figure 11.8.1">Figure 11.8.1</a>.</p>
+<p id="p-4086">Since we already know how to convert between rectangular and polar coordinates in the plane, and the <span class="process-math">\(z\)</span> coordinate is identical in both Cartesian and cylindrical coordinates, the conversion equations between the two systems in <span class="process-math">\(\R^3\)</span> are essentially those we found for polar coordinates.</p>
+<article class="assemblage assemblage-like" id="Cartesian-cylindrical"><h4 class="heading"><span class="title">Converting between Cartesian and cylindrical coordinates.</span></h4>
+<ul id="p-4087" class="disc">
+<li id="li-1394">
+<span class="heading"><span class="title">Converting from Cartesian to cylindrical..</span></span><p id="p-4088">If we are given the Cartesian coordinates <span class="process-math">\((x,y,z)\)</span> of a point <span class="process-math">\(P\text{,}\)</span> then the cylindrical coordinates <span class="process-math">\((r,\theta,z)\)</span> of <span class="process-math">\(P\)</span> satisfy</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+x = r \cos(\theta) \ \ \ \ \ y = r \sin(\theta) \ \ \ \ \ \text{ and } \ \ \ \ \ z = z.
+\end{equation*}
+</div>
+</li>
+<li id="li-1395">
+<span class="heading"><span class="title">Converting from cylindrical to cartesian..</span></span><p id="p-4089">If we are given the cylindrical coordinates <span class="process-math">\((r,\theta,z)\)</span> of a point <span class="process-math">\(P\text{,}\)</span> then the Cartesian coordinates <span class="process-math">\((x,y,z)\)</span> of <span class="process-math">\(P\)</span> satisfy</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+r^2  = x^2  + y^2 \ \ \ \ \ \tan(\theta) = \frac{y}{x} \ \ \ \ \ \text{ and } \ \ \ \ \ z = z,
+\end{equation*}
+</div>
+<p class="continuation">assuming <span class="process-math">\(x \neq 0\text{.}\)</span></p>
+</li>
+</ul></article><p id="p-4090">Just as with rectangular coordinates, where we usually write <span class="process-math">\(z\)</span> as a function of <span class="process-math">\(x\)</span> and <span class="process-math">\(y\)</span> to plot the resulting surface, in cylindrical coordinates, we often express <span class="process-math">\(z\)</span> as a function of <span class="process-math">\(r\)</span> and <span class="process-math">\(\theta\text{.}\)</span> In the following activity, we explore several basic equations in cylindrical coordinates and the corresponding surface each generates.</p>
+<article class="activity project-like" id="A_11_8_1"><h4 class="heading">
+<span class="type">Activity</span><span class="space"> </span><span class="codenumber">11.8.2</span><span class="period">.</span>
+</h4>
+<p id="p-4091">In this activity, we graph some surfaces using cylindrical coordinates. To improve your intuition and test your understanding, you should first think about what each graph should look like before you plot it using appropriate technology.</p>
+<ol class="lower-alpha">
+<li id="li-1396"><p id="p-4092">What familiar surface is described by the points in cylindrical coordinates with <span class="process-math">\(r=2\text{,}\)</span> <span class="process-math">\(0 \leq \theta \leq 2\pi\text{,}\)</span> and <span class="process-math">\(0 \leq z \leq 2\text{?}\)</span>  How does this example suggest that we call these coordinates <em class="emphasis">cylindrical coordinates</em>? How does your answer change if we restrict <span class="process-math">\(\theta\)</span> to <span class="process-math">\(0 \leq \theta \leq \pi\text{?}\)</span></p></li>
+<li id="li-1397"><p id="p-4093">What familiar surface is described by the points in cylindrical coordinates with <span class="process-math">\(\theta=2\text{,}\)</span> <span class="process-math">\(0 \leq r \leq 2\text{,}\)</span> and <span class="process-math">\(0 \leq z \leq 2\text{?}\)</span></p></li>
+<li id="li-1398"><p id="p-4094">What familiar surface is described by the points in cylindrical coordinates with <span class="process-math">\(z=2\text{,}\)</span> <span class="process-math">\(0 \leq \theta \leq 2\pi\text{,}\)</span> and <span class="process-math">\(0 \leq r \leq 2\text{?}\)</span></p></li>
+<li id="li-1399"><p id="p-4095">Plot the graph of the cylindrical equation <span class="process-math">\(z=r\text{,}\)</span> where <span class="process-math">\(0 \leq \theta \leq 2\pi\)</span> and <span class="process-math">\(0 \leq r \leq 2\text{.}\)</span> What familiar surface results?</p></li>
+<li id="li-1400"><p id="p-4096">Plot the graph of the cylindrical equation <span class="process-math">\(z= \theta\)</span> for <span class="process-math">\(0 \leq \theta \leq 4 \pi\text{.}\)</span> What does this surface look like?</p></li>
+</ol></article><p id="p-4097">As the name and <a href="" class="xref" data-knowl="./knowl/A_11_8_1.html" title="Activity 11.8.2">Activity 11.8.2</a> suggests, cylindrical coordinates are useful for describing surfaces that are cylindrical in nature.</p></section><section class="subsection" id="subsection-95"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">11.8.2</span> <span class="title">Triple Integrals in Cylindrical Coordinates</span>
+</h3>
+<p id="p-4098">To evaluate a triple integral <span class="process-math">\(\iiint_S f(x,y,z) \, dV\)</span> as an iterated integral in Cartesian coordinates, we use the fact that the volume element <span class="process-math">\(dV\)</span> is equal to <span class="process-math">\(dz \, dy \, dx\)</span> (which corresponds to the volume of a small box). To evaluate a triple integral in cylindrical coordinates, we similarly must understand the volume element <span class="process-math">\(dV\)</span> in cylindrical coordinates.</p>
+<article class="activity project-like" id="A_11_8_2"><h4 class="heading">
+<span class="type">Activity</span><span class="space"> </span><span class="codenumber">11.8.3</span><span class="period">.</span>
+</h4>
+<p id="p-4099">A picture of a cylindrical box, <span class="process-math">\(B = \{(r,\theta,z) : r_1 \leq r \leq r_2, \theta_1 \leq \theta \leq \theta_2, z_1 \leq z \leq z_2\},\)</span> is shown in <a href="" class="xref" data-knowl="./knowl/F_11_8_Cylindrical_Vol_Element.html" title="Figure 11.8.2">Figure 11.8.2</a>. Let <span class="process-math">\(\Delta r = r_2-r_1\text{,}\)</span> <span class="process-math">\(\Delta \theta = \theta_2 - \theta_1\text{,}\)</span> and <span class="process-math">\(\Delta z = z_2-z_1\text{.}\)</span> We want to determine the volume <span class="process-math">\(\Delta V\)</span> of <span class="process-math">\(B\)</span> in terms of <span class="process-math">\(\Delta r\text{,}\)</span> <span class="process-math">\(\Delta \theta\text{,}\)</span> <span class="process-math">\(\Delta z\text{,}\)</span> <span class="process-math">\(r\text{,}\)</span> <span class="process-math">\(\theta\text{,}\)</span> and <span class="process-math">\(z\text{.}\)</span></p>
+<figure class="figure figure-like" id="F_11_8_Cylindrical_Vol_Element"><div class="image-box" style="width: 50%; margin-left: 25%; margin-right: 25%;"><img src="external/images/fig_11_8_cylindrical_box.svg" role="img" class="contained"></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">11.8.2<span class="period">.</span></span><span class="space"> </span>A cylindrical box.</figcaption></figure><ol class="lower-alpha">
+<li id="li-1401"><p id="p-4100">Appropriately label <span class="process-math">\(\Delta r\text{,}\)</span> <span class="process-math">\(\Delta \theta\text{,}\)</span> and <span class="process-math">\(\Delta z\)</span> in <a href="" class="xref" data-knowl="./knowl/F_11_8_Cylindrical_Vol_Element.html" title="Figure 11.8.2">Figure 11.8.2</a>.</p></li>
+<li id="li-1402"><p id="p-4101">Let <span class="process-math">\(\Delta A\)</span> be the area of the projection of the box, <span class="process-math">\(B\text{,}\)</span> onto the <span class="process-math">\(xy\)</span>-plane, which is shaded blue in <a href="" class="xref" data-knowl="./knowl/F_11_8_Cylindrical_Vol_Element.html" title="Figure 11.8.2">Figure 11.8.2</a>.  Recall that we previously determined the area <span class="process-math">\(\Delta A\)</span> in polar coordinates in terms of <span class="process-math">\(r\text{,}\)</span> <span class="process-math">\(\Delta r\text{,}\)</span> and <span class="process-math">\(\Delta \theta\text{.}\)</span> In light of the fact that we know <span class="process-math">\(\Delta A\)</span> and that <span class="process-math">\(z\)</span> is the standard <span class="process-math">\(z\)</span> coordinate from Cartesian coordinates, what is the volume <span class="process-math">\(\Delta V\)</span> in cylindrical coordinates?</p></li>
+</ol></article><p id="p-4102"><a href="" class="xref" data-knowl="./knowl/A_11_8_2.html" title="Activity 11.8.3">Activity 11.8.3</a> demonstrates that the volume element <span class="process-math">\(dV\)</span> in cylindrical coordinates is given by <span class="process-math">\(dV = r \, dz \, dr \, d\theta\text{,}\)</span> and hence the following rule holds in general.</p>
+<article class="assemblage assemblage-like" id="Triple-integral-cylidrical"><h4 class="heading"><span class="title">Triple integrals in cylindrical coordinates.</span></h4>
+<p id="p-4103">Given a continuous function <span class="process-math">\(f = f(x,y,z)\)</span> over a region <span class="process-math">\(S\)</span> in <span class="process-math">\(\R^3\text{,}\)</span></p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+\iiint_S f(x,y,z) \, dV = \iiint_S f(r\cos(\theta), r\sin(\theta), z) \, r \, dz \, dr \, d\theta.
+\end{equation*}
+</div>
+<p id="p-4104">The latter expression is an <em class="emphasis">iterated integral in cylindrical coordinates</em>.</p></article><p id="p-4105">Of course, to complete the task of writing an iterated integral in cylindrical coordinates, we need to determine the limits on the three integrals: <span class="process-math">\(\theta\text{,}\)</span> <span class="process-math">\(r\text{,}\)</span> and <span class="process-math">\(z\text{.}\)</span> In the following activity, we explore how to do this in several situations where cylindrical coordinates are natural and advantageous.</p>
+<article class="activity project-like" id="A_11_8_3"><h4 class="heading">
+<span class="type">Activity</span><span class="space"> </span><span class="codenumber">11.8.4</span><span class="period">.</span>
+</h4>
+<p id="p-4106">In this activity we work with triple integrals in cylindrical coordinates.</p>
+<ol class="lower-alpha">
+<li id="li-1403">
+<p id="p-4107">Let <span class="process-math">\(S\)</span> be the solid bounded above by the graph of <span class="process-math">\(z = x^2+y^2\)</span> and below by <span class="process-math">\(z=0\)</span> on the unit disk in the <span class="process-math">\(xy\)</span>-plane.</p>
+<ol class="lower-roman">
+<li id="li-1404"><p id="p-4108">The projection of the solid <span class="process-math">\(S\)</span> onto the <span class="process-math">\(xy\)</span>-plane is a disk. Describe this disk using polar coordinates.</p></li>
+<li id="li-1405"><p id="p-4109">Now describe the surfaces bounding the solid <span class="process-math">\(S\)</span> using cylindrical coordinates.</p></li>
+<li id="li-1406"><p id="p-4110">Determine an iterated triple integral expression in cylindrical coordinates that gives the volume of <span class="process-math">\(S\text{.}\)</span> You do not need to evaluate this integral.</p></li>
+</ol>
+</li>
+<li id="li-1407"><p id="p-4111">Suppose the density of the cone defined by <span class="process-math">\(r = 1 - z\text{,}\)</span> with <span class="process-math">\(z \geq 0\text{,}\)</span> is given by <span class="process-math">\(\delta(r, \theta, z) = z\text{.}\)</span> A picture of the cone is shown at left in <a href="" class="xref" data-knowl="./knowl/F_11_8_Cylindrical_ex.html" title="Figure 11.8.3">Figure 11.8.3</a>, and the projection of the cone onto the <span class="process-math">\(xy\)</span>-plane in given at right in <a href="" class="xref" data-knowl="./knowl/F_11_8_Cylindrical_ex.html" title="Figure 11.8.3">Figure 11.8.3</a>. Set up an iterated integral in cylindrical coordinates that gives the mass of the cone. You do not need to evaluate this integral. <figure class="figure figure-like" id="F_11_8_Cylindrical_ex"><div class="sidebyside"><div class="sbsrow" style="margin-left:0%;margin-right:0%;">
+<div class="sbspanel top" style="width:50%;"><img src="external/images/fig_11_8_cone.svg" role="img" class="contained"></div>
+<div class="sbspanel top" style="width:50%;"><img src="external/images/fig_11_8_cone_project.svg" role="img" class="contained"></div>
+</div></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">11.8.3<span class="period">.</span></span><span class="space"> </span>The cylindrical cone <span class="process-math">\(r = 1-z\)</span> and its projection onto the <span class="process-math">\(xy\)</span>-plane.</figcaption></figure></p></li>
+<li id="li-1408"><p id="p-4112">Determine an iterated integral expression in cylindrical coordinates whose value is the volume of the solid bounded below by the cone <span class="process-math">\(z = \sqrt{x^2+y^2}\)</span> and above by the cone <span class="process-math">\(z = 4 - \sqrt{x^2+y^2}\text{.}\)</span> A picture is shown in <a href="" class="xref" data-knowl="./knowl/F_11_8_Cylindrical_ex2.html" title="Figure 11.8.4">Figure 11.8.4</a>. You do not need to evaluate this integral. <figure class="figure figure-like" id="F_11_8_Cylindrical_ex2"><div class="image-box" style="width: 50%; margin-left: 25%; margin-right: 25%;"><img src="external/images/fig_11_8_two_cones.svg" role="img" class="contained"></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">11.8.4<span class="period">.</span></span><span class="space"> </span>A solid bounded by the cones <span class="process-math">\(z = \sqrt{x^2+y^2}\)</span>  and <span class="process-math">\(z = 4 - \sqrt{x^2+y^2}\text{.}\)</span></figcaption></figure></p></li>
+</ol></article></section><section class="subsection" id="subsection-96"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">11.8.3</span> <span class="title">Spherical Coordinates</span>
+</h3>
+<p id="p-4113">As we saw in <a href="" class="xref" data-knowl="./knowl/PA_11_8.html" title="Preview Activity 11.8.1">Preview Activity 11.8.1</a>, the spherical coordinates of a point in 3-space have the form <span class="process-math">\((\rho, \theta, \phi)\text{,}\)</span> where <span class="process-math">\(\rho\)</span> is the distance from the point to the origin, <span class="process-math">\(\theta\)</span> has the same meaning as in polar coordinates, and <span class="process-math">\(\phi\)</span> is the angle between the positive <span class="process-math">\(z\)</span> axis and the vector from the origin to the point. The overall situation is illustrated at right in <a href="" class="xref" data-knowl="./knowl/F_11_8_Cylindrical_coords.html" title="Figure 11.8.1">Figure 11.8.1</a>.</p>
+<figure class="figure figure-like" id="F_11_8_Spherical_to_Cartesian"><div class="image-box" style="width: 50%; margin-left: 25%; margin-right: 25%;"><img src="external/images/fig_11_8_spherical_explain.svg" role="img" class="contained"></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">11.8.5<span class="period">.</span></span><span class="space"> </span>Converting from spherical to Cartesian coordinates.</figcaption></figure><p id="p-4114">The example in <a href="" class="xref" data-knowl="./knowl/PA_11_8.html" title="Preview Activity 11.8.1">Preview Activity 11.8.1</a> and <a href="" class="xref" data-knowl="./knowl/F_11_8_Spherical_to_Cartesian.html" title="Figure 11.8.5">Figure 11.8.5</a> suggest how to convert between Cartesian and spherical coordinates.</p>
+<article class="assemblage assemblage-like" id="Spherical-cylindrical"><h4 class="heading"><span class="title">Coverting between Cartesian and spherical coordinates.</span></h4>
+<ul id="p-4115" class="disc">
+<li id="li-1409">
+<span class="heading"><span class="title">Converting from Cartesian to spherical..</span></span><p id="p-4116">If we are given the Cartesian coordinates <span class="process-math">\((x,y,z)\)</span> of a point <span class="process-math">\(P\text{,}\)</span> then the spherical coordinates <span class="process-math">\((\rho,\theta,\phi)\)</span> of <span class="process-math">\(P\)</span> satisfy</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+\rho  = \sqrt{x^2  + y^2 + z^2} \ \ \ \ \  \tan(\theta) = \frac{y}{x} \ \ \ \ \ \text{ and } \ \ \ \ \  \cos(\phi) = \frac{z}{\rho},
+\end{equation*}
+</div>
+<p class="continuation">where in the latter two equations, we require <span class="process-math">\(x \ne 0\)</span> and <span class="process-math">\(\rho \ne 0\text{.}\)</span></p>
+</li>
+<li id="li-1410">
+<span class="heading"><span class="title">Converting from spherical to Cartesian..</span></span><p id="p-4117">If we are given the spherical coordinates <span class="process-math">\((\rho,\theta,\phi)\)</span> of a point <span class="process-math">\(P\text{,}\)</span> then the Cartesian coordinates <span class="process-math">\((x,y,z)\)</span> of <span class="process-math">\(P\)</span> satisfy</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+x = \rho \sin(\phi) \cos(\theta) \ \ \ \ \ y = \rho \sin(\phi) \sin(\theta) \ \ \ \ \ \text{ and } \ \ \ \ \ z = \rho \cos(\phi).
+\end{equation*}
+</div>
+</li>
+</ul></article><p id="p-4118">When it comes to thinking about particular surfaces in spherical coordinates, similar to our work with cylindrical and Cartesian coordinates, we usually write <span class="process-math">\(\rho\)</span> as a function of <span class="process-math">\(\theta\)</span> and <span class="process-math">\(\phi\text{;}\)</span> this is a natural analog to polar coordinates, where we often think of our distance from the origin in the plane as being a function of <span class="process-math">\(\theta\text{.}\)</span> In spherical coordinates, we likewise often view <span class="process-math">\(\rho\)</span> as a function of <span class="process-math">\(\theta\)</span> and <span class="process-math">\(\phi\text{,}\)</span> thus viewing distance from the origin as a function of two key angles.</p>
+<p id="p-4119">In the following activity, we explore several basic equations in spherical coordinates and the surfaces they generate.</p>
+<article class="activity project-like" id="A_11_8_7"><h4 class="heading">
+<span class="type">Activity</span><span class="space"> </span><span class="codenumber">11.8.5</span><span class="period">.</span>
+</h4>
+<p id="p-4120">In this activity, we graph some surfaces using spherical coordinates. To improve your intuition and test your understanding, you should first think about what each graph should look like before you plot it using appropriate technology.</p>
+<ol class="lower-alpha">
+<li id="li-1411"><p id="p-4121">What familiar surface is described by the points in spherical coordinates with <span class="process-math">\(\rho = 1\text{,}\)</span> <span class="process-math">\(0 \leq \theta \leq 2\pi\text{,}\)</span> and <span class="process-math">\(0 \leq \phi \leq \pi\text{?}\)</span> How does this particular example demonstrate the reason for the name of this coordinate system? What if we restrict <span class="process-math">\(\phi\)</span> to <span class="process-math">\(0 \leq \phi \leq \frac{\pi}{2}\text{?}\)</span></p></li>
+<li id="li-1412"><p id="p-4122">What familiar surface is described by the points in spherical coordinates with <span class="process-math">\(\phi = \frac{\pi}{3}\text{,}\)</span> <span class="process-math">\(0 \leq \rho \leq 1\text{,}\)</span> and <span class="process-math">\(0 \leq \theta \leq 2\pi\text{?}\)</span></p></li>
+<li id="li-1413"><p id="p-4123">What familiar shape is described by the points in spherical coordinates with <span class="process-math">\(\theta = \frac{\pi}{6}\text{,}\)</span> <span class="process-math">\(0 \leq \rho \leq 1\text{,}\)</span> and <span class="process-math">\(0 \leq \phi \leq \pi\text{?}\)</span></p></li>
+<li id="li-1414"><p id="p-4124">Plot the graph of <span class="process-math">\(\rho = \theta\text{,}\)</span> for <span class="process-math">\(0 \leq \phi \leq \pi\)</span> and <span class="process-math">\(0 \leq \theta \leq 2 \pi\text{.}\)</span> How does the resulting surface appear?</p></li>
+</ol></article><p id="p-4125">As the name and <a href="" class="xref" data-knowl="./knowl/A_11_8_7.html" title="Activity 11.8.5">Activity 11.8.5</a> indicate, spherical coordinates are particularly useful for describing surfaces that are spherical in nature; they are also convenient for working with certain conical surfaces.</p></section><section class="subsection" id="subsection-97"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">11.8.4</span> <span class="title">Triple Integrals in Spherical Coordinates</span>
+</h3>
+<p id="p-4126">As with rectangular and cylindrical coordinates, a triple integral <span class="process-math">\(\iiint_S f(x,y,z) \, dV\)</span> in spherical coordinates can be evaluated as an iterated integral once we understand the volume element <span class="process-math">\(dV\text{.}\)</span></p>
+<article class="activity project-like" id="A_11_8_8"><h4 class="heading">
+<span class="type">Activity</span><span class="space"> </span><span class="codenumber">11.8.6</span><span class="period">.</span>
+</h4>
+<p id="p-4127">To find the volume element <span class="process-math">\(dV\)</span> in spherical coordinates, we need to understand how to determine the volume of a spherical box of the form <span class="process-math">\(\rho_1 \leq \rho \leq \rho_2\)</span> (with <span class="process-math">\(\Delta \rho = \rho_2-\rho_1)\text{,}\)</span> <span class="process-math">\(\phi_1 \leq \phi \leq \phi_2\)</span> (with <span class="process-math">\(\Delta \phi = \phi_2-\phi_1\)</span>), and <span class="process-math">\(\theta_1 \leq \theta \leq \theta_2\)</span> (with <span class="process-math">\(\Delta \theta = \theta_2-\theta_1\)</span>). An illustration of such a box is given at left in <a href="" class="xref" data-knowl="./knowl/F_11_8_Spherical_Vol_Element.html" title="Figure 11.8.6">Figure 11.8.6</a>. This spherical box is a bit more complicated than the cylindrical box we encountered earlier. In this situation, it is easier to approximate the volume <span class="process-math">\(\Delta V\)</span> than to compute it directly. Here we can approximate the volume <span class="process-math">\(\Delta V\)</span> of this spherical box with the volume of a Cartesian box whose sides have the lengths of the sides of this spherical box. In other words,</p>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/F_11_8_Spherical_Vol_Element.html">
+\begin{equation*}
+\Delta V \approx |PS| \ |\overset{\frown}{PR}| \ |\overset{\frown}{PQ}|,
+\end{equation*}
+</div>
+<p class="continuation">where <span class="process-math">\(|\overset{\frown}{PR}|\)</span> denotes the length of the circular arc from <span class="process-math">\(P\)</span> to <span class="process-math">\(R\text{.}\)</span></p>
+<figure class="figure figure-like" id="F_11_8_Spherical_Vol_Element"><div class="sidebyside"><div class="sbsrow" style="margin-left:0%;margin-right:0%;">
+<div class="sbspanel top" style="width:50%;"><img src="external/images/fig_11_8_spherical_box.svg" role="img" class="contained"></div>
+<div class="sbspanel top" style="width:50%;"><img src="external/images/fig_11_8_spherical_volume.svg" role="img" class="contained"></div>
+</div></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">11.8.6<span class="period">.</span></span><span class="space"> </span>Left: A spherical box. Right: A spherical volume element.</figcaption></figure><ol class="lower-alpha">
+<li id="li-1415"><p id="p-4128">What is the length <span class="process-math">\(|PS|\)</span> in terms of <span class="process-math">\(\rho\text{?}\)</span></p></li>
+<li id="li-1416"><p id="p-4129">What is the length of the arc <span class="process-math">\(\overset{\frown}{PR}\text{?}\)</span> (Hint: The arc <span class="process-math">\(\overset{\frown}{PR}\)</span> is an arc of a circle of radius <span class="process-math">\(\rho_2\text{,}\)</span> and arc length along a circle is the product of the angle measure (in radians) and the circle's radius.)</p></li>
+<li id="li-1417"><p id="p-4130">What is the length of the arc <span class="process-math">\(\overset{\frown}{PQ}\text{?}\)</span> (Hint: The arc <span class="process-math">\(\overset{\frown}{PQ}\)</span> lies on a horizontal circle as illustrated at right in <a href="" class="xref" data-knowl="./knowl/F_11_8_Spherical_Vol_Element.html" title="Figure 11.8.6">Figure 11.8.6</a>. What is the radius of this circle?)</p></li>
+<li id="li-1418"><p id="p-4131">Use your work in (a), (b), and (c) to determine an approximation for <span class="process-math">\(\Delta V\)</span> in spherical coordinates.</p></li>
+</ol></article><p id="p-4132">Letting <span class="process-math">\(\Delta \rho\text{,}\)</span> <span class="process-math">\(\Delta \theta\text{,}\)</span> and <span class="process-math">\(\Delta \phi\)</span> go to 0, it follows from the final result in <a href="" class="xref" data-knowl="./knowl/A_11_8_8.html" title="Activity 11.8.6">Activity 11.8.6</a> that <span class="process-math">\(dV = \rho^2 \, \sin(\phi) \, d\rho \, d\theta \, d\phi \)</span> in spherical coordinates, and thus allows us to state the following general rule.</p>
+<article class="assemblage assemblage-like" id="Triple-integral-spherical"><h4 class="heading"><span class="title">Triple integrals in spherical coordinates.</span></h4>
+<p id="p-4133">Given a continuous function <span class="process-math">\(f = f(x,y,z)\)</span> over a region <span class="process-math">\(S\)</span> in <span class="process-math">\(\R^3\text{,}\)</span> the triple integral <span class="process-math">\(\iiint_S f(x,y,z) \, dV\)</span> is converted to the integral</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+\iiint_S f(\rho\sin(\phi)\cos(\theta), \rho \sin(\phi) \sin(\theta), \rho \cos(\phi)) \, \rho^2 \sin(\phi) \, d\rho \, d\theta \, d\phi 
+\end{equation*}
+</div>
+<p class="continuation">in spherical coordinates.</p>
+<p id="p-4134">The latter expression is an <em class="emphasis">iterated integral in spherical coordinates</em>.</p></article><p id="p-4135">Finally, in order to actually evaluate an iterated integral in spherical coordinates, we must of course determine the limits of integration in <span class="process-math">\(\phi\text{,}\)</span> <span class="process-math">\(\theta\text{,}\)</span> and <span class="process-math">\(\rho\text{.}\)</span> The process is similar to our earlier work in the other two coordinate systems.</p>
+<article class="activity project-like" id="A_11_8_10"><h4 class="heading">
+<span class="type">Activity</span><span class="space"> </span><span class="codenumber">11.8.7</span><span class="period">.</span>
+</h4>
+<p id="p-4136">We can use spherical coordinates to help us more easily understand some natural geometric objects.</p>
+<ol class="lower-alpha">
+<li id="li-1419"><p id="p-4137">Recall that the sphere of radius <span class="process-math">\(a\)</span> has spherical equation <span class="process-math">\(\rho = a\text{.}\)</span>  Set up and evaluate an iterated integral in spherical coordinates to determine the volume of a sphere of radius <span class="process-math">\(a\text{.}\)</span></p></li>
+<li id="li-1420"><p id="p-4138">Set up, but do not evaluate, an iterated integral expression in spherical coordinates whose value is the mass of the solid obtained by removing the cone <span class="process-math">\(\phi=\frac{\pi}{4}\)</span> from the sphere <span class="process-math">\(\rho = 2\)</span> if the density <span class="process-math">\(\delta\)</span> at the point <span class="process-math">\((x,y,z)\)</span> is <span class="process-math">\(\delta(x,y,z) = \sqrt{x^2+y^2+z^2}\text{.}\)</span>  An illustration of the solid is shown in <a href="" class="xref" data-knowl="./knowl/F_11_8_Spherical_ex2.html" title="Figure 11.8.7">Figure 11.8.7</a>. <figure class="figure figure-like" id="F_11_8_Spherical_ex2"><div class="image-box" style="width: 50%; margin-left: 25%; margin-right: 25%;"><img src="external/images/fig_11_8_sphere_cone.svg" role="img" class="contained"></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">11.8.7<span class="period">.</span></span><span class="space"> </span>The solid cut from the sphere <span class="process-math">\(\rho = 2\)</span> by the cone <span class="process-math">\(\phi=\frac{\pi}{4}\text{.}\)</span></figcaption></figure></p></li>
+</ol></article></section><section class="subsection" id="subsection-98"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">11.8.5</span> <span class="title">Summary</span>
+</h3>
+<ul class="disc">
+<li id="li-1421">
+<p id="p-4139">The cylindrical coordinates of a point <span class="process-math">\(P\)</span> are <span class="process-math">\((r,\theta,z)\)</span> where <span class="process-math">\(r\)</span> is the distance from the origin to the projection of <span class="process-math">\(P\)</span> onto the <span class="process-math">\(xy\)</span>-plane, <span class="process-math">\(\theta\)</span> is the angle that the projection of <span class="process-math">\(P\)</span> onto the <span class="process-math">\(xy\)</span>-plane makes with the positive <span class="process-math">\(x\)</span>-axis, and <span class="process-math">\(z\)</span> is the vertical distance from <span class="process-math">\(P\)</span> to the projection of <span class="process-math">\(P\)</span> onto the <span class="process-math">\(xy\)</span>-plane.  When <span class="process-math">\(P\)</span> has rectangular coordinates <span class="process-math">\((x,y,z)\text{,}\)</span> it follows that  its cylindrical coordinates are given by</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+r^2  = x^2  + y^2, \ \ \ \ \ \tan(\theta) = \frac{y}{x}, \ \ \ \ \  z = z.
+\end{equation*}
+</div>
+<p class="continuation">When <span class="process-math">\(P\)</span> has given cylindrical coordinates <span class="process-math">\((r,\theta,z)\text{,}\)</span> its rectangular coordinates are</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+x = r \cos(\theta), \ \ \ \ \ y = r \sin(\theta), \ \ \ \ \ z = z.
+\end{equation*}
+</div>
+</li>
+<li id="li-1422">
+<p id="p-4140">The volume element <span class="process-math">\(dV\)</span> in cylindrical coordinates is <span class="process-math">\(dV = r \, dz \, dr \, d\theta\text{.}\)</span> Hence, a triple integral <span class="process-math">\(\iiint_S f(x,y,z) \, dA\)</span> can be evaluated as the iterated integral</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+\iiint_S f(r\cos(\theta), r\sin(\theta), z) \, r \, dz \, dr \, d\theta.
+\end{equation*}
+</div>
+</li>
+<li id="li-1423">
+<p id="p-4141">The spherical coordinates of a point <span class="process-math">\(P\)</span> in 3-space are <span class="process-math">\(\rho\)</span> (rho), <span class="process-math">\(\theta\text{,}\)</span> and <span class="process-math">\(\phi\)</span> (phi), where <span class="process-math">\(\rho\)</span> is the distance from <span class="process-math">\(P\)</span> to the origin, <span class="process-math">\(\theta\)</span> is the angle that the projection of <span class="process-math">\(P\)</span> onto the <span class="process-math">\(xy\)</span>-plane makes with the positive <span class="process-math">\(x\)</span>-axis, and <span class="process-math">\(\phi\)</span> is the angle between the positive <span class="process-math">\(z\)</span> axis and the vector from the origin to <span class="process-math">\(P\text{.}\)</span>  When <span class="process-math">\(P\)</span> has Cartesian coordinates <span class="process-math">\((x,y,z)\text{,}\)</span> the spherical coordinates are given by</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+\rho^2  = x^2  + y^2 + z^2, \ \ \ \ \ \tan(\theta) = \frac{y}{x}, \ \ \ \ \ \cos(\phi) = \frac{z}{\rho}.
+\end{equation*}
+</div>
+<p class="continuation">Given the point <span class="process-math">\(P\)</span> in spherical coordinates <span class="process-math">\((\rho, \phi, \theta)\text{,}\)</span> its rectangular coordinates are</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+x = \rho \sin(\phi) \cos(\theta), \ \ \ \ \  y = \rho \sin(\phi) \sin(\theta), \ \ \ \ \ z = \rho \cos(\phi).
+\end{equation*}
+</div>
+</li>
+<li id="li-1424">
+<p id="p-4142">The volume element <span class="process-math">\(dV\)</span> in spherical coordinates is <span class="process-math">\(dV = \rho^2 \sin(\phi) \, d\rho \, d\theta \, d\phi\text{.}\)</span> Thus, a triple integral <span class="process-math">\(\iiint_S f(x,y,z) \, dA\)</span> can be evaluated as the iterated integral</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+\iiint_S f(\rho\sin(\phi)\cos(\theta), \rho \sin(\phi) \sin(\theta), \rho \cos(\phi)) \, \rho^2 \sin(\phi) \, d\rho \, d\theta \, d\phi.
+\end{equation*}
+</div>
+</li>
+</ul></section><section class="exercises" id="exercises-24"><h3 class="heading hide-type">
+<span class="type">Exercises</span> <span class="codenumber">11.8.6</span> <span class="title">Exercises</span>
+</h3>
+<article class="exercise exercise-like" id="ex-11-8-WW-cylindrical-to-rectangular"><h4 class="heading"><span class="codenumber">1<span class="period">.</span></span></h4>
+<div id="webwork-257" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="257" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Dartmouth/setMTWCh1S6/urvc_3_1a.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-contents">
+<p id="p-4143">What are the rectangular coordinates of the point whose cylindrical coordinates are</p>
+<p id="p-4144"><span class="process-math">\((r= 6 ,\  \theta = \frac{5 \pi}{9}  ,\ z= 6 )\)</span> ?</p>
+<p id="p-4145">x= <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span></p>
+<p id="p-4146">y= <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span></p>
+<p id="p-4147">z= <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span></p>
+</div>
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-257')">Activate</button></div>
+</div></article><article class="exercise exercise-like" id="ex-11-8-WW-spherical-to-rectangular"><h4 class="heading"><span class="codenumber">2<span class="period">.</span></span></h4>
+<div id="webwork-258" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="258" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Rochester/setVectors5Coordinates/urvc_3_4.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-contents">
+<p id="p-4151">What are the rectangular coordinates of the point whose spherical coordinates are</p>
+<p id="p-4152"><span class="process-math">\(\left( 3 , -{\textstyle\frac{1}{6}} \pi, -{\textstyle\frac{1}{3}} \pi \right)\)</span> ?</p>
+<p id="p-4153"><span class="process-math">\(x =\)</span> <span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span></p>
+<p id="p-4154"><span class="process-math">\(y =\)</span><span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span></p>
+<p id="p-4155"><span class="process-math">\(z =\)</span><span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span></p>
+</div>
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-258')">Activate</button></div>
+</div></article><article class="exercise exercise-like" id="ex-11-8-WW-spherical-to-cylindrical"><h4 class="heading"><span class="codenumber">3<span class="period">.</span></span></h4>
+<div id="webwork-259" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="259" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Rochester/setVectors5Coordinates/urvc_3_6.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-contents">
+<p id="p-4159">What are the cylindrical coordinates of the point whose spherical coordinates are</p>
+<p id="p-4160"><span class="process-math">\((4 ,\   -5  ,\ \frac{4 \pi}{6} )\)</span> ?</p>
+<p id="p-4161"><span class="process-math">\(r\)</span> = <span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span></p>
+<p id="p-4162"><span class="process-math">\(\theta\)</span> = <span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span></p>
+<p id="p-4163"><span class="process-math">\(z\)</span>= <span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span></p>
+</div>
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-259')">Activate</button></div>
+</div></article><article class="exercise exercise-like" id="ex-11-8-WW-paraboloid-spherical"><h4 class="heading"><span class="codenumber">4<span class="period">.</span></span></h4>
+<div id="webwork-260" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="260" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Michigan/Chap16Sec5/Q03.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-contents">
+<p id="p-4167">Find an equation for the paraboloid <span class="process-math">\(z = x^{2}+y^{2}\)</span> in spherical coordinates.  (Enter rho, phi and theta for <span class="process-math">\(\rho\text{,}\)</span> <span class="process-math">\(\phi\)</span> and <span class="process-math">\(\theta\text{,}\)</span> respectively.)</p>
+<p id="p-4168">equation: <span class="fillin underline" role="img" aria-label="55-character blank" style="width: 25em;"></span></p>
+</div>
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-260')">Activate</button></div>
+</div></article><article class="exercise exercise-like" id="ex-11-8-WW-match-equations"><h4 class="heading"><span class="codenumber">5<span class="period">.</span></span></h4>
+<div id="webwork-261" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="261" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/maCalcDB/setVectors5Coordinates/urvc_3_7.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-contents">
+<p id="p-4170">Match the given equation with the verbal description of the surface:</p>
+<ol class="upper-alpha">
+<li id="li-1425"><p id="p-4171">Plane</p></li>
+<li id="li-1426"><p id="p-4172">Circular Cylinder</p></li>
+<li id="li-1427"><p id="p-4173">Sphere</p></li>
+<li id="li-1428"><p id="p-4174">Elliptic or Circular Paraboloid</p></li>
+<li id="li-1429"><p id="p-4175">Cone</p></li>
+<li id="li-1430"><p id="p-4176">Half plane</p></li>
+</ol>
+<ol class="lower-alpha">
+<li id="li-1431"><p id="p-4177"><span class="process-math">\(\displaystyle \rho \cos(\phi )= 4\)</span></p></li>
+<li id="li-1432"><p id="p-4178"><span class="process-math">\(\displaystyle \phi = \frac{\pi}{3}\)</span></p></li>
+<li id="li-1433"><p id="p-4179"><span class="process-math">\(\displaystyle z = r^2\)</span></p></li>
+<li id="li-1434"><p id="p-4180"><span class="process-math">\(\displaystyle \rho = 2\cos(\phi )\)</span></p></li>
+<li id="li-1435"><p id="p-4181"><span class="process-math">\(\displaystyle r =4\)</span></p></li>
+<li id="li-1436"><p id="p-4182"><span class="process-math">\(\displaystyle \theta = \frac{\pi}{3}\)</span></p></li>
+<li id="li-1437"><p id="p-4183"><span class="process-math">\(\displaystyle \rho = 4\)</span></p></li>
+<li id="li-1438"><p id="p-4184"><span class="process-math">\(\displaystyle r^2 + z^2 =16\)</span></p></li>
+<li id="li-1439"><p id="p-4185"><span class="process-math">\(\displaystyle r = 2\cos(\theta )\)</span></p></li>
+</ol>
+</div>
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-261')">Activate</button></div>
+</div></article><article class="exercise exercise-like" id="ex-11-8-WW-match"><h4 class="heading"><span class="codenumber">6<span class="period">.</span></span></h4>
+<div id="webwork-262" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="262" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Dartmouth/setMTWCh5S5/ur_vc_10_11.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-contents">
+<p id="p-4186">Match the integrals with the type of coordinates which make them the easiest to do. Put the letter of the coordinate system to the left of the number of the integral.</p>
+<ol id="p-4187" class="lower-alpha">
+<li id="li-1440"><p id="p-4188"><span class="process-math">\(\displaystyle \int \!\! \int \!\! \int_E \ z^2 \ dV\)</span> where E is: <span class="process-math">\(-2 \leq z \leq 2, \ \ 1 \leq
+x^2+y^2 \leq 2\)</span></p></li>
+<li id="li-1441"><p id="p-4189"><span class="process-math">\(\displaystyle \int \!\! \int_D \ \frac{1}{x^2+y^2} \ dA\)</span> where D is: <span class="process-math">\(x^2+y^2 \leq 4\)</span></p></li>
+<li id="li-1442"><p id="p-4190"><span class="process-math">\(\displaystyle \int \!\! \int \!\! \int_E \ z \ dV\)</span> where E is: <span class="process-math">\(1 \leq x \leq 2, \ \ 3 \leq y \leq
+4, \ \ 5 \leq z \leq 6\)</span></p></li>
+<li id="li-1443"><p id="p-4191"><span class="process-math">\(\displaystyle \int \!\! \int \!\! \int_E \ dV\)</span> where E is: <span class="process-math">\(x^2+y^2+z^2 \leq 4, \ \ x \geq 0, \ \ y
+\geq 0, \ \ z \geq 0\)</span></p></li>
+<li id="li-1444"><p id="p-4192"><span class="process-math">\(\displaystyle \displaystyle \int_{0}^{1} \! \int^{y^2}_{0} \ \frac{1}{x} \ dx \ dy\)</span></p></li>
+</ol>
+<ol id="p-4193" class="upper-alpha">
+<li id="li-1445"><p id="p-4194">polar coordinates</p></li>
+<li id="li-1446"><p id="p-4195">cylindrical coordinates</p></li>
+<li id="li-1447"><p id="p-4196">cartesian coordinates</p></li>
+<li id="li-1448"><p id="p-4197">spherical coordinates</p></li>
+</ol>
+</div>
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-262')">Activate</button></div>
+</div></article><article class="exercise exercise-like" id="ex-11-8-WW-convert-integral"><h4 class="heading"><span class="codenumber">7<span class="period">.</span></span></h4>
+<div id="webwork-263" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="263" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/FortLewis/Calc3/16-5-Spherical-integrals/HGM5-16-5-34-Spherical-integrals.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-contents">
+<p id="p-4198">Evaluate the integral.</p>
+<p id="p-4199"><span class="process-math">\(\displaystyle 
+\int_{0}^{3} \int_{-\sqrt{9-x^2}}^{\sqrt{9-x^2}} \int_{-\sqrt{9-x^2-z^2}}^{\sqrt{9-x^2-z^2}} \frac{1}{(x^2+y^2+z^2)^{1/2}} \, dy \, dz \, dx\)</span> = <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span></p>
+</div>
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-263')">Activate</button></div>
+</div></article><article class="exercise exercise-like" id="ex-11-8-WW-cylinder-evaluate"><h4 class="heading"><span class="codenumber">8<span class="period">.</span></span></h4>
+<div id="webwork-264" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="264" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Rochester/setVMultIntegrals5Triple/ur_vc_10_9.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-contents">
+<p id="p-4208">Use cylindrical coordinates to evaluate the triple integral <span class="process-math">\(\displaystyle \int \!\! \int \!\!
+\int_{\mathbf{E}} \, \sqrt{x^{2} + y^{2}} \, dV\text{,}\)</span> where <em class="alert">E</em> is the solid bounded by the circular paraboloid <span class="process-math">\(z = 4 - 1 \left( x^{2} + y^{2}
+\right)\)</span> and the <span class="process-math">\(xy\)</span> -plane.</p>
+<p id="p-4209"><span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span></p>
+</div>
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-264')">Activate</button></div>
+</div></article><article class="exercise exercise-like" id="ex-11-8-WW-spherical-evaluate"><h4 class="heading"><span class="codenumber">9<span class="period">.</span></span></h4>
+<div id="webwork-265" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="265" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Dartmouth/setMTWCh5S5/ur_vc_10_10.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-contents">
+<p id="p-4211">Use spherical coordinates to evaluate the triple integral <span class="process-math">\(\displaystyle \int \!\! \int \!\!
+\int_{\mathbf{E}} \, x^{2} + y^{2} + z^{2} \, dV\text{,}\)</span> where <em class="alert">E</em> is the ball: <span class="process-math">\(x^{2} + y^{2} + z^{2} \leq 16\text{.}\)</span></p>
+<p id="p-4212"><span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span></p>
+</div>
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-265')">Activate</button></div>
+</div></article><article class="exercise exercise-like" id="ex-11-8-WW-volume-between"><h4 class="heading"><span class="codenumber">10<span class="period">.</span></span></h4>
+<div id="webwork-266" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="266" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Dartmouth/setMTWCh5S4/problem_4.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-contents">
+<p id="p-4214">Find the volume of the solid enclosed by the paraboloids <span class="process-math">\(z = 4 \left(
+x^{2} + y^{2} \right)\)</span> and <span class="process-math">\(z = 18 - 4 \left( x^{2} + y^{2}
+\right)\text{.}\)</span></p>
+<p id="p-4215"><span class="fillin underline" role="img" aria-label="50-character blank" style="width: 22.7272727272727em;"></span></p>
+</div>
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-266')">Activate</button></div>
+</div></article><article class="exercise exercise-like" id="ex-11-8-WW-ellipsoid-volume"><h4 class="heading"><span class="codenumber">11<span class="period">.</span></span></h4>
+<div id="webwork-267" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="267" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Dartmouth/setMTWCh5S5/problem_9.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-contents">
+<p id="p-4217">FInd the volume of the ellipsoid <span class="process-math">\(x^2 + y^2 + 7 z^2 = 25\text{.}\)</span></p>
+<p id="p-4218"><span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span></p>
+</div>
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-267')">Activate</button></div>
+</div></article><article class="exercise exercise-like" id="ex-11-8-WW-cylinder-mass"><h4 class="heading"><span class="codenumber">12<span class="period">.</span></span></h4>
+<div id="webwork-268" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="268" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Michigan/Chap16Sec5/Q45.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-contents">
+<p id="p-4220">The density, <span class="process-math">\(\delta\text{,}\)</span> of the cylinder <span class="process-math">\(x^2+y^2\le 16\text{,}\)</span> <span class="process-math">\(0\le z\le 5\)</span> varies with the distance, <span class="process-math">\(r\text{,}\)</span> from the <span class="process-math">\(z\)</span>-axis:</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+\delta = 3 + r\mbox{ g}/\mbox{cm}^3.
+\end{equation*}
+</div>
+<p class="continuation">Find the mass of the cylinder, assuming  <span class="process-math">\(x,y,z\)</span> are in cm.</p>
+<p id="p-4221">mass = <span class="fillin underline" role="img" aria-label="35-character blank" style="width: 15.9090909090909em;"></span></p>
+<p id="p-4222"><em class="emphasis">(Include <a class="external" href="/webwork2_files/helpFiles/Units.html" target="_blank">units</a><a href="" data-knowl="" class="id-ref fn-knowl original" data-refid="hk-fn-24" id="fn-24"><sup> 1 </sup></a>.)</em></p>
+</div>
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-268')">Activate</button></div>
+</div></article><article class="exercise exercise-like" id="ex-11-8-WW-limits-spherical"><h4 class="heading"><span class="codenumber">13<span class="period">.</span></span></h4>
+<div id="webwork-269" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="269" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/FortLewis/Calc3/16-5-Spherical-integrals/HGM4-16-5-04-Spherical-integrals.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-contents">
+<p id="p-4224">Suppose <span class="process-math">\(\displaystyle f(x,y,z) = \frac{1}{\sqrt{x^2+y^2+z^2}}\)</span> and  <span class="process-math">\(W\)</span> is the bottom half of a sphere of radius <span class="process-math">\(5\text{.}\)</span> Enter <span class="process-math">\(\rho\)</span> as <em class="emphasis">rho,</em> <span class="process-math">\(\phi\)</span> as <em class="emphasis">phi,</em> and <span class="process-math">\(\theta\)</span> as <em class="emphasis">theta.</em></p>
+<p id="p-4225">(a) As an iterated integral,</p>
+<p id="p-4226"><span class="process-math">\(\displaystyle 
+\iiint\limits_{W} f \, dV 
+=
+\int_A^B \!\! \int_C^D \!\! \int_E^F\)</span> <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span> <span class="process-math">\(d\rho \, d\phi \, d\theta\)</span></p>
+<p id="p-4227">with limits of integration</p>
+<p id="p-4228">A = <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span></p>
+<p id="p-4229">B = <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span></p>
+<p id="p-4230">C = <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span></p>
+<p id="p-4231">D = <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span></p>
+<p id="p-4232">E = <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span></p>
+<p id="p-4233">F = <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span></p>
+<p id="p-4234">(b) Evaluate the integral. <span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span></p>
+</div>
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-269')">Activate</button></div>
+</div></article><article class="exercise exercise-like" id="exercise-377"><h4 class="heading"><span class="codenumber">14<span class="period">.</span></span></h4>
+<p id="p-4243">In each of the following questions, set up an iterated integral expression whose value determines the desired result. Then, evaluate the integral first by hand, and then using appropriate technology.</p>
+<ol class="lower-alpha">
+<li id="li-1449"><p id="p-4244">Find the volume of the “cap” cut from the solid sphere <span class="process-math">\(x^2 + y^2 + z^2 = 4\)</span> by the plane <span class="process-math">\(z=1\text{,}\)</span> as well as the <span class="process-math">\(z\)</span>-coordinate of its centroid.</p></li>
+<li id="li-1450"><p id="p-4245">Find the <span class="process-math">\(x\)</span>-coordinate of the center of mass of the portion of the unit sphere that lies in the first octant (i.e., where <span class="process-math">\(x\text{,}\)</span> <span class="process-math">\(y\text{,}\)</span> and <span class="process-math">\(z\)</span> are all nonnegative).  Assume that the density of the solid given by <span class="process-math">\(\delta(x,y,z) = \frac{1}{1+x^2+y^2+z^2}\text{.}\)</span></p></li>
+<li id="li-1451"><p id="p-4246">Find the volume of the solid bounded below by the <span class="process-math">\(xy\)</span>-plane, on the sides by the sphere <span class="process-math">\(\rho=2\text{,}\)</span> and above by the cone <span class="process-math">\(\phi = \pi/3\text{.}\)</span></p></li>
+<li id="li-1452"><p id="p-4247">Find the <span class="process-math">\(z\)</span> coordinate of the center of mass of the region that is bounded above by the surface <span class="process-math">\(z = \sqrt{\sqrt{x^2 + y^2}}\text{,}\)</span> on the sides by the cylinder <span class="process-math">\(x^2 + y^2 = 4\text{,}\)</span> and below by the <span class="process-math">\(xy\)</span>-plane.   Assume that the density of the solid is uniform and constant.</p></li>
+<li id="li-1453"><p id="p-4248">Find the volume of the solid that lies outside the sphere <span class="process-math">\(x^2 + y^2 + z^2 = 1\)</span> and inside the sphere <span class="process-math">\(x^2 + y^2 + z^2 = 2z\text{.}\)</span></p></li>
+</ol></article><article class="exercise exercise-like" id="exercise-378"><h4 class="heading"><span class="codenumber">15<span class="period">.</span></span></h4>
+<p id="p-4249">For each of the following questions,</p>
+<ul class="disc">
+<li id="li-1454"><p id="p-4250">sketch the region of integration,</p></li>
+<li id="li-1455"><p id="p-4251">change the coordinate system in which the iterated integral is written to one of the remaining two,</p></li>
+<li id="li-1456"><p id="p-4252">evaluate the iterated integral you deem easiest to evaluate by hand.</p></li>
+</ul>
+<ol class="lower-alpha">
+<li id="li-1457"><p id="p-4253"><span class="process-math">\(\displaystyle \int_{0}^{1} \int_{0}^{\sqrt{1-x^2}} \int_{\sqrt{x^2 + y^2}}^{\sqrt{2-x^2-y^2}} xy\, dz \, dy \, dx\)</span></p></li>
+<li id="li-1458"><p id="p-4254"><span class="process-math">\(\displaystyle \int_{0}^{\pi/2} \int_{0}^{\pi} \int_{0}^{1} \rho^2 \sin(\phi) \, d\rho \, d\phi \, d\theta\)</span></p></li>
+<li id="li-1459"><p id="p-4255"><span class="process-math">\(\displaystyle \int_{0}^{2\pi} \int_{0}^{1} \int_{r}^{1} r^2 \cos(\theta) \, dz \, dr \, d\theta\)</span></p></li>
+</ol></article><article class="exercise exercise-like" id="exercise-379"><h4 class="heading"><span class="codenumber">16<span class="period">.</span></span></h4>
+<p id="p-4256">Consider the solid region <span class="process-math">\(S\)</span> bounded above by the paraboloid <span class="process-math">\(z = 16 - x^2 - y^2\)</span> and below by the paraboloid <span class="process-math">\(z = 3x^2 + 3y^2\text{.}\)</span></p>
+<ol class="lower-alpha">
+<li id="li-1460"><p id="p-4257">Describe parametrically the curve in <span class="process-math">\(\R^3\)</span> in which these two surfaces intersect.</p></li>
+<li id="li-1461"><p id="p-4258">In terms of <span class="process-math">\(x\)</span> and <span class="process-math">\(y\text{,}\)</span> write an equation to describe the projection of the curve onto the <span class="process-math">\(xy\)</span>-plane.</p></li>
+<li id="li-1462"><p id="p-4259">What coordinate system do you think is most natural for an iterated integral that gives the volume of the solid?</p></li>
+<li id="li-1463"><p id="p-4260">Set up, but do not evaluate, an iterated integral expression whose value is average <span class="process-math">\(z\)</span>-value of points in the solid region <span class="process-math">\(S\text{.}\)</span></p></li>
+<li id="li-1464"><p id="p-4261">Use technology to plot the two surfaces and evaluate the integral in (c).  Write at least one sentence to discuss how your computations align with your intuition about where the average <span class="process-math">\(z\)</span>-value of the solid should fall.</p></li>
+</ol></article></section></section><div class="hidden-content tex2jax_ignore" id="hk-fn-24"><div class="fn"><code class="code-inline tex2jax_ignore">/webwork2_files/helpFiles/Units.html</code></div></div>
+</div></main>
+</div>
+<!--Start: Google Global Site Tag code--><!--*** DO NOT COPY ANOTHER PROJECT'S MAGIC NUMBERS/ID ***--><!--***           GET YOUR OWN FROM GOOGLE             ***-->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-QJKN634F7R"></script><script>  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-QJKN634F7R');
+</script><!--End: Google Global Site Tag code-->
+</body>
+</html>

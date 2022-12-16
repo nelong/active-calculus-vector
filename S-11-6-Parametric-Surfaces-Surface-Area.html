@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<html lang="en-US">
+<head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Surfaces Defined Parametrically and Surface Area</title>
+<meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:type" content="book">
+<meta property="book:title" content="Active Calculus - Multivariable + Vector">
+<meta property="book:author" content="Steve Schlicker">
+<meta property="book:author" content="Mitchel T. Keller">
+<meta property="book:author" content="Nicholas Long">
+<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
+window.MathJax = {
+  tex: {
+    inlineMath: [['\\(','\\)']],
+    tags: "none",
+    tagSide: "right",
+    tagIndent: ".8em",
+    packages: {'[+]': ['base', 'extpfeil', 'ams', 'amscd', 'newcommand', 'knowl']}
+  },
+  options: {
+    ignoreHtmlClass: "tex2jax_ignore|ignore-math",
+    processHtmlClass: "process-math",
+    renderActions: {
+        findScript: [10, function (doc) {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
+                var display = !!node.type.match(/; *mode=display/);
+                var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                var text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = {node: text, delim: '', n: 0};
+                math.end = {node: text, delim: '', n: 0};
+                doc.math.push(math);
+            });
+        }, '']
+    },
+  },
+  chtml: {
+    scale: 0.88,
+    mtextInheritFont: true
+  },
+  loader: {
+    load: ['input/asciimath', '[tex]/extpfeil', '[tex]/amscd', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
+    paths: {pretext: "https://pretextbook.org/js/lib"},
+  },
+  startup: {
+    pageReady() {
+      return MathJax.startup.defaultPageReady().then(function () {
+      console.log("in ready function");
+      rsMathReady();
+      }
+    )}
+},
+};
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><link href="https://webwork-ptx.aimath.org/webwork2_files/js/apps/MathView/mathview.css" rel="stylesheet">
+<script src="https://pretextbook.org/js/0.13/pretext-webwork/2./pretext-webwork.js"></script><script src="https://webwork-ptx.aimath.org/webwork2_files/node_modules/iframe-resizer/js/iframeResizer.min.js"></script><script async="" src="https://cse.google.com/cse.js?cx=015103900096539427448:ngwuia10qci"></script><script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.13/pretext.js"></script><script>miniversion=0.674</script><script src="https://pretextbook.org/js/0.13/pretext_add_on.js?x=1"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
+</script><link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/pretext.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/pretext_add_on.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/banner_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/toc_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/knowls_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/style_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/colors_blue_grey.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/setcolors.css" rel="stylesheet" type="text/css">
+</head>
+<body class="pretext-book ignore-math has-toc has-sidebar-left">
+<a class="assistive" href="#content">Skip to main content</a><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\newcommand{\R}{\mathbb{R}}
+\newcommand{\va}{\mathbf{a}}
+\newcommand{\vb}{\mathbf{b}}
+\newcommand{\vc}{\mathbf{c}}
+\newcommand{\vC}{\mathbf{C}}
+\newcommand{\vd}{\mathbf{d}}
+\newcommand{\ve}{\mathbf{e}}
+\newcommand{\vi}{\mathbf{i}}
+\newcommand{\vj}{\mathbf{j}}
+\newcommand{\vk}{\mathbf{k}}
+\newcommand{\vn}{\mathbf{n}}
+\newcommand{\vm}{\mathbf{m}}
+\newcommand{\vr}{\mathbf{r}}
+\newcommand{\vs}{\mathbf{s}}
+\newcommand{\vu}{\mathbf{u}}
+\newcommand{\vv}{\mathbf{v}}
+\newcommand{\vw}{\mathbf{w}}
+\newcommand{\vx}{\mathbf{x}}
+\newcommand{\vy}{\mathbf{y}}
+\newcommand{\vz}{\mathbf{z}}
+\newcommand{\vzero}{\mathbf{0}}
+\newcommand{\vF}{\mathbf{F}}
+\newcommand{\vG}{\mathbf{G}}
+\newcommand{\vH}{\mathbf{H}}
+\newcommand{\vR}{\mathbf{R}}
+\newcommand{\vT}{\mathbf{T}}
+\newcommand{\vN}{\mathbf{N}}
+\newcommand{\vL}{\mathbf{L}}
+\newcommand{\vB}{\mathbf{B}}
+\newcommand{\vS}{\mathbf{S}}
+\newcommand{\proj}{\text{proj}}
+\newcommand{\comp}{\text{comp}}
+\newcommand{\nin}{}
+\newcommand{\vecmag}[1]{|#1|}
+\newcommand{\grad}{\nabla}
+\DeclareMathOperator{\curl}{curl}
+\DeclareMathOperator{\divg}{div}
+\newcommand{\lt}{&lt;}
+\newcommand{\gt}{&gt;}
+\newcommand{\amp}{&amp;}
+\definecolor{fillinmathshade}{gray}{0.9}
+\newcommand{\fillinmath}[1]{\mathchoice{\colorbox{fillinmathshade}{$\displaystyle     \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\textstyle        \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptstyle      \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptscriptstyle\phantom{\,#1\,}$}}}
+\)</span></div>
+<header id="masthead" class="smallbuttons"><div class="banner"><div class="container">
+<a id="logo-link" href=""></a><div class="title-container">
+<h1 class="heading"><a href="book-1.html"><span class="title">Active Calculus - Multivariable + Vector</span></a></h1>
+<p class="byline">Steve Schlicker, Mitchel T. Keller, Nicholas Long</p>
+</div>
+<div class="searchwrapper" role="search"><div class="gcse-search"></div></div>
+</div></div>
+<nav id="primary-navbar" class="navbar"><div class="container">
+<div class="navbar-top-buttons">
+<button class="sidebar-left-toggle-button button active" aria-label="Show or hide table of contents sidebar">Contents</button><div class="tree-nav toolbar toolbar-divisor-3">
+<a class="index-button toolbar-item button" href="index-1.html" title="Index">Index</a><span class="threebuttons"><a id="previousbutton" class="previous-button toolbar-item button" href="S-11-5-Double-Integrals-Polar.html" title="Previous">Prev</a><a id="upbutton" class="up-button button toolbar-item" href="C-11.html" title="Up">Up</a><a id="nextbutton" class="next-button button toolbar-item" href="S-11-7-Triple-Integrals.html" title="Next">Next</a></span>
+</div>
+</div>
+<div class="navbar-bottom-buttons toolbar toolbar-divisor-4">
+<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="S-11-5-Double-Integrals-Polar.html" title="Previous">Prev</a><a class="up-button button toolbar-item" href="C-11.html" title="Up">Up</a><a class="next-button button toolbar-item" href="S-11-7-Triple-Integrals.html" title="Next">Next</a>
+</div>
+</div></nav></header><div class="page">
+<div id="sidebar-left" class="sidebar" role="navigation"><div class="sidebar-content">
+<nav id="toc"><ul>
+<li class="link frontmatter">
+<a href="frontmatter.html" data-scroll="frontmatter" class="internal"><span class="title">Front Matter</span></a><ul>
+<li><a href="colophon-1.html" data-scroll="colophon-1" class="internal">Colophon</a></li>
+<li><a href="preface-1.html" data-scroll="preface-1" class="internal">Features of the Text</a></li>
+<li><a href="preface-2.html" data-scroll="preface-2" class="internal">Vector Calculus Preface</a></li>
+<li><a href="preface-3.html" data-scroll="preface-3" class="internal">Acknowledgments</a></li>
+<li><a href="preface-4.html" data-scroll="preface-4" class="internal">Active Calculus - Multivariable: our goals</a></li>
+<li><a href="preface-5.html" data-scroll="preface-5" class="internal">How to Use this Text</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="C-9.html" data-scroll="C-9" class="internal"><span class="codenumber">9</span> <span class="title">Multivariable and Vector Functions</span></a><ul>
+<li><a href="S-9-1-Functions.html" data-scroll="S-9-1-Functions" class="internal">Functions of Several Variables and Three Dimensional Space</a></li>
+<li><a href="S-9-2-Vectors.html" data-scroll="S-9-2-Vectors" class="internal">Vectors</a></li>
+<li><a href="S-9-3-Dot-Product.html" data-scroll="S-9-3-Dot-Product" class="internal">The Dot Product</a></li>
+<li><a href="S-9-4-Cross-Product.html" data-scroll="S-9-4-Cross-Product" class="internal">The Cross Product</a></li>
+<li><a href="S-9-5-Lines-Planes.html" data-scroll="S-9-5-Lines-Planes" class="internal">Lines and Planes in Space</a></li>
+<li><a href="S-9-6-Vector-Valued-Functions.html" data-scroll="S-9-6-Vector-Valued-Functions" class="internal">Vector-Valued Functions</a></li>
+<li><a href="S-9-7-Vector-Valued-Functions-Derivatives.html" data-scroll="S-9-7-Vector-Valued-Functions-Derivatives" class="internal">Derivatives and Integrals of Vector-Valued Functions</a></li>
+<li><a href="S-9-8-Arc-Length-Curvature.html" data-scroll="S-9-8-Arc-Length-Curvature" class="internal">Arc Length and Curvature</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="C-10.html" data-scroll="C-10" class="internal"><span class="codenumber">10</span> <span class="title">Derivatives of Multivariable Functions</span></a><ul>
+<li><a href="S-10-1-Limits.html" data-scroll="S-10-1-Limits" class="internal">Limits</a></li>
+<li><a href="S-10-2-First-Order-Partial-Derivatives.html" data-scroll="S-10-2-First-Order-Partial-Derivatives" class="internal">First-Order Partial Derivatives</a></li>
+<li><a href="S-10-3-Second-Order-Partial-Derivatives.html" data-scroll="S-10-3-Second-Order-Partial-Derivatives" class="internal">Second-Order Partial Derivatives</a></li>
+<li><a href="S-10-4-Linearization.html" data-scroll="S-10-4-Linearization" class="internal">Linearization: Tangent Planes and Differentials</a></li>
+<li><a href="S-10-5-Chain-Rule.html" data-scroll="S-10-5-Chain-Rule" class="internal">The Chain Rule</a></li>
+<li><a href="S-10-6-Directional-Derivative.html" data-scroll="S-10-6-Directional-Derivative" class="internal">Directional Derivatives and the Gradient</a></li>
+<li><a href="S-10-7-Optimization.html" data-scroll="S-10-7-Optimization" class="internal">Optimization</a></li>
+<li><a href="S-10-8-Lagrange-Multipliers.html" data-scroll="S-10-8-Lagrange-Multipliers" class="internal">Constrained Optimization: Lagrange Multipliers</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="C-11.html" data-scroll="C-11" class="internal"><span class="codenumber">11</span> <span class="title">Multiple Integrals</span></a><ul>
+<li><a href="S-11-1-Double-Integrals-Rectangles.html" data-scroll="S-11-1-Double-Integrals-Rectangles" class="internal">Double Riemann Sums and Double Integrals over Rectangles</a></li>
+<li><a href="S-11-2-Iterated-Integrals.html" data-scroll="S-11-2-Iterated-Integrals" class="internal">Iterated Integrals</a></li>
+<li><a href="S-11-3-Double-Integrals-General.html" data-scroll="S-11-3-Double-Integrals-General" class="internal">Double Integrals over General Regions</a></li>
+<li><a href="S-11-4-Double-Integrals-Applications.html" data-scroll="S-11-4-Double-Integrals-Applications" class="internal">Applications of Double Integrals</a></li>
+<li><a href="S-11-5-Double-Integrals-Polar.html" data-scroll="S-11-5-Double-Integrals-Polar" class="internal">Double Integrals in Polar Coordinates</a></li>
+<li><a href="S-11-6-Parametric-Surfaces-Surface-Area.html" data-scroll="S-11-6-Parametric-Surfaces-Surface-Area" class="active">Surfaces Defined Parametrically and Surface Area</a></li>
+<li><a href="S-11-7-Triple-Integrals.html" data-scroll="S-11-7-Triple-Integrals" class="internal">Triple Integrals</a></li>
+<li><a href="S-11-8-Triple-Integrals-Cylindrical-Spherical.html" data-scroll="S-11-8-Triple-Integrals-Cylindrical-Spherical" class="internal">Triple Integrals in Cylindrical and Spherical Coordinates</a></li>
+<li><a href="S-11-9-Change-of-Variable.html" data-scroll="S-11-9-Change-of-Variable" class="internal">Change of Variables</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="C_Vector.html" data-scroll="C_Vector" class="internal"><span class="codenumber">12</span> <span class="title">Vector Calculus</span></a><ul>
+<li><a href="S_Vector_VectorFields.html" data-scroll="S_Vector_VectorFields" class="internal">Vector Fields</a></li>
+<li><a href="S_Vector_IdeaLineIntegral.html" data-scroll="S_Vector_IdeaLineIntegral" class="internal">The Idea of a Line Integral</a></li>
+<li><a href="S_Vector_ParamLineIntegrals.html" data-scroll="S_Vector_ParamLineIntegrals" class="internal">Using Parametrizations to Calculate Line Integrals</a></li>
+<li><a href="S_ScalarLineIntegral.html" data-scroll="S_ScalarLineIntegral" class="internal">Line Integrals of Scalar Functions</a></li>
+<li><a href="S_Vector_FTCLI.html" data-scroll="S_Vector_FTCLI" class="internal">Path-Independent Vector Fields and the Fundamental Theorem of Calculus for Line Integrals</a></li>
+<li><a href="S_Vector_Div.html" data-scroll="S_Vector_Div" class="internal">The Divergence of a Vector Field</a></li>
+<li><a href="S_Vector_Curl.html" data-scroll="S_Vector_Curl" class="internal">The Curl of a Vector Field</a></li>
+<li><a href="S_Vector_GreensTheorem.html" data-scroll="S_Vector_GreensTheorem" class="internal">Green's Theorem</a></li>
+<li><a href="S_Vector_FluxInt.html" data-scroll="S_Vector_FluxInt" class="internal">Flux Integrals</a></li>
+<li><a href="S_ScalarSurfaceIntegral.html" data-scroll="S_ScalarSurfaceIntegral" class="internal">Surface Integrals of Scalar Valued Functions</a></li>
+<li><a href="S_Vector_StokesThm.html" data-scroll="S_Vector_StokesThm" class="internal">Stokes' Theorem</a></li>
+<li><a href="S_Vector_DivThm.html" data-scroll="S_Vector_DivThm" class="internal">The Divergence Theorem</a></li>
+</ul>
+</li>
+<li class="link backmatter"><a href="backmatter-1.html" data-scroll="backmatter-1" class="internal"><span class="title">Back Matter</span></a></li>
+<li class="link"><a href="index-1.html" data-scroll="index-1" class="internal"><span class="title">Index</span></a></li>
+</ul></nav><div class="extras"><nav><a class="pretext-link" href="https://pretextbook.org">Authored in PreTeXt</a><a href="https://www.mathjax.org"><img title="Powered by MathJax" src="https://www.mathjax.org/badge/badge.gif" alt="Powered by MathJax"></a></nav></div>
+</div></div>
+<main class="main"><div id="content" class="pretext-content">
+<section class="section" id="S-11-6-Parametric-Surfaces-Surface-Area"><h2 class="heading hide-type">
+<span class="type">Section</span> <span class="codenumber">11.6</span> <span class="title">Surfaces Defined Parametrically and Surface Area</span>
+</h2>
+<article class="objectives goal-like" id="objectives-22"><h3 class="heading"><span class="type">Motivating Questions</span></h3>
+<ul class="disc">
+<li id="li-1297"><p id="p-3730">What is a parameterization of a surface?</p></li>
+<li id="li-1298"><p id="p-3731">How do we find the surface area of a parametrically defined surface?</p></li>
+</ul></article><section class="introduction" id="introduction-22"><p id="p-3732">We have now studied at length how curves in space can be defined parametrically by functions of the form <span class="process-math">\(\vr(t) = \langle x(t), y(t), z(t) \rangle\text{,}\)</span> and surfaces can be represented by functions <span class="process-math">\(z = f(x,y)\text{.}\)</span> In what follows, we will see how we can also define surfaces parametrically. A one-dimensional curve in space results from a vector function that relies upon one parameter, so a two-dimensional surface naturally involves the use of two parameters. If <span class="process-math">\(x = x(s, t)\text{,}\)</span> <span class="process-math">\(y = y(s, t)\text{,}\)</span> and <span class="process-math">\(z = z(s, t)\)</span> are functions of independent parameters <span class="process-math">\(s\)</span> and <span class="process-math">\(t\text{,}\)</span> then the terminal points of all vectors of the form</p>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/PA_11_6.html">
+\begin{equation*}
+\vr(s, t) = x(s, t) \vi + y(s, t) \vj + z(s, t) \vk
+\end{equation*}
+</div>
+<p class="continuation">form a surface in space. The equations <span class="process-math">\(x=x(s,t)\text{,}\)</span> <span class="process-math">\(y=y(s,t)\text{,}\)</span> and <span class="process-math">\(z=z(s,t)\)</span> are the <em class="emphasis">parametric equations</em> for the surface, or a <em class="emphasis">parametrization</em> of the surface. In <a href="" class="xref" data-knowl="./knowl/PA_11_6.html" title="Preview Activity 11.6.1">Preview Activity 11.6.1</a> we investigate how to parameterize a cylinder and a cone.</p>
+<article class="exploration project-like" id="PA_11_6"><h3 class="heading">
+<span class="type">Preview Activity</span><span class="space"> </span><span class="codenumber">11.6.1</span><span class="period">.</span>
+</h3>
+<p id="p-3733">Recall the standard parameterization of the unit circle that is given by</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+x(t) = \cos(t) \ \ \ \ \text{ and }  \ \ \ \ y(t) = \sin(t),
+\end{equation*}
+</div>
+<p class="continuation">where <span class="process-math">\(0 \le t \le 2\pi\text{.}\)</span></p>
+<ol class="lower-alpha">
+<li id="li-1299"><p id="p-3734">Determine a parameterization of the circle of radius 1 in <span class="process-math">\(\R^3\)</span> that has its center at <span class="process-math">\((0,0,1)\)</span> and lies in the plane <span class="process-math">\(z=1\text{.}\)</span></p></li>
+<li id="li-1300"><p id="p-3735">Determine a parameterization of the circle of radius 1 in 3-space that has its center at <span class="process-math">\((0,0,-1)\)</span> and lies in the plane <span class="process-math">\(z=-1\text{.}\)</span></p></li>
+<li id="li-1301"><p id="p-3736">Determine a parameterization of the circle of radius 1 in 3-space that has its center at <span class="process-math">\((0,0,5)\)</span> and lies in the plane <span class="process-math">\(z=5\text{.}\)</span></p></li>
+<li id="li-1302">
+<p id="p-3737">Taking into account your responses in (a), (b), and (c), describe the graph that results from the set of parametric equations</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+x(s,t) = \cos(t), \ \ \ \ y(s,t) = \sin(t), \ \ \ \ \text{ and }  \ \ \ \ z(s,t) = s,
+\end{equation*}
+</div>
+<p class="continuation">where <span class="process-math">\(0 \le t \le 2\pi\)</span> and <span class="process-math">\(-5 \le s \le 5\text{.}\)</span>         Explain your thinking.</p>
+</li>
+<li id="li-1303"><p id="p-3738">Just as a cylinder can be viewed as a “stack” of circles of constant radius, a cone can be viewed as a stack of circles with varying radius.  Modify the parametrizations of the circles above in order to construct the parameterization of a cone whose vertex lies at the origin, whose base radius is 4, and whose height is 3, where the base of the cone lies in the plane <span class="process-math">\(z = 3\text{.}\)</span> Use appropriate technology to plot the parametric equations you develop. (Hint: The cross sections parallel to the <span class="process-math">\(xy\)</span>-plane are circles, with the radii varying linearly as <span class="process-math">\(z\)</span> increases.)</p></li>
+</ol></article></section><section class="subsection" id="subsection-89"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">11.6.1</span> <span class="title">Parametric Surfaces</span>
+</h3>
+<p id="p-3739">In a single-variable setting, any function may have its graph expressed parametrically. For instance, given <span class="process-math">\(y = g(x)\text{,}\)</span> by considering the parameterization <span class="process-math">\(\langle t, g(t) \rangle\)</span> (where <span class="process-math">\(t\)</span> belongs to the domain of <span class="process-math">\(g\)</span>), we generate the same curve. What is more important is that certain curves that are not functions may be represented parametrically; for instance, the circle (which cannot be represented by a single function) can be parameterized by <span class="process-math">\(\langle \cos(t), \sin(t) \rangle\text{,}\)</span> where <span class="process-math">\(0 \le t \le 2\pi\text{.}\)</span></p>
+<p id="p-3740">In the same way, in a two-variable setting, the surface <span class="process-math">\(z = f(x,y)\)</span> may be expressed parametrically by considering</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+\langle x(s,t), y(s,t), z(s,t) \rangle = \langle s, t, f(s,t) \rangle,
+\end{equation*}
+</div>
+<p class="continuation">where <span class="process-math">\((s,t)\)</span> varies over the entire domain of <span class="process-math">\(f\text{.}\)</span> Therefore, any familiar surface that we have studied so far can be generated as a parametric surface. But what is more powerful is that there are surfaces that cannot be generated by a single function <span class="process-math">\(z = f(x,y)\)</span> (such as the unit sphere), but that can be represented parametrically. We now consider an important example.</p>
+<article class="example example-like" id="ex_11_6_Torus"><h4 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">11.6.1</span><span class="period">.</span>
+</h4>
+<p id="p-3741">Consider the torus (or doughnut) shown in <a href="" class="xref" data-knowl="./knowl/F_11_6_torus.html" title="Figure 11.6.2">Figure 11.6.2</a>.</p>
+<figure class="figure figure-like" id="F_11_6_torus"><div class="image-box" style="width: 50%; margin-left: 25%; margin-right: 25%;"><img src="external/images/fig_11_6_torus.svg" role="img" class="contained"></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">11.6.2<span class="period">.</span></span><span class="space"> </span>A torus.</figcaption></figure><p id="p-3742">To find a parametrization of this torus, we recall our work in Preview <a href="" class="xref" data-knowl="./knowl/PA_11_6.html" title="Preview Activity 11.6.1">Activity 11.6.1</a>. There, we saw that a circle of radius <span class="process-math">\(r\)</span> that has its center at the point <span class="process-math">\((0,0,z_0)\)</span> and is contained in the horizontal plane <span class="process-math">\(z = z_0\text{,}\)</span> as shown in <a href="" class="xref" data-knowl="./knowl/F_11_6_revolve.html" title="Figure 11.6.3">Figure 11.6.3</a>, can be parametrized using the vector-valued function <span class="process-math">\(\vr\)</span> defined by</p>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/PA_11_6.html ./knowl/F_11_6_revolve.html">
+\begin{equation*}
+\vr(t) = r\cos(t)\vi + r\sin(t)\vj + z_0\vk
+\end{equation*}
+</div>
+<p class="continuation">where <span class="process-math">\(0\leq t\leq 2\pi\text{.}\)</span></p>
+<figure class="figure figure-like" id="F_11_6_revolve"><div class="image-box" style="width: 50%; margin-left: 25%; margin-right: 25%;"><img src="external/images/fig_11_6_revolve.svg" role="img" class="contained"></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">11.6.3<span class="period">.</span></span><span class="space"> </span>A circle in a horizontal plane centered at <span class="process-math">\((0,0,z_0)\text{.}\)</span></figcaption></figure><p id="p-3743">To obtain the torus in <a href="" class="xref" data-knowl="./knowl/F_11_6_torus.html" title="Figure 11.6.2">Figure 11.6.2</a>, we begin with a circle of radius <span class="process-math">\(a\)</span> in the <span class="process-math">\(xz\)</span>-plane centered at <span class="process-math">\((b,0)\text{,}\)</span> as shown on the left of <a href="" class="xref" data-knowl="./knowl/F_11_6_torus_revolve.html" title="Figure 11.6.4">Figure 11.6.4</a>. We may parametrize the points on this circle, using the parameter <span class="process-math">\(s\text{,}\)</span> by using the equations</p>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/F_11_6_torus.html ./knowl/F_11_6_torus_revolve.html">
+\begin{equation*}
+x(s) = b + a\cos(s)\ \mbox{and} \ 
+z(s) = a\sin(s),
+\end{equation*}
+</div>
+<p class="continuation">where <span class="process-math">\(0\leq s \leq 2\pi\text{.}\)</span></p>
+<figure class="figure figure-like" id="F_11_6_torus_revolve"><div class="sidebyside"><div class="sbsrow" style="margin-left:0%;margin-right:0%;">
+<div class="sbspanel top" style="width:50%;"><img src="external/images/fig_11_6_torus_cross.svg" role="img" class="contained"></div>
+<div class="sbspanel top" style="width:50%;"><img src="external/images/fig_11_6_torus_revolve.svg" role="img" class="contained"></div>
+</div></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">11.6.4<span class="period">.</span></span><span class="space"> </span>Revolving a circle to obtain a torus.</figcaption></figure><p id="p-3744">Let's focus our attention on one point on this circle, such as the indicated point, which has coordinates <span class="process-math">\((x(s), 0, z(s))\)</span> for a fixed value of the parameter <span class="process-math">\(s\text{.}\)</span> When this point is revolved about the <span class="process-math">\(z\)</span>-axis, we obtain a circle contained in a horizontal plane centered at <span class="process-math">\((0,0,z(s))\)</span> and having radius <span class="process-math">\(x(s)\text{,}\)</span> as shown on the right of <a href="" class="xref" data-knowl="./knowl/F_11_6_torus_revolve.html" title="Figure 11.6.4">Figure 11.6.4</a>. If we let <span class="process-math">\(t\)</span> be the new parameter that generates the circle for the rotation about the <span class="process-math">\(z\)</span>-axis, this circle may be parametrized by</p>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/F_11_6_torus_revolve.html">
+\begin{equation*}
+\vr(s,t) = x(s)\cos(t)\vi + x(s)\sin(t)\vj + z(s)\vk.
+\end{equation*}
+</div>
+<p id="p-3745">Now using our earlier parametric equations for <span class="process-math">\(x(s)\)</span> and <span class="process-math">\(z(s)\)</span> for the original smaller circle, we have an overall parameterization of the torus given by</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+\vr(s,t) =(b+a\cos(s))\cos(t)\vi + 
+(b+a\cos(s))\sin(t)\vj + 
+a\sin(s)\vk.
+\end{equation*}
+</div>
+<p id="p-3746">To trace out the entire torus, we require that the parameters vary through the values <span class="process-math">\(0\leq s\leq 2\pi\)</span> and <span class="process-math">\(0\leq t\leq 2\pi\text{.}\)</span></p></article><article class="activity project-like" id="A_11_6_10"><h4 class="heading">
+<span class="type">Activity</span><span class="space"> </span><span class="codenumber">11.6.2</span><span class="period">.</span>
+</h4>
+<p id="p-3747">In this activity, we seek a parametrization of the sphere of radius <span class="process-math">\(R\)</span> centered at the origin, as shown on the left in <a href="" class="xref" data-knowl="./knowl/F_11_6_sphere.html" title="Figure 11.6.5">Figure 11.6.5</a>. Notice that this sphere may be obtained by revolving a half-circle contained in the <span class="process-math">\(xz\)</span>-plane about the <span class="process-math">\(z\)</span>-axis, as shown on the right.</p>
+<figure class="figure figure-like" id="F_11_6_sphere"><div class="sidebyside"><div class="sbsrow" style="margin-left:0%;margin-right:0%;">
+<div class="sbspanel top" style="width:50%;"><img src="external/images/fig_11_6_sphere.svg" role="img" class="contained"></div>
+<div class="sbspanel top" style="width:50%;"><img src="external/images/fig_11_6_sphere_half.svg" role="img" class="contained"></div>
+</div></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">11.6.5<span class="period">.</span></span><span class="space"> </span>A sphere obtained by revolving a half-circle.</figcaption></figure><ol class="lower-alpha">
+<li id="li-1304">
+<p id="p-3748">Begin by writing a parametrization of this half-circle using the parameter <span class="process-math">\(s\text{:}\)</span></p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+x(s) = \ldots \ \ \ \ \ \ \ \ \ 
+z(s) = \ldots.
+\end{equation*}
+</div>
+<p class="continuation">Be sure to state the domain of the parameter <span class="process-math">\(s\text{.}\)</span></p>
+</li>
+<li id="li-1305"><p id="p-3749">By revolving the points on this half-circle about the <span class="process-math">\(z\)</span>-axis, obtain a parametrization <span class="process-math">\(\vr(s,t)\)</span> of the points on the sphere of radius <span class="process-math">\(R\text{.}\)</span>  Be sure to include the domain of both parameters <span class="process-math">\(s\)</span> and <span class="process-math">\(t\text{.}\)</span> (Hint: What is the radius of the circle obtained when revolving a point on the half-circle around the <span class="process-math">\(z\)</span> axis?)</p></li>
+<li id="li-1306"><p id="p-3750">Draw the surface defined by your parameterization with appropriate technology.</p></li>
+</ol></article></section><section class="subsection" id="SS-11-6-2-Surface-Area-Parametrically-Defined-Surfaces"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">11.6.2</span> <span class="title">The Surface Area of Parametrically Defined Surfaces</span>
+</h3>
+<p id="p-3751">Recall that a differentiable function is locally linear — that is, if we zoom in on the surface around a point, the surface looks like its tangent plane. We now exploit this idea in order to determine the surface area generated by a parametrization <span class="process-math">\(\langle x(s,t), y(s,t), z(s,t) \rangle\text{.}\)</span> The basic idea is a familiar one: we will subdivide the surface into small pieces, in the approximate shape of small parallelograms, and thus estimate the entire the surface area by adding the areas of these approximation parallelograms. Ultimately, we use an integral to sum these approximations and determine the exact surface area.</p>
+<p id="p-3752">Let</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+\vr(s,t) = x(s,t) \vi + y(s,t) \vj + z(s,t) \vk
+\end{equation*}
+</div>
+<p class="continuation">define a surface over a rectangular domain <span class="process-math">\(a \leq s \leq b\)</span> and <span class="process-math">\(c \leq t \leq d\text{.}\)</span> As a function of two variables, <span class="process-math">\(s\)</span> and <span class="process-math">\(t\text{,}\)</span> it is natural to consider the two partial derivatives of the vector-valued function <span class="process-math">\(\vr\text{,}\)</span> which we define by</p>
+<div class="displaymath process-math" data-contains-math-knowls="" id="md-37">
+\begin{align*}
+\vr_s(s,t) \amp = x_s(s,t) \vi + y_s(s,t) \vj + z_s(s,t) \vk\\
+\vr_t(s,t) \amp = x_t(s,t) \vi + y_t(s,t) \vj + z_t(s,t) \vk.
+\end{align*}
+</div>
+<p id="p-3753">In the usual way, we slice the domain into small rectangles. In particular, we partition the interval <span class="process-math">\([a,b]\)</span> into <span class="process-math">\(m\)</span> subintervals of length <span class="process-math">\(\Delta s = \frac{b-a}{n}\)</span> and let <span class="process-math">\(s_0\text{,}\)</span> <span class="process-math">\(s_1\text{,}\)</span> <span class="process-math">\(\ldots\text{,}\)</span> <span class="process-math">\(s_m\)</span> be the endpoints of these subintervals, where <span class="process-math">\(a = s_0\lt s_1\lt s_2 \lt  \cdots \lt  s_m = b\text{.}\)</span> Also partition the interval <span class="process-math">\([c,d]\)</span> into <span class="process-math">\(n\)</span> subintervals of equal length <span class="process-math">\(\Delta t = \frac{d-c}{n}\)</span> and let <span class="process-math">\(t_0\text{,}\)</span> <span class="process-math">\(t_1\text{,}\)</span> <span class="process-math">\(\ldots\text{,}\)</span> <span class="process-math">\(t_n\)</span> be the endpoints of these subintervals, where <span class="process-math">\(c = t_0\lt t_1\lt t_2 \lt  \cdots \lt  t_n = d\text{.}\)</span> These two partitions create a partition of the rectangle <span class="process-math">\(R = [a,b] \times [c,d]\)</span> in <span class="process-math">\(st\)</span>-coordinates into <span class="process-math">\(mn\)</span> sub-rectangles <span class="process-math">\(R_{ij}\)</span> with opposite vertices <span class="process-math">\((s_{i-1},t_{j-1})\)</span> and <span class="process-math">\((s_i, t_j)\)</span> for <span class="process-math">\(i\)</span> between <span class="process-math">\(1\)</span> and <span class="process-math">\(m\)</span> and <span class="process-math">\(j\)</span> between <span class="process-math">\(1\)</span> and <span class="process-math">\(n\text{.}\)</span> These rectangles all have equal area <span class="process-math">\(\Delta A = \Delta s \cdot \Delta t\text{.}\)</span></p>
+<p id="p-3754">Now we want to think about the small piece of area on the surface itself that lies above one of these small rectangles in the domain. Observe that if we increase <span class="process-math">\(s\)</span> by a small amount <span class="process-math">\(\Delta s\)</span> from the point <span class="process-math">\((s_{i-1},t_{j-1})\)</span> in the domain, then <span class="process-math">\(\vr\)</span> changes by approximately <span class="process-math">\(\vr_s(s_{i-1},t_{j-1}) \Delta s\text{.}\)</span> Similarly, if we increase <span class="process-math">\(t\)</span> by a small amount <span class="process-math">\(\Delta t\)</span> from the point <span class="process-math">\((s_{i-1},t_{j-1})\text{,}\)</span> then <span class="process-math">\(\vr\)</span> changes by approximately <span class="process-math">\(\vr_t(s_{i-1},t_{j-1}) \Delta t\text{.}\)</span> So we can approximate the surface defined by <span class="process-math">\(\vr\)</span> on the <span class="process-math">\(st\)</span>-rectangle <span class="process-math">\([s_{i-1},s_i] \times [t_{j-1}, t_{j}]\)</span> with the parallelogram determined by the vectors <span class="process-math">\(\vr_s(s_{i-1},t_{j-1}) \Delta
+s\)</span> and <span class="process-math">\(\vr_t(s_{i-1},t_{j-1}) \Delta t\text{,}\)</span> as seen in <a href="" class="xref" data-knowl="./knowl/F_11_6_approx.html" title="Figure 11.6.6">Figure 11.6.6</a>.</p>
+<figure class="figure figure-like" id="F_11_6_approx"><div class="image-box" style="width: 50%; margin-left: 25%; margin-right: 25%;"><img src="external/images/fig_11_6_approx.svg" role="img" class="contained"></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">11.6.6<span class="period">.</span></span><span class="space"> </span>Approximation surface area with a parallelogram.</figcaption></figure><p id="p-3755">Say that the small parallelogram has area <span class="process-math">\(S_{ij}\text{.}\)</span> If we can find its area, then all that remains is to sum the areas of all of the generated parallelograms and take a limit. Recall from our earlier work in the course that given two vectors <span class="process-math">\(\vu\)</span> and <span class="process-math">\(\vv\text{,}\)</span> the area of the parallelogram spanned by <span class="process-math">\(\vu\)</span> and <span class="process-math">\(\vv\)</span> is given by the magnitude of their cross product, <span class="process-math">\(| \vu \times \vv|\text{.}\)</span> In the present context, it follows that the area, <span class="process-math">\(S_{ij}\text{,}\)</span> of the parallelogram determined by the vectors <span class="process-math">\(\vr_s(s_{i-1},t_{j-1}) \Delta s\)</span> and <span class="process-math">\(\vr_t(s_{i-1},t_{j-1}) \Delta t\)</span> is</p>
+<div class="displaymath process-math" data-contains-math-knowls="" id="mdn-3">
+\begin{align}
+S_{ij} \amp = |(\vr_s(s_{i-1},t_{j-1}) \Delta s) \times (\vr_t(s_{i-1},t_{j-1}) \Delta t)| \notag\\
+\amp = |\vr_s(s_{i-1},t_{j-1}) \times \vr_t(s_{i-1},t_{j-1})| \Delta s \Delta t,\tag{11.6.1}
+\end{align}
+</div>
+<p class="continuation">where the latter equality holds from standard properties of the cross product and length.</p>
+<p id="p-3756">We sum the surface area approximations from Equation <a href="" class="xref" data-knowl="./knowl/eq_11_6_parallelogram_area.html" title="Equation 11.6.1">(11.6.1)</a> over all sub-rectangles to obtain an estimate for the total surface area, <span class="process-math">\(S\text{,}\)</span> given by</p>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/eq_11_6_parallelogram_area.html">
+\begin{equation*}
+S \approx \sum_{i=1}^m \sum_{j=1}^n |\vr_s(s_{i-1},t_{j-1}) \times \vr_t(s_{i-1},t_{j-1})| \Delta s \Delta t.
+\end{equation*}
+</div>
+<p id="p-3757">Taking the limit as <span class="process-math">\(m, n \to \infty\)</span> shows that the surface area of the surface defined by <span class="process-math">\(\vr\)</span> over the domain <span class="process-math">\(D\)</span> is given as follows.</p>
+<article class="assemblage assemblage-like" id="Surface-area"><h4 class="heading"><span class="title">Surface area.</span></h4>
+<p id="p-3758">Let <span class="process-math">\(\vr(s,t) = \langle x(s,t), y(s,t), z(s,t) \rangle\)</span> be a parameterization of a smooth surface over a domain <span class="process-math">\(D\text{.}\)</span> The <em class="emphasis">area of the surface</em> defined by <span class="process-math">\(\vr\)</span> on <span class="process-math">\(D\)</span> is given by</p>
+<div class="displaymath process-math" data-contains-math-knowls="" id="E_surface_area">
+\begin{equation}
+S = \iint_D |\vr_s \times \vr_t | \ dA.\tag{11.6.2}
+\end{equation}
+</div></article><article class="activity project-like" id="A_11_6_4"><h4 class="heading">
+<span class="type">Activity</span><span class="space"> </span><span class="codenumber">11.6.3</span><span class="period">.</span>
+</h4>
+<p id="p-3759">Consider the cylinder with radius <span class="process-math">\(a\)</span> and height <span class="process-math">\(h\)</span> defined parametrically by</p>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/F_11_6_SA_cylinder_ex.html">
+\begin{equation*}
+\vr(s,t) = a\cos(s) \vi + a\sin(s) \vj + t \vk
+\end{equation*}
+</div>
+<p class="continuation">for <span class="process-math">\(0 \leq s \leq 2\pi\)</span> and <span class="process-math">\(0 \leq t \leq h\text{,}\)</span> as shown in <a href="" class="xref" data-knowl="./knowl/F_11_6_SA_cylinder_ex.html" title="Figure 11.6.7">Figure 11.6.7</a>.</p>
+<figure class="figure figure-like" id="F_11_6_SA_cylinder_ex"><div class="image-box" style="width: 50%; margin-left: 25%; margin-right: 25%;"><img src="external/images/fig_11_6_cylinder.svg" role="img" class="contained"></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">11.6.7<span class="period">.</span></span><span class="space"> </span>A cylinder.</figcaption></figure><ol class="lower-alpha">
+<li id="li-1307"><p id="p-3760">Set up an iterated integral to determine the surface area of this cylinder.</p></li>
+<li id="li-1308"><p id="p-3761">Evaluate the iterated integral.</p></li>
+<li id="li-1309"><p id="p-3762">Recall that one way to think about the surface area of a cylinder is to cut the cylinder horizontally and find the perimeter of the resulting cross sectional circle, then multiply by the height.  Calculate the surface area of the given cylinder using this alternate approach, and compare your work in (b).</p></li>
+</ol></article><p id="p-3763">As we noted earlier, we can take any surface <span class="process-math">\(z = f(x,y)\)</span> and generate a corresponding parameterization for the surface by writing <span class="process-math">\(\langle s, t, f(s,t) \rangle\text{.}\)</span> Hence, we can use our recent work with parametrically defined surfaces to find the surface area that is generated by a function <span class="process-math">\(f = f(x,y)\)</span> over a given domain.</p>
+<article class="activity project-like" id="A_11_6_6"><h4 class="heading">
+<span class="type">Activity</span><span class="space"> </span><span class="codenumber">11.6.4</span><span class="period">.</span>
+</h4>
+<p id="p-3764">Let <span class="process-math">\(z = f(x,y)\)</span> define a smooth surface, and consider the corresponding parameterization <span class="process-math">\(\vr(s,t) = \langle s, t, f(s,t) \rangle\text{.}\)</span></p>
+<ol class="lower-alpha">
+<li id="li-1310">
+<p id="p-3765">Let <span class="process-math">\(D\)</span> be a region in the domain of <span class="process-math">\(f\text{.}\)</span>  Using <a href="" class="xref" data-knowl="./knowl/E_surface_area.html" title="Equation 11.6.2">Equation (11.6.2)</a>, show that the area, <span class="process-math">\(S\text{,}\)</span> of the surface defined by the graph of <span class="process-math">\(f\)</span> over <span class="process-math">\(D\)</span> is</p>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/E_surface_area.html">
+\begin{equation*}
+S = \iint_D \sqrt{\left(f_x(x,y)\right)^2 + \left(f_y(x,y)\right)^2 + 1} \ dA.
+\end{equation*}
+</div>
+</li>
+<li id="li-1311"><p id="p-3766">Use the formula developed in (a) to calculate the area of the surface defined by <span class="process-math">\(f(x,y) = \sqrt{4-x^2}\)</span> over the rectangle <span class="process-math">\(D = [-2,2] \times [0,3]\text{.}\)</span></p></li>
+<li id="li-1312"><p id="p-3767">Observe that the surface of the solid describe in (b) is half of a circular cylinder.  Use the standard formula for the surface area of a cylinder to calculate the surface area in a different way, and compare your result from (b).</p></li>
+</ol></article></section><section class="subsection" id="subsection-91"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">11.6.3</span> <span class="title">Summary</span>
+</h3>
+<ul class="disc">
+<li id="li-1313"><p id="p-3768">A parameterization of a curve describes the coordinates of a point on the curve in terms of a single parameter <span class="process-math">\(t\text{,}\)</span> while a parameterization of a surface describes the coordinates of points on the surface in terms of two independent parameters.</p></li>
+<li id="li-1314">
+<p id="p-3769">If <span class="process-math">\(\vr(s,t) = \langle x(s,t), y(s,t), z(s,t) \rangle\)</span> describes a smooth surface in 3-space on a domain <span class="process-math">\(D\text{,}\)</span> then the area, <span class="process-math">\(S\text{,}\)</span> of that surface is given by</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+S = \iint_D |\vr_s \times \vr_t| \ dA.
+\end{equation*}
+</div>
+</li>
+</ul></section><section class="exercises" id="exercises-22"><h3 class="heading hide-type">
+<span class="type">Exercises</span> <span class="codenumber">11.6.4</span> <span class="title">Exercises</span>
+</h3>
+<article class="exercise exercise-like" id="ex-11-6-WW-cone-parameterization"><h4 class="heading"><span class="codenumber">1<span class="period">.</span></span></h4>
+<div id="webwork-236" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="236" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Michigan/Chap17Sec5/Q31.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-contents">
+<p id="p-3770">Consider the cone shown below.</p>
+<div class="image-box" style="width: 38.3333333333333%; margin-left: 30.8333333333333%; margin-right: 30.8333333333333%;"><img src="generated/webwork%5Cimages%5Cwebwork-236-image-1.png" class="contained"></div>
+<p id="p-3771">If the height of the cone is 2 and the base radius is 3, write a parameterization of the cone in terms of <span class="process-math">\(r = s\)</span> and <span class="process-math">\(\theta = t\text{.}\)</span></p>
+<p id="p-3772"><span class="process-math">\(x(s,t) =\)</span> <span class="fillin underline" role="img" aria-label="45-character blank" style="width: 20.4545454545455em;"></span>,</p>
+<p id="p-3773"><span class="process-math">\(y(s,t) =\)</span> <span class="fillin underline" role="img" aria-label="45-character blank" style="width: 20.4545454545455em;"></span>, and</p>
+<p id="p-3774"><span class="process-math">\(z(s,t) =\)</span> <span class="fillin underline" role="img" aria-label="45-character blank" style="width: 20.4545454545455em;"></span>, with</p>
+<p id="p-3775"><span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span> <span class="process-math">\(\le s\le\)</span> <span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span> and</p>
+<p id="p-3776"><span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span> <span class="process-math">\(\le t\le\)</span> <span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>.</p>
+</div>
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-236')">Activate</button></div>
+</div></article><article class="exercise exercise-like" id="ex-11-6-WW-plane-parameterization"><h4 class="heading"><span class="codenumber">2<span class="period">.</span></span></h4>
+<div id="webwork-237" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="237" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Michigan/Chap17Sec5/Q17.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-contents">
+<p id="p-3784">Parameterize the plane through the point <span class="process-math">\((-3, 2, 1)\)</span> with the normal vector <span class="process-math">\(\left\lt 3,2,3\right&gt;\)</span></p>
+<p id="p-3785"><span class="process-math">\(\vec r(s,t) =\)</span> <span class="fillin underline" role="img" aria-label="55-character blank" style="width: 25em;"></span></p>
+<p id="p-3786"><em class="emphasis">(Use <span class="process-math">\(s\)</span> and <span class="process-math">\(t\)</span> for the parameters in your parameterization, and <em class="alert">enter your vector as a single vector, with angle brackets</em>: e.g., as <em class="alert">\lt 1 + s + t, s - t, 3 - t \gt</em>.)</em></p>
+</div>
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-237')">Activate</button></div>
+</div></article><article class="exercise exercise-like" id="ex-11-6-WW-vase-parameterization"><h4 class="heading"><span class="codenumber">3<span class="period">.</span></span></h4>
+<div id="webwork-238" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="238" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Michigan/Chap17Sec5/Q33.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-contents">
+<p id="p-3788">Parameterize a vase formed by rotating the curve <span class="process-math">\(z= 10 \sqrt{x-2},\,2\leq x\leq 4\text{,}\)</span> around the <span class="process-math">\(z\)</span>-axis. Use <span class="process-math">\(s\)</span> and <span class="process-math">\(t\)</span> for your parameters.</p>
+<p id="p-3789"><span class="process-math">\(x(s,t) =\)</span> <span class="fillin underline" role="img" aria-label="45-character blank" style="width: 20.4545454545455em;"></span>,</p>
+<p id="p-3790"><span class="process-math">\(y(s,t) =\)</span> <span class="fillin underline" role="img" aria-label="45-character blank" style="width: 20.4545454545455em;"></span>, and</p>
+<p id="p-3791"><span class="process-math">\(z(s,t) =\)</span> <span class="fillin underline" role="img" aria-label="45-character blank" style="width: 20.4545454545455em;"></span>, with</p>
+<p id="p-3792"><span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span> <span class="process-math">\(\le s\le\)</span> <span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span> and</p>
+<p id="p-3793"><span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span> <span class="process-math">\(\le t\le\)</span> <span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span></p>
+</div>
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-238')">Activate</button></div>
+</div></article><article class="exercise exercise-like" id="ex-11-6-WW-sphere-parameterization"><h4 class="heading"><span class="codenumber">4<span class="period">.</span></span></h4>
+<div id="webwork-239" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="239" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Michigan/Chap17Sec5/Q27.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-contents">
+<p id="p-3801">Find parametric equations for the sphere centered at the origin and with radius 6.  Use the parameters <span class="process-math">\(s\)</span> and <span class="process-math">\(t\)</span> in your answer.</p>
+<p id="p-3802"><span class="process-math">\(x(s,t) =\)</span> <span class="fillin underline" role="img" aria-label="45-character blank" style="width: 20.4545454545455em;"></span>,</p>
+<p id="p-3803"><span class="process-math">\(y(s,t) =\)</span> <span class="fillin underline" role="img" aria-label="45-character blank" style="width: 20.4545454545455em;"></span>, and</p>
+<p id="p-3804"><span class="process-math">\(z(s,t) =\)</span> <span class="fillin underline" role="img" aria-label="45-character blank" style="width: 20.4545454545455em;"></span>, where</p>
+<p id="p-3805"><span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span> <span class="process-math">\(\le s\le\)</span> <span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span> and</p>
+<p id="p-3806"><span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span> <span class="process-math">\(\le t\le\)</span> <span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>.</p>
+</div>
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-239')">Activate</button></div>
+</div></article><article class="exercise exercise-like" id="ex-11-6-WW-plane-surface-area"><h4 class="heading"><span class="codenumber">5<span class="period">.</span></span></h4>
+<div id="webwork-240" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="240" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/272/setStewart16_6/problem_2.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-contents">
+<p id="p-3814">Find the surface area of that part of the plane <span class="process-math">\(7 x + 8 y + z = 8\)</span> that lies inside the elliptic cylinder <span class="process-math">\(\frac{x^2}{81} + \frac{y^2}{64} =1\)</span></p>
+<p id="p-3815">Surface Area = <span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span></p>
+</div>
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-240')">Activate</button></div>
+</div></article><article class="exercise exercise-like" id="ex-11-6-WW-paraboloid-surface-area"><h4 class="heading"><span class="codenumber">6<span class="period">.</span></span></h4>
+<div id="webwork-241" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="241" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/maCalcDB/setVMultIntegrals4Surface/ur_vc_10_2.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-contents">
+<p id="p-3817">Find the surface area of the part of the circular paraboloid <span class="process-math">\(z = x^{2} + y^{2}\)</span> that lies inside the cylinder <span class="process-math">\(x^{2} + y^{2} = 16\text{.}\)</span></p>
+<p id="p-3818"><span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span></p>
+</div>
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-241')">Activate</button></div>
+</div></article><article class="exercise exercise-like" id="ex-11-6-WW-surface-area-plane-inside-cylinder"><h4 class="heading"><span class="codenumber">7<span class="period">.</span></span></h4>
+<div id="webwork-242" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="242" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/maCalcDB/setVMultIntegrals4Surface/ur_vc_10_1.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-contents">
+<p id="p-3820">Find the surface area of the part of the plane <span class="process-math">\(4 x + 5 y + z = 4\)</span> that lies inside the cylinder <span class="process-math">\(x^{2} + y^{2} = 1\text{.}\)</span></p>
+<p id="p-3821"><span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span></p>
+</div>
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-242')">Activate</button></div>
+</div></article><article class="exercise exercise-like" id="ex-11-6-WW-surface-area-set-up"><h4 class="heading"><span class="codenumber">8<span class="period">.</span></span></h4>
+<div id="webwork-243" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="243" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Dartmouth/setMTWCh6S3/problem_1.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-contents">
+<p id="p-3823">Write down the iterated integral which expresses the surface area of <span class="process-math">\(z = y^{8}\cos^{6}x\)</span> over the triangle with vertices (-1,1), (1,1), (0,2):</p>
+<div class="displaymath process-math" data-contains-math-knowls="" id="p-3824">
+\begin{equation*}
+\int_a^b\int_{f(y)}^{g(y)} \sqrt{h(x,y)}\,dx dy
+\end{equation*}
+</div>
+<p id="p-3825"><span class="process-math">\(a =\)</span> <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span></p>
+<p id="p-3826"><span class="process-math">\(b =\)</span> <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span></p>
+<p id="p-3827"><span class="process-math">\(f(y) =\)</span> <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span></p>
+<p id="p-3828"><span class="process-math">\(g(y) =\)</span> <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span></p>
+<p id="p-3829"><span class="process-math">\(h(x,y) =\)</span> <span class="fillin underline" role="img" aria-label="60-character blank" style="width: 27.2727272727273em;"></span></p>
+</div>
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-243')">Activate</button></div>
+</div></article><article class="exercise exercise-like" id="ex-11-6-WW-surface-area-post"><h4 class="heading"><span class="codenumber">9<span class="period">.</span></span></h4>
+<div id="webwork-244" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="244" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Michigan/Chap17Sec5/Q25.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-contents">
+<p id="p-3835">A decorative oak post is 24 inches long and is turned on a lathe so that its profile is sinusoidal as shown in the figure below.</p>
+<div class="image-box" style="width: 28.8333333333333%; margin-left: 35.5833333333333%; margin-right: 35.5833333333333%;"><img src="generated/webwork%5Cimages%5Cwebwork-244-image-1.png" class="contained"></div>
+<p id="p-3836">In this figure, <span class="process-math">\(r_0 = 3\)</span> inches and <span class="process-math">\(a_0 = 6\)</span> inches.</p>
+<p id="p-3837"><em class="alert">(a)</em> Describe the surface of the post parametrically using cylindrical coordinates and the parameters <span class="process-math">\(s\)</span> and <span class="process-math">\(t\text{.}\)</span></p>
+<p id="p-3838"><span class="process-math">\(x(s,t) =\)</span> <span class="fillin underline" role="img" aria-label="45-character blank" style="width: 20.4545454545455em;"></span>,</p>
+<p id="p-3839"><span class="process-math">\(y(s,t) =\)</span> <span class="fillin underline" role="img" aria-label="45-character blank" style="width: 20.4545454545455em;"></span>, and</p>
+<p id="p-3840"><span class="process-math">\(z(s,t) =\)</span> <span class="fillin underline" role="img" aria-label="45-character blank" style="width: 20.4545454545455em;"></span>, where</p>
+<p id="p-3841"><span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span> <span class="process-math">\(\le s\le\)</span> <span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span> and</p>
+<p id="p-3842"><span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span> <span class="process-math">\(\le t\le\)</span> <span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>.</p>
+<p id="p-3843"><em class="alert">(b)</em> Find the volume of the post.</p>
+<p id="p-3844">volume = <span class="fillin underline" role="img" aria-label="45-character blank" style="width: 20.4545454545455em;"></span></p>
+<p id="p-3845"><em class="emphasis">(Include <a class="external" href="/webwork2_files/helpFiles/Units.html" target="_blank">units</a><a href="" data-knowl="" class="id-ref fn-knowl original" data-refid="hk-fn-22" id="fn-22"><sup> 1 </sup></a>.)</em></p>
+</div>
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-244')">Activate</button></div>
+</div></article><article class="exercise exercise-like" id="exercise-344"><h4 class="heading"><span class="codenumber">10<span class="period">.</span></span></h4>
+<p id="p-3854">Consider the ellipsoid given by the equation</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+\frac{x^2}{16} + \frac{y^2}{25} + \frac{z^2}{9} = 1.
+\end{equation*}
+</div>
+<p id="p-3855">In <a href="" class="xref" data-knowl="./knowl/A_11_6_10.html" title="Activity 11.6.2">Activity 11.6.2</a>, we found that a parameterization of the sphere <span class="process-math">\(S\)</span> of radius <span class="process-math">\(R\)</span> centered at the origin is</p>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/A_11_6_10.html">
+\begin{equation*}
+x(r,s) = R\cos(s) \cos(t), \ y(s,t) = R \cos(s) \sin(t), \ \text{ and }  \ z(s,t) = R\sin(s)
+\end{equation*}
+</div>
+<p class="continuation">for <span class="process-math">\(-\frac{\pi}{2} \leq s \leq \frac{\pi}{2}\)</span> and <span class="process-math">\(0 \leq t \leq 2\pi\text{.}\)</span></p>
+<ol class="lower-alpha">
+<li id="li-1315"><p id="p-3856">Let <span class="process-math">\((x,y,z)\)</span> be a point on the ellipsoid and let <span class="process-math">\(X = \frac{x}{4}\text{,}\)</span> <span class="process-math">\(Y = \frac{y}{5}\text{,}\)</span> and <span class="process-math">\(Z = \frac{z}{3}\text{.}\)</span> Show that <span class="process-math">\((X,Y,Z)\)</span> lies on the sphere <span class="process-math">\(S\text{.}\)</span> Hence, find a parameterization of <span class="process-math">\(S\)</span> in terms of <span class="process-math">\(X\text{,}\)</span> <span class="process-math">\(Y\text{,}\)</span> and <span class="process-math">\(Z\)</span> as functions of <span class="process-math">\(s\)</span> and <span class="process-math">\(t\text{.}\)</span></p></li>
+<li id="li-1316"><p id="p-3857">Use the result of part (a) to find a parameterization of the ellipse in terms of <span class="process-math">\(x\text{,}\)</span> <span class="process-math">\(y\text{,}\)</span> and <span class="process-math">\(z\)</span> as functions of <span class="process-math">\(s\)</span> and <span class="process-math">\(t\text{.}\)</span> Check your parametrization by substituting <span class="process-math">\(x\text{,}\)</span> <span class="process-math">\(y\text{,}\)</span> and <span class="process-math">\(z\)</span> into the equation of the ellipsoid. Then check your work by plotting the surface defined by your parameterization.</p></li>
+</ol></article><article class="exercise exercise-like" id="exercise-345"><h4 class="heading"><span class="codenumber">11<span class="period">.</span></span></h4>
+<p id="p-3858">In this exercise, we explore how to use a parametrization and iterated integral to determine the surface area of a sphere.</p>
+<ol class="lower-alpha">
+<li id="li-1317"><p id="p-3859">Set up an iterated integral whose value is the portion of the surface area of a sphere of radius <span class="process-math">\(R\)</span> that lies in the first octant (see the parameterization you developed in <a href="" class="xref" data-knowl="./knowl/A_11_6_10.html" title="Activity 11.6.2">Activity 11.6.2</a>).</p></li>
+<li id="li-1318"><p id="p-3860">Then, evaluate the integral to calculate the surface area of this portion of the sphere.</p></li>
+<li id="li-1319"><p id="p-3861">By what constant must you multiply the value determined in (b) in order to find the total surface area of the entire sphere.</p></li>
+<li id="li-1320"><p id="p-3862">Finally, compare your result to the standard formula for the surface area of sphere.</p></li>
+</ol></article><article class="exercise exercise-like" id="exercise-346"><h4 class="heading"><span class="codenumber">12<span class="period">.</span></span></h4>
+<p id="p-3863">Consider the plane generated by <span class="process-math">\(z = f(x,y) = 24 - 2x - 3y\)</span> over the region <span class="process-math">\(D = [0,2]\times[0,3]\text{.}\)</span></p>
+<ol class="lower-alpha">
+<li id="li-1321"><p id="p-3864">Sketch a picture of the overall solid generated by the plane over the given domain.</p></li>
+<li id="li-1322"><p id="p-3865">Determine a parameterization <span class="process-math">\(\vr(s,t)\)</span> for the plane over the domain <span class="process-math">\(D\text{.}\)</span></p></li>
+<li id="li-1323"><p id="p-3866">Use <a href="" class="xref" data-knowl="./knowl/E_surface_area.html" title="Equation 11.6.2">Equation (11.6.2)</a> to determine the surface area generated by <span class="process-math">\(f\)</span> over the domain <span class="process-math">\(D\text{.}\)</span></p></li>
+<li id="li-1324"><p id="p-3867">Observe that the vector <span class="process-math">\(\vu = \langle 2, 0, -4 \rangle\)</span> points from <span class="process-math">\((0,0,24)\)</span> to <span class="process-math">\((2,0,20)\)</span> along one side of the surface generated by the plane <span class="process-math">\(f\)</span> over <span class="process-math">\(D\text{.}\)</span>  Find the vector <span class="process-math">\(\vv\)</span> such that <span class="process-math">\(\vu\)</span> and <span class="process-math">\(\vv\)</span> together span the parallelogram that represents the surface defined by <span class="process-math">\(f\)</span> over <span class="process-math">\(D\text{,}\)</span> and hence compute <span class="process-math">\(| \vu \times \vv |\text{.}\)</span>  What do you observe about the value you find?</p></li>
+</ol></article><article class="exercise exercise-like" id="exercise-347"><h4 class="heading"><span class="codenumber">13<span class="period">.</span></span></h4>
+<p id="p-3868">A cone with base radius <span class="process-math">\(a\)</span> and height <span class="process-math">\(h\)</span> can be realized as the surface defined by <span class="process-math">\(z = \frac{h}{a} \sqrt{x^2+y^2}\text{,}\)</span> where <span class="process-math">\(a\)</span> and <span class="process-math">\(h\)</span> are positive.</p>
+<ol class="lower-alpha">
+<li id="li-1325"><p id="p-3869">Find a parameterization of the cone described by <span class="process-math">\(z = \frac{h}{a} \sqrt{x^2+y^2}\text{.}\)</span> (Hint: Compare to the parameterization of a cylinder as seen in <a href="" class="xref" data-knowl="./knowl/A_11_6_4.html" title="Activity 11.6.3">Activity 11.6.3</a>.)</p></li>
+<li id="li-1326"><p id="p-3870">Set up an iterated integral to determine the surface area of this cone.</p></li>
+<li id="li-1327"><p id="p-3871">Evaluate the iterated integral to find a formula for the lateral surface area of a cone of height <span class="process-math">\(h\)</span> and base <span class="process-math">\(a\text{.}\)</span></p></li>
+</ol></article></section></section><div class="hidden-content tex2jax_ignore" id="hk-fn-22"><div class="fn"><code class="code-inline tex2jax_ignore">/webwork2_files/helpFiles/Units.html</code></div></div>
+</div></main>
+</div>
+<!--Start: Google Global Site Tag code--><!--*** DO NOT COPY ANOTHER PROJECT'S MAGIC NUMBERS/ID ***--><!--***           GET YOUR OWN FROM GOOGLE             ***-->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-QJKN634F7R"></script><script>  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-QJKN634F7R');
+</script><!--End: Google Global Site Tag code-->
+</body>
+</html>

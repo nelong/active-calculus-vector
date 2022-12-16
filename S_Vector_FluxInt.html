@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<html lang="en-US">
+<head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Flux Integrals</title>
+<meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:type" content="book">
+<meta property="book:title" content="Active Calculus - Multivariable + Vector">
+<meta property="book:author" content="Steve Schlicker">
+<meta property="book:author" content="Mitchel T. Keller">
+<meta property="book:author" content="Nicholas Long">
+<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
+window.MathJax = {
+  tex: {
+    inlineMath: [['\\(','\\)']],
+    tags: "none",
+    tagSide: "right",
+    tagIndent: ".8em",
+    packages: {'[+]': ['base', 'extpfeil', 'ams', 'amscd', 'newcommand', 'knowl']}
+  },
+  options: {
+    ignoreHtmlClass: "tex2jax_ignore|ignore-math",
+    processHtmlClass: "process-math",
+    renderActions: {
+        findScript: [10, function (doc) {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
+                var display = !!node.type.match(/; *mode=display/);
+                var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                var text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = {node: text, delim: '', n: 0};
+                math.end = {node: text, delim: '', n: 0};
+                doc.math.push(math);
+            });
+        }, '']
+    },
+  },
+  chtml: {
+    scale: 0.88,
+    mtextInheritFont: true
+  },
+  loader: {
+    load: ['input/asciimath', '[tex]/extpfeil', '[tex]/amscd', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
+    paths: {pretext: "https://pretextbook.org/js/lib"},
+  },
+  startup: {
+    pageReady() {
+      return MathJax.startup.defaultPageReady().then(function () {
+      console.log("in ready function");
+      rsMathReady();
+      }
+    )}
+},
+};
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><link href="https://webwork-ptx.aimath.org/webwork2_files/js/apps/MathView/mathview.css" rel="stylesheet">
+<script src="https://pretextbook.org/js/0.13/pretext-webwork/2./pretext-webwork.js"></script><script src="https://webwork-ptx.aimath.org/webwork2_files/node_modules/iframe-resizer/js/iframeResizer.min.js"></script><script async="" src="https://cse.google.com/cse.js?cx=015103900096539427448:ngwuia10qci"></script><script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.13/pretext.js"></script><script>miniversion=0.674</script><script src="https://pretextbook.org/js/0.13/pretext_add_on.js?x=1"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
+</script><link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/pretext.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/pretext_add_on.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/banner_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/toc_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/knowls_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/style_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/colors_blue_grey.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/setcolors.css" rel="stylesheet" type="text/css">
+</head>
+<body class="pretext-book ignore-math has-toc has-sidebar-left">
+<a class="assistive" href="#content">Skip to main content</a><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\newcommand{\R}{\mathbb{R}}
+\newcommand{\va}{\mathbf{a}}
+\newcommand{\vb}{\mathbf{b}}
+\newcommand{\vc}{\mathbf{c}}
+\newcommand{\vC}{\mathbf{C}}
+\newcommand{\vd}{\mathbf{d}}
+\newcommand{\ve}{\mathbf{e}}
+\newcommand{\vi}{\mathbf{i}}
+\newcommand{\vj}{\mathbf{j}}
+\newcommand{\vk}{\mathbf{k}}
+\newcommand{\vn}{\mathbf{n}}
+\newcommand{\vm}{\mathbf{m}}
+\newcommand{\vr}{\mathbf{r}}
+\newcommand{\vs}{\mathbf{s}}
+\newcommand{\vu}{\mathbf{u}}
+\newcommand{\vv}{\mathbf{v}}
+\newcommand{\vw}{\mathbf{w}}
+\newcommand{\vx}{\mathbf{x}}
+\newcommand{\vy}{\mathbf{y}}
+\newcommand{\vz}{\mathbf{z}}
+\newcommand{\vzero}{\mathbf{0}}
+\newcommand{\vF}{\mathbf{F}}
+\newcommand{\vG}{\mathbf{G}}
+\newcommand{\vH}{\mathbf{H}}
+\newcommand{\vR}{\mathbf{R}}
+\newcommand{\vT}{\mathbf{T}}
+\newcommand{\vN}{\mathbf{N}}
+\newcommand{\vL}{\mathbf{L}}
+\newcommand{\vB}{\mathbf{B}}
+\newcommand{\vS}{\mathbf{S}}
+\newcommand{\proj}{\text{proj}}
+\newcommand{\comp}{\text{comp}}
+\newcommand{\nin}{}
+\newcommand{\vecmag}[1]{|#1|}
+\newcommand{\grad}{\nabla}
+\DeclareMathOperator{\curl}{curl}
+\DeclareMathOperator{\divg}{div}
+\newcommand{\lt}{&lt;}
+\newcommand{\gt}{&gt;}
+\newcommand{\amp}{&amp;}
+\definecolor{fillinmathshade}{gray}{0.9}
+\newcommand{\fillinmath}[1]{\mathchoice{\colorbox{fillinmathshade}{$\displaystyle     \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\textstyle        \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptstyle      \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptscriptstyle\phantom{\,#1\,}$}}}
+\)</span></div>
+<header id="masthead" class="smallbuttons"><div class="banner"><div class="container">
+<a id="logo-link" href=""></a><div class="title-container">
+<h1 class="heading"><a href="book-1.html"><span class="title">Active Calculus - Multivariable + Vector</span></a></h1>
+<p class="byline">Steve Schlicker, Mitchel T. Keller, Nicholas Long</p>
+</div>
+<div class="searchwrapper" role="search"><div class="gcse-search"></div></div>
+</div></div>
+<nav id="primary-navbar" class="navbar"><div class="container">
+<div class="navbar-top-buttons">
+<button class="sidebar-left-toggle-button button active" aria-label="Show or hide table of contents sidebar">Contents</button><div class="tree-nav toolbar toolbar-divisor-3">
+<a class="index-button toolbar-item button" href="index-1.html" title="Index">Index</a><span class="threebuttons"><a id="previousbutton" class="previous-button toolbar-item button" href="S_Vector_GreensTheorem.html" title="Previous">Prev</a><a id="upbutton" class="up-button button toolbar-item" href="C_Vector.html" title="Up">Up</a><a id="nextbutton" class="next-button button toolbar-item" href="S_ScalarSurfaceIntegral.html" title="Next">Next</a></span>
+</div>
+</div>
+<div class="navbar-bottom-buttons toolbar toolbar-divisor-4">
+<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="S_Vector_GreensTheorem.html" title="Previous">Prev</a><a class="up-button button toolbar-item" href="C_Vector.html" title="Up">Up</a><a class="next-button button toolbar-item" href="S_ScalarSurfaceIntegral.html" title="Next">Next</a>
+</div>
+</div></nav></header><div class="page">
+<div id="sidebar-left" class="sidebar" role="navigation"><div class="sidebar-content">
+<nav id="toc"><ul>
+<li class="link frontmatter">
+<a href="frontmatter.html" data-scroll="frontmatter" class="internal"><span class="title">Front Matter</span></a><ul>
+<li><a href="colophon-1.html" data-scroll="colophon-1" class="internal">Colophon</a></li>
+<li><a href="preface-1.html" data-scroll="preface-1" class="internal">Features of the Text</a></li>
+<li><a href="preface-2.html" data-scroll="preface-2" class="internal">Vector Calculus Preface</a></li>
+<li><a href="preface-3.html" data-scroll="preface-3" class="internal">Acknowledgments</a></li>
+<li><a href="preface-4.html" data-scroll="preface-4" class="internal">Active Calculus - Multivariable: our goals</a></li>
+<li><a href="preface-5.html" data-scroll="preface-5" class="internal">How to Use this Text</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="C-9.html" data-scroll="C-9" class="internal"><span class="codenumber">9</span> <span class="title">Multivariable and Vector Functions</span></a><ul>
+<li><a href="S-9-1-Functions.html" data-scroll="S-9-1-Functions" class="internal">Functions of Several Variables and Three Dimensional Space</a></li>
+<li><a href="S-9-2-Vectors.html" data-scroll="S-9-2-Vectors" class="internal">Vectors</a></li>
+<li><a href="S-9-3-Dot-Product.html" data-scroll="S-9-3-Dot-Product" class="internal">The Dot Product</a></li>
+<li><a href="S-9-4-Cross-Product.html" data-scroll="S-9-4-Cross-Product" class="internal">The Cross Product</a></li>
+<li><a href="S-9-5-Lines-Planes.html" data-scroll="S-9-5-Lines-Planes" class="internal">Lines and Planes in Space</a></li>
+<li><a href="S-9-6-Vector-Valued-Functions.html" data-scroll="S-9-6-Vector-Valued-Functions" class="internal">Vector-Valued Functions</a></li>
+<li><a href="S-9-7-Vector-Valued-Functions-Derivatives.html" data-scroll="S-9-7-Vector-Valued-Functions-Derivatives" class="internal">Derivatives and Integrals of Vector-Valued Functions</a></li>
+<li><a href="S-9-8-Arc-Length-Curvature.html" data-scroll="S-9-8-Arc-Length-Curvature" class="internal">Arc Length and Curvature</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="C-10.html" data-scroll="C-10" class="internal"><span class="codenumber">10</span> <span class="title">Derivatives of Multivariable Functions</span></a><ul>
+<li><a href="S-10-1-Limits.html" data-scroll="S-10-1-Limits" class="internal">Limits</a></li>
+<li><a href="S-10-2-First-Order-Partial-Derivatives.html" data-scroll="S-10-2-First-Order-Partial-Derivatives" class="internal">First-Order Partial Derivatives</a></li>
+<li><a href="S-10-3-Second-Order-Partial-Derivatives.html" data-scroll="S-10-3-Second-Order-Partial-Derivatives" class="internal">Second-Order Partial Derivatives</a></li>
+<li><a href="S-10-4-Linearization.html" data-scroll="S-10-4-Linearization" class="internal">Linearization: Tangent Planes and Differentials</a></li>
+<li><a href="S-10-5-Chain-Rule.html" data-scroll="S-10-5-Chain-Rule" class="internal">The Chain Rule</a></li>
+<li><a href="S-10-6-Directional-Derivative.html" data-scroll="S-10-6-Directional-Derivative" class="internal">Directional Derivatives and the Gradient</a></li>
+<li><a href="S-10-7-Optimization.html" data-scroll="S-10-7-Optimization" class="internal">Optimization</a></li>
+<li><a href="S-10-8-Lagrange-Multipliers.html" data-scroll="S-10-8-Lagrange-Multipliers" class="internal">Constrained Optimization: Lagrange Multipliers</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="C-11.html" data-scroll="C-11" class="internal"><span class="codenumber">11</span> <span class="title">Multiple Integrals</span></a><ul>
+<li><a href="S-11-1-Double-Integrals-Rectangles.html" data-scroll="S-11-1-Double-Integrals-Rectangles" class="internal">Double Riemann Sums and Double Integrals over Rectangles</a></li>
+<li><a href="S-11-2-Iterated-Integrals.html" data-scroll="S-11-2-Iterated-Integrals" class="internal">Iterated Integrals</a></li>
+<li><a href="S-11-3-Double-Integrals-General.html" data-scroll="S-11-3-Double-Integrals-General" class="internal">Double Integrals over General Regions</a></li>
+<li><a href="S-11-4-Double-Integrals-Applications.html" data-scroll="S-11-4-Double-Integrals-Applications" class="internal">Applications of Double Integrals</a></li>
+<li><a href="S-11-5-Double-Integrals-Polar.html" data-scroll="S-11-5-Double-Integrals-Polar" class="internal">Double Integrals in Polar Coordinates</a></li>
+<li><a href="S-11-6-Parametric-Surfaces-Surface-Area.html" data-scroll="S-11-6-Parametric-Surfaces-Surface-Area" class="internal">Surfaces Defined Parametrically and Surface Area</a></li>
+<li><a href="S-11-7-Triple-Integrals.html" data-scroll="S-11-7-Triple-Integrals" class="internal">Triple Integrals</a></li>
+<li><a href="S-11-8-Triple-Integrals-Cylindrical-Spherical.html" data-scroll="S-11-8-Triple-Integrals-Cylindrical-Spherical" class="internal">Triple Integrals in Cylindrical and Spherical Coordinates</a></li>
+<li><a href="S-11-9-Change-of-Variable.html" data-scroll="S-11-9-Change-of-Variable" class="internal">Change of Variables</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="C_Vector.html" data-scroll="C_Vector" class="internal"><span class="codenumber">12</span> <span class="title">Vector Calculus</span></a><ul>
+<li><a href="S_Vector_VectorFields.html" data-scroll="S_Vector_VectorFields" class="internal">Vector Fields</a></li>
+<li><a href="S_Vector_IdeaLineIntegral.html" data-scroll="S_Vector_IdeaLineIntegral" class="internal">The Idea of a Line Integral</a></li>
+<li><a href="S_Vector_ParamLineIntegrals.html" data-scroll="S_Vector_ParamLineIntegrals" class="internal">Using Parametrizations to Calculate Line Integrals</a></li>
+<li><a href="S_ScalarLineIntegral.html" data-scroll="S_ScalarLineIntegral" class="internal">Line Integrals of Scalar Functions</a></li>
+<li><a href="S_Vector_FTCLI.html" data-scroll="S_Vector_FTCLI" class="internal">Path-Independent Vector Fields and the Fundamental Theorem of Calculus for Line Integrals</a></li>
+<li><a href="S_Vector_Div.html" data-scroll="S_Vector_Div" class="internal">The Divergence of a Vector Field</a></li>
+<li><a href="S_Vector_Curl.html" data-scroll="S_Vector_Curl" class="internal">The Curl of a Vector Field</a></li>
+<li><a href="S_Vector_GreensTheorem.html" data-scroll="S_Vector_GreensTheorem" class="internal">Green's Theorem</a></li>
+<li><a href="S_Vector_FluxInt.html" data-scroll="S_Vector_FluxInt" class="active">Flux Integrals</a></li>
+<li><a href="S_ScalarSurfaceIntegral.html" data-scroll="S_ScalarSurfaceIntegral" class="internal">Surface Integrals of Scalar Valued Functions</a></li>
+<li><a href="S_Vector_StokesThm.html" data-scroll="S_Vector_StokesThm" class="internal">Stokes' Theorem</a></li>
+<li><a href="S_Vector_DivThm.html" data-scroll="S_Vector_DivThm" class="internal">The Divergence Theorem</a></li>
+</ul>
+</li>
+<li class="link backmatter"><a href="backmatter-1.html" data-scroll="backmatter-1" class="internal"><span class="title">Back Matter</span></a></li>
+<li class="link"><a href="index-1.html" data-scroll="index-1" class="internal"><span class="title">Index</span></a></li>
+</ul></nav><div class="extras"><nav><a class="pretext-link" href="https://pretextbook.org">Authored in PreTeXt</a><a href="https://www.mathjax.org"><img title="Powered by MathJax" src="https://www.mathjax.org/badge/badge.gif" alt="Powered by MathJax"></a></nav></div>
+</div></div>
+<main class="main"><div id="content" class="pretext-content"><section class="section" id="S_Vector_FluxInt"><h2 class="heading hide-type">
+<span class="type">Section</span> <span class="codenumber">12.9</span> <span class="title">Flux Integrals</span>
+</h2>
+<article class="objectives goal-like" id="objectives-34"><h3 class="heading"><span class="type">Motivating Questions</span></h3>
+<ul class="disc">
+<li id="li-1663"><p id="p-5140">How can we measure how much of a vector field flows through a surface in space?</p></li>
+<li id="li-1664"><p id="p-5141">How can we calculate the amount of a vector field that flows through common surfaces, such as the graph of a function <span class="process-math">\(z=f(x,y)\text{?}\)</span></p></li>
+</ul></article><section class="introduction" id="introduction-74"><p id="p-5142"><a href="S-11-6-Parametric-Surfaces-Surface-Area.html" class="internal" title="Section 11.6: Surfaces Defined Parametrically and Surface Area">Section 11.6</a> showed how we can use vector valued functions of two variables to give a parametrization of a surface in space. For instance, the function <span class="process-math">\(\vr(s,t)=\langle 2\cos(t)\sin(s),
+2\sin(t)\sin(s),2\cos(s)\rangle\)</span> with domain <span class="process-math">\(0\leq t\leq 2
+\pi\)</span> and <span class="process-math">\(0\leq s\leq \pi\)</span> parametrizes a sphere of radius <span class="process-math">\(2\)</span> centered at the origin. <a href="S-11-6-Parametric-Surfaces-Surface-Area.html" class="internal" title="Section 11.6: Surfaces Defined Parametrically and Surface Area">Section 11.6</a> also gives examples of how to write parametrizations based on other geometric relationships like when one coordinate can be written as a function of the other two. In <a href="S-11-6-Parametric-Surfaces-Surface-Area.html#SS-11-6-2-Surface-Area-Parametrically-Defined-Surfaces" class="internal" title="Subsection 11.6.2: The Surface Area of Parametrically Defined Surfaces">Subsection 11.6.2</a>, we set up a Riemann sum based on a parametrization that would measure the surface area of our curved surfaces in space.</p>
+<p id="p-5143">In <a href="" class="xref" data-knowl="./knowl/fig_Vector_FluxInt_ParaPic.html" title="Figure 12.9.1">Figure 12.9.1</a>, you can see a surface plotted using a parametrization <span class="process-math">\(\vr(s,t)=\langle{f(s,t),g(s,t),h(s,t)}\rangle\text{.}\)</span> The red lines represent curves where <span class="process-math">\(s\)</span> varies and <span class="process-math">\(t\)</span> is held constant, while the yellow lines represent curves where <span class="process-math">\(t\)</span> varies and <span class="process-math">\(s\)</span> is held constant. The vector in red is <span class="process-math">\(\vr_s=\frac{\partial \vr}{\partial
+s}=\langle{f_s,g_s,h_s}\rangle\)</span> which measures the direction and magnitude of change in the coordinates of the surface when just <span class="process-math">\(s\)</span> is varied. Similarly, the vector in yellow is <span class="process-math">\(\vr_t=\frac{\partial \vr}{\partial
+t}=\langle{f_t,g_t,h_t}\rangle\)</span> which measures the direction and magnitude of change in the coordinates of the surface when just <span class="process-math">\(t\)</span> is varied. You can see that the parallelogram that is formed by <span class="process-math">\(\vr_s\)</span> and <span class="process-math">\(\vr_t\)</span> is tangent to the surface. The area of this parallelogram offers an approximation for the surface area of a patch of the surface.</p>
+<figure class="figure figure-like" id="fig_Vector_FluxInt_ParaPic"><iframe id="sage_para_pic" width="600" height="660" src="sage_para_pic-if.html"></iframe><figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">12.9.1<span class="period">.</span></span><span class="space"> </span>A three-dimensional plot of <a href="" class="xref" data-knowl="./knowl/F_11_6_approx.html" title="Figure 11.6.6">Figure 11.6.6</a></figcaption></figure><p id="p-5144">From <a href="S-9-4-Cross-Product.html" class="internal" title="Section 9.4: The Cross Product">Section 9.4</a>, we also know that <span class="process-math">\(\vr_s\times \vr_t\)</span> (plotted in green) will be orthogonal to both <span class="process-math">\(\vr_s\)</span> and <span class="process-math">\(\vr_t\)</span> and its magnitude will be given by the area of the parallelogram.</p>
+<article class="exploration project-like" id="PA_Vector_FluxInt"><h3 class="heading">
+<span class="type">Preview Activity</span><span class="space"> </span><span class="codenumber">12.9.1</span><span class="period">.</span>
+</h3>
+<div class="introduction" id="introduction-75"><p id="p-5145">In this activity we will explore the parametrizations of a few familiar surfaces and confirm some of the geometric properties described in the introduction above.</p></div>
+<article class="task exercise-like" id="task_PA_Vector_FluxInt_Param"><h4 class="heading"><span class="codenumber">(a)</span></h4>
+<div class="introduction" id="introduction-76"><p id="p-5146">Use the ideas from <a href="S-11-6-Parametric-Surfaces-Surface-Area.html" class="internal" title="Section 11.6: Surfaces Defined Parametrically and Surface Area">Section 11.6</a> to give a parametrization <span class="process-math">\(\vr(s,t)\)</span> of each of the following surfaces. Be sure to specify the bounds on each of your parameters.</p></div>
+<article class="task exercise-like" id="task-197"><h5 class="heading"><span class="codenumber">(i)</span></h5>
+<p id="p-5147">A sphere centered at the origin of radius 3.</p></article><article class="task exercise-like" id="task-198"><h5 class="heading"><span class="codenumber">(ii)</span></h5>
+<p id="p-5148">A right circular cylinder centered on the <span class="process-math">\(x\)</span>-axis of radius 2 when <span class="process-math">\(0\leq x\leq 3\text{.}\)</span></p></article><article class="task exercise-like" id="task-199"><h5 class="heading"><span class="codenumber">(iii)</span></h5>
+<p id="p-5149">The first octant portion of the plane <span class="process-math">\(x+2y+3z=6\text{.}\)</span></p></article></article><article class="task exercise-like" id="task-200"><h4 class="heading"><span class="codenumber">(b)</span></h4>
+<p id="p-5150">Draw a graph of each of the three surfaces from the previous part. Label the points that correspond to <span class="process-math">\((s,t)\)</span> points of <span class="process-math">\((0,0)\text{,}\)</span> <span class="process-math">\((0,1)\text{,}\)</span> <span class="process-math">\((1,0)\text{,}\)</span> and <span class="process-math">\((2,3)\text{.}\)</span></p></article><article class="task exercise-like" id="task_PA_Vector_FluxInt_Tangents"><h4 class="heading"><span class="codenumber">(c)</span></h4>
+<p id="p-5151">For each parametrization from <a href="" class="xref" data-knowl="./knowl/task_PA_Vector_FluxInt_Param.html" title="Task 12.9.1.a">part a</a>, calculate <span class="process-math">\(\vr_s\text{,}\)</span> <span class="process-math">\(\vr_t\text{,}\)</span> and <span class="process-math">\(\vr_s \times \vr_t\text{.}\)</span></p></article><article class="task exercise-like" id="task-202"><h4 class="heading"><span class="codenumber">(d)</span></h4>
+<p id="p-5152">For each parametrization from <a href="" class="xref" data-knowl="./knowl/task_PA_Vector_FluxInt_Param.html" title="Task 12.9.1.a">part a</a>, find the value for <span class="process-math">\(\vr_s\text{,}\)</span><span class="process-math">\(\vr_t\text{,}\)</span> and <span class="process-math">\(\vr_s \times \vr_t\)</span> at the <span class="process-math">\((s,t)\)</span> points of <span class="process-math">\((0,0)\text{,}\)</span> <span class="process-math">\((0,1)\text{,}\)</span> <span class="process-math">\((1,0)\text{,}\)</span> and <span class="process-math">\((2,3)\text{.}\)</span></p></article><article class="task exercise-like" id="task-203"><h4 class="heading"><span class="codenumber">(e)</span></h4>
+<p id="p-5153">Draw your vector results from <a href="" class="xref" data-knowl="./knowl/task_PA_Vector_FluxInt_Tangents.html" title="Task 12.9.1.c">c</a> on your graphs and confirm the geometric properties described in the introduction to this section. Namely, <span class="process-math">\(\vr_s\)</span> and <span class="process-math">\(\vr_t\)</span> should be tangent to the surface, while <span class="process-math">\(\vr_s \times \vr_t\)</span> should be orthogonal to the surface (in addition to <span class="process-math">\(\vr_s\)</span> and <span class="process-math">\(\vr_t\)</span>).</p></article></article><p id="p-5154">As we saw in <a href="S-11-6-Parametric-Surfaces-Surface-Area.html" class="internal" title="Section 11.6: Surfaces Defined Parametrically and Surface Area">Section 11.6</a>, we can set up a Riemann sum of the areas for the parallelograms in <a href="" class="xref" data-knowl="./knowl/fig_Vector_FluxInt_ParaPic.html" title="Figure 12.9.1">Figure 12.9.1</a> to approximate the surface area of the region plotted by our parametrization. <a href="" class="xref" data-knowl="./knowl/E_surface_area.html" title="Equation 11.6.2">Equation (11.6.2)</a> shows that we can compute the exact surface by taking a limit of a Riemann sum which will correspond to integrating the magnitude of <span class="process-math">\(\vr_s \times \vr_t\)</span> over the appropriate parameter bounds. What if we wanted to measure a quantity other than the surface area? In the next section, we will explore a specific case of this question: How can we measure the amount of a three dimensional vector field that flows through a particular section of a surface? The geometric tools we have reviewed in this section will be very valuable, especially the vector <span class="process-math">\(\vr_s \times \vr_t\text{.}\)</span></p></section><section class="subsection" id="SS_Vector_FluxInt_Idea"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">12.9.1</span> <span class="title">The Idea of the Flux of a Vector Field through a Surface</span>
+</h3>
+<p id="p-5155">In <a href="" class="xref" data-knowl="./knowl/fig_Vector_FluxInt_FieldSurface1.html" title="Figure 12.9.2">Figure 12.9.2</a>, we illustrate the situation that we wish to study in the remainder of this section. We have a piece of a surface, shown by using shading. There is also a vector field, perhaps representing some fluid that is flowing. We are interested in measuring the flow of the fluid through the shaded surface portion.</p>
+<figure class="figure figure-like" id="fig_Vector_FluxInt_FieldSurface1"><iframe id="interactive-15" width="522" height="548" src="interactive-15-if.html"></iframe><figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">12.9.2<span class="period">.</span></span><span class="space"> </span>A three-dimensional vector field and a surface</figcaption></figure><p id="p-5156">We don't care about the vector field away from the surface, so we really would like to just examine what the output vectors for the <span class="process-math">\((x,y,z)\)</span> points on our surface. So instead, we will look at <a href="" class="xref" data-knowl="./knowl/fig_Vector_FluxInt_FieldSurface2.html" title="Figure 12.9.3">Figure 12.9.3</a>.</p>
+<figure class="figure figure-like" id="fig_Vector_FluxInt_FieldSurface2"><iframe id="interactive-16" width="522" height="548" src="interactive-16-if.html"></iframe><figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">12.9.3<span class="period">.</span></span><span class="space"> </span>A three-dimensional vector field evaluated along a surface</figcaption></figure><p id="p-5157">The central question we would like to consider is “How can we measure the amount of a three dimensional vector field that flows through a particular section of a curved surface?”, so we only need to consider the amount of the vector field that flows through the surface. Any portion of our vector field that flows along (or tangent) to the surface will not contribute to the amount that goes through the surface. In the next figure, we have split the vector field along our surface into two components. One component, plotted in green, is orthogonal to the surface. The component that is tangent to the surface is plotted in purple.</p>
+<figure class="figure figure-like" id="fig_Vector_FluxInt_FieldSurface3"><iframe id="interactive-17" width="522" height="548" src="interactive-17-if.html"></iframe><figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">12.9.4<span class="period">.</span></span><span class="space"> </span>The decomposition of three-dimensional vector field evaluated along a surface into normal and tangent components</figcaption></figure><p id="p-5158">In order to measure the amount of the vector field that moves through the plotted section of the surface, we must find the accumulation of the lengths of the green vectors in <a href="" class="xref" data-knowl="./knowl/fig_Vector_FluxInt_FieldSurface3.html" title="Figure 12.9.4">Figure 12.9.4</a>. Notice that some of the green vectors are moving through the surface in a direction opposite of others. In other words, we will need to pay attention to the direction in which these vectors move through our surface and not just the magnitude of the green vectors.</p>
+<p id="p-5159">If we have a parametrization of the surface, then the vector <span class="process-math">\(\vr_s \times \vr_t\)</span> varies smoothly across our surface and gives a consistent way to describe which direction we choose as “through” the surface. If we define a positive flow through our surface as being consistent with the yellow vector in <a href="" class="xref" data-knowl="./knowl/fig_Vector_FluxInt_FieldSurface3.html" title="Figure 12.9.4">Figure 12.9.4</a>, then there is more positive flow (in terms of both magnitude and area) than negative flow through the surface. Thus, the <em class="emphasis">net</em> flow of the vector field through this surface is positive.</p>
+<article class="activity project-like" id="activity-120"><h4 class="heading">
+<span class="type">Activity</span><span class="space"> </span><span class="codenumber">12.9.2</span><span class="period">.</span><span class="space"> </span><span class="title">Visualizing flux through a surface.</span>
+</h4>
+<p id="p-5160">In this activity, you will compare the net flow of different vector fields through our sample surface. In <a href="" class="xref" data-knowl="./knowl/fig_Vector_FluxInt_FieldPicker.html" title="Figure 12.9.5">Figure 12.9.5</a> you can select between five different vector fields. Once you select a vector field, the vector field for a set of points on the surface will be plotted in blue. Each blue vector will also be split into its normal component (in green) and its tangential component (in purple). The yellow vector defines the direction for positive flow through the surface.</p>
+<p id="p-5161">Look at each vector field and order the vector fields from greatest flow through the surface to least flow through the surface. Remember that a negative net flow through the surface should be lower in your rankings than any positive net flow.</p>
+<figure class="figure figure-like" id="fig_Vector_FluxInt_FieldPicker"><iframe id="interactive-18" width="600" height="660" src="interactive-18-if.html"></iframe><figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">12.9.5<span class="period">.</span></span><span class="space"> </span>Five vector fields flowing through a surface, with decomposition into normal and tangential components</figcaption></figure></article></section><section class="subsection" id="subsection-137"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">12.9.2</span> <span class="title">Measuring the Flux of a Vector Field through a Surface</span>
+</h3>
+<p id="p-5162">Now that we have a better conceptual understanding of what we are measuring, we can set up the corresponding Riemann sum to measure the flux of a vector field through a section of a surface. Let <span class="process-math">\(Q\)</span> be the section of our surface and suppose that <span class="process-math">\(Q\)</span> is parametrized by <span class="process-math">\(\vr(s,t)\)</span> with <span class="process-math">\(a\leq s\leq b\)</span> and <span class="process-math">\(c \leq t \leq d\text{.}\)</span> The domain of <span class="process-math">\(\vr\)</span> is a region of the <span class="process-math">\(st\)</span>-plane, which we call <span class="process-math">\(D\text{,}\)</span> and the range of <span class="process-math">\(\vr\)</span> is <span class="process-math">\(Q\text{.}\)</span></p>
+<p id="p-5163">In our classic calculus style, we slice our region of interest into smaller pieces. Specifically, we slice <span class="process-math">\(a\leq s\leq b\)</span> into <span class="process-math">\(n\)</span> equally-sized subintervals with endpoints <span class="process-math">\(s_1,\ldots,s_n\)</span> and <span class="process-math">\(c \leq t \leq d\)</span> into <span class="process-math">\(m\)</span> equally-sized subintervals with endpoints <span class="process-math">\(t_1,\ldots,t_n\text{.}\)</span> This divides <span class="process-math">\(D\)</span> into <span class="process-math">\(nm\)</span> rectangles of size <span class="process-math">\(\Delta{s}=\frac{b-a}{n}\)</span> by <span class="process-math">\(\Delta{t}=\frac{d-c}{m}\text{.}\)</span> We index these rectangles as <span class="process-math">\(D_{i,j}\text{.}\)</span> Every <span class="process-math">\(D_{i,j}\)</span> has area (in the <span class="process-math">\(st\)</span>-plane) of <span class="process-math">\(\Delta{s}\Delta{t}\text{.}\)</span> The partition of <span class="process-math">\(D\)</span> into the rectangles <span class="process-math">\(D_{i,j}\)</span> also partitions <span class="process-math">\(Q\)</span> into <span class="process-math">\(nm\)</span> corresponding pieces which we call <span class="process-math">\(Q_{i,j}=\vr(D_{i,j})\text{.}\)</span> From <a href="S-11-6-Parametric-Surfaces-Surface-Area.html" class="internal" title="Section 11.6: Surfaces Defined Parametrically and Surface Area">Section 11.6</a> (specifically <a href="" class="xref" data-knowl="./knowl/eq_11_6_parallelogram_area.html" title="Equation 11.6.1">(11.6.1)</a>) the surface area of <span class="process-math">\(Q_{i,j}\)</span> is approximated by <span class="process-math">\(S_{i,j}=\vecmag{(\vr_s \times
+\vr_t)(s_i,t_j)}\Delta{s}\Delta{t}\text{.}\)</span></p>
+<figure class="figure figure-like" id="fig_Vector_FluxInt_SurfaceSections"><iframe id="interactive-19" width="600" height="672" src="interactive-19-if.html"></iframe><figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">12.9.6<span class="period">.</span></span><span class="space"> </span>Pieces of the tangent planes that approximate a surface</figcaption></figure><p id="p-5164">We want to measure the total flow of the vector field, <span class="process-math">\(\vF\text{,}\)</span> through <span class="process-math">\(Q\text{,}\)</span> which we approximate on each <span class="process-math">\(Q_{i,j}\)</span> and then sum to get the total flow. In other words, the flux of <span class="process-math">\(\vF\)</span> through <span class="process-math">\(Q\)</span> is</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+\text{Flux}=\sum_{i=1}^n\sum_{j=1}^m\vecmag{\vF_{\perp
+Q_{i,j}}}\cdot S_{i,j}\text{,}
+\end{equation*}
+</div>
+<p class="continuation">where <span class="process-math">\(\vecmag{\vF_{\perp Q_{i,j}}}\)</span> is the length of the component of <span class="process-math">\(\vF\)</span> orthogonal to <span class="process-math">\(Q_{i,j}\text{.}\)</span></p>
+<p id="p-5165">For each <span class="process-math">\(Q_{i,j}\text{,}\)</span> we approximate the surface <span class="process-math">\(Q\)</span> by the tangent plane to <span class="process-math">\(Q\)</span> at a corner of that partition element. This corresponds to using the planar elements in <a href="" class="xref" data-knowl="./knowl/fig_Vector_FluxInt_SurfaceSections.html" title="Figure 12.9.6">Figure 12.9.6</a>, which have surface area <span class="process-math">\(S_{i,j}\text{.}\)</span> The vector <span class="process-math">\(\vw_{i,j}=(\vr_s \times \vr_t)(s_i,t_j)\)</span> can be used to measure the orthogonal direction (and thus define which direction we mean by positive flow through <span class="process-math">\(Q\)</span>) on the <span class="process-math">\(i,j\)</span> partition element. This means that</p>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/fig_Vector_FluxInt_SurfaceSections.html">
+\begin{equation*}
+\vF_{\perp Q_{i,j}} =\vecmag{\proj_{\vw_{i,j}}\vF(s_i,t_j)}
+= \frac{\vF(s_i,t_j)\cdot \vw_{i,j}}{\vecmag{\vw_{i,j}}}
+\end{equation*}
+</div>
+<p id="p-5166">Combining these pieces, we find that the flux through <span class="process-math">\(Q_{i,j}\)</span> is approximated by</p>
+<div class="displaymath process-math" data-contains-math-knowls="" id="md-59">
+\begin{align*}
+\text{Flux through } Q_{i,j} \amp= \vecmag{\vF_{\perp
+Q_{i,j}}}\cdot S_{i,j} 
+= \left(\frac{\vF_{i,j}\cdot \vw_{i,j}}{\vecmag{\vw_{i,j}}} \right)
+\left(\vecmag{\vw_{i,j}}\Delta{s}\Delta{t}\right)\\
+\amp = \left(\vF_{i,j} \cdot (\vr_s \times \vr_t)\right)
+\left(\Delta{s}\Delta{t}\right)\text{,}
+\end{align*}
+</div>
+<p class="continuation">where <span class="process-math">\(\vF_{i,j} = \vF(s_i,t_j)\text{.}\)</span> Therefore we may approximate the total flux by</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+\text{Total Flux}=\sum_{i=1}^n\sum_{j=1}^m \left(\vF_{i,j}\cdot \vw_{i,j}\right) \left(\Delta{s}\Delta{t}\right)\text{.}
+\end{equation*}
+</div>
+<p class="continuation">Taking the limit as <span class="process-math">\(n,m\rightarrow\infty\)</span> gives the following result.</p>
+<article class="theorem theorem-like" id="thm_flux_int_calc"><h4 class="heading">
+<span class="type">Theorem</span><span class="space"> </span><span class="codenumber">12.9.7</span><span class="period">.</span>
+</h4>
+<p id="p-5167">Let a smooth surface <span class="process-math">\(Q\)</span> be parametrized by <span class="process-math">\(\vr(s,t)\)</span> over a domain <span class="process-math">\(D\text{.}\)</span> The total flux of a smooth vector field <span class="process-math">\(\vF\)</span> through <span class="process-math">\(Q\)</span> is given by</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+\iint_D \vF \cdot (\vr_s \times \vr_t)\, dA\text{.}
+\end{equation*}
+</div></article><p id="p-5168">In <a href="" class="xref" data-knowl="./knowl/fig_Vector_FluxInt_SurfaceSections.html" title="Figure 12.9.6">Figure 12.9.6</a>, you can change the number of sections in your partition and see the geometric result of refining the partition. The next activity asks you to carefully go through the process of calculating the flux of some vector fields through a cylindrical surface.</p>
+<article class="activity project-like" id="activity-121"><h4 class="heading">
+<span class="type">Activity</span><span class="space"> </span><span class="codenumber">12.9.3</span><span class="period">.</span><span class="space"> </span><span class="title">Checking the Visualization for Flux.</span>
+</h4>
+<article class="task exercise-like" id="task-204"><h5 class="heading"><span class="codenumber">(a)</span></h5>
+<div class="introduction" id="introduction-77">
+<p id="p-5169"><a href="" class="xref" data-knowl="./knowl/fig_Vector_FluxInt_yzsine.html" title="Figure 12.9.8">Figure 12.9.8</a> shows a plot of the vector field <span class="process-math">\(\vF=\langle{y,z,2+\sin(x)}\rangle\)</span> and a right circular cylinder of radius <span class="process-math">\(2\)</span> and height <span class="process-math">\(3\)</span> (with open top and bottom). Consider the vector field going into the cylinder (toward the <span class="process-math">\(z\)</span>-axis) as corresponding to a positive flux.</p>
+<figure class="figure figure-like" id="fig_Vector_FluxInt_yzsine"><iframe id="interactive-20" width="522" height="548" src="interactive-20-if.html"></iframe><figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">12.9.8<span class="period">.</span></span><span class="space"> </span>The vector field <span class="process-math">\(\vF=\langle{y,z,2+\sin(x)}\rangle\)</span> and a right circular cylinder</figcaption></figure>
+</div>
+<article class="task exercise-like" id="task-205"><h6 class="heading"><span class="codenumber">(i)</span></h6>
+<p id="p-5170">Reasoning graphically, do you think the flux of <span class="process-math">\(\vF\)</span> throught the cylinder will be positive, negative, or zero?</p></article><article class="task exercise-like" id="task-206"><h6 class="heading"><span class="codenumber">(ii)</span></h6>
+<p id="p-5171">Parametrize the right circular cylinder of radius <span class="process-math">\(2\text{,}\)</span> centered on the <span class="process-math">\(z\)</span>-axis for <span class="process-math">\(0\leq z \leq 3\text{.}\)</span> Be sure to give bounds on your parameters.</p></article><article class="task exercise-like" id="task-207"><h6 class="heading"><span class="codenumber">(iii)</span></h6>
+<p id="p-5172">Based on your parametrization, compute <span class="process-math">\(\vr_s\text{,}\)</span> <span class="process-math">\(\vr_t\text{,}\)</span> and <span class="process-math">\(\vr_s \times \vr_t\text{.}\)</span> Confirm that these vectors are either orthogonal or tangent to the right circular cylinder. Is your orthogonal vector pointing in the direction of positive flux or negative flux?</p></article><article class="task exercise-like" id="task-208"><h6 class="heading"><span class="codenumber">(iv)</span></h6>
+<p id="p-5173">Use your parametrization to write <span class="process-math">\(\vF\)</span> as a function of <span class="process-math">\(s\)</span> and <span class="process-math">\(t\text{.}\)</span></p>
+<div class="solutions">
+<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-13" id="hint-13"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-13"><div class="hint solution-like"><p id="p-5174">The <span class="process-math">\(x\)</span> coordinate is given by the first component of <span class="process-math">\(\vr\text{.}\)</span></p></div></div>
+</div></article><article class="task exercise-like" id="task-209"><h6 class="heading"><span class="codenumber">(v)</span></h6>
+<p id="p-5175">Compute the flux of <span class="process-math">\(\vF\)</span> through the parametrized portion of the right circular cylinder.</p></article><article class="task exercise-like" id="task-210"><h6 class="heading"><span class="codenumber">(vi)</span></h6>
+<p id="p-5176">Does your computed value for the flux match your prediction from earlier?</p></article><article class="task exercise-like" id="task-211"><h6 class="heading"><span class="codenumber">(vii)</span></h6>
+<p id="p-5177">Use <a href="" class="xref" data-knowl="./knowl/fig_Vector_FluxInt_yzsine_sliders.html" title="Figure 12.9.9">Figure 12.9.9</a> to make an argument about why the flux of <span class="process-math">\(\vF=\langle{y,z,2+\sin(x)}\rangle\)</span> through the right circular cylinder is zero.</p>
+<figure class="figure figure-like" id="fig_Vector_FluxInt_yzsine_sliders"><iframe id="interactive-21" width="558" height="703" src="interactive-21-if.html"></iframe><figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">12.9.9<span class="period">.</span></span><span class="space"> </span>The vector field <span class="process-math">\(\vF=\langle{y,z,2+\sin(x)}\rangle\)</span> with normal and tangential components plotted on a right circular cylinder</figcaption></figure></article></article><article class="task exercise-like" id="task-212"><h5 class="heading"><span class="codenumber">(b)</span></h5>
+<p id="p-5178">How would the results of the flux calculations be different if we used the vector field <span class="process-math">\(\vF=\left\langle{y,z,\cos(xy)+\frac{9}{z^2+6.2}}\right\rangle\)</span> and the same right circular cylinder? Explain your reasoning.</p></article><article class="task exercise-like" id="task-213"><h5 class="heading"><span class="codenumber">(c)</span></h5>
+<p id="p-5179">How would the results of the flux calculations be different if we used the vector field <span class="process-math">\(\vF=\langle{y,-x,3}\rangle\)</span> and the same right circular cylinder? Explain your reasoning.</p></article></article></section><section class="subsection" id="SS_Vector_FluxInt_Calculate"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">12.9.3</span> <span class="title">Efficiently Calculating Flux Integrals</span>
+</h3>
+<p id="p-5180">In this section, we will look at some computational ideas to help us more efficiently compute the value of a flux integral. In many cases, the surface we are looking at the flux through can be written with one coordinate as a function of the others. For simplicity, we consider <span class="process-math">\(z=f(x,y)\text{.}\)</span></p>
+<article class="activity project-like" id="act_Vector_FluxInt_Function"><h4 class="heading">
+<span class="type">Activity</span><span class="space"> </span><span class="codenumber">12.9.4</span><span class="period">.</span><span class="space"> </span><span class="title">Flux Through Surfaces of the Form <span class="process-math">\(z=f(x,y)\)</span>.</span>
+</h4>
+<div class="introduction" id="introduction-78"><p id="p-5181">In this activity, we will look at how to use a parametrization of a surface that can be described as <span class="process-math">\(z=f(x,y)\)</span> to efficiently calculate flux integrals.</p></div>
+<article class="task exercise-like" id="task-214"><h5 class="heading"><span class="codenumber">(a)</span></h5>
+<p id="p-5182">Suppose that <span class="process-math">\(S\)</span> is a surface given by <span class="process-math">\(z=f(x,y)\text{.}\)</span> Find a parametrization <span class="process-math">\(\vr(s,t)\)</span> of <span class="process-math">\(S\text{.}\)</span></p>
+<div class="solutions">
+<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-14" id="hint-14"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-14"><div class="hint solution-like"><p id="p-5183">Use <span class="process-math">\(s=x\)</span> and <span class="process-math">\(t=y\text{.}\)</span></p></div></div>
+</div></article><article class="task exercise-like" id="task-215"><h5 class="heading"><span class="codenumber">(b)</span></h5>
+<p id="p-5184">Show that the vector orthogonal to the surface <span class="process-math">\(S\)</span> has the form</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+\vr_s \times \vr_t=\left\langle -\frac{\partial{f}}{\partial{x}},-\frac{\partial{f}}{\partial{y}},1 \right\rangle\text{.}
+\end{equation*}
+</div></article><article class="task exercise-like" id="task_act_Vector_FluxInt_Function_Normals"><h5 class="heading"><span class="codenumber">(c)</span></h5>
+<div class="introduction" id="introduction-79"><p id="p-5185">For each of the three surfaces given below, compute <span class="process-math">\(\vr_s
+\times \vr_t\text{,}\)</span> graph the surface, and compute <span class="process-math">\(\vr_s
+\times \vr_t\)</span> for four different points of your choosing. You should make sure your vectors <span class="process-math">\(\vr_s \times
+\vr_t\)</span> are orthogonal to your surface.</p></div>
+<article class="task exercise-like" id="task-217"><h6 class="heading"><span class="codenumber">(i)</span></h6>
+<p id="p-5186"><span class="process-math">\(z=x^2+y^2\)</span></p></article><article class="task exercise-like" id="task-218"><h6 class="heading"><span class="codenumber">(ii)</span></h6>
+<p id="p-5187"><span class="process-math">\(x+2y+z=-4\)</span></p></article><article class="task exercise-like" id="task-219"><h6 class="heading"><span class="codenumber">(iii)</span></h6>
+<p id="p-5188"><span class="process-math">\(z=x^2-y^2\)</span></p></article></article><article class="task exercise-like" id="task-220"><h5 class="heading"><span class="codenumber">(d)</span></h5>
+<div class="introduction" id="introduction-80"><p id="p-5189">For each of the three surfaces in <a href="" class="xref" data-knowl="./knowl/task_act_Vector_FluxInt_Function_Normals.html" title="Task 12.9.4.c">part c</a>, use your calculations and <a href="" class="xref" data-knowl="./knowl/thm_flux_int_calc.html" title="Theorem 12.9.7">Theorem 12.9.7</a> to compute the flux of each of the following vector fields through the part of the surface corresponding to the region <span class="process-math">\(D\)</span> in the <span class="process-math">\(xy\)</span>-plane.</p></div>
+<article class="task exercise-like" id="task-221"><h6 class="heading"><span class="codenumber">(i)</span></h6>
+<p id="p-5190"><span class="process-math">\(\vF=\langle{x,y,z}\rangle\)</span> with <span class="process-math">\(D\)</span> given by <span class="process-math">\(0\leq x,y\leq 2\)</span></p></article><article class="task exercise-like" id="task-222"><h6 class="heading"><span class="codenumber">(ii)</span></h6>
+<p id="p-5191"><span class="process-math">\(\vF=\langle{-y,x,1}\rangle\)</span> with <span class="process-math">\(D\)</span> as the triangular region of the <span class="process-math">\(xy\)</span>-plane with vertices <span class="process-math">\((0,0)\text{,}\)</span> <span class="process-math">\((1,0)\text{,}\)</span> and <span class="process-math">\((1,1)\)</span></p></article><article class="task exercise-like" id="task-223"><h6 class="heading"><span class="codenumber">(iii)</span></h6>
+<p id="p-5192"><span class="process-math">\(\vF=\langle{z,y-x,(y-x)^2-z^2}\rangle\)</span> with <span class="process-math">\(D\)</span> given by <span class="process-math">\(0\leq x,y\leq 2\)</span></p></article></article></article><p id="p-5193">Spheres and portions of spheres are another common type of surface through which you may wish to calculate flux.</p>
+<article class="activity project-like" id="act_Vector_FluxInt_Sphere"><h4 class="heading">
+<span class="type">Activity</span><span class="space"> </span><span class="codenumber">12.9.5</span><span class="period">.</span><span class="space"> </span><span class="title">Calculating the Flux through a Sphere.</span>
+</h4>
+<div class="introduction" id="introduction-81"><p id="p-5194">For this activity, let <span class="process-math">\(S_R\)</span> be the sphere of radius <span class="process-math">\(R\)</span> centered at the origin.</p></div>
+<article class="task exercise-like" id="task-224"><h5 class="heading"><span class="codenumber">(a)</span></h5>
+<p id="p-5195">Parametrize <span class="process-math">\(S_R\)</span> using spherical coordinates. Give your parametrization as <span class="process-math">\(\vr(s,t)\text{,}\)</span> and be sure to state the bounds of your parametrization.</p>
+<div class="solutions">
+<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-15" id="hint-15"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-15"><div class="hint solution-like"><p id="p-5196">Use <span class="process-math">\(s=\theta\)</span> and <span class="process-math">\(t=\phi\text{.}\)</span></p></div></div>
+</div></article><article class="task exercise-like" id="task_act_Vector_FluxInt_Sphere_Normal"><h5 class="heading"><span class="codenumber">(b)</span></h5>
+<p id="p-5197">Use your parametrization of <span class="process-math">\(S_R\)</span> to compute <span class="process-math">\(\vr_s \times \vr_t\text{.}\)</span></p></article><article class="task exercise-like" id="task-226"><h5 class="heading"><span class="codenumber">(c)</span></h5>
+<p id="p-5198">Your result for <span class="process-math">\(\vr_s \times \vr_t\)</span> should be a scalar expression times <span class="process-math">\(\vr(s,t)\text{.}\)</span> Explain why the outward pointing orthogonal vector on the sphere is a multiple of <span class="process-math">\(\vr(s,t)\)</span> and what that scalar expression means.</p></article><article class="task exercise-like" id="task_act_Vector_FluxInt_Sphere_Calculate"><h5 class="heading"><span class="codenumber">(d)</span></h5>
+<div class="introduction" id="introduction-82"><p id="p-5199">Use your parametrization of <span class="process-math">\(S_2\)</span> and the results of <a href="" class="xref" data-knowl="./knowl/task_act_Vector_FluxInt_Sphere_Normal.html" title="Task 12.9.5.b">part b</a> to calculate the flux through <span class="process-math">\(S_2\)</span> for each of the three following vector fields.</p></div>
+<article class="task exercise-like" id="task-228"><h6 class="heading"><span class="codenumber">(i)</span></h6>
+<p id="p-5200"><span class="process-math">\(\vF_1=\langle{x,y,z}\rangle\)</span></p></article><article class="task exercise-like" id="task-229"><h6 class="heading"><span class="codenumber">(ii)</span></h6>
+<p id="p-5201"><span class="process-math">\(\vF_2=\langle{-y,x,-1}\rangle\)</span></p></article><article class="task exercise-like" id="task-230"><h6 class="heading"><span class="codenumber">(iii)</span></h6>
+<p id="p-5202"><span class="process-math">\(\vF_3=\langle{x-y,y+x,z-1}\rangle\)</span></p></article></article><article class="task exercise-like" id="task-231"><h5 class="heading"><span class="codenumber">(e)</span></h5>
+<p id="p-5203">Use computer software to plot each of the vector fields from <a href="" class="xref" data-knowl="./knowl/task_act_Vector_FluxInt_Sphere_Calculate.html" title="Task 12.9.5.d">part d</a> and interpret the results of your flux integral calculations.</p></article><article class="task exercise-like" id="task-232"><h5 class="heading"><span class="codenumber">(f)</span></h5>
+<p id="p-5204">If we used the sphere of radius 4 instead of <span class="process-math">\(S_2\text{,}\)</span> explain how each of the flux integrals from <a href="" class="xref" data-knowl="./knowl/task_act_Vector_FluxInt_Sphere_Calculate.html" title="Task 12.9.5.d">part d</a> would change. You do not need to calculate these new flux integrals, but rather explain if the result would be different and how the result would be different.</p></article></article><article class="remark remark-like" id="remark-1"><h4 class="heading">
+<span class="type">Remark</span><span class="space"> </span><span class="codenumber">12.9.10</span><span class="period">.</span>
+</h4>
+<p id="p-5205">Note that throughout this section, we have implicitly assumed that we can parametrize the surface <span class="process-math">\(S\)</span> in such a way that <span class="process-math">\(\vr_s\times \vr_t\)</span> gives a well-defined normal vector. Technically, this means that the surface be <dfn class="terminology">orientable</dfn>. Most “reasonable” surfaces are orientable. However, there are surfaces that are not orientable. Perhaps the most famous is formed by taking a long, narrow piece of paper, giving one end a half twist, and then gluing the ends together. Try doing this yourself, but before you twist and glue (or tape), poke a tiny hole through the paper on the line halfway between the long edges of your strip of paper and circle your hole. After gluing, place a pencil with its eraser end on your dot and the tip pointing away. Think of this as a potential normal vector. Keep the eraser on the paper, and follow the middle of your surface around until the first time the eraser is again on the dot. Is your pencil still pointing the same direction relative to the surface that it was before?</p></article></section><section class="subsection" id="subsection-139"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">12.9.4</span> <span class="title">Summary</span>
+</h3>
+<ul id="p-5206" class="disc">
+<li id="li-1665"><p id="p-5207">A flux integral of a vector field, <span class="process-math">\(\vF\text{,}\)</span> on a surface in space, <span class="process-math">\(S\text{,}\)</span> measures how much of <span class="process-math">\(\vF\)</span> goes through <span class="process-math">\(S_1\text{.}\)</span></p></li>
+<li id="li-1666">
+<p id="p-5208">Let the smooth surface, <span class="process-math">\(S\text{,}\)</span> be parametrized by <span class="process-math">\(\vr(s,t)\)</span> over a domain <span class="process-math">\(D\text{.}\)</span> The total flux of a smooth vector field <span class="process-math">\(\vF\)</span> through <span class="process-math">\(S\)</span> is given by</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+\iint_D \vF \cdot (\vr_s \times \vr_t)\, dA\text{.}
+\end{equation*}
+</div>
+</li>
+<li id="li-1667">
+<p id="p-5209">If <span class="process-math">\(S_1\)</span> is of the form <span class="process-math">\(z=f(x,y)\)</span> over a domain <span class="process-math">\(D\text{,}\)</span> then the total flux of a smooth vector field <span class="process-math">\(\vF\)</span> through <span class="process-math">\(S_1\)</span> is given by</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+\iint_D \vF(x,y,f(x,y)) \cdot \left\langle
+-\frac{\partial{f}}{\partial{x}},-\frac{\partial{f}}{\partial{y}},1
+\right\rangle\,  dA\text{.}
+\end{equation*}
+</div>
+</li>
+</ul></section></section></div></main>
+</div>
+<!--Start: Google Global Site Tag code--><!--*** DO NOT COPY ANOTHER PROJECT'S MAGIC NUMBERS/ID ***--><!--***           GET YOUR OWN FROM GOOGLE             ***-->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-QJKN634F7R"></script><script>  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-QJKN634F7R');
+</script><!--End: Google Global Site Tag code-->
+</body>
+</html>

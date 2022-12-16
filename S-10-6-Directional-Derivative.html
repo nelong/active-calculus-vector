@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<html lang="en-US">
+<head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Directional Derivatives and the Gradient</title>
+<meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:type" content="book">
+<meta property="book:title" content="Active Calculus - Multivariable + Vector">
+<meta property="book:author" content="Steve Schlicker">
+<meta property="book:author" content="Mitchel T. Keller">
+<meta property="book:author" content="Nicholas Long">
+<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
+window.MathJax = {
+  tex: {
+    inlineMath: [['\\(','\\)']],
+    tags: "none",
+    tagSide: "right",
+    tagIndent: ".8em",
+    packages: {'[+]': ['base', 'extpfeil', 'ams', 'amscd', 'newcommand', 'knowl']}
+  },
+  options: {
+    ignoreHtmlClass: "tex2jax_ignore|ignore-math",
+    processHtmlClass: "process-math",
+    renderActions: {
+        findScript: [10, function (doc) {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
+                var display = !!node.type.match(/; *mode=display/);
+                var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                var text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = {node: text, delim: '', n: 0};
+                math.end = {node: text, delim: '', n: 0};
+                doc.math.push(math);
+            });
+        }, '']
+    },
+  },
+  chtml: {
+    scale: 0.88,
+    mtextInheritFont: true
+  },
+  loader: {
+    load: ['input/asciimath', '[tex]/extpfeil', '[tex]/amscd', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
+    paths: {pretext: "https://pretextbook.org/js/lib"},
+  },
+  startup: {
+    pageReady() {
+      return MathJax.startup.defaultPageReady().then(function () {
+      console.log("in ready function");
+      rsMathReady();
+      }
+    )}
+},
+};
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><link href="https://webwork-ptx.aimath.org/webwork2_files/js/apps/MathView/mathview.css" rel="stylesheet">
+<script src="https://pretextbook.org/js/0.13/pretext-webwork/2./pretext-webwork.js"></script><script src="https://webwork-ptx.aimath.org/webwork2_files/node_modules/iframe-resizer/js/iframeResizer.min.js"></script><script async="" src="https://cse.google.com/cse.js?cx=015103900096539427448:ngwuia10qci"></script><script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.13/pretext.js"></script><script>miniversion=0.674</script><script src="https://pretextbook.org/js/0.13/pretext_add_on.js?x=1"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
+</script><link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/pretext.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/pretext_add_on.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/banner_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/toc_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/knowls_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/style_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/colors_blue_grey.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/setcolors.css" rel="stylesheet" type="text/css">
+</head>
+<body class="pretext-book ignore-math has-toc has-sidebar-left">
+<a class="assistive" href="#content">Skip to main content</a><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\newcommand{\R}{\mathbb{R}}
+\newcommand{\va}{\mathbf{a}}
+\newcommand{\vb}{\mathbf{b}}
+\newcommand{\vc}{\mathbf{c}}
+\newcommand{\vC}{\mathbf{C}}
+\newcommand{\vd}{\mathbf{d}}
+\newcommand{\ve}{\mathbf{e}}
+\newcommand{\vi}{\mathbf{i}}
+\newcommand{\vj}{\mathbf{j}}
+\newcommand{\vk}{\mathbf{k}}
+\newcommand{\vn}{\mathbf{n}}
+\newcommand{\vm}{\mathbf{m}}
+\newcommand{\vr}{\mathbf{r}}
+\newcommand{\vs}{\mathbf{s}}
+\newcommand{\vu}{\mathbf{u}}
+\newcommand{\vv}{\mathbf{v}}
+\newcommand{\vw}{\mathbf{w}}
+\newcommand{\vx}{\mathbf{x}}
+\newcommand{\vy}{\mathbf{y}}
+\newcommand{\vz}{\mathbf{z}}
+\newcommand{\vzero}{\mathbf{0}}
+\newcommand{\vF}{\mathbf{F}}
+\newcommand{\vG}{\mathbf{G}}
+\newcommand{\vH}{\mathbf{H}}
+\newcommand{\vR}{\mathbf{R}}
+\newcommand{\vT}{\mathbf{T}}
+\newcommand{\vN}{\mathbf{N}}
+\newcommand{\vL}{\mathbf{L}}
+\newcommand{\vB}{\mathbf{B}}
+\newcommand{\vS}{\mathbf{S}}
+\newcommand{\proj}{\text{proj}}
+\newcommand{\comp}{\text{comp}}
+\newcommand{\nin}{}
+\newcommand{\vecmag}[1]{|#1|}
+\newcommand{\grad}{\nabla}
+\DeclareMathOperator{\curl}{curl}
+\DeclareMathOperator{\divg}{div}
+\newcommand{\lt}{&lt;}
+\newcommand{\gt}{&gt;}
+\newcommand{\amp}{&amp;}
+\definecolor{fillinmathshade}{gray}{0.9}
+\newcommand{\fillinmath}[1]{\mathchoice{\colorbox{fillinmathshade}{$\displaystyle     \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\textstyle        \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptstyle      \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptscriptstyle\phantom{\,#1\,}$}}}
+\)</span></div>
+<header id="masthead" class="smallbuttons"><div class="banner"><div class="container">
+<a id="logo-link" href=""></a><div class="title-container">
+<h1 class="heading"><a href="book-1.html"><span class="title">Active Calculus - Multivariable + Vector</span></a></h1>
+<p class="byline">Steve Schlicker, Mitchel T. Keller, Nicholas Long</p>
+</div>
+<div class="searchwrapper" role="search"><div class="gcse-search"></div></div>
+</div></div>
+<nav id="primary-navbar" class="navbar"><div class="container">
+<div class="navbar-top-buttons">
+<button class="sidebar-left-toggle-button button active" aria-label="Show or hide table of contents sidebar">Contents</button><div class="tree-nav toolbar toolbar-divisor-3">
+<a class="index-button toolbar-item button" href="index-1.html" title="Index">Index</a><span class="threebuttons"><a id="previousbutton" class="previous-button toolbar-item button" href="S-10-5-Chain-Rule.html" title="Previous">Prev</a><a id="upbutton" class="up-button button toolbar-item" href="C-10.html" title="Up">Up</a><a id="nextbutton" class="next-button button toolbar-item" href="S-10-7-Optimization.html" title="Next">Next</a></span>
+</div>
+</div>
+<div class="navbar-bottom-buttons toolbar toolbar-divisor-4">
+<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="S-10-5-Chain-Rule.html" title="Previous">Prev</a><a class="up-button button toolbar-item" href="C-10.html" title="Up">Up</a><a class="next-button button toolbar-item" href="S-10-7-Optimization.html" title="Next">Next</a>
+</div>
+</div></nav></header><div class="page">
+<div id="sidebar-left" class="sidebar" role="navigation"><div class="sidebar-content">
+<nav id="toc"><ul>
+<li class="link frontmatter">
+<a href="frontmatter.html" data-scroll="frontmatter" class="internal"><span class="title">Front Matter</span></a><ul>
+<li><a href="colophon-1.html" data-scroll="colophon-1" class="internal">Colophon</a></li>
+<li><a href="preface-1.html" data-scroll="preface-1" class="internal">Features of the Text</a></li>
+<li><a href="preface-2.html" data-scroll="preface-2" class="internal">Vector Calculus Preface</a></li>
+<li><a href="preface-3.html" data-scroll="preface-3" class="internal">Acknowledgments</a></li>
+<li><a href="preface-4.html" data-scroll="preface-4" class="internal">Active Calculus - Multivariable: our goals</a></li>
+<li><a href="preface-5.html" data-scroll="preface-5" class="internal">How to Use this Text</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="C-9.html" data-scroll="C-9" class="internal"><span class="codenumber">9</span> <span class="title">Multivariable and Vector Functions</span></a><ul>
+<li><a href="S-9-1-Functions.html" data-scroll="S-9-1-Functions" class="internal">Functions of Several Variables and Three Dimensional Space</a></li>
+<li><a href="S-9-2-Vectors.html" data-scroll="S-9-2-Vectors" class="internal">Vectors</a></li>
+<li><a href="S-9-3-Dot-Product.html" data-scroll="S-9-3-Dot-Product" class="internal">The Dot Product</a></li>
+<li><a href="S-9-4-Cross-Product.html" data-scroll="S-9-4-Cross-Product" class="internal">The Cross Product</a></li>
+<li><a href="S-9-5-Lines-Planes.html" data-scroll="S-9-5-Lines-Planes" class="internal">Lines and Planes in Space</a></li>
+<li><a href="S-9-6-Vector-Valued-Functions.html" data-scroll="S-9-6-Vector-Valued-Functions" class="internal">Vector-Valued Functions</a></li>
+<li><a href="S-9-7-Vector-Valued-Functions-Derivatives.html" data-scroll="S-9-7-Vector-Valued-Functions-Derivatives" class="internal">Derivatives and Integrals of Vector-Valued Functions</a></li>
+<li><a href="S-9-8-Arc-Length-Curvature.html" data-scroll="S-9-8-Arc-Length-Curvature" class="internal">Arc Length and Curvature</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="C-10.html" data-scroll="C-10" class="internal"><span class="codenumber">10</span> <span class="title">Derivatives of Multivariable Functions</span></a><ul>
+<li><a href="S-10-1-Limits.html" data-scroll="S-10-1-Limits" class="internal">Limits</a></li>
+<li><a href="S-10-2-First-Order-Partial-Derivatives.html" data-scroll="S-10-2-First-Order-Partial-Derivatives" class="internal">First-Order Partial Derivatives</a></li>
+<li><a href="S-10-3-Second-Order-Partial-Derivatives.html" data-scroll="S-10-3-Second-Order-Partial-Derivatives" class="internal">Second-Order Partial Derivatives</a></li>
+<li><a href="S-10-4-Linearization.html" data-scroll="S-10-4-Linearization" class="internal">Linearization: Tangent Planes and Differentials</a></li>
+<li><a href="S-10-5-Chain-Rule.html" data-scroll="S-10-5-Chain-Rule" class="internal">The Chain Rule</a></li>
+<li><a href="S-10-6-Directional-Derivative.html" data-scroll="S-10-6-Directional-Derivative" class="active">Directional Derivatives and the Gradient</a></li>
+<li><a href="S-10-7-Optimization.html" data-scroll="S-10-7-Optimization" class="internal">Optimization</a></li>
+<li><a href="S-10-8-Lagrange-Multipliers.html" data-scroll="S-10-8-Lagrange-Multipliers" class="internal">Constrained Optimization: Lagrange Multipliers</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="C-11.html" data-scroll="C-11" class="internal"><span class="codenumber">11</span> <span class="title">Multiple Integrals</span></a><ul>
+<li><a href="S-11-1-Double-Integrals-Rectangles.html" data-scroll="S-11-1-Double-Integrals-Rectangles" class="internal">Double Riemann Sums and Double Integrals over Rectangles</a></li>
+<li><a href="S-11-2-Iterated-Integrals.html" data-scroll="S-11-2-Iterated-Integrals" class="internal">Iterated Integrals</a></li>
+<li><a href="S-11-3-Double-Integrals-General.html" data-scroll="S-11-3-Double-Integrals-General" class="internal">Double Integrals over General Regions</a></li>
+<li><a href="S-11-4-Double-Integrals-Applications.html" data-scroll="S-11-4-Double-Integrals-Applications" class="internal">Applications of Double Integrals</a></li>
+<li><a href="S-11-5-Double-Integrals-Polar.html" data-scroll="S-11-5-Double-Integrals-Polar" class="internal">Double Integrals in Polar Coordinates</a></li>
+<li><a href="S-11-6-Parametric-Surfaces-Surface-Area.html" data-scroll="S-11-6-Parametric-Surfaces-Surface-Area" class="internal">Surfaces Defined Parametrically and Surface Area</a></li>
+<li><a href="S-11-7-Triple-Integrals.html" data-scroll="S-11-7-Triple-Integrals" class="internal">Triple Integrals</a></li>
+<li><a href="S-11-8-Triple-Integrals-Cylindrical-Spherical.html" data-scroll="S-11-8-Triple-Integrals-Cylindrical-Spherical" class="internal">Triple Integrals in Cylindrical and Spherical Coordinates</a></li>
+<li><a href="S-11-9-Change-of-Variable.html" data-scroll="S-11-9-Change-of-Variable" class="internal">Change of Variables</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="C_Vector.html" data-scroll="C_Vector" class="internal"><span class="codenumber">12</span> <span class="title">Vector Calculus</span></a><ul>
+<li><a href="S_Vector_VectorFields.html" data-scroll="S_Vector_VectorFields" class="internal">Vector Fields</a></li>
+<li><a href="S_Vector_IdeaLineIntegral.html" data-scroll="S_Vector_IdeaLineIntegral" class="internal">The Idea of a Line Integral</a></li>
+<li><a href="S_Vector_ParamLineIntegrals.html" data-scroll="S_Vector_ParamLineIntegrals" class="internal">Using Parametrizations to Calculate Line Integrals</a></li>
+<li><a href="S_ScalarLineIntegral.html" data-scroll="S_ScalarLineIntegral" class="internal">Line Integrals of Scalar Functions</a></li>
+<li><a href="S_Vector_FTCLI.html" data-scroll="S_Vector_FTCLI" class="internal">Path-Independent Vector Fields and the Fundamental Theorem of Calculus for Line Integrals</a></li>
+<li><a href="S_Vector_Div.html" data-scroll="S_Vector_Div" class="internal">The Divergence of a Vector Field</a></li>
+<li><a href="S_Vector_Curl.html" data-scroll="S_Vector_Curl" class="internal">The Curl of a Vector Field</a></li>
+<li><a href="S_Vector_GreensTheorem.html" data-scroll="S_Vector_GreensTheorem" class="internal">Green's Theorem</a></li>
+<li><a href="S_Vector_FluxInt.html" data-scroll="S_Vector_FluxInt" class="internal">Flux Integrals</a></li>
+<li><a href="S_ScalarSurfaceIntegral.html" data-scroll="S_ScalarSurfaceIntegral" class="internal">Surface Integrals of Scalar Valued Functions</a></li>
+<li><a href="S_Vector_StokesThm.html" data-scroll="S_Vector_StokesThm" class="internal">Stokes' Theorem</a></li>
+<li><a href="S_Vector_DivThm.html" data-scroll="S_Vector_DivThm" class="internal">The Divergence Theorem</a></li>
+</ul>
+</li>
+<li class="link backmatter"><a href="backmatter-1.html" data-scroll="backmatter-1" class="internal"><span class="title">Back Matter</span></a></li>
+<li class="link"><a href="index-1.html" data-scroll="index-1" class="internal"><span class="title">Index</span></a></li>
+</ul></nav><div class="extras"><nav><a class="pretext-link" href="https://pretextbook.org">Authored in PreTeXt</a><a href="https://www.mathjax.org"><img title="Powered by MathJax" src="https://www.mathjax.org/badge/badge.gif" alt="Powered by MathJax"></a></nav></div>
+</div></div>
+<main class="main"><div id="content" class="pretext-content">
+<section class="section" id="S-10-6-Directional-Derivative"><h2 class="heading hide-type">
+<span class="type">Section</span> <span class="codenumber">10.6</span> <span class="title">Directional Derivatives and the Gradient</span>
+</h2>
+<article class="objectives goal-like" id="objectives-14"><h3 class="heading"><span class="type">Motivating Questions</span></h3>
+<ul class="disc">
+<li id="li-810"><p id="p-2265">The partial derivatives of a function <span class="process-math">\(f\)</span> tell us the rate of change of <span class="process-math">\(f\)</span> in the direction of the coordinate axes.  How can we measure the rate of change of <span class="process-math">\(f\)</span> in other directions?</p></li>
+<li id="li-811"><p id="p-2266">What is the gradient of a function and what does it tell us?</p></li>
+</ul></article><section class="introduction" id="introduction-14"><p id="p-2267">The partial derivatives of a function tell us the instantaneous rate at which the function changes as we hold all but one independent variable constant and allow the remaining independent variable to change. It is natural to wonder how we can measure the rate at which a function changes in directions other than parallel to a coordinate axes. In what follows, we investigate this question, and see how the rate of change in any given direction is connected to the rates of change given by the standard partial derivatives.</p>
+<article class="exploration project-like" id="PA_10_6"><h3 class="heading">
+<span class="type">Preview Activity</span><span class="space"> </span><span class="codenumber">10.6.1</span><span class="period">.</span>
+</h3>
+<p id="p-2268">Let's consider the function <span class="process-math">\(f\)</span> defined by</p>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/F_10_6_preview_1.html">
+\begin{equation*}
+f(x,y) = 30 - x^2 - \frac 12 y^2,
+\end{equation*}
+</div>
+<p class="continuation">and suppose that <span class="process-math">\(f\)</span> measures the temperature, in degrees Celsius, at a given point in the plane, where <span class="process-math">\(x\)</span> and <span class="process-math">\(y\)</span> are measured in feet. Assume that the positive <span class="process-math">\(x\)</span>-axis points due east, while the positive <span class="process-math">\(y\)</span>-axis points due north. A contour plot of <span class="process-math">\(f\)</span> is shown in <a href="" class="xref" data-knowl="./knowl/F_10_6_preview_1.html" title="Figure 10.6.1">Figure 10.6.1</a></p>
+<figure class="figure figure-like" id="F_10_6_preview_1"><div class="image-box" style="width: 50%; margin-left: 25%; margin-right: 25%;"><img src="external/images/fig_10_6_preview_1.svg" role="img" class="contained"></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">10.6.1<span class="period">.</span></span><span class="space"> </span>A contour plot of <span class="process-math">\(f(x,y) = 30-x^2-\frac12 y^2\text{.}\)</span></figcaption></figure><ol class="lower-alpha">
+<li id="li-812"><p id="p-2269">Suppose that a person is walking due east, and thus parallel to the <span class="process-math">\(x\)</span>-axis.  At what instantaneous rate is the temperature changing with respect to <span class="process-math">\(x\)</span> at the moment the walker passes the point <span class="process-math">\((2,1)\text{?}\)</span>  What are the units on this rate of change?</p></li>
+<li id="li-813"><p id="p-2270">Next, determine the instantaneous rate of change of temperature with respect to distance at the point <span class="process-math">\((2,1)\)</span> if the person is instead walking due north.  Again, include units on your result.</p></li>
+<li id="li-814"><p id="p-2271">Now, rather than walking due east or due north, let's suppose that the person is walking with velocity given by the vector <span class="process-math">\(\vv = \langle 3, 4 \rangle\text{,}\)</span> where time is measured in seconds.  Note that the person's speed is thus <span class="process-math">\(| \vv | = 5\)</span> feet per second. Find parametric equations for the person's path; that is, parameterize the line through <span class="process-math">\((2,1)\)</span> using the direction vector <span class="process-math">\(\vv = \langle 3, 4 \rangle\text{.}\)</span>  Let <span class="process-math">\(x(t)\)</span> denote the <span class="process-math">\(x\)</span>-coordinate of the line, and <span class="process-math">\(y(t)\)</span> its <span class="process-math">\(y\)</span>-coordinate. Make sure your parameterization places the walker at the point <span class="process-math">\((2,1)\)</span> when <span class="process-math">\(t=0\text{.}\)</span></p></li>
+<li id="li-815"><p id="p-2272">With the parameterization in (c), we can now view the temperature <span class="process-math">\(f\)</span> as not only a function of <span class="process-math">\(x\)</span> and <span class="process-math">\(y\text{,}\)</span> but also of time, <span class="process-math">\(t\text{.}\)</span>  Hence, use the chain rule to determine the value of <span class="process-math">\(\frac{df}{dt}\bigm|_{t=0}\text{.}\)</span>  What are the units on your answer?  What is the practical meaning of this result?</p></li>
+</ol></article></section><section class="subsection" id="subsection-60"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">10.6.1</span> <span class="title">Directional Derivatives</span>
+</h3>
+<p id="p-2273">Given a function <span class="process-math">\(z = f(x,y)\text{,}\)</span> the partial derivative <span class="process-math">\(f_x(x_0,y_0)\)</span> measures the instantaneous rate of change of <span class="process-math">\(f\)</span> as only the <span class="process-math">\(x\)</span> variable changes; likewise, <span class="process-math">\(f_y(x_0,y_0)\)</span> measures the rate of change of <span class="process-math">\(f\)</span> at <span class="process-math">\((x_0,y_0)\)</span> as only <span class="process-math">\(y\)</span> changes. Note particularly that <span class="process-math">\(f_x(x_0,y_0)\)</span> is measured in “units of <span class="process-math">\(f\)</span> per unit of change in <span class="process-math">\(x\text{,}\)</span>” and that the units on <span class="process-math">\(f_y(x_0,y_0)\)</span> are similar.</p>
+<p id="p-2274">In <a href="" class="xref" data-knowl="./knowl/PA_10_6.html" title="Preview Activity 10.6.1">Preview Activity 10.6.1</a>, we saw how we could measure the rate of change of <span class="process-math">\(f\)</span> in a situation where both <span class="process-math">\(x\)</span> and <span class="process-math">\(y\)</span> were changing; in that activity, however, we found that this rate of change was measured in “units of <span class="process-math">\(f\)</span> per unit of <em class="emphasis">time</em>.” In a given unit of time, we may move more than one unit of distance. In fact, in <a href="" class="xref" data-knowl="./knowl/PA_10_6.html" title="Preview Activity 10.6.1">Preview Activity 10.6.1</a>, in each unit increase in time we move a distance of <span class="process-math">\(| \vv | = 5\)</span> feet. To generalize the notion of partial derivatives to any direction of our choice, we instead want to have a rate of change whose units are “units of <span class="process-math">\(f\)</span> per unit of distance in the given direction.”</p>
+<p id="p-2275">In this light, in order to formally define the derivative in a particular direction of motion, we want to represent the change in <span class="process-math">\(f\)</span> for a given <em class="emphasis">unit</em> change in the direction of motion. We can represent this unit change in direction with a unit vector, say <span class="process-math">\(\vu = \langle u_1, u_2 \rangle\text{.}\)</span> If we move a distance <span class="process-math">\(h\)</span> in the direction of <span class="process-math">\(\vu\)</span> from a fixed point <span class="process-math">\((x_0,y_0)\text{,}\)</span> we then arrive at the new point <span class="process-math">\((x_0+u_1h, y_0+u_2h)\text{.}\)</span> It now follows that the slope of the secant line to the curve on the surface through <span class="process-math">\((x_0,y_0)\)</span> in the direction of <span class="process-math">\(\vu\)</span> through the points <span class="process-math">\((x_0,y_0)\)</span> and <span class="process-math">\((x_0+u_1h, y_0+u_2h)\)</span> is</p>
+<div class="displaymath process-math" data-contains-math-knowls="" id="eq_10_6_diff_quot">
+\begin{equation}
+m_{\mbox{sec} } = \frac{f(x_0+u_1h, y_0+u_2h) - f(x_0,y_0)}{h}.\tag{10.6.1}
+\end{equation}
+</div>
+<p id="p-2276">To get the instantaneous rate of change of <span class="process-math">\(f\)</span> in the direction <span class="process-math">\(\vu = \langle u_1, u_2 \rangle\text{,}\)</span> we must take the limit of the quantity in Equation <a href="" class="xref" data-knowl="./knowl/eq_10_6_diff_quot.html" title="Equation 10.6.1">(10.6.1)</a> as <span class="process-math">\(h \to 0\text{.}\)</span> Doing so results in the formal definition of the directional derivative.</p>
+<article class="definition definition-like" id="definition-19"><h4 class="heading">
+<span class="type">Definition</span><span class="space"> </span><span class="codenumber">10.6.2</span><span class="period">.</span>
+</h4>
+<p id="p-2277">Let <span class="process-math">\(f = f(x,y)\)</span> be given. The <dfn class="terminology">derivative of <span class="process-math">\(f\)</span> at the point <span class="process-math">\((x,y)\)</span> in the direction of the unit vector <span class="process-math">\(\vu = \langle u_1, u_2 \rangle\)</span></dfn> is denoted <span class="process-math">\(D_{\vu}f(x,y)\)</span> and is given by</p>
+<div class="displaymath process-math" data-contains-math-knowls="" id="E_DirDerDef">
+\begin{equation}
+D_{\vu}f(x,y) = \lim_{h \to 0} \frac{f(x+u_1h, y+u_2h) - f(x,y)}{h}\tag{10.6.2}
+\end{equation}
+</div>
+<p class="continuation">for those values of <span class="process-math">\(x\)</span> and <span class="process-math">\(y\)</span> for which the limit exists.</p></article><p id="p-2278">The quantity <span class="process-math">\(D_{\vu} f(x,y)\)</span> is called a <em class="emphasis">directional derivative</em>. When we evaluate the directional derivative <span class="process-math">\(D_{\vu} f(x,y)\)</span> at a point <span class="process-math">\((x_0, y_0)\text{,}\)</span> the result <span class="process-math">\(D_{\vu} f(x_0,y_0)\)</span> tells us the instantaneous rate at which <span class="process-math">\(f\)</span> changes at <span class="process-math">\((x_0, y_0)\)</span> per unit increase in the direction of the vector <span class="process-math">\(\vu\text{.}\)</span> In addition, the quantity <span class="process-math">\(D_{\vu} f(x_0,y_0)\)</span> tells us the slope of the line tangent to the surface in the direction of <span class="process-math">\(\vu\)</span> at the point <span class="process-math">\((x_0,y_0,f(x_0,y_0))\text{.}\)</span></p></section><section class="subsection" id="subsection-61"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">10.6.2</span> <span class="title">Computing the Directional Derivative</span>
+</h3>
+<p id="p-2279">In a similar way to how we developed shortcut rules for standard derivatives in single variable calculus, and for partial derivatives in multivariable calculus, we can also find a way to evaluate directional derivatives without resorting to the limit definition found in Equation <a href="" class="xref" data-knowl="./knowl/E_DirDerDef.html" title="Equation 10.6.2">(10.6.2)</a>. We do so using a very similar approach to our work in <a href="" class="xref" data-knowl="./knowl/PA_10_6.html" title="Preview Activity 10.6.1">Preview Activity 10.6.1</a>.</p>
+<p id="p-2280">Suppose we consider the situation where we are interested in the instantaneous rate of change of <span class="process-math">\(f\)</span> at a point <span class="process-math">\((x_0,y_0)\)</span> in the direction <span class="process-math">\(\vu = \langle u_1, u_2 \rangle\text{,}\)</span> where <span class="process-math">\(\vu\)</span> is a unit vector. The variables <span class="process-math">\(x\)</span> and <span class="process-math">\(y\)</span> are therefore changing according to the parameterization</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+x = x_0 + u_1t \ \ \ \ \ \text{ and }  \ \ \ \ \  y = y_0 + u_2t.
+\end{equation*}
+</div>
+<p id="p-2281">Observe that <span class="process-math">\(\frac{dx}{dt} = u_1\)</span> and <span class="process-math">\(\frac{dy}{dt} = u_2\)</span> for all values of <span class="process-math">\(t\text{.}\)</span> Since <span class="process-math">\(\vu\)</span> is a unit vector, it follows that a point moving along this line moves one unit of distance per one unit of time; that is, each single unit of time corresponds to movement of a single unit of distance in that direction. This observation allows us to use the Chain Rule to calculate the directional derivative, which measures the instantaneous rate of change of <span class="process-math">\(f\)</span> with respect to change in the direction <span class="process-math">\(\vu\text{.}\)</span></p>
+<p id="p-2282">In particular, by the Chain Rule, it follows that</p>
+<div class="displaymath process-math" data-contains-math-knowls="" id="md-25">
+\begin{align*}
+D_{\vu}f(x_0,y_0) \amp = f_x(x_0,y_0)\frac{dx}{dt}\biggm|_{(x_0,y_0)} + f_y(x_0,y_0)\frac{dy}{dt}\biggm|_{(x_0,y_0)} \\
+\amp = f_x(x_0,y_0)u_1 + f_y(x_0,y_0)u_2. 
+\end{align*}
+</div>
+<p id="p-2283">This now allows us to compute the directional derivative at an arbitrary point according to the following formula.</p>
+<article class="assemblage assemblage-like" id="Directional-derivative"><h4 class="heading"><span class="title">Calculating a directional derivative.</span></h4>
+<p id="p-2284">Given a differentiable function <span class="process-math">\(f = f(x,y)\)</span> and a unit vector <span class="process-math">\(\vu = \langle u_1, u_2 \rangle\text{,}\)</span> we may compute <span class="process-math">\(D_{\vu}f(x,y)\)</span> by</p>
+<div class="displaymath process-math" data-contains-math-knowls="" id="eq_10_6_DD">
+\begin{equation}
+D_{\vu}f(x,y) = f_x(x,y)u_1 + f_y(x,y)u_2.\tag{10.6.3}
+\end{equation}
+</div></article><p id="p-2285"><em class="emphasis">Note well:</em> To use Equation <a href="" class="xref" data-knowl="./knowl/eq_10_6_DD.html" title="Equation 10.6.3">(10.6.3)</a>, we must have a <em class="emphasis">unit</em> vector <span class="process-math">\(\vu = \langle u_1, u_2 \rangle\)</span> in the direction of motion. In the event that we have a direction prescribed by a non-unit vector, we must first scale the vector to have length 1.</p>
+<article class="activity project-like" id="A_10_6_2"><h4 class="heading">
+<span class="type">Activity</span><span class="space"> </span><span class="codenumber">10.6.2</span><span class="period">.</span>
+</h4>
+<p id="p-2286">Let <span class="process-math">\(f(x,y) = 3xy-x^2y^3\text{.}\)</span></p>
+<ol class="lower-alpha">
+<li id="li-816"><p id="p-2287">Determine <span class="process-math">\(f_x(x,y)\)</span> and <span class="process-math">\(f_y(x,y)\text{.}\)</span></p></li>
+<li id="li-817"><p id="p-2288">Use Equation <a href="" class="xref" data-knowl="./knowl/eq_10_6_DD.html" title="Equation 10.6.3">(10.6.3)</a> to determine <span class="process-math">\(D_{\vi} f(x,y)\)</span> and <span class="process-math">\(D_{\vj} f(x,y)\text{.}\)</span> What familiar function is <span class="process-math">\(D_{\vi} f\text{?}\)</span> What familiar function is <span class="process-math">\(D_{\vj} f\text{?}\)</span> (Recall that <span class="process-math">\(\vi\)</span> is the unit vector in the positive <span class="process-math">\(x\)</span>-direction and <span class="process-math">\(\vj\)</span> is the unit vector in the positive <span class="process-math">\(y\)</span>-direction.)</p></li>
+<li id="li-818"><p id="p-2289">Use Equation <a href="" class="xref" data-knowl="./knowl/eq_10_6_DD.html" title="Equation 10.6.3">(10.6.3)</a> to find the derivative of <span class="process-math">\(f\)</span> in the direction of the vector <span class="process-math">\(\vv = \langle 2, 3 \rangle\)</span> at the point <span class="process-math">\((1,-1)\text{.}\)</span>  Remember that a unit direction vector is needed.</p></li>
+</ol></article></section><section class="subsection" id="subsection-62"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">10.6.3</span> <span class="title">The Gradient</span>
+</h3>
+<p id="p-2290">Via the Chain Rule, we have seen that for a given function <span class="process-math">\(f = f(x,y)\text{,}\)</span> its instantaneous rate of change in the direction of a unit vector <span class="process-math">\(\vu = \langle u_1, u_2 \rangle\)</span> is given by</p>
+<div class="displaymath process-math" data-contains-math-knowls="" id="E_DDrevisited">
+\begin{equation}
+D_{\vu}f(x_0,y_0) = f_x(x_0,y_0)u_1 + f_y(x_0,y_0)u_2.\tag{10.6.4}
+\end{equation}
+</div>
+<p id="p-2291">Recalling that the dot product of two vectors <span class="process-math">\(\vv = \langle v_1, v_2 \rangle\)</span> and <span class="process-math">\(\vu = \langle u_1, u_2 \rangle\)</span> is computed by</p>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/E_DDrevisited.html">
+\begin{equation*}
+\vv \cdot \vu = v_1 u_1 + v_2 u_2,
+\end{equation*}
+</div>
+<p class="continuation">we see that we may recast Equation <a href="" class="xref" data-knowl="./knowl/E_DDrevisited.html" title="Equation 10.6.4">(10.6.4)</a> in a way that has geometric meaning. In particular, we see that <span class="process-math">\(D_{\vu}f(x_0,y_0)\)</span> is the dot product of the vector <span class="process-math">\(\left\langle f_x(x_0,y_0), f_y(x_0,y_0) \right\rangle\)</span> and the vector <span class="process-math">\(\vu\text{.}\)</span></p>
+<p id="p-2292">We call this vector formed by the partial derivatives of <span class="process-math">\(f\)</span> the <em class="emphasis">gradient</em> of <span class="process-math">\(f\)</span> and denote it</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+\nabla f(x_0,y_0) = \left\langle f_x(x_0,y_0), f_y(x_0,y_0) \right\rangle.
+\end{equation*}
+</div>
+<p id="p-2293">We read <span class="process-math">\(\nabla f\)</span> as “the gradient of <span class="process-math">\(f\text{,}\)</span>” “grad <span class="process-math">\(f\)</span>” or “del <span class="process-math">\(f\)</span>”.<a href="" data-knowl="" class="id-ref fn-knowl original" data-refid="hk-fn-20" id="fn-20"><sup> 1 </sup></a> Notice that <span class="process-math">\(\nabla f\)</span> varies from point to point, and also provides an alternate formulation of the directional derivative. <article class="assemblage assemblage-like" id="Directional-derivative-gradient"><h4 class="heading"><span class="title">The directional derivative and the gradient.</span></h4>
+<p id="p-2294">Given a differentiable function <span class="process-math">\(f = f(x,y)\)</span> and a unit vector <span class="process-math">\(\vu = \langle u_1, u_2 \rangle\text{,}\)</span> we may compute <span class="process-math">\(D_{\vu}f(x,y)\)</span> by</p>
+<div class="displaymath process-math" data-contains-math-knowls="" id="eq_10_6_DD_grad">
+\begin{equation}
+D_{\vu}f(x,y) = \nabla f(x,y) \cdot \vu.\tag{10.6.5}
+\end{equation}
+</div></article> In the following activity, we investigate some of what the gradient tells us about the behavior of a function <span class="process-math">\(f\text{.}\)</span></p>
+<article class="activity project-like" id="A_10_6_10"><h4 class="heading">
+<span class="type">Activity</span><span class="space"> </span><span class="codenumber">10.6.3</span><span class="period">.</span>
+</h4>
+<p id="p-2295">Let's consider the function <span class="process-math">\(f\)</span> defined by <span class="process-math">\(f(x,y) = x^2 - y^2\text{.}\)</span> Some contours for this function are shown in <a href="" class="xref" data-knowl="./knowl/F_10_6_activity_1.html" title="Figure 10.6.3">Figure 10.6.3</a>.</p>
+<figure class="figure figure-like" id="F_10_6_activity_1"><div class="image-box" style="width: 50%; margin-left: 25%; margin-right: 25%;"><img src="external/images/fig_10_6_contours_1.svg" role="img" class="contained"></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">10.6.3<span class="period">.</span></span><span class="space"> </span>Contours of <span class="process-math">\(f(x,y) = x^2 - y^2\text{.}\)</span></figcaption></figure><ol class="lower-alpha">
+<li id="li-819"><p id="p-2296">Find the gradient <span class="process-math">\(\nabla f (x,y)\text{.}\)</span></p></li>
+<li id="li-820">
+<p id="p-2297">For each of the following points <span class="process-math">\((x_0,y_0)\text{,}\)</span> evaluate the gradient <span class="process-math">\(\nabla f(x_0,y_0)\)</span> and sketch the gradient vector with its tail at <span class="process-math">\((x_0,y_0)\text{.}\)</span>  Some of the vectors are too long to fit onto the plot, but we'd like to draw them to scale;  to do so, scale each vector by a factor of 1/4.</p>
+<ul class="disc">
+<li id="li-821"><p id="p-2298"><span class="process-math">\(\displaystyle (x_0,y_0) = (2,0)\)</span></p></li>
+<li id="li-822"><p id="p-2299"><span class="process-math">\(\displaystyle (x_0,y_0) = (0,2)\)</span></p></li>
+<li id="li-823"><p id="p-2300"><span class="process-math">\(\displaystyle (x_0,y_0) = (2,2)\)</span></p></li>
+<li id="li-824"><p id="p-2301"><span class="process-math">\(\displaystyle (x_0,y_0) = (2,1)\)</span></p></li>
+<li id="li-825"><p id="p-2302"><span class="process-math">\(\displaystyle (x_0,y_0) = (-3,2)\)</span></p></li>
+<li id="li-826"><p id="p-2303"><span class="process-math">\(\displaystyle (x_0,y_0) = (-2,-4)\)</span></p></li>
+<li id="li-827"><p id="p-2304"><span class="process-math">\(\displaystyle (x_0,y_0) = (0,0)\)</span></p></li>
+</ul>
+</li>
+<li id="li-828"><p id="p-2305">What do you notice about the relationship between the gradient at <span class="process-math">\((x_0,y_0)\)</span> and the contour passing through that point?</p></li>
+<li id="li-829"><p id="p-2306">Does <span class="process-math">\(f\)</span> increase or decrease in the direction of <span class="process-math">\(\nabla
+f(x_0,y_0)\text{?}\)</span>  Provide a justification for your response.</p></li>
+</ol></article><p id="p-2307">As a vector, <span class="process-math">\(\nabla f(x_0,y_0)\)</span> defines a direction and a length. As we will soon see, both of these convey important information about the behavior of <span class="process-math">\(f\)</span> near <span class="process-math">\((x_0,y_0)\text{.}\)</span></p></section><section class="subsection" id="subsection-63"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">10.6.4</span> <span class="title">The Direction of the Gradient</span>
+</h3>
+<p id="p-2308">Remember that the dot product also conveys information about the angle between the two vectors. If <span class="process-math">\(\theta\)</span> is the angle between <span class="process-math">\(\nabla
+f(x_0,y_0)\)</span> and <span class="process-math">\(\vu\)</span> (where <span class="process-math">\(\vu\)</span> is a unit vector), then we also have that</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+D_{\vu}f(x_0,y_0) = \nabla f(x_0,y_0)\cdot\vu = |\nabla f(x_0,y_0)||\vu|
+\cos(\theta).
+\end{equation*}
+</div>
+<p id="p-2309">In particular, when <span class="process-math">\(\theta\)</span> is a right angle, as shown on the left of <a href="" class="xref" data-knowl="./knowl/F_10_6_gradient_sign.html" title="Figure 10.6.4">Figure 10.6.4</a>, then <span class="process-math">\(D_{\vu}f(x_0,y_0) = 0\text{,}\)</span> because <span class="process-math">\(\cos(\theta) = 0\text{.}\)</span> Since the value of the directional derivative is 0, this means that <span class="process-math">\(f\)</span> is unchanging in this direction, and hence <span class="process-math">\(\vu\)</span> must be tangent to the contour of <span class="process-math">\(f\)</span> that passes through <span class="process-math">\((x_0,y_0)\text{.}\)</span> In other words, <span class="process-math">\(\nabla f(x_0,y_0)\)</span> is orthogonal to the contour through <span class="process-math">\((x_0,y_0)\text{.}\)</span> This shows that the gradient vector at a given point is always perpendicular to the contour passing through the point, confirming that what we saw in part (c) of <a href="" class="xref" data-knowl="./knowl/A_10_6_10.html" title="Activity 10.6.3">Activity 10.6.3</a> holds in general.</p>
+<figure class="figure figure-like" id="F_10_6_gradient_sign"><div class="sidebyside"><div class="sbsrow" style="margin-left:0.166666666666667%;margin-right:0.166666666666667%;">
+<div class="sbspanel top" style="width:33.1103678929766%;"><img src="external/images/fig_10_6_gradient_angle_1.svg" role="img" class="contained"></div>
+<div class="sbspanel top" style="width:33.1103678929766%;"><img src="external/images/fig_10_6_gradient_angle_2.svg" role="img" class="contained"></div>
+<div class="sbspanel top" style="width:33.1103678929766%;"><img src="external/images/fig_10_6_gradient_angle_3.svg" role="img" class="contained"></div>
+</div></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">10.6.4<span class="period">.</span></span><span class="space"> </span>The sign of <span class="process-math">\(D_{\vu} f(x_0,y_0)\)</span> is determined by <span class="process-math">\(\theta\text{.}\)</span></figcaption></figure><p id="p-2310">Moreover, when <span class="process-math">\(\theta\)</span> is an acute angle, it follows that <span class="process-math">\(\cos(\theta) &gt; 0\)</span> so since</p>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/F_10_6_gradient_sign.html ./knowl/F_10_6_gradient_sign.html">
+\begin{equation*}
+D_{\vu}f(x_0,y_0) = |\nabla f(x_0,y_0)||\vu|
+\cos(\theta),
+\end{equation*}
+</div>
+<p class="continuation">and therefore <span class="process-math">\(D_{\vu}f(x_0,y_0) &gt; 0\text{,}\)</span> as shown in the middle image in <a href="" class="xref" data-knowl="./knowl/F_10_6_gradient_sign.html" title="Figure 10.6.4">Figure 10.6.4</a>. This means that <span class="process-math">\(f\)</span> is increasing in any direction where <span class="process-math">\(\theta\)</span> is acute. In a similar way, when <span class="process-math">\(\theta\)</span> is an obtuse angle, then <span class="process-math">\(\cos(\theta) \lt  0\)</span> so <span class="process-math">\(D_{\vu}f(x_0,y_0) \lt  0\text{,}\)</span> as seen on the right in <a href="" class="xref" data-knowl="./knowl/F_10_6_gradient_sign.html" title="Figure 10.6.4">Figure 10.6.4</a>. This means that <span class="process-math">\(f\)</span> is decreasing in any direction for which <span class="process-math">\(\theta\)</span> is obtuse.</p>
+<p id="p-2311">Finally, as we can see in the following activity, we may also use the gradient to determine the directions in which the function is increasing and decreasing most rapidly.</p>
+<article class="activity project-like" id="A_10_6_3"><h4 class="heading">
+<span class="type">Activity</span><span class="space"> </span><span class="codenumber">10.6.4</span><span class="period">.</span>
+</h4>
+<p id="p-2312">In this activity we investigate how the gradient is related to the directions of greatest increase and decrease of a function. Let <span class="process-math">\(f\)</span> be a differentiable function and <span class="process-math">\(\vu\)</span> a unit vector.</p>
+<ol class="lower-alpha">
+<li id="li-830">
+<p id="p-2313">Let <span class="process-math">\(\theta\)</span> be the angle between <span class="process-math">\(\nabla f(x_0,y_0)\)</span> and <span class="process-math">\(\vu\text{.}\)</span>  Use the relationship between the dot product and the angle between two vectors to explain why</p>
+<div class="displaymath process-math" data-contains-math-knowls="" id="eq_10_6_DD_grad2">
+\begin{equation}
+D_{\vu} f(x_0,y_0) = |\langle f_x(x_0,y_0), f_y(x_0,y_0) \rangle | \cos(\theta).\tag{10.6.6}
+\end{equation}
+</div>
+</li>
+<li id="li-831">
+<p id="p-2314">At the point <span class="process-math">\((x_0,y_0)\text{,}\)</span> the only quantity in Equation <a href="" class="xref" data-knowl="./knowl/eq_10_6_DD_grad2.html" title="Equation 10.6.6">(10.6.6)</a> that can change is <span class="process-math">\(\theta\)</span> (which determines the direction <span class="process-math">\(\vu\)</span> of travel). Explain why <span class="process-math">\(\theta = 0\)</span> makes the quantity</p>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/eq_10_6_DD_grad2.html">
+\begin{equation*}
+|\langle f_x(x_0,y_0), f_y(x_0,y_0) \rangle| \cos(\theta)
+\end{equation*}
+</div>
+<p class="continuation">as large as possible.</p>
+</li>
+<li id="li-832"><p id="p-2315">When <span class="process-math">\(\theta = 0\text{,}\)</span> in what direction does the unit vector <span class="process-math">\(\vu\)</span> point relative to <span class="process-math">\(\nabla f(x_0,y_0)\text{?}\)</span> Why? What does this tell us about the direction of greatest increase of <span class="process-math">\(f\)</span> at the point <span class="process-math">\((x_0,y_0)\text{?}\)</span></p></li>
+<li id="li-833"><p id="p-2316">In what direction, relative to <span class="process-math">\(\nabla f(x_0,y_0)\text{,}\)</span> does <span class="process-math">\(f\)</span> decrease most rapidly at the point <span class="process-math">\((x_0,y_0)\text{?}\)</span></p></li>
+<li id="li-834"><p id="p-2317">State the unit vectors <span class="process-math">\(\vu\)</span> and <span class="process-math">\(\vv\)</span> (in terms of <span class="process-math">\(\nabla f(x_0,y_0)\)</span>) that provide the directions of greatest increase and decrease for the function <span class="process-math">\(f\)</span> at the point <span class="process-math">\((x_0,y_0)\text{.}\)</span>  What important assumption must we make regarding <span class="process-math">\(\nabla f(x_0,y_0)\)</span> in order for these vectors to exist?</p></li>
+</ol></article></section><section class="subsection" id="subsection-64"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">10.6.5</span> <span class="title">The Length of the Gradient</span>
+</h3>
+<p id="p-2318">Having established in <a href="" class="xref" data-knowl="./knowl/A_10_6_3.html" title="Activity 10.6.4">Activity 10.6.4</a> that the direction in which a function increases most rapidly at a point <span class="process-math">\((x_0,y_0)\)</span> is the unit vector <span class="process-math">\(\vu\)</span> in the direction of the gradient, (that is, <span class="process-math">\(\vu = \frac{1}{|\nabla f(x_0,y_0)|} \nabla f(x_0,y_0)\text{,}\)</span> provided that <span class="process-math">\(\nabla f(x_0,y_0) \ne \vzero\)</span>), it is also natural to ask, “in the direction of greatest increase for <span class="process-math">\(f\)</span> at <span class="process-math">\((x_0,y_0)\text{,}\)</span> what is the <em class="emphasis">value</em> of the rate of increase?” In this situation, we are asking for the value of <span class="process-math">\(D_{\vu} f(x_0,y_0)\)</span> where <span class="process-math">\(\vu = \frac{1}{|\nabla f(x_0,y_0)|} \nabla f(x_0,y_0)\text{.}\)</span></p>
+<p id="p-2319">Using the now familiar way to compute the directional derivative, we see that</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+D_{\vu} f(x_0,y_0) = \nabla f(x_0,y_0) \cdot \left(\frac{1}{|\nabla f(x_0,y_0)|} \nabla f(x_0,y_0) \right).
+\end{equation*}
+</div>
+<p id="p-2320">Next, we recall two important facts about the dot product: (i) <span class="process-math">\(\vw\cdot (c \vv) = c (\vw \cdot \vv)\)</span> for any scalar <span class="process-math">\(c\text{,}\)</span> and (ii) <span class="process-math">\(\vw \cdot \vw = |\vw|^2\text{.}\)</span> Applying these properties to the most recent equation involving the directional derivative, we find that</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+D_{\vu} f(x_0,y_0) = \frac{1}{|\nabla f(x_0,y_0)|}  (\nabla f(x_0,y_0) \cdot \nabla f(x_0,y_0)) = \frac{1}{|\nabla f(x_0,y_0)|} |\nabla f(x_0,y_0)|^2.
+\end{equation*}
+</div>
+<p id="p-2321">Finally, since <span class="process-math">\(\nabla f(x_0,y_0)\)</span> is a nonzero vector, its length <span class="process-math">\(|\nabla f(x_0,y_0)|\)</span> is a nonzero scalar, and thus we can simplify the preceding equation to establish that</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+D_{\vu} f(x_0,y_0) = |\nabla f(x_0,y_0)|.
+\end{equation*}
+</div>
+<p id="p-2322">We summarize our most recent work by stating two important facts about the gradient.</p>
+<article class="assemblage assemblage-like" id="Gradient"><h4 class="heading"><span class="title">Important facts about the gradient.</span></h4>
+<p id="p-2323">Let <span class="process-math">\(f\)</span> be a differentiable function and <span class="process-math">\((x_0,y_0)\)</span> a point for which <span class="process-math">\(\nabla f(x_0,y_0) \ne \vzero\text{.}\)</span> Then <span class="process-math">\(\nabla f(x_0,y_0)\)</span> points in the direction of greatest increase of <span class="process-math">\(f\)</span> at <span class="process-math">\((x_0,y_0)\text{,}\)</span> and the instantaneous rate of change of <span class="process-math">\(f\)</span> in that direction is the length of the gradient vector. That is, if <span class="process-math">\(\vu = \frac{1}{|\nabla f(x_0,y_0)|} \nabla f(x_0,y_0)\text{,}\)</span> then <span class="process-math">\(\vu\)</span> is a unit vector in the direction of greatest increase of <span class="process-math">\(f\)</span> at <span class="process-math">\((x_0,y_0)\text{,}\)</span> and <span class="process-math">\(D_{\vu} f(x_0,y_0) = |\nabla f(x_0,y_0)|\text{.}\)</span></p></article><article class="activity project-like" id="A_10_6_11"><h4 class="heading">
+<span class="type">Activity</span><span class="space"> </span><span class="codenumber">10.6.5</span><span class="period">.</span>
+</h4>
+<p id="p-2324">Consider the function <span class="process-math">\(f\)</span> defined by <span class="process-math">\(f(x,y) = -x + 2xy - y\text{.}\)</span></p>
+<ol class="lower-alpha">
+<li id="li-835"><p id="p-2325">Find the gradient <span class="process-math">\(\nabla f(1,2)\)</span> and sketch it on <a href="" class="xref" data-knowl="./knowl/F_10_6_activity_empty.html" title="Figure 10.6.5">Figure 10.6.5</a>. <figure class="figure figure-like" id="F_10_6_activity_empty"><div class="image-box" style="width: 50%; margin-left: 25%; margin-right: 25%;"><img src="external/images/fig_10_6_activity_empty.svg" role="img" class="contained"></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">10.6.5<span class="period">.</span></span><span class="space"> </span>A plot for the gradient <span class="process-math">\(\nabla f(1,2)\text{.}\)</span></figcaption></figure></p></li>
+<li id="li-836"><p id="p-2326">Sketch the unit vector <span class="process-math">\(\vz = \left\langle-\frac1{\sqrt{2}},
+-\frac1{\sqrt{2}}\right\rangle\)</span> on <a href="" class="xref" data-knowl="./knowl/F_10_6_activity_empty.html" title="Figure 10.6.5">Figure 10.6.5</a> with its tail at <span class="process-math">\((1,2)\text{.}\)</span> Now find the directional derivative <span class="process-math">\(D_{\vz}f(1,2)\text{.}\)</span></p></li>
+<li id="li-837"><p id="p-2327">What is the slope of the graph of <span class="process-math">\(f\)</span> in the direction <span class="process-math">\(\vz\text{?}\)</span> What does the sign of the directional derivative tell you?</p></li>
+<li id="li-838"><p id="p-2328">Consider the vector <span class="process-math">\(\vv = \langle 2,-1\rangle\)</span> and sketch <span class="process-math">\(\vv\)</span> on <a href="" class="xref" data-knowl="./knowl/F_10_6_activity_empty.html" title="Figure 10.6.5">Figure 10.6.5</a> with its tail at <span class="process-math">\((1,2)\text{.}\)</span> Find a unit vector <span class="process-math">\(\vw\)</span> pointing in the same direction of <span class="process-math">\(\vv\text{.}\)</span> Without computing <span class="process-math">\(D_{\vw}f(1,2)\text{,}\)</span> what do you know about the sign of this directional derivative?  Now verify your observation by computing <span class="process-math">\(D_{\vw}f(1,2)\text{.}\)</span></p></li>
+<li id="li-839"><p id="p-2329">In which direction (that is, for what unit vector <span class="process-math">\(\vu\)</span>) is <span class="process-math">\(D_{\vu}f(1,2)\)</span> the greatest?  What is the slope of the graph in this direction?</p></li>
+<li id="li-840"><p id="p-2330">Corresponding, in which direction is <span class="process-math">\(D_{\vu}f(1,2)\)</span> least?  What is the slope of the graph in this direction?</p></li>
+<li id="li-841"><p id="p-2331">Sketch two unit vectors <span class="process-math">\(\vu\)</span> for which <span class="process-math">\(D_{\vu}f(1,2) = 0\)</span> and then find component representations of these vectors.</p></li>
+<li id="li-842"><p id="p-2332">Suppose you are standing at the point <span class="process-math">\((3,3)\text{.}\)</span>  In which direction should you move to cause <span class="process-math">\(f\)</span> to increase as rapidly as possible?  At what rate does <span class="process-math">\(f\)</span> increase in this direction?</p></li>
+</ol></article></section><section class="subsection" id="subsection-65"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">10.6.6</span> <span class="title">Applications</span>
+</h3>
+<p id="p-2333">The gradient finds many natural applications. For example, situations often arise — for instance, constructing a road through the mountains or planning the flow of water across a landscape — where we are interested in knowing the direction in which a function is increasing or decreasing most rapidly.</p>
+<p id="p-2334">For example, consider a two-dimensional version of how a heat-seeking missile might work.(This application is borrowed from United States Air Force Academy Department of Mathematical Sciences.)  Suppose that the temperature surrounding a fighter jet can be modeled by the function <span class="process-math">\(T\)</span> defined by</p>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/F_10_6_missile.html">
+\begin{equation*}
+T(x,y) = \frac{100}{1+(x-5)^2 + 4(y-2.5)^2},
+\end{equation*}
+</div>
+<p class="continuation">where <span class="process-math">\((x,y)\)</span> is a point in the plane of the fighter jet and <span class="process-math">\(T(x,y)\)</span> is measured in degrees Celsius. Some contours and gradients <span class="process-math">\(\nabla T\)</span> are shown on the left in <a href="" class="xref" data-knowl="./knowl/F_10_6_missile.html" title="Figure 10.6.6">Figure 10.6.6</a>.</p>
+<figure class="figure figure-like" id="F_10_6_missile"><div class="sidebyside"><div class="sbsrow" style="margin-left:0%;margin-right:0%;">
+<div class="sbspanel top" style="width:50%;"><img src="external/images/fig_10_6_missile_grad.svg" role="img" class="contained"></div>
+<div class="sbspanel top" style="width:50%;"><img src="external/images/fig_10_6_missile_path.svg" role="img" class="contained"></div>
+</div></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">10.6.6<span class="period">.</span></span><span class="space"> </span>Contours and gradient for <span class="process-math">\(T(x,y)\)</span> and the missile's path.</figcaption></figure><p id="p-2335">A heat-seeking missile will always travel in the direction in which the temperature increases most rapidly; that is, it will always travel in the direction of the gradient <span class="process-math">\(\nabla T\text{.}\)</span> If a missile is fired from the point <span class="process-math">\((2,4)\text{,}\)</span> then its path will be that shown on the right in <a href="" class="xref" data-knowl="./knowl/F_10_6_missile.html" title="Figure 10.6.6">Figure 10.6.6</a>.</p>
+<p id="p-2336">In the final activity of this section, we consider several questions related to this context of a heat-seeking missile, and foreshadow some upcoming work in <a href="S-10-7-Optimization.html" class="internal" title="Section 10.7: Optimization">Section 10.7</a>.</p>
+<article class="activity project-like" id="A_10_6_13"><h4 class="heading">
+<span class="type">Activity</span><span class="space"> </span><span class="codenumber">10.6.6</span><span class="period">.</span>
+</h4>
+<ol class="lower-alpha">
+<li id="li-843"><p id="p-2337">The temperature <span class="process-math">\(T(x,y)\)</span> has its maximum value at the fighter jet's location.  State the fighter jet's location and explain how <a href="" class="xref" data-knowl="./knowl/F_10_6_missile.html" title="Figure 10.6.6">Figure 10.6.6</a> tells you this.</p></li>
+<li id="li-844"><p id="p-2338">Determine <span class="process-math">\(\nabla T\)</span> at the fighter jet's location and give a justification for your response.</p></li>
+<li id="li-845"><p id="p-2339">Suppose that a different function <span class="process-math">\(f\)</span> has a local maximum value at <span class="process-math">\((x_0,y_0)\text{.}\)</span>  Sketch the behavior of some possible contours near this point. What is <span class="process-math">\(\nabla f(x_0,y_0)\text{?}\)</span> (Hint: What is the direction of greatest increase in <span class="process-math">\(f\)</span> at the local maximum?)</p></li>
+<li id="li-846"><p id="p-2340">Suppose that a function <span class="process-math">\(g\)</span> has a local minimum value at <span class="process-math">\((x_0,y_0)\text{.}\)</span>  Sketch the behavior of some possible contours near this point. What is <span class="process-math">\(\nabla g(x_0,y_0)\text{?}\)</span></p></li>
+<li id="li-847"><p id="p-2341">If a function <span class="process-math">\(g\)</span> has a local minimum at  <span class="process-math">\((x_0,y_0)\text{,}\)</span> what is the direction of greatest increase of <span class="process-math">\(g\)</span> at <span class="process-math">\((x_0,y_0)\text{?}\)</span></p></li>
+</ol></article></section><section class="subsection" id="subsection-66"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">10.6.7</span> <span class="title">Summary</span>
+</h3>
+<ul class="disc">
+<li id="li-848">
+<p id="p-2342">The directional derivative of <span class="process-math">\(f\)</span> at the point <span class="process-math">\((x,y)\)</span> in the direction of the unit vector <span class="process-math">\(\vu = \langle u_1, u_2 \rangle\)</span> is</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+D_{\vu}f(x,y) = \lim_{h \to 0} \frac{f(x+u_1h, y+u_2h) - f(x,y)}{h}
+\end{equation*}
+</div>
+<p class="continuation">for those values of <span class="process-math">\(x\)</span> and <span class="process-math">\(y\)</span> for which the limit exists.  In addition, <span class="process-math">\(D_{\vu}f(x,y)\)</span> measures the slope of the graph of <span class="process-math">\(f\)</span> when we move in the direction <span class="process-math">\(\vu\text{.}\)</span>   Alternatively, <span class="process-math">\(D_{\vu} f(x_0,y_0)\)</span> measures the instantaneous rate of change of <span class="process-math">\(f\)</span> in the direction <span class="process-math">\(\vu\)</span> at <span class="process-math">\((x_0,y_0)\text{.}\)</span></p>
+</li>
+<li id="li-849">
+<p id="p-2343">The gradient of a function <span class="process-math">\(f=f(x,y)\)</span> at a point <span class="process-math">\((x_0,y_0)\)</span> is the vector</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+\nabla f(x_0,y_0) = \left\langle f_x(x_0,y_0),
+f_y(x_0,y_0)\right\rangle.
+\end{equation*}
+</div>
+</li>
+<li id="li-850">
+<p id="p-2344">The directional derivative in the direction <span class="process-math">\(\vu\)</span> may be computed by</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+D_{\vu}f(x_0,y_0) = \nabla f(x_0,y_0)\cdot \vu.
+\end{equation*}
+</div>
+</li>
+<li id="li-851"><p id="p-2345">At any point where the gradient is nonzero,  gradient is orthogonal to the contour through that point and points in the direction in which <span class="process-math">\(f\)</span> increases most rapidly; moreover, the slope of <span class="process-math">\(f\)</span> in this direction equals the length of the gradient <span class="process-math">\(|\nabla f(x_0,y_0)|\text{.}\)</span>  Similarly, the opposite of the gradient points in the direction of greatest decrease, and that rate of decrease is the opposite of the length of the gradient.</p></li>
+</ul></section><section class="exercises" id="exercises-14"><h3 class="heading hide-type">
+<span class="type">Exercises</span> <span class="codenumber">10.6.8</span> <span class="title">Exercises</span>
+</h3>
+<article class="exercise exercise-like" id="ex-10-6-WW-DD-gradiant"><h4 class="heading"><span class="codenumber">1<span class="period">.</span></span></h4>
+<div id="webwork-144" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="144" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/272/setStewart14_6/problem_4.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-contents">
+<p id="p-2346">Consider the function <span class="process-math">\(f(x,y,z) = xy + yz^2 + xz^3\text{.}\)</span></p>
+<p id="p-2347">Find the gradient of <span class="process-math">\(f\text{:}\)</span></p>
+<p id="p-2348"><span class="process-math">\(\langle\)</span><span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>, <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>, <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span><span class="process-math">\(\rangle\)</span></p>
+<p id="p-2349">Find the gradient of <span class="process-math">\(f\)</span> at the point (5, -5, 3).</p>
+<p id="p-2350"><span class="process-math">\(\langle\)</span><span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>, <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>, <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span><span class="process-math">\(\rangle\)</span></p>
+<p id="p-2351">Find the rate of change of the function <span class="process-math">\(f\)</span> at the point (5, -5,3)  in the direction <span class="process-math">\(\mathbf u = \langle -2/\sqrt{38}, -5/\sqrt{38}, -3/\sqrt{38} \rangle\text{.}\)</span></p>
+<p id="p-2352"><span class="fillin underline" role="img" aria-label="60-character blank" style="width: 27.2727272727273em;"></span></p>
+</div>
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-144')">Activate</button></div>
+</div></article><article class="exercise exercise-like" id="ex-10-6-WW-DD-calculation-1"><h4 class="heading"><span class="codenumber">2<span class="period">.</span></span></h4>
+<div id="webwork-145" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="145" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/maCalcDB/setVmultivariable6Gradient/ur_vc_6_11.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-contents">
+<p id="p-2360">If <span class="process-math">\(f \left( x, y \right) = -4 x^{2} + 2 y^{2}\text{,}\)</span> find the value of the directional derivative at the point <span class="process-math">\(\left( -3, -4 \right)\)</span> in the direction given by the angle <span class="process-math">\(\theta = \frac{2 \pi}{1}\text{.}\)</span></p>
+<p id="p-2361"><span class="fillin underline" role="img" aria-label="70-character blank" style="width: 31.8181818181818em;"></span></p>
+</div>
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-145')">Activate</button></div>
+</div></article><article class="exercise exercise-like" id="ex-10-6-WW-DD-max"><h4 class="heading"><span class="codenumber">3<span class="period">.</span></span></h4>
+<div id="webwork-146" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="146" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/FortLewis/Calc3/14-5-Gradients-in-space/HGM4-14-5-16-Gradients-etc.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-contents">
+<p id="p-2363">Find the directional derivative of <span class="process-math">\(\displaystyle f(x,y,z) = 2xy+z^{2}\)</span> at the point <span class="process-math">\((-2,1,2)\)</span> in the direction of the maximum rate of change of <span class="process-math">\(f\text{.}\)</span></p>
+<p id="p-2364"><span class="process-math">\(f_{\lt B&gt;\lt I&gt;u\lt /B&gt;\lt /I&gt;} \, (-2,1,2) = D_{\lt B&gt;\lt I&gt;u\lt /B&gt;\lt /I&gt;} \, f(-2,1,2) =\)</span> <span class="fillin underline" role="img" aria-label="30-character blank" style="width: 13.6363636363636em;"></span></p>
+</div>
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-146')">Activate</button></div>
+</div></article><article class="exercise exercise-like" id="ex-10-6-WW-DD-temperature"><h4 class="heading"><span class="codenumber">4<span class="period">.</span></span></h4>
+<div id="webwork-147" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="147" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/FortLewis/Calc3/14-4-Gradients-in-plane/HGM4-14-4-66-Gradients-etc.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-contents">
+<p id="p-2366">The temperature at any point in the plane is given by <span class="process-math">\(\displaystyle T(x,y) = \frac{130}{x^{2}+y^{2}+1}\text{.}\)</span></p>
+<p id="p-2367">(a) What shape are the level curves of <span class="process-math">\(T\text{?}\)</span> <ul style="list-style:circle;">
+<li id="li-852"><p id="p-2368">lines</p></li>
+<li id="li-853"><p id="p-2369">ellipses</p></li>
+<li id="li-854"><p id="p-2370">hyperbolas</p></li>
+<li id="li-855"><p id="p-2371">parabolas</p></li>
+<li id="li-856"><p id="p-2372">circles</p></li>
+<li id="li-857"><p id="p-2373">none of the above</p></li>
+</ul></p>
+<p id="p-2374">(b)  At what point on the plane is it hottest? <span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span></p>
+<p id="p-2375">What is the maximum temperature? <span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span></p>
+<p id="p-2376">(c) Find the direction of the greatest increase in temperature at the point <span class="process-math">\((3,3)\text{.}\)</span> <span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span></p>
+<p id="p-2377">What is the value of this maximum rate of change, that is, the maximum value of the directional derivative at <span class="process-math">\((3,3)\text{?}\)</span> <span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span></p>
+<p id="p-2378">(d) Find the direction of the greatest decrease in temperature at the point <span class="process-math">\((3,3)\text{.}\)</span> <span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span></p>
+<p id="p-2379">What is the value of this most negative rate of change, that is, the minimum value of the directional derivative at <span class="process-math">\((3,3)\text{?}\)</span> <span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span></p>
+</div>
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-147')">Activate</button></div>
+</div></article><article class="exercise exercise-like" id="ex-10-6-WW-DD-Grad-temperature"><h4 class="heading"><span class="codenumber">5<span class="period">.</span></span></h4>
+<div id="webwork-148" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="148" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Dartmouth/setStewartCh15S6/problem_10.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-contents">
+<p id="p-2395">The temperature at a point (x,y,z) is given by <span class="process-math">\(\displaystyle
+T(x,y,z) = 200e^{-x^2 -y^2/4 - z^2/9}\text{,}\)</span> where <span class="process-math">\(T\)</span> is measured in degrees Celsius and x,y, and z in meters.  There are lots of places to make silly errors in this problem; just try to keep track of what needs to be a unit vector.</p>
+<p id="p-2396">Find the rate of change of the temperature at the point (-1, 1, 1) in the direction toward the point (3, -3, 5).</p>
+<p id="p-2397"><span class="fillin underline" role="img" aria-label="50-character blank" style="width: 22.7272727272727em;"></span></p>
+<p id="p-2398">In which direction (unit vector) does the temperature increase the fastest at  (-1, 1, 1)?</p>
+<p id="p-2399"><span class="process-math">\(\langle\)</span><span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>, <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>,<span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span><span class="process-math">\(\rangle\)</span></p>
+<p id="p-2400">What is the maximum rate of increase of <span class="process-math">\(T\)</span> at (-1, 1, 1)?</p>
+<p id="p-2401"><span class="fillin underline" role="img" aria-label="60-character blank" style="width: 27.2727272727273em;"></span></p>
+</div>
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-148')">Activate</button></div>
+</div></article><article class="exercise exercise-like" id="ex-10-6-WW-DD-Grad-calculation"><h4 class="heading"><span class="codenumber">6<span class="period">.</span></span></h4>
+<div id="webwork-149" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="149" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/FortLewis/Calc3/14-5-Gradients-in-space/HGM4-14-5-09-Gradients-etc.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-contents">
+<p id="p-2407">If <span class="process-math">\(\displaystyle f(x,y,z) = 3zy^{2}\text{,}\)</span> then the gradient at the point <span class="process-math">\((3,6,6)\)</span> is</p>
+<p id="p-2408"><span class="process-math">\(\nabla f (3,6,6) =\)</span> <span class="fillin underline" role="img" aria-label="30-character blank" style="width: 13.6363636363636em;"></span></p>
+</div>
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-149')">Activate</button></div>
+</div></article><article class="exercise exercise-like" id="ex-10-6-WW-DD-3-variable"><h4 class="heading"><span class="codenumber">7<span class="period">.</span></span></h4>
+<div id="webwork-150" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="150" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Michigan/Chap14Sec5/Q53.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-contents">
+<p id="p-2410">The concentration of salt in a fluid at <span class="process-math">\((x,y,z)\)</span> is given by <span class="process-math">\(F(x,y,z) = 3x^{2}+4y^{4}+2x^{2}z^{2}\)</span> mg/cm<span class="process-math">\({}^3\text{.}\)</span> You are at the point <span class="process-math">\((1,1,-1)\text{.}\)</span></p>
+<p id="p-2411"><em class="alert">(a)</em> In which direction should you move if you want the concentration to increase the fastest?</p>
+<p id="p-2412">direction: <span class="fillin underline" role="img" aria-label="55-character blank" style="width: 25em;"></span></p>
+<p id="p-2413"><em class="emphasis">(Give your answer as a vector.)</em></p>
+<p id="p-2414"><em class="alert">(b)</em> You start to move in the direction you found in part (a) at a speed of <span class="process-math">\(7\)</span> cm/sec.  How fast is the concentration changing?</p>
+<p id="p-2415">rate of change = <span class="fillin underline" role="img" aria-label="55-character blank" style="width: 25em;"></span></p>
+</div>
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-150')">Activate</button></div>
+</div></article><article class="exercise exercise-like" id="ex-10-6-WW-DD-DD-Grad-calculation"><h4 class="heading"><span class="codenumber">8<span class="period">.</span></span></h4>
+<div id="webwork-151" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="151" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/FortLewis/Calc3/14-4-Gradients-in-plane/HGM4-14-4-67-Gradients-etc.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-contents">
+<p id="p-2418">At a certain point on a heated metal plate, the greatest rate of temperature increase, 5 degrees Celsius per meter, is toward the northeast.  If an object at this point moves directly north, at what rate is the temperature increasing?</p>
+<p id="p-2419"><span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span> degrees Celsius per meter</p>
+</div>
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-151')">Activate</button></div>
+</div></article><article class="exercise exercise-like" id="ex-10-6-WW-DD-hill"><h4 class="heading"><span class="codenumber">9<span class="period">.</span></span></h4>
+<div id="webwork-152" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="152" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Dartmouth/setStewartCh15S6/problem_11.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-contents">
+<p id="p-2425">Suppose that you are climbing a hill whose shape is given by <span class="process-math">\(z = 393 - 0.09 x^2 -0.03 y^2\text{,}\)</span> and that you are at the point (30, 20, 300).</p>
+<p id="p-2426">In which direction (unit vector) should you proceed initially in order to reach the top of the hill fastest?</p>
+<p id="p-2427"><span class="process-math">\(\langle\)</span><span class="fillin underline" role="img" aria-label="30-character blank" style="width: 13.6363636363636em;"></span>,<span class="fillin underline" role="img" aria-label="30-character blank" style="width: 13.6363636363636em;"></span><span class="process-math">\(\rangle\)</span></p>
+<p id="p-2428">If you climb in that direction, at what angle above the horizontal will you be climbing initially (radian measure)?</p>
+<p id="p-2429"><span class="fillin underline" role="img" aria-label="30-character blank" style="width: 13.6363636363636em;"></span></p>
+</div>
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-152')">Activate</button></div>
+</div></article><article class="exercise exercise-like" id="ex-10-6-WW-DD-TF"><h4 class="heading"><span class="codenumber">10<span class="period">.</span></span></h4>
+<div id="webwork-153" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="153" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/FortLewis/Calc3/14-5-Gradients-in-space/HGM4-14-CYU-01-Gradients-etc.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-contents">
+<p id="p-2433">Are the following statements true or false?</p>
+<ol id="p-2434" class="lower-alpha">
+<li id="li-858"><p id="p-2435">If <span class="process-math">\(\vec{u}\)</span> is a unit vector, then <span class="process-math">\(f_{\vec{u}} (a,b)\)</span> is a vector.</p></li>
+<li id="li-859"><p id="p-2436">If <span class="process-math">\(\vec{u}\)</span> is perpendicular to <span class="process-math">\(\nabla f(a,b)\text{,}\)</span> then <span class="process-math">\(f_{\vec{u}} \, (a,b) = \langle 0, 0 \rangle\text{.}\)</span></p></li>
+<li id="li-860"><p id="p-2437">Suppose <span class="process-math">\(f_x(a,b)\)</span> and <span class="process-math">\(f_y(a,b)\)</span> both exist.  Then there is always a direction in which the rate of change of <span class="process-math">\(f\)</span> at <span class="process-math">\((a,b)\)</span> is zero.</p></li>
+<li id="li-861"><p id="p-2438">If <span class="process-math">\(f(x,y)\)</span> has <span class="process-math">\(f_x(a,b) = 0\)</span> and <span class="process-math">\(f_y(a,b) = 0\)</span> at the point <span class="process-math">\((a,b)\text{,}\)</span> then <span class="process-math">\(f\)</span> is constant everywhere.</p></li>
+<li id="li-862"><p id="p-2439"><span class="process-math">\(\nabla f(a,b)\)</span> is a vector in 3-dimensional space.</p></li>
+<li id="li-863"><p id="p-2440"><span class="process-math">\(f_{\vec{u}} \, (a,b) = || \nabla f(a,b) ||\text{.}\)</span></p></li>
+<li id="li-864"><p id="p-2441">The gradient vector <span class="process-math">\(\nabla f(a,b)\)</span> is tangent to the contour of <span class="process-math">\(f\)</span> at <span class="process-math">\((a,b)\text{.}\)</span></p></li>
+<li id="li-865"><p id="p-2442"><span class="process-math">\(f_{\vec{u}} \, (a,b)\)</span> is parallel to <span class="process-math">\(\vec{u}\text{.}\)</span></p></li>
+</ol>
+</div>
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-153')">Activate</button></div>
+</div></article><article class="exercise exercise-like" id="exercise-218"><h4 class="heading"><span class="codenumber">11<span class="period">.</span></span></h4>
+<p id="p-2443">Let <span class="process-math">\(E(x,y) = \frac{100}{1+(x-5)^2 + 4(y-2.5)^2}\)</span> represent the elevation on a land mass at location <span class="process-math">\((x,y)\text{.}\)</span> Suppose that <span class="process-math">\(E\text{,}\)</span> <span class="process-math">\(x\text{,}\)</span> and <span class="process-math">\(y\)</span> are all measured in meters.</p>
+<ol class="lower-alpha">
+<li id="li-866"><p id="p-2444">Find <span class="process-math">\(E_x(x,y)\)</span> and <span class="process-math">\(E_y(x,y)\text{.}\)</span></p></li>
+<li id="li-867"><p id="p-2445">Let <span class="process-math">\(\vu\)</span> be a unit vector in the direction of <span class="process-math">\(\langle -4,3 \rangle\text{.}\)</span>  Determine <span class="process-math">\(D_{\vu} E(3,4)\text{.}\)</span>  What is the practical meaning of <span class="process-math">\(D_{\vu} E(3,4)\)</span> and what are its units?</p></li>
+<li id="li-868"><p id="p-2446">Find the direction of greatest increase in <span class="process-math">\(E\)</span> at the point <span class="process-math">\((3,4)\text{.}\)</span></p></li>
+<li id="li-869"><p id="p-2447">Find the instantaneous rate of change of <span class="process-math">\(E\)</span> in the direction of greatest decrease at the point <span class="process-math">\((3,4)\text{.}\)</span>  Include units on your answer.</p></li>
+<li id="li-870"><p id="p-2448">At the point <span class="process-math">\((3,4)\text{,}\)</span> find a direction <span class="process-math">\(\vw\)</span> in which the instantaneous rate of change of <span class="process-math">\(E\)</span> is 0.</p></li>
+</ol></article><article class="exercise exercise-like" id="exercise-219"><h4 class="heading"><span class="codenumber">12<span class="period">.</span></span></h4>
+<p id="p-2449">Find all directions in which the directional derivative of <span class="process-math">\(f(x,y) = ye^{-xy}\)</span> is 1 at the point <span class="process-math">\((0,2)\text{.}\)</span></p></article><article class="exercise exercise-like" id="exercise-220"><h4 class="heading"><span class="codenumber">13<span class="period">.</span></span></h4>
+<p id="p-2450">Find, if possible, a function <span class="process-math">\(f\)</span> such that</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+\nabla f = \left\langle \sin(yz), xz\cos(yz)+2y, xy\cos(yz)+\frac{5}{z} \right\rangle\text{.}
+\end{equation*}
+</div>
+<p class="continuation">If not possible, explain why.</p></article><article class="exercise exercise-like" id="exercise-221"><h4 class="heading"><span class="codenumber">14<span class="period">.</span></span></h4>
+<p id="p-2451">Let <span class="process-math">\(f(x,y) = x^2+3y^2\text{.}\)</span></p>
+<ol class="lower-alpha">
+<li id="li-871"><p id="p-2452">Find <span class="process-math">\(\nabla f(x,y)\)</span> and <span class="process-math">\(\nabla f(1,2)\text{.}\)</span></p></li>
+<li id="li-872"><p id="p-2453">Find the direction of greatest increase in <span class="process-math">\(f\)</span> at the point <span class="process-math">\((1,2)\text{.}\)</span> Explain. A graph of the surface defined by <span class="process-math">\(f\)</span> is shown at left in <a href="" class="xref" data-knowl="./knowl/F_10_6_Grad_ex_1.html" title="Figure 10.6.7">Figure 10.6.7</a>. Illustrate this direction on the surface.</p></li>
+<li id="li-873"><p id="p-2454">A contour diagram of <span class="process-math">\(f\)</span> is shown at right in <a href="" class="xref" data-knowl="./knowl/F_10_6_Grad_ex_1.html" title="Figure 10.6.7">Figure 10.6.7</a>. Illustrate your calculation from (b) on this contour diagram. <figure class="figure figure-like" id="F_10_6_Grad_ex_1"><div class="sidebyside"><div class="sbsrow" style="margin-left:0%;margin-right:0%;">
+<div class="sbspanel top" style="width:50%;"><img src="external/images/fig_10_6_exercise_graph.svg" role="img" class="contained"></div>
+<div class="sbspanel top" style="width:50%;"><img src="external/images/fig_10_6_exercise_contour.svg" role="img" class="contained"></div>
+</div></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">10.6.7<span class="period">.</span></span><span class="space"> </span>Left: Graph of <span class="process-math">\(f(x,y) = x^2+3y^2\text{.}\)</span> Right: Contours.</figcaption></figure></p></li>
+<li id="li-874"><p id="p-2455">Find a direction <span class="process-math">\(\vw\)</span> for which the derivative of <span class="process-math">\(f\)</span> in the direction of <span class="process-math">\(\vw\)</span> is zero.</p></li>
+</ol></article><article class="exercise exercise-like" id="exercise-222"><h4 class="heading"><span class="codenumber">15<span class="period">.</span></span></h4>
+<p id="p-2456">The properties of the gradient that we have observed for functions of two variables also hold for functions of more variables. In this problem, we consider a situation where there are three independent variables. Suppose that the temperature in a region of space is described by</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+T(x,y,z) = 100e^{-x^2-y^2-z^2}
+\end{equation*}
+</div>
+<p class="continuation">and that you are standing at the point <span class="process-math">\((1,2,-1)\text{.}\)</span></p>
+<ol class="lower-alpha">
+<li id="li-875"><p id="p-2457">Find the instantaneous rate of change of the temperature in the direction of <span class="process-math">\(\vv=\langle 0, 1, 2\rangle\)</span> at the point <span class="process-math">\((1,2,-1)\text{.}\)</span>  Remember that you should first find a <em class="emphasis">unit</em> vector in the direction of <span class="process-math">\(\vv\text{.}\)</span></p></li>
+<li id="li-876"><p id="p-2458">In what direction from the point <span class="process-math">\((1,2,-1)\)</span> would you move to cause the temperature to decrease as quickly as possible?</p></li>
+<li id="li-877"><p id="p-2459">How fast does the temperature decrease in this direction?</p></li>
+<li id="li-878"><p id="p-2460">Find a direction in which the temperature does not change at <span class="process-math">\((1,2,-1)\text{.}\)</span></p></li>
+</ol></article><article class="exercise exercise-like" id="exercise-223"><h4 class="heading"><span class="codenumber">16<span class="period">.</span></span></h4>
+<p id="p-2461"><a href="" class="xref" data-knowl="./knowl/F_10_6_gradient_field.html" title="Figure 10.6.8">Figure 10.6.8</a> shows a plot of the gradient <span class="process-math">\(\nabla f\)</span> at several points for some function <span class="process-math">\(f=f(x,y)\text{.}\)</span></p>
+<figure class="figure figure-like" id="F_10_6_gradient_field"><div class="image-box" style="width: 50%; margin-left: 25%; margin-right: 25%;"><img src="external/images/fig_10_6_gradient_field.svg" role="img" class="contained"></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">10.6.8<span class="period">.</span></span><span class="space"> </span>The gradient <span class="process-math">\(\nabla f\text{.}\)</span></figcaption></figure><ol class="lower-alpha">
+<li id="li-879"><p id="p-2462">Consider each of the three indicated points, and draw, as best as you can, the contour through that point.</p></li>
+<li id="li-880"><p id="p-2463">Beginning at each point, draw a curve on which <span class="process-math">\(f\)</span> is continually decreasing.</p></li>
+</ol></article></section></section><div class="hidden-content tex2jax_ignore" id="hk-fn-20"><div class="fn">The symbol <span class="process-math">\(\nabla\)</span> is called <em class="emphasis">nabla</em>, which comes from a Greek word for a certain type of harp that has a similar shape.</div></div>
+</div></main>
+</div>
+<!--Start: Google Global Site Tag code--><!--*** DO NOT COPY ANOTHER PROJECT'S MAGIC NUMBERS/ID ***--><!--***           GET YOUR OWN FROM GOOGLE             ***-->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-QJKN634F7R"></script><script>  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-QJKN634F7R');
+</script><!--End: Google Global Site Tag code-->
+</body>
+</html>

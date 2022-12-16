@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<html lang="en-US">
+<head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Second-Order Partial Derivatives</title>
+<meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:type" content="book">
+<meta property="book:title" content="Active Calculus - Multivariable + Vector">
+<meta property="book:author" content="Steve Schlicker">
+<meta property="book:author" content="Mitchel T. Keller">
+<meta property="book:author" content="Nicholas Long">
+<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
+window.MathJax = {
+  tex: {
+    inlineMath: [['\\(','\\)']],
+    tags: "none",
+    tagSide: "right",
+    tagIndent: ".8em",
+    packages: {'[+]': ['base', 'extpfeil', 'ams', 'amscd', 'newcommand', 'knowl']}
+  },
+  options: {
+    ignoreHtmlClass: "tex2jax_ignore|ignore-math",
+    processHtmlClass: "process-math",
+    renderActions: {
+        findScript: [10, function (doc) {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
+                var display = !!node.type.match(/; *mode=display/);
+                var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                var text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = {node: text, delim: '', n: 0};
+                math.end = {node: text, delim: '', n: 0};
+                doc.math.push(math);
+            });
+        }, '']
+    },
+  },
+  chtml: {
+    scale: 0.88,
+    mtextInheritFont: true
+  },
+  loader: {
+    load: ['input/asciimath', '[tex]/extpfeil', '[tex]/amscd', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
+    paths: {pretext: "https://pretextbook.org/js/lib"},
+  },
+  startup: {
+    pageReady() {
+      return MathJax.startup.defaultPageReady().then(function () {
+      console.log("in ready function");
+      rsMathReady();
+      }
+    )}
+},
+};
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><link href="https://webwork-ptx.aimath.org/webwork2_files/js/apps/MathView/mathview.css" rel="stylesheet">
+<script src="https://pretextbook.org/js/0.13/pretext-webwork/2./pretext-webwork.js"></script><script src="https://webwork-ptx.aimath.org/webwork2_files/node_modules/iframe-resizer/js/iframeResizer.min.js"></script><script async="" src="https://cse.google.com/cse.js?cx=015103900096539427448:ngwuia10qci"></script><script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.13/pretext.js"></script><script>miniversion=0.674</script><script src="https://pretextbook.org/js/0.13/pretext_add_on.js?x=1"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
+</script><link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/pretext.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/pretext_add_on.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/banner_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/toc_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/knowls_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/style_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/colors_blue_grey.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/setcolors.css" rel="stylesheet" type="text/css">
+</head>
+<body class="pretext-book ignore-math has-toc has-sidebar-left">
+<a class="assistive" href="#content">Skip to main content</a><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\newcommand{\R}{\mathbb{R}}
+\newcommand{\va}{\mathbf{a}}
+\newcommand{\vb}{\mathbf{b}}
+\newcommand{\vc}{\mathbf{c}}
+\newcommand{\vC}{\mathbf{C}}
+\newcommand{\vd}{\mathbf{d}}
+\newcommand{\ve}{\mathbf{e}}
+\newcommand{\vi}{\mathbf{i}}
+\newcommand{\vj}{\mathbf{j}}
+\newcommand{\vk}{\mathbf{k}}
+\newcommand{\vn}{\mathbf{n}}
+\newcommand{\vm}{\mathbf{m}}
+\newcommand{\vr}{\mathbf{r}}
+\newcommand{\vs}{\mathbf{s}}
+\newcommand{\vu}{\mathbf{u}}
+\newcommand{\vv}{\mathbf{v}}
+\newcommand{\vw}{\mathbf{w}}
+\newcommand{\vx}{\mathbf{x}}
+\newcommand{\vy}{\mathbf{y}}
+\newcommand{\vz}{\mathbf{z}}
+\newcommand{\vzero}{\mathbf{0}}
+\newcommand{\vF}{\mathbf{F}}
+\newcommand{\vG}{\mathbf{G}}
+\newcommand{\vH}{\mathbf{H}}
+\newcommand{\vR}{\mathbf{R}}
+\newcommand{\vT}{\mathbf{T}}
+\newcommand{\vN}{\mathbf{N}}
+\newcommand{\vL}{\mathbf{L}}
+\newcommand{\vB}{\mathbf{B}}
+\newcommand{\vS}{\mathbf{S}}
+\newcommand{\proj}{\text{proj}}
+\newcommand{\comp}{\text{comp}}
+\newcommand{\nin}{}
+\newcommand{\vecmag}[1]{|#1|}
+\newcommand{\grad}{\nabla}
+\DeclareMathOperator{\curl}{curl}
+\DeclareMathOperator{\divg}{div}
+\newcommand{\lt}{&lt;}
+\newcommand{\gt}{&gt;}
+\newcommand{\amp}{&amp;}
+\definecolor{fillinmathshade}{gray}{0.9}
+\newcommand{\fillinmath}[1]{\mathchoice{\colorbox{fillinmathshade}{$\displaystyle     \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\textstyle        \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptstyle      \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptscriptstyle\phantom{\,#1\,}$}}}
+\)</span></div>
+<header id="masthead" class="smallbuttons"><div class="banner"><div class="container">
+<a id="logo-link" href=""></a><div class="title-container">
+<h1 class="heading"><a href="book-1.html"><span class="title">Active Calculus - Multivariable + Vector</span></a></h1>
+<p class="byline">Steve Schlicker, Mitchel T. Keller, Nicholas Long</p>
+</div>
+<div class="searchwrapper" role="search"><div class="gcse-search"></div></div>
+</div></div>
+<nav id="primary-navbar" class="navbar"><div class="container">
+<div class="navbar-top-buttons">
+<button class="sidebar-left-toggle-button button active" aria-label="Show or hide table of contents sidebar">Contents</button><div class="tree-nav toolbar toolbar-divisor-3">
+<a class="index-button toolbar-item button" href="index-1.html" title="Index">Index</a><span class="threebuttons"><a id="previousbutton" class="previous-button toolbar-item button" href="S-10-2-First-Order-Partial-Derivatives.html" title="Previous">Prev</a><a id="upbutton" class="up-button button toolbar-item" href="C-10.html" title="Up">Up</a><a id="nextbutton" class="next-button button toolbar-item" href="S-10-4-Linearization.html" title="Next">Next</a></span>
+</div>
+</div>
+<div class="navbar-bottom-buttons toolbar toolbar-divisor-4">
+<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="S-10-2-First-Order-Partial-Derivatives.html" title="Previous">Prev</a><a class="up-button button toolbar-item" href="C-10.html" title="Up">Up</a><a class="next-button button toolbar-item" href="S-10-4-Linearization.html" title="Next">Next</a>
+</div>
+</div></nav></header><div class="page">
+<div id="sidebar-left" class="sidebar" role="navigation"><div class="sidebar-content">
+<nav id="toc"><ul>
+<li class="link frontmatter">
+<a href="frontmatter.html" data-scroll="frontmatter" class="internal"><span class="title">Front Matter</span></a><ul>
+<li><a href="colophon-1.html" data-scroll="colophon-1" class="internal">Colophon</a></li>
+<li><a href="preface-1.html" data-scroll="preface-1" class="internal">Features of the Text</a></li>
+<li><a href="preface-2.html" data-scroll="preface-2" class="internal">Vector Calculus Preface</a></li>
+<li><a href="preface-3.html" data-scroll="preface-3" class="internal">Acknowledgments</a></li>
+<li><a href="preface-4.html" data-scroll="preface-4" class="internal">Active Calculus - Multivariable: our goals</a></li>
+<li><a href="preface-5.html" data-scroll="preface-5" class="internal">How to Use this Text</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="C-9.html" data-scroll="C-9" class="internal"><span class="codenumber">9</span> <span class="title">Multivariable and Vector Functions</span></a><ul>
+<li><a href="S-9-1-Functions.html" data-scroll="S-9-1-Functions" class="internal">Functions of Several Variables and Three Dimensional Space</a></li>
+<li><a href="S-9-2-Vectors.html" data-scroll="S-9-2-Vectors" class="internal">Vectors</a></li>
+<li><a href="S-9-3-Dot-Product.html" data-scroll="S-9-3-Dot-Product" class="internal">The Dot Product</a></li>
+<li><a href="S-9-4-Cross-Product.html" data-scroll="S-9-4-Cross-Product" class="internal">The Cross Product</a></li>
+<li><a href="S-9-5-Lines-Planes.html" data-scroll="S-9-5-Lines-Planes" class="internal">Lines and Planes in Space</a></li>
+<li><a href="S-9-6-Vector-Valued-Functions.html" data-scroll="S-9-6-Vector-Valued-Functions" class="internal">Vector-Valued Functions</a></li>
+<li><a href="S-9-7-Vector-Valued-Functions-Derivatives.html" data-scroll="S-9-7-Vector-Valued-Functions-Derivatives" class="internal">Derivatives and Integrals of Vector-Valued Functions</a></li>
+<li><a href="S-9-8-Arc-Length-Curvature.html" data-scroll="S-9-8-Arc-Length-Curvature" class="internal">Arc Length and Curvature</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="C-10.html" data-scroll="C-10" class="internal"><span class="codenumber">10</span> <span class="title">Derivatives of Multivariable Functions</span></a><ul>
+<li><a href="S-10-1-Limits.html" data-scroll="S-10-1-Limits" class="internal">Limits</a></li>
+<li><a href="S-10-2-First-Order-Partial-Derivatives.html" data-scroll="S-10-2-First-Order-Partial-Derivatives" class="internal">First-Order Partial Derivatives</a></li>
+<li><a href="S-10-3-Second-Order-Partial-Derivatives.html" data-scroll="S-10-3-Second-Order-Partial-Derivatives" class="active">Second-Order Partial Derivatives</a></li>
+<li><a href="S-10-4-Linearization.html" data-scroll="S-10-4-Linearization" class="internal">Linearization: Tangent Planes and Differentials</a></li>
+<li><a href="S-10-5-Chain-Rule.html" data-scroll="S-10-5-Chain-Rule" class="internal">The Chain Rule</a></li>
+<li><a href="S-10-6-Directional-Derivative.html" data-scroll="S-10-6-Directional-Derivative" class="internal">Directional Derivatives and the Gradient</a></li>
+<li><a href="S-10-7-Optimization.html" data-scroll="S-10-7-Optimization" class="internal">Optimization</a></li>
+<li><a href="S-10-8-Lagrange-Multipliers.html" data-scroll="S-10-8-Lagrange-Multipliers" class="internal">Constrained Optimization: Lagrange Multipliers</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="C-11.html" data-scroll="C-11" class="internal"><span class="codenumber">11</span> <span class="title">Multiple Integrals</span></a><ul>
+<li><a href="S-11-1-Double-Integrals-Rectangles.html" data-scroll="S-11-1-Double-Integrals-Rectangles" class="internal">Double Riemann Sums and Double Integrals over Rectangles</a></li>
+<li><a href="S-11-2-Iterated-Integrals.html" data-scroll="S-11-2-Iterated-Integrals" class="internal">Iterated Integrals</a></li>
+<li><a href="S-11-3-Double-Integrals-General.html" data-scroll="S-11-3-Double-Integrals-General" class="internal">Double Integrals over General Regions</a></li>
+<li><a href="S-11-4-Double-Integrals-Applications.html" data-scroll="S-11-4-Double-Integrals-Applications" class="internal">Applications of Double Integrals</a></li>
+<li><a href="S-11-5-Double-Integrals-Polar.html" data-scroll="S-11-5-Double-Integrals-Polar" class="internal">Double Integrals in Polar Coordinates</a></li>
+<li><a href="S-11-6-Parametric-Surfaces-Surface-Area.html" data-scroll="S-11-6-Parametric-Surfaces-Surface-Area" class="internal">Surfaces Defined Parametrically and Surface Area</a></li>
+<li><a href="S-11-7-Triple-Integrals.html" data-scroll="S-11-7-Triple-Integrals" class="internal">Triple Integrals</a></li>
+<li><a href="S-11-8-Triple-Integrals-Cylindrical-Spherical.html" data-scroll="S-11-8-Triple-Integrals-Cylindrical-Spherical" class="internal">Triple Integrals in Cylindrical and Spherical Coordinates</a></li>
+<li><a href="S-11-9-Change-of-Variable.html" data-scroll="S-11-9-Change-of-Variable" class="internal">Change of Variables</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="C_Vector.html" data-scroll="C_Vector" class="internal"><span class="codenumber">12</span> <span class="title">Vector Calculus</span></a><ul>
+<li><a href="S_Vector_VectorFields.html" data-scroll="S_Vector_VectorFields" class="internal">Vector Fields</a></li>
+<li><a href="S_Vector_IdeaLineIntegral.html" data-scroll="S_Vector_IdeaLineIntegral" class="internal">The Idea of a Line Integral</a></li>
+<li><a href="S_Vector_ParamLineIntegrals.html" data-scroll="S_Vector_ParamLineIntegrals" class="internal">Using Parametrizations to Calculate Line Integrals</a></li>
+<li><a href="S_ScalarLineIntegral.html" data-scroll="S_ScalarLineIntegral" class="internal">Line Integrals of Scalar Functions</a></li>
+<li><a href="S_Vector_FTCLI.html" data-scroll="S_Vector_FTCLI" class="internal">Path-Independent Vector Fields and the Fundamental Theorem of Calculus for Line Integrals</a></li>
+<li><a href="S_Vector_Div.html" data-scroll="S_Vector_Div" class="internal">The Divergence of a Vector Field</a></li>
+<li><a href="S_Vector_Curl.html" data-scroll="S_Vector_Curl" class="internal">The Curl of a Vector Field</a></li>
+<li><a href="S_Vector_GreensTheorem.html" data-scroll="S_Vector_GreensTheorem" class="internal">Green's Theorem</a></li>
+<li><a href="S_Vector_FluxInt.html" data-scroll="S_Vector_FluxInt" class="internal">Flux Integrals</a></li>
+<li><a href="S_ScalarSurfaceIntegral.html" data-scroll="S_ScalarSurfaceIntegral" class="internal">Surface Integrals of Scalar Valued Functions</a></li>
+<li><a href="S_Vector_StokesThm.html" data-scroll="S_Vector_StokesThm" class="internal">Stokes' Theorem</a></li>
+<li><a href="S_Vector_DivThm.html" data-scroll="S_Vector_DivThm" class="internal">The Divergence Theorem</a></li>
+</ul>
+</li>
+<li class="link backmatter"><a href="backmatter-1.html" data-scroll="backmatter-1" class="internal"><span class="title">Back Matter</span></a></li>
+<li class="link"><a href="index-1.html" data-scroll="index-1" class="internal"><span class="title">Index</span></a></li>
+</ul></nav><div class="extras"><nav><a class="pretext-link" href="https://pretextbook.org">Authored in PreTeXt</a><a href="https://www.mathjax.org"><img title="Powered by MathJax" src="https://www.mathjax.org/badge/badge.gif" alt="Powered by MathJax"></a></nav></div>
+</div></div>
+<main class="main"><div id="content" class="pretext-content"><section class="section" id="S-10-3-Second-Order-Partial-Derivatives"><h2 class="heading hide-type">
+<span class="type">Section</span> <span class="codenumber">10.3</span> <span class="title">Second-Order Partial Derivatives</span>
+</h2>
+<article class="objectives goal-like" id="objectives-11"><h3 class="heading"><span class="type">Motivating Questions</span></h3>
+<ul class="disc">
+<li id="li-662"><p id="p-1809">Given a function <span class="process-math">\(f\)</span> of two independent variables <span class="process-math">\(x\)</span> and <span class="process-math">\(y\text{,}\)</span> how are the second-order partial derivatives of <span class="process-math">\(f\)</span> defined?</p></li>
+<li id="li-663"><p id="p-1810">What do the second-order partial derivatives <span class="process-math">\(f_{xx}\text{,}\)</span> <span class="process-math">\(f_{yy}\text{,}\)</span> <span class="process-math">\(f_{xy}\text{,}\)</span> and <span class="process-math">\(f_{yx}\)</span> of a function <span class="process-math">\(f\)</span> tell us about the function's behavior?</p></li>
+</ul></article><section class="introduction" id="introduction-11"><p id="p-1811">Recall that for a single-variable function <span class="process-math">\(f\text{,}\)</span> the second derivative of <span class="process-math">\(f\)</span> is defined to be the derivative of the first derivative. That is, <span class="process-math">\(f''(x) = \frac{d}{dx}[f'(x)]\text{,}\)</span> which can be stated in terms of the limit definition of the derivative by writing</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+f''(x) = \lim_{h \to 0} \frac{f'(x+h) - f'(x)}{h}.
+\end{equation*}
+</div>
+<p id="p-1812">In what follows, we begin exploring the four different second-order partial derivatives of a function of two variables and seek to understand what these various derivatives tell us about the function's behavior.</p>
+<article class="exploration project-like" id="PA_10_3"><h3 class="heading">
+<span class="type">Preview Activity</span><span class="space"> </span><span class="codenumber">10.3.1</span><span class="period">.</span>
+</h3>
+<p id="p-1813">Once again, let's consider the function <span class="process-math">\(f\)</span> defined by <span class="process-math">\(f(x,y) = \frac{x^2\sin(2y)}{32}\)</span> that measures a projectile's range as a function of its initial speed <span class="process-math">\(x\)</span> and launch angle <span class="process-math">\(y\text{.}\)</span> The graph of this function, including traces with <span class="process-math">\(x=150\)</span> and <span class="process-math">\(y=0.6\text{,}\)</span> is shown in <a href="" class="xref" data-knowl="./knowl/F_10_3_preview.html" title="Figure 10.3.1">Figure 10.3.1</a>.</p>
+<figure class="figure figure-like" id="F_10_3_preview"><div class="sidebyside"><div class="sbsrow" style="margin-left:0%;margin-right:0%;">
+<div class="sbspanel top" style="width:50%;"><img src="external/images/fig_10_2_trace_x_a.svg" role="img" class="contained"></div>
+<div class="sbspanel top" style="width:50%;"><img src="external/images/fig_10_2_trace_y_a.svg" role="img" class="contained"></div>
+</div></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">10.3.1<span class="period">.</span></span><span class="space"> </span>The distance function with traces <span class="process-math">\(x=150\)</span> and <span class="process-math">\(y=0.6\text{.}\)</span></figcaption></figure><ol id="p-1814" class="lower-alpha">
+<li id="li-664"><p id="p-1815">Compute the partial derivative <span class="process-math">\(f_x\text{.}\)</span> Notice that <span class="process-math">\(f_x\)</span> itself is a new function of <span class="process-math">\(x\)</span> and <span class="process-math">\(y\text{,}\)</span> so we may now compute the partial derivatives of <span class="process-math">\(f_x\text{.}\)</span> Find the partial derivative <span class="process-math">\(f_{xx} = (f_x)_x\)</span> and show that <span class="process-math">\(f_{xx}(150,0.6) \approx 0.058\text{.}\)</span></p></li>
+<li id="li-665"><p id="p-1816"><a href="" class="xref" data-knowl="./knowl/F_10_3_preview_xx.html" title="Figure 10.3.2">Figure 10.3.2</a> shows the trace of <span class="process-math">\(f\)</span> with <span class="process-math">\(y=0.6\)</span> with three tangent lines included.  Explain how your result from part (a) of this preview activity is reflected in this figure. <figure class="figure figure-like" id="F_10_3_preview_xx"><div class="image-box" style="width: 50%; margin-left: 25%; margin-right: 25%;"><img src="external/images/fig_10_3_preview_xx.svg" role="img" class="contained"></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">10.3.2<span class="period">.</span></span><span class="space"> </span>The trace with <span class="process-math">\(y=0.6\text{.}\)</span></figcaption></figure></p></li>
+<li id="li-666"><p id="p-1817">Determine the partial derivative <span class="process-math">\(f_y\text{,}\)</span> and then find the partial derivative <span class="process-math">\(f_{yy}=(f_y)_y\text{.}\)</span>  Evaluate <span class="process-math">\(f_{yy}(150, 0.6)\text{.}\)</span> <figure class="figure figure-like" id="F_10_3_preview_y"><div class="image-box" style="width: 50%; margin-left: 25%; margin-right: 25%;"><img src="external/images/fig_10_3_preview_yy.svg" role="img" class="contained"></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">10.3.3<span class="period">.</span></span><span class="space"> </span>More traces of the range function.</figcaption></figure></p></li>
+<li id="li-667"><p id="p-1818"><a href="" class="xref" data-knowl="./knowl/F_10_3_preview_y.html" title="Figure 10.3.3">Figure 10.3.3</a> shows the trace <span class="process-math">\(f(150, y)\)</span> and includes three tangent lines. Explain how the value of <span class="process-math">\(f_{yy}(150,0.6)\)</span> is reflected in this figure.</p></li>
+<li id="li-668"><p id="p-1819">Because <span class="process-math">\(f_x\)</span> and <span class="process-math">\(f_y\)</span> are each functions of both <span class="process-math">\(x\)</span> and <span class="process-math">\(y\text{,}\)</span> they each have two partial derivatives.  Not only can we compute <span class="process-math">\(f_{xx} = (f_x)_x\text{,}\)</span> but also <span class="process-math">\(f_{xy} = (f_x)_y\text{;}\)</span> likewise, in addition to <span class="process-math">\(f_{yy} = (f_y)_y\text{,}\)</span> but also <span class="process-math">\(f_{yx} = (f_y)_x\text{.}\)</span>  For the range function <span class="process-math">\(f(x,y) = \frac{x^2\sin(2y)}{32}\text{,}\)</span> use your earlier computations of <span class="process-math">\(f_x\)</span> and <span class="process-math">\(f_y\)</span> to now determine <span class="process-math">\(f_{xy}\)</span> and <span class="process-math">\(f_{yx}\text{.}\)</span>  Write one sentence to explain how you calculated these “mixed” partial derivatives.</p></li>
+</ol></article></section><section class="subsection" id="subsection-50"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">10.3.1</span> <span class="title">Second-Order Partial Derivatives</span>
+</h3>
+<p id="p-1820">A function <span class="process-math">\(f\)</span> of two independent variables <span class="process-math">\(x\)</span> and <span class="process-math">\(y\)</span> has two first order partial derivatives, <span class="process-math">\(f_x\)</span> and <span class="process-math">\(f_y\text{.}\)</span> As we saw in Preview <a href="" class="xref" data-knowl="./knowl/PA_10_3.html" title="Preview Activity 10.3.1">Activity 10.3.1</a>, each of these first-order partial derivatives has two partial derivatives, giving a total of four <em class="emphasis">second-order</em> partial derivatives:</p>
+<ul class="disc">
+<li id="li-669"><p id="p-1821"><span class="process-math">\(f_{xx} = (f_x)_x = \frac{\partial}{\partial x} 
+\left(\frac{\partial
+f}{\partial x}\right) = 
+\frac{\partial^2 f}{\partial x^2}\text{,}\)</span></p></li>
+<li id="li-670"><p id="p-1822"><span class="process-math">\(f_{yy} = (f_y)_y=\frac{\partial}{\partial y} 
+\left(\frac{\partial
+f}{\partial y}\right) = 
+\frac{\partial^2 f}{\partial y^2}\text{,}\)</span></p></li>
+<li id="li-671"><p id="p-1823"><span class="process-math">\(f_{xy} = (f_x)_y=\frac{\partial}{\partial y} 
+\left(\frac{\partial
+f}{\partial x}\right) = 
+\frac{\partial^2 f}{\partial y \partial x}\text{,}\)</span></p></li>
+<li id="li-672"><p id="p-1824"><span class="process-math">\(f_{yx}=(f_y)_x=\frac{\partial}{\partial x} 
+\left(\frac{\partial
+f}{\partial y}\right) = 
+\frac{\partial^2 f}{\partial x \partial y}\text{.}\)</span></p></li>
+</ul>
+<p id="p-1825">The first two are called <em class="emphasis">unmixed</em> second-order partial derivatives while the last two are called the <em class="emphasis">mixed</em> second-order partial derivatives.</p>
+<p id="p-1826">One aspect of this notation can be a little confusing. The notation</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+\frac{\partial^2 f}{\partial y\partial x} = \frac{\partial}{\partial
+y}\left(\frac{\partial f}{\partial x}\right)
+\end{equation*}
+</div>
+<p class="continuation">means that we first differentiate with respect to <span class="process-math">\(x\)</span> and then with respect to <span class="process-math">\(y\text{;}\)</span> this can be expressed in the alternate notation <span class="process-math">\(f_{xy} = (f_x)_y\text{.}\)</span> However, to find the second partial derivative</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+f_{yx} = (f_y)_x
+\end{equation*}
+</div>
+<p class="continuation">we first differentiate with respect to <span class="process-math">\(y\)</span> and then <span class="process-math">\(x\text{.}\)</span> This means that</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+\frac{\partial^2 f}{\partial y\partial x} = f_{xy}, 
+\ 
+\mbox{and} 
+\ 
+\frac{\partial^2 f}{\partial x\partial y} = f_{yx}.
+\end{equation*}
+</div>
+<p id="p-1827">Be sure to note carefully the difference between Leibniz notation and subscript notation and the order in which <span class="process-math">\(x\)</span> and <span class="process-math">\(y\)</span> appear in each. In addition, remember that anytime we compute a partial derivative, we hold constant the variable(s) other than the one we are differentiating with respect to.</p>
+<article class="activity project-like" id="A_10_3_1"><h4 class="heading">
+<span class="type">Activity</span><span class="space"> </span><span class="codenumber">10.3.2</span><span class="period">.</span>
+</h4>
+<p id="p-1828">Find all second order partial derivatives of the following functions. For each partial derivative you calculate, state explicitly which variable is being held constant.</p>
+<ol class="lower-alpha">
+<li id="li-673"><p id="p-1829"><span class="process-math">\(\displaystyle f(x,y) = x^2y^3\)</span></p></li>
+<li id="li-674"><p id="p-1830"><span class="process-math">\(\displaystyle f(x,y) = y\cos(x)\)</span></p></li>
+<li id="li-675"><p id="p-1831"><span class="process-math">\(\displaystyle g(s,t) = st^3 + s^4\)</span></p></li>
+<li id="li-676"><p id="p-1832">How many second order partial derivatives does the function <span class="process-math">\(h\)</span> defined by <span class="process-math">\(h(x,y,z) = 9x^9z-xyz^9 + 9\)</span> have?  Find <span class="process-math">\(h_{xz}\)</span> and <span class="process-math">\(h_{zx}\)</span> (you do not need to find the other second order partial derivatives).</p></li>
+</ol></article><p id="p-1833">In <a href="" class="xref" data-knowl="./knowl/PA_10_3.html" title="Preview Activity 10.3.1">Preview Activity 10.3.1</a> and <a href="" class="xref" data-knowl="./knowl/A_10_3_1.html" title="Activity 10.3.2">Activity 10.3.2</a>, you may have noticed that the mixed second-order partial derivatives are equal. This observation holds generally and is known as Clairaut's Theorem.</p>
+<article class="assemblage assemblage-like" id="Clairaut"><h4 class="heading"><span class="title">Clairaut's Theorem.</span></h4>
+<p id="p-1834">Let <span class="process-math">\(f\)</span> be a function of several variables for which the partial derivatives <span class="process-math">\(f_{xy}\)</span> and <span class="process-math">\(f_{yx}\)</span> are continuous near the point <span class="process-math">\((a,b)\text{.}\)</span> Then</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+f_{xy}(a,b) = f_{yx}(a,b).
+\end{equation*}
+</div></article></section><section class="subsection" id="subsection-51"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">10.3.2</span> <span class="title">Interpreting the Second-Order Partial Derivatives</span>
+</h3>
+<p id="p-1835">Recall from single variable calculus that the second derivative measures the instantaneous rate of change of the derivative. This observation is the key to understanding the meaning of the second-order partial derivatives.</p>
+<figure class="figure figure-like" id="F_10_3_fxx"><div class="sidebyside"><div class="sbsrow" style="margin-left:0.166666666666667%;margin-right:0.166666666666667%;">
+<div class="sbspanel top" style="width:33.1103678929766%;"><img src="external/images/fig_10_3_fxx_1.svg" role="img" class="contained"></div>
+<div class="sbspanel top" style="width:33.1103678929766%;"><img src="external/images/fig_10_3_fxx_2.svg" role="img" class="contained"></div>
+<div class="sbspanel top" style="width:33.1103678929766%;"><img src="external/images/fig_10_3_fxx_3.svg" role="img" class="contained"></div>
+</div></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">10.3.4<span class="period">.</span></span><span class="space"> </span>The tangent lines to a trace with increasing <span class="process-math">\(x\text{.}\)</span></figcaption></figure><p id="p-1836">Furthermore, we remember that the second derivative of a function at a point provides us with information about the concavity of the function at that point. Since the unmixed second-order partial derivative <span class="process-math">\(f_{xx}\)</span> requires us to hold <span class="process-math">\(y\)</span> constant and differentiate twice with respect to <span class="process-math">\(x\text{,}\)</span> we may simply view <span class="process-math">\(f_{xx}\)</span> as the second derivative of a trace of <span class="process-math">\(f\)</span> where <span class="process-math">\(y\)</span> is fixed. As such, <span class="process-math">\(f_{xx}\)</span> will measure the concavity of this trace.</p>
+<p id="p-1837">Consider, for example, <span class="process-math">\(f(x,y) = \sin(x) e^{-y}\text{.}\)</span> <a href="" class="xref" data-knowl="./knowl/F_10_3_fxx.html" title="Figure 10.3.4">Figure 10.3.4</a> shows the graph of this function along with the trace given by <span class="process-math">\(y=-1.5\text{.}\)</span> Also shown are three tangent lines to this trace, with increasing <span class="process-math">\(x\)</span>-values from left to right among the three plots in <a href="" class="xref" data-knowl="./knowl/F_10_3_fxx.html" title="Figure 10.3.4">Figure 10.3.4</a>.</p>
+<p id="p-1838">That the slope of the tangent line is decreasing as <span class="process-math">\(x\)</span> increases is reflected, as it is in one-variable calculus, in the fact that the trace is concave down. Indeed, we see that <span class="process-math">\(f_x(x,y)=\cos(x)e^{-y}\)</span> and so <span class="process-math">\(f_{xx}(x,y)=-\sin(x)e^{-y} \lt  0\text{,}\)</span> since <span class="process-math">\(e^{-y} &gt; 0\)</span> for all values of <span class="process-math">\(y\text{,}\)</span> including <span class="process-math">\(y = -1.5\text{.}\)</span></p>
+<p id="p-1839">In the following activity, we further explore what second-order partial derivatives tell us about the geometric behavior of a surface.</p>
+<article class="activity project-like" id="A_10_3_2a"><h4 class="heading">
+<span class="type">Activity</span><span class="space"> </span><span class="codenumber">10.3.3</span><span class="period">.</span>
+</h4>
+<p id="p-1840">We continue to consider the function <span class="process-math">\(f\)</span> defined by <span class="process-math">\(f(x,y) = \sin(x) e^{-y}\text{.}\)</span></p>
+<ol class="lower-alpha">
+<li id="li-677"><p id="p-1841">In <a href="" class="xref" data-knowl="./knowl/F_10_3_fyy.html" title="Figure 10.3.5">Figure 10.3.5</a>, we see the trace of <span class="process-math">\(f(x,y) = \sin(x) e^{-y}\)</span> that has <span class="process-math">\(x\)</span> held constant with <span class="process-math">\(x = 1.75\text{.}\)</span> We also see three different lines that are tangent to the trace of <span class="process-math">\(f\)</span> in the <span class="process-math">\(y\)</span> direction at values of <span class="process-math">\(y\)</span> that are increasing from left to right in the figure. Write a couple of sentences that describe whether the slope of the tangent lines to this curve increase or decrease as <span class="process-math">\(y\)</span> increases, and, after computing <span class="process-math">\(f_{yy}(x,y)\text{,}\)</span> explain how this observation is related to the value of <span class="process-math">\(f_{yy}(1.75,y)\text{.}\)</span>  Be sure to address the notion of concavity in your response.(You need to be careful about the directions in which <span class="process-math">\(x\)</span> and <span class="process-math">\(y\)</span> are increasing.) <figure class="figure figure-like" id="F_10_3_fyy"><div class="sidebyside"><div class="sbsrow" style="margin-left:0.166666666666667%;margin-right:0.166666666666667%;">
+<div class="sbspanel top" style="width:33.1103678929766%;"><img src="external/images/fig_10_3_fyy_1.svg" role="img" class="contained"></div>
+<div class="sbspanel top" style="width:33.1103678929766%;"><img src="external/images/fig_10_3_fyy_2.svg" role="img" class="contained"></div>
+<div class="sbspanel top" style="width:33.1103678929766%;"><img src="external/images/fig_10_3_fyy_3.svg" role="img" class="contained"></div>
+</div></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">10.3.5<span class="period">.</span></span><span class="space"> </span>The tangent lines to a trace with increasing <span class="process-math">\(y\text{.}\)</span></figcaption></figure></p></li>
+<li id="li-678"><p id="p-1842">In <a href="" class="xref" data-knowl="./knowl/F_10_3_fxy.html" title="Figure 10.3.6">Figure 10.3.6</a>, we start to think about the mixed partial derivative, <span class="process-math">\(f_{xy}\text{.}\)</span>  Here, we first hold <span class="process-math">\(y\)</span> constant to generate the first-order partial derivative <span class="process-math">\(f_x\text{,}\)</span> and then we hold <span class="process-math">\(x\)</span> constant to compute <span class="process-math">\(f_{xy}\text{.}\)</span>  This leads to first thinking about a trace with <span class="process-math">\(x\)</span> being constant, followed by slopes of tangent lines in the <span class="process-math">\(x\)</span>-direction that slide along the original trace.  You might think of sliding your pencil down the trace with <span class="process-math">\(x\)</span> constant in a way that its slope indicates <span class="process-math">\((f_x)_y\)</span> in order to further animate the three snapshots shown in the figure. <figure class="figure figure-like" id="F_10_3_fxy"><div class="sidebyside"><div class="sbsrow" style="margin-left:0.166666666666667%;margin-right:0.166666666666667%;">
+<div class="sbspanel top" style="width:33.1103678929766%;"><img src="external/images/fig_10_3_fxy_1.svg" role="img" class="contained"></div>
+<div class="sbspanel top" style="width:33.1103678929766%;"><img src="external/images/fig_10_3_fxy_2.svg" role="img" class="contained"></div>
+<div class="sbspanel top" style="width:33.1103678929766%;"><img src="external/images/fig_10_3_fxy_3.svg" role="img" class="contained"></div>
+</div></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">10.3.6<span class="period">.</span></span><span class="space"> </span>The trace of <span class="process-math">\(z = f(x,y) = \sin(x)e^{-y}\)</span> with <span class="process-math">\(x = 1.75\text{,}\)</span> along with tangent lines in the <span class="process-math">\(y\)</span>-direction at three different points.</figcaption></figure> <p id="p-1843"></p> Based on <a href="" class="xref" data-knowl="./knowl/F_10_3_fxy.html" title="Figure 10.3.6">Figure 10.3.6</a>, is <span class="process-math">\(f_{xy}(1.75, -1.5)\)</span> positive or negative?  Why?</p></li>
+<li id="li-679"><p id="p-1844">Determine the formula for <span class="process-math">\(f_{xy}(x,y)\text{,}\)</span> and hence evaluate <span class="process-math">\(f_{xy}(1.75, -1.5)\text{.}\)</span>  How does this value compare with your observations in (b)?</p></li>
+<li id="li-680"><p id="p-1845">We know that <span class="process-math">\(f_{xx}(1.75, -1.5)\)</span> measures the concavity of the <span class="process-math">\(y = -1.5\)</span> trace, and that <span class="process-math">\(f_{yy}(1.75, -1.5)\)</span> measures the concavity of the <span class="process-math">\(x = 1.75\)</span> trace.  What do you think the quantity <span class="process-math">\(f_{xy}(1.75, -1.5)\)</span> measures?</p></li>
+<li id="li-681"><p id="p-1846">On <a href="" class="xref" data-knowl="./knowl/F_10_3_fxy.html" title="Figure 10.3.6">Figure 10.3.6</a>, sketch the trace with <span class="process-math">\(y = -1.5\text{,}\)</span> and sketch three tangent lines whose slopes correspond to the value of <span class="process-math">\(f_{yx}(x,-1.5)\)</span> for three different values of <span class="process-math">\(x\text{,}\)</span> the middle of which is <span class="process-math">\(x = -1.5\text{.}\)</span>  Is <span class="process-math">\(f_{yx}(1.75, -1.5)\)</span> positive or negative?  Why?  What does <span class="process-math">\(f_{yx}(1.75, -1.5)\)</span> measure?</p></li>
+</ol></article><p id="p-1847">Just as with the first-order partial derivatives, we can approximate second-order partial derivatives in the situation where we have only partial information about the function.</p>
+<article class="activity project-like" id="A_10_3_6"><h4 class="heading">
+<span class="type">Activity</span><span class="space"> </span><span class="codenumber">10.3.4</span><span class="period">.</span>
+</h4>
+<p id="p-1848">As we saw in <a href="" class="xref" data-knowl="./knowl/A_10_2_12.html" title="Activity 10.2.5">Activity 10.2.5</a>, the wind chill <span class="process-math">\(w(v,T)\text{,}\)</span> in degrees Fahrenheit, is a function of the wind speed, in miles per hour, and the air temperature, in degrees Fahrenheit. Some values of the wind chill are recorded in <a href="" class="xref" data-knowl="./knowl/T_10_3_wind_chill.html" title="Table 10.3.7: Wind chill as a function of wind speed and temperature.">Table 10.3.7</a>.</p>
+<figure class="table table-like" id="T_10_3_wind_chill"><figcaption><span class="type">Table</span><span class="space"> </span><span class="codenumber">10.3.7<span class="period">.</span></span><span class="space"> </span>Wind chill as a function of wind speed and temperature.</figcaption><div class="tabular-box natural-width"><table class="tabular">
+<tr>
+<td class="c m b2 r0 l0 t1 lines"><span class="process-math">\(v \backslash T\)</span></td>
+<td class="c m b2 r0 l0 t1 lines">-30</td>
+<td class="c m b2 r0 l0 t1 lines">-25</td>
+<td class="c m b2 r0 l0 t1 lines">-20</td>
+<td class="c m b2 r0 l0 t1 lines">-15</td>
+<td class="c m b2 r0 l0 t1 lines">-10</td>
+<td class="c m b2 r0 l0 t1 lines">-5</td>
+<td class="c m b2 r0 l0 t1 lines">0</td>
+<td class="c m b2 r0 l0 t1 lines">5</td>
+<td class="c m b2 r0 l0 t1 lines">10</td>
+<td class="c m b2 r0 l0 t1 lines">15</td>
+<td class="c m b2 r0 l0 t1 lines">20</td>
+</tr>
+<tr>
+<td class="c m b1 r0 l0 t0 lines">5</td>
+<td class="c m b1 r0 l0 t0 lines">-46</td>
+<td class="c m b1 r0 l0 t0 lines">-40</td>
+<td class="c m b1 r0 l0 t0 lines">-34</td>
+<td class="c m b1 r0 l0 t0 lines">-28</td>
+<td class="c m b1 r0 l0 t0 lines">-22</td>
+<td class="c m b1 r0 l0 t0 lines">-16</td>
+<td class="c m b1 r0 l0 t0 lines">-11</td>
+<td class="c m b1 r0 l0 t0 lines">-5</td>
+<td class="c m b1 r0 l0 t0 lines">1</td>
+<td class="c m b1 r0 l0 t0 lines">7</td>
+<td class="c m b1 r0 l0 t0 lines">13</td>
+</tr>
+<tr>
+<td class="c m b1 r0 l0 t0 lines">10</td>
+<td class="c m b1 r0 l0 t0 lines">-53</td>
+<td class="c m b1 r0 l0 t0 lines">-47</td>
+<td class="c m b1 r0 l0 t0 lines">-41</td>
+<td class="c m b1 r0 l0 t0 lines">-35</td>
+<td class="c m b1 r0 l0 t0 lines">-28</td>
+<td class="c m b1 r0 l0 t0 lines">-22</td>
+<td class="c m b1 r0 l0 t0 lines">-16</td>
+<td class="c m b1 r0 l0 t0 lines">-10</td>
+<td class="c m b1 r0 l0 t0 lines">-4</td>
+<td class="c m b1 r0 l0 t0 lines">3</td>
+<td class="c m b1 r0 l0 t0 lines">9</td>
+</tr>
+<tr>
+<td class="c m b1 r0 l0 t0 lines">15</td>
+<td class="c m b1 r0 l0 t0 lines">-58</td>
+<td class="c m b1 r0 l0 t0 lines">-51</td>
+<td class="c m b1 r0 l0 t0 lines">-45</td>
+<td class="c m b1 r0 l0 t0 lines">-39</td>
+<td class="c m b1 r0 l0 t0 lines">-32</td>
+<td class="c m b1 r0 l0 t0 lines">-26</td>
+<td class="c m b1 r0 l0 t0 lines">-19</td>
+<td class="c m b1 r0 l0 t0 lines">-13</td>
+<td class="c m b1 r0 l0 t0 lines">-7</td>
+<td class="c m b1 r0 l0 t0 lines">0</td>
+<td class="c m b1 r0 l0 t0 lines">6</td>
+</tr>
+<tr>
+<td class="c m b1 r0 l0 t0 lines">20</td>
+<td class="c m b1 r0 l0 t0 lines">-61</td>
+<td class="c m b1 r0 l0 t0 lines">-55</td>
+<td class="c m b1 r0 l0 t0 lines">-48</td>
+<td class="c m b1 r0 l0 t0 lines">-42</td>
+<td class="c m b1 r0 l0 t0 lines">-35</td>
+<td class="c m b1 r0 l0 t0 lines">-29</td>
+<td class="c m b1 r0 l0 t0 lines">-22</td>
+<td class="c m b1 r0 l0 t0 lines">-15</td>
+<td class="c m b1 r0 l0 t0 lines">-9</td>
+<td class="c m b1 r0 l0 t0 lines">-2</td>
+<td class="c m b1 r0 l0 t0 lines">4</td>
+</tr>
+<tr>
+<td class="c m b1 r0 l0 t0 lines">25</td>
+<td class="c m b1 r0 l0 t0 lines">-64</td>
+<td class="c m b1 r0 l0 t0 lines">-58</td>
+<td class="c m b1 r0 l0 t0 lines">-51</td>
+<td class="c m b1 r0 l0 t0 lines">-44</td>
+<td class="c m b1 r0 l0 t0 lines">-37</td>
+<td class="c m b1 r0 l0 t0 lines">-31</td>
+<td class="c m b1 r0 l0 t0 lines">-24</td>
+<td class="c m b1 r0 l0 t0 lines">-17</td>
+<td class="c m b1 r0 l0 t0 lines">-11</td>
+<td class="c m b1 r0 l0 t0 lines">-4</td>
+<td class="c m b1 r0 l0 t0 lines">3</td>
+</tr>
+<tr>
+<td class="c m b1 r0 l0 t0 lines">30</td>
+<td class="c m b1 r0 l0 t0 lines">-67</td>
+<td class="c m b1 r0 l0 t0 lines">-60</td>
+<td class="c m b1 r0 l0 t0 lines">-53</td>
+<td class="c m b1 r0 l0 t0 lines">-46</td>
+<td class="c m b1 r0 l0 t0 lines">-39</td>
+<td class="c m b1 r0 l0 t0 lines">-33</td>
+<td class="c m b1 r0 l0 t0 lines">-26</td>
+<td class="c m b1 r0 l0 t0 lines">-19</td>
+<td class="c m b1 r0 l0 t0 lines">-12</td>
+<td class="c m b1 r0 l0 t0 lines">-5</td>
+<td class="c m b1 r0 l0 t0 lines">1</td>
+</tr>
+<tr>
+<td class="c m b1 r0 l0 t0 lines">35</td>
+<td class="c m b1 r0 l0 t0 lines">-69</td>
+<td class="c m b1 r0 l0 t0 lines">-62</td>
+<td class="c m b1 r0 l0 t0 lines">-55</td>
+<td class="c m b1 r0 l0 t0 lines">-48</td>
+<td class="c m b1 r0 l0 t0 lines">-41</td>
+<td class="c m b1 r0 l0 t0 lines">-34</td>
+<td class="c m b1 r0 l0 t0 lines">-27</td>
+<td class="c m b1 r0 l0 t0 lines">-21</td>
+<td class="c m b1 r0 l0 t0 lines">-14</td>
+<td class="c m b1 r0 l0 t0 lines">-7</td>
+<td class="c m b1 r0 l0 t0 lines">0</td>
+</tr>
+<tr>
+<td class="c m b1 r0 l0 t0 lines">40</td>
+<td class="c m b1 r0 l0 t0 lines">-71</td>
+<td class="c m b1 r0 l0 t0 lines">-64</td>
+<td class="c m b1 r0 l0 t0 lines">-57</td>
+<td class="c m b1 r0 l0 t0 lines">-50</td>
+<td class="c m b1 r0 l0 t0 lines">-43</td>
+<td class="c m b1 r0 l0 t0 lines">-36</td>
+<td class="c m b1 r0 l0 t0 lines">-29</td>
+<td class="c m b1 r0 l0 t0 lines">-22</td>
+<td class="c m b1 r0 l0 t0 lines">-15</td>
+<td class="c m b1 r0 l0 t0 lines">-8</td>
+<td class="c m b1 r0 l0 t0 lines">-1</td>
+</tr>
+</table></div></figure><ol class="lower-alpha">
+<li id="li-682"><p id="p-1849">Estimate the partial derivatives <span class="process-math">\(w_{T}(20,-15)\text{,}\)</span> <span class="process-math">\(w_{T}(20,-10)\text{,}\)</span> and <span class="process-math">\(w_T(20,-5)\text{.}\)</span>  Use these results to estimate the second-order partial <span class="process-math">\(w_{TT}(20, -10)\text{.}\)</span></p></li>
+<li id="li-683"><p id="p-1850">In a similar way, estimate the second-order partial <span class="process-math">\(w_{vv}(20,-10)\text{.}\)</span></p></li>
+<li id="li-684"><p id="p-1851">Estimate the partial derivatives <span class="process-math">\(w_T(20,-10)\text{,}\)</span> <span class="process-math">\(w_T(25,-10)\text{,}\)</span> and <span class="process-math">\(w_T(15,-10)\text{,}\)</span> and use your results to estimate the partial <span class="process-math">\(w_{Tv}(20,-10)\text{.}\)</span></p></li>
+<li id="li-685"><p id="p-1852">In a similar way, estimate the partial derivative <span class="process-math">\(w_{vT}(20,-10)\text{.}\)</span></p></li>
+<li id="li-686"><p id="p-1853">Write several sentences that explain what the values <span class="process-math">\(w_{TT}(20, -10)\text{,}\)</span>  <span class="process-math">\(w_{vv}(20,-10)\text{,}\)</span> and <span class="process-math">\(w_{Tv}(20,-10)\)</span> indicate regarding the behavior of <span class="process-math">\(w(v,T)\text{.}\)</span></p></li>
+</ol></article><p id="p-1854">As we have found in <a href="" class="xref" data-knowl="./knowl/A_10_3_2a.html" title="Activity 10.3.3">Activities 10.3.3</a> and <a href="" class="xref" data-knowl="./knowl/A_10_3_6.html" title="Activity 10.3.4">Activity 10.3.4</a>, we may think of <span class="process-math">\(f_{xy}\)</span> as measuring the “twist” of the graph as we increase <span class="process-math">\(y\)</span> along a particular trace where <span class="process-math">\(x\)</span> is held constant. In the same way, <span class="process-math">\(f_{yx}\)</span> measures how the graph twists as we increase <span class="process-math">\(x\text{.}\)</span> If we remember that Clairaut's theorem tells us that <span class="process-math">\(f_{xy} = f_{yx}\text{,}\)</span> we see that the amount of twisting is the same in both directions. This twisting is perhaps more easily seen in <a href="" class="xref" data-knowl="./knowl/F_10_3_ruled.html" title="Figure 10.3.8">Figure 10.3.8</a>, which shows the graph of <span class="process-math">\(f(x,y) = -xy\text{,}\)</span> for which <span class="process-math">\(f_{xy} = -1\text{.}\)</span></p>
+<figure class="figure figure-like" id="F_10_3_ruled"><div class="image-box" style="width: 50%; margin-left: 25%; margin-right: 25%;"><img src="external/images/fig_10_3_ruled.svg" role="img" class="contained"></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">10.3.8<span class="period">.</span></span><span class="space"> </span>The graph of <span class="process-math">\(f(x,y) = -xy\text{.}\)</span></figcaption></figure></section><section class="subsection" id="subsection-52"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">10.3.3</span> <span class="title">Summary</span>
+</h3>
+<ul class="disc">
+<li id="li-687">
+<p id="p-1855">There are four second-order partial derivatives of a function <span class="process-math">\(f\)</span> of two independent variables <span class="process-math">\(x\)</span> and <span class="process-math">\(y\text{:}\)</span></p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+f_{xx} = (f_x)_x,
+f_{xy} = (f_x)_y,
+f_{yx} = (f_y)_x,\ \mbox{and}  \ 
+f_{yy} = (f_y)_y.
+\end{equation*}
+</div>
+</li>
+<li id="li-688"><p id="p-1856">The unmixed second-order partial derivatives, <span class="process-math">\(f_{xx}\)</span> and <span class="process-math">\(f_{yy}\text{,}\)</span> tell us about the concavity of the traces. The mixed second-order partial derivatives, <span class="process-math">\(f_{xy}\)</span> and <span class="process-math">\(f_{yx}\text{,}\)</span> tell us how the graph of <span class="process-math">\(f\)</span> twists.</p></li>
+</ul></section><section class="exercises" id="exercises-11"><h3 class="heading hide-type">
+<span class="type">Exercises</span> <span class="codenumber">10.3.4</span> <span class="title">Exercises</span>
+</h3>
+<article class="exercise exercise-like" id="ex-10-3-WW-partials_polynomials"><h4 class="heading"><span class="codenumber">1<span class="period">.</span></span></h4>
+<div id="webwork-115" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="115" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/FortLewis/Calc3/14-7-Second-order-partials/HGM4-14-7-01-Second-order-partials.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-contents">
+<p id="p-1857">Calculate all four second-order partial derivatives of <span class="process-math">\(\displaystyle f(x,y) = 4x^{2}y+3xy^{3}\text{.}\)</span></p>
+<p id="p-1858"><span class="process-math">\(f_{xx} \, (x,y) =\)</span> <span class="fillin underline" role="img" aria-label="80-character blank" style="width: 36.3636363636364em;"></span></p>
+<p id="p-1859"><span class="process-math">\(f_{xy} \, (x,y) =\)</span> <span class="fillin underline" role="img" aria-label="80-character blank" style="width: 36.3636363636364em;"></span></p>
+<p id="p-1860"><span class="process-math">\(f_{yx} \, (x,y) =\)</span> <span class="fillin underline" role="img" aria-label="80-character blank" style="width: 36.3636363636364em;"></span></p>
+<p id="p-1861"><span class="process-math">\(f_{yy} \, (x,y) =\)</span> <span class="fillin underline" role="img" aria-label="80-character blank" style="width: 36.3636363636364em;"></span></p>
+</div>
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-115')">Activate</button></div>
+</div></article><article class="exercise exercise-like" id="ex-10-3-WW-partials"><h4 class="heading"><span class="codenumber">2<span class="period">.</span></span></h4>
+<div id="webwork-116" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="116" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/maCalcDB/setVmultivariable3ParDer/UR_VC_5_14.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-contents">
+<p id="p-1866">Find all the first and second order partial derivatives of <span class="process-math">\(f(x, y) = 7\sin(2x+y) + 6\cos(x-y)\text{.}\)</span></p>
+<p id="p-1867">A. <span class="process-math">\(\frac{\partial f}{\partial x} = f_x =\)</span> <span class="fillin underline" role="img" aria-label="60-character blank" style="width: 27.2727272727273em;"></span></p>
+<p id="p-1868">B. <span class="process-math">\(\frac{\partial f}{\partial y} = f_y =\)</span> <span class="fillin underline" role="img" aria-label="60-character blank" style="width: 27.2727272727273em;"></span></p>
+<p id="p-1869">C. <span class="process-math">\(\frac{{\partial^2}f}{\partial x^2} = f_x{}_x =\)</span> <span class="fillin underline" role="img" aria-label="60-character blank" style="width: 27.2727272727273em;"></span></p>
+<p id="p-1870">D. <span class="process-math">\(\frac{{\partial^2}f}{\partial y^2} = f_y{}_y =\)</span> <span class="fillin underline" role="img" aria-label="60-character blank" style="width: 27.2727272727273em;"></span></p>
+<p id="p-1871">E. <span class="process-math">\(\frac{{\partial^2}f}{\partial x \partial y} = f_y{}_x =\)</span> <span class="fillin underline" role="img" aria-label="60-character blank" style="width: 27.2727272727273em;"></span></p>
+<p id="p-1872">F. <span class="process-math">\(\frac{{\partial^2}f}{\partial y \partial x} = f_x{}_y =\)</span> <span class="fillin underline" role="img" aria-label="60-character blank" style="width: 27.2727272727273em;"></span></p>
+</div>
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-116')">Activate</button></div>
+</div></article><article class="exercise exercise-like" id="ex-10-3-WW-partials-exponentials"><h4 class="heading"><span class="codenumber">3<span class="period">.</span></span></h4>
+<div id="webwork-117" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="117" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/272/setStewart14_3/problem_5.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-contents">
+<p id="p-1879">Find the partial derivatives of the function</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+f(x,y) = xye^{9 y}
+\end{equation*}
+</div>
+<p id="p-1880"><span class="process-math">\(f_x(x,y) =\)</span><span class="fillin underline" role="img" aria-label="60-character blank" style="width: 27.2727272727273em;"></span></p>
+<p id="p-1881"><span class="process-math">\(f_y(x,y) =\)</span><span class="fillin underline" role="img" aria-label="60-character blank" style="width: 27.2727272727273em;"></span></p>
+<p id="p-1882"><span class="process-math">\(f_{xy}(x,y) =\)</span><span class="fillin underline" role="img" aria-label="60-character blank" style="width: 27.2727272727273em;"></span></p>
+<p id="p-1883"><span class="process-math">\(f_{yx}(x,y) =\)</span><span class="fillin underline" role="img" aria-label="60-character blank" style="width: 27.2727272727273em;"></span></p>
+</div>
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-117')">Activate</button></div>
+</div></article><article class="exercise exercise-like" id="ex-10-3-WW-second_partials"><h4 class="heading"><span class="codenumber">4<span class="period">.</span></span></h4>
+<div id="webwork-118" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="118" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/FortLewis/Calc3/14-7-Second-order-partials/HGM4-14-7-08-Second-order-partials.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-contents">
+<p id="p-1888">Calculate all four second-order partial derivatives of <span class="process-math">\(\displaystyle f(x,y) = \sin\!\left(\frac{2x}{y}\right)\text{.}\)</span></p>
+<p id="p-1889"><span class="process-math">\(f_{xx} \, (x,y) =\)</span> <span class="fillin underline" role="img" aria-label="80-character blank" style="width: 36.3636363636364em;"></span></p>
+<p id="p-1890"><span class="process-math">\(f_{xy} \, (x,y) =\)</span> <span class="fillin underline" role="img" aria-label="80-character blank" style="width: 36.3636363636364em;"></span></p>
+<p id="p-1891"><span class="process-math">\(f_{yx} \, (x,y) =\)</span> <span class="fillin underline" role="img" aria-label="80-character blank" style="width: 36.3636363636364em;"></span></p>
+<p id="p-1892"><span class="process-math">\(f_{yy} \, (x,y) =\)</span> <span class="fillin underline" role="img" aria-label="80-character blank" style="width: 36.3636363636364em;"></span></p>
+</div>
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-118')">Activate</button></div>
+</div></article><article class="exercise exercise-like" id="ex-10-3-WW-more-second_partials"><h4 class="heading"><span class="codenumber">5<span class="period">.</span></span></h4>
+<div id="webwork-119" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="119" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/WHFreeman/Rogawski_Calculus_Early_Transcendentals_Second_Edition/14_Differentiation_in_Several_Variables/14.3_Partial_Derivatives/14.3.67.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-contents">
+<p id="p-1897">Given <span class="process-math">\(F(r,s,t)=r\!\left(5t^{3}-6s^{3}\right)\text{,}\)</span> compute:</p>
+<p id="p-1898"><span class="process-math">\(F_{rst}=\)</span><span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span></p>
+</div>
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-119')">Activate</button></div>
+</div></article><article class="exercise exercise-like" id="ex-10-3-WW-Clairaut"><h4 class="heading"><span class="codenumber">6<span class="period">.</span></span></h4>
+<div id="webwork-120" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="120" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Michigan/Chap14Sec7/Q05.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-contents">
+<p id="p-1900">Calculate all four second-order partial derivatives and check that <span class="process-math">\(f_{xy}=f_{yx}\text{.}\)</span> Assume the variables are restricted to a domain on which the function is defined.</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+f(x,y) = e^{3xy}
+\end{equation*}
+</div>
+<p id="p-1901"><span class="process-math">\(f_{xx} =\)</span> <span class="fillin underline" role="img" aria-label="55-character blank" style="width: 25em;"></span></p>
+<p id="p-1902"><span class="process-math">\(f_{yy} =\)</span> <span class="fillin underline" role="img" aria-label="55-character blank" style="width: 25em;"></span></p>
+<p id="p-1903"><span class="process-math">\(f_{xy} =\)</span> <span class="fillin underline" role="img" aria-label="55-character blank" style="width: 25em;"></span></p>
+<p id="p-1904"><span class="process-math">\(f_{yx} =\)</span> <span class="fillin underline" role="img" aria-label="55-character blank" style="width: 25em;"></span></p>
+</div>
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-120')">Activate</button></div>
+</div></article><article class="exercise exercise-like" id="ex-10-3-WW-second_partials_all"><h4 class="heading"><span class="codenumber">7<span class="period">.</span></span></h4>
+<div id="webwork-121" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="121" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/FortLewis/Calc3/14-7-Second-order-partials/HGM4-14-7-06-Second-order-partials.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-contents">
+<p id="p-1909">Calculate all four second-order partial derivatives of <span class="process-math">\(\displaystyle f(x,y) = \left(3x+2y\right)e^{y}\text{.}\)</span></p>
+<p id="p-1910"><span class="process-math">\(f_{xx} \, (x,y) =\)</span> <span class="fillin underline" role="img" aria-label="80-character blank" style="width: 36.3636363636364em;"></span></p>
+<p id="p-1911"><span class="process-math">\(f_{xy} \, (x,y) =\)</span> <span class="fillin underline" role="img" aria-label="80-character blank" style="width: 36.3636363636364em;"></span></p>
+<p id="p-1912"><span class="process-math">\(f_{yx} \, (x,y) =\)</span> <span class="fillin underline" role="img" aria-label="80-character blank" style="width: 36.3636363636364em;"></span></p>
+<p id="p-1913"><span class="process-math">\(f_{yy} \, (x,y) =\)</span> <span class="fillin underline" role="img" aria-label="80-character blank" style="width: 36.3636363636364em;"></span></p>
+</div>
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-121')">Activate</button></div>
+</div></article><article class="exercise exercise-like" id="ex-10-3-WW-third_partials"><h4 class="heading"><span class="codenumber">8<span class="period">.</span></span></h4>
+<div id="webwork-122" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="122" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Union/setMVderivatives/an14_3_80.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-contents">
+<p id="p-1918">Let <span class="process-math">\(f(x,y) = \left(2x-y\right)^{8}\text{.}\)</span>  Then</p>
+<div class="tabular-box natural-width"><table class="tabular">
+<tr>
+<td class="l m b0 r0 l0 t0 lines"><span class="process-math">\(\frac{\partial^2\!f}{\partial x\partial y}\)</span></td>
+<td class="l m b0 r0 l0 t0 lines"><span class="process-math">\(=\)</span></td>
+<td class="l m b0 r0 l0 t0 lines"><span class="fillin underline" role="img" aria-label="30-character blank" style="width: 13.6363636363636em;"></span></td>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines"><span class="process-math">\(\frac{\partial^3\!f}{\partial x\partial y\partial x}\)</span></td>
+<td class="l m b0 r0 l0 t0 lines"><span class="process-math">\(=\)</span></td>
+<td class="l m b0 r0 l0 t0 lines"><span class="fillin underline" role="img" aria-label="30-character blank" style="width: 13.6363636363636em;"></span></td>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines"><span class="process-math">\(\frac{\partial^3\!f}{\partial x^2\partial y}\)</span></td>
+<td class="l m b0 r0 l0 t0 lines"><span class="process-math">\(=\)</span></td>
+<td class="l m b0 r0 l0 t0 lines"><span class="fillin underline" role="img" aria-label="30-character blank" style="width: 13.6363636363636em;"></span></td>
+</tr>
+</table></div>
+</div>
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-122')">Activate</button></div>
+</div></article><article class="exercise exercise-like" id="ex-10-3-WW-partials_Clairaut"><h4 class="heading"><span class="codenumber">9<span class="period">.</span></span></h4>
+<div id="webwork-123" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="123" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/FortLewis/Calc3/14-7-Second-order-partials/HGM4-14-7-35-Second-order-partials.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-contents">
+<p id="p-1922">If <span class="process-math">\(z_{xy} = 7 y\)</span> and all of the second order partial derivatives of <span class="process-math">\(z\)</span> are continuous, then</p>
+<p id="p-1923">(a) <span class="process-math">\(z_{yx} =\)</span> <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span></p>
+<p id="p-1924">(b) <span class="process-math">\(z_{xyx} =\)</span> <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span></p>
+<p id="p-1925">(c) <span class="process-math">\(z_{xyy} =\)</span> <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span></p>
+</div>
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-123')">Activate</button></div>
+</div></article><article class="exercise exercise-like" id="ex-10-3-WW-partials_unknown_function"><h4 class="heading"><span class="codenumber">10<span class="period">.</span></span></h4>
+<div id="webwork-124" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="124" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/FortLewis/Calc3/14-7-Second-order-partials/HGM4-14-7-34-Second-order-partials.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-contents">
+<p id="p-1929">If <span class="process-math">\(z = f(x) + y g(x)\text{,}\)</span> what can we say about <span class="process-math">\(z_{yy}\text{?}\)</span></p>
+<p id="p-1930"><ul style="list-style:circle;">
+<li id="li-689"><p id="p-1931"><span class="process-math">\(\displaystyle z_{yy} = 0\)</span></p></li>
+<li id="li-690"><p id="p-1932"><span class="process-math">\(\displaystyle z_{yy} = z_{xx}\)</span></p></li>
+<li id="li-691"><p id="p-1933"><span class="process-math">\(\displaystyle z_{yy} = y\)</span></p></li>
+<li id="li-692"><p id="p-1934"><span class="process-math">\(\displaystyle z_{yy} = g(x)\)</span></p></li>
+<li id="li-693"><p id="p-1935">We cannot say anything</p></li>
+</ul></p>
+</div>
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-124')">Activate</button></div>
+</div></article><article class="exercise exercise-like" id="Ez_10_3_0"><h4 class="heading"><span class="codenumber">11<span class="period">.</span></span></h4>
+<p id="p-1936">Shown in <a href="" class="xref" data-knowl="./knowl/F_10_3_activity_contour.html" title="Figure 10.3.9">Figure 10.3.9</a> is a contour plot of a function <span class="process-math">\(f\)</span> with the values of <span class="process-math">\(f\)</span> labeled on the contours. The point <span class="process-math">\((2,1)\)</span> is highlighted in red.</p>
+<figure class="figure figure-like" id="F_10_3_activity_contour"><div class="image-box" style="width: 50%; margin-left: 25%; margin-right: 25%;"><img src="external/images/fig_10_3_activity_contour.svg" role="img" class="contained"></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">10.3.9<span class="period">.</span></span><span class="space"> </span>A contour plot of <span class="process-math">\(f(x,y)\text{.}\)</span></figcaption></figure><ol class="lower-alpha">
+<li id="li-694"><p id="p-1937">Estimate the partial derivatives <span class="process-math">\(f_x(2,1)\)</span> and <span class="process-math">\(f_y(2,1)\text{.}\)</span></p></li>
+<li id="li-695"><p id="p-1938">Determine whether the second-order partial derivative <span class="process-math">\(f_{xx}(2,1)\)</span> is positive or negative, and explain your thinking.</p></li>
+<li id="li-696"><p id="p-1939">Determine whether the second-order partial derivative <span class="process-math">\(f_{yy}(2,1)\)</span> is positive or negative, and explain your thinking.</p></li>
+<li id="li-697"><p id="p-1940">Determine whether the second-order partial derivative <span class="process-math">\(f_{xy}(2,1)\)</span> is positive or negative, and explain your thinking.</p></li>
+<li id="li-698"><p id="p-1941">Determine whether the second-order partial derivative <span class="process-math">\(f_{yx}(2,1)\)</span> is positive or negative, and explain your thinking.</p></li>
+<li id="li-699"><p id="p-1942">Consider a function <span class="process-math">\(g\)</span> of the variables <span class="process-math">\(x\)</span> and <span class="process-math">\(y\)</span> for which <span class="process-math">\(g_x(2,2) &gt; 0\)</span> and <span class="process-math">\(g_{xx}(2,2) \lt  0\text{.}\)</span>  Sketch possible behavior of some contours around <span class="process-math">\((2,2)\)</span> on the left axes in <a href="" class="xref" data-knowl="./knowl/F_10_3_activity_grad.html" title="Figure 10.3.10">Figure 10.3.10</a>. <figure class="figure figure-like" id="F_10_3_activity_grad"><div class="sidebyside"><div class="sbsrow" style="margin-left:0%;margin-right:0%;">
+<div class="sbspanel top" style="width:50%;"><img src="external/images/fig_10_2_activity_grad.svg" role="img" class="contained"></div>
+<div class="sbspanel top" style="width:50%;"><img src="external/images/fig_10_2_activity_grad.svg" role="img" class="contained"></div>
+</div></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">10.3.10<span class="period">.</span></span><span class="space"> </span>Plots for contours of <span class="process-math">\(g\)</span> and <span class="process-math">\(h\text{.}\)</span></figcaption></figure></p></li>
+<li id="li-700"><p id="p-1943">Consider a function <span class="process-math">\(h\)</span> of the variables <span class="process-math">\(x\)</span> and <span class="process-math">\(y\)</span> for which <span class="process-math">\(h_x(2,2) &gt; 0\)</span> and <span class="process-math">\(h_{xy}(2,2) \lt  0\text{.}\)</span>  Sketch possible behavior of some contour lines around <span class="process-math">\((2,2)\)</span> on the right axes in <a href="" class="xref" data-knowl="./knowl/F_10_3_activity_grad.html" title="Figure 10.3.10">Figure 10.3.10</a>.</p></li>
+</ol></article><article class="exercise exercise-like" id="Ez_10_3_1"><h4 class="heading"><span class="codenumber">12<span class="period">.</span></span></h4>
+<p id="p-1944">The Heat Index, <span class="process-math">\(I\text{,}\)</span> (measured in <em class="emphasis">apparent degrees F</em>) is a function of the actual temperature <span class="process-math">\(T\)</span> outside (in degrees F) and the relative humidity <span class="process-math">\(H\)</span> (measured as a percentage). A portion of the table which gives values for this function, <span class="process-math">\(I(T,H)\text{,}\)</span> is reproduced in <a href="" class="xref" data-knowl="./knowl/T_10_3_heat_index.html" title="Table 10.3.11: Heat index.">Table 10.3.11</a>.</p>
+<figure class="table table-like" id="T_10_3_heat_index"><figcaption><span class="type">Table</span><span class="space"> </span><span class="codenumber">10.3.11<span class="period">.</span></span><span class="space"> </span>Heat index.</figcaption><div class="tabular-box natural-width"><table class="tabular">
+<tr>
+<td class="c m b2 r0 l0 t1 lines">
+<em class="emphasis">T</em> <span class="process-math">\(\downarrow \backslash\)</span> <em class="emphasis">H</em> <span class="process-math">\(\rightarrow\)</span>
+</td>
+<td class="c m b2 r0 l0 t1 lines">70</td>
+<td class="c m b2 r0 l0 t1 lines">75</td>
+<td class="c m b2 r0 l0 t1 lines">80</td>
+<td class="c m b2 r0 l0 t1 lines">85</td>
+</tr>
+<tr>
+<td class="c m b1 r0 l0 t0 lines">90</td>
+<td class="c m b1 r0 l0 t0 lines">106</td>
+<td class="c m b1 r0 l0 t0 lines">109</td>
+<td class="c m b1 r0 l0 t0 lines">112</td>
+<td class="c m b1 r0 l0 t0 lines">115</td>
+</tr>
+<tr>
+<td class="c m b1 r0 l0 t0 lines">92</td>
+<td class="c m b1 r0 l0 t0 lines">112</td>
+<td class="c m b1 r0 l0 t0 lines">115</td>
+<td class="c m b1 r0 l0 t0 lines">119</td>
+<td class="c m b1 r0 l0 t0 lines">123</td>
+</tr>
+<tr>
+<td class="c m b1 r0 l0 t0 lines">94</td>
+<td class="c m b1 r0 l0 t0 lines">118</td>
+<td class="c m b1 r0 l0 t0 lines">122</td>
+<td class="c m b1 r0 l0 t0 lines">127</td>
+<td class="c m b1 r0 l0 t0 lines">132</td>
+</tr>
+<tr>
+<td class="c m b1 r0 l0 t0 lines">96</td>
+<td class="c m b1 r0 l0 t0 lines">125</td>
+<td class="c m b1 r0 l0 t0 lines">130</td>
+<td class="c m b1 r0 l0 t0 lines">135</td>
+<td class="c m b1 r0 l0 t0 lines">141</td>
+</tr>
+</table></div></figure><ol class="lower-alpha">
+<li id="li-701"><p id="p-1945">State the limit definition of the value <span class="process-math">\(I_{TT}(94,75)\text{.}\)</span>  Then, estimate <span class="process-math">\(I_{TT}(94,75)\text{,}\)</span> and write one complete sentence that carefully explains the meaning of this value, including units.</p></li>
+<li id="li-702"><p id="p-1946">State the limit definition of the value <span class="process-math">\(I_{HH}(94,75)\text{.}\)</span>  Then, estimate <span class="process-math">\(I_{HH}(94,75)\text{,}\)</span> and write one complete sentence that carefully explains the meaning of this value, including units.</p></li>
+<li id="li-703"><p id="p-1947">Finally, do likewise to estimate <span class="process-math">\(I_{HT}(94,75)\text{,}\)</span> and write a sentence to explain the meaning of the value you found.</p></li>
+</ol></article><article class="exercise exercise-like" id="Ez_10_3_2"><h4 class="heading"><span class="codenumber">13<span class="period">.</span></span></h4>
+<p id="p-1948">The temperature on a heated metal plate positioned in the first quadrant of the <span class="process-math">\(xy\)</span>-plane is given by</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+C(x,y) = 25e^{-(x-1)^2 - (y-1)^3}.
+\end{equation*}
+</div>
+<p id="p-1949">Assume that temperature is measured in degrees Celsius and that <span class="process-math">\(x\)</span> and <span class="process-math">\(y\)</span> are each measured in inches.</p>
+<ol class="lower-alpha">
+<li id="li-704"><p id="p-1950">Determine <span class="process-math">\(C_{xx}(x,y)\)</span> and <span class="process-math">\(C_{yy}(x,y)\text{.}\)</span>  Do not do any additional work to algebraically simplify your results.</p></li>
+<li id="li-705"><p id="p-1951">Calculate <span class="process-math">\(C_{xx}(1.1, 1.2)\text{.}\)</span>  Suppose that an ant is walking past the point <span class="process-math">\((1.1, 1.2)\)</span> along the line <span class="process-math">\(y = 1.2\text{.}\)</span>  Write a sentence to explain the meaning of the value of <span class="process-math">\(C_{xx}(1.1, 1.2)\text{,}\)</span> including units.</p></li>
+<li id="li-706"><p id="p-1952">Calculate <span class="process-math">\(C_{yy}(1.1, 1.2)\text{.}\)</span>  Suppose instead that an ant is walking past the point <span class="process-math">\((1.1, 1.2)\)</span> along the line <span class="process-math">\(x = 1.1\text{.}\)</span>  Write a sentence to explain the meaning of the value of <span class="process-math">\(C_{yy}(1.1, 1.2)\text{,}\)</span> including units.</p></li>
+<li id="li-707"><p id="p-1953">Determine <span class="process-math">\(C_{xy}(x,y)\)</span> and hence compute <span class="process-math">\(C_{xy}(1.1, 1.2)\text{.}\)</span>  What is the meaning of this value?  Explain, in terms of an ant walking on the heated metal plate.</p></li>
+</ol></article><article class="exercise exercise-like" id="Ez_10_3_3"><h4 class="heading"><span class="codenumber">14<span class="period">.</span></span></h4>
+<p id="p-1954">Let <span class="process-math">\(f(x,y) = 8 - x^2 - y^2\)</span> and <span class="process-math">\(g(x,y) = 8 - x^2 + 4xy - y^2\text{.}\)</span></p>
+<ol class="lower-alpha">
+<li id="li-708"><p id="p-1955">Determine <span class="process-math">\(f_x\text{,}\)</span> <span class="process-math">\(f_y\text{,}\)</span> <span class="process-math">\(f_{xx}\text{,}\)</span> <span class="process-math">\(f_{yy}\text{,}\)</span> <span class="process-math">\(f_{xy}\text{,}\)</span> and <span class="process-math">\(f_{yx}\text{.}\)</span></p></li>
+<li id="li-709"><p id="p-1956">Evaluate each of the partial derivatives in (a) at the point <span class="process-math">\((0,0)\text{.}\)</span></p></li>
+<li id="li-710"><p id="p-1957">What do the values in (b) suggest about the behavior of <span class="process-math">\(f\)</span> near <span class="process-math">\((0,0)\text{?}\)</span>  Plot a graph of <span class="process-math">\(f\)</span> and compare what you see visually to what the values suggest.</p></li>
+<li id="li-711"><p id="p-1958">Determine <span class="process-math">\(g_x\text{,}\)</span> <span class="process-math">\(g_y\text{,}\)</span> <span class="process-math">\(g_{xx}\text{,}\)</span> <span class="process-math">\(g_{yy}\text{,}\)</span> <span class="process-math">\(g_{xy}\text{,}\)</span> and <span class="process-math">\(g_{yx}\text{.}\)</span></p></li>
+<li id="li-712"><p id="p-1959">Evaluate each of the partial derivatives in (d) at the point <span class="process-math">\((0,0)\text{.}\)</span></p></li>
+<li id="li-713"><p id="p-1960">What do the values in (e) suggest about the behavior of <span class="process-math">\(g\)</span> near <span class="process-math">\((0,0)\text{?}\)</span>  Plot a graph of <span class="process-math">\(g\)</span> and compare what you see visually to what the values suggest.</p></li>
+<li id="li-714"><p id="p-1961">What do the functions <span class="process-math">\(f\)</span> and <span class="process-math">\(g\)</span> have in common at <span class="process-math">\((0,0)\text{?}\)</span>  What is different?  What do your observations tell you regarding the importance of a certain second-order partial derivative?</p></li>
+</ol></article><article class="exercise exercise-like" id="exercise-173"><h4 class="heading"><span class="codenumber">15<span class="period">.</span></span></h4>
+<p id="p-1962">Let <span class="process-math">\(f(x,y) = \frac{1}{2}xy^2\)</span> represent the kinetic energy in Joules of an object of mass <span class="process-math">\(x\)</span> in kilograms with velocity <span class="process-math">\(y\)</span> in meters per second. Let <span class="process-math">\((a,b)\)</span> be the point <span class="process-math">\((4,5)\)</span> in the domain of <span class="process-math">\(f\text{.}\)</span></p>
+<ol class="lower-alpha">
+<li id="li-715"><p id="p-1963">Calculate <span class="process-math">\(\frac{ \partial^2 f}{\partial x^2}\)</span> at the point <span class="process-math">\((a,b)\text{.}\)</span> Then explain as best you can what this second order partial derivative tells us about kinetic energy.</p></li>
+<li id="li-716"><p id="p-1964">Calculate <span class="process-math">\(\frac{ \partial^2 f}{\partial y^2}\)</span> at the point <span class="process-math">\((a,b)\text{.}\)</span> Then explain as best you can what this second order partial derivative tells us about kinetic energy.</p></li>
+<li id="li-717"><p id="p-1965">Calculate <span class="process-math">\(\frac{ \partial^2 f}{\partial y \partial x}\)</span> at the point <span class="process-math">\((a,b)\text{.}\)</span> Then explain as best you can what this second order partial derivative tells us about kinetic energy.</p></li>
+<li id="li-718"><p id="p-1966">Calculate <span class="process-math">\(\frac{ \partial^2 f}{\partial x \partial y}\)</span> at the point <span class="process-math">\((a,b)\text{.}\)</span> Then explain as best you can what this second order partial derivative tells us about kinetic energy.</p></li>
+</ol></article></section></section></div></main>
+</div>
+<!--Start: Google Global Site Tag code--><!--*** DO NOT COPY ANOTHER PROJECT'S MAGIC NUMBERS/ID ***--><!--***           GET YOUR OWN FROM GOOGLE             ***-->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-QJKN634F7R"></script><script>  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-QJKN634F7R');
+</script><!--End: Google Global Site Tag code-->
+</body>
+</html>

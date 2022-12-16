@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<html lang="en-US">
+<head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Optimization</title>
+<meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:type" content="book">
+<meta property="book:title" content="Active Calculus - Multivariable + Vector">
+<meta property="book:author" content="Steve Schlicker">
+<meta property="book:author" content="Mitchel T. Keller">
+<meta property="book:author" content="Nicholas Long">
+<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
+window.MathJax = {
+  tex: {
+    inlineMath: [['\\(','\\)']],
+    tags: "none",
+    tagSide: "right",
+    tagIndent: ".8em",
+    packages: {'[+]': ['base', 'extpfeil', 'ams', 'amscd', 'newcommand', 'knowl']}
+  },
+  options: {
+    ignoreHtmlClass: "tex2jax_ignore|ignore-math",
+    processHtmlClass: "process-math",
+    renderActions: {
+        findScript: [10, function (doc) {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
+                var display = !!node.type.match(/; *mode=display/);
+                var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                var text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = {node: text, delim: '', n: 0};
+                math.end = {node: text, delim: '', n: 0};
+                doc.math.push(math);
+            });
+        }, '']
+    },
+  },
+  chtml: {
+    scale: 0.88,
+    mtextInheritFont: true
+  },
+  loader: {
+    load: ['input/asciimath', '[tex]/extpfeil', '[tex]/amscd', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
+    paths: {pretext: "https://pretextbook.org/js/lib"},
+  },
+  startup: {
+    pageReady() {
+      return MathJax.startup.defaultPageReady().then(function () {
+      console.log("in ready function");
+      rsMathReady();
+      }
+    )}
+},
+};
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><link href="https://webwork-ptx.aimath.org/webwork2_files/js/apps/MathView/mathview.css" rel="stylesheet">
+<script src="https://pretextbook.org/js/0.13/pretext-webwork/2./pretext-webwork.js"></script><script src="https://webwork-ptx.aimath.org/webwork2_files/node_modules/iframe-resizer/js/iframeResizer.min.js"></script><script async="" src="https://cse.google.com/cse.js?cx=015103900096539427448:ngwuia10qci"></script><script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.13/pretext.js"></script><script>miniversion=0.674</script><script src="https://pretextbook.org/js/0.13/pretext_add_on.js?x=1"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
+</script><link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/pretext.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/pretext_add_on.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/banner_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/toc_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/knowls_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/style_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/colors_blue_grey.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/setcolors.css" rel="stylesheet" type="text/css">
+</head>
+<body class="pretext-book ignore-math has-toc has-sidebar-left">
+<a class="assistive" href="#content">Skip to main content</a><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\newcommand{\R}{\mathbb{R}}
+\newcommand{\va}{\mathbf{a}}
+\newcommand{\vb}{\mathbf{b}}
+\newcommand{\vc}{\mathbf{c}}
+\newcommand{\vC}{\mathbf{C}}
+\newcommand{\vd}{\mathbf{d}}
+\newcommand{\ve}{\mathbf{e}}
+\newcommand{\vi}{\mathbf{i}}
+\newcommand{\vj}{\mathbf{j}}
+\newcommand{\vk}{\mathbf{k}}
+\newcommand{\vn}{\mathbf{n}}
+\newcommand{\vm}{\mathbf{m}}
+\newcommand{\vr}{\mathbf{r}}
+\newcommand{\vs}{\mathbf{s}}
+\newcommand{\vu}{\mathbf{u}}
+\newcommand{\vv}{\mathbf{v}}
+\newcommand{\vw}{\mathbf{w}}
+\newcommand{\vx}{\mathbf{x}}
+\newcommand{\vy}{\mathbf{y}}
+\newcommand{\vz}{\mathbf{z}}
+\newcommand{\vzero}{\mathbf{0}}
+\newcommand{\vF}{\mathbf{F}}
+\newcommand{\vG}{\mathbf{G}}
+\newcommand{\vH}{\mathbf{H}}
+\newcommand{\vR}{\mathbf{R}}
+\newcommand{\vT}{\mathbf{T}}
+\newcommand{\vN}{\mathbf{N}}
+\newcommand{\vL}{\mathbf{L}}
+\newcommand{\vB}{\mathbf{B}}
+\newcommand{\vS}{\mathbf{S}}
+\newcommand{\proj}{\text{proj}}
+\newcommand{\comp}{\text{comp}}
+\newcommand{\nin}{}
+\newcommand{\vecmag}[1]{|#1|}
+\newcommand{\grad}{\nabla}
+\DeclareMathOperator{\curl}{curl}
+\DeclareMathOperator{\divg}{div}
+\newcommand{\lt}{&lt;}
+\newcommand{\gt}{&gt;}
+\newcommand{\amp}{&amp;}
+\definecolor{fillinmathshade}{gray}{0.9}
+\newcommand{\fillinmath}[1]{\mathchoice{\colorbox{fillinmathshade}{$\displaystyle     \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\textstyle        \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptstyle      \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptscriptstyle\phantom{\,#1\,}$}}}
+\)</span></div>
+<header id="masthead" class="smallbuttons"><div class="banner"><div class="container">
+<a id="logo-link" href=""></a><div class="title-container">
+<h1 class="heading"><a href="book-1.html"><span class="title">Active Calculus - Multivariable + Vector</span></a></h1>
+<p class="byline">Steve Schlicker, Mitchel T. Keller, Nicholas Long</p>
+</div>
+<div class="searchwrapper" role="search"><div class="gcse-search"></div></div>
+</div></div>
+<nav id="primary-navbar" class="navbar"><div class="container">
+<div class="navbar-top-buttons">
+<button class="sidebar-left-toggle-button button active" aria-label="Show or hide table of contents sidebar">Contents</button><div class="tree-nav toolbar toolbar-divisor-3">
+<a class="index-button toolbar-item button" href="index-1.html" title="Index">Index</a><span class="threebuttons"><a id="previousbutton" class="previous-button toolbar-item button" href="S-10-6-Directional-Derivative.html" title="Previous">Prev</a><a id="upbutton" class="up-button button toolbar-item" href="C-10.html" title="Up">Up</a><a id="nextbutton" class="next-button button toolbar-item" href="S-10-8-Lagrange-Multipliers.html" title="Next">Next</a></span>
+</div>
+</div>
+<div class="navbar-bottom-buttons toolbar toolbar-divisor-4">
+<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="S-10-6-Directional-Derivative.html" title="Previous">Prev</a><a class="up-button button toolbar-item" href="C-10.html" title="Up">Up</a><a class="next-button button toolbar-item" href="S-10-8-Lagrange-Multipliers.html" title="Next">Next</a>
+</div>
+</div></nav></header><div class="page">
+<div id="sidebar-left" class="sidebar" role="navigation"><div class="sidebar-content">
+<nav id="toc"><ul>
+<li class="link frontmatter">
+<a href="frontmatter.html" data-scroll="frontmatter" class="internal"><span class="title">Front Matter</span></a><ul>
+<li><a href="colophon-1.html" data-scroll="colophon-1" class="internal">Colophon</a></li>
+<li><a href="preface-1.html" data-scroll="preface-1" class="internal">Features of the Text</a></li>
+<li><a href="preface-2.html" data-scroll="preface-2" class="internal">Vector Calculus Preface</a></li>
+<li><a href="preface-3.html" data-scroll="preface-3" class="internal">Acknowledgments</a></li>
+<li><a href="preface-4.html" data-scroll="preface-4" class="internal">Active Calculus - Multivariable: our goals</a></li>
+<li><a href="preface-5.html" data-scroll="preface-5" class="internal">How to Use this Text</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="C-9.html" data-scroll="C-9" class="internal"><span class="codenumber">9</span> <span class="title">Multivariable and Vector Functions</span></a><ul>
+<li><a href="S-9-1-Functions.html" data-scroll="S-9-1-Functions" class="internal">Functions of Several Variables and Three Dimensional Space</a></li>
+<li><a href="S-9-2-Vectors.html" data-scroll="S-9-2-Vectors" class="internal">Vectors</a></li>
+<li><a href="S-9-3-Dot-Product.html" data-scroll="S-9-3-Dot-Product" class="internal">The Dot Product</a></li>
+<li><a href="S-9-4-Cross-Product.html" data-scroll="S-9-4-Cross-Product" class="internal">The Cross Product</a></li>
+<li><a href="S-9-5-Lines-Planes.html" data-scroll="S-9-5-Lines-Planes" class="internal">Lines and Planes in Space</a></li>
+<li><a href="S-9-6-Vector-Valued-Functions.html" data-scroll="S-9-6-Vector-Valued-Functions" class="internal">Vector-Valued Functions</a></li>
+<li><a href="S-9-7-Vector-Valued-Functions-Derivatives.html" data-scroll="S-9-7-Vector-Valued-Functions-Derivatives" class="internal">Derivatives and Integrals of Vector-Valued Functions</a></li>
+<li><a href="S-9-8-Arc-Length-Curvature.html" data-scroll="S-9-8-Arc-Length-Curvature" class="internal">Arc Length and Curvature</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="C-10.html" data-scroll="C-10" class="internal"><span class="codenumber">10</span> <span class="title">Derivatives of Multivariable Functions</span></a><ul>
+<li><a href="S-10-1-Limits.html" data-scroll="S-10-1-Limits" class="internal">Limits</a></li>
+<li><a href="S-10-2-First-Order-Partial-Derivatives.html" data-scroll="S-10-2-First-Order-Partial-Derivatives" class="internal">First-Order Partial Derivatives</a></li>
+<li><a href="S-10-3-Second-Order-Partial-Derivatives.html" data-scroll="S-10-3-Second-Order-Partial-Derivatives" class="internal">Second-Order Partial Derivatives</a></li>
+<li><a href="S-10-4-Linearization.html" data-scroll="S-10-4-Linearization" class="internal">Linearization: Tangent Planes and Differentials</a></li>
+<li><a href="S-10-5-Chain-Rule.html" data-scroll="S-10-5-Chain-Rule" class="internal">The Chain Rule</a></li>
+<li><a href="S-10-6-Directional-Derivative.html" data-scroll="S-10-6-Directional-Derivative" class="internal">Directional Derivatives and the Gradient</a></li>
+<li><a href="S-10-7-Optimization.html" data-scroll="S-10-7-Optimization" class="active">Optimization</a></li>
+<li><a href="S-10-8-Lagrange-Multipliers.html" data-scroll="S-10-8-Lagrange-Multipliers" class="internal">Constrained Optimization: Lagrange Multipliers</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="C-11.html" data-scroll="C-11" class="internal"><span class="codenumber">11</span> <span class="title">Multiple Integrals</span></a><ul>
+<li><a href="S-11-1-Double-Integrals-Rectangles.html" data-scroll="S-11-1-Double-Integrals-Rectangles" class="internal">Double Riemann Sums and Double Integrals over Rectangles</a></li>
+<li><a href="S-11-2-Iterated-Integrals.html" data-scroll="S-11-2-Iterated-Integrals" class="internal">Iterated Integrals</a></li>
+<li><a href="S-11-3-Double-Integrals-General.html" data-scroll="S-11-3-Double-Integrals-General" class="internal">Double Integrals over General Regions</a></li>
+<li><a href="S-11-4-Double-Integrals-Applications.html" data-scroll="S-11-4-Double-Integrals-Applications" class="internal">Applications of Double Integrals</a></li>
+<li><a href="S-11-5-Double-Integrals-Polar.html" data-scroll="S-11-5-Double-Integrals-Polar" class="internal">Double Integrals in Polar Coordinates</a></li>
+<li><a href="S-11-6-Parametric-Surfaces-Surface-Area.html" data-scroll="S-11-6-Parametric-Surfaces-Surface-Area" class="internal">Surfaces Defined Parametrically and Surface Area</a></li>
+<li><a href="S-11-7-Triple-Integrals.html" data-scroll="S-11-7-Triple-Integrals" class="internal">Triple Integrals</a></li>
+<li><a href="S-11-8-Triple-Integrals-Cylindrical-Spherical.html" data-scroll="S-11-8-Triple-Integrals-Cylindrical-Spherical" class="internal">Triple Integrals in Cylindrical and Spherical Coordinates</a></li>
+<li><a href="S-11-9-Change-of-Variable.html" data-scroll="S-11-9-Change-of-Variable" class="internal">Change of Variables</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="C_Vector.html" data-scroll="C_Vector" class="internal"><span class="codenumber">12</span> <span class="title">Vector Calculus</span></a><ul>
+<li><a href="S_Vector_VectorFields.html" data-scroll="S_Vector_VectorFields" class="internal">Vector Fields</a></li>
+<li><a href="S_Vector_IdeaLineIntegral.html" data-scroll="S_Vector_IdeaLineIntegral" class="internal">The Idea of a Line Integral</a></li>
+<li><a href="S_Vector_ParamLineIntegrals.html" data-scroll="S_Vector_ParamLineIntegrals" class="internal">Using Parametrizations to Calculate Line Integrals</a></li>
+<li><a href="S_ScalarLineIntegral.html" data-scroll="S_ScalarLineIntegral" class="internal">Line Integrals of Scalar Functions</a></li>
+<li><a href="S_Vector_FTCLI.html" data-scroll="S_Vector_FTCLI" class="internal">Path-Independent Vector Fields and the Fundamental Theorem of Calculus for Line Integrals</a></li>
+<li><a href="S_Vector_Div.html" data-scroll="S_Vector_Div" class="internal">The Divergence of a Vector Field</a></li>
+<li><a href="S_Vector_Curl.html" data-scroll="S_Vector_Curl" class="internal">The Curl of a Vector Field</a></li>
+<li><a href="S_Vector_GreensTheorem.html" data-scroll="S_Vector_GreensTheorem" class="internal">Green's Theorem</a></li>
+<li><a href="S_Vector_FluxInt.html" data-scroll="S_Vector_FluxInt" class="internal">Flux Integrals</a></li>
+<li><a href="S_ScalarSurfaceIntegral.html" data-scroll="S_ScalarSurfaceIntegral" class="internal">Surface Integrals of Scalar Valued Functions</a></li>
+<li><a href="S_Vector_StokesThm.html" data-scroll="S_Vector_StokesThm" class="internal">Stokes' Theorem</a></li>
+<li><a href="S_Vector_DivThm.html" data-scroll="S_Vector_DivThm" class="internal">The Divergence Theorem</a></li>
+</ul>
+</li>
+<li class="link backmatter"><a href="backmatter-1.html" data-scroll="backmatter-1" class="internal"><span class="title">Back Matter</span></a></li>
+<li class="link"><a href="index-1.html" data-scroll="index-1" class="internal"><span class="title">Index</span></a></li>
+</ul></nav><div class="extras"><nav><a class="pretext-link" href="https://pretextbook.org">Authored in PreTeXt</a><a href="https://www.mathjax.org"><img title="Powered by MathJax" src="https://www.mathjax.org/badge/badge.gif" alt="Powered by MathJax"></a></nav></div>
+</div></div>
+<main class="main"><div id="content" class="pretext-content"><section class="section" id="S-10-7-Optimization"><h2 class="heading hide-type">
+<span class="type">Section</span> <span class="codenumber">10.7</span> <span class="title">Optimization</span>
+</h2>
+<article class="objectives goal-like" id="objectives-15"><h3 class="heading"><span class="type">Motivating Questions</span></h3>
+<ul class="disc">
+<li id="li-881"><p id="p-2464">How can we find the points at which <span class="process-math">\(f(x,y)\)</span> has a local maximum or minimum?</p></li>
+<li id="li-882"><p id="p-2465">How can we determine whether critical points of <span class="process-math">\(f(x,y)\)</span> are local maxima or minima?</p></li>
+<li id="li-883"><p id="p-2466">How can we find the absolute maximum and minimum of <span class="process-math">\(f(x,y)\)</span> on a closed and bounded domain?</p></li>
+</ul></article><section class="introduction" id="introduction-15"><p id="p-2467">We learn in single-variable calculus that the derivative is a useful tool for finding the local maxima and minima of functions, and that these ideas may often be employed in applied settings. In particular, if a function <span class="process-math">\(f\text{,}\)</span> such as the one shown in <a href="" class="xref" data-knowl="./knowl/F_10_7_preview_1.html" title="Figure 10.7.1">Figure 10.7.1</a> is everywhere differentiable, we know that the tangent line is horizontal at any point where <span class="process-math">\(f\)</span> has a local maximum or minimum. This, of course, means that the derivative <span class="process-math">\(f'\)</span> is zero at any such point. Hence, one way that we seek extreme values of a given function is to first find where the derivative of the function is zero.</p>
+<figure class="figure figure-like" id="F_10_7_preview_1"><div class="image-box" style="width: 50%; margin-left: 25%; margin-right: 25%;"><img src="external/images/fig_10_7_preview_1.svg" role="img" class="contained"></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">10.7.1<span class="period">.</span></span><span class="space"> </span>The graph of <span class="process-math">\(y=f(x)\text{.}\)</span></figcaption></figure><p id="p-2468">In multivariable calculus, we are often similarly interested in finding the greatest and/or least value(s) that a function may achieve. Moreover, there are many applied settings in which a quantity of interest depends on several different variables. In the following preview activity, we begin to see how some key ideas in multivariable calculus can help us answer such questions by thinking about the geometry of the surface generated by a function of two variables.</p>
+<article class="exploration project-like" id="PA_10_7"><h3 class="heading">
+<span class="type">Preview Activity</span><span class="space"> </span><span class="codenumber">10.7.1</span><span class="period">.</span>
+</h3>
+<p id="p-2469">Let <span class="process-math">\(z = f(x,y)\)</span> be a differentiable function, and suppose that at the point <span class="process-math">\((x_0, y_0)\text{,}\)</span> <span class="process-math">\(f\)</span> achieves a local maximum. That is, the value of <span class="process-math">\(f(x_0,y_0)\)</span> is greater than the value of <span class="process-math">\(f(x,y)\)</span> for all <span class="process-math">\((x,y)\)</span> nearby <span class="process-math">\((x_0,y_0)\text{.}\)</span> You might find it helpful to sketch a rough picture of a possible function <span class="process-math">\(f\)</span> that has this property.</p>
+<ol class="lower-alpha">
+<li id="li-884"><p id="p-2470">If we consider the trace given by holding <span class="process-math">\(y=y_0\)</span> constant, then the single-variable function defined by <span class="process-math">\(f(x, y_0)\)</span> must have a local maximum at <span class="process-math">\(x_0\text{.}\)</span>  What does this say about the value of the partial derivative <span class="process-math">\(f_x(x_0,y_0)\text{?}\)</span></p></li>
+<li id="li-885"><p id="p-2471">In the same way, the trace given by holding <span class="process-math">\(x=x_0\)</span> constant has a local maximum at <span class="process-math">\(y=y_0\text{.}\)</span>  What does this say about the value of the partial derivative <span class="process-math">\(f_y(x_0,y_0)\text{?}\)</span></p></li>
+<li id="li-886"><p id="p-2472">What may we now conclude about the gradient <span class="process-math">\(\nabla f(x_0,y_0)\)</span> at the local maximum?  How is this consistent with the statement “<span class="process-math">\(f\)</span> increases most rapidly in the direction <span class="process-math">\(\nabla f(x_0,y_0)\text{?}\)</span>”</p></li>
+<li id="li-887"><p id="p-2473">How will the tangent plane to the surface <span class="process-math">\(z = f(x,y)\)</span> appear at the point <span class="process-math">\((x_0, y_0, f(x_0,y_0))\text{?}\)</span></p></li>
+<li id="li-888"><p id="p-2474">By first computing the partial derivatives, find any points at which <span class="process-math">\(f(x,y) = 2x -   x^2 - (y + 2)^2\)</span> may have a local maximum.</p></li>
+</ol></article></section><section class="subsection" id="subsection-67"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">10.7.1</span> <span class="title">Extrema and Critical Points</span>
+</h3>
+<p id="p-2475">One of the important applications of single-variable calculus is the use of derivatives to identify local extremes of functions (that is, local maxima and local minima). Using the tools we have developed so far, we can naturally extend the concept of local maxima and minima to several-variable functions.</p>
+<article class="definition definition-like" id="definition-20"><h4 class="heading">
+<span class="type">Definition</span><span class="space"> </span><span class="codenumber">10.7.2</span><span class="period">.</span>
+</h4>
+<p id="p-2476">Let <span class="process-math">\(f\)</span> be a function of two variables <span class="process-math">\(x\)</span> and <span class="process-math">\(y\text{.}\)</span></p>
+<ul class="disc">
+<li id="li-889"><p id="p-2477">The function <span class="process-math">\(f\)</span> has a <em class="emphasis">local maximum</em> at a point <span class="process-math">\((x_0,y_0)\)</span> provided that <span class="process-math">\(f(x,y) \leq f(x_0,y_0)\)</span> for all points <span class="process-math">\((x,y)\)</span> near <span class="process-math">\((x_0,y_0)\text{.}\)</span>  In this situation we say that <span class="process-math">\(f(x_0, y_0)\)</span> is a <em class="emphasis">local maximum value</em>.</p></li>
+<li id="li-890"><p id="p-2478">The function <span class="process-math">\(f\)</span> has a <em class="emphasis">local minimum</em> at a point <span class="process-math">\((x_0,y_0)\)</span> provided that <span class="process-math">\(f(x,y) \geq f(x_0,y_0)\)</span> for all points <span class="process-math">\((x,y)\)</span> near <span class="process-math">\((x_0,y_0)\text{.}\)</span> In this situation we say that <span class="process-math">\(f(x_0, y_0)\)</span> is a <em class="emphasis">local minimum value</em>.</p></li>
+<li id="li-891"><p id="p-2479">An <em class="emphasis">absolute maximum point</em> is a point <span class="process-math">\((x_0,y_0)\)</span> for  which <span class="process-math">\(f(x,y)\leq f(x_0,y_0)\)</span> for all points <span class="process-math">\((x,y)\)</span> in the domain of <span class="process-math">\(f\text{.}\)</span> The value of <span class="process-math">\(f\)</span> at an absolute maximum point is the <em class="emphasis">maximum value</em> of <span class="process-math">\(f\text{.}\)</span></p></li>
+<li id="li-892"><p id="p-2480">An <em class="emphasis">absolute minimum point</em> is a point such that <span class="process-math">\(f(x,y) \geq f(x_0,y_0)\)</span> for all points <span class="process-math">\((x,y)\)</span> in the domain of <span class="process-math">\(f\text{.}\)</span> The value of <span class="process-math">\(f\)</span> at an absolute minimum point is the <em class="emphasis">minimum value</em> of <span class="process-math">\(f\text{.}\)</span></p></li>
+</ul></article><p id="p-2481">We use the term <em class="emphasis">extremum point</em> to refer to any point <span class="process-math">\((x_0,y_0)\)</span> at which <span class="process-math">\(f\)</span> has a local maximum or minimum. In addition, the function value <span class="process-math">\(f(x_0,y_0)\)</span> at an extremum is called an <em class="emphasis">extremal value</em>. <a href="" class="xref" data-knowl="./knowl/F_10_7_extrema.html" title="Figure 10.7.3">Figure 10.7.3</a> illustrates the graphs of two functions that have an absolute maximum and minimum, respectively, at the origin <span class="process-math">\((x_0,y_0) = (0,0)\text{.}\)</span></p>
+<figure class="figure figure-like" id="F_10_7_extrema"><div class="sidebyside"><div class="sbsrow" style="margin-left:0%;margin-right:0%;">
+<div class="sbspanel top" style="width:50%;"><img src="external/images/zis4r2.svg" role="img" class="contained"></div>
+<div class="sbspanel top" style="width:50%;"><img src="external/images/zisr2.svg" role="img" class="contained"></div>
+</div></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">10.7.3<span class="period">.</span></span><span class="space"> </span>An absolute maximum and an absolute minimum</figcaption></figure><p id="p-2482">In single-variable calculus, we saw that the extrema of a continuous function <span class="process-math">\(f\)</span> always occur at <em class="emphasis">critical points</em>, values of <span class="process-math">\(x\)</span> where <span class="process-math">\(f\)</span> fails to be differentiable or where <span class="process-math">\(f'(x) = 0\text{.}\)</span> Said differently, critical points provide the locations where extrema of a function may appear. Our work in <a href="" class="xref" data-knowl="./knowl/PA_10_7.html" title="Preview Activity 10.7.1">Preview Activity 10.7.1</a> suggests that something similar happens with two-variable functions.</p>
+<p id="p-2483">Suppose that a continuous function <span class="process-math">\(f\)</span> has an extremum at <span class="process-math">\((x_0,y_0)\text{.}\)</span> In this case, the trace <span class="process-math">\(f(x,y_0)\)</span> has an extremum at <span class="process-math">\(x_0\text{,}\)</span> which means that <span class="process-math">\(x_0\)</span> is a critical value of <span class="process-math">\(f(x,y_0)\text{.}\)</span> Therefore, either <span class="process-math">\(f_x(x_0,y_0)\)</span> does not exist or <span class="process-math">\(f_x(x_0,y_0) = 0\text{.}\)</span> Similarly, either <span class="process-math">\(f_y(x_0,y_0)\)</span> does not exist or <span class="process-math">\(f_y(x_0,y_0) =
+0\text{.}\)</span> This implies that the extrema of a two-variable function occur at points that satisfy the following definition.</p>
+<article class="definition definition-like" id="definition-21"><h4 class="heading">
+<span class="type">Definition</span><span class="space"> </span><span class="codenumber">10.7.4</span><span class="period">.</span>
+</h4>
+<p id="p-2484">A <dfn class="terminology">critical point</dfn> <span class="process-math">\((x_0,y_0)\)</span> of a function <span class="process-math">\(f=f(x,y)\)</span> is a point in the domain of <span class="process-math">\(f\)</span> at which <span class="process-math">\(f_x(x_0,y_0) = 0\)</span> and <span class="process-math">\(f_y(x_0,y_0) = 0\text{,}\)</span> or such that one of <span class="process-math">\(f_x(x_0,y_0)\)</span> or <span class="process-math">\(f_y(x_0,y_0)\)</span> fails to exist.</p></article><p id="p-2485">We can therefore find critical points of a function <span class="process-math">\(f\)</span> by computing partial derivatives and identifying any values of <span class="process-math">\((x,y)\)</span> for which one of the partials doesn't exist or for which both partial derivatives are simultaneously zero. For the latter, note that we have to solve the system of equations</p>
+<div class="displaymath process-math" data-contains-math-knowls="" id="md-26">
+\begin{align*}
+f_x(x,y) \amp = 0\\
+f_y(x,y) \amp  = 0.
+\end{align*}
+</div>
+<article class="activity project-like" id="A_10_7_3"><h4 class="heading">
+<span class="type">Activity</span><span class="space"> </span><span class="codenumber">10.7.2</span><span class="period">.</span>
+</h4>
+<p id="p-2486">Find the critical points of each of the following functions. Then, using appropriate technology, plot the graphs of the surfaces near each critical point and compare the graph to your work.</p>
+<ol class="lower-alpha">
+<li id="li-893"><p id="p-2487"><span class="process-math">\(\displaystyle f(x,y) = 2+x^2+y^2\)</span></p></li>
+<li id="li-894"><p id="p-2488"><span class="process-math">\(\displaystyle f(x,y) = 2 + x^2 - y^2\)</span></p></li>
+<li id="li-895"><p id="p-2489"><span class="process-math">\(\displaystyle f(x,y) = 2x-x^2-\frac{1}{4}y^2\)</span></p></li>
+<li id="li-896"><p id="p-2490"><span class="process-math">\(\displaystyle f(x,y) = |x| + |y|\)</span></p></li>
+<li id="li-897"><p id="p-2491"><span class="process-math">\(f(x,y) = 2xy - 4x + 2y - 3\text{.}\)</span></p></li>
+</ol></article></section><section class="subsection" id="subsection-68"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">10.7.2</span> <span class="title">Classifying Critical Points: The Second Derivative Test</span>
+</h3>
+<p id="p-2492">While the extrema of a continuous function <span class="process-math">\(f\)</span> always occur at critical points, it is important to note that not every critical point leads to an extremum. Recall, for instance, <span class="process-math">\(f(x) = x^3\)</span> from single variable calculus. We know that <span class="process-math">\(x_0=0\)</span> is a critical point since <span class="process-math">\(f'(x_0) = 0\text{,}\)</span> but <span class="process-math">\(x_0 = 0\)</span> is neither a local maximum nor a local minimum of <span class="process-math">\(f\text{.}\)</span></p>
+<p id="p-2493">A similar situation may arise in a multivariable setting. Consider the function <span class="process-math">\(f\)</span> defined by <span class="process-math">\(f(x,y) = x^2 - y^2\)</span> whose graph and contour plot are shown in <a href="" class="xref" data-knowl="./knowl/F_10_7_saddle.html" title="Figure 10.7.5">Figure 10.7.5</a>. Because <span class="process-math">\(\nabla f =
+\langle 2x, -2y\rangle\text{,}\)</span> we see that the origin <span class="process-math">\((x_0,y_0)=(0,0)\)</span> is a critical point. However, this critical point is neither a local maximum or minimum; the origin is a local minimum on the trace defined by <span class="process-math">\(y=0\text{,}\)</span> while the origin is a local maximum on the trace defined by <span class="process-math">\(x=0\text{.}\)</span> We call such a critical point a <em class="emphasis">saddle point</em> due to the shape of the graph near the critical point.</p>
+<figure class="figure figure-like" id="F_10_7_saddle"><div class="sidebyside"><div class="sbsrow" style="margin-left:0%;margin-right:0%;">
+<div class="sbspanel top" style="width:50%;"><img src="external/images/saddle.svg" role="img" class="contained"></div>
+<div class="sbspanel top" style="width:50%;"><img src="external/images/saddle_contours.svg" role="img" class="contained"></div>
+</div></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">10.7.5<span class="period">.</span></span><span class="space"> </span>A saddle point.</figcaption></figure><p id="p-2494">As in single-variable calculus, we would like to have some sort of test to help us identify whether a critical point is a local maximum, local maximum, or neither.</p>
+<article class="activity project-like" id="A_10_7_4"><h4 class="heading">
+<span class="type">Activity</span><span class="space"> </span><span class="codenumber">10.7.3</span><span class="period">.</span>
+</h4>
+<p id="p-2495">Recall that the <em class="emphasis">Second Derivative Test</em> for single-variable functions states that if <span class="process-math">\(x_0\)</span> is a critical point of a function <span class="process-math">\(f\)</span> so that <span class="process-math">\(f'(x_0)=0\)</span> and if <span class="process-math">\(f''(x_0)\)</span> exists, then</p>
+<ul class="disc">
+<li id="li-898"><p id="p-2496">if <span class="process-math">\(f''(x_0) \lt  0\text{,}\)</span> <span class="process-math">\(x_0\)</span> is a local maximum,</p></li>
+<li id="li-899"><p id="p-2497">if <span class="process-math">\(f''(x_0) &gt; 0\text{,}\)</span> <span class="process-math">\(x_0\)</span> is a local minimum, and</p></li>
+<li id="li-900"><p id="p-2498">if <span class="process-math">\(f''(x_0) = 0\text{,}\)</span>  this test yields no information.</p></li>
+</ul>
+<p id="p-2499">Our goal in this activity is to understand a similar test for classifying extreme values of functions of two variables. Consider the following three functions:</p>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/F_10_7_max_min_saddle.html">
+\begin{equation*}
+f_1(x,y) = 4-x^2-y^2, \ \ f_2(x,y) = x^2+y^2, \ \ f_3(x,y) = x^2-y^2. 
+\end{equation*}
+</div>
+<p class="continuation">You can verify that each function has a critical point at the origin <span class="process-math">\((0,0)\text{.}\)</span> You should check this. <figure class="figure figure-like" id="F_10_7_max_min_saddle"><div class="sidebyside"><div class="sbsrow" style="margin-left:0.166666666666667%;margin-right:0.166666666666667%;">
+<div class="sbspanel top" style="width:33.1103678929766%;"><img src="external/images/zis4r2.svg" role="img" class="contained"></div>
+<div class="sbspanel top" style="width:33.1103678929766%;"><img src="external/images/zisr2.svg" role="img" class="contained"></div>
+<div class="sbspanel top" style="width:33.1103678929766%;"><img src="external/images/saddle.svg" role="img" class="contained"></div>
+</div></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">10.7.6<span class="period">.</span></span><span class="space"> </span>Three surfaces.</figcaption></figure></p>
+<ol class="lower-alpha">
+<li id="li-901"><p id="p-2500">The graphs of these three functions are shown in <a href="" class="xref" data-knowl="./knowl/F_10_7_max_min_saddle.html" title="Figure 10.7.6">Figure 10.7.6</a>, with <span class="process-math">\(z=4-x^2-y^2\)</span> at left, <span class="process-math">\(z=x^2+y^2\)</span> in the middle, and <span class="process-math">\(z=x^2-y^2\)</span> at right. Use the graphs to decide if a function has a local maximum, local minimum, saddle point, or none of the above at the origin.</p></li>
+<li id="li-902"><p id="p-2501">There is no single second derivative of a function of two variables, so we consider a quantity that combines the second order partial derivatives. Let <span class="process-math">\(D = f_{xx}f_{yy} - f_{xy}^2\text{.}\)</span> Calculate <span class="process-math">\(D\)</span> at the origin for each of the functions <span class="process-math">\(f_1\text{,}\)</span>  <span class="process-math">\(f_2\text{,}\)</span> and <span class="process-math">\(f_3\text{.}\)</span> What difference do you notice between the values of <span class="process-math">\(D\)</span> when a function has a maximum or minimum value at the origin versus when a function has a saddle point at the origin?</p></li>
+<li id="li-903"><p id="p-2502">Now consider the cases where <span class="process-math">\(D \gt 0\text{.}\)</span> It is in these cases that a function has a local maximum or minimum at a point. What is necessary in these cases is to find a condition that will distinguish between a maximum and a minimum. In the cases where  <span class="process-math">\(D \gt 0\)</span> at the origin, evaluate <span class="process-math">\(f_{xx}(0,0)\text{.}\)</span> What value does <span class="process-math">\(f_{xx}(0,0)\)</span> have when <span class="process-math">\(f\)</span> has a local maximum value at the origin? When <span class="process-math">\(f\)</span> has a local minimum value at the origin? Explain why. (Hint: This should look very similar to the Second Derivative Test for functions of a single variable.) What would happen if we considered the values of <span class="process-math">\(f_{yy}(0,0)\)</span> instead?</p></li>
+</ol></article><p id="p-2503"><a href="" class="xref" data-knowl="./knowl/A_10_7_4.html" title="Activity 10.7.3">Activity 10.7.3</a> provides the basic ideas for the Second Derivative Test for functions of two variables.</p>
+<article class="assemblage assemblage-like" id="Second-derivative-test"><h4 class="heading"><span class="title">The Second Derivative Test.</span></h4>
+<p id="p-2504">Suppose <span class="process-math">\((x_0,y_0)\)</span> is a critical point of the function <span class="process-math">\(f\)</span> for which <span class="process-math">\(f_x(x_0,y_0) = 0\)</span> and <span class="process-math">\(f_y(x_0,y_0) = 0\text{.}\)</span> Let <span class="process-math">\(D\)</span> be the quantity defined by</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+D = f_{xx}(x_0,y_0) f_{yy}(x_0,y_0) - f_{xy}(x_0,y_0)^2.
+\end{equation*}
+</div>
+<ul class="disc">
+<li id="li-904"><p id="p-2505">If <span class="process-math">\(D&gt;0\)</span> and <span class="process-math">\(f_{xx}(x_0,y_0) \lt  0\text{,}\)</span> then <span class="process-math">\(f\)</span> has a local maximum at <span class="process-math">\((x_0,y_0)\text{.}\)</span></p></li>
+<li id="li-905"><p id="p-2506">If <span class="process-math">\(D&gt;0\)</span> and <span class="process-math">\(f_{xx}(x_0,y_0) &gt; 0\text{,}\)</span> then <span class="process-math">\(f\)</span> has a local minimum at <span class="process-math">\((x_0,y_0)\text{.}\)</span></p></li>
+<li id="li-906"><p id="p-2507">If <span class="process-math">\(D \lt  0\text{,}\)</span> then <span class="process-math">\(f\)</span> has a saddle point at <span class="process-math">\((x_0,y_0)\text{.}\)</span></p></li>
+<li id="li-907"><p id="p-2508">If <span class="process-math">\(D = 0\text{,}\)</span> then this test yields no information about what happens at <span class="process-math">\((x_0,y_0)\text{.}\)</span></p></li>
+</ul>
+<p id="p-2509">The quantity <span class="process-math">\(D\)</span> is called the <em class="emphasis">discriminant</em> of the function <span class="process-math">\(f\)</span> at <span class="process-math">\((x_0,y_0)\text{.}\)</span></p></article><p id="p-2510">To properly understand the origin of the Second Derivative Test, we could introduce a “second-order directional derivative.” If this second-order directional derivative were negative in every direction, for instance, we could guarantee that the critical point is a local maximum. A complete justification of the Second Derivative Test requires key ideas from linear algebra that are beyond the scope of this course, so instead of presenting a detailed explanation, we will accept this test as stated. In <a href="" class="xref" data-knowl="./knowl/A_10_7_5.html" title="Activity 10.7.4">Activity 10.7.4</a>, we apply the test to more complicated examples.</p>
+<article class="activity project-like" id="A_10_7_5"><h4 class="heading">
+<span class="type">Activity</span><span class="space"> </span><span class="codenumber">10.7.4</span><span class="period">.</span>
+</h4>
+<p id="p-2511">Find the critical points of the following functions and use the Second Derivative Test to classify the critical points.</p>
+<ol class="lower-alpha">
+<li id="li-908"><p id="p-2512"><span class="process-math">\(\displaystyle f(x,y) = 3x^3+y^2-9x+4y\)</span></p></li>
+<li id="li-909"><p id="p-2513"><span class="process-math">\(\displaystyle f(x,y) = xy + \frac{2}{x} + \frac{4}{y}\)</span></p></li>
+<li id="li-910"><p id="p-2514"><span class="process-math">\(f(x,y) = x^3 + y^3 - 3xy\text{.}\)</span></p></li>
+</ol></article><p id="p-2515">As we learned in single-variable calculus, finding extremal values of functions can be particularly useful in applied settings. For instance, we can often use calculus to determine the least expensive way to construct something or to find the most efficient route between two locations. The same possibility holds in settings with two or more variables.</p>
+<article class="activity project-like" id="A_10_7_10"><h4 class="heading">
+<span class="type">Activity</span><span class="space"> </span><span class="codenumber">10.7.5</span><span class="period">.</span>
+</h4>
+<p id="p-2516">While the quantity of a product demanded by consumers is often a function of the price of the product, the demand for a product may also depend on the price of other products. For instance, the demand for blue jeans at Old Navy may be affected not only by the price of the jeans themselves, but also by the price of khakis.</p>
+<p id="p-2517">Suppose we have two goods whose respective prices are <span class="process-math">\(p_1\)</span> and <span class="process-math">\(p_2\text{.}\)</span> The demand for these goods, <span class="process-math">\(q_1\)</span> and <span class="process-math">\(q_2\text{,}\)</span> depend on the prices as</p>
+<div class="displaymath process-math" data-contains-math-knowls="" id="mdn-1">
+\begin{align}
+q_1 \amp = 150 - 2p_1 - p_2 \tag{10.7.1}\\
+q_2 \amp = 200 - p_1 - 3p_2. \tag{10.7.2}
+\end{align}
+</div>
+<p id="p-2518">The seller would like to set the prices <span class="process-math">\(p_1\)</span> and <span class="process-math">\(p_2\)</span> in order to maximize revenue. We will assume that the seller meets the full demand for each product. Thus, if we let <span class="process-math">\(R\)</span> be the revenue obtained by selling <span class="process-math">\(q_1\)</span> items of the first good at price <span class="process-math">\(p_1\)</span> per item and <span class="process-math">\(q_2\)</span> items of the second good at price <span class="process-math">\(p_2\)</span> per item, we have</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+R = p_1q_1 + p_2q_2.
+\end{equation*}
+</div>
+<p id="p-2519">We can then write the revenue as a function of just the two variables <span class="process-math">\(p_1\)</span> and <span class="process-math">\(p_2\)</span> by using Equations <a href="" class="xref" data-knowl="./knowl/eq_good1.html" title="Equation 10.7.1">(10.7.1)</a> and <a href="" class="xref" data-knowl="./knowl/eq_good2.html" title="Equation 10.7.2">(10.7.2)</a>, giving us</p>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/eq_good1.html ./knowl/eq_good2.html" id="md-27">
+\begin{align*}
+R(p_1,p_2) \amp = p_1(150 - 2p_1 - p_2) + p_2(200 - p_1 - 3p_2)\\
+\amp  = 150p_1 + 200p_2 - 2p_1p_2 -2p_1^2 - 3p_2^2.
+\end{align*}
+</div>
+<p id="p-2520">A graph of <span class="process-math">\(R\)</span> as a function of <span class="process-math">\(p_1\)</span> and <span class="process-math">\(p_2\)</span> is shown in <a href="" class="xref" data-knowl="./knowl/F_10_7_Optimize1.html" title="Figure 10.7.7">Figure 10.7.7</a>.</p>
+<figure class="figure figure-like" id="F_10_7_Optimize1"><div class="image-box" style="width: 50%; margin-left: 25%; margin-right: 25%;"><img src="external/images/fig_10_7_revenue.svg" role="img" class="contained"></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">10.7.7<span class="period">.</span></span><span class="space"> </span>A revenue function.</figcaption></figure><ol class="lower-alpha">
+<li id="li-911"><p id="p-2521">Find all critical points of the revenue function, <span class="process-math">\(R\text{.}\)</span> (Hint: You should obtain a system of two equations in two unknowns which can be solved by elimination or substitution.)</p></li>
+<li id="li-912"><p id="p-2522">Apply the Second Derivative Test to determine the type of any critical point(s).</p></li>
+<li id="li-913"><p id="p-2523">Where should the seller set the prices <span class="process-math">\(p_1\)</span> and <span class="process-math">\(p_2\)</span> to maximize the revenue?</p></li>
+</ol></article></section><section class="subsection" id="subsection-69"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">10.7.3</span> <span class="title">Optimization on a Restricted Domain</span>
+</h3>
+<p id="p-2524">The Second Derivative Test helps us classify critical points of a function, but it does not tell us if the function actually has an absolute maximum or minimum at each such point. For single-variable functions, the Extreme Value Theorem told us that a continuous function on a closed interval <span class="process-math">\([a, b]\)</span> always has both an absolute maximum and minimum on that interval, and that these absolute extremes must occur at either an endpoint or at a critical point. Thus, to find the absolute maximum and minimum, we determine the critical points in the interval and then evaluate the function at these critical points and at the endpoints of the interval. A similar approach works for functions of two variables.</p>
+<p id="p-2525">For functions of two variables, closed and bounded regions play the role that closed intervals did for functions of a single variable. A closed region is a region that contains its boundary (the unit disk <span class="process-math">\(x^2+y^2 \leq 1\)</span> is closed, while its interior <span class="process-math">\(x^2+y^2 \lt  1\)</span> is not, for example), while a bounded region is one that does not stretch to infinity in any direction. Just as for functions of a single variable, continuous functions of several variables that are defined on closed, bounded regions must have absolute maxima and minima in those regions.</p>
+<article class="assemblage assemblage-like" id="Extreme-value-theorem"><h4 class="heading"><span class="title">The Extreme Value Theorem.</span></h4>
+<p id="p-2526">Let <span class="process-math">\(f= f(x,y)\)</span> be a continuous function on a closed and bounded region <span class="process-math">\(R\text{.}\)</span> Then <span class="process-math">\(f\)</span> has an absolute maximum and an absolute minimum in <span class="process-math">\(R\text{.}\)</span></p></article><p id="p-2527">The absolute extremes must occur at either a critical point in the interior of <span class="process-math">\(R\)</span> or at a boundary point of <span class="process-math">\(R\text{.}\)</span> We therefore must test both possibilities, as we demonstrate in the following example.</p>
+<article class="example example-like" id="example-5"><h4 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">10.7.8</span><span class="period">.</span>
+</h4>
+<p id="p-2528">Suppose the temperature <span class="process-math">\(T\)</span> at each point on the circular plate <span class="process-math">\(x^2+y^2 \leq 1\)</span> is given by</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+T(x,y) = 2x^2+y^2-y.
+\end{equation*}
+</div>
+<p id="p-2529">The domain <span class="process-math">\(R=\{(x,y):x^2+y^2 \leq 1\}\)</span> is a closed and bounded region, as shown on the left of <a href="" class="xref" data-knowl="./knowl/F_10_7_temperature.html" title="Figure 10.7.9">Figure 10.7.9</a>, so the Extreme Value Theorem assures us that <span class="process-math">\(T\)</span> has an absolute maximum and minimum on the plate. The graph of <span class="process-math">\(T\)</span> over its domain <span class="process-math">\(R\)</span> is shown in <a href="" class="xref" data-knowl="./knowl/F_10_7_temperature.html" title="Figure 10.7.9">Figure 10.7.9</a>. We will find the hottest and coldest points on the plate.</p>
+<figure class="figure figure-like" id="F_10_7_temperature"><div class="sidebyside"><div class="sbsrow" style="margin-left:0%;margin-right:0%;">
+<div class="sbspanel top" style="width:50%;"><img src="external/images/fig_10_7_temperature_domain.svg" role="img" class="contained"></div>
+<div class="sbspanel top" style="width:50%;"><img src="external/images/fig_10_7_temperature.svg" role="img" class="contained"></div>
+</div></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">10.7.9<span class="period">.</span></span><span class="space"> </span>Domain of the temperature <span class="process-math">\(T(x,y) = 2x^2+y^2-y\)</span> and its graph.</figcaption></figure><p id="p-2530">If the absolute maximum or minimum occurs inside the disk, it will be at a critical point so we begin by looking for critical points inside the disk. To do this, notice that critical points are given by the conditions <span class="process-math">\(T_x= 4x=0\)</span> and <span class="process-math">\(T_y=2y - 1=0\text{.}\)</span> This means that there is one critical point of the function at the point <span class="process-math">\((x_0,y_0) =(0,1/2)\text{,}\)</span> which lies inside the disk.</p>
+<p id="p-2531">We now find the hottest and coldest points on the boundary of the disk, which is the circle of radius 1. As we have seen, the points on the unit circle can be parametrized as</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+x(t) = \cos(t), \ y(t) = \sin(t),
+\end{equation*}
+</div>
+<p class="continuation">where <span class="process-math">\(0\leq t \leq 2\pi\text{.}\)</span> The temperature at a point on the circle is then described by</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+T(x(t), y(t)) = 2\cos^2(t) + \sin^2(t) - \sin(t).
+\end{equation*}
+</div>
+<p id="p-2532">To find the hottest and coldest points on the boundary, we look for the critical points of this single-variable function on the interval <span class="process-math">\(0\leq t\leq 2\pi\text{.}\)</span> We have</p>
+<div class="displaymath process-math" data-contains-math-knowls="" id="md-28">
+\begin{align*}
+\frac{dT}{dt} \amp = -4\cos(t)\sin(t) + 2\cos(t)\sin(t) -\cos(t)\\
+\amp  = -2\cos(t)\sin(t) - \cos(t) = \cos(t) (-2\sin(t) - 1) \\
+\amp = 0.
+\end{align*}
+</div>
+<p id="p-2533">This shows that we have critical points when <span class="process-math">\(\cos(t) = 0\)</span> or <span class="process-math">\(\sin(t) = -1/2\text{.}\)</span> This occurs when <span class="process-math">\(t=\pi/2\text{,}\)</span> <span class="process-math">\(3\pi/2\text{,}\)</span> <span class="process-math">\(7\pi/6\text{,}\)</span> and <span class="process-math">\(11\pi/6\text{.}\)</span> Since we have <span class="process-math">\(x(t) = \cos(t)\)</span> and <span class="process-math">\(y(t) = \sin(t)\text{,}\)</span> the corresponding points are</p>
+<div class="sidebyside"><div class="sbsrow" style="margin-left:0%;margin-right:0%;">
+<div class="sbspanel fixed-width top" style="width:50%;"><table class="tabular">
+<tr><td class="l m b0 r0 l0 t0 lines">
+<span class="process-math">\(\bullet\ \ (x,y) = (0,1)\)</span> when <span class="process-math">\(t = \frac{\pi}{2}\text{,}\)</span>
+</td></tr>
+<tr><td class="l m b0 r0 l0 t0 lines">
+<span class="process-math">\(\bullet\ \ (x,y) = \left(\frac{\sqrt{3}}{2},-\frac{1}{2}\right)\)</span> when <span class="process-math">\(t =
+\frac{11\pi}{6}\text{.}\)</span>
+</td></tr>
+</table></div>
+<div class="sbspanel fixed-width top" style="width:50%;"><table class="tabular">
+<tr><td class="l m b0 r0 l0 t0 lines">
+<span class="process-math">\(\bullet\ \ (x,y) = (0,-1)\)</span> when <span class="process-math">\(t = \frac{3\pi}{2}\text{,}\)</span> </td></tr>
+<tr><td class="l m b0 r0 l0 t0 lines">
+<span class="process-math">\(\bullet\ \ (x,y) = \left(-\frac{\sqrt{3}}{2},-\frac{1}{2}\right)\)</span> when <span class="process-math">\(t
+= \frac{7\pi}{6}\text{.}\)</span>
+</td></tr>
+</table></div>
+</div></div>
+<p id="p-2534">These are the critical points of <span class="process-math">\(T\)</span> on the boundary and so this collection of points includes the hottest and coldest points on the boundary.</p>
+<p id="p-2535">We now have a list of candidates for the hottest and coldest points: the critical point in the interior of the disk and the critical points on the boundary. We find the hottest and coldest points by evaluating the temperature at each of these points, and find that</p>
+<div class="sidebyside"><div class="sbsrow" style="margin-left:0%;margin-right:0%;">
+<div class="sbspanel fixed-width top" style="width:33.3333333333333%;"><table class="tabular">
+<tr><td class="l m b0 r0 l0 t0 lines">
+<span class="process-math">\(\bullet\ \  T\left(0,\frac{1}{2}\right) = -\frac{1}{4}\text{,}\)</span>  </td></tr>
+<tr><td class="l m b0 r0 l0 t0 lines">
+<span class="process-math">\(\bullet\ \  T\left(-\frac{\sqrt{3}}{2},-\frac{1}{2}\right) =
+\frac{9}{4}\text{,}\)</span>  </td></tr>
+</table></div>
+<div class="sbspanel fixed-width top" style="width:33.3333333333333%;"><table class="tabular">
+<tr><td class="l m b0 r0 l0 t0 lines">
+<span class="process-math">\(\bullet\ \  T\left(0,1\right) = 0\text{,}\)</span>  </td></tr>
+<tr><td class="l m b0 r0 l0 t0 lines">
+<span class="process-math">\(\bullet\ \  T\left(-\frac{\sqrt{3}}{2},-\frac{1}{2}\right) =
+\frac{9}{4}\text{.}\)</span>  </td></tr>
+</table></div>
+<div class="sbspanel fixed-width top" style="width:33.3333333333333%;"><table class="tabular"><tr><td class="l m b0 r0 l0 t0 lines"><span class="process-math">\(\bullet\ \  T\left(0,-1\right) = 2\text{,}\)</span></td></tr></table></div>
+</div></div>
+<p id="p-2536">So the maximum value of <span class="process-math">\(T\)</span> on the disk <span class="process-math">\(x^2+y^2\leq 1\)</span> is <span class="process-math">\(\frac{9}{4}\text{,}\)</span> which occurs at the two points <span class="process-math">\(\left(\pm\frac{\sqrt{3}}{2},-\frac{1}{2}\right)\)</span> on the boundary, and the minimum value of <span class="process-math">\(T\)</span> on the disk is <span class="process-math">\(-\frac{1}{4}\)</span> which occurs at the critical point <span class="process-math">\(\left(0,\frac{1}{2}\right)\)</span> in the interior of <span class="process-math">\(R\text{.}\)</span></p></article><p id="p-2537">From this example, we see that we use the following procedure for determining the absolute maximum and absolute minimum of a function on a closed and bounded domain.</p>
+<ul class="disc">
+<li id="li-914">
+<span class="heading"><span class="title">Step 1:.</span></span><p id="p-2538">Find all critical points of the function in the interior of the domain.</p>
+</li>
+<li id="li-915">
+<span class="heading"><span class="title">Step 2:.</span></span><p id="p-2539">Find all the critical points of the function on the boundary of the domain. Working on the boundary of the domain reduces this part of the problem to one or more single variable optimization problems. Note that there may be endpoints on portions of the boundary that need to be considered.</p>
+</li>
+<li id="li-916">
+<span class="heading"><span class="title">Step 3:.</span></span><p id="p-2540">Evaluate the function at each of the points found in Steps 1 and 2.</p>
+</li>
+<li id="li-917">
+<span class="heading"><span class="title">Step 4:.</span></span><p id="p-2541">The maximum value of the function is the largest value obtained in Step 3, and the minimum value of the function is the smallest value obtained in Step 3.</p>
+</li>
+</ul>
+<article class="activity project-like" id="A_10_7_6"><h4 class="heading">
+<span class="type">Activity</span><span class="space"> </span><span class="codenumber">10.7.6</span><span class="period">.</span>
+</h4>
+<p id="p-2542">Let <span class="process-math">\(f(x,y) = x^2-3y^2-4x+6y\)</span> with triangular domain <span class="process-math">\(R\)</span> whose vertices are at <span class="process-math">\((0,0)\text{,}\)</span> <span class="process-math">\((4,0)\text{,}\)</span> and <span class="process-math">\((0,4)\text{.}\)</span> The domain <span class="process-math">\(R\)</span> and a graph of <span class="process-math">\(f\)</span> on the domain appear in <a href="" class="xref" data-knowl="./knowl/F_10_7_Optimize_ex2.html" title="Figure 10.7.10">Figure 10.7.10</a>.</p>
+<figure class="figure figure-like" id="F_10_7_Optimize_ex2"><div class="sidebyside"><div class="sbsrow" style="margin-left:0%;margin-right:0%;">
+<div class="sbspanel top" style="width:50%;"><img src="external/images/fig_10_7_activity_optim_domain.svg" role="img" class="contained"></div>
+<div class="sbspanel top" style="width:50%;"><img src="external/images/fig_10_7_activity_optim.svg" role="img" class="contained"></div>
+</div></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">10.7.10<span class="period">.</span></span><span class="space"> </span>The domain of <span class="process-math">\(f(x,y) = x^2-3y^2-4x+6y\)</span> and its graph.</figcaption></figure><ol class="lower-alpha">
+<li id="li-918"><p id="p-2543">Find all of the critical points of <span class="process-math">\(f\)</span> in <span class="process-math">\(R\text{.}\)</span></p></li>
+<li id="li-919"><p id="p-2544">Parameterize the horizontal leg of the triangular domain, and find the critical points of <span class="process-math">\(f\)</span> on that leg. (Hint: You may need to consider endpoints.)</p></li>
+<li id="li-920"><p id="p-2545">Parameterize the vertical leg of the triangular domain, and find the critical points of <span class="process-math">\(f\)</span> on that leg. (Hint: You may need to consider endpoints.)</p></li>
+<li id="li-921"><p id="p-2546">Parameterize the hypotenuse of the triangular domain, and find the critical points of <span class="process-math">\(f\)</span> on the hypotenuse. (Hint: You may need to consider endpoints.)</p></li>
+<li id="li-922"><p id="p-2547">Find the absolute maximum and absolute minimum values of <span class="process-math">\(f\)</span> on <span class="process-math">\(R\text{.}\)</span></p></li>
+</ol></article></section><section class="subsection" id="subsection-70"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">10.7.4</span> <span class="title">Summary</span>
+</h3>
+<ul class="disc">
+<li id="li-923"><p id="p-2548">To find the extrema of a function <span class="process-math">\(f=f(x,y)\text{,}\)</span> we first find the critical points, which are points where one of the partials of <span class="process-math">\(f\)</span> fails to exist, or where <span class="process-math">\(f_x = 0\)</span> and <span class="process-math">\(f_y=0\text{.}\)</span></p></li>
+<li id="li-924"><p id="p-2549">The Second Derivative Test helps determine whether a critical point is a local maximum, local minimum, or saddle point.</p></li>
+<li id="li-925"><p id="p-2550">If <span class="process-math">\(f\)</span> is defined on a closed and bounded domain, we find the absolute maxima and minima by finding the critical points in the interior of the domain, finding the critical points on the boundary, and testing the value of <span class="process-math">\(f\)</span> at both sets of critical points.</p></li>
+</ul></section><section class="exercises" id="exercises-15"><h3 class="heading hide-type">
+<span class="type">Exercises</span> <span class="codenumber">10.7.5</span> <span class="title">Exercises</span>
+</h3>
+<article class="exercise exercise-like" id="ex-10-7-WW-classify"><h4 class="heading"><span class="codenumber">1<span class="period">.</span></span></h4>
+<div id="webwork-154" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="154" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Michigan/Chap15Sec1/Q05.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-contents">
+<p id="p-2551">The function</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+k(x,y) = e^{-y^{2}}\cos\!\left(x\right)
+\end{equation*}
+</div>
+<p class="continuation">has a critical point at <span class="process-math">\((0,0)\text{.}\)</span></p>
+<p id="p-2552">What is the value of <span class="process-math">\(D\)</span> at this critical point? <span class="process-math">\(D =\)</span> <span class="fillin underline" role="img" aria-label="25-character blank" style="width: 11.3636363636364em;"></span></p>
+<p id="p-2553">What type of critical point is it? <ul style="list-style:circle;">
+<li id="li-927"><p id="p-2555">maximum</p></li>
+<li id="li-928"><p id="p-2556">minimum</p></li>
+<li id="li-929"><p id="p-2557">saddle point</p></li>
+<li id="li-930"><p id="p-2558">point with unknown behavior</p></li>
+</ul></p>
+</div>
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-154')">Activate</button></div>
+</div></article><article class="exercise exercise-like" id="ex-10-7-WW-classifying-critical-points"><h4 class="heading"><span class="codenumber">2<span class="period">.</span></span></h4>
+<div id="webwork-155" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="155" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/272/setStewart14_7/problem_9.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-contents">
+<p id="p-2561">Consider the function</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+f(x,y) = (4 x - x^2)(6 y - y^2).
+\end{equation*}
+</div>
+<p class="continuation">Find and classify all critical points of the function.  If there are more blanks than critical points, leave the remaining entries blank.</p>
+<p id="p-2562"><span class="process-math">\(f_x =\)</span> <span class="fillin underline" role="img" aria-label="60-character blank" style="width: 27.2727272727273em;"></span></p>
+<p id="p-2563"><span class="process-math">\(f_y =\)</span> <span class="fillin underline" role="img" aria-label="60-character blank" style="width: 27.2727272727273em;"></span></p>
+<p id="p-2564"><span class="process-math">\(f_{xx} =\)</span> <span class="fillin underline" role="img" aria-label="60-character blank" style="width: 27.2727272727273em;"></span></p>
+<p id="p-2565"><span class="process-math">\(f_{xy} =\)</span> <span class="fillin underline" role="img" aria-label="60-character blank" style="width: 27.2727272727273em;"></span></p>
+<p id="p-2566"><span class="process-math">\(f_{yy} =\)</span> <span class="fillin underline" role="img" aria-label="60-character blank" style="width: 27.2727272727273em;"></span></p>
+<p id="p-2567">There are several critical points to be listed.  List them lexicograhically, that is in ascending order by x-coordinates, and for equal x-coordinates in ascending order by y-coordinates (e.g., (1,1), (2, -1), (2, 3) is a correct order)</p>
+<p id="p-2568">The critical point with the smallest x-coordinate is</p>
+<p id="p-2569">(<span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>, <span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>) Classification: <span class="fillin underline" role="img" aria-label="30-character blank" style="width: 13.6363636363636em;"></span> (local minimum,  local maximum, saddle point, cannot be determined)</p>
+<p id="p-2570">The critical point with the next smallest x-coordinate is</p>
+<p id="p-2571">(<span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>, <span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>) Classification: <span class="fillin underline" role="img" aria-label="30-character blank" style="width: 13.6363636363636em;"></span> (local minimum,  local maximum, saddle point, cannot be determined)</p>
+<p id="p-2572">The critical point with the next smallest x-coordinate is</p>
+<p id="p-2573">(<span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>, <span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>) Classification: <span class="fillin underline" role="img" aria-label="30-character blank" style="width: 13.6363636363636em;"></span> (local minimum,  local maximum, saddle point, cannot be determined)</p>
+<p id="p-2574">The critical point with the next smallest x-coordinate is</p>
+<p id="p-2575">(<span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>, <span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>) Classification: <span class="fillin underline" role="img" aria-label="30-character blank" style="width: 13.6363636363636em;"></span> (local minimum,  local maximum, saddle point, cannot be determined)</p>
+<p id="p-2576">The critical point with the next smallest x-coordinate is</p>
+<p id="p-2577">(<span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>, <span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>) Classification: <span class="fillin underline" role="img" aria-label="30-character blank" style="width: 13.6363636363636em;"></span> (local minimum,  local maximum, saddle point, cannot be determined)</p>
+</div>
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-155')">Activate</button></div>
+</div></article><article class="exercise exercise-like" id="ex-10-7-WW-max-min-saddle"><h4 class="heading"><span class="codenumber">3<span class="period">.</span></span></h4>
+<div id="webwork-156" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="156" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/maCalcDB/setVmultivariable7MaxMin/ur_vc_7_2.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-contents">
+<p id="p-2598">Suppose <span class="process-math">\(f(x, y) = xy - ax - by\text{.}\)</span></p>
+<p id="p-2599">(A) How many local minimum points does <span class="process-math">\(f\)</span> have in <span class="process-math">\(\mathbf{R}^{2}\text{?}\)</span>  (The answer is an integer).</p>
+<p id="p-2600"><span class="fillin underline" role="img" aria-label="5-character blank" style="width: 2.272727272727273em;"></span></p>
+<p id="p-2601">(B) How many local maximum points does <span class="process-math">\(f\)</span> have in <span class="process-math">\(\mathbf{R}^{2}\text{?}\)</span></p>
+<p id="p-2602"><span class="fillin underline" role="img" aria-label="5-character blank" style="width: 2.272727272727273em;"></span></p>
+<p id="p-2603">(C) How many saddle points does <span class="process-math">\(f\)</span> have in <span class="process-math">\(\mathbf{R}^{2}\text{?}\)</span></p>
+<p id="p-2604"><span class="fillin underline" role="img" aria-label="5-character blank" style="width: 2.272727272727273em;"></span></p>
+</div>
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-156')">Activate</button></div>
+</div></article><article class="exercise exercise-like" id="ex-10-7-WW-global"><h4 class="heading"><span class="codenumber">4<span class="period">.</span></span></h4>
+<div id="webwork-157" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="157" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Michigan/Chap15Sec2/Q30.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-contents">
+<p id="p-2608">Let <span class="process-math">\(f(x,y) = 2/x + 3/y + 4 x + 5 y\)</span> in the region <span class="process-math">\(R\)</span> where <span class="process-math">\(x, y &gt; 0\text{.}\)</span></p>
+<p id="p-2609">Explain why <span class="process-math">\(f\)</span> must have a global minimum at some point in <span class="process-math">\(R\)</span> (note that <span class="process-math">\(R\)</span> is unbounded---how does this influence your explanation?). Then find the global minimum.</p>
+<p id="p-2610">minimum = <span class="fillin underline" role="img" aria-label="55-character blank" style="width: 25em;"></span></p>
+</div>
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-157')">Activate</button></div>
+</div></article><article class="exercise exercise-like" id="ex-10-7-WW-level-curves"><h4 class="heading"><span class="codenumber">5<span class="period">.</span></span></h4>
+<div id="webwork-158" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="158" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/maCalcDB/setVmultivariable7MaxMin/ur_vc_7_5.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-contents">
+<p id="p-2612">Each of the following functions has at most one critical point.  Graph a few level curves and a few gradients and, on this basis alone, decide whether the critical point is a local maximum, a local minimum, a saddle point, or that there is no critical point.</p>
+<p id="p-2613">For <span class="process-math">\(f(x, y) = e^{-2 x^2- y^2}\text{,}\)</span> type of critical point: <ul style="list-style:circle;">
+<li id="li-932"><p id="p-2615">Local Maximum</p></li>
+<li id="li-933"><p id="p-2616">Local Minimum</p></li>
+<li id="li-934"><p id="p-2617">Saddle Point</p></li>
+<li id="li-935"><p id="p-2618">No Critical Point</p></li>
+</ul></p>
+<p id="p-2619">For <span class="process-math">\(f(x, y) = e^{2 x^2- y^2}\text{,}\)</span> type of critical point: <ul style="list-style:circle;">
+<li id="li-937"><p id="p-2621">Local Maximum</p></li>
+<li id="li-938"><p id="p-2622">Local Minimum</p></li>
+<li id="li-939"><p id="p-2623">Saddle Point</p></li>
+<li id="li-940"><p id="p-2624">No Critical Point</p></li>
+</ul></p>
+<p id="p-2625">For <span class="process-math">\(f(x, y) = 2 x^2+ y^2+ 3\text{,}\)</span> type of critical point: <ul style="list-style:circle;">
+<li id="li-942"><p id="p-2627">Local Maximum</p></li>
+<li id="li-943"><p id="p-2628">Local Minimum</p></li>
+<li id="li-944"><p id="p-2629">Saddle Point</p></li>
+<li id="li-945"><p id="p-2630">No Critical Point</p></li>
+</ul></p>
+<p id="p-2631">For <span class="process-math">\(f(x, y) = 2 x^2+ y+ 3\text{,}\)</span> type of critical point: <ul style="list-style:circle;">
+<li id="li-947"><p id="p-2633">Local Maximum</p></li>
+<li id="li-948"><p id="p-2634">Local Minimum</p></li>
+<li id="li-949"><p id="p-2635">Saddle Point</p></li>
+<li id="li-950"><p id="p-2636">No Critical Point</p></li>
+</ul></p>
+</div>
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-158')">Activate</button></div>
+</div></article><article class="exercise exercise-like" id="ex-10-7-WW-bounded-triangle"><h4 class="heading"><span class="codenumber">6<span class="period">.</span></span></h4>
+<div id="webwork-159" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="159" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Dartmouth/setStewartCh15S7/problem_12.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-contents">
+<p id="p-2637">Find the absolute minimum and absolute maximum of</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+f(x,y) = 13 - 9 x + 10 y
+\end{equation*}
+</div>
+<p class="continuation">on the closed triangular region with vertices <span class="process-math">\((0,0), (10, 0)\)</span> and <span class="process-math">\((10, 11)\text{.}\)</span></p>
+<p id="p-2638">List the minimum/maximum values as well as the point(s) at which they occur.  If a min or max occurs at multiple points separate the points with commas.</p>
+<p id="p-2639">Minimum value: <span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span></p>
+<p id="p-2640">Occurs at <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span></p>
+<p id="p-2641">Maximum value: <span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span></p>
+<p id="p-2642">Occurs at <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span></p>
+</div>
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-159')">Activate</button></div>
+</div></article><article class="exercise exercise-like" id="ex-10-7-WW-bounded-ellipse"><h4 class="heading"><span class="codenumber">7<span class="period">.</span></span></h4>
+<div id="webwork-160" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="160" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/maCalcDB/setVmultivariable7MaxMin/ur_vc_7_13.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-contents">
+<p id="p-2647">Find the maximum and minimum values of  <span class="process-math">\(f(x, y) = xy\)</span> on the ellipse <span class="process-math">\(7\!x^{2} + y^{2} = 5\text{.}\)</span></p>
+<p id="p-2648">maximum value = <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span></p>
+<p id="p-2649">minimum value = <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span></p>
+</div>
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-160')">Activate</button></div>
+</div></article><article class="exercise exercise-like" id="ex-10-7-WW-quadratic"><h4 class="heading"><span class="codenumber">8<span class="period">.</span></span></h4>
+<div id="webwork-161" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="161" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Michigan/Chap15Sec1/Q17.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-contents">
+<p id="p-2652">Find <span class="process-math">\(A\)</span> and <span class="process-math">\(B\)</span> so that <span class="process-math">\(f(x,y) = x^2 + Ax + y^2 + B\)</span> has a local minimum at the point <span class="process-math">\((2, 0)\text{,}\)</span> with <span class="process-math">\(z\)</span>-coordinate 45.</p>
+<p id="p-2653"><span class="process-math">\(A =\)</span> <span class="fillin underline" role="img" aria-label="35-character blank" style="width: 15.9090909090909em;"></span></p>
+<p id="p-2654"><span class="process-math">\(B =\)</span> <span class="fillin underline" role="img" aria-label="35-character blank" style="width: 15.9090909090909em;"></span></p>
+</div>
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-161')">Activate</button></div>
+</div></article><article class="exercise exercise-like" id="ex-10-7-WW-contours"><h4 class="heading"><span class="codenumber">9<span class="period">.</span></span></h4>
+<div id="webwork-162" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="162" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Michigan/Chap15Sec1/Q21.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-contents">
+<p id="p-2657">The contours of a function <span class="process-math">\(f\)</span> are shown in the figure below.</p>
+<div class="image-box" style="width: 60%; margin-left: 20%; margin-right: 20%;"><img src="generated/webwork%5Cimages%5Cwebwork-162-image-1.png" class="contained"></div>
+<p id="p-2658">For each of the points shown, indicate whether you think it is a local maximum, local minimum, saddle point, or none of these.</p>
+<p id="p-2659"><em class="alert">(a)</em> Point P is <ul style="list-style:circle;">
+<li id="li-952"><p id="p-2661">a local maximum</p></li>
+<li id="li-953"><p id="p-2662">a local minimum</p></li>
+<li id="li-954"><p id="p-2663">a saddle point</p></li>
+<li id="li-955"><p id="p-2664">none of these</p></li>
+</ul></p>
+<p id="p-2665"><em class="alert">(b)</em> Point Q is <ul style="list-style:circle;">
+<li id="li-957"><p id="p-2667">a local maximum</p></li>
+<li id="li-958"><p id="p-2668">a local minimum</p></li>
+<li id="li-959"><p id="p-2669">a saddle point</p></li>
+<li id="li-960"><p id="p-2670">none of these</p></li>
+</ul></p>
+<p id="p-2671"><em class="alert">(c)</em> Point R is <ul style="list-style:circle;">
+<li id="li-962"><p id="p-2673">a local maximum</p></li>
+<li id="li-963"><p id="p-2674">a local minimum</p></li>
+<li id="li-964"><p id="p-2675">a saddle point</p></li>
+<li id="li-965"><p id="p-2676">none of these</p></li>
+</ul></p>
+<p id="p-2677"><em class="alert">(d)</em> Point S is <ul style="list-style:circle;">
+<li id="li-967"><p id="p-2679">a local maximum</p></li>
+<li id="li-968"><p id="p-2680">a local minimum</p></li>
+<li id="li-969"><p id="p-2681">a saddle point</p></li>
+<li id="li-970"><p id="p-2682">none of these</p></li>
+</ul></p>
+</div>
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-162')">Activate</button></div>
+</div></article><article class="exercise exercise-like" id="ex-10-7-WW-SDT"><h4 class="heading"><span class="codenumber">10<span class="period">.</span></span></h4>
+<div id="webwork-163" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="163" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Michigan/Chap15Sec1/Q28.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-contents">
+<p id="p-2687">Consider the three points <span class="process-math">\((1,3)\text{,}\)</span> <span class="process-math">\((2,1)\text{,}\)</span> and <span class="process-math">\((5,7)\text{.}\)</span></p>
+<p id="p-2688"><em class="alert">(a)</em> Supposed that at <span class="process-math">\((1,3)\text{,}\)</span> we know that <span class="process-math">\(f_x=f_y=0\)</span> and <span class="process-math">\(f_{xx} = 0\text{,}\)</span> <span class="process-math">\(f_{yy} = 0\text{,}\)</span> and <span class="process-math">\(f_{xy} &gt; 0\text{.}\)</span> What can we conclude about the behavior of this function near the point <span class="process-math">\((1,3)\text{?}\)</span> <ul style="list-style:circle;">
+<li id="li-972"><p id="p-2690">(1,3) is a local maximum</p></li>
+<li id="li-973"><p id="p-2691">(1,3) is a local minimum</p></li>
+<li id="li-974"><p id="p-2692">(1,3) is a saddle point</p></li>
+<li id="li-975"><p id="p-2693">(1,3) is a none of these</p></li>
+</ul></p>
+<p id="p-2694"><em class="alert">(b)</em> Supposed that at <span class="process-math">\((2,1)\text{,}\)</span> we know that <span class="process-math">\(f_x=f_y=0\)</span> and <span class="process-math">\(f_{xx} &gt; 0\text{,}\)</span> <span class="process-math">\(f_{yy} \lt  0\text{,}\)</span> and <span class="process-math">\(f_{xy} = 0\text{.}\)</span> What can we conclude about the behavior of this function near the point <span class="process-math">\((2,1)\text{?}\)</span> <ul style="list-style:circle;">
+<li id="li-977"><p id="p-2696">(2,1) is a local maximum</p></li>
+<li id="li-978"><p id="p-2697">(2,1) is a local minimum</p></li>
+<li id="li-979"><p id="p-2698">(2,1) is a saddle point</p></li>
+<li id="li-980"><p id="p-2699">(2,1) is a none of these</p></li>
+</ul></p>
+<p id="p-2700"><em class="alert">(c)</em> Supposed that at <span class="process-math">\((5,7)\text{,}\)</span> we know that <span class="process-math">\(f_x=f_y=0\)</span> and <span class="process-math">\(f_{xx} \lt  0\text{,}\)</span> <span class="process-math">\(f_{yy} &gt; 0\text{,}\)</span> and <span class="process-math">\(f_{xy} = 0\text{.}\)</span> What can we conclude about the behavior of this function near the point <span class="process-math">\((5,7)\text{?}\)</span> <ul style="list-style:circle;">
+<li id="li-982"><p id="p-2702">(5,7) is a local maximum</p></li>
+<li id="li-983"><p id="p-2703">(5,7) is a local minimum</p></li>
+<li id="li-984"><p id="p-2704">(5,7) is a saddle point</p></li>
+<li id="li-985"><p id="p-2705">(5,7) is a none of these</p></li>
+</ul></p>
+<p id="p-2706">Using this information, on a separate sheet of paper sketch a possible contour diagram for <span class="process-math">\(f\text{.}\)</span></p>
+</div>
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-163')">Activate</button></div>
+</div></article><article class="exercise exercise-like" id="ex-10-7-WW-product"><h4 class="heading"><span class="codenumber">11<span class="period">.</span></span></h4>
+<div id="webwork-164" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="164" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Dartmouth/setStewartCh15S7/problem_11.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-contents">
+<p id="p-2710">Find three positive real numbers whose sum is 16 and whose product is a maximum.</p>
+<p id="p-2711">Enter the three numbers separated by commas: <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span></p>
+</div>
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-164')">Activate</button></div>
+</div></article><article class="exercise exercise-like" id="ex-10-7-WW-surface-area-closed"><h4 class="heading"><span class="codenumber">12<span class="period">.</span></span></h4>
+<div id="webwork-165" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="165" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Michigan/Chap15Sec2/Q17.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-contents">
+<p id="p-2713">A closed rectangular box has volume <span class="process-math">\(30\,\mbox{cm}^3\text{.}\)</span> What are the lengths of the edges giving the minimum surface area?</p>
+<p id="p-2714">lengths = <span class="fillin underline" role="img" aria-label="35-character blank" style="width: 15.9090909090909em;"></span></p>
+<p id="p-2715"><em class="emphasis">(Give the three lengths as a comma separated list.)</em></p>
+</div>
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-165')">Activate</button></div>
+</div></article><article class="exercise exercise-like" id="ex-10-7-WW-surface-area-open"><h4 class="heading"><span class="codenumber">13<span class="period">.</span></span></h4>
+<div id="webwork-166" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="166" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Michigan/Chap15Sec2/Q18.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-contents">
+<p id="p-2717">An open rectangular box has volume <span class="process-math">\(34 \mbox{ cm}^3\text{.}\)</span> What are the lengths of the edges giving the minimum surface area?</p>
+<p id="p-2718">lengths = <span class="fillin underline" role="img" aria-label="55-character blank" style="width: 25em;"></span></p>
+<p id="p-2719"><em class="emphasis">(Give the three lengths as a comma separated list.)</em></p>
+</div>
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-166')">Activate</button></div>
+</div></article><article class="exercise exercise-like" id="ex-10-7-WW-surface-distance"><h4 class="heading"><span class="codenumber">14<span class="period">.</span></span></h4>
+<div id="webwork-167" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="167" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Michigan/Chap15Sec2/Q23.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-contents">
+<p id="p-2721">What is the shortest distance from the surface <span class="process-math">\(x y + 9 x + z^2 = 73\)</span> to the origin?</p>
+<p id="p-2722">distance = <span class="fillin underline" role="img" aria-label="35-character blank" style="width: 15.9090909090909em;"></span></p>
+</div>
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-167')">Activate</button></div>
+</div></article><article class="exercise exercise-like" id="ex-10-7-WW-volume"><h4 class="heading"><span class="codenumber">15<span class="period">.</span></span></h4>
+<div id="webwork-168" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="168" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/272/setStewart14_7/problem_16.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-contents">
+<p id="p-2724">Find the volume of the largest rectangular box with edges parallel to the axes that can be inscribed in the ellipsoid</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+\frac{x^2}{36} + \frac{y^2}{49} + \frac{z^2}{64} = 1
+\end{equation*}
+</div>
+<p id="p-2725">Hint: By symmetry, you can restrict your attention to the first octant (where <span class="process-math">\(x, y, z \ge 0\)</span>), and assume your volume has the form <span class="process-math">\(V =
+8xyz\text{.}\)</span>  Then arguing by symmetry, you need only look for points which achieve the maximum which lie in the first octant.</p>
+<p id="p-2726">Maximum volume: <span class="fillin underline" role="img" aria-label="30-character blank" style="width: 13.6363636363636em;"></span></p>
+</div>
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-168')">Activate</button></div>
+</div></article><article class="exercise exercise-like" id="ex-10-7-WW-cost"><h4 class="heading"><span class="codenumber">16<span class="period">.</span></span></h4>
+<div id="webwork-169" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="169" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Michigan/Chap15Sec2/Q21.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-contents">
+<p id="p-2728">Design a rectangular milk carton box of width <span class="process-math">\(w\text{,}\)</span> length <span class="process-math">\(l\text{,}\)</span> and height <span class="process-math">\(h\)</span> which holds <span class="process-math">\(522 \mbox{ cm}^3\)</span> of milk. The sides of the box cost <span class="process-math">\(2 \ \mbox{cent}/\mbox{cm}^2\)</span> and the top and bottom cost <span class="process-math">\(3\ \mbox{cent}/\mbox{cm}^2\text{.}\)</span> Find the dimensions of the box that minimize the total cost of materials used.</p>
+<p id="p-2729">dimensions = <span class="fillin underline" role="img" aria-label="35-character blank" style="width: 15.9090909090909em;"></span></p>
+<p id="p-2730"><em class="emphasis">(Enter your answer as a comma separated list of lengths.)</em></p>
+</div>
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-169')">Activate</button></div>
+</div></article><article class="exercise exercise-like" id="exercise-240"><h4 class="heading"><span class="codenumber">17<span class="period">.</span></span></h4>
+<p id="p-2732">Respond to each of the following prompts to solve the given optimization problem.</p>
+<ol class="lower-alpha">
+<li id="li-986"><p id="p-2733">Let  <span class="process-math">\(f(x,y) = \sin(x)+\cos(y)\text{.}\)</span> Determine the absolute maximum and minimum values of <span class="process-math">\(f\text{.}\)</span> At what points do these extreme values occur?</p></li>
+<li id="li-987">
+<p id="p-2734">For a certain differentiable function <span class="process-math">\(F\)</span> of two variables <span class="process-math">\(x\)</span> and <span class="process-math">\(y\text{,}\)</span> its partial derivatives are</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+F_x(x,y) = x^2-y-4 \ \ \mbox{and}  \ \ F_y(x,y) = -x + y - 2.
+\end{equation*}
+</div>
+<p class="continuation">Find each of the critical points of <span class="process-math">\(F\text{,}\)</span> and classify each as a local maximum, local minimum, or a saddle point.</p>
+</li>
+<li id="li-988"><p id="p-2735">Determine all critical points of <span class="process-math">\(T(x,y) = 48 + 3xy - x^2y - xy^2\)</span> and classify each as a local maximum, local minimum, or saddle point.</p></li>
+<li id="li-989"><p id="p-2736">Find and classify all critical points of  <span class="process-math">\(g(x,y) = \frac{x^2}{2} + 3y^3 + 9y^2 - 3xy + 9y - 9x\)</span></p></li>
+<li id="li-990"><p id="p-2737">Find and classify all critical points of <span class="process-math">\(z = f(x,y) = ye^{-x^2-2y^2}\text{.}\)</span></p></li>
+<li id="li-991"><p id="p-2738">Determine the absolute maximum and absolute minimum of <span class="process-math">\(f(x,y) = 2 + 2x + 2y - x^2 - y^2\)</span> on the triangular plate in the first quadrant bounded by the lines <span class="process-math">\(x = 0\text{,}\)</span> <span class="process-math">\(y = 0\text{,}\)</span> and <span class="process-math">\(y = 9-x\text{.}\)</span></p></li>
+<li id="li-992"><p id="p-2739">Determine the absolute maximum and absolute minimum of <span class="process-math">\(f(x,y) = 2 + 2x + 2y - x^2 - y^2\)</span> over the closed disk of points <span class="process-math">\((x,y)\)</span> such that <span class="process-math">\((x-1)^2 + (y-1)^2 \le 1\text{.}\)</span></p></li>
+<li id="li-993"><p id="p-2740">Find the point on the plane <span class="process-math">\(z = 6 - 3x - 2y\)</span> that lies closest to the origin.</p></li>
+</ol></article><article class="exercise exercise-like" id="exercise-241"><h4 class="heading"><span class="codenumber">18<span class="period">.</span></span></h4>
+<p id="p-2741">If a continuous function <span class="process-math">\(f\)</span> of a single variable has two critical numbers <span class="process-math">\(c_1\)</span> and <span class="process-math">\(c_2\)</span> at which <span class="process-math">\(f\)</span> has relative maximum values, then <span class="process-math">\(f\)</span> must have another critical number <span class="process-math">\(c_3\text{,}\)</span> because “it is impossible to have two mountains without some sort of valley in between. The other critical point can be a saddle point (a pass between the mountains) or a local minimum (a true valley).” (From <em class="emphasis">Calculus in Vector Spaces</em> by Lawrence J. Corwin and Robert H. Szczarb.) Consider the function <span class="process-math">\(f\)</span> defined by <span class="process-math">\(f(x,y) = 4x^2e^y -2x^4 -e^{4y}\text{.}\)</span> (From Ira Rosenholz in the Problems Section of the <em class="emphasis">Mathematics Magazine</em>, Vol. 60 NO. 1, February 1987.) Show that <span class="process-math">\(f\)</span> has exactly two critical points, and that <span class="process-math">\(f\)</span> has relative maximum values at each of these critical points. Explain how this function <span class="process-math">\(f\)</span> illustrates that it really is possible to have two mountains without some sort of valley in between. Use appropriate technology to draw the surface defined by <span class="process-math">\(f\)</span> to see graphically how this happens.</p></article><article class="exercise exercise-like" id="exercise-242"><h4 class="heading"><span class="codenumber">19<span class="period">.</span></span></h4>
+<p id="p-2742">If a continuous function <span class="process-math">\(f\)</span> of a single variable has exactly one critical number with a relative maximum at that critical point, then the value of <span class="process-math">\(f\)</span> at that critical point is an absolute maximum. In this exercise we see that the same is not always true for functions of two variables. Let <span class="process-math">\(f(x,y) = 3xe^y-x^3-e^{3y}\)</span> (from “The Only Critical Point in Town” Test by Ira Rosenholz and Lowell Smylie in the <em class="emphasis">Mathematics Magazine</em>, VOL 58 NO 3 May 1985.). Show that <span class="process-math">\(f\)</span> has exactly one critical point, has a relative maximum value at that critical point, but that <span class="process-math">\(f\)</span> has no absolute maximum value. Use appropriate technology to draw the surface defined by <span class="process-math">\(f\)</span> to see graphically how this happens.</p></article><article class="exercise exercise-like" id="exercise-243"><h4 class="heading"><span class="codenumber">20<span class="period">.</span></span></h4>
+<p id="p-2743">A manufacturer wants to procure rectangular boxes to ship its product. The boxes must contain 20 cubic feet of space. To be durable enough to ensure the safety of the product, the material for the sides of the boxes will cost $0.10 per square foot, while the material for the top and bottom will cost $0.25 per square foot. In this activity we will help the manufacturer determine the box of minimal cost.</p>
+<ol class="lower-alpha">
+<li id="li-994"><p id="p-2744">What quantities are constant in this problem? What are the variables in this problem? Provide appropriate variable labels. What, if any, restrictions are there on the variables?</p></li>
+<li id="li-995"><p id="p-2745">Using your variables from (a), determine a formula for the total cost <span class="process-math">\(C\)</span> of a box.</p></li>
+<li id="li-996"><p id="p-2746">Your formula in part (b) might be in terms of three variables. If so, find a relationship between the variables, and then use this relationship to write <span class="process-math">\(C\)</span> as a function of only two independent variables.</p></li>
+<li id="li-997"><p id="p-2747">Find the dimensions that minimize the cost of a box. Be sure to verify that you have a minimum cost.</p></li>
+</ol></article><article class="exercise exercise-like" id="exercise-244"><h4 class="heading"><span class="codenumber">21<span class="period">.</span></span></h4>
+<p id="p-2748">A rectangular box with length <span class="process-math">\(x\text{,}\)</span> width <span class="process-math">\(y\text{,}\)</span> and height <span class="process-math">\(z\)</span> is being built. The box is positioned so that one corner is stationed at the origin and the box lies in the first octant where <span class="process-math">\(x\text{,}\)</span> <span class="process-math">\(y\text{,}\)</span> and <span class="process-math">\(z\)</span> are all positive. There is an added constraint on how the box is constructed: it must fit underneath the plane with equation <span class="process-math">\(x + 2y + 3z = 6\text{.}\)</span> In fact, we will assume that the corner of the box “opposite” the origin must actually lie on this plane. The basic problem is to find the maximum volume of the box.</p>
+<ol class="lower-alpha">
+<li id="li-998"><p id="p-2749">Sketch the plane <span class="process-math">\(x + 2y + 3z = 6\text{,}\)</span> as well as a picture of a potential box.  Label everything appropriately.</p></li>
+<li id="li-999"><p id="p-2750">Explain how you can use the fact that one corner of the box lies on the plane to write the volume of the box as a function of <span class="process-math">\(x\)</span> and <span class="process-math">\(y\)</span> only.  Do so, and clearly show the formula you find for <span class="process-math">\(V(x,y)\text{.}\)</span></p></li>
+<li id="li-1000"><p id="p-2751">Find all critical points of <span class="process-math">\(V\text{.}\)</span>  (Note that when finding the critical points, it is essential that you factor first to make the algebra easier.)</p></li>
+<li id="li-1001"><p id="p-2752">Without considering the current applied nature of the function <span class="process-math">\(V\text{,}\)</span> classify each critical point you found above as a local maximum, local minimum, or saddle point of <span class="process-math">\(V\text{.}\)</span></p></li>
+<li id="li-1002"><p id="p-2753">Determine the maximum volume of the box, justifying your answer completely with an appropriate discussion of the critical points of the function.</p></li>
+<li id="li-1003">
+<p id="p-2754">Now suppose that we instead stipulated that, while the vertex of the box opposite the origin still had to lie on the plane, we were only going to permit the sides of the box, <span class="process-math">\(x\)</span> and <span class="process-math">\(y\text{,}\)</span> to have values in a specified range (given below).  That is, we now want to find the maximum value of <span class="process-math">\(V\)</span> on the closed, bounded region</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+\frac{1}{2} \le x \le 1, \ \ 1 \le y \le 2.
+\end{equation*}
+</div>
+<p class="continuation">Find the maximum volume of the box under this condition, justifying your answer fully.</p>
+</li>
+</ol></article><article class="exercise exercise-like" id="exercise-245"><h4 class="heading"><span class="codenumber">22<span class="period">.</span></span></h4>
+<p id="p-2755">The airlines place restrictions on luggage that can be carried onto planes.</p>
+<ul class="disc">
+<li id="li-1004"><p id="p-2756">A carry-on bag can weigh no more than 40 lbs.</p></li>
+<li id="li-1005"><p id="p-2757">The length plus width plus height of a bag cannot exceed 45 inches.</p></li>
+<li id="li-1006"><p id="p-2758">The bag must fit in an overhead bin.</p></li>
+</ul>
+<p id="p-2759">Let <span class="process-math">\(x\text{,}\)</span> <span class="process-math">\(y\text{,}\)</span> and <span class="process-math">\(z\)</span> be the length, width, and height (in inches) of a carry on bag. In this problem we find the dimensions of the bag of largest volume, <span class="process-math">\(V = xyz\text{,}\)</span> that satisfies the second restriction. Assume that we use all 45 inches to get a maximum volume. (Note that this bag of maximum volume might not satisfy the third restriction.)</p>
+<ol class="lower-alpha">
+<li id="li-1007"><p id="p-2760">Write the volume <span class="process-math">\(V=V(x,y)\)</span> as a function of just the two variables <span class="process-math">\(x\)</span> and <span class="process-math">\(y\text{.}\)</span></p></li>
+<li id="li-1008"><p id="p-2761">Explain why the domain over which <span class="process-math">\(V\)</span> is defined is the triangular region <span class="process-math">\(R\)</span> with vertices (0,0), (45,0), and (0,45).</p></li>
+<li id="li-1009"><p id="p-2762">Find the critical points, if any, of <span class="process-math">\(V\)</span> in the interior of the region <span class="process-math">\(R\text{.}\)</span></p></li>
+<li id="li-1010"><p id="p-2763">Find the maximum value of <span class="process-math">\(V\)</span> on the boundary of the region <span class="process-math">\(R\text{,}\)</span> and then determine the dimensions of a bag with maximum volume on the entire region <span class="process-math">\(R\text{.}\)</span> (Note that most carry-on bags sold today measure <span class="process-math">\(22\)</span> by <span class="process-math">\(14\)</span> by <span class="process-math">\(9\)</span> inches with a volume of <span class="process-math">\(2772\)</span> cubic inches, so that the bags will fit into the overhead bins.)</p></li>
+</ol></article><article class="exercise exercise-like" id="exercise-246"><h4 class="heading"><span class="codenumber">23<span class="period">.</span></span></h4>
+<div class="sidebyside"><div class="sbsrow" style="margin-left:0%;margin-right:0%;">
+<div class="sbspanel top" style="width:50%;">
+<p id="p-2764">According to <em class="emphasis">The Song of Insects</em> by G.W. Pierce (Harvard College Press, 1948) the sound of striped ground crickets chirping, in number of chirps per second, is related to the temperature. So the number of chirps per second could be a predictor of temperature. The data Pierce collected is shown in <a href="" class="xref" data-knowl="./knowl/T-10-7-chirps.html" title="Table 10.7.11: Crickets chirping.">Table 10.7.11</a>., where <span class="process-math">\(x\)</span> is the (average) number of chirps per second and <span class="process-math">\(y\)</span> is the temperature in degrees Fahrenheit.</p>
+<p id="p-2765">A scatterplot of the data would show that, while the relationship between <span class="process-math">\(x\)</span> and <span class="process-math">\(y\)</span> is not exactly linear, it looks to have a linear pattern. It could be that the relationship is really linear but experimental error causes the data to be slightly inaccurate. Or perhaps the data is not linear, but only approximately linear.</p>
+</div>
+<div class="sbspanel fixed-width top" style="width:50%;"><figure class="table table-like" id="T-10-7-chirps"><figcaption><span class="type">Table</span><span class="space"> </span><span class="codenumber">10.7.11<span class="period">.</span></span><span class="space"> </span>Crickets chirping.</figcaption><table class="tabular">
+<tr>
+<td class="c m b2 r0 l0 t1 lines"><span class="process-math">\(x\)</span></td>
+<td class="c m b2 r0 l0 t1 lines"><span class="process-math">\(y\)</span></td>
+</tr>
+<tr>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(20.0\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(88.6\)</span></td>
+</tr>
+<tr>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(16.0\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(71.6\)</span></td>
+</tr>
+<tr>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(19.8\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(93.3\)</span></td>
+</tr>
+<tr>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(18.4\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(84.3\)</span></td>
+</tr>
+<tr>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(17.1\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(80.6\)</span></td>
+</tr>
+<tr>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(15.5\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(75.2\)</span></td>
+</tr>
+<tr>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(14.7\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(69.7\)</span></td>
+</tr>
+<tr>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(17.1\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(82.0\)</span></td>
+</tr>
+<tr>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(15.4\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(69.4\)</span></td>
+</tr>
+<tr>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(16.2\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(83.3\)</span></td>
+</tr>
+<tr>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(15.0\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(79.6\)</span></td>
+</tr>
+<tr>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(17.2\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(82.6\)</span></td>
+</tr>
+<tr>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(16.0\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(80.6\)</span></td>
+</tr>
+<tr>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(17.0\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(83.5\)</span></td>
+</tr>
+<tr>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(14.4\)</span></td>
+<td class="c m b1 r0 l0 t0 lines"><span class="process-math">\(76.3\)</span></td>
+</tr>
+</table></figure></div>
+</div></div>
+<p id="p-2766">If we want to use the data to make predications, then we need to fit a curve of some kind to the data. Since the cricket data appears roughly linear, we will fit a linear function <span class="process-math">\(f\)</span> of the form <span class="process-math">\(f(x) = mx+b\)</span> to the data. We will do this in such a way that we minimize the sums of the squares of the distances between the <span class="process-math">\(y\)</span> values of the data and the corresponding <span class="process-math">\(y\)</span> values of the line defined by <span class="process-math">\(f\text{.}\)</span> This type of fit is called a <em class="emphasis">least squares</em> approximation. If the data is represented by the points <span class="process-math">\((x_1,y_1)\text{,}\)</span> <span class="process-math">\((x_2,y_2)\text{,}\)</span> <span class="process-math">\(\ldots\text{,}\)</span> <span class="process-math">\((x_n,y_n)\text{,}\)</span> then the square of the distance between <span class="process-math">\(y_i\)</span> and <span class="process-math">\(f(x_i)\)</span> is <span class="process-math">\((f(x_i)-y_i)^2 = (mx_i+b-y_i)^2\text{.}\)</span> So our goal is to minimize the sum of these squares, of minimize the function <span class="process-math">\(S\)</span> defined by</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+S(m,b) = \sum_{i=1}^n (mx_i+b-y_i)^2.
+\end{equation*}
+</div>
+<ol class="lower-alpha">
+<li id="li-1011"><p id="p-2767">Calculate <span class="process-math">\(S_m\)</span> and <span class="process-math">\(S_b\text{.}\)</span></p></li>
+<li id="li-1012">
+<p id="p-2768">Solve the system <span class="process-math">\(S_m(m,b) = 0\)</span> and <span class="process-math">\(S_b(m,b) = 0\)</span> to show that the critical point satisfies</p>
+<div class="displaymath process-math" data-contains-math-knowls="" id="md-29">
+\begin{align*}
+m \amp = \frac{n\left(\sum_{i=1}^n x_iy_i\right) - \left(\sum_{i=1}^n x_i \right) \left(\sum_{i=1}^n y_i \right)}{n\left(\sum_{i=1}^n x_i^2 \right) - \left(\sum_{i=1}^n x_i \right)^2}\\
+b \amp = \frac{\left(\sum_{i=1}^n y_i\right) \left(\sum_{i=1}^n x_i^2\right) - \left(\sum_{i=1}^n x_i \right) \left(\sum_{i=1}^n x_iy_i \right)}{n\left(\sum_{i=1}^n x_i^2 \right) - \left(\sum_{i=1}^n x_i \right)^2}.
+\end{align*}
+</div>
+<p class="continuation">(Hint: Don't be daunted by these expressions, the system <span class="process-math">\(S_m(m,b) = 0\)</span> and <span class="process-math">\(S_b(m,b) = 0\)</span> is a system of two linear equations in the unknowns <span class="process-math">\(m\)</span> and <span class="process-math">\(b\text{.}\)</span> It might be easier to let <span class="process-math">\(r=\sum_{i=1}^n x_i^2\text{,}\)</span> <span class="process-math">\(s=\sum_{i=1}^n x_i\text{,}\)</span> <span class="process-math">\(t = \sum_{i=1}^n y_i\text{,}\)</span> and <span class="process-math">\(u = \sum_{i=1}^n x_iy_i\)</span> and write your equations using these constants.)</p>
+</li>
+<li id="li-1013"><p id="p-2769">Use the Second Derivative Test to explain why the critical point gives a local minimum. Can you then explain why the critical point gives an absolute minimum?</p></li>
+<li id="li-1014"><p id="p-2770">Use the formula from part (b) to find the values of <span class="process-math">\(m\)</span> and <span class="process-math">\(b\)</span> that give the line of best fit in the least squares sense to the cricket data. Draw your line on the scatter plot to convince yourself that you have a well-fitting line.</p></li>
+</ol></article></section></section></div></main>
+</div>
+<!--Start: Google Global Site Tag code--><!--*** DO NOT COPY ANOTHER PROJECT'S MAGIC NUMBERS/ID ***--><!--***           GET YOUR OWN FROM GOOGLE             ***-->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-QJKN634F7R"></script><script>  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-QJKN634F7R');
+</script><!--End: Google Global Site Tag code-->
+</body>
+</html>

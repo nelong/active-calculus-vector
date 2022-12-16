@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<html lang="en-US">
+<head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>The Divergence Theorem</title>
+<meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:type" content="book">
+<meta property="book:title" content="Active Calculus - Multivariable + Vector">
+<meta property="book:author" content="Steve Schlicker">
+<meta property="book:author" content="Mitchel T. Keller">
+<meta property="book:author" content="Nicholas Long">
+<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
+window.MathJax = {
+  tex: {
+    inlineMath: [['\\(','\\)']],
+    tags: "none",
+    tagSide: "right",
+    tagIndent: ".8em",
+    packages: {'[+]': ['base', 'extpfeil', 'ams', 'amscd', 'newcommand', 'knowl']}
+  },
+  options: {
+    ignoreHtmlClass: "tex2jax_ignore|ignore-math",
+    processHtmlClass: "process-math",
+    renderActions: {
+        findScript: [10, function (doc) {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
+                var display = !!node.type.match(/; *mode=display/);
+                var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                var text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = {node: text, delim: '', n: 0};
+                math.end = {node: text, delim: '', n: 0};
+                doc.math.push(math);
+            });
+        }, '']
+    },
+  },
+  chtml: {
+    scale: 0.88,
+    mtextInheritFont: true
+  },
+  loader: {
+    load: ['input/asciimath', '[tex]/extpfeil', '[tex]/amscd', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
+    paths: {pretext: "https://pretextbook.org/js/lib"},
+  },
+  startup: {
+    pageReady() {
+      return MathJax.startup.defaultPageReady().then(function () {
+      console.log("in ready function");
+      rsMathReady();
+      }
+    )}
+},
+};
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><link href="https://webwork-ptx.aimath.org/webwork2_files/js/apps/MathView/mathview.css" rel="stylesheet">
+<script src="https://pretextbook.org/js/0.13/pretext-webwork/2./pretext-webwork.js"></script><script src="https://webwork-ptx.aimath.org/webwork2_files/node_modules/iframe-resizer/js/iframeResizer.min.js"></script><script async="" src="https://cse.google.com/cse.js?cx=015103900096539427448:ngwuia10qci"></script><script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.13/pretext.js"></script><script>miniversion=0.674</script><script src="https://pretextbook.org/js/0.13/pretext_add_on.js?x=1"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
+</script><link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/pretext.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/pretext_add_on.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/banner_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/toc_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/knowls_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/style_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/colors_blue_grey.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/setcolors.css" rel="stylesheet" type="text/css">
+</head>
+<body class="pretext-book ignore-math has-toc has-sidebar-left">
+<a class="assistive" href="#content">Skip to main content</a><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\newcommand{\R}{\mathbb{R}}
+\newcommand{\va}{\mathbf{a}}
+\newcommand{\vb}{\mathbf{b}}
+\newcommand{\vc}{\mathbf{c}}
+\newcommand{\vC}{\mathbf{C}}
+\newcommand{\vd}{\mathbf{d}}
+\newcommand{\ve}{\mathbf{e}}
+\newcommand{\vi}{\mathbf{i}}
+\newcommand{\vj}{\mathbf{j}}
+\newcommand{\vk}{\mathbf{k}}
+\newcommand{\vn}{\mathbf{n}}
+\newcommand{\vm}{\mathbf{m}}
+\newcommand{\vr}{\mathbf{r}}
+\newcommand{\vs}{\mathbf{s}}
+\newcommand{\vu}{\mathbf{u}}
+\newcommand{\vv}{\mathbf{v}}
+\newcommand{\vw}{\mathbf{w}}
+\newcommand{\vx}{\mathbf{x}}
+\newcommand{\vy}{\mathbf{y}}
+\newcommand{\vz}{\mathbf{z}}
+\newcommand{\vzero}{\mathbf{0}}
+\newcommand{\vF}{\mathbf{F}}
+\newcommand{\vG}{\mathbf{G}}
+\newcommand{\vH}{\mathbf{H}}
+\newcommand{\vR}{\mathbf{R}}
+\newcommand{\vT}{\mathbf{T}}
+\newcommand{\vN}{\mathbf{N}}
+\newcommand{\vL}{\mathbf{L}}
+\newcommand{\vB}{\mathbf{B}}
+\newcommand{\vS}{\mathbf{S}}
+\newcommand{\proj}{\text{proj}}
+\newcommand{\comp}{\text{comp}}
+\newcommand{\nin}{}
+\newcommand{\vecmag}[1]{|#1|}
+\newcommand{\grad}{\nabla}
+\DeclareMathOperator{\curl}{curl}
+\DeclareMathOperator{\divg}{div}
+\newcommand{\lt}{&lt;}
+\newcommand{\gt}{&gt;}
+\newcommand{\amp}{&amp;}
+\definecolor{fillinmathshade}{gray}{0.9}
+\newcommand{\fillinmath}[1]{\mathchoice{\colorbox{fillinmathshade}{$\displaystyle     \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\textstyle        \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptstyle      \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptscriptstyle\phantom{\,#1\,}$}}}
+\)</span></div>
+<header id="masthead" class="smallbuttons"><div class="banner"><div class="container">
+<a id="logo-link" href=""></a><div class="title-container">
+<h1 class="heading"><a href="book-1.html"><span class="title">Active Calculus - Multivariable + Vector</span></a></h1>
+<p class="byline">Steve Schlicker, Mitchel T. Keller, Nicholas Long</p>
+</div>
+<div class="searchwrapper" role="search"><div class="gcse-search"></div></div>
+</div></div>
+<nav id="primary-navbar" class="navbar"><div class="container">
+<div class="navbar-top-buttons">
+<button class="sidebar-left-toggle-button button active" aria-label="Show or hide table of contents sidebar">Contents</button><div class="tree-nav toolbar toolbar-divisor-3">
+<a class="index-button toolbar-item button" href="index-1.html" title="Index">Index</a><span class="threebuttons"><a id="previousbutton" class="previous-button toolbar-item button" href="S_Vector_StokesThm.html" title="Previous">Prev</a><a id="upbutton" class="up-button button toolbar-item" href="C_Vector.html" title="Up">Up</a><a id="nextbutton" class="next-button button toolbar-item" href="backmatter-1.html" title="Next">Next</a></span>
+</div>
+</div>
+<div class="navbar-bottom-buttons toolbar toolbar-divisor-4">
+<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="S_Vector_StokesThm.html" title="Previous">Prev</a><a class="up-button button toolbar-item" href="C_Vector.html" title="Up">Up</a><a class="next-button button toolbar-item" href="backmatter-1.html" title="Next">Next</a>
+</div>
+</div></nav></header><div class="page">
+<div id="sidebar-left" class="sidebar" role="navigation"><div class="sidebar-content">
+<nav id="toc"><ul>
+<li class="link frontmatter">
+<a href="frontmatter.html" data-scroll="frontmatter" class="internal"><span class="title">Front Matter</span></a><ul>
+<li><a href="colophon-1.html" data-scroll="colophon-1" class="internal">Colophon</a></li>
+<li><a href="preface-1.html" data-scroll="preface-1" class="internal">Features of the Text</a></li>
+<li><a href="preface-2.html" data-scroll="preface-2" class="internal">Vector Calculus Preface</a></li>
+<li><a href="preface-3.html" data-scroll="preface-3" class="internal">Acknowledgments</a></li>
+<li><a href="preface-4.html" data-scroll="preface-4" class="internal">Active Calculus - Multivariable: our goals</a></li>
+<li><a href="preface-5.html" data-scroll="preface-5" class="internal">How to Use this Text</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="C-9.html" data-scroll="C-9" class="internal"><span class="codenumber">9</span> <span class="title">Multivariable and Vector Functions</span></a><ul>
+<li><a href="S-9-1-Functions.html" data-scroll="S-9-1-Functions" class="internal">Functions of Several Variables and Three Dimensional Space</a></li>
+<li><a href="S-9-2-Vectors.html" data-scroll="S-9-2-Vectors" class="internal">Vectors</a></li>
+<li><a href="S-9-3-Dot-Product.html" data-scroll="S-9-3-Dot-Product" class="internal">The Dot Product</a></li>
+<li><a href="S-9-4-Cross-Product.html" data-scroll="S-9-4-Cross-Product" class="internal">The Cross Product</a></li>
+<li><a href="S-9-5-Lines-Planes.html" data-scroll="S-9-5-Lines-Planes" class="internal">Lines and Planes in Space</a></li>
+<li><a href="S-9-6-Vector-Valued-Functions.html" data-scroll="S-9-6-Vector-Valued-Functions" class="internal">Vector-Valued Functions</a></li>
+<li><a href="S-9-7-Vector-Valued-Functions-Derivatives.html" data-scroll="S-9-7-Vector-Valued-Functions-Derivatives" class="internal">Derivatives and Integrals of Vector-Valued Functions</a></li>
+<li><a href="S-9-8-Arc-Length-Curvature.html" data-scroll="S-9-8-Arc-Length-Curvature" class="internal">Arc Length and Curvature</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="C-10.html" data-scroll="C-10" class="internal"><span class="codenumber">10</span> <span class="title">Derivatives of Multivariable Functions</span></a><ul>
+<li><a href="S-10-1-Limits.html" data-scroll="S-10-1-Limits" class="internal">Limits</a></li>
+<li><a href="S-10-2-First-Order-Partial-Derivatives.html" data-scroll="S-10-2-First-Order-Partial-Derivatives" class="internal">First-Order Partial Derivatives</a></li>
+<li><a href="S-10-3-Second-Order-Partial-Derivatives.html" data-scroll="S-10-3-Second-Order-Partial-Derivatives" class="internal">Second-Order Partial Derivatives</a></li>
+<li><a href="S-10-4-Linearization.html" data-scroll="S-10-4-Linearization" class="internal">Linearization: Tangent Planes and Differentials</a></li>
+<li><a href="S-10-5-Chain-Rule.html" data-scroll="S-10-5-Chain-Rule" class="internal">The Chain Rule</a></li>
+<li><a href="S-10-6-Directional-Derivative.html" data-scroll="S-10-6-Directional-Derivative" class="internal">Directional Derivatives and the Gradient</a></li>
+<li><a href="S-10-7-Optimization.html" data-scroll="S-10-7-Optimization" class="internal">Optimization</a></li>
+<li><a href="S-10-8-Lagrange-Multipliers.html" data-scroll="S-10-8-Lagrange-Multipliers" class="internal">Constrained Optimization: Lagrange Multipliers</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="C-11.html" data-scroll="C-11" class="internal"><span class="codenumber">11</span> <span class="title">Multiple Integrals</span></a><ul>
+<li><a href="S-11-1-Double-Integrals-Rectangles.html" data-scroll="S-11-1-Double-Integrals-Rectangles" class="internal">Double Riemann Sums and Double Integrals over Rectangles</a></li>
+<li><a href="S-11-2-Iterated-Integrals.html" data-scroll="S-11-2-Iterated-Integrals" class="internal">Iterated Integrals</a></li>
+<li><a href="S-11-3-Double-Integrals-General.html" data-scroll="S-11-3-Double-Integrals-General" class="internal">Double Integrals over General Regions</a></li>
+<li><a href="S-11-4-Double-Integrals-Applications.html" data-scroll="S-11-4-Double-Integrals-Applications" class="internal">Applications of Double Integrals</a></li>
+<li><a href="S-11-5-Double-Integrals-Polar.html" data-scroll="S-11-5-Double-Integrals-Polar" class="internal">Double Integrals in Polar Coordinates</a></li>
+<li><a href="S-11-6-Parametric-Surfaces-Surface-Area.html" data-scroll="S-11-6-Parametric-Surfaces-Surface-Area" class="internal">Surfaces Defined Parametrically and Surface Area</a></li>
+<li><a href="S-11-7-Triple-Integrals.html" data-scroll="S-11-7-Triple-Integrals" class="internal">Triple Integrals</a></li>
+<li><a href="S-11-8-Triple-Integrals-Cylindrical-Spherical.html" data-scroll="S-11-8-Triple-Integrals-Cylindrical-Spherical" class="internal">Triple Integrals in Cylindrical and Spherical Coordinates</a></li>
+<li><a href="S-11-9-Change-of-Variable.html" data-scroll="S-11-9-Change-of-Variable" class="internal">Change of Variables</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="C_Vector.html" data-scroll="C_Vector" class="internal"><span class="codenumber">12</span> <span class="title">Vector Calculus</span></a><ul>
+<li><a href="S_Vector_VectorFields.html" data-scroll="S_Vector_VectorFields" class="internal">Vector Fields</a></li>
+<li><a href="S_Vector_IdeaLineIntegral.html" data-scroll="S_Vector_IdeaLineIntegral" class="internal">The Idea of a Line Integral</a></li>
+<li><a href="S_Vector_ParamLineIntegrals.html" data-scroll="S_Vector_ParamLineIntegrals" class="internal">Using Parametrizations to Calculate Line Integrals</a></li>
+<li><a href="S_ScalarLineIntegral.html" data-scroll="S_ScalarLineIntegral" class="internal">Line Integrals of Scalar Functions</a></li>
+<li><a href="S_Vector_FTCLI.html" data-scroll="S_Vector_FTCLI" class="internal">Path-Independent Vector Fields and the Fundamental Theorem of Calculus for Line Integrals</a></li>
+<li><a href="S_Vector_Div.html" data-scroll="S_Vector_Div" class="internal">The Divergence of a Vector Field</a></li>
+<li><a href="S_Vector_Curl.html" data-scroll="S_Vector_Curl" class="internal">The Curl of a Vector Field</a></li>
+<li><a href="S_Vector_GreensTheorem.html" data-scroll="S_Vector_GreensTheorem" class="internal">Green's Theorem</a></li>
+<li><a href="S_Vector_FluxInt.html" data-scroll="S_Vector_FluxInt" class="internal">Flux Integrals</a></li>
+<li><a href="S_ScalarSurfaceIntegral.html" data-scroll="S_ScalarSurfaceIntegral" class="internal">Surface Integrals of Scalar Valued Functions</a></li>
+<li><a href="S_Vector_StokesThm.html" data-scroll="S_Vector_StokesThm" class="internal">Stokes' Theorem</a></li>
+<li><a href="S_Vector_DivThm.html" data-scroll="S_Vector_DivThm" class="active">The Divergence Theorem</a></li>
+</ul>
+</li>
+<li class="link backmatter"><a href="backmatter-1.html" data-scroll="backmatter-1" class="internal"><span class="title">Back Matter</span></a></li>
+<li class="link"><a href="index-1.html" data-scroll="index-1" class="internal"><span class="title">Index</span></a></li>
+</ul></nav><div class="extras"><nav><a class="pretext-link" href="https://pretextbook.org">Authored in PreTeXt</a><a href="https://www.mathjax.org"><img title="Powered by MathJax" src="https://www.mathjax.org/badge/badge.gif" alt="Powered by MathJax"></a></nav></div>
+</div></div>
+<main class="main"><div id="content" class="pretext-content"><section class="section" id="S_Vector_DivThm"><h2 class="heading hide-type">
+<span class="type">Section</span> <span class="codenumber">12.12</span> <span class="title">The Divergence Theorem</span>
+</h2>
+<article class="objectives goal-like" id="objectives-37"><h3 class="heading"><span class="type">Motivating Questions</span></h3>
+<ul class="disc">
+<li id="li-1694"><p id="p-5306">What is a closed surface in <span class="process-math">\(\R^3\text{?}\)</span></p></li>
+<li id="li-1695"><p id="p-5307">How can we efficiently calculate the flux through a closed surface in <span class="process-math">\(\R^3\)</span> when that surface must be parametrized in several pieces?</p></li>
+</ul></article><section class="introduction" id="introduction-96"><p id="p-5308">In <a href="S_Vector_Div.html" class="internal" title="Section 12.6: The Divergence of a Vector Field">Section 12.6</a> we examined vector fields for how the strength of a vector field changes in different regions. In particular, we developed the <a href="" class="xref" data-knowl="./knowl/defn_Div.html" title="Definition 12.6.6">divergence</a> of a vector field as a local measurement (based on density) of how the strength of the vector field changes. In particular, we did this by looking at the flux of the vector field through a closed path in two dimensions, then generalizing these ideas to higher dimensions.</p>
+<p id="p-5309">In <a href="S_Vector_FluxInt.html" class="internal" title="Section 12.9: Flux Integrals">Section 12.9</a>, we measured how much of a vector field flowed through a section of a surface in three dimensions as a generalization of our argument from <a href="S_Vector_Div.html" class="internal" title="Section 12.6: The Divergence of a Vector Field">Section 12.6</a>. In this section, we will connect the ideas of flux of a vector field through a closed surface in three dimensions and the divergence of that vector field.</p>
+<p id="p-5310">A surface in three dimensions is said to be <dfn class="terminology">closed</dfn> if it has no boundary. Recalling the surfaces we studied in <a href="S_Vector_StokesThm.html" class="internal" title="Section 12.11: Stokes' Theorem">Section 12.11</a> where we applied <a href="" class="xref" data-knowl="./knowl/thm_Stokes.html" title="Theorem 12.11.5: Stokes' Theorem">Stokes' Theorem</a>, <em class="emphasis">none</em> of those surfaces were closed because the boundary of the surface through which we calculated the flux was the curve along which we calculated the circulation. In <a href="" class="xref" data-knowl="./knowl/fig_Vector_DivThm_NotClosedSurfaces.html" title="Figure 12.12.1">Figure 12.12.1</a>, we show two surfaces that are <em class="emphasis">not</em> closed, as demonstrated by the red curves marking the edge where the surface ends.</p>
+<figure class="figure figure-like" id="fig_Vector_DivThm_NotClosedSurfaces"><iframe id="interactive-27" width="522" height="1054" src="interactive-27-if.html"></iframe><figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">12.12.1<span class="period">.</span></span><span class="space"> </span>Two surfaces that are <em class="emphasis">not</em> closed</figcaption></figure><p id="p-5311">In fact, the yellow cylinder has two edges where the surface ends (does not meet itself). The surfaces in <a href="" class="xref" data-knowl="./knowl/fig_Vector_DivThm_ClosedSurfaces.html" title="Figure 12.12.2">Figure 12.12.2</a> <em class="emphasis">are</em> closed because there is no edge to the surface. Note that the cylinder has been “filled in” with a cap at top and bottom (plotted in gray and green, respectively) to become a closed surface.</p>
+<figure class="figure figure-like" id="fig_Vector_DivThm_ClosedSurfaces"><iframe id="interactive-28" width="522" height="1054" src="interactive-28-if.html"></iframe><figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">12.12.2<span class="period">.</span></span><span class="space"> </span>Two closed surfaces</figcaption></figure><p id="p-5312">Closed surfaces can be used to define the boundary of a volume in space. If we have the top and bottom on our cylinder, we have a well-defined volume of space, in that we know which points are “inside” the volume and which are “outside” of the volume. With different top and bottom surfaces, the enclosed volume would be different. <a href="" class="xref" data-knowl="./knowl/fig_Vector_DivThm_TopsAndBottoms.html" title="Figure 12.12.3">Figure 12.12.3</a> illustrates three different ways to complete the cylindrical surface into a closed surface.</p>
+<figure class="figure figure-like" id="fig_Vector_DivThm_TopsAndBottoms"><iframe id="interactive-29" width="600" height="684" src="interactive-29-if.html"></iframe><figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">12.12.3<span class="period">.</span></span><span class="space"> </span>Three ways to close a cylindrical surface by adding a top and bottom</figcaption></figure></section><section class="subsection" id="Vector_DivThm_FluxClosedSurface"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">12.12.1</span> <span class="title">Measuring the Flux through a Closed Surface</span>
+</h3>
+<article class="exploration project-like" id="PA_Vector_Divthm"><h4 class="heading">
+<span class="type">Preview Activity</span><span class="space"> </span><span class="codenumber">12.12.1</span><span class="period">.</span><span class="space"> </span><span class="title">Locating sources of a poisonous gas.</span>
+</h4>
+<div class="introduction" id="introduction-97">
+<p id="p-5313">We will use three different surfaces to examine the flux through closed surfaces. Let <span class="process-math">\(S_{\text{top}}\)</span> be the top half of the unit sphere centered at the origin (graphed in magenta in the figures below). Let <span class="process-math">\(S_{\text{bottom}}\)</span> be the bottom half of the unit sphere centered at the origin (graphed in yellow). Finally, let <span class="process-math">\(S_{\text{mid}}\)</span> be the unit disk centered at the origin in the <span class="process-math">\(xy\)</span>-plane (graphed in blue). With these definitions, <span class="process-math">\(S_{\text{top}}\)</span> and <span class="process-math">\(S_{\text{bottom}}\)</span> will make a closed surface given by the unit sphere. The surfaces <span class="process-math">\(S_{\text{top}}\)</span> and <span class="process-math">\(S_{\text{mid}}\)</span> will enclose the top half of the unit ball, while <span class="process-math">\(S_{\text{bottom}}\)</span> and <span class="process-math">\(S_{\text{mid}}\)</span> will enclose the bottom half of the unit ball.</p>
+<p id="p-5314">In this problem we will be using the surfaces defined above and the flux integrals of a poisonous gas through these surfaces to try to whether different regions of space are emitting or absorbing the poisonous gas.</p>
+</div>
+<article class="task exercise-like" id="task-272"><h5 class="heading"><span class="codenumber">(a)</span></h5>
+<p id="p-5315">In this part, we will consider the unit ball shown in <a href="" class="xref" data-knowl="./knowl/fig_Vector_DivThm_Poisongas1.html" title="Figure 12.12.4">Figure 12.12.4</a>, with boundary and normal vectors as shown in the plot. If the flux integral of a poisonous gas through <span class="process-math">\(S_{\text{top}}\)</span> is <span class="process-math">\(15\)</span> and the flux integral of the poison gas through <span class="process-math">\(S_{\text{bottom}}\)</span> is <span class="process-math">\(-3\text{,}\)</span> is the interior of the sphere emitting or absorbing poisonous gas? Explain your reasoning.</p>
+<figure class="figure figure-like" id="fig_Vector_DivThm_Poisongas1"><iframe id="interactive-30" width="522" height="574" src="interactive-30-if.html"></iframe><figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">12.12.4<span class="period">.</span></span><span class="space"> </span>Unit ball with boundary given by the combination of <span class="process-math">\(S_{\text{top}}\)</span> and <span class="process-math">\(S_{\text{bottom}}\)</span></figcaption></figure></article><article class="task exercise-like" id="task-273"><h5 class="heading"><span class="codenumber">(b)</span></h5>
+<p id="p-5316">In this part, we will consider the top half of the unit ball shown in <a href="" class="xref" data-knowl="./knowl/fig_Vector_DivThm_Poisongas2.html" title="Figure 12.12.5">Figure 12.12.5</a>, with boundary and normal vectors as shown in the plot. If the flux integral of a poisonous gas through <span class="process-math">\(S_{\text{top}}\)</span> is <span class="process-math">\(15\)</span> and the flux integral of the poison gas through <span class="process-math">\(S_{\text{mid}}\)</span> is <span class="process-math">\(-20\text{,}\)</span> is the top half of the unit ball emitting or absorbing poisonous gas? Explain your reasoning.</p>
+<figure class="figure figure-like" id="fig_Vector_DivThm_Poisongas2"><iframe id="interactive-31" width="522" height="574" src="interactive-31-if.html"></iframe><figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">12.12.5<span class="period">.</span></span><span class="space"> </span>Upper half of the unit ball with boundaries given by <span class="process-math">\(S_{\text{top}}\)</span> and <span class="process-math">\(S_{\text{mid}}\)</span></figcaption></figure></article><article class="task exercise-like" id="task-274"><h5 class="heading"><span class="codenumber">(c)</span></h5>
+<p id="p-5317">In this part, we will consider the bottom half of the unit ball shown in <a href="" class="xref" data-knowl="./knowl/fig_Vector_DivThm_Poisongas3.html" title="Figure 12.12.6">Figure 12.12.6</a>, with boundary and normal vectors as shown in the plot. Based on the information given in the previous two parts, what will the flux integrals of the poison gas be for <span class="process-math">\(S_{\text{bottom}}\)</span> and <span class="process-math">\(S_{\text{mid}}\)</span> be in this case? Be sure to pay attention to the orientation of what we consider positive flow. Explain your reasoning.</p>
+<figure class="figure figure-like" id="fig_Vector_DivThm_Poisongas3"><iframe id="interactive-32" width="522" height="574" src="interactive-32-if.html"></iframe><figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">12.12.6<span class="period">.</span></span><span class="space"> </span>Lower half of the unit ball with boundaries given by <span class="process-math">\(S_{\text{mid}}\)</span> and <span class="process-math">\(S_{\text{bottom}}\)</span></figcaption></figure></article><article class="task exercise-like" id="task-275"><h5 class="heading"><span class="codenumber">(d)</span></h5>
+<p id="p-5318">Using your answer from the previous part, is the bottom half of the unit ball emitting or absorbing poisonous gas? Explain your reasoning.</p></article></article><p id="p-5319">The preview activity showed how the flux through a closed surface can be subdivided into the flux through surfaces which combine to be the closed surface (with orientation switches corresponding to additive inverse). The net flux through the closed surface measures the net amount of the vector field that is created or destroyed on the interior of the closed surface.</p></section><section class="subsection" id="SS_Vector_DivThm_Verify"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">12.12.2</span> <span class="title">The Divergence Theorem</span>
+</h3>
+<p id="p-5320">The divergence of a vector field was developed as a measurement of the density with which the strength of vector field is changing. In three dimensions, the divergence measures the volume density in which the vector field is being created or destroyed. This means that if we integrate the divergence of a vector field over a volume of space, we will get the net amount of the vector field that is created or destroyed in that particular volume of space. Since the net amount of a vector field that is created or destroyed in a volume of space is the same as the net flux of the vector field through the boundary of that volume (which is a closed surface), we have a correspondence between a triple integral of the divergence of a vector field on the interior of a closed surface and the flux integral of the vector field over the closed surface.</p>
+<article class="theorem theorem-like" id="thm_Div"><h4 class="heading">
+<span class="type">Theorem</span><span class="space"> </span><span class="codenumber">12.12.7</span><span class="period">.</span><span class="space"> </span><span class="title">Divergence Theorem.</span>
+</h4>
+<p id="p-5321">Let <span class="process-math">\(S\)</span> be a closed surface in three dimensional space and let <span class="process-math">\(Q\)</span> be the volume bounded by <span class="process-math">\(S\text{.}\)</span> If <span class="process-math">\(\vF\)</span> is a vector field that has continuous first partial derivatives on <span class="process-math">\(Q\)</span> and <span class="process-math">\(S\text{,}\)</span> then</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+\iint_{S} \vF \cdot \vN\, dS = \iiint_Q \divg(\vF)\, dV
+\end{equation*}
+</div>
+<p class="continuation">where the integral on the left measures the flux through <span class="process-math">\(S\)</span> in terms of the outward pointing normal vector.</p></article><p id="p-5322">The preview activity and the discussion before the statement of the <a href="" class="xref" data-knowl="./knowl/thm_Div.html" title="Theorem 12.12.7: Divergence Theorem">Divergence Theorem</a> have hopefully given you some intuition as to why the theorem is true. The ideas should also seem similar to the manner in which we approached <a href="" class="xref" data-knowl="./knowl/thm_Green.html" title="Theorem 12.8.3: Green's Theorem">Green's Theorem</a> and <a href="" class="xref" data-knowl="./knowl/thm_Stokes.html" title="Theorem 12.11.5: Stokes' Theorem">Theorem 12.11.5</a>. The next activity walks you through evaluating both the flux integrals necessary to calculate the flux directly and the triple integral of the divergence theorem for a specific vector field and closed surface.</p>
+<article class="activity project-like" id="act_Vector_DivThm_Verify"><h4 class="heading">
+<span class="type">Activity</span><span class="space"> </span><span class="codenumber">12.12.2</span><span class="period">.</span>
+</h4>
+<div class="introduction" id="introduction-98">
+<p id="p-5323">In this activity, we will look at calculating both sides of a non-trivial example of the <a href="" class="xref" data-knowl="./knowl/thm_Div.html" title="Theorem 12.12.7: Divergence Theorem">Divergence Theorem</a>. We will look at the region inside the right circular cylinder shown in <a href="" class="xref" data-knowl="./knowl/fig_Vector_DivThm_Cylinder.html" title="Figure 12.12.8">Figure 12.12.8</a>. Let <span class="process-math">\(S\)</span> be the closed surface formed by combining <span class="process-math">\(S_{\text{top}}\)</span> (in yellow), <span class="process-math">\(S_{\text{sides}}\)</span> (in blue), and <span class="process-math">\(S_{\text{bottom}}\)</span> (in magenta). The solid volume <span class="process-math">\(Q\)</span> is the volume bounded by <span class="process-math">\(S\text{.}\)</span> The region shown has radius <span class="process-math">\(2\text{,}\)</span> and its height is <span class="process-math">\(1\text{.}\)</span></p>
+<figure class="figure figure-like" id="fig_Vector_DivThm_Cylinder"><iframe id="interactive-33" width="522" height="548" src="interactive-33-if.html"></iframe><figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">12.12.8<span class="period">.</span></span><span class="space"> </span>A closed cylindrical surface</figcaption></figure><p id="p-5324">The vector field we consider in this activity is given by</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+\vF=\langle xy-2z,y^2-yz,3x+z^2\rangle\text{.}
+\end{equation*}
+</div>
+</div>
+<article class="task exercise-like" id="task_act_Vector_DivThm_Verify_Sign"><h5 class="heading"><span class="codenumber">(a)</span></h5>
+<p id="p-5325"><a href="" class="xref" data-knowl="./knowl/fig_act_Vector_DivThm_Verify_Field.html" title="Figure 12.12.9">Figure 12.12.9</a> shows the vector field <span class="process-math">\(\vF\)</span> on a region around <span class="process-math">\(S\text{.}\)</span> Do you think the flux of <span class="process-math">\(\vF\)</span> through <span class="process-math">\(S\)</span> will be positive, negative, or zero?</p>
+<figure class="figure figure-like" id="fig_act_Vector_DivThm_Verify_Field"><iframe id="interactive-34" width="522" height="548" src="interactive-34-if.html"></iframe><figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">12.12.9<span class="period">.</span></span><span class="space"> </span>The vector field <span class="process-math">\(\vF=\langle xy-2z,y^2-yz,3x+z^2\rangle\)</span> in the region near <span class="process-math">\(Q\)</span></figcaption></figure></article><article class="task exercise-like" id="task-277"><h5 class="heading"><span class="codenumber">(b)</span></h5>
+<p id="p-5326">Parametrize each of the surfaces <span class="process-math">\(S_{\text{top}}\text{,}\)</span> <span class="process-math">\(S_{\text{sides}}\text{,}\)</span> and <span class="process-math">\(S_{\text{bottom}}\text{.}\)</span> Be sure to give bounds for each of your parametrization.</p></article><article class="task exercise-like" id="task_act_Vector_DivThm_Verify_CylCoord"><h5 class="heading"><span class="codenumber">(c)</span></h5>
+<p id="p-5327">Give inequalities in terms of cylindrical coordinates to describe <span class="process-math">\(Q\text{.}\)</span></p></article><article class="task exercise-like" id="task_act_Vector_DivThm_Verify_DoubleInt"><h5 class="heading"><span class="codenumber">(d)</span></h5>
+<p id="p-5328">Set up and evaluate double integrals to calculate the flux of <span class="process-math">\(\vF\)</span> through <span class="process-math">\(S_{\text{top}}\text{,}\)</span> <span class="process-math">\(S_{\text{sides}}\text{,}\)</span> and <span class="process-math">\(S_{\text{bottom}}\text{.}\)</span></p></article><article class="task exercise-like" id="task_act_Vector_DivThm_Verify_NetFlux"><h5 class="heading"><span class="codenumber">(e)</span></h5>
+<p id="p-5329">What is the net flux through the closed surface? Be sure to state if the net flux is in or out.</p></article><article class="task exercise-like" id="task_act_Vector_DivThm_Verify_Div"><h5 class="heading"><span class="codenumber">(f)</span></h5>
+<p id="p-5330">Compute the divergence of <span class="process-math">\(\vF\)</span> and use this to explain whether you think <span class="process-math">\(\iiint_Q \divg(\vF)\, dV\)</span> will be positive, negative, or zero.</p></article><article class="task exercise-like" id="task_act_Vector_DivThm_Verify_TripleInt"><h5 class="heading"><span class="codenumber">(g)</span></h5>
+<p id="p-5331">Set up and compute the triple integral for <span class="process-math">\(\iiint_Q
+\divg(\vF)\, dV\text{.}\)</span></p>
+<div class="solutions">
+<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-18" id="hint-18"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-18"><div class="hint solution-like"><p id="p-5332">Use cylindrical coordinates.</p></div></div>
+</div></article><article class="task exercise-like" id="task_act_Vector_DivThm_Verify_Compare"><h5 class="heading"><span class="codenumber">(h)</span></h5>
+<p id="p-5333">Verify that your answers for <a href="" class="xref" data-knowl="./knowl/task_act_Vector_DivThm_Verify_NetFlux.html" title="Task 12.12.2.e">part e</a> and <a href="" class="xref" data-knowl="./knowl/task_act_Vector_DivThm_Verify_TripleInt.html" title="Task 12.12.2.g">part g</a> are the same and thus that the Divergence Theorem holds for this example.</p></article><article class="task exercise-like" id="task_act_Vector_DivThm_Verify_Easier"><h5 class="heading"><span class="codenumber">(i)</span></h5>
+<p id="p-5334">Was the left-hand side or right-hand side of the equation in the Divergence Theorem more tedious to calculate in this example? Do you think this will be true for most other cases where the Divergence Theorem applies?</p></article></article><p id="p-5335">We finish this section with an activity that asks you to calculate the flux of a vector field through some closed surfaces without guiding you step-by-step.</p>
+<article class="activity project-like" id="task_Vector_DivThm_Calculate"><h4 class="heading">
+<span class="type">Activity</span><span class="space"> </span><span class="codenumber">12.12.3</span><span class="period">.</span>
+</h4>
+<div class="introduction" id="introduction-99"><p id="p-5336">Calculate the flux of the given vector field <span class="process-math">\(\vF\)</span> through the surface <span class="process-math">\(S\)</span> for each situation below.</p></div>
+<article class="task exercise-like" id="task-285"><h5 class="heading"><span class="codenumber">(a)</span></h5>
+<p id="p-5337">The vector field <span class="process-math">\(\vF = \langle 2x+3\sin(yz),-4y+e^{x^2}
+, 7z+\arctan(y^5)\)</span> through the tetrahedron <span class="process-math">\(S\)</span> with vertices <span class="process-math">\((0,0,0)\text{,}\)</span> <span class="process-math">\((1,0,0)\text{,}\)</span> <span class="process-math">\((0,2,0)\text{,}\)</span> and <span class="process-math">\((0,0,2)\text{.}\)</span></p></article><article class="task exercise-like" id="task-286"><h5 class="heading"><span class="codenumber">(b)</span></h5>
+<p id="p-5338">The vector field <span class="process-math">\(\vF=\langle xy^2,yz^2,zx^2\rangle\)</span> through the closed portion <span class="process-math">\(S\)</span> of the sphere of radius <span class="process-math">\(3\)</span> centered at the origin having <span class="process-math">\(x\geq 0\text{.}\)</span></p>
+<div class="solutions">
+<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-19" id="hint-19"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-19"><div class="hint solution-like"><p id="p-5339">By itself, <span class="process-math">\(S\)</span> is not a closed surface. However, think about what additional surface <span class="process-math">\(S'\)</span> you need to add to make a closed surface.</p></div></div>
+</div></article></article></section><section class="subsection" id="subsection-147"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">12.12.3</span> <span class="title">Summary</span>
+</h3>
+<ul id="p-5340" class="disc">
+<li id="li-1696"><p id="p-5341">A closed surface is one that has no boundary.</p></li>
+<li id="li-1697"><p id="p-5342">The flux of a smooth vector field through a closed surface can be computed by integrating the divergence of the vector field over the volume bounded by the closed surface.</p></li>
+</ul></section><section class="exercises" id="exercises-32"><h3 class="heading hide-type">
+<span class="type">Exercises</span> <span class="codenumber">12.12.4</span> <span class="title">Exercises</span>
+</h3>
+<article class="exercise exercise-like" id="exercise-407"><h4 class="heading"><span class="codenumber">1<span class="period">.</span></span></h4>
+<p id="p-5343">Let <span class="process-math">\(Q\)</span> be the volume enclosed by <span class="process-math">\(x=0\text{,}\)</span> <span class="process-math">\(x=1\text{,}\)</span> <span class="process-math">\(y=0\text{,}\)</span> <span class="process-math">\(y=1\text{,}\)</span> <span class="process-math">\(z=0\text{,}\)</span> and <span class="process-math">\(z=1\text{.}\)</span> Compute the flux of <span class="process-math">\(\vF = \langle z^2-xy,4yz+cos(x/\pi),e^{xyz} \rangle\)</span> through each of the six cube faces.</p></article><article class="exercise exercise-like" id="exercise-408"><h4 class="heading"><span class="codenumber">2<span class="period">.</span></span></h4>
+<p id="p-5344">Let <span class="process-math">\(Q\)</span> be the volume given in cylindrical coordinates by <span class="process-math">\(0 \leq z \leq 3\text{,}\)</span> <span class="process-math">\(1 \leq r \leq 2\text{,}\)</span> and <span class="process-math">\(0 \leq \theta \lt 2 \pi\text{.}\)</span> Give an example of a vector field with component functions that are linear in <span class="process-math">\(x\text{,}\)</span> <span class="process-math">\(y\text{,}\)</span> and <span class="process-math">\(z\)</span> such that the flux of the vector field through the boundary of <span class="process-math">\(Q\)</span> is 17.</p></article><article class="exercise exercise-like" id="exercise-409"><h4 class="heading"><span class="codenumber">3<span class="period">.</span></span></h4>
+<p id="p-5345">Let <span class="process-math">\(Q\)</span> be the volume given in spherical coordinates by <span class="process-math">\(0 \leq \rho \leq 3\text{,}\)</span> <span class="process-math">\(0\leq \phi \leq \pi/4\text{,}\)</span> and <span class="process-math">\(0\leq \theta \lt 2 \pi\text{.}\)</span> Give an example of a vector field with component functions that are not linear or constant such that the flux of the vector field through the boundary of <span class="process-math">\(Q\)</span> is 25.</p></article></section></section></div></main>
+</div>
+<!--Start: Google Global Site Tag code--><!--*** DO NOT COPY ANOTHER PROJECT'S MAGIC NUMBERS/ID ***--><!--***           GET YOUR OWN FROM GOOGLE             ***-->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-QJKN634F7R"></script><script>  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-QJKN634F7R');
+</script><!--End: Google Global Site Tag code-->
+</body>
+</html>

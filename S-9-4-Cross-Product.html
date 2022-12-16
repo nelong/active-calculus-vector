@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<html lang="en-US">
+<head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>The Cross Product</title>
+<meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:type" content="book">
+<meta property="book:title" content="Active Calculus - Multivariable + Vector">
+<meta property="book:author" content="Steve Schlicker">
+<meta property="book:author" content="Mitchel T. Keller">
+<meta property="book:author" content="Nicholas Long">
+<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
+window.MathJax = {
+  tex: {
+    inlineMath: [['\\(','\\)']],
+    tags: "none",
+    tagSide: "right",
+    tagIndent: ".8em",
+    packages: {'[+]': ['base', 'extpfeil', 'ams', 'amscd', 'newcommand', 'knowl']}
+  },
+  options: {
+    ignoreHtmlClass: "tex2jax_ignore|ignore-math",
+    processHtmlClass: "process-math",
+    renderActions: {
+        findScript: [10, function (doc) {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
+                var display = !!node.type.match(/; *mode=display/);
+                var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                var text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = {node: text, delim: '', n: 0};
+                math.end = {node: text, delim: '', n: 0};
+                doc.math.push(math);
+            });
+        }, '']
+    },
+  },
+  chtml: {
+    scale: 0.88,
+    mtextInheritFont: true
+  },
+  loader: {
+    load: ['input/asciimath', '[tex]/extpfeil', '[tex]/amscd', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
+    paths: {pretext: "https://pretextbook.org/js/lib"},
+  },
+  startup: {
+    pageReady() {
+      return MathJax.startup.defaultPageReady().then(function () {
+      console.log("in ready function");
+      rsMathReady();
+      }
+    )}
+},
+};
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><link href="https://webwork-ptx.aimath.org/webwork2_files/js/apps/MathView/mathview.css" rel="stylesheet">
+<script src="https://pretextbook.org/js/0.13/pretext-webwork/2./pretext-webwork.js"></script><script src="https://webwork-ptx.aimath.org/webwork2_files/node_modules/iframe-resizer/js/iframeResizer.min.js"></script><script async="" src="https://cse.google.com/cse.js?cx=015103900096539427448:ngwuia10qci"></script><script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.13/pretext.js"></script><script>miniversion=0.674</script><script src="https://pretextbook.org/js/0.13/pretext_add_on.js?x=1"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
+</script><link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/pretext.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/pretext_add_on.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/banner_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/toc_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/knowls_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/style_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/colors_blue_grey.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/setcolors.css" rel="stylesheet" type="text/css">
+</head>
+<body class="pretext-book ignore-math has-toc has-sidebar-left">
+<a class="assistive" href="#content">Skip to main content</a><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\newcommand{\R}{\mathbb{R}}
+\newcommand{\va}{\mathbf{a}}
+\newcommand{\vb}{\mathbf{b}}
+\newcommand{\vc}{\mathbf{c}}
+\newcommand{\vC}{\mathbf{C}}
+\newcommand{\vd}{\mathbf{d}}
+\newcommand{\ve}{\mathbf{e}}
+\newcommand{\vi}{\mathbf{i}}
+\newcommand{\vj}{\mathbf{j}}
+\newcommand{\vk}{\mathbf{k}}
+\newcommand{\vn}{\mathbf{n}}
+\newcommand{\vm}{\mathbf{m}}
+\newcommand{\vr}{\mathbf{r}}
+\newcommand{\vs}{\mathbf{s}}
+\newcommand{\vu}{\mathbf{u}}
+\newcommand{\vv}{\mathbf{v}}
+\newcommand{\vw}{\mathbf{w}}
+\newcommand{\vx}{\mathbf{x}}
+\newcommand{\vy}{\mathbf{y}}
+\newcommand{\vz}{\mathbf{z}}
+\newcommand{\vzero}{\mathbf{0}}
+\newcommand{\vF}{\mathbf{F}}
+\newcommand{\vG}{\mathbf{G}}
+\newcommand{\vH}{\mathbf{H}}
+\newcommand{\vR}{\mathbf{R}}
+\newcommand{\vT}{\mathbf{T}}
+\newcommand{\vN}{\mathbf{N}}
+\newcommand{\vL}{\mathbf{L}}
+\newcommand{\vB}{\mathbf{B}}
+\newcommand{\vS}{\mathbf{S}}
+\newcommand{\proj}{\text{proj}}
+\newcommand{\comp}{\text{comp}}
+\newcommand{\nin}{}
+\newcommand{\vecmag}[1]{|#1|}
+\newcommand{\grad}{\nabla}
+\DeclareMathOperator{\curl}{curl}
+\DeclareMathOperator{\divg}{div}
+\newcommand{\lt}{&lt;}
+\newcommand{\gt}{&gt;}
+\newcommand{\amp}{&amp;}
+\definecolor{fillinmathshade}{gray}{0.9}
+\newcommand{\fillinmath}[1]{\mathchoice{\colorbox{fillinmathshade}{$\displaystyle     \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\textstyle        \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptstyle      \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptscriptstyle\phantom{\,#1\,}$}}}
+\)</span></div>
+<header id="masthead" class="smallbuttons"><div class="banner"><div class="container">
+<a id="logo-link" href=""></a><div class="title-container">
+<h1 class="heading"><a href="book-1.html"><span class="title">Active Calculus - Multivariable + Vector</span></a></h1>
+<p class="byline">Steve Schlicker, Mitchel T. Keller, Nicholas Long</p>
+</div>
+<div class="searchwrapper" role="search"><div class="gcse-search"></div></div>
+</div></div>
+<nav id="primary-navbar" class="navbar"><div class="container">
+<div class="navbar-top-buttons">
+<button class="sidebar-left-toggle-button button active" aria-label="Show or hide table of contents sidebar">Contents</button><div class="tree-nav toolbar toolbar-divisor-3">
+<a class="index-button toolbar-item button" href="index-1.html" title="Index">Index</a><span class="threebuttons"><a id="previousbutton" class="previous-button toolbar-item button" href="S-9-3-Dot-Product.html" title="Previous">Prev</a><a id="upbutton" class="up-button button toolbar-item" href="C-9.html" title="Up">Up</a><a id="nextbutton" class="next-button button toolbar-item" href="S-9-5-Lines-Planes.html" title="Next">Next</a></span>
+</div>
+</div>
+<div class="navbar-bottom-buttons toolbar toolbar-divisor-4">
+<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="S-9-3-Dot-Product.html" title="Previous">Prev</a><a class="up-button button toolbar-item" href="C-9.html" title="Up">Up</a><a class="next-button button toolbar-item" href="S-9-5-Lines-Planes.html" title="Next">Next</a>
+</div>
+</div></nav></header><div class="page">
+<div id="sidebar-left" class="sidebar" role="navigation"><div class="sidebar-content">
+<nav id="toc"><ul>
+<li class="link frontmatter">
+<a href="frontmatter.html" data-scroll="frontmatter" class="internal"><span class="title">Front Matter</span></a><ul>
+<li><a href="colophon-1.html" data-scroll="colophon-1" class="internal">Colophon</a></li>
+<li><a href="preface-1.html" data-scroll="preface-1" class="internal">Features of the Text</a></li>
+<li><a href="preface-2.html" data-scroll="preface-2" class="internal">Vector Calculus Preface</a></li>
+<li><a href="preface-3.html" data-scroll="preface-3" class="internal">Acknowledgments</a></li>
+<li><a href="preface-4.html" data-scroll="preface-4" class="internal">Active Calculus - Multivariable: our goals</a></li>
+<li><a href="preface-5.html" data-scroll="preface-5" class="internal">How to Use this Text</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="C-9.html" data-scroll="C-9" class="internal"><span class="codenumber">9</span> <span class="title">Multivariable and Vector Functions</span></a><ul>
+<li><a href="S-9-1-Functions.html" data-scroll="S-9-1-Functions" class="internal">Functions of Several Variables and Three Dimensional Space</a></li>
+<li><a href="S-9-2-Vectors.html" data-scroll="S-9-2-Vectors" class="internal">Vectors</a></li>
+<li><a href="S-9-3-Dot-Product.html" data-scroll="S-9-3-Dot-Product" class="internal">The Dot Product</a></li>
+<li><a href="S-9-4-Cross-Product.html" data-scroll="S-9-4-Cross-Product" class="active">The Cross Product</a></li>
+<li><a href="S-9-5-Lines-Planes.html" data-scroll="S-9-5-Lines-Planes" class="internal">Lines and Planes in Space</a></li>
+<li><a href="S-9-6-Vector-Valued-Functions.html" data-scroll="S-9-6-Vector-Valued-Functions" class="internal">Vector-Valued Functions</a></li>
+<li><a href="S-9-7-Vector-Valued-Functions-Derivatives.html" data-scroll="S-9-7-Vector-Valued-Functions-Derivatives" class="internal">Derivatives and Integrals of Vector-Valued Functions</a></li>
+<li><a href="S-9-8-Arc-Length-Curvature.html" data-scroll="S-9-8-Arc-Length-Curvature" class="internal">Arc Length and Curvature</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="C-10.html" data-scroll="C-10" class="internal"><span class="codenumber">10</span> <span class="title">Derivatives of Multivariable Functions</span></a><ul>
+<li><a href="S-10-1-Limits.html" data-scroll="S-10-1-Limits" class="internal">Limits</a></li>
+<li><a href="S-10-2-First-Order-Partial-Derivatives.html" data-scroll="S-10-2-First-Order-Partial-Derivatives" class="internal">First-Order Partial Derivatives</a></li>
+<li><a href="S-10-3-Second-Order-Partial-Derivatives.html" data-scroll="S-10-3-Second-Order-Partial-Derivatives" class="internal">Second-Order Partial Derivatives</a></li>
+<li><a href="S-10-4-Linearization.html" data-scroll="S-10-4-Linearization" class="internal">Linearization: Tangent Planes and Differentials</a></li>
+<li><a href="S-10-5-Chain-Rule.html" data-scroll="S-10-5-Chain-Rule" class="internal">The Chain Rule</a></li>
+<li><a href="S-10-6-Directional-Derivative.html" data-scroll="S-10-6-Directional-Derivative" class="internal">Directional Derivatives and the Gradient</a></li>
+<li><a href="S-10-7-Optimization.html" data-scroll="S-10-7-Optimization" class="internal">Optimization</a></li>
+<li><a href="S-10-8-Lagrange-Multipliers.html" data-scroll="S-10-8-Lagrange-Multipliers" class="internal">Constrained Optimization: Lagrange Multipliers</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="C-11.html" data-scroll="C-11" class="internal"><span class="codenumber">11</span> <span class="title">Multiple Integrals</span></a><ul>
+<li><a href="S-11-1-Double-Integrals-Rectangles.html" data-scroll="S-11-1-Double-Integrals-Rectangles" class="internal">Double Riemann Sums and Double Integrals over Rectangles</a></li>
+<li><a href="S-11-2-Iterated-Integrals.html" data-scroll="S-11-2-Iterated-Integrals" class="internal">Iterated Integrals</a></li>
+<li><a href="S-11-3-Double-Integrals-General.html" data-scroll="S-11-3-Double-Integrals-General" class="internal">Double Integrals over General Regions</a></li>
+<li><a href="S-11-4-Double-Integrals-Applications.html" data-scroll="S-11-4-Double-Integrals-Applications" class="internal">Applications of Double Integrals</a></li>
+<li><a href="S-11-5-Double-Integrals-Polar.html" data-scroll="S-11-5-Double-Integrals-Polar" class="internal">Double Integrals in Polar Coordinates</a></li>
+<li><a href="S-11-6-Parametric-Surfaces-Surface-Area.html" data-scroll="S-11-6-Parametric-Surfaces-Surface-Area" class="internal">Surfaces Defined Parametrically and Surface Area</a></li>
+<li><a href="S-11-7-Triple-Integrals.html" data-scroll="S-11-7-Triple-Integrals" class="internal">Triple Integrals</a></li>
+<li><a href="S-11-8-Triple-Integrals-Cylindrical-Spherical.html" data-scroll="S-11-8-Triple-Integrals-Cylindrical-Spherical" class="internal">Triple Integrals in Cylindrical and Spherical Coordinates</a></li>
+<li><a href="S-11-9-Change-of-Variable.html" data-scroll="S-11-9-Change-of-Variable" class="internal">Change of Variables</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="C_Vector.html" data-scroll="C_Vector" class="internal"><span class="codenumber">12</span> <span class="title">Vector Calculus</span></a><ul>
+<li><a href="S_Vector_VectorFields.html" data-scroll="S_Vector_VectorFields" class="internal">Vector Fields</a></li>
+<li><a href="S_Vector_IdeaLineIntegral.html" data-scroll="S_Vector_IdeaLineIntegral" class="internal">The Idea of a Line Integral</a></li>
+<li><a href="S_Vector_ParamLineIntegrals.html" data-scroll="S_Vector_ParamLineIntegrals" class="internal">Using Parametrizations to Calculate Line Integrals</a></li>
+<li><a href="S_ScalarLineIntegral.html" data-scroll="S_ScalarLineIntegral" class="internal">Line Integrals of Scalar Functions</a></li>
+<li><a href="S_Vector_FTCLI.html" data-scroll="S_Vector_FTCLI" class="internal">Path-Independent Vector Fields and the Fundamental Theorem of Calculus for Line Integrals</a></li>
+<li><a href="S_Vector_Div.html" data-scroll="S_Vector_Div" class="internal">The Divergence of a Vector Field</a></li>
+<li><a href="S_Vector_Curl.html" data-scroll="S_Vector_Curl" class="internal">The Curl of a Vector Field</a></li>
+<li><a href="S_Vector_GreensTheorem.html" data-scroll="S_Vector_GreensTheorem" class="internal">Green's Theorem</a></li>
+<li><a href="S_Vector_FluxInt.html" data-scroll="S_Vector_FluxInt" class="internal">Flux Integrals</a></li>
+<li><a href="S_ScalarSurfaceIntegral.html" data-scroll="S_ScalarSurfaceIntegral" class="internal">Surface Integrals of Scalar Valued Functions</a></li>
+<li><a href="S_Vector_StokesThm.html" data-scroll="S_Vector_StokesThm" class="internal">Stokes' Theorem</a></li>
+<li><a href="S_Vector_DivThm.html" data-scroll="S_Vector_DivThm" class="internal">The Divergence Theorem</a></li>
+</ul>
+</li>
+<li class="link backmatter"><a href="backmatter-1.html" data-scroll="backmatter-1" class="internal"><span class="title">Back Matter</span></a></li>
+<li class="link"><a href="index-1.html" data-scroll="index-1" class="internal"><span class="title">Index</span></a></li>
+</ul></nav><div class="extras"><nav><a class="pretext-link" href="https://pretextbook.org">Authored in PreTeXt</a><a href="https://www.mathjax.org"><img title="Powered by MathJax" src="https://www.mathjax.org/badge/badge.gif" alt="Powered by MathJax"></a></nav></div>
+</div></div>
+<main class="main"><div id="content" class="pretext-content"><section class="section" id="S-9-4-Cross-Product"><h2 class="heading hide-type">
+<span class="type">Section</span> <span class="codenumber">9.4</span> <span class="title">The Cross Product</span>
+</h2>
+<article class="objectives goal-like" id="objectives-4"><h3 class="heading"><span class="type">Motivating Questions</span></h3>
+<ul class="disc">
+<li id="li-237"><p id="p-599">How and when is the cross product of two vectors defined?</p></li>
+<li id="li-238"><p id="p-600">What geometric information does the cross product provide?</p></li>
+</ul></article><section class="introduction" id="introduction-4"><p id="p-601">The last two sections have introduced some basic algebraic operations on vectors—addition, scalar multiplication, and the dot product—with useful geometric interpretations. In this section, we will meet a final algebraic operation, the <em class="emphasis">cross product</em>, which again conveys important geometric information.</p>
+<p id="p-602">To begin, we must emphasize that the cross product is only defined for vectors <span class="process-math">\(\vu\)</span> and <span class="process-math">\(\vv\)</span> in <span class="process-math">\(\R^3\text{.}\)</span> Also, remember that we use a right-hand coordinate system, as described in <a href="S-9-1-Functions.html" class="internal" title="Section 9.1: Functions of Several Variables and Three Dimensional Space">Section 9.1</a>. In particular, recall that the vectors <span class="process-math">\(\vi\text{,}\)</span> <span class="process-math">\(\vj\text{,}\)</span> and <span class="process-math">\(\vk\)</span> are oriented as shown below in <a href="" class="xref" data-knowl="./knowl/F_9_4_basis.html" title="Figure 9.4.1">Figure 9.4.1</a>. Earlier, we noticed that if we point the index finger of our <em class="emphasis">right</em> hand in the direction of <span class="process-math">\(\vi\)</span> and our middle finger in the direction of <span class="process-math">\(\vj\text{,}\)</span> then our thumb points in the direction of <span class="process-math">\(\vk\text{.}\)</span></p>
+<figure class="figure figure-like" id="F_9_4_basis"><div class="image-box" style="width: 50%; margin-left: 25%; margin-right: 25%;"><img src="external/images/fig_9_4_basis.svg" role="img" class="contained"></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">9.4.1<span class="period">.</span></span><span class="space"> </span>Basis vectors <span class="process-math">\(\vi\text{,}\)</span> <span class="process-math">\(\vj\text{,}\)</span> and <span class="process-math">\(\vk\text{.}\)</span></figcaption></figure><article class="exploration project-like" id="PA_9_4"><h3 class="heading">
+<span class="type">Preview Activity</span><span class="space"> </span><span class="codenumber">9.4.1</span><span class="period">.</span>
+</h3>
+<p id="p-603">The cross product of two vectors, <span class="process-math">\(\vu\)</span> and <span class="process-math">\(\vv\text{,}\)</span> will itself be a <dfn class="terminology">vector</dfn> denoted <span class="process-math">\(\vu\times\vv\text{.}\)</span> The direction of <span class="process-math">\(\vu\times\vv\)</span> is determined by the right-hand rule: if we point the index finger of our right hand in the direction of <span class="process-math">\(\vu\)</span> and our middle finger in the direction of <span class="process-math">\(\vv\text{,}\)</span> then our thumb points in the direction of <span class="process-math">\(\vu\times\vv\text{.}\)</span></p>
+<ol class="lower-alpha">
+<li id="li-239"><p id="p-604">We begin by defining the cross products using the vectors <span class="process-math">\(\vi\text{,}\)</span> <span class="process-math">\(\vj\text{,}\)</span> and <span class="process-math">\(\vk\text{.}\)</span>  Referring to <a href="" class="xref" data-knowl="./knowl/F_9_4_basis.html" title="Figure 9.4.1">Figure 9.4.1</a>, explain why <span class="process-math">\(\vi\text{,}\)</span> <span class="process-math">\(\vj\text{,}\)</span> <span class="process-math">\(\vk\)</span> in that order form a right-hand system. We then define <span class="process-math">\(\vi \times \vj\)</span> to be <span class="process-math">\(\vk\)</span> — that is <span class="process-math">\(\vi\times\vj = \vk\text{.}\)</span></p></li>
+<li id="li-240"><p id="p-605">Now explain why <span class="process-math">\(\vi\text{,}\)</span> <span class="process-math">\(\vk\text{,}\)</span> and <span class="process-math">\(-\vj\)</span> in that order form a right-hand system. We then define <span class="process-math">\(\vi \times \vk\)</span> to be <span class="process-math">\(-\vj\)</span> — that is  <span class="process-math">\(\vi\times\vk=-\vj\text{.}\)</span></p></li>
+<li id="li-241"><p id="p-606">Continuing in this way, complete the missing entries in <a href="" class="xref" data-knowl="./knowl/T_9_4_cross_def.html" title="Table 9.4.2: Table of cross products involving \vi \vj and \vk">Table 9.4.2</a>. <figure class="table table-like" id="T_9_4_cross_def"><figcaption><span class="type">Table</span><span class="space"> </span><span class="codenumber">9.4.2<span class="period">.</span></span><span class="space"> </span>Table of cross products involving <span class="process-math">\(\vi\text{,}\)</span> <span class="process-math">\(\vj\text{,}\)</span> and <span class="process-math">\(\vk\text{.}\)</span></figcaption><div class="tabular-box natural-width"><table class="tabular">
+<tr>
+<td class="l m b0 r0 l0 t0 lines"><span class="process-math">\(\vi\times\vj = \vk\)</span></td>
+<td class="l m b0 r0 l0 t0 lines"></td>
+<td class="l m b0 r0 l0 t0 lines"></td>
+<td class="l m b0 r0 l0 t0 lines"><span class="process-math">\(\vi\times\vk = -\vj\)</span></td>
+<td class="l m b0 r0 l0 t0 lines"></td>
+<td class="l m b0 r0 l0 t0 lines"></td>
+<td class="l m b0 r0 l0 t0 lines"><span class="process-math">\(\vj\times\vk =\)</span></td>
+</tr>
+<tr><td class="l m b0 r0 l0 t0 lines"></td></tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines"><span class="process-math">\(\vj\times\vi =\)</span></td>
+<td class="l m b0 r0 l0 t0 lines"></td>
+<td class="l m b0 r0 l0 t0 lines"></td>
+<td class="l m b0 r0 l0 t0 lines"><span class="process-math">\(\vk\times\vi =\)</span></td>
+<td class="l m b0 r0 l0 t0 lines"></td>
+<td class="l m b0 r0 l0 t0 lines"></td>
+<td class="l m b0 r0 l0 t0 lines"><span class="process-math">\(\vk\times\vj =\)</span></td>
+</tr>
+</table></div></figure></p></li>
+<li id="li-242"><p id="p-607">Up to this point, the products you have seen, such as the product of real numbers and the dot product of vectors, have been commutative, meaning that the product does not depend on the order of the terms.  For instance, <span class="process-math">\(2\cdot5 = 5\cdot 2\text{.}\)</span>  The table above suggests, however, that the cross product is <em class="emphasis">anti-commutative</em>: for any vectors <span class="process-math">\(\vu\)</span> and <span class="process-math">\(\vv\)</span> in <span class="process-math">\(\R^3\text{,}\)</span>  <span class="process-math">\(\vu\times\vv =
+-\vv\times\vu\text{.}\)</span> If we consider the case when <span class="process-math">\(\vu=\vv\text{,}\)</span> this shows that <span class="process-math">\(\vv\times\vv = -(\vv\times\vv)\text{.}\)</span>  What does this tell us about <span class="process-math">\(\vv\times\vv\text{;}\)</span>  in particular, what vector is unchanged by scalar multiplication by <span class="process-math">\(-1\text{?}\)</span></p></li>
+<li id="li-243">
+<p id="p-608">It is not difficult to show that the cross product interacts with scalar multiplication and vector addition as one would expect: that is</p>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/T_9_4_cross_def.html" id="md-6">
+\begin{align*}
+(c\vu) \times \vv =\mathstrut \amp  c(\vu \times \vv) \\
+(\vu + \vv) \times\vw =\mathstrut \amp  (\vu\times\vw) + (\vv\times\vw)
+\end{align*}
+</div>
+<p class="continuation">We can combine these properties to make cross product calculations a bit easier. For example,</p>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/T_9_4_cross_def.html" id="md-7">
+\begin{align*}
+(2\vi + \vj) \times \vk =\mathstrut \amp (2\vi \times \vk) + (\vj \times \vk) \\
+=\mathstrut \amp  2(\vi \times \vk) +  (\vj \times \vk) \\
+=\mathstrut \amp -2 \vj + \vi. 
+\end{align*}
+</div>
+<p class="continuation">Using these properties along with <a href="" class="xref" data-knowl="./knowl/T_9_4_cross_def.html" title="Table 9.4.2: Table of cross products involving \vi \vj and \vk">Table 9.4.2</a>, find the cross product <span class="process-math">\(\vu\times\vv\)</span> if <span class="process-math">\(\vu = 2\vi + 3\vj\)</span> and <span class="process-math">\(\vv = -\vi + \vk\text{.}\)</span></p>
+</li>
+<li id="li-244"><p id="p-609">Verify that the cross product <span class="process-math">\(\vu\times\vv\)</span> you just found in part (e) is orthogonal to both <span class="process-math">\(\vu\)</span> and <span class="process-math">\(\vv\text{.}\)</span></p></li>
+<li id="li-245">
+<p id="p-610">Consider the vectors <span class="process-math">\(\vu\)</span> and <span class="process-math">\(\vv\)</span> in the <span class="process-math">\(xy\)</span>-plane as shown below in <a href="" class="xref" data-knowl="./knowl/F_9_4_activity_1.html" title="Figure 9.4.3">Figure 9.4.3</a>. <figure class="figure figure-like" id="F_9_4_activity_1"><div class="image-box" style="width: 50%; margin-left: 25%; margin-right: 25%;"><img src="external/images/fig_9_4_activity_1.svg" role="img" class="contained"></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">9.4.3<span class="period">.</span></span><span class="space"> </span>Two vectors in the <span class="process-math">\(xy\)</span>-plane</figcaption></figure></p>
+<p id="p-611">Explain why <span class="process-math">\(\vu = |\vu|\vi\)</span> and <span class="process-math">\(\vv = |\vv|\cos(\theta) \vi +
+|\vv|\sin(\theta) \vj\text{.}\)</span>  Then compute the length of <span class="process-math">\(|\vu\times\vv|\text{.}\)</span></p>
+</li>
+</ol></article></section><section class="subsection" id="subsection-21"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">9.4.1</span> <span class="title">Computing the cross product</span>
+</h3>
+<p id="p-612">As we have seen in <a href="" class="xref" data-knowl="./knowl/PA_9_4.html" title="Preview Activity 9.4.1">Preview Activity 9.4.1</a>, the cross product <span class="process-math">\(\vu\times\vv\)</span> is defined for two vectors <span class="process-math">\(\vu\)</span> and <span class="process-math">\(\vv\)</span> in <span class="process-math">\(\R^3\)</span> and produces another vector in <span class="process-math">\(\R^3\text{.}\)</span> Using the right-hand rule, we saw that</p>
+<div class="sidebyside"><div class="sbsrow" style="margin-left:0%;margin-right:0%;">
+<div class="sbspanel fixed-width top" style="width:33.3333333333333%;"><table class="tabular">
+<tr><td class="l m b0 r0 l0 t0 lines"><span class="process-math">\(\vi\times\vj = \vk\)</span></td></tr>
+<tr><td class="l m b0 r0 l0 t0 lines"><span class="process-math">\(\vj\times\vi = -\vk\)</span></td></tr>
+</table></div>
+<div class="sbspanel fixed-width top" style="width:33.3333333333333%;"><table class="tabular">
+<tr><td class="l m b0 r0 l0 t0 lines"><span class="process-math">\(\vi\times\vk = -\vj\)</span></td></tr>
+<tr><td class="l m b0 r0 l0 t0 lines"><span class="process-math">\(\vk\times\vi = \vj\)</span></td></tr>
+</table></div>
+<div class="sbspanel fixed-width top" style="width:33.3333333333333%;"><table class="tabular">
+<tr><td class="l m b0 r0 l0 t0 lines"><span class="process-math">\(\vj\times\vk = \vi\)</span></td></tr>
+<tr><td class="l m b0 r0 l0 t0 lines"><span class="process-math">\(\vk\times\vj = -\vi\)</span></td></tr>
+</table></div>
+</div></div>
+<p id="p-613">If, in addition, we assume the cross product behaves like we think a product should (e.g., the cross product distributes over vector addition), we can compute the cross product in terms of the components of general vectors to find a formula for the cross product. Doing so we see that</p>
+<div class="displaymath process-math" data-contains-math-knowls="" id="md-8">
+\begin{align*}
+\vu\times\vv =\mathstrut \amp  (u_1\vi + u_2\vj + u_3\vk) \times (v_1\vi + v_2\vj + v_3\vk)\\
+=\mathstrut \amp  u_1\vi\times  (v_1\vi + v_2\vj + v_3\vk)+u_2\vj\times  (v_1\vi + v_2\vj + v_3\vk) \\
+\mathstrut \amp +u_3\vk\times  (v_1\vi + v_2\vj + v_3\vk)\\
+=\mathstrut \amp  u_1v_1\vi\times\vi + u_1v_2\vi\times\vj + u_1v_3\vi\times\vk + u_2v_1\vj\times\vi + u_2v_2\vj\times\vj \\
+\mathstrut \amp + u_2v_3\vj\times\vk +u_3v_1\vk\times\vi + u_3v_2\vk\times\vj + u_3v_3\vk\times\vk\\
+=\mathstrut \amp  u_1v_2\vk - u_1v_3\vj - u_2v_1\vk + u_2v_3\vi +u_3v_1\vj -
+u_3v_2\vi\\
+=\mathstrut \amp  (u_2v_3-u_3v_2)\vi - (u_1v_3-u_3v_1)\vj + (u_1v_2-u_2v_1)\vk.
+\end{align*}
+</div>
+<p class="continuation">(Like the dot product, the cross product arises in physical applications, e.g., torque, but it is more convenient mathematically to begin from an algebraic perspective.)</p>
+<p id="p-614">The previous calculations lead us to define the cross product of vectors in <span class="process-math">\(\R^3\)</span> as follows. <article class="definition definition-like" id="definition-8"><h4 class="heading">
+<span class="type">Definition</span><span class="space"> </span><span class="codenumber">9.4.4</span><span class="period">.</span>
+</h4>
+<p id="p-615">The <dfn class="terminology">cross product</dfn> <span class="process-math">\(\vu \times \vv\)</span> of vectors <span class="process-math">\(\vu = u_1\vi + u_2\vj + u_3\vk\)</span> and <span class="process-math">\(\vv = v_1\vi + v_2\vj + v_3\vk\)</span> in <span class="process-math">\(\R^3\)</span> is the vector</p>
+<div class="displaymath process-math" data-contains-math-knowls="" id="E_9_4_cross_def">
+\begin{equation}
+(u_2v_3-u_3v_2)\vi - (u_1v_3-u_3v_1)\vj + (u_1v_2-u_2v_1)\vk.\tag{9.4.1}
+\end{equation}
+</div></article></p>
+<p id="p-616">At first, this may look intimidating and difficult to remember. However, if we rewrite the expression in Equation <a href="" class="xref" data-knowl="./knowl/E_9_4_cross_def.html" title="Equation 9.4.1">(9.4.1)</a> using determinants, important structure emerges. The determinant of a <span class="process-math">\(2\times2\)</span> matrix is</p>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/E_9_4_cross_def.html">
+\begin{equation*}
+\left|
+\begin{array}{cc}
+a \amp  b \\
+c \amp  d
+\end{array} 
+\right|
+=ad - bc.
+\end{equation*}
+</div>
+<p id="p-617">It follows that we can thus rewrite Equation <a href="" class="xref" data-knowl="./knowl/E_9_4_cross_def.html" title="Equation 9.4.1">(9.4.1)</a> in the form</p>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/E_9_4_cross_def.html">
+\begin{equation*}
+\vu\times\vv = 
+\left|
+\begin{array}{cc}
+u_2 \amp  u_3 \\
+v_2 \amp  v_3
+\end{array} 
+\right| \vi
+-
+\left|
+\begin{array}{cc}
+u_1 \amp  u_3 \\
+v_1 \amp  v_3
+\end{array} 
+\right| \vj
++
+\left|
+\begin{array}{cc}
+u_1 \amp  u_2 \\
+v_1 \amp  v_2
+\end{array} 
+\right| \vk.
+\end{equation*}
+</div>
+<p id="p-618">For those familiar with the determinant of a <span class="process-math">\(3\times3\)</span> matrix, we write the mnemonic as</p>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/PA_9_4.html ./knowl/E_9_4_cross_def.html ./knowl/E_9_4_cross_def.html ./knowl/E_9_4_cross_def.html ./knowl/PA_9_4.html ./knowl/E_9_4_cross_def.html">
+\begin{equation*}
+\vu\times\vv = 
+\left|
+\begin{array}{ccc}
+\vi \amp  \vj \amp  \vk \\
+u_1 \amp  u_2 \amp  u_3 \\
+v_1 \amp  v_2 \amp  v_3
+\end{array} 
+\right|.
+\end{equation*}
+</div>
+<article class="activity project-like" id="A_9_4_5"><h4 class="heading">
+<span class="type">Activity</span><span class="space"> </span><span class="codenumber">9.4.2</span><span class="period">.</span>
+</h4>
+<p id="p-619">Suppose <span class="process-math">\(\vu = \langle 0, 1, 3\rangle\)</span> and <span class="process-math">\(\vv = \langle 2, -1, 0\rangle\text{.}\)</span> Use the formula <a href="" class="xref" data-knowl="./knowl/E_9_4_cross_def.html" title="Equation 9.4.1">(9.4.1)</a> for the following.</p>
+<ol class="lower-alpha">
+<li id="li-246"><p id="p-620">Find the cross product <span class="process-math">\(\vu\times\vv\text{.}\)</span></p></li>
+<li id="li-247"><p id="p-621">Evaluate the dot products <span class="process-math">\(\vu\cdot(\vu\times\vv)\)</span> and <span class="process-math">\(\vv\cdot(\vu\times\vv)\text{.}\)</span>  What does this tell you about the geometric relationship among <span class="process-math">\(\vu\text{,}\)</span> <span class="process-math">\(\vv\text{,}\)</span> and <span class="process-math">\(\vu\times\vv\text{?}\)</span></p></li>
+<li id="li-248"><p id="p-622">Find the cross product <span class="process-math">\(\vv\times \vi\text{.}\)</span></p></li>
+<li id="li-249"><p id="p-623">Multiplication of real numbers is <em class="emphasis">associative</em>, which means, for instance, that <span class="process-math">\((2\cdot 5)\cdot 3 = 2\cdot(5\cdot 3)\text{.}\)</span> Is it true that the cross product of vectors is associative?  For instance, is it true that <span class="process-math">\((\vu\times\vv)\times\vi = \vu\times(\vv\times\vi)\text{?}\)</span></p></li>
+<li id="li-250"><p id="p-624">Find the cross product <span class="process-math">\(\vu\times\vu\text{.}\)</span></p></li>
+</ol></article><p id="p-625">The cross product satisfies the following properties, some of which were illustrated in <a href="" class="xref" data-knowl="./knowl/PA_9_4.html" title="Preview Activity 9.4.1">Preview Activity 9.4.1</a> and may be easily verified from the definition <a href="" class="xref" data-knowl="./knowl/E_9_4_cross_def.html" title="Equation 9.4.1">(9.4.1)</a>.</p>
+<article class="assemblage assemblage-like" id="Cross-product-properties"><h4 class="heading"><span class="title">Properties of the cross product.</span></h4>
+<p id="p-626">Let <span class="process-math">\(\vu\text{,}\)</span> <span class="process-math">\(\vv\text{,}\)</span> and <span class="process-math">\(\vw\)</span> be vectors in <span class="process-math">\(\R^3\text{,}\)</span> and let <span class="process-math">\(c\)</span> be a scalar. Then</p>
+<ol class="decimal">
+<li id="li-251"><p id="p-627"><span class="process-math">\(\displaystyle \vu \times \vv = -(\vv \times \vu)\)</span></p></li>
+<li id="li-252"><p id="p-628"><span class="process-math">\(\displaystyle (\vu +\vv)\times \vw = (\vu \times \vw) + (\vv \times \vw)\)</span></p></li>
+<li id="li-253"><p id="p-629"><span class="process-math">\(\displaystyle (c\vu)\times \vw = c(\vu \times \vw) = \vu \times (c\vw)\)</span></p></li>
+<li id="li-254"><p id="p-630"><span class="process-math">\(\vu\times\vv = \vzero\)</span> if <span class="process-math">\(\vu\)</span> and <span class="process-math">\(\vv\)</span> are parallel.</p></li>
+<li id="li-255">
+<p id="p-631">The cross product is not associative;  that is, in general</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+(\vu\times\vv)\times\vw \neq \vu\times(\vv\times\vw).
+\end{equation*}
+</div>
+</li>
+</ol></article><p id="p-632">Just as we found for the dot product, the cross product provides us with useful geometric information. In particular, both the length and direction of the cross product <span class="process-math">\(\vu\times\vv\)</span> encode information about the geometric relationship between <span class="process-math">\(\vu\)</span> and <span class="process-math">\(\vv\text{.}\)</span></p></section><section class="subsection" id="subsection-22"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">9.4.2</span> <span class="title">The Length of <span class="process-math">\(\vu\times\vv\)</span></span>
+</h3>
+<p id="p-633">We may ask whether the length <span class="process-math">\(|\vu\times\vv|\)</span> has any relationship to the lengths of <span class="process-math">\(\vu\)</span> and <span class="process-math">\(\vv\text{.}\)</span> To investigate, we will compute the square of the length <span class="process-math">\(|\vu\times\vv|^2\)</span> and denote by <span class="process-math">\(\theta\)</span> the angle between <span class="process-math">\(\vu\)</span> and <span class="process-math">\(\vv\text{,}\)</span> as in <a href="S-9-3-Dot-Product.html" class="internal" title="Section 9.3: The Dot Product">Section 9.3</a>. Doing so, we find through some significant algebra that</p>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/S-9-3-Dot-Product.html" id="md-9">
+\begin{align*}
+|\vu\times\vv|^2=\mathstrut \amp  (u_2v_3-u_3v_2)^2 + (u_1v_3-u_3v_1)^2 +
+(u_1v_2-u_2v_1)^2\\
+=\mathstrut \amp  u_2^2 v_3^2- 2u_2u_3v_2v_3 +u_3^2v_2^2 +
+u_1^2 v_3^2 -2u_1u_3v_1v_3 +u_3^2v_1^2 \\
+\mathstrut \amp + u_1^2 v_2^2 -2u_1u_2v_1v_2 +u_2^2v_1^2\\
+=\mathstrut \amp  u_1^2(v_2^2+v_3^2) + u_2^2(v_1^2+v_3^2) + u_3^2(v_1^2+v_2^2) \\
+\mathstrut \amp - 2(u_1u_2v_1v_2 + u_1u_3v_1v_3 + u_2u_3v_2v_3)\\
+=\mathstrut \amp  u_1^2(v_1^2+v_2^2+v_3^2) + u_2^2(v_1^2+v_2^2+v_3^2) +
+u_3^2(v_1^2+v_2^2+v_3^2) \\
+\mathstrut \amp -
+(u_1^2v_1^2 + u_2^2v_2^2 + u_3^2v_3^2  + 
+2(u_1u_2v_1v_2 + u_1u_3v_1v_3 + u_2u_3v_2v_3))\\
+=\mathstrut \amp  (u_1^2+u_2^2+u_3^2)(v_1^2+v_2^2+v_3^2)-(u_1v_1+u_2v_2+u_3v_3)^2\\
+=\mathstrut \amp  |\vu|^2|\vv|^2-(\vu\cdot\vv)^2\\
+=\mathstrut \amp  |\vu|^2|\vv|^2(1-\cos^2(\theta))\\
+=\mathstrut \amp  |\vu|^2|\vv|^2\sin^2(\theta).
+\end{align*}
+</div>
+<p id="p-634">Therefore, we have found <span class="process-math">\(|\vu\times\vv|^2 = |\vu|^2|\vv|^2\sin^2(\theta)\text{,}\)</span> which means that</p>
+<div class="displaymath process-math" data-contains-math-knowls="" id="E_9_4_cross_length">
+\begin{equation}
+|\vu\times\vv| = |\vu||\vv|\sin(\theta).\tag{9.4.2}
+\end{equation}
+</div>
+<p id="p-635">Note that the third property stated above says that <span class="process-math">\(\vu\times\vv = \vzero\)</span> if <span class="process-math">\(\vu\)</span> and <span class="process-math">\(\vv\)</span> are parallel. This is reflected in Equation <a href="" class="xref" data-knowl="./knowl/E_9_4_cross_length.html" title="Equation 9.4.2">(9.4.2)</a> since <span class="process-math">\(\sin(\theta)=0\)</span> if <span class="process-math">\(\vu\)</span> and <span class="process-math">\(\vv\)</span> are parallel, which implies that <span class="process-math">\(\vu\times\vv = \vzero\text{.}\)</span></p>
+<p id="p-636">Equation <a href="" class="xref" data-knowl="./knowl/E_9_4_cross_length.html" title="Equation 9.4.2">(9.4.2)</a> also has a geometric implication. Consider the parallelogram formed by two vectors <span class="process-math">\(\vu\)</span> and <span class="process-math">\(\vv\text{,}\)</span> as shown in <a href="" class="xref" data-knowl="./knowl/F_9_4_area.html" title="Figure 9.4.5">Figure 9.4.5</a>.</p>
+<figure class="figure figure-like" id="F_9_4_area"><div class="image-box" style="width: 50%; margin-left: 25%; margin-right: 25%;"><img src="external/images/fig_9_4_area.svg" role="img" class="contained"></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">9.4.5<span class="period">.</span></span><span class="space"> </span>The parallelogram formed by <span class="process-math">\(\vu\)</span> and <span class="process-math">\(\vv\)</span></figcaption></figure><p id="p-637">Remember that the area of a parallelogram is the product of its base and height. As shown in the figure, we may consider the base of the parallelogram to be <span class="process-math">\(|\vu|\)</span> and the height to be <span class="process-math">\(|\vv|\sin(\theta)\text{.}\)</span> This means that the area of the parallelogram formed by <span class="process-math">\(\vu\)</span> and <span class="process-math">\(\vv\)</span> is</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+|\vu||\vv|\sin(\theta) = |\vu\times\vv|.
+\end{equation*}
+</div>
+<p id="p-638">This leads to the following interesting fact.</p>
+<article class="assemblage assemblage-like" id="Cross-product-area"><h4 class="heading"><span class="title">The length of the cross product.</span></h4>
+<p id="p-639">The length, <span class="process-math">\(|\vu \times \vv|\text{,}\)</span> of the cross product of vectors <span class="process-math">\(\vu\)</span> and <span class="process-math">\(\vv\)</span> is the area of the parallelogram determined by <span class="process-math">\(\vu\)</span> and <span class="process-math">\(\vv\text{.}\)</span></p></article><p id="p-640">Note also that if <span class="process-math">\(\vu = u_1\vi + u_2\vj + 0\vk\)</span> and <span class="process-math">\(\vv = v_1\vi + v_2\vj + 0\vk\)</span> are vectors in the <span class="process-math">\(xy\)</span>-plane, then Equation <a href="" class="xref" data-knowl="./knowl/E_9_4_cross_def.html" title="Equation 9.4.1">(9.4.1)</a> shows that the area of the parallelogram determined by <span class="process-math">\(\vu\)</span> and <span class="process-math">\(\vv\)</span> is <span class="process-math">\(|\vu \times \vv| = |u_1v_2-u_2v_1|\)</span> is the absolute value of the <span class="process-math">\(2 \times 2\)</span> determinant <span class="process-math">\(\left|
+\begin{array}{cc}
+u_1 \amp  u_2 \\
+v_1 \amp  v_2
+\end{array} 
+\right|.\)</span> So the absolute value of a determinant of a <span class="process-math">\(2 \times 2 \)</span> matrix is also the area of a parallelogram.</p>
+<article class="activity project-like" id="A_9_4_4"><h4 class="heading">
+<span class="type">Activity</span><span class="space"> </span><span class="codenumber">9.4.3</span><span class="period">.</span>
+</h4>
+<ol class="lower-alpha">
+<li id="li-256"><p id="p-641">Find the area of the parallelogram formed by the vectors <span class="process-math">\(\vu
+= \langle 1,3, -2\rangle\)</span> and <span class="process-math">\(\vv=\langle 3,0,1\rangle\text{.}\)</span></p></li>
+<li id="li-257"><p id="p-642">Find the area of the parallelogram in <span class="process-math">\(\R^3\)</span> whose vertices are <span class="process-math">\((1,0,1)\text{,}\)</span> <span class="process-math">\((0,0,1)\text{,}\)</span> <span class="process-math">\((2,1,0)\text{,}\)</span> and <span class="process-math">\((1,1,0)\text{.}\)</span> (Hint: It might be helpful to draw a picture to see how the vertices are arranged so you can determine which vectors you might use.)</p></li>
+</ol></article></section><section class="subsection" id="subsection-23"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">9.4.3</span> <span class="title">The Direction of <span class="process-math">\(\vu\times\vv\)</span></span>
+</h3>
+<p id="p-643">Now that we understand the length of <span class="process-math">\(\vu\times\vv\text{,}\)</span> we will investigate its direction. Remember from <a href="" class="xref" data-knowl="./knowl/PA_9_4.html" title="Preview Activity 9.4.1">Preview Activity 9.4.1</a> that cross products involving the vectors <span class="process-math">\(\vi\text{,}\)</span> <span class="process-math">\(\vj\text{,}\)</span> and <span class="process-math">\(\vk\)</span> resulted in vectors that are orthogonal to the two terms. We will see that this holds more generally.</p>
+<p id="p-644">We begin by computing <span class="process-math">\(\vu\cdot(\vu\times\vv)\text{,}\)</span> and see that</p>
+<div class="displaymath process-math" data-contains-math-knowls="" id="md-10">
+\begin{align*}
+\vu\cdot(\vu\times\vv)=\mathstrut \amp  u_1(u_2v_3-u_3v_2) - u_2(u_1v_3-u_3v_1) +
+u_3(u_1v_2-u_2v_1)\\
+=\mathstrut \amp  u_1u_2v_3 - u_1u_3v_2 - u_2u_1v_3+u_2u_3v_1 + u_3u_1v_2 -
+u_3u_2v_1\\
+=\mathstrut \amp  0
+\end{align*}
+</div>
+<p id="p-645">To summarize, we have <span class="process-math">\(\vu\cdot(\vu\times\vv) = 0\text{,}\)</span> which implies that <span class="process-math">\(\vu\)</span> is orthogonal to <span class="process-math">\(\vu\times\vv\text{.}\)</span> In the same way, we can show that <span class="process-math">\(\vv\)</span> is orthogonal to <span class="process-math">\(\vu\times\vv\text{.}\)</span> The net effect is that <span class="process-math">\(\vu\times\vv\)</span> is a vector that is perpendicular to both <span class="process-math">\(\vu\)</span> and <span class="process-math">\(\vv\text{,}\)</span> and hence <span class="process-math">\(\vu\times\vv\)</span> is perpendicular to the plane determined by <span class="process-math">\(\vu\)</span> and <span class="process-math">\(\vv\text{.}\)</span> Moreover, the direction of <span class="process-math">\(\vu\times\vv\)</span> is determined by applying the right-hand rule to <span class="process-math">\(\vu\)</span> and <span class="process-math">\(\vv\text{,}\)</span> as we saw in <a href="" class="xref" data-knowl="./knowl/PA_9_4.html" title="Preview Activity 9.4.1">Preview Activity 9.4.1</a>. In light of our earlier work that showed <span class="process-math">\(|\vu||\vv|\sin(\theta) = |\vu\times\vv|.\text{,}\)</span> we may now express <span class="process-math">\(\vu \times \vv\)</span> in the following different way.</p>
+<article class="assemblage assemblage-like" id="Cross-product-alternative"><h4 class="heading"><span class="title">The cross product as normal vector.</span></h4>
+<p id="p-646">Suppose that <span class="process-math">\(\vu\)</span> and <span class="process-math">\(\vv\)</span> are not parallel and that <span class="process-math">\(\vn\)</span> is the unit vector perpendicular to the plane containing <span class="process-math">\(\vu\)</span> and <span class="process-math">\(\vv\)</span> determined by the right-hand rule. Then</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+\vu\times\vv = |\vu||\vv|\sin(\theta) ~\vn.
+\end{equation*}
+</div></article><p id="p-647">There is yet one more geometric implication we may draw from this result. Suppose <span class="process-math">\(\vu\text{,}\)</span> <span class="process-math">\(\vv\text{,}\)</span> and <span class="process-math">\(\vw\)</span> are vectors in <span class="process-math">\(\R^3\)</span> that are not coplanar and that form a three-dimension parallelepiped as shown in <a href="" class="xref" data-knowl="./knowl/F_9_4_volume.html" title="Figure 9.4.6">Figure 9.4.6</a>.</p>
+<figure class="figure figure-like" id="F_9_4_volume"><div class="image-box" style="width: 50%; margin-left: 25%; margin-right: 25%;"><img src="external/images/fig_9_4_volume.svg" role="img" class="contained"></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">9.4.6<span class="period">.</span></span><span class="space"> </span>The parallelepiped determined by <span class="process-math">\(\vu\text{,}\)</span> <span class="process-math">\(\vv\text{,}\)</span> and <span class="process-math">\(\vw\)</span></figcaption></figure><p id="p-648">The volume of the parallelepiped is determined by multiplying <span class="process-math">\(A\text{,}\)</span> the area of the base, by the height <span class="process-math">\(h\text{.}\)</span> As we have just seen, the area of the base is <span class="process-math">\(|\vu\times\vv|\text{.}\)</span> Moreover, the height <span class="process-math">\(h=|\vw|\cos(\alpha)\)</span> where <span class="process-math">\(\alpha\)</span> is the angle between <span class="process-math">\(\vw\)</span> and the vector <span class="process-math">\(\vn\text{,}\)</span> which is orthogonal to the plane formed by <span class="process-math">\(\vu\)</span> and <span class="process-math">\(\vv\text{.}\)</span> Since <span class="process-math">\(\vn\)</span> is parallel to <span class="process-math">\(\vu\times\vv\text{,}\)</span> the angle between <span class="process-math">\(\vw\)</span> and <span class="process-math">\(\vu\times\vv\)</span> is also <span class="process-math">\(\alpha\text{.}\)</span> This shows that</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+|(\vu\times\vv)\cdot\vw| = |\vu\times\vv||\vw|\cos(\alpha) = Ah,
+\end{equation*}
+</div>
+<p class="continuation">and therefore</p>
+<article class="assemblage assemblage-like" id="Cross-product-parallelepiped"><h4 class="heading"><span class="title">The cross product and the volume of a parallelepiped.</span></h4>
+<p id="p-649">The volume of the parallelepiped determined by <span class="process-math">\(\vu\text{,}\)</span> <span class="process-math">\(\vv\text{,}\)</span> and <span class="process-math">\(\vw\)</span> is <span class="process-math">\(|(\vu\times\vv)\cdot\vw|\text{.}\)</span></p></article><p id="p-650">As a dot product of two vectors, the quantity <span class="process-math">\((\vu \times
+\vv) \cdot \vw\)</span> is a scalar and is called the <em class="emphasis">triple scalar product</em>.</p>
+<article class="activity project-like" id="A_9_4_6"><h4 class="heading">
+<span class="type">Activity</span><span class="space"> </span><span class="codenumber">9.4.4</span><span class="period">.</span>
+</h4>
+<p id="p-651">Suppose <span class="process-math">\(\vu = \langle 3, 5, -1\rangle\)</span> and <span class="process-math">\(\vv = \langle 2, -2, 1\rangle\text{.}\)</span></p>
+<ol class="lower-alpha">
+<li id="li-258"><p id="p-652">Find two unit vectors orthogonal to both <span class="process-math">\(\vu\)</span> and <span class="process-math">\(\vv\text{.}\)</span></p></li>
+<li id="li-259"><p id="p-653">Find the volume of the parallelepiped formed by the vectors <span class="process-math">\(\vu\text{,}\)</span> <span class="process-math">\(\vv\text{,}\)</span> and <span class="process-math">\(\vw = \langle 3,3,1\rangle\text{.}\)</span></p></li>
+<li id="li-260"><p id="p-654">Find a vector orthogonal to the plane containing the points <span class="process-math">\((0,1,2)\text{,}\)</span> <span class="process-math">\((4,1,0)\text{,}\)</span> and <span class="process-math">\((-2,2,2)\text{.}\)</span></p></li>
+<li id="li-261"><p id="p-655">Given the vectors <span class="process-math">\(\vu\)</span> and <span class="process-math">\(\vv\)</span> shown below in <a href="" class="xref" data-knowl="./knowl/F_9_4_activity_2.html" title="Figure 9.4.7">Figure 9.4.7</a>, sketch the cross products <span class="process-math">\(\vu\times\vv\)</span> and <span class="process-math">\(\vv\times\vu\text{.}\)</span> <figure class="figure figure-like" id="F_9_4_activity_2"><div class="image-box" style="width: 50%; margin-left: 25%; margin-right: 25%;"><img src="external/images/fig_9_4_activity_2.svg" role="img" class="contained"></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">9.4.7<span class="period">.</span></span><span class="space"> </span>Vectors <span class="process-math">\(\vu\)</span> and <span class="process-math">\(\vv\)</span></figcaption></figure></p></li>
+<li id="li-262"><p id="p-656">Do the vectors <span class="process-math">\(\va = \langle 1,3,-2\rangle\text{,}\)</span><span class="process-math">\(\vb=\langle2,1,-4\rangle\text{,}\)</span> and <span class="process-math">\(\vc=\langle 0, 1, 0\rangle\)</span> in standard position lie in the same plane?  Use the concepts from this section to explain.</p></li>
+</ol></article></section><section class="subsection" id="subsection-24"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">9.4.4</span> <span class="title">Torque is measured by a cross product</span>
+</h3>
+<p id="p-657">We have seen that the cross product enables us to produce a vector perpendicular to two given vectors, to measure the area of a parallelogram, and to measure the volume of a parallelepiped. Besides these geometric applications, the cross product also enables us to describe a physical quantity called <em class="emphasis">torque</em>.</p>
+<p id="p-658">Suppose that we would like to turn a bolt using a wrench as shown in <a href="" class="xref" data-knowl="./knowl/F_9_4_wrench.html" title="Figure 9.4.8">Figure 9.4.8</a>. If a force <span class="process-math">\(\vF\)</span> is applied to the wrench and <span class="process-math">\(\vr\)</span> is the vector from the position on the wrench at which the force is applied to center of the bolt, we define the torque, <span class="process-math">\(\tau\text{,}\)</span> to be</p>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/F_9_4_wrench.html">
+\begin{equation*}
+\tau=\vF\times\vr.
+\end{equation*}
+</div>
+<figure class="figure figure-like" id="F_9_4_wrench"><div class="image-box" style="width: 50%; margin-left: 25%; margin-right: 25%;"><img src="external/images/fig_9_4_wrench.svg" role="img" class="contained"></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">9.4.8<span class="period">.</span></span><span class="space"> </span>A force applied to a wrench</figcaption></figure><p id="p-659">When a force is applied to an object, Newton's Second Law tells us that the force is equal to the rate of change of the object's linear momentum. Similarly, the torque applied to an object is equal to the rate of change of the object's angular momentum. In other words, torque will cause the bolt to rotate.</p>
+<p id="p-660">In many industrial applications, bolts are required to be tightened using a specified torque. Of course, the magnitude of the torque is <span class="process-math">\(|\tau| =|\vF\times\vr|=|\vF||\vr||\sin(\theta)\text{.}\)</span> Thus, to produce a larger torque, we can increase either <span class="process-math">\(|\vF|\)</span> or <span class="process-math">\(|\vr|\text{,}\)</span> which you may know if you have ever removed lug nuts when changing a flat tire. The ancient Greek mathematician Archimedes said: “Give me a lever long enough and a fulcrum on which to place it, and I shall move the world.” A modern spin on this statement is: “Allow me to make <span class="process-math">\(|\vr|\)</span> large enough, and I shall produce a torque large enough to move the world.”</p></section><section class="subsection" id="subsection-25"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">9.4.5</span> <span class="title">Comparing the dot and cross products</span>
+</h3>
+<p id="p-661">Finally, it is worthwhile to compare and contrast the dot and cross products.</p>
+<ul class="disc">
+<li id="li-263">
+<span class="heading"><span class="title">(a).</span></span><p id="p-662"><span class="process-math">\(\vu\cdot\vv\)</span> is a scalar, while <span class="process-math">\(\vu\times\vv\)</span> is a vector.</p>
+</li>
+<li id="li-264">
+<span class="heading"><span class="title">(b).</span></span><p id="p-663"><span class="process-math">\(\vu\cdot\vv = \vv\cdot\vu\text{,}\)</span> while <span class="process-math">\(\vu\times\vv = -\vv\times\vu\)</span></p>
+</li>
+<li id="li-265">
+<span class="heading"><span class="title">(c).</span></span><p id="p-664"><span class="process-math">\(\vu\cdot\vv = |\vu||\vv|\cos(\theta)\text{,}\)</span> while <span class="process-math">\(|\vu\times\vv| = |\vu||\vv|\sin(\theta)\text{.}\)</span></p>
+</li>
+<li id="li-266">
+<span class="heading"><span class="title">(d).</span></span><p id="p-665"><span class="process-math">\(\vu\cdot\vv = 0\)</span> if <span class="process-math">\(\vu\)</span> and <span class="process-math">\(\vv\)</span> are perpendicular, while <span class="process-math">\(\vu\times\vv = \vzero\)</span> if <span class="process-math">\(\vu\)</span> and <span class="process-math">\(\vv\)</span> are parallel.</p>
+</li>
+</ul></section><section class="subsection" id="subsection-26"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">9.4.6</span> <span class="title">Summary</span>
+</h3>
+<ul class="disc">
+<li id="li-267">
+<p id="p-666">The cross product is defined <em class="emphasis">only</em> for vectors in <span class="process-math">\(\R^3\text{.}\)</span> The cross product of vectors <span class="process-math">\(\vu = u_1 \vi + u_2 \vj + u_3 \vk\)</span> and <span class="process-math">\(\vv = v_1 \vi + v_2 \vj + v_3 \vk\)</span> in <span class="process-math">\(\R^3\)</span> is the vector</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+\vu \times \vv =
+(u_2v_3-u_3v_2) \vi - (u_1v_3 - u_3v_1) \vj + (u_1v_2 - u_2v_1) \vk.
+\end{equation*}
+</div>
+</li>
+<li id="li-268">
+<p id="p-667">Geometrically, the cross product is</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+\vu \times \vv = |\vu| \ |\vv| \ \sin(\theta) \ \vn,
+\end{equation*}
+</div>
+<p class="continuation">where <span class="process-math">\(\theta\)</span> is the angle between <span class="process-math">\(\vu\)</span> and <span class="process-math">\(\vv\)</span> and <span class="process-math">\(\vn\)</span> is a unit vector perpendicular to both <span class="process-math">\(\vu\)</span> and <span class="process-math">\(\vv\)</span> as determined by the right-hand rule.</p>
+</li>
+<li id="li-269"><p id="p-668">The cross product of vectors <span class="process-math">\(\vu\)</span> and <span class="process-math">\(\vv\)</span> is a vector perpendicular to both <span class="process-math">\(\vu\)</span> and <span class="process-math">\(\vv\text{.}\)</span></p></li>
+<li id="li-270"><p id="p-669">The magnitude <span class="process-math">\(|\vu \times \vv|\)</span> of the cross product of the vectors <span class="process-math">\(\vu\)</span> and <span class="process-math">\(\vv\)</span> gives the area of the parallelogram determined by <span class="process-math">\(\vu\)</span> and <span class="process-math">\(\vv\text{.}\)</span> Also, the scalar triple product <span class="process-math">\(|(\vu \times
+\vv) \cdot \vw|\)</span> gives the volume of the parallelepiped determined by <span class="process-math">\(\vu\text{,}\)</span> <span class="process-math">\(\vv\text{,}\)</span> and <span class="process-math">\(\vw\text{.}\)</span></p></li>
+</ul></section><section class="exercises" id="exercises-4"><h3 class="heading hide-type">
+<span class="type">Exercises</span> <span class="codenumber">9.4.7</span> <span class="title">Exercises</span>
+</h3>
+<article class="exercise exercise-like" id="ex-9-4-WW-cp_basic_1"><h4 class="heading"><span class="codenumber">1<span class="period">.</span></span></h4>
+<div id="webwork-42" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="42" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Rochester/setVectors3CrossProduct/ur_vc_2_3.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-contents">
+<p id="p-670">If <span class="process-math">\(\mathbf{a} = \mathbf{i} + \mathbf{j} + 4 \mathbf{k}\)</span> and <span class="process-math">\(\mathbf{b} = \mathbf{i} + \mathbf{j} + 4 \mathbf{k}\)</span></p>
+<p id="p-671">Compute the cross product <span class="process-math">\(\bf{a} \times \bf{b}\text{.}\)</span></p>
+<p id="p-672"><span class="process-math">\(\bf{a} \times \bf{b}=\)</span><span class="fillin underline" role="img" aria-label="5-character blank" style="width: 2.272727272727273em;"></span> <span class="process-math">\(\bf{i}\)</span> + <span class="fillin underline" role="img" aria-label="5-character blank" style="width: 2.272727272727273em;"></span> <span class="process-math">\(\bf{j}\)</span> + <span class="fillin underline" role="img" aria-label="5-character blank" style="width: 2.272727272727273em;"></span> <span class="process-math">\(\bf{k}\)</span></p>
+</div>
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-42')">Activate</button></div>
+</div></article><article class="exercise exercise-like" id="ex-9-4-WW-cp_angle"><h4 class="heading"><span class="codenumber">2<span class="period">.</span></span></h4>
+<div id="webwork-43" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="43" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Michigan/Chap13Sec4/Q28.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-contents">
+<p id="p-676">Suppose <span class="process-math">\(\vec v\cdot \vec w=7\)</span> and <span class="process-math">\(||\vec v\times\vec w|| = 2\text{,}\)</span> and the angle between <span class="process-math">\(\vec v\)</span> and <span class="process-math">\(\vec w\)</span> is <span class="process-math">\(\theta\text{.}\)</span>  Find</p>
+<p id="p-677"><em class="alert">(a)</em> <span class="process-math">\(\tan\theta =\)</span> <span class="fillin underline" role="img" aria-label="45-character blank" style="width: 20.4545454545455em;"></span></p>
+<p id="p-678"><em class="alert">(b)</em> <span class="process-math">\(\theta  =\)</span> <span class="fillin underline" role="img" aria-label="45-character blank" style="width: 20.4545454545455em;"></span></p>
+</div>
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-43')">Activate</button></div>
+</div></article><article class="exercise exercise-like" id="ex-9-4-WW-cp_direction"><h4 class="heading"><span class="codenumber">3<span class="period">.</span></span></h4>
+<div id="webwork-44" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="44" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/maCalcDB/setVectors3CrossProduct/ur_vc_2_1.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-contents">
+<p id="p-681">You are looking down at a map.  A vector <span class="process-math">\(\bf{u}\)</span> with <span class="process-math">\(\left| \mathbf{u} \right|\)</span>  = 9 points north and a vector <span class="process-math">\(\mathbf{v}\)</span> with  <span class="process-math">\(\left| \mathbf{v} \right|\)</span>  = 9 points northeast.  The crossproduct <span class="process-math">\(\mathbf{u} \times \mathbf{v}\)</span> points:</p>
+<p id="p-682">A) south</p>
+<p id="p-683">B) northwest</p>
+<p id="p-684">C) up</p>
+<p id="p-685">D) down</p>
+<p id="p-686">Please enter the letter of the correct answer: <span class="fillin underline" role="img" aria-label="5-character blank" style="width: 2.272727272727273em;"></span></p>
+<p id="p-687">The magnitude  <span class="process-math">\(\left| \mathbf{u} \times \mathbf{v} \right|\)</span> = <span class="fillin underline" role="img" aria-label="25-character blank" style="width: 11.3636363636364em;"></span></p>
+</div>
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-44')">Activate</button></div>
+</div></article><article class="exercise exercise-like" id="ex-9-4-WW-cp_orthogonal_1"><h4 class="heading"><span class="codenumber">4<span class="period">.</span></span></h4>
+<div id="webwork-45" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="45" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Rochester/setVectors3CrossProduct/ur_vc_2_4.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-contents">
+<p id="p-690">If <span class="process-math">\(\mathbf{a} = \mathbf{i} + 10 \mathbf{j} + \mathbf{k}\)</span> and <span class="process-math">\(\mathbf{b} = \mathbf{i} + 15 \mathbf{j} + \mathbf{k}\text{,}\)</span> find a unit vector with positive first coordinate orthogonal to both <span class="process-math">\(\mathbf{a}\)</span> and <span class="process-math">\(\mathbf{b}\text{.}\)</span></p>
+<p id="p-691"><span class="fillin underline" role="img" aria-label="15-character blank" style="width: 6.818181818181818em;"></span> <span class="process-math">\(\mathbf{i}\)</span> + <span class="fillin underline" role="img" aria-label="15-character blank" style="width: 6.818181818181818em;"></span> <span class="process-math">\(\mathbf{j}\)</span> + <span class="fillin underline" role="img" aria-label="15-character blank" style="width: 6.818181818181818em;"></span> <span class="process-math">\(\mathbf{k}\)</span></p>
+</div>
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-45')">Activate</button></div>
+</div></article><article class="exercise exercise-like" id="ex-9-4-WW-cp_triangle-area"><h4 class="heading"><span class="codenumber">5<span class="period">.</span></span></h4>
+<div id="webwork-46" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="46" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/WHFreeman/Rogawski_Calculus_Early_Transcendentals_Second_Edition/12_Vector_Geometry/12.4_The_Cross_Product/12.4.43.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-contents">
+<p id="p-695">Sketch the triangle with vertices <span class="process-math">\(O, P=\left(0,2,2\right)\)</span> and <span class="process-math">\(Q=\left(4,0,7\right)\)</span> and compute its area using cross products.</p>
+<p id="p-696">Area=<span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span></p>
+</div>
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-46')">Activate</button></div>
+</div></article><article class="exercise exercise-like" id="ex-9-4-WW-cp_orthogonal_2"><h4 class="heading"><span class="codenumber">6<span class="period">.</span></span></h4>
+<div id="webwork-47" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="47" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Union/setMVvectors/vectors-9.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-contents"><p id="p-698">Let <span class="process-math">\(A = \left(-3,3,-2\right)\text{,}\)</span> <span class="process-math">\(B = \left(-4,-2,-3\right)\text{,}\)</span> and <span class="process-math">\(P = (k,k,k)\text{.}\)</span> The vector from <span class="process-math">\(A\)</span> to <span class="process-math">\(B\)</span> is perpendicular to the vector from <span class="process-math">\(A\)</span> to <span class="process-math">\(P\)</span> when <span class="process-math">\(k\)</span> = <span class="fillin underline" role="img" aria-label="30-character blank" style="width: 13.6363636363636em;"></span>.</p></div>
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-47')">Activate</button></div>
+</div></article><article class="exercise exercise-like" id="ex-9-4-WW-cp_orthogonal_3"><h4 class="heading"><span class="codenumber">7<span class="period">.</span></span></h4>
+<div id="webwork-48" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="48" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/272/setStewart12_4/problem_3.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-contents">
+<p id="p-700">Find two unit vectors orthogonal to <span class="process-math">\(\mathbf a = \langle -2, -1, 3\rangle\)</span> and <span class="process-math">\(\mathbf b = \langle 4, -2, 3\rangle\)</span></p>
+<p id="p-701">Enter your answer so that the first non-zero coordinate of the first vector is positive.</p>
+<p id="p-702">First Vector: <span class="process-math">\(\langle\)</span><span class="fillin underline" role="img" aria-label="17-character blank" style="width: 7.727272727272728em;"></span>, <span class="fillin underline" role="img" aria-label="17-character blank" style="width: 7.727272727272728em;"></span>, <span class="fillin underline" role="img" aria-label="17-character blank" style="width: 7.727272727272728em;"></span><span class="process-math">\(\rangle\)</span></p>
+<p id="p-703">Second Vector: <span class="process-math">\(\langle\)</span><span class="fillin underline" role="img" aria-label="17-character blank" style="width: 7.727272727272728em;"></span>, <span class="fillin underline" role="img" aria-label="17-character blank" style="width: 7.727272727272728em;"></span>, <span class="fillin underline" role="img" aria-label="17-character blank" style="width: 7.727272727272728em;"></span><span class="process-math">\(\rangle\)</span></p>
+</div>
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-48')">Activate</button></div>
+</div></article><article class="exercise exercise-like" id="ex-9-4-WW-cp_geometry"><h4 class="heading"><span class="codenumber">8<span class="period">.</span></span></h4>
+<div id="webwork-49" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="49" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/FortLewis/Calc3/13-4-Cross-product/HGM4-13-4-08-The-cross-product.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-contents">
+<p id="p-710">Use the geometric definition of the cross product and the properties of the cross product to make the following calculations.</p>
+<p id="p-711">(a) <span class="process-math">\(((\vec{i} + \vec{j}) \times \vec{i} ) \times \vec{j}\)</span> = <span class="fillin underline" role="img" aria-label="30-character blank" style="width: 13.6363636363636em;"></span></p>
+<p id="p-712">(b) <span class="process-math">\(( \vec{j} + \vec{k} ) \times ( \vec{j} \times \vec{k} )\)</span> = <span class="fillin underline" role="img" aria-label="30-character blank" style="width: 13.6363636363636em;"></span></p>
+<p id="p-713">(c) <span class="process-math">\(2 \vec{i} \times ( \vec{i} + \vec{j} )\)</span> = <span class="fillin underline" role="img" aria-label="30-character blank" style="width: 13.6363636363636em;"></span></p>
+<p id="p-714">(d) <span class="process-math">\(( \vec{k} + \vec{j} ) \times ( \vec{k} - \vec{j} )\)</span> = <span class="fillin underline" role="img" aria-label="30-character blank" style="width: 13.6363636363636em;"></span></p>
+</div>
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-49')">Activate</button></div>
+</div></article><article class="exercise exercise-like" id="ex-9-4-WW-cp_TF"><h4 class="heading"><span class="codenumber">9<span class="period">.</span></span></h4>
+<div id="webwork-50" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="50" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/FortLewis/Calc3/13-4-Cross-product/HGM4-13-CYU-01-The-cross-product.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-contents">
+<p id="p-719">Are the following statements true or false?</p>
+<ol id="p-720" class="lower-alpha">
+<li id="li-271"><p id="p-721"><span class="process-math">\((\vec{i} \times \vec{j}) \cdot \vec{k} = \vec{i} \cdot (\vec{j} \times \vec{k})\text{.}\)</span></p></li>
+<li id="li-272"><p id="p-722">If <span class="process-math">\(\vec{v}\)</span> and <span class="process-math">\(\vec{w}\)</span> are any two vectors, then <span class="process-math">\(||\vec{v} + \vec{w}|| = ||\vec{v}|| + ||\vec{w}||\text{.}\)</span></p></li>
+<li id="li-273"><p id="p-723">For any scalar <span class="process-math">\(c\)</span> and any vector <span class="process-math">\(\vec{v}\text{,}\)</span> we have <span class="process-math">\(||c\vec{v}|| = c ||\vec{v}||\text{.}\)</span></p></li>
+<li id="li-274"><p id="p-724">The value of <span class="process-math">\(\vec{v} \cdot (\vec{v} \times \vec{w})\)</span> is always zero.</p></li>
+</ol>
+</div>
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-50')">Activate</button></div>
+</div></article><article class="exercise exercise-like" id="ex-9-4-WW-torque"><h4 class="heading"><span class="codenumber">10<span class="period">.</span></span></h4>
+<div id="webwork-51" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="51" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Rochester/setVectors4PlanesLines/ur_vc_2_7.pg" data-courseID="anonymous" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-contents"><p id="p-725">A bicycle pedal is pushed straight downwards by a foot with a 36 Newton force.  The shaft of the pedal is 20 cm long.  If the shaft is <span class="process-math">\(\pi / 5\)</span> radians past horizontal, what is the magnitude of the torque about the point where the shaft is attached to the bicycle? <span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span> Nm</p></div>
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-51')">Activate</button></div>
+</div></article><article class="exercise exercise-like" id="Ez_9_4_1"><h4 class="heading"><span class="codenumber">11<span class="period">.</span></span></h4>
+<p id="p-727">Let <span class="process-math">\(\vu = 2\vi + \vj\)</span> and <span class="process-math">\(\vv = \vi + 2\vj\)</span> be vectors in <span class="process-math">\(\R^3\text{.}\)</span></p>
+<ol class="lower-alpha">
+<li id="li-275"><p id="p-728">Without doing any computations, find a unit vector that is orthogonal to both <span class="process-math">\(\vu\)</span> and <span class="process-math">\(\vv\text{.}\)</span>  What does this tell you about the formula for <span class="process-math">\(\vu \times \vv\text{?}\)</span></p></li>
+<li id="li-276"><p id="p-729">Using the properties of the cross product and what you know about cross products involving the fundamental vectors <span class="process-math">\(\vi\)</span> and <span class="process-math">\(\vj\text{,}\)</span> compute <span class="process-math">\(\vu \times \vv\text{.}\)</span></p></li>
+<li id="li-277"><p id="p-730">Next, use the determinant version of Equation <a href="" class="xref" data-knowl="./knowl/E_9_4_cross_def.html" title="Equation 9.4.1">(9.4.1)</a> to compute <span class="process-math">\(\vu \times \vv\text{.}\)</span>  Write one sentence that compares your results in (a), (b), and (c).</p></li>
+<li id="li-278"><p id="p-731">Find the area of the parallelogram determined by <span class="process-math">\(\vu\)</span> and <span class="process-math">\(\vv\text{.}\)</span></p></li>
+</ol></article><article class="exercise exercise-like" id="Ez_9_4_2"><h4 class="heading"><span class="codenumber">12<span class="period">.</span></span></h4>
+<p id="p-732">Let <span class="process-math">\(\vx = \langle 1, 1, 1 \rangle\)</span> and <span class="process-math">\(\vy = \langle 0, 3, -2 \rangle\text{.}\)</span></p>
+<ol class="lower-alpha">
+<li id="li-279"><p id="p-733">Are <span class="process-math">\(\vx\)</span> and <span class="process-math">\(\vy\)</span> orthogonal?  Are <span class="process-math">\(\vx\)</span> and <span class="process-math">\(\vy\)</span> parallel?  Clearly explain how you know, using appropriate vector products.</p></li>
+<li id="li-280"><p id="p-734">Find a unit vector that is orthogonal to both <span class="process-math">\(\vx\)</span> and <span class="process-math">\(\vy\text{.}\)</span></p></li>
+<li id="li-281"><p id="p-735">Express <span class="process-math">\(\vy\)</span> as the sum of two vectors:  one parallel to <span class="process-math">\(\vx\text{,}\)</span> the other orthogonal to <span class="process-math">\(\vx\text{.}\)</span></p></li>
+<li id="li-282"><p id="p-736">Determine the area of the parallelogram formed by <span class="process-math">\(\vx\)</span> and <span class="process-math">\(\vy\text{.}\)</span></p></li>
+</ol></article><article class="exercise exercise-like" id="Ez_9_4_3"><h4 class="heading"><span class="codenumber">13<span class="period">.</span></span></h4>
+<p id="p-737">Consider the triangle in <span class="process-math">\(\R^3\)</span> formed by <span class="process-math">\(P(3, 2, -1)\text{,}\)</span> <span class="process-math">\(Q(1, -2, 4)\text{,}\)</span> and <span class="process-math">\(R(4, 4, 0)\text{.}\)</span></p>
+<ol class="lower-alpha">
+<li id="li-283"><p id="p-738">Find <span class="process-math">\(\overrightarrow{PQ}\)</span> and <span class="process-math">\(\overrightarrow{PR}\text{.}\)</span></p></li>
+<li id="li-284"><p id="p-739">Observe that the area of <span class="process-math">\(\triangle PQR\)</span> is half of the area of the parallelogram formed by <span class="process-math">\(\overrightarrow{PQ}\)</span> and <span class="process-math">\(\overrightarrow{PR}\text{.}\)</span>  Hence find the area of <span class="process-math">\(\triangle PQR\text{.}\)</span></p></li>
+<li id="li-285"><p id="p-740">Find a unit vector that is orthogonal to the plane that contains points <span class="process-math">\(P\text{,}\)</span> <span class="process-math">\(Q\text{,}\)</span> and <span class="process-math">\(R\text{.}\)</span></p></li>
+<li id="li-286"><p id="p-741">Determine the measure of <span class="process-math">\(\angle PQR\text{.}\)</span></p></li>
+</ol></article><article class="exercise exercise-like" id="Ez_9_4_distribute"><h4 class="heading"><span class="codenumber">14<span class="period">.</span></span></h4>
+<p id="p-742">One of the properties of the cross product is that <span class="process-math">\((\vu+\vv) \times \vw = (\vu \times \vw) + (\vv \times \vw)\text{.}\)</span> That is, the cross product distributes over vector addition <em class="emphasis">on the right</em>. Here we investigate whether the cross product distributes over vector addition <em class="emphasis">on the left</em>.</p>
+<ol class="lower-alpha">
+<li id="li-287">
+<p id="p-743">Let <span class="process-math">\(\vu = \langle 1,2,-1 \rangle\text{,}\)</span> <span class="process-math">\(\vv = \langle 4,-3,6 \rangle\text{,}\)</span> and <span class="process-math">\(\vv = \langle 4,7,2 \rangle\text{.}\)</span> Calculate</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+\vu \times (\vv + \vw) \ \ \text{ and } \ \ (\vu \times \vv) + (\vu \times \vw).
+\end{equation*}
+</div>
+<p class="continuation">What do you notice?</p>
+</li>
+<li id="li-288">
+<p id="p-744">Use the properties of the cross product to show that in general</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+\vx \times (\vy + \vz) = (\vx \times \vy) + (\vx \times \vz)
+\end{equation*}
+</div>
+<p class="continuation">for any vectors <span class="process-math">\(\vx\text{,}\)</span> <span class="process-math">\(\vy\text{,}\)</span> and <span class="process-math">\(\vz\)</span> in <span class="process-math">\(\R^3\text{.}\)</span></p>
+</li>
+</ol></article><article class="exercise exercise-like" id="Ez_9_4_4"><h4 class="heading"><span class="codenumber">15<span class="period">.</span></span></h4>
+<p id="p-745">Let <span class="process-math">\(\vu = \langle u_1, u_2, u_3 \rangle\text{,}\)</span> <span class="process-math">\(\vv = \langle v_1, v_2, v_3 \rangle\text{,}\)</span> and <span class="process-math">\(\vw = \langle w_1, w_2, w_3 \rangle\)</span> be vectors in <span class="process-math">\(\R^3\text{.}\)</span> In this exercise we investigate properties of the triple scalar product <span class="process-math">\((\vu \times \vv) \cdot \vw\text{.}\)</span></p>
+<ol class="lower-alpha">
+<li id="li-289"><p id="p-746">Show that <span class="process-math">\((\vu \times \vv) \cdot \vw = \left|\begin{array}{ccc}
+u_1 \amp  u_2 \amp u_3 \\
+v_1 \amp  v_2 \amp v_3 \\
+w_1 \amp w_2 \amp w_3
+\end{array} \right| \text{.}\)</span></p></li>
+<li id="li-290"><p id="p-747">Show that <span class="process-math">\(\left|\begin{array}{ccc}
+u_1 \amp  u_2 \amp u_3 \\
+v_1 \amp  v_2 \amp v_3 \\
+w_1 \amp w_2 \amp w_3
+\end{array} \right|  = -\left|\begin{array}{ccc}
+v_1 \amp  v_2 \amp v_3 \\
+u_1 \amp  u_2 \amp u_3 \\
+w_1 \amp w_2 \amp w_3
+\end{array} \right|\text{.}\)</span> Conclude that interchanging the first two rows in a <span class="process-math">\(3 \times 3\)</span> matrix changes the sign of the determinant. In general (although we won't show it here), interchanging any two rows in a <span class="process-math">\(3 \times 3\)</span> matrix changes the sign of the determinant.</p></li>
+<li id="li-291">
+<p id="p-748">Use the results of parts (a) and (b) to argue that</p>
+<div class="displaymath process-math" data-contains-math-knowls="">
+\begin{equation*}
+(\vu \times \vv) \cdot \vw = (\vw \times \vu) \cdot \vv = (\vv \times \vw) \cdot \vu.
+\end{equation*}
+</div>
+</li>
+<li id="li-292">
+<p id="p-749">Now suppose that <span class="process-math">\(\vu\text{,}\)</span> <span class="process-math">\(\vv\text{,}\)</span> and <span class="process-math">\(\vw\)</span> do not lie in a plane when they eminate from a common initial point.</p>
+<ol class="lower-roman">
+<li id="li-293"><p id="p-750">Given that the parallepiped determined by <span class="process-math">\(\vu\text{,}\)</span> <span class="process-math">\(\vv\text{,}\)</span> and <span class="process-math">\(\vw\)</span> must have positive volume, what can we say about <span class="process-math">\((\vu \times \vv) \cdot \vw\text{?}\)</span></p></li>
+<li id="li-294"><p id="p-751">Now suppose that <span class="process-math">\(\vu\text{,}\)</span> <span class="process-math">\(\vv\text{,}\)</span> and <span class="process-math">\(\vw\)</span> all lie in the same plane. What value must <span class="process-math">\((\vu \times \vv) \cdot \vw\)</span> have? Why?</p></li>
+<li id="li-295"><p id="p-752">Explain how (i.) and (ii.) show that if <span class="process-math">\(\vu\text{,}\)</span> <span class="process-math">\(\vv\text{,}\)</span> and <span class="process-math">\(\vw\)</span> all eminate from the same initial point, then <span class="process-math">\(\vu\text{,}\)</span> <span class="process-math">\(\vv\text{,}\)</span> and <span class="process-math">\(\vw\)</span> lie in the same plane if and only if <span class="process-math">\((\vu \times \vv) \cdot \vw = 0\text{.}\)</span> This provides a straightforward  computational method for determining when three vectors are co-planar.</p></li>
+</ol>
+</li>
+</ol></article></section></section></div></main>
+</div>
+<!--Start: Google Global Site Tag code--><!--*** DO NOT COPY ANOTHER PROJECT'S MAGIC NUMBERS/ID ***--><!--***           GET YOUR OWN FROM GOOGLE             ***-->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-QJKN634F7R"></script><script>  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-QJKN634F7R');
+</script><!--End: Google Global Site Tag code-->
+</body>
+</html>
