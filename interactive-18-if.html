@@ -15,7 +15,7 @@ window.MathJax = {
     tags: "none",
     tagSide: "right",
     tagIndent: ".8em",
-    packages: {'[+]': ['base', 'extpfeil', 'ams', 'amscd', 'newcommand', 'knowl']}
+    packages: {'[+]': ['base', 'extpfeil', 'ams', 'amscd', 'color', 'newcommand', 'knowl']}
   },
   options: {
     ignoreHtmlClass: "tex2jax_ignore|ignore-math",
@@ -35,11 +35,11 @@ window.MathJax = {
     },
   },
   chtml: {
-    scale: 0.88,
+    scale: 0.98,
     mtextInheritFont: true
   },
   loader: {
-    load: ['input/asciimath', '[tex]/extpfeil', '[tex]/amscd', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
+    load: ['input/asciimath', '[tex]/extpfeil', '[tex]/amscd', '[tex]/color', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
     paths: {pretext: "https://pretextbook.org/js/lib"},
   },
   startup: {
@@ -49,16 +49,18 @@ window.MathJax = {
       rsMathReady();
       }
     )}
-},
+  },
 };
-</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><link href="https://pretextbook.org/css/0.4/pretext.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.4/pretext_add_on.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.4/banner_default.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.4/toc_default.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.4/knowls_default.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.4/style_default.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.4/colors_blue_grey.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.4/setcolors.css" rel="stylesheet" type="text/css">
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><link href="https://pretextbook.org/css/0.6/pretext.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.6/pretext_add_on.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.6/shell_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.6/banner_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.6/navbar_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.6/toc_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.6/knowls_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.6/style_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.6/colors_blue_grey.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.6/setcolors.css" rel="stylesheet" type="text/css">
 <script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>sagecell.makeSagecell({
     inputLocation: ".sage-interact",
     autoeval: 'true',
@@ -66,7 +68,7 @@ window.MathJax = {
 });
 </script><link rel="stylesheet" type="text/css" href="https://sagecell.sagemath.org/static/sagecell_embed.css">
 </head>
-<body class="pretext-content ignore-math"><div style="width:600px; height:660px; display: block; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;"><pre class="ptx-sagecell sage-interact"><script type="text/x-sage">var('t,s,u,v,z,y,z')
+<body class="pretext ignore-math"><div style="width:600px; height:660px; display: block; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;"><pre class="ptx-sagecell sage-interact"><script type="text/x-sage">var('t,s,u,v,z,y,z')
 f=-x^2/5-3*y^3/8
 @interact
 def _(sb=selector(['Vector Field 1','Vector Field 2','Vector Field 3','Vector Field 4','Vector Field 5'],label="Vector Field:")):
