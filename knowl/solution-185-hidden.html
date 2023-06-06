@@ -10,6 +10,24 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="robots" content="noindex, nofollow">
 </head>
-<body class="ignore-math"><div class="solution solution-like"><div class="para">The <a href="" class="xref" data-knowl="./knowl/thm_FTCLI.html" title="Theorem 12.5.1: Fundamental Theorem of Calculus for Line Integrals">Fundamental Theorem of Calculus for Line Integrals</a> does apply to this problem because the vector field is a gradient vector field. The potential functions are of the form <span class="process-math">\(f(x,y,z)=x\sin(yz)+z\cos(y)+C\text{.}\)</span> Hence, the line integral evaluates as <span class="process-math">\(f(2,-1,2\pi)-f(0,\pi,3)=(0+2\pi\cos(-1))-(0-3)=2\pi\cos(-1)+3\text{.}\)</span>
+<body class="ignore-math"><div class="solution solution-like"><div class="para logical">
+<div class="para">Proceeding as above, we find that</div>
+<div class="displaymath process-math">
+\begin{align*}
+f(x,y) \amp= f(x_0,y_0) + \int_{C_1}\vF\cdot d\vr +
+\int_{L_x} \vF\cdot d\vr + \int_{L_y}\vF\cdot d\vr\\
+\amp = f(x_0,y_0) + \int_{C_1}\vF\cdot d\vr + \int_a^x
+F_1(t,b)\, dt + \int_b^y F_2(x,t)\, dt\text{.}
+\end{align*}
+</div>
+<div class="para">Only the last term of this expression depends on <span class="process-math">\(y\text{,}\)</span> so the first three terms vanish when calculating <span class="process-math">\(f_y(x,y)\text{.}\)</span> By the Second Fundamental Theorem of Calculus,</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\frac{\partial}{\partial y}\int_b^y F_2(x,t)\,
+dt = F_2(x,y)\text{.}
+\end{equation*}
+</div>
+<div class="para">Therefore, <span class="process-math">\(f_y(x,y) = F_2(x,y)\text{.}\)</span>
+</div>
 </div></div></body>
 </html>

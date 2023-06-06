@@ -11,9 +11,32 @@
 <meta name="robots" content="noindex, nofollow">
 </head>
 <body class="ignore-math">
-<h3 class="heading"><span class="type">Paragraph</span></h3>
-<div class="para">As we saw in <a href="S-11-6-Parametric-Surfaces-Surface-Area.html" class="internal" title="Section 11.6: Surfaces Defined Parametrically and Surface Area">Section 11.6</a>, we can set up a Riemann sum of the areas for the parallelograms in <a href="" class="xref" data-knowl="./knowl/fig_Vector_FluxInt_ParaPic.html" title="Figure 12.9.1">Figure 12.9.1</a> to approximate the surface area of the region plotted by our parametrization. <a href="" class="xref" data-knowl="./knowl/E_surface_area.html" title="Equation 11.6.2">Equation (11.6.2)</a> shows that we can compute the exact surface by taking a limit of a Riemann sum which will correspond to integrating the magnitude of <span class="process-math">\(\vr_s \times \vr_t\)</span> over the appropriate parameter bounds. What if we wanted to measure a quantity other than the surface area? In the next section, we will explore a specific case of this question: How can we measure the amount of a three dimensional vector field that flows through a particular section of a surface? The geometric tools we have reviewed in this section will be very valuable, especially the vector <span class="process-math">\(\vr_s \times \vr_t\text{.}\)</span>
+<h4 class="heading"><span class="type">Paragraph</span></h4>
+<div class="para logical">
+<div class="para">As with our development of divergence, we apply the Mean Value Theorem to the four integrals above to simplify future calculations. Specifically, the Mean Value Theorem applied to the first integral tells us that there is a value, <span class="process-math">\(a_{\text{top}}^*\text{,}\)</span> in the interval <span class="process-math">\((a-h,a+h)\)</span> such that</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\int_{-h}^h -F_1( a-t,b+h) \, dt=  -2h \left(F_1(a_{\text{top}}^*,b+h)\right)
+\end{equation*}
 </div>
-<span class="incontext"><a href="S_Vector_FluxInt.html#p-5095" class="internal">in-context</a></span>
+<div class="para">Applying the same arguments to the other three integrals in our Total Circulation calculation gives</div>
+<div class="displaymath process-math">
+\begin{align*}
+\text{Total Circulation} =\amp \int_{\text{Square}} \vF \cdot d\vr\\
+=\amp \int_{-h}^h -F_1(a-t,b+h) \, dt +  \int_{-h}^h -F_2(a-h,b-t) \, dt\\
+\amp + \int_{-h}^h F_1(a+t,b-h) \, dt + \int_{-h}^h F_2(a+h,b+t) \, dt\\
+=\amp -2h F_1(a_{\text{top}}^*,b+h) -2h F_2(a-h,b_{\text{left}}^*) \\
+\amp + 2h F_1(a_{\text{bottom}}^*,b-h)+2h F_2(a+h,b_{\text{right}}^*)
+\end{align*}
+</div>
+<div class="para">Here we have <span class="process-math">\(a_{\text{top}}^*,a_{\text{bottom}}^* \in (a-h,a+h)\)</span> and <span class="process-math">\(b_{\text{left}}^*,b_{\text{right}}^* \in (b-h,b+h)\text{.}\)</span> We can regroup these terms to get the following expression for the total circulation around our square:</div>
+<div class="displaymath process-math">
+\begin{gather*}
+2h\left(F_2(a+h,b_{\text{right}}^*)-F_2(a-h,b_{\text{left}}^*)\right) \\
+\quad -2h\left(F_1(a_{\text{top}}^*,b+h)-F_1(a_{\text{bottom}}^*,b-h)\right)
+\end{gather*}
+</div>
+</div>
+<span class="incontext"><a href="S_Vector_Curl.html#p-5095" class="internal">in-context</a></span>
 </body>
 </html>

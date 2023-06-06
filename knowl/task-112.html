@@ -12,9 +12,35 @@
 </head>
 <body class="ignore-math">
 <article class="task exercise-like"><h5 class="heading">
-<span class="type">Task</span><span class="space"> </span><span class="codenumber">12.5.6.e</span><span class="period">.</span>
+<span class="type">Task</span><span class="space"> </span><span class="codenumber">12.5.6.a</span><span class="period">.</span>
 </h5>
-<div class="para">Notice that your expression for <span class="process-math">\(f(x,y)\)</span> from the previous part only depends on <span class="process-math">\(x\)</span> as the upper limit of an single variable integral. Use the Second Fundamental Theorem of Calculus to calculate <span class="process-math">\(f_x(x,y)\text{.}\)</span>
-</div></article><span class="incontext"><a href="S_Vector_FTCLI.html#task-112" class="internal">in-context</a></span>
+<div class="para logical">
+<div class="para">For our first case, we will consider the line integral</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/fig_sli_pm3.html">
+\begin{equation*}
+\int_C f \enspace ds \text{.}
+\end{equation*}
+</div>
+<div class="para">Remember that the line integral of <span class="process-math">\(f\)</span> over <span class="process-math">\(C\)</span> will measure the accumulation of the output of <span class="process-math">\(f\)</span> over the points on the curve <span class="process-math">\(C\text{.}\)</span> <a href="" class="xref" data-knowl="./knowl/fig_sli_pm3.html" title="Figure 12.5.8">Figure 12.5.8</a> shows that the blue branch of the curve <span class="process-math">\(C\)</span> will have positive output and the red part will have negative output for <span class="process-math">\(f\text{.}\)</span> Intuitively, there is more of the curve with positive <span class="process-math">\(f\)</span> outputs than negative <span class="process-math">\(f\)</span> outputs, so we would expect <span class="process-math">\(\int_C f \enspace ds\)</span> to be positive.</div>
+</div>
+<figure class="figure figure-like"><div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="external//fig_scalarlineint_pmexample3.svg" role="img" class="contained"></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">12.5.8<span class="period">.</span></span><span class="space"> </span>The curve <span class="process-math">\(C\)</span> split into regions with positive (blue) and negative (red) outputs of <span class="process-math">\(f\)</span></figcaption></figure><div class="para logical">
+<div class="para">If we break our region <span class="process-math">\(C\)</span> into three pieces as shown in <a href="" class="xref" data-knowl="./knowl/fig_sli_pm2.html" title="Figure 12.5.9">Figure 12.5.9</a>, we can make a rigourous argument about why the result of <span class="process-math">\(\int_C f \enspace ds\)</span> will be positive. We will call the red, green, and blue sections of <a href="" class="xref" data-knowl="./knowl/fig_sli_pm2.html" title="Figure 12.5.9">Figure 12.5.9</a> <span class="process-math">\(C_1\text{,}\)</span> <span class="process-math">\(C_2\text{,}\)</span> and <span class="process-math">\(C_3\)</span> respectively. So in the notation of <a href="" class="xref" data-knowl="./knowl/asm_Vector_IdeaLineIntegral_Properties.html" title="Assemblage: Properties of Line Integrals">Assemblage </a>, <span class="process-math">\(C = C_1+C_2+C_3\text{.}\)</span> No matter how we break up the curve <span class="process-math">\(C_1\)</span> to set up a Riemann sum used in <a href="" class="xref" data-knowl="./knowl/ScalarLineIntegral_def.html" title="Definition 12.5.5: The Line Integral of a Scalar Function">Definition 12.5.5</a> we can do the symmetric version on curve <span class="process-math">\(C_2\text{.}\)</span> The only difference between the Riemann sums and thier associated line integrals for <span class="process-math">\(C_1\)</span> and <span class="process-math">\(C_2\)</span> will be the sign on the output of <span class="process-math">\(f\text{.}\)</span> This means that</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/fig_sli_pm2.html ./knowl/fig_sli_pm2.html ./knowl/asm_Vector_IdeaLineIntegral_Properties.html ./knowl/ScalarLineIntegral_def.html">
+\begin{equation*}
+\int_{C_1} f \enspace ds = -\int_{C_2} f \enspace ds
+\end{equation*}
+</div>
+<div class="para">and thus</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/fig_sli_pm2.html ./knowl/fig_sli_pm2.html ./knowl/asm_Vector_IdeaLineIntegral_Properties.html ./knowl/ScalarLineIntegral_def.html">
+\begin{gather*}
+\int_C f \enspace ds = \int_{C_1} f \enspace ds + \int_{C_2} f \enspace ds +\int_{C_3} f \enspace ds \\
+=-\int_{C_2} f \enspace ds + \int_{C_2} f \enspace ds +\int_{C_3} f \enspace ds = int_{C_3} f \enspace ds 
+\end{gather*}
+</div>
+</div>
+<figure class="figure figure-like"><div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="external//fig_scalarlineint_pmexample2.svg" role="img" class="contained"></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">12.5.9<span class="period">.</span></span><span class="space"> </span>The curve <span class="process-math">\(C\)</span> split into three regions with positive (blue and green) and negative (red) outputs of <span class="process-math">\(f\)</span></figcaption></figure><div class="para">The argument for why <span class="process-math">\(\int_{C_1} f \enspace ds = \int_{C_2} f \enspace ds\)</span> requires that both the points on the curves <span class="process-math">\(C_1\)</span> and <span class="process-math">\(C_2\)</span> and the output of <span class="process-math">\(f\)</span> on those parts is symmetric. In <code class="code-inline tex2jax_ignore">[cross-reference to target(s) "sli_caution" missing or not unique]</code> you will see examples where having only one part of this symmetry is not sufficent to make this type of argument.</div>
+<div class="para">We have shown that <span class="process-math">\(\int_C f \enspace ds =  int_{C_3} f \enspace ds \)</span> and want to demonstrate why <span class="process-math">\(int_{C_3} f \enspace ds \)</span> will be positive. Because the output of <span class="process-math">\(f\)</span> is positive for all of the points on the curve <span class="process-math">\(C_3\text{,}\)</span> all elements of the associated Riemann sum in <a href="" class="xref" data-knowl="./knowl/ScalarLineIntegral_def.html" title="Definition 12.5.5: The Line Integral of a Scalar Function">Definition 12.5.5</a> will be positive (the length of the displacement vectors and corresponding arc lengths are always positive). Thus <span class="process-math">\(\int_C f \enspace ds =  int_{C_3} f \enspace ds \gt 0\text{.}\)</span> This argument would work well for any curve that was only in the first and second octants because the outpuf of <span class="process-math">\(g\)</span> for all of those points would be negative.</div></article><span class="incontext"><a href="S_ScalarLineIntegral.html#task-112" class="internal">in-context</a></span>
 </body>
 </html>

@@ -11,8 +11,30 @@
 <meta name="robots" content="noindex, nofollow">
 </head>
 <body class="ignore-math">
-<h5 class="heading"><span class="type">Paragraph</span></h5>
-<div class="para">For each of the curves described below, find the circulation of the given vector field around the curve. Do this both by calculating the line integral directly as well as by calculating the double integral from <a href="" class="xref" data-knowl="./knowl/thm_Green.html" title="Theorem 12.8.3: Green's Theorem">Green's Theorem</a>.</div>
-<span class="incontext"><a href="S_Vector_GreensTheorem.html#p-5022" class="internal">in-context</a></span>
+<h4 class="heading"><span class="type">Paragraph</span></h4>
+<div class="para logical">
+<div class="para">Before we apply our limit, we will take a moment to simplify our integrals in order to make the limit easier to evaluate. In particular, we will apply the Mean Value Theorem to each of four the integrals above. Applying the Mean Value Theorem to the first integral gives</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\int_{-h}^{h} F_2(a+t,b+h) dt = (2h) \enspace F_2(t^*_1,b+h)\text{,}
+\end{equation*}
+</div>
+<div class="para">where <span class="process-math">\(t^*_1\)</span> is some value in the interval <span class="process-math">\((a-h,a+h)\text{.}\)</span> Applying the Mean Value Theorem to each of the other integrals yields</div>
+<div class="displaymath process-math">
+\begin{gather*}
+\int_{-h}^{h} F_2(a+t,b+h) dt - \int_{-h}^{h} F_2(a+t,b-h) dt \\
+\quad + \int_{-h}^{h} F_1(a+h,b+t) dt -\int_{-h}^{h} F_1(a-h,b+t) dt \\
+(2h) \left(F_2(t^*_1,b+h)-F_2(t^*_2,b-h)+F_1(a+h,t^*_3)-F_1(a-h,t^*_1)\right) 
+\end{gather*}
+</div>
+<div class="para">where <span class="process-math">\(t^*_1,t^*_2\)</span> are values in <span class="process-math">\((a-h,a+h)\)</span> and <span class="process-math">\(t^*_3,t^*_4\)</span> are values in <span class="process-math">\((b-h,b+h)\text{.}\)</span> Thus our flow density can be measured by looking at the limit as <span class="process-math">\(h\to 0\)</span> of the net flow (in or out) over the square divided by the area of the square.</div>
+<div class="displaymath process-math">
+\begin{gather*}
+\text{Flow Density}(a,b)=\lim_{h\rightarrow 0} \frac{\text{net flow}}{\text{area}} \\
+\quad = \lim_{h\rightarrow 0} \frac{(2h) \left(F_2(t^*_1,b+h)-F_2(t^*_2,b-h)+F_1(a+h,t^*_3)-F_1(a-h,t^*_1)\right)}{4h^2}
+\end{gather*}
+</div>
+</div>
+<span class="incontext"><a href="S_Vector_Div.html#p-5022" class="internal">in-context</a></span>
 </body>
 </html>

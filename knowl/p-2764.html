@@ -11,21 +11,31 @@
 <meta name="robots" content="noindex, nofollow">
 </head>
 <body class="ignore-math">
-<h4 class="heading"><span class="type">Paragraph</span></h4>
+<h5 class="heading"><span class="type">Paragraph</span></h5>
 <div class="para logical">
-<div class="para">To find the values of <span class="process-math">\(\lambda\)</span> that satisfy <a href="" class="xref" data-knowl="./knowl/eq_10_8_Lagrange_ex1.html" title="Equation 10.8.1">(10.8.1)</a> for the volume function in <a href="" class="xref" data-knowl="./knowl/PA_10_8.html" title="Preview Activity 10.8.1">Preview Activity 10.8.1</a>, we calculate both <span class="process-math">\(\nabla f\)</span> and <span class="process-math">\(\nabla g\text{.}\)</span> Observe that</div>
-<div class="displaymath process-math" data-contains-math-knowls="./knowl/eq_10_8_Lagrange_ex1.html ./knowl/PA_10_8.html">
+<div class="para">If we want to use the data to make predications, then we need to fit a curve of some kind to the data. Since the cricket data appears roughly linear, we will fit a linear function <span class="process-math">\(f\)</span> of the form <span class="process-math">\(f(x) = mx+b\)</span> to the data. We will do this in such a way that we minimize the sums of the squares of the distances between the <span class="process-math">\(y\)</span> values of the data and the corresponding <span class="process-math">\(y\)</span> values of the line defined by <span class="process-math">\(f\text{.}\)</span> This type of fit is called a <em class="emphasis">least squares</em> approximation. If the data is represented by the points <span class="process-math">\((x_1,y_1)\text{,}\)</span> <span class="process-math">\((x_2,y_2)\text{,}\)</span> <span class="process-math">\(\ldots\text{,}\)</span> <span class="process-math">\((x_n,y_n)\text{,}\)</span> then the square of the distance between <span class="process-math">\(y_i\)</span> and <span class="process-math">\(f(x_i)\)</span> is <span class="process-math">\((f(x_i)-y_i)^2 = (mx_i+b-y_i)^2\text{.}\)</span> So our goal is to minimize the sum of these squares, of minimize the function <span class="process-math">\(S\)</span> defined by</div>
+<div class="displaymath process-math">
 \begin{equation*}
-\nabla f = 2xy \vi + x^2 \vj \ \ \ \ \text{ and }  \ \ \ \ \nabla g = 4\vi + \vj,
+S(m,b) = \sum_{i=1}^n (mx_i+b-y_i)^2.
 \end{equation*}
 </div>
-<div class="para">and thus we need a value of <span class="process-math">\(\lambda\)</span> so that</div>
-<div class="displaymath process-math" data-contains-math-knowls="./knowl/eq_10_8_Lagrange_ex1.html ./knowl/PA_10_8.html">
-\begin{equation*}
-2xy \vi + x^2 \vj = \lambda(4\vi + \vj).
-\end{equation*}
+<ol class="lower-alpha">
+<li><div class="para">Calculate <span class="process-math">\(S_m\)</span> and <span class="process-math">\(S_b\text{.}\)</span>
+</div></li>
+<li><div class="para logical">
+<div class="para">Solve the system <span class="process-math">\(S_m(m,b) = 0\)</span> and <span class="process-math">\(S_b(m,b) = 0\)</span> to show that the critical point satisfies</div>
+<div class="displaymath process-math">
+\begin{align*}
+m \amp = \frac{n\left(\sum_{i=1}^n x_iy_i\right) - \left(\sum_{i=1}^n x_i \right) \left(\sum_{i=1}^n y_i \right)}{n\left(\sum_{i=1}^n x_i^2 \right) - \left(\sum_{i=1}^n x_i \right)^2}\\
+b \amp = \frac{\left(\sum_{i=1}^n y_i\right) \left(\sum_{i=1}^n x_i^2\right) - \left(\sum_{i=1}^n x_i \right) \left(\sum_{i=1}^n x_iy_i \right)}{n\left(\sum_{i=1}^n x_i^2 \right) - \left(\sum_{i=1}^n x_i \right)^2}.
+\end{align*}
 </div>
+<div class="para">(Hint: Don't be daunted by these expressions, the system <span class="process-math">\(S_m(m,b) = 0\)</span> and <span class="process-math">\(S_b(m,b) = 0\)</span> is a system of two linear equations in the unknowns <span class="process-math">\(m\)</span> and <span class="process-math">\(b\text{.}\)</span> It might be easier to let <span class="process-math">\(r=\sum_{i=1}^n x_i^2\text{,}\)</span> <span class="process-math">\(s=\sum_{i=1}^n x_i\text{,}\)</span> <span class="process-math">\(t = \sum_{i=1}^n y_i\text{,}\)</span> and <span class="process-math">\(u = \sum_{i=1}^n x_iy_i\)</span> and write your equations using these constants.)</div>
+</div></li>
+<li><div class="para">Use the Second Derivative Test to explain why the critical point gives a local minimum. Can you then explain why the critical point gives an absolute minimum?</div></li>
+<li><div class="para">Use the formula from part (b) to find the values of <span class="process-math">\(m\)</span> and <span class="process-math">\(b\)</span> that give the line of best fit in the least squares sense to the cricket data. Draw your line on the scatter plot to convince yourself that you have a well-fitting line.</div></li>
+</ol>
 </div>
-<span class="incontext"><a href="S-10-8-Lagrange-Multipliers.html#p-2764" class="internal">in-context</a></span>
+<span class="incontext"><a href="S-10-7-Optimization.html#p-2764" class="internal">in-context</a></span>
 </body>
 </html>
