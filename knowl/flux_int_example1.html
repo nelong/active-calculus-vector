@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="example example-like"><h4 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">12.9.8</span><span class="period">.</span>
+</h4>
+<div class="para">In this example we will compute the flux of the vector field <span class="process-math">\(\vF= \langle xz-2, y+x, 1 \rangle \)</span> over the surface of the cone given by <span class="process-math">\(x^2+y^2=z^2\)</span> with <span class="process-math">\(1\leq z \leq 3\text{.}\)</span> The first thing to do to use <a href="" class="xref" data-knowl="./knowl/thm_flux_int_calc.html" title="Theorem 12.9.7">Theorem 12.9.7</a> is to parameterize our surface and calculate <span class="process-math">\(\vw(t,s)=\vr_s \times \vr_t\)</span> based on that parameterization.</div> <div class="para logical">
+<div class="para">In cylindrical coordinates, our cone is described by <span class="process-math">\(r=z\)</span> which suggests that we can use <span class="process-math">\(r\)</span> and <span class="process-math">\(\theta\)</span> as <span class="process-math">\(s\)</span> and <span class="process-math">\(t\text{.}\)</span> Consider the parameterization <span class="process-math">\(\vr(s,t)=\langle s \cos(t), s \sin(t), s \rangle \)</span> with bounds <span class="process-math">\(1\leq s \leq 3\)</span> and <span class="process-math">\(0 \leq t \lt 2 \pi\text{.}\)</span> Notice that <span class="process-math">\(s\)</span> is acting as both <span class="process-math">\(r\)</span> and <span class="process-math">\(z\text{.}\)</span> Calculating the partial derivatives of <span class="process-math">\(\vr\)</span> gives the following:</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\vr_s = \langle \cos(t), \sin(t), 1 \rangle 
+\end{equation*}
+</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\vr_t = \langle -s \sin(t), s \cos(t), 0 \rangle 
+\end{equation*}
+</div>
+<div class="para">Taking the cross product of <span class="process-math">\(\vr_s\)</span> and <span class="process-math">\(\vr_t\)</span> will give the following vector valued function for <span class="process-math">\(\vw\text{:}\)</span>
+</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\vw= \vr_s \times \vr_t = \langle -s \cos(t), -s \sin(t), s (\cos(t)^2 +\sin(t)^2) \rangle 
+\end{equation*}
+</div>
+<div class="para">which will simplify to</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\vw=\langle-s \cos(t), -s \sin(t), s \rangle 
+\end{equation*}
+</div>
+<div class="para">This should look familiar-ish because <span class="process-math">\(\vw\)</span> is very close to <span class="process-math">\(\vr\text{.}\)</span> If we think of <span class="process-math">\(\vr\)</span> as giving <span class="process-math">\(\langle x,y,z\rangle \text{,}\)</span> then <span class="process-math">\(\vw = \langle -x, -y, z \rangle \text{.}\)</span> The interact below shows the vectors <span class="process-math">\(\vr\)</span> and <span class="process-math">\(\vw\)</span> for a point on the surface we are examining.</div>
+</div> <figure class="figure figure-like"><iframe id="interactive-25" width="600" height="672" src="interactive-25-if.html"></iframe><figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">12.9.9<span class="period">.</span></span><span class="space"> </span>A plot of our surface with the parameterization vector in green and the normal vector <span class="process-math">\(\vw\)</span> in red</figcaption></figure> <div class="para logical">
+<div class="para">In <a href="" class="xref" data-knowl="./knowl/fig_Vector_FluxInt_Cone1.html" title="Figure 12.9.9">Figure 12.9.9</a> you can see that that the normal vector (as calculated from the parameterization) points inside of the cone and this will be the direction of positive flow when measuring the flux of the vector field. Our parameterization will also transform our vector field into a function of <span class="process-math">\(s\)</span> and <span class="process-math">\(t\text{;}\)</span> specifcally</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/fig_Vector_FluxInt_Cone1.html ./knowl/thm_flux_int_calc.html">
+\begin{equation*}
+\vF(s,t)= \langle (s \cos(t))(s) -2, s \sin(t) + s \cos(t) , 1\rangle
+\end{equation*}
+</div>
+<div class="para">Applying <a href="" class="xref" data-knowl="./knowl/thm_flux_int_calc.html" title="Theorem 12.9.7">Theorem 12.9.7</a> to our parameterization and vector field gives the following iterated integral:</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/fig_Vector_FluxInt_Cone1.html ./knowl/thm_flux_int_calc.html">
+\begin{gather*}
+\iint_D \vF \cdot (\vr_s \times \vr_t)\, dA \\
+\int_0^{2\pi}\int_1^3 \langle (s \cos(t))(s) -2, s \sin(t) + s \cos(t) , 1\rangle \cdot \langle -s \cos(t), -s \sin(t), s \rangle \enspace ds \enspace dt \\
+\int_0^{2\pi}\int_1^3 ((s \cos(t))(s) -2)  (-s \cos(t)) +(-s \sin(t)) (s \sin(t) + s \cos(t)) +s \\
+-\frac{62}{3}\pi 
+\end{gather*}
+</div>
+<div class="para">Note that the result of this flux integral is negative, which means more of the vector field is going out of the cone than is going into the cone.</div>
+</div> <figure class="figure figure-like"><iframe id="interactive-26" width="600" height="672" src="interactive-26-if.html"></iframe><figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">12.9.10<span class="period">.</span></span><span class="space"> </span>A plot of our surface with the vector field <span class="process-math">\(\vF\)</span> for an array of points on the surface. The vector field has been scaled down by a factor of 5 in this plot.</figcaption></figure> <div class="para">In <a href="" class="xref" data-knowl="./knowl/fig_Vector_FluxInt_Cone2.html" title="Figure 12.9.10">Figure 12.9.10</a> you can see much more of the vector field is going through to the outside of the cone than inside, which matches with our result of calculating the flux as negative.</div></article><span class="incontext"><a href="S_Vector_FluxInt.html#flux_int_example1" class="internal">in-context</a></span>
+</body>
+</html>

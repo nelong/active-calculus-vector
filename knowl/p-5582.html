@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="en-US" dir="ltr">
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
 <!--*                                          *-->
@@ -11,17 +11,25 @@
 <meta name="robots" content="noindex, nofollow">
 </head>
 <body class="ignore-math">
-<h4 class="heading"><span class="type">Paragraph</span></h4>
+<h5 class="heading"><span class="type">Paragraph</span></h5>
 <div class="para logical">
-<div class="para">So to measure the accumulation of the output of <span class="process-math">\(f(x,y,z)\)</span> over <span class="process-math">\(S_1\)</span> we use the following Riemann sum:</div>
-<div class="displaymath process-math">
-\begin{gather*}
-\sum_{i=0}^{k-1} \sum_{i=0}^{m-1} f(x_{i,j}^*,y_{i,j}^*,z_{i,j}^*) SA_{i,j}= \\
-\sum_{i=0}^{k-1} \sum_{i=0}^{m-1} f(x(s_{i}^*,t_{j}^*),y(s_{i}^*,t_{j}^*),z(s_{i}^*,t_{j}^*)) SA_{i,j}= \\
-\sum_{i=0}^{k-1} \sum_{i=0}^{m-1} f(s_{i}^*,t_{j}^*)) \Vert{(\vr_s \times \vr_t)(s_i,t_j)}\Vert \Delta{s}\Delta{t}
-\end{gather*}
+<div class="para">Let us return to some of the problems from <a href="" class="xref" data-knowl="./knowl/ScalarSurfaceInt_Sensemaking.html" title="Activity 12.10.2">Activity 12.10.2</a>. Specifically, we will compute the answer to <a href="" class="xref" data-knowl="./knowl/task_SSIS_2.html" title="Task 12.10.2.b">Task 12.10.2.b</a>. We will compute <span class="process-math">\(\iint_{S_1} x \enspace dS\)</span> where <span class="process-math">\(S_1\)</span> is the top half (<span class="process-math">\(z \geq 0\)</span>) of the sphere of radius one centered at the origin in 3-space. Our surface can be parameterized by <span class="process-math">\(\vr(s,t)=\langle \cos(s)\sin(t),\sin(s)\sin(t),\cos(t)\rangle\)</span> where <span class="process-math">\(s \in [0,2\pi]\)</span> and <span class="process-math">\(t \in [0,\pi]\text{.}\)</span> Using <a href="" class="xref" data-knowl="./knowl/ScalarSurfaceIntDef.html" title="Theorem 12.10.4">Theorem 12.10.4</a>, we need to compute the partial derivatives of <span class="process-math">\(\vr\)</span> with respect to <span class="process-math">\(s\)</span> and <span class="process-math">\(t\text{,}\)</span> then compute <span class="process-math">\(\Vert{\vr_s \times \vr_t}\Vert \text{.}\)</span> For our parameterization, we get</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/ScalarSurfaceInt_Sensemaking.html ./knowl/task_SSIS_2.html ./knowl/ScalarSurfaceIntDef.html">
+\begin{align*}
+\vr_s \amp = \langle -\sin(s)\sin(t),\cos(s)\sin(t),0\rangle \\
+\vr_t \amp = \langle \cos(s)\cos(t),\sin(s)\cos(t),-\sin(t)\rangle \\
+\vr_s \times \vr_t \amp = \langle -(\sin(t))^2 \cos(s), \\
+\amp \quad \quad - (\sin(t))^2 \sin(s), -(\cos(s))^2 \cos(t) \sin(t) -(\sin(s))^2 \cos(t) \sin(t) \rangle 
+\end{align*}
 </div>
-<div class="para">This Riemann sum ends up being the double integral (over the variables <span class="process-math">\(s\)</span> and <span class="process-math">\(t\)</span>) of the function <span class="process-math">\(f(x(t,s),y(s,t),z(s,t)) \Vert{(\vr_s \times \vr_t)(s,t)}\Vert\text{,}\)</span> which leads to the following theorem.</div>
+<div class="para">Simplifying <span class="process-math">\(\vr_s \times \vr_t\)</span> we get</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/ScalarSurfaceInt_Sensemaking.html ./knowl/task_SSIS_2.html ./knowl/ScalarSurfaceIntDef.html">
+\begin{equation*}
+\vr_s \times \vr_t =\sin(t) \langle \cos(s)\sin(t),\sin(s)\sin(t),\cos(t) \rangle 
+\end{equation*}
+</div>
+<div class="para">Note that <span class="process-math">\(\vr_s \times \vr_t = \sin(t) \vr(s,t)\text{.}\)</span> This should make sense because the normal vector to a sphere should be the outward pointing vector from the center of the sphere. Note here that <span class="process-math">\(\Vert{\vr_s \times \vr_t}\Vert = \sin(t)\)</span> because <span class="process-math">\(\Vert{\vr(s,t)}\Vert = 1\)</span> for any <span class="process-math">\(s\)</span> or <span class="process-math">\(t\text{.}\)</span>
+</div>
 </div>
 <span class="incontext"><a href="S_Vector_ScalarSurfaceIntegral.html#p-5582" class="internal">in-context</a></span>
 </body>

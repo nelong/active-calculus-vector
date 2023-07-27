@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="en-US" dir="ltr">
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
 <!--*                                          *-->
@@ -12,7 +12,16 @@
 </head>
 <body class="ignore-math">
 <h4 class="heading"><span class="type">Paragraph</span></h4>
-<div class="para">The notation for a scalar line integral (<span class="process-math">\(\int_C f \enspace ds \)</span>) may not immediately make sense. As with the other types of integration we have done (double integrals, line integrals of vector fields, single variable integration, etc.), the subscript of the integral symbol denotes the region of integration. In the case of a scalar line integral, the region of integration is a collection of points given by a curve in space. The function we are integrating is <span class="process-math">\(f\text{,}\)</span> a scalar-valued functiton of multiple variables. The differential <span class="process-math">\(ds\)</span> probably looks suspicious to you. If you remember from <a href="S-9-8-Arc-Length-Curvature.html" class="internal" title="Section 9.8: Arc Length and Curvature">Section 9.8</a>, <span class="process-math">\(s\)</span> is the arc length of a curve in space. So the differential <span class="process-math">\(ds\)</span> in the scalar line integral notation means that we are adding up the output of <span class="process-math">\(f\)</span> over steps in arc length. This should make sense in terms of how we set up our Riemann sums. We did not set up the pieces of our curve as steps in <span class="process-math">\(x\text{,}\)</span> <span class="process-math">\(y\text{,}\)</span> or <span class="process-math">\(z\text{,}\)</span> but rather as steps in arc length (estimated by <span class="process-math">\(\Vert{r_{i+1}-r_{i}}\Vert\)</span>).</div>
-<span class="incontext"><a href="S_ScalarLineIntegral.html#p-4924" class="internal">in-context</a></span>
+<div class="para logical">
+<div class="para">We can approximate the accumulation of <span class="process-math">\(f\)</span> over <span class="process-math">\(C\)</span> with the following sum:</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\sum_{i=1}^{n} f(r_i^*) \Vert{r_{i}-r_{i-1}}\Vert
+\end{equation*}
+</div>
+<div class="para">where <span class="process-math">\(f(r_i^{*})\)</span> is the output of <span class="process-math">\(f\)</span> for some <span class="process-math">\(r_i^{*} \in C_i\text{.}\)</span> As this sum uses more pieces and all of the lengths of the pieces goes to zero (i.e. <span class="process-math">\(\Vert{\Delta \vr_i}\Vert \rightarrow 0\)</span>), we would expect that the sum will approach the actual acculumation of <span class="process-math">\(f\)</span> over <span class="process-math">\(C\text{.}\)</span> Notice that it won’t matter how we select the point <span class="process-math">\(r_i^*\)</span> that is used in each piece to evaluate the output of <span class="process-math">\(f\)</span> since evaluating the limit as the length of <span class="process-math">\(C_i\)</span> gets smaller will ensure that the output value choosen will be within a shrinking error from the average value on each piece. Evaluating the limit of the sum above as the size of all of the pieces goes to zero will transform our Riemann sum into an integral that will measure the accumulation of the output of <span class="process-math">\(f\)</span> over <span class="process-math">\(C\text{.}\)</span>
+</div>
+</div>
+<span class="incontext"><a href="S_Vector_ScalarLineIntegral.html#p-4924" class="internal">in-context</a></span>
 </body>
 </html>

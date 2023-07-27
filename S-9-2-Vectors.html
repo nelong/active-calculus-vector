@@ -5,7 +5,7 @@
 <!--*         https://pretextbook.org          *-->
 <!--*                                          *-->
 <!--********************************************-->
-<html lang="en-US">
+<html lang="en-US" dir="ltr">
 <head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Vectors</title>
@@ -16,20 +16,38 @@
 <meta property="book:author" content="Steve Schlicker">
 <meta property="book:author" content="Mitchel T. Keller">
 <meta property="book:author" content="Nicholas Long">
-<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
+<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>
+var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
 window.MathJax = {
-  tex: {
-    inlineMath: [['\\(','\\)']],
-    tags: "none",
-    tagSide: "right",
-    tagIndent: ".8em",
-    packages: {'[+]': ['base', 'extpfeil', 'ams', 'amscd', 'color', 'newcommand', 'knowl']}
+  "tex": {
+    "inlineMath": [
+      [
+        "\\(",
+        "\\)"
+      ]
+    ],
+    "tags": "none",
+    "tagSide": "right",
+    "tagIndent": ".8em",
+    "packages": {
+      "[+]": [
+        "base",
+        "extpfeil",
+        "ams",
+        "amscd",
+        "color",
+        "newcommand",
+        "knowl"
+      ]
+    }
   },
-  options: {
-    ignoreHtmlClass: "tex2jax_ignore|ignore-math",
-    processHtmlClass: "process-math",
-    renderActions: {
-        findScript: [10, function (doc) {
+  "options": {
+    "ignoreHtmlClass": "tex2jax_ignore|ignore-math",
+    "processHtmlClass": "process-math",
+    "renderActions": {
+      "findScript": [
+        10,
+        function (doc) {
             document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
                 var display = !!node.type.match(/; *mode=display/);
                 var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
@@ -39,65 +57,70 @@ window.MathJax = {
                 math.end = {node: text, delim: '', n: 0};
                 doc.math.push(math);
             });
-        }, '']
-    },
+        },
+        ""
+      ]
+    }
   },
-  chtml: {
-    scale: 0.98,
-    mtextInheritFont: true
+  "chtml": {
+    "scale": 0.98,
+    "mtextInheritFont": true
   },
-  loader: {
-    load: ['input/asciimath', '[tex]/extpfeil', '[tex]/amscd', '[tex]/color', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
-    paths: {pretext: "https://pretextbook.org/js/lib"},
+  "loader": {
+    "load": [
+      "input/asciimath",
+      "[tex]/extpfeil",
+      "[tex]/amscd",
+      "[tex]/color",
+      "[tex]/newcommand",
+      "[pretext]/mathjaxknowl3.js"
+    ],
+    "paths": {
+      "pretext": "https://pretextbook.org/js/lib"
+    }
   },
-  startup: {
+  "startup": {
     pageReady() {
       return MathJax.startup.defaultPageReady().then(function () {
       console.log("in ready function");
       rsMathReady();
       }
     )}
-  },
+  }
 };
 </script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><link href="https://webwork-ptx.aimath.org/webwork2_files/js/apps/MathView/mathview.css" rel="stylesheet">
-<script src="https://pretextbook.org/js/0.2/pretext-webwork/2.17/pretext-webwork.js"></script><script src="https://webwork-ptx.aimath.org/webwork2_files/node_modules/iframe-resizer/js/iframeResizer.min.js"></script><script async="" src="https://cse.google.com/cse.js?cx=015103900096539427448:ngwuia10qci"></script><script src="https://unpkg.com/lunr/lunr.js"></script><script src="lunr-pretext-search-index.js" async=""></script><script src="https://pretextbook.org/js/0.2/pretext_search.js"></script><link href="https://pretextbook.org/css/0.6/pretext_search.css" rel="stylesheet" type="text/css">
-<script>js_version = 0.2</script><script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.2/pretext.js"></script><script>miniversion=0.1</script><script src="https://pretextbook.org/js/0.2/pretext_add_on.js?x=1"></script><script src="https://pretextbook.org/js/0.2/user_preferences.js"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
+<script src="https://pretextbook.org/js/0.3/pretext-webwork/2.17/pretext-webwork.js"></script><script src="https://webwork-ptx.aimath.org/webwork2_files/node_modules/iframe-resizer/js/iframeResizer.min.js"></script><script async="" src="https://cse.google.com/cse.js?cx=015103900096539427448:ngwuia10qci"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js" integrity="sha512-4xUl/d6D6THrAnXAwGajXkoWaeMNwEKK4iNfq5DotEbLPAfk6FSxSP3ydNxqDgCw1c/0Z1Jg6L8h2j+++9BZmg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="lunr-pretext-search-index.js" async=""></script><script src="https://pretextbook.org/js/0.3/pretext_search.js"></script><link href="https://pretextbook.org/css/0.7/pretext_search.css" rel="stylesheet" type="text/css">
+<script>js_version = 0.3</script><script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.3/pretext.js"></script><script>miniversion=0.1</script><script src="https://pretextbook.org/js/0.3/pretext_add_on.js?x=1"></script><script src="https://pretextbook.org/js/0.3/user_preferences.js"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
 </script><link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700&amp;family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&amp;family=Tinos:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" rel="stylesheet">
 <link href="https://fonts.cdnfonts.com/css/dejavu-serif" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:opsz,wdth,wght@8..144,50..150,100..900&amp;display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wdth,wght@75..100,300..800&amp;display=swap" rel="stylesheet">
-<link href="https://pretextbook.org/css/0.6/pretext.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.6/pretext_add_on.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.6/shell_default.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.6/banner_default.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.6/navbar_default.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.6/toc_default.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.6/knowls_default.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.6/style_default.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.6/colors_blue_grey.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.6/setcolors.css" rel="stylesheet" type="text/css">
-<!--Start: Google Global Site Tag code--><!--*** DO NOT COPY ANOTHER PROJECT'S MAGIC NUMBERS/ID ***--><!--***           GET YOUR OWN FROM GOOGLE             ***-->
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-QJKN634F7R"></script><script>  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-QJKN634F7R');
-</script><!--End: Google Global Site Tag code-->
+<link href="https://pretextbook.org/css/0.7/pretext.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/pretext_add_on.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/shell_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/banner_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/navbar_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/toc_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/knowls_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/style_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/colors_blue_grey.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/setcolors.css" rel="stylesheet" type="text/css">
 </head>
 <body id="acmulti" class="pretext book ignore-math">
-<a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead"><div class="ptx-banner">
-<a id="logo-link" href=""></a><div class="title-container">
+<a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead"><div class="ptx-banner">
+<a id="logo-link" class="logo-link" href=""></a><div class="title-container">
 <h1 class="heading"><a href="book-1.html"><span class="title">Active Calculus - Multivariable + Vector</span></a></h1>
 <p class="byline">Steve Schlicker, Mitchel T. Keller, Nicholas Long</p>
 </div>
-<div id="searchresultsplaceholder" style="display: none">
-<button id="closesearchresults" onclick="document.getElementById('searchresultsplaceholder').style.display = 'none'; return false;">x</button><h2>Search Results: <span id="searchterms"></span>
+<div id="searchresultsplaceholder" class="searchresultsplaceholder" style="display: none">
+<button id="closesearchresults" class="closesearchresults" onclick="document.getElementById('searchresultsplaceholder').style.display = 'none'; return false;">x</button><h2>Search Results: <span id="searchterms" class="searchterms"></span>
 </h2>
-<div id="searchempty"><span>No results.</span></div>
-<ol id="searchresults"></ol>
+<div id="searchempty" class="searchempty"><span>No results.</span></div>
+<ol id="searchresults" class="searchresults"></ol>
 </div>
-</div></header><nav id="ptx-navbar" class="navbar"><button class="toc-toggle button" aria-label="Show or hide table of contents"><span class="icon">☰</span><span class="name">Contents</span></button><a class="index-button button" href="index-1.html" title="Index"><span class="name">Index</span></a><button id="user-preferences-button" class="user-preferences-button button" title="Modify user preferences"><span id="theavatarbutton" class="name">You!</span><div id="preferences_menu_holder" class="hidden"><ol id="preferences_menu" style="font-family: 'Roboto Serif', serif;">
+</div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><button class="toc-toggle button" aria-label="Show or hide table of contents"><span class="icon">☰</span><span class="name">Contents</span></button><a class="index-button button" href="index-1.html" title="Index"><span class="name">Index</span></a><button id="user-preferences-button" class="user-preferences-button button" title="Modify user preferences"><span id="avatarbutton" class="avatarbutton name">You!</span><div id="preferences_menu_holder" class="preferences_menu_holder hidden"><ol id="preferences_menu" class="preferences_menu" style="font-family: 'Roboto Serif', serif;">
 <li data-env="avatar" tabindex="-1">Choose avatar<div class="wrap_to_submenu"><span class="to_submenu">▻</span></div>
 <ol class="hidden avatar">
 <li data-val="You!" tabindex="-1">
@@ -201,7 +224,7 @@ window.MathJax = {
 </li>
 </ol></div></button><span class="treebuttons"><a class="previous-button button" href="S-9-1-Functions.html" title="Previous"><span class="icon">&lt;</span><span class="name">Prev</span></a><a class="up-button button" href="C-9.html" title="Up"><span class="icon">^</span><span class="name">Up</span></a><a class="next-button button" href="S-9-3-Dot-Product.html" title="Next"><span class="name">Next</span><span class="icon">&gt;</span></a></span><div class="searchwrapper" role="search"><div class="gcse-search"></div></div>
 <div class="searchbox"><div class="searchwidget">
-<input id="ptxsearch" type="text" name="terms" placeholder="Search" onchange="doSearch()"><button id="searchbutton" type="button" onclick="doSearch()">🔍</button>
+<input id="ptxsearch" class="ptxsearch" type="text" name="terms" placeholder="Search" onchange="doSearch()"><button id="searchbutton" class="searchbutton" type="button" onclick="doSearch()">🔍</button>
 </div></div></nav><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\newcommand{\R}{\mathbb{R}}
 \newcommand{\va}{\mathbf{a}}
 \newcommand{\vb}{\mathbf{b}}
@@ -246,7 +269,7 @@ window.MathJax = {
 \newcommand{\fillinmath}[1]{\mathchoice{\colorbox{fillinmathshade}{$\displaystyle     \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\textstyle        \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptstyle      \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptscriptstyle\phantom{\,#1\,}$}}}
 \)</span></div>
 <div class="ptx-page">
-<div id="ptx-sidebar"><nav id="ptx-toc" class="depth2"><ul class="structural">
+<div id="ptx-sidebar" class="ptx-sidebar"><nav id="ptx-toc" class="ptx-toc depth2"><ul class="structural">
 <li>
 <div class="toc-item"><a href="frontmatter.html" class="internal"><span class="title">Front Matter</span></a></div>
 <ul class="structural">
@@ -574,14 +597,14 @@ window.MathJax = {
 </ul>
 </li>
 <li>
-<div class="toc-item"><a href="S_ScalarLineIntegral.html" class="internal"><span class="codenumber">12.5</span> <span class="title">Line Integrals of Scalar Functions</span></a></div>
+<div class="toc-item"><a href="S_Vector_ScalarLineIntegral.html" class="internal"><span class="codenumber">12.5</span> <span class="title">Line Integrals of Scalar Functions</span></a></div>
 <ul class="structural">
-<li><div class="toc-item"><a href="S_ScalarLineIntegral.html#subsection-124" class="internal"><span class="codenumber">12.5.1</span> <span class="title">Defining line integrals of scalar functions</span></a></div></li>
-<li><div class="toc-item"><a href="S_ScalarLineIntegral.html#subsection-125" class="internal"><span class="codenumber">12.5.2</span> <span class="title">Using Parameterizations to Calculate Scalar Line Integrals</span></a></div></li>
-<li><div class="toc-item"><a href="S_ScalarLineIntegral.html#subsection-126" class="internal"><span class="codenumber">12.5.3</span> <span class="title">Properties of Scalar Line Integrals</span></a></div></li>
-<li><div class="toc-item"><a href="S_ScalarLineIntegral.html#subsection-127" class="internal"><span class="codenumber">12.5.4</span> <span class="title">Visualizations of Scalar Line Integrals as Area Under a Curve</span></a></div></li>
-<li><div class="toc-item"><a href="S_ScalarLineIntegral.html#subsection-128" class="internal"><span class="codenumber">12.5.5</span> <span class="title">Summary</span></a></div></li>
-<li><div class="toc-item"><a href="S_ScalarLineIntegral.html#exercises-30" class="internal"><span class="codenumber">12.5.6</span> <span class="title">Exercises</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_ScalarLineIntegral.html#subsection-124" class="internal"><span class="codenumber">12.5.1</span> <span class="title">Defining line integrals of scalar functions</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_ScalarLineIntegral.html#subsection-125" class="internal"><span class="codenumber">12.5.2</span> <span class="title">Using Parameterizations to Calculate Scalar Line Integrals</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_ScalarLineIntegral.html#subsection-126" class="internal"><span class="codenumber">12.5.3</span> <span class="title">Properties of Scalar Line Integrals</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_ScalarLineIntegral.html#subsection-127" class="internal"><span class="codenumber">12.5.4</span> <span class="title">Visualizations of Scalar Line Integrals as Area Under a Curve</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_ScalarLineIntegral.html#subsection-128" class="internal"><span class="codenumber">12.5.5</span> <span class="title">Summary</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_ScalarLineIntegral.html#exercises-30" class="internal"><span class="codenumber">12.5.6</span> <span class="title">Exercises</span></a></div></li>
 </ul>
 </li>
 <li>
@@ -607,10 +630,10 @@ window.MathJax = {
 </ul>
 </li>
 <li>
-<div class="toc-item"><a href="S_Vector_GreensTheorem.html" class="internal"><span class="codenumber">12.8</span> <span class="title">Green's Theorem</span></a></div>
+<div class="toc-item"><a href="S_Vector_GreensTheorem.html" class="internal"><span class="codenumber">12.8</span> <span class="title">Green’s Theorem</span></a></div>
 <ul class="structural">
 <li><div class="toc-item"><a href="S_Vector_GreensTheorem.html#SS_Vector_GreensTheorem_Circulation" class="internal"><span class="codenumber">12.8.1</span> <span class="title">Circulation</span></a></div></li>
-<li><div class="toc-item"><a href="S_Vector_GreensTheorem.html#subsection-140" class="internal"><span class="codenumber">12.8.2</span> <span class="title">Green's Theorem</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_GreensTheorem.html#subsection-140" class="internal"><span class="codenumber">12.8.2</span> <span class="title">Green’s Theorem</span></a></div></li>
 <li><div class="toc-item"><a href="S_Vector_GreensTheorem.html#subsection-141" class="internal"><span class="codenumber">12.8.3</span> <span class="title">What happens when vector fields are not smooth?</span></a></div></li>
 <li><div class="toc-item"><a href="S_Vector_GreensTheorem.html#subsection-142" class="internal"><span class="codenumber">12.8.4</span> <span class="title">Summary</span></a></div></li>
 <li><div class="toc-item"><a href="S_Vector_GreensTheorem.html#exercises-33" class="internal"><span class="codenumber">12.8.5</span> <span class="title">Exercises</span></a></div></li>
@@ -620,27 +643,27 @@ window.MathJax = {
 <div class="toc-item"><a href="S_Vector_FluxInt.html" class="internal"><span class="codenumber">12.9</span> <span class="title">Flux Integrals</span></a></div>
 <ul class="structural">
 <li><div class="toc-item"><a href="S_Vector_FluxInt.html#SS_Vector_FluxInt_Idea" class="internal"><span class="codenumber">12.9.1</span> <span class="title">The Idea of the Flux of a Vector Field through a Surface</span></a></div></li>
-<li><div class="toc-item"><a href="S_Vector_FluxInt.html#subsection-144" class="internal"><span class="codenumber">12.9.2</span> <span class="title">Measuring the Flux of a Vector Field through a Surface</span></a></div></li>
-<li><div class="toc-item"><a href="S_Vector_FluxInt.html#SS_Vector_FluxInt_Calculate" class="internal"><span class="codenumber">12.9.3</span> <span class="title">Efficiently Calculating Flux Integrals</span></a></div></li>
-<li><div class="toc-item"><a href="S_Vector_FluxInt.html#subsection-146" class="internal"><span class="codenumber">12.9.4</span> <span class="title">Summary</span></a></div></li>
-<li><div class="toc-item"><a href="S_Vector_FluxInt.html#exercises-34" class="internal"><span class="codenumber">12.9.5</span> <span class="title">Exercises</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_FluxInt.html#subsection-144" class="internal"><span class="codenumber">12.9.2</span> <span class="title">The Details of Measuring the Flux of a Vector Field through a Surface</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_FluxInt.html#subsection-145" class="internal"><span class="codenumber">12.9.3</span> <span class="title">Summary</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_FluxInt.html#exercises-34" class="internal"><span class="codenumber">12.9.4</span> <span class="title">Exercises</span></a></div></li>
 </ul>
 </li>
 <li>
 <div class="toc-item"><a href="S_Vector_ScalarSurfaceIntegral.html" class="internal"><span class="codenumber">12.10</span> <span class="title">Surface Integrals of Scalar Valued Functions</span></a></div>
 <ul class="structural">
-<li><div class="toc-item"><a href="S_Vector_ScalarSurfaceIntegral.html#subsection-147" class="internal"><span class="codenumber">12.10.1</span> <span class="title">Defining surface integrals of scalar functions</span></a></div></li>
-<li><div class="toc-item"><a href="S_Vector_ScalarSurfaceIntegral.html#subsection-148" class="internal"><span class="codenumber">12.10.2</span> <span class="title">Properties of Scalar Surface Integrals</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_ScalarSurfaceIntegral.html#subsection-146" class="internal"><span class="codenumber">12.10.1</span> <span class="title">Defining surface integrals of scalar functions</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_ScalarSurfaceIntegral.html#subsection-147" class="internal"><span class="codenumber">12.10.2</span> <span class="title">Properties of Scalar Surface Integrals</span></a></div></li>
 <li><div class="toc-item"><a href="S_Vector_ScalarSurfaceIntegral.html#exercises-35" class="internal"><span class="codenumber">12.10.3</span> <span class="title">Exercises</span></a></div></li>
 </ul>
 </li>
 <li>
-<div class="toc-item"><a href="S_Vector_StokesThm.html" class="internal"><span class="codenumber">12.11</span> <span class="title">Stokes' Theorem</span></a></div>
+<div class="toc-item"><a href="S_Vector_StokesThm.html" class="internal"><span class="codenumber">12.11</span> <span class="title">Stokes’ Theorem</span></a></div>
 <ul class="structural">
-<li><div class="toc-item"><a href="S_Vector_StokesThm.html#SS_Vector_StokesThm_Development" class="internal"><span class="codenumber">12.11.1</span> <span class="title">Circulation in three dimensions and Stokes' Theorem</span></a></div></li>
-<li><div class="toc-item"><a href="S_Vector_StokesThm.html#SS_Vector_StokesThm_Verify" class="internal"><span class="codenumber">12.11.2</span> <span class="title">Verifying and Applying Stokes' Theorem</span></a></div></li>
-<li><div class="toc-item"><a href="S_Vector_StokesThm.html#subsection-151" class="internal"><span class="codenumber">12.11.3</span> <span class="title">Summary</span></a></div></li>
-<li><div class="toc-item"><a href="S_Vector_StokesThm.html#exercises-36" class="internal"><span class="codenumber">12.11.4</span> <span class="title">Exercises</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_StokesThm.html#SS_Vector_StokesThm_Development" class="internal"><span class="codenumber">12.11.1</span> <span class="title">Circulation in three dimensions and Stokes’ Theorem</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_StokesThm.html#SS_Vector_StokesThm_Verify" class="internal"><span class="codenumber">12.11.2</span> <span class="title">Verifying and Applying Stokes’ Theorem</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_StokesThm.html#surfaceboundaries" class="internal"><span class="codenumber">12.11.3</span> <span class="title">Practice with Surfaces and thier Boundaries</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_StokesThm.html#subsection-151" class="internal"><span class="codenumber">12.11.4</span> <span class="title">Summary</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_StokesThm.html#exercises-36" class="internal"><span class="codenumber">12.11.5</span> <span class="title">Exercises</span></a></div></li>
 </ul>
 </li>
 <li>
@@ -707,7 +730,7 @@ window.MathJax = {
 <div class="sbspanel top" style="width:50%;"><img src="external/images/fig_9_2_single.svg" role="img" class="contained"></div>
 <div class="sbspanel top" style="width:50%;"><img src="external/images/fig_9_2_multiple.svg" role="img" class="contained"></div>
 </div></div>
-<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">9.2.2<span class="period">.</span></span><span class="space"> </span>Left: A vector. Right: Representations of the same vector.</figcaption></figure><div class="para" id="p-282">According to the definition, a vector possesses the attributes of length (magnitude) and direction; the vector's position, however, is not mentioned. Consequently, we regard as equal any two vectors having the same magnitude and direction, as shown at right in <a href="" class="xref" data-knowl="./knowl/F-9-2-vectors-single.html" title="Figure 9.2.2">Figure 9.2.2</a>. In other words, two vectors are <dfn class="terminology">equal</dfn> provided they have the same magnitude and direction.</div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">9.2.2<span class="period">.</span></span><span class="space"> </span>Left: A vector. Right: Representations of the same vector.</figcaption></figure><div class="para" id="p-282">According to the definition, a vector possesses the attributes of length (magnitude) and direction; the vector’s position, however, is not mentioned. Consequently, we regard as equal any two vectors having the same magnitude and direction, as shown at right in <a href="" class="xref" data-knowl="./knowl/F-9-2-vectors-single.html" title="Figure 9.2.2">Figure 9.2.2</a>. In other words, two vectors are <dfn class="terminology">equal</dfn> provided they have the same magnitude and direction.</div>
 <div class="para" id="p-283">This means that the same vector may be drawn in the plane in many different ways. For instance, suppose that we would like to draw the vector <span class="process-math">\(\langle 3, 4\rangle\text{,}\)</span> which represents a horizontal change of three units and a vertical change of four units. We may place the <em class="emphasis">tail</em> of the vector (the point from which the vector originates) at the origin and the <em class="emphasis">tip</em> (the terminal point of the vector) at <span class="process-math">\((3,4)\text{,}\)</span> as illustrated at left in <a href="" class="xref" data-knowl="./knowl/F-9-2-vectors-standard.html" title="Figure 9.2.3">Figure 9.2.3</a>. A vector with its tail at the origin is said to be in <em class="emphasis">standard position</em>.</div>
 <figure class="figure figure-like" id="F-9-2-vectors-standard"><div class="sidebyside"><div class="sbsrow" style="margin-left:0%;margin-right:0%;">
 <div class="sbspanel top" style="width:50%;"><img src="external/images/fig_9_2_std_pos.svg" role="img" class="contained"></div>
@@ -1021,11 +1044,13 @@ c\vu = \langle cu_1, cu_2, \ldots, cu_n \rangle.
 <div id="webwork-25" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="25" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Michigan/Chap13Sec2/Q09.pg" data-courseID="mitchkeller-dev" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-25')">Activate</button></div>
 <div class="problem-contents">
-<div class="para" id="p-375">Which is traveling faster, a car whose velocity vector is <span class="process-math">\(28\vec i + 33\vec j\text{,}\)</span> or a car whose velocity vector is <span class="process-math">\(40\vec i\text{,}\)</span> assuming that the units are the same for both directions?</div> <div class="para" id="p-376">
-<ul style="list-style:circle;">
-<li id="li-165"><div class="para" id="p-378">the first car</div></li>
-<li id="li-166"><div class="para" id="p-379">the second car</div></li>
-</ul> is the faster car.</div> <div class="para" id="p-380">At what speed is the faster car traveling?</div> <div class="para" id="p-381">speed = <span class="fillin underline" role="img" aria-label="25-character blank" style="width: 11.3636363636364em;"></span>
+<div class="para" id="p-375">Which is traveling faster, a car whose velocity vector is <span class="process-math">\(28\vec i + 33\vec j\text{,}\)</span> or a car whose velocity vector is <span class="process-math">\(40\vec i\text{,}\)</span> assuming that the units are the same for both directions?</div> <div class="para logical" id="p-376">
+<ul class="square">
+<li id="li-164"><div class="para" id="p-377">the first car</div></li>
+<li id="li-165"><div class="para" id="p-378">the second car</div></li>
+</ul>
+<div class="para">is the faster car.</div>
+</div> <div class="para" id="p-379">At what speed is the faster car traveling?</div> <div class="para" id="p-380">speed = <span class="fillin underline" role="img" aria-label="25-character blank" style="width: 11.3636363636364em;"></span>
 </div>
 <div class="solutions">
 <a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-9" id="solution-9"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-9"><div class="solution solution-like">
@@ -1045,12 +1070,12 @@ c\vu = \langle cu_1, cu_2, \ldots, cu_n \rangle.
 <div id="webwork-26" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="26" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Dartmouth/setStewartCh13S2/problem_1.pg" data-courseID="mitchkeller-dev" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-26')">Activate</button></div>
 <div class="problem-contents">
-<div class="para" id="p-384">Let <span class="process-math">\(\mathbf a = \langle 4, -5, 1 \rangle\)</span> and <span class="process-math">\(\mathbf b = \langle 5, 1, 3 \rangle\text{.}\)</span>
-</div> <div class="para" id="p-385">Compute:</div> <div class="para" id="p-386">
-<span class="process-math">\(\mathbf a + \mathbf b\)</span> =  (<span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>,<span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>,<span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>)</div> <div class="para" id="p-387">
-<span class="process-math">\(\mathbf a - \mathbf b\)</span> =  (<span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>,<span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>,<span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>)</div> <div class="para" id="p-388">
-<span class="process-math">\(2\mathbf a\)</span> =  (<span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>,<span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>,<span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>)</div> <div class="para" id="p-389">
-<span class="process-math">\(3\mathbf a + 4\mathbf b\)</span> =  (<span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>,<span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>,<span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>)</div> <div class="para" id="p-390">
+<div class="para" id="p-383">Let <span class="process-math">\(\mathbf a = \langle 4, -5, 1 \rangle\)</span> and <span class="process-math">\(\mathbf b = \langle 5, 1, 3 \rangle\text{.}\)</span>
+</div> <div class="para" id="p-384">Compute:</div> <div class="para" id="p-385">
+<span class="process-math">\(\mathbf a + \mathbf b\)</span> =  (<span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>,<span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>,<span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>)</div> <div class="para" id="p-386">
+<span class="process-math">\(\mathbf a - \mathbf b\)</span> =  (<span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>,<span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>,<span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>)</div> <div class="para" id="p-387">
+<span class="process-math">\(2\mathbf a\)</span> =  (<span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>,<span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>,<span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>)</div> <div class="para" id="p-388">
+<span class="process-math">\(3\mathbf a + 4\mathbf b\)</span> =  (<span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>,<span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>,<span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>)</div> <div class="para" id="p-389">
 <span class="process-math">\(|\mathbf a|\)</span> =  <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>
 </div>
 <div class="solutions"></div>
@@ -1059,9 +1084,9 @@ c\vu = \langle cu_1, cu_2, \ldots, cu_n \rangle.
 <div id="webwork-27" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="27" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Michigan/Chap13Sec1/Q17.pg" data-courseID="mitchkeller-dev" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-27')">Activate</button></div>
 <div class="problem-contents">
-<div class="para" id="p-404">Find the length of the vectors</div> <div class="para" id="p-405">
+<div class="para" id="p-403">Find the length of the vectors</div> <div class="para" id="p-404">
 <em class="alert">(a)</em> <span class="process-math">\(5\,\mathit{\vec i}+2\,\mathit{\vec j}-5\,\mathit{\vec k}\text{:}\)</span> length = <span class="fillin underline" role="img" aria-label="25-character blank" style="width: 11.3636363636364em;"></span>
-</div> <div class="para" id="p-406">
+</div> <div class="para" id="p-405">
 <em class="alert">(b)</em> <span class="process-math">\(1.2\,\mathit{\vec i}+0.4\,\mathit{\vec j}-1.2\,\mathit{\vec k}\text{:}\)</span> length = <span class="fillin underline" role="img" aria-label="25-character blank" style="width: 11.3636363636364em;"></span>
 </div>
 <div class="solutions">
@@ -1074,11 +1099,11 @@ c\vu = \langle cu_1, cu_2, \ldots, cu_n \rangle.
 <div id="webwork-28" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="28" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Michigan/Chap13Sec1/Q21.pg" data-courseID="mitchkeller-dev" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-28')">Activate</button></div>
 <div class="problem-contents">
-<div class="para" id="p-409">For each of the following, perform the indicated operations on the vectors</div> <div class="para" id="p-410">
+<div class="para" id="p-408">For each of the following, perform the indicated operations on the vectors</div> <div class="para" id="p-409">
 <span class="process-math">\(\vec a = \,\mathit{\vec j}+2\,\mathit{\vec k}\text{,}\)</span> <span class="process-math">\(\vec b = -\,\mathit{\vec i}-\,\mathit{\vec j}+3\,\mathit{\vec k}\text{,}\)</span> <span class="process-math">\(\vec z = 2\,\mathit{\vec i}+5\,\mathit{\vec j}\text{.}\)</span>
-</div> <div class="para" id="p-411">
+</div> <div class="para" id="p-410">
 <em class="alert">(a)</em> <span class="process-math">\(5 \vec a + 5 \vec b =\)</span> <span class="fillin underline" role="img" aria-label="35-character blank" style="width: 15.9090909090909em;"></span>
-</div> <div class="para" id="p-412">
+</div> <div class="para" id="p-411">
 <em class="alert">(b)</em> <span class="process-math">\(6 \vec a + 4 \vec b - 3 \vec z =\)</span> <span class="fillin underline" role="img" aria-label="35-character blank" style="width: 15.9090909090909em;"></span>
 </div>
 <div class="solutions">
@@ -1092,10 +1117,10 @@ c\vu = \langle cu_1, cu_2, \ldots, cu_n \rangle.
 <div id="webwork-29" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="29" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Michigan/Chap13Sec1/Q29.pg" data-courseID="mitchkeller-dev" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-29')">Activate</button></div>
 <div class="problem-contents">
-<div class="para" id="p-415">Find the value(s) of <span class="process-math">\(a\)</span> making <span class="process-math">\(\vec v = 3 a\,\vec i - 2\, \vec j\)</span> parallel to <span class="process-math">\(\vec w = a^2\,\vec i + 2\, \vec j\text{.}\)</span>
-</div> <div class="para" id="p-416">
+<div class="para" id="p-414">Find the value(s) of <span class="process-math">\(a\)</span> making <span class="process-math">\(\vec v = 3 a\,\vec i - 2\, \vec j\)</span> parallel to <span class="process-math">\(\vec w = a^2\,\vec i + 2\, \vec j\text{.}\)</span>
+</div> <div class="para" id="p-415">
 <span class="process-math">\(a =\)</span> <span class="fillin underline" role="img" aria-label="35-character blank" style="width: 15.9090909090909em;"></span>
-</div> <div class="para" id="p-417"><em class="emphasis">(If there is more than one value of a, enter the values as a comma-separated list.)</em></div>
+</div> <div class="para" id="p-416"><em class="emphasis">(If there is more than one value of a, enter the values as a comma-separated list.)</em></div>
 <div class="solutions">
 <a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-12" id="solution-12"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-12"><div class="solution solution-like">
 <span class="process-math">\(a\ne 0\text{,}\)</span><div class="displaymath process-math">
@@ -1114,12 +1139,12 @@ a = 0, -3.
 <div id="webwork-30" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="30" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Michigan/Chap13Sec1/Q31.pg" data-courseID="mitchkeller-dev" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-30')">Activate</button></div>
 <div class="problem-contents">
-<div class="para" id="p-419">
+<div class="para" id="p-418">
 <em class="alert">(a)</em> Find a unit vector from the point <span class="process-math">\(P=(1,3)\)</span> and toward the point <span class="process-math">\(Q=(5,6)\text{.}\)</span>
-</div> <div class="para" id="p-420">
+</div> <div class="para" id="p-419">
 <span class="process-math">\(\vec u =\)</span> <span class="fillin underline" role="img" aria-label="35-character blank" style="width: 15.9090909090909em;"></span>
-</div> <div class="para" id="p-421">
-<em class="alert">(b)</em> Find a vector of length 15 pointing in the same direction.</div> <div class="para" id="p-422">
+</div> <div class="para" id="p-420">
+<em class="alert">(b)</em> Find a vector of length 15 pointing in the same direction.</div> <div class="para" id="p-421">
 <span class="process-math">\(\vec v =\)</span> <span class="fillin underline" role="img" aria-label="35-character blank" style="width: 15.9090909090909em;"></span>
 </div>
 <div class="solutions">
@@ -1154,7 +1179,7 @@ a = 0, -3.
 <div id="webwork-31" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="31" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Michigan/Chap13Sec1/Q41.pg" data-courseID="mitchkeller-dev" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-31')">Activate</button></div>
 <div class="problem-contents">
-<div class="para" id="p-425">A truck is traveling due north at <span class="process-math">\(50\)</span> km/hr approaching a crossroad. On a perpendicular road a police car is traveling west toward the intersection at <span class="process-math">\(45\)</span> km/hr. Both vehicles will reach the crossroad in exactly one hour.  Find the vector currently  representing the displacement of the truck with respect to the police car.</div> <div class="para" id="p-426">displacement <span class="process-math">\(\vec d  =\)</span> <span class="fillin underline" role="img" aria-label="35-character blank" style="width: 15.9090909090909em;"></span>
+<div class="para" id="p-424">A truck is traveling due north at <span class="process-math">\(50\)</span> km/hr approaching a crossroad. On a perpendicular road a police car is traveling west toward the intersection at <span class="process-math">\(45\)</span> km/hr. Both vehicles will reach the crossroad in exactly one hour.  Find the vector currently  representing the displacement of the truck with respect to the police car.</div> <div class="para" id="p-425">displacement <span class="process-math">\(\vec d  =\)</span> <span class="fillin underline" role="img" aria-label="35-character blank" style="width: 15.9090909090909em;"></span>
 </div>
 <div class="solutions">
 <a href="" data-knowl="" class="id-ref solution-knowl original has-image" data-refid="hk-solution-14" id="solution-14"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-14"><div class="solution solution-like">
@@ -1168,53 +1193,53 @@ a = 0, -3.
 </div>
 </div>
 </div></article><article class="exercise exercise-like" id="Ez-9-2-1"><h4 class="heading"><span class="codenumber">13<span class="period">.</span></span></h4>
-<div class="para logical" id="p-428">
+<div class="para logical" id="p-427">
 <div class="para">Let <span class="process-math">\(\vv = \langle 1, -2 \rangle\text{,}\)</span> <span class="process-math">\(\vu = \langle 0, 4 \rangle\text{,}\)</span> and <span class="process-math">\(\vw = \langle -5, 7 \rangle\text{.}\)</span>
 </div>
 <ol class="lower-alpha">
-<li id="li-167"><div class="para" id="p-429">Determine the components of the vector <span class="process-math">\(\vu - \vv\text{.}\)</span>
+<li id="li-166"><div class="para" id="p-428">Determine the components of the vector <span class="process-math">\(\vu - \vv\text{.}\)</span>
 </div></li>
-<li id="li-168"><div class="para" id="p-430">Determine the components of the vector <span class="process-math">\(2\vv - 3\vu\text{.}\)</span>
+<li id="li-167"><div class="para" id="p-429">Determine the components of the vector <span class="process-math">\(2\vv - 3\vu\text{.}\)</span>
 </div></li>
-<li id="li-169"><div class="para" id="p-431">Determine the components of the vector <span class="process-math">\(\vv + 2\vu - 7 \vw\text{.}\)</span>
+<li id="li-168"><div class="para" id="p-430">Determine the components of the vector <span class="process-math">\(\vv + 2\vu - 7 \vw\text{.}\)</span>
 </div></li>
-<li id="li-170"><div class="para" id="p-432">Determine scalars <span class="process-math">\(a\)</span> and <span class="process-math">\(b\)</span> such that <span class="process-math">\(a \vv + b\vu = \vw\text{.}\)</span> Show all of your work in finding <span class="process-math">\(a\)</span> and <span class="process-math">\(b\text{.}\)</span>
+<li id="li-169"><div class="para" id="p-431">Determine scalars <span class="process-math">\(a\)</span> and <span class="process-math">\(b\)</span> such that <span class="process-math">\(a \vv + b\vu = \vw\text{.}\)</span> Show all of your work in finding <span class="process-math">\(a\)</span> and <span class="process-math">\(b\text{.}\)</span>
 </div></li>
 </ol>
 </div></article><article class="exercise exercise-like" id="Ez-9-2-2"><h4 class="heading"><span class="codenumber">14<span class="period">.</span></span></h4>
-<div class="para logical" id="p-433">
+<div class="para logical" id="p-432">
 <div class="para">Let <span class="process-math">\(\vu = \langle 2, 1 \rangle\)</span> and <span class="process-math">\(\vv = \langle 1, 2 \rangle\text{.}\)</span>
 </div>
 <ol class="lower-alpha">
-<li id="li-171"><div class="para" id="p-434">Determine the components and draw geometric representations of the vectors <span class="process-math">\(2\vu\text{,}\)</span> <span class="process-math">\(\frac{1}{2}\vu\text{,}\)</span> <span class="process-math">\((-1)\vu\text{,}\)</span> and <span class="process-math">\((-3)\vu\)</span> on the same set of axes.</div></li>
-<li id="li-172"><div class="para" id="p-435">Determine the components and draw geometric representations of the vectors <span class="process-math">\(\vu + \vv\text{,}\)</span> <span class="process-math">\(\vu + 2\vv\text{,}\)</span> and <span class="process-math">\(\vu + 3\vv\)</span> on the same set of axes.</div></li>
-<li id="li-173"><div class="para" id="p-436">Determine the components and draw geometric representations of the vectors <span class="process-math">\(\vu - \vv\text{,}\)</span> <span class="process-math">\(\vu - 2\vv\text{,}\)</span> and <span class="process-math">\(\vu - 3\vv\)</span> on the same set of axes.</div></li>
-<li id="li-174"><div class="para" id="p-437">Recall that <span class="process-math">\(\vu - \vv = \vu + (-1)\vv\text{.}\)</span>  Sketch the vectors <span class="process-math">\(\vu\text{,}\)</span> <span class="process-math">\(\vv\text{,}\)</span> <span class="process-math">\(\vu+\vv\text{,}\)</span> and <span class="process-math">\(\vu-\vv\)</span> on the same set of axes. Use the “tip to tail” perspective for vector addition to explain the geometric relationship between <span class="process-math">\(\vu\text{,}\)</span> <span class="process-math">\(\vv\text{,}\)</span> and <span class="process-math">\(\vu - \vv\text{.}\)</span>
+<li id="li-170"><div class="para" id="p-433">Determine the components and draw geometric representations of the vectors <span class="process-math">\(2\vu\text{,}\)</span> <span class="process-math">\(\frac{1}{2}\vu\text{,}\)</span> <span class="process-math">\((-1)\vu\text{,}\)</span> and <span class="process-math">\((-3)\vu\)</span> on the same set of axes.</div></li>
+<li id="li-171"><div class="para" id="p-434">Determine the components and draw geometric representations of the vectors <span class="process-math">\(\vu + \vv\text{,}\)</span> <span class="process-math">\(\vu + 2\vv\text{,}\)</span> and <span class="process-math">\(\vu + 3\vv\)</span> on the same set of axes.</div></li>
+<li id="li-172"><div class="para" id="p-435">Determine the components and draw geometric representations of the vectors <span class="process-math">\(\vu - \vv\text{,}\)</span> <span class="process-math">\(\vu - 2\vv\text{,}\)</span> and <span class="process-math">\(\vu - 3\vv\)</span> on the same set of axes.</div></li>
+<li id="li-173"><div class="para" id="p-436">Recall that <span class="process-math">\(\vu - \vv = \vu + (-1)\vv\text{.}\)</span>  Sketch the vectors <span class="process-math">\(\vu\text{,}\)</span> <span class="process-math">\(\vv\text{,}\)</span> <span class="process-math">\(\vu+\vv\text{,}\)</span> and <span class="process-math">\(\vu-\vv\)</span> on the same set of axes. Use the “tip to tail” perspective for vector addition to explain the geometric relationship between <span class="process-math">\(\vu\text{,}\)</span> <span class="process-math">\(\vv\text{,}\)</span> and <span class="process-math">\(\vu - \vv\text{.}\)</span>
 </div></li>
 </ol>
 </div></article><article class="exercise exercise-like" id="Ez-9-2-3"><h4 class="heading"><span class="codenumber">15<span class="period">.</span></span></h4>
-<div class="para logical" id="p-438">
+<div class="para logical" id="p-437">
 <div class="para">Recall that given any vector <span class="process-math">\(\vv\text{,}\)</span> we can calculate its length, <span class="process-math">\(|\vv|\text{.}\)</span> Also, we say that two vectors that are scalar multiples of one another are <em class="emphasis">parallel</em>.</div>
 <ol class="lower-alpha">
-<li id="li-175"><div class="para" id="p-439">Let <span class="process-math">\(\vv = \langle 3,4 \rangle\)</span> in <span class="process-math">\(\R^2\text{.}\)</span>  Compute <span class="process-math">\(|\vv|\text{,}\)</span> and determine the components of the vector <span class="process-math">\(\vu = \frac{1}{|\vv|} \vv\text{.}\)</span>  What is the magnitude of the vector <span class="process-math">\(\vu\text{?}\)</span>  How does its direction compare to <span class="process-math">\(\vv\text{?}\)</span>
+<li id="li-174"><div class="para" id="p-438">Let <span class="process-math">\(\vv = \langle 3,4 \rangle\)</span> in <span class="process-math">\(\R^2\text{.}\)</span>  Compute <span class="process-math">\(|\vv|\text{,}\)</span> and determine the components of the vector <span class="process-math">\(\vu = \frac{1}{|\vv|} \vv\text{.}\)</span>  What is the magnitude of the vector <span class="process-math">\(\vu\text{?}\)</span>  How does its direction compare to <span class="process-math">\(\vv\text{?}\)</span>
 </div></li>
-<li id="li-176"><div class="para" id="p-440">Let <span class="process-math">\(\vw = 3\vi - 3\vj\)</span> in <span class="process-math">\(\R^2\text{.}\)</span>  Determine a unit vector <span class="process-math">\(\vu\)</span> in the same direction as <span class="process-math">\(\vw\text{.}\)</span>
+<li id="li-175"><div class="para" id="p-439">Let <span class="process-math">\(\vw = 3\vi - 3\vj\)</span> in <span class="process-math">\(\R^2\text{.}\)</span>  Determine a unit vector <span class="process-math">\(\vu\)</span> in the same direction as <span class="process-math">\(\vw\text{.}\)</span>
 </div></li>
-<li id="li-177"><div class="para" id="p-441">Let <span class="process-math">\(\vv = \langle 2, 3, 5 \rangle\)</span> in <span class="process-math">\(\R^3\text{.}\)</span>  Compute <span class="process-math">\(|\vv|\text{,}\)</span> and determine the components of the vector <span class="process-math">\(\vu = \frac{1}{|\vv|} \vv\text{.}\)</span>  What is the magnitude of the vector <span class="process-math">\(\vu\text{?}\)</span>  How does its direction compare to <span class="process-math">\(\vv\text{?}\)</span>
+<li id="li-176"><div class="para" id="p-440">Let <span class="process-math">\(\vv = \langle 2, 3, 5 \rangle\)</span> in <span class="process-math">\(\R^3\text{.}\)</span>  Compute <span class="process-math">\(|\vv|\text{,}\)</span> and determine the components of the vector <span class="process-math">\(\vu = \frac{1}{|\vv|} \vv\text{.}\)</span>  What is the magnitude of the vector <span class="process-math">\(\vu\text{?}\)</span>  How does its direction compare to <span class="process-math">\(\vv\text{?}\)</span>
 </div></li>
-<li id="li-178"><div class="para" id="p-442">Let <span class="process-math">\(\vv\)</span> be an arbitrary nonzero vector in <span class="process-math">\(\R^3\text{.}\)</span> Write a general formula for a unit vector that is parallel to <span class="process-math">\(\vv\text{.}\)</span>
+<li id="li-177"><div class="para" id="p-441">Let <span class="process-math">\(\vv\)</span> be an arbitrary nonzero vector in <span class="process-math">\(\R^3\text{.}\)</span> Write a general formula for a unit vector that is parallel to <span class="process-math">\(\vv\text{.}\)</span>
 </div></li>
 </ol>
 </div></article><article class="exercise exercise-like" id="Ez-9-2-4"><h4 class="heading"><span class="codenumber">16<span class="period">.</span></span></h4>
 <div class="sidebyside"><div class="sbsrow" style="margin-left:0%;margin-right:0%;">
-<div class="sbspanel top" style="width:55%;"><div class="para" id="p-443">A force (like gravity) has both a magnitude and a direction. If two forces <span class="process-math">\(\vu\)</span> and <span class="process-math">\(\vv\)</span> are applied to an object at the same point, the resultant force on the object is the vector sum of the two forces. When a force is applied by a rope or a cable, we call that force <em class="emphasis">tension</em>. Vectors can be used to determine tension.</div></div>
+<div class="sbspanel top" style="width:55%;"><div class="para" id="p-442">A force (like gravity) has both a magnitude and a direction. If two forces <span class="process-math">\(\vu\)</span> and <span class="process-math">\(\vv\)</span> are applied to an object at the same point, the resultant force on the object is the vector sum of the two forces. When a force is applied by a rope or a cable, we call that force <em class="emphasis">tension</em>. Vectors can be used to determine tension.</div></div>
 <div class="sbspanel top" style="width:45%;"><figure class="figure figure-like" id="F-9-1-forces"><img src="external/images/fig_9_2_forces.svg" role="img" class="contained"><figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">9.2.10<span class="period">.</span></span><span class="space"> </span>Forces acting on an object.</figcaption></figure></div>
-</div></div> <div class="para logical" id="p-444">
+</div></div> <div class="para logical" id="p-443">
 <div class="para">As an example, suppose a painting weighing 50 pounds is to be hung from wires attached to the frame as illustrated in <a href="" class="xref" data-knowl="./knowl/F-9-1-forces.html" title="Figure 9.2.10">Figure 9.2.10</a>. We need to know how much tension will be on the wires to know what kind of wire to use to hang the picture. Assume the wires are attached to the frame at point <span class="process-math">\(O\text{.}\)</span> Let <span class="process-math">\(\vu\)</span> be the vector emanating from point <span class="process-math">\(O\)</span> to the left and <span class="process-math">\(\vv\)</span> the vector emanating from point <span class="process-math">\(O\)</span> to the right. Assume <span class="process-math">\(\vu\)</span> makes a <span class="process-math">\(60^{\circ}\)</span> angle with the horizontal at point <span class="process-math">\(O\)</span> and <span class="process-math">\(\vv\)</span> makes a <span class="process-math">\(45^{\circ}\)</span> angle with the horizontal at point <span class="process-math">\(O\text{.}\)</span> Our goal is to determine the vectors <span class="process-math">\(\vu\)</span> and <span class="process-math">\(\vv\)</span> in order to calculate their magnitudes.</div>
 <ol class="lower-alpha">
-<li id="li-179"><div class="para" id="p-445">Treat point <span class="process-math">\(O\)</span> as the origin. Use trigonometry to find the components <span class="process-math">\(u_1\)</span> and <span class="process-math">\(u_2\)</span> so that <span class="process-math">\(\vu = u_1 \vi + u_2 \vj\text{.}\)</span> Since we don't know the magnitude of <span class="process-math">\(\vu\text{,}\)</span> your components will be in terms of <span class="process-math">\(|\vu|\)</span> and the cosine and sine of some angle. Then find the components <span class="process-math">\(v_1\)</span> and <span class="process-math">\(v_2\)</span> so that <span class="process-math">\(\vv = v_1 \vi + v_2 \vj\text{.}\)</span> Again, your components will be in terms of <span class="process-math">\(|\vv|\)</span> and the cosine and sine of some angle.</div></li>
-<li id="li-180"><div class="para" id="p-446">The total force holding the picture up is given by <span class="process-math">\(\vu+\vv\text{.}\)</span> The force acting to pull the picture down is given by the weight of the picture. Find the force vector <span class="process-math">\(\vw\)</span> acting to pull the picture down.</div></li>
-<li id="li-181"><div class="para" id="p-447">The picture will hang in equilibrium when the force acting to hold it up is equal in magnitude and opposite in direction to the force acting to pull it down. Equate these forces to find the components of the vectors <span class="process-math">\(\vu\)</span> and <span class="process-math">\(\vv\text{.}\)</span>
+<li id="li-178"><div class="para" id="p-444">Treat point <span class="process-math">\(O\)</span> as the origin. Use trigonometry to find the components <span class="process-math">\(u_1\)</span> and <span class="process-math">\(u_2\)</span> so that <span class="process-math">\(\vu = u_1 \vi + u_2 \vj\text{.}\)</span> Since we don’t know the magnitude of <span class="process-math">\(\vu\text{,}\)</span> your components will be in terms of <span class="process-math">\(|\vu|\)</span> and the cosine and sine of some angle. Then find the components <span class="process-math">\(v_1\)</span> and <span class="process-math">\(v_2\)</span> so that <span class="process-math">\(\vv = v_1 \vi + v_2 \vj\text{.}\)</span> Again, your components will be in terms of <span class="process-math">\(|\vv|\)</span> and the cosine and sine of some angle.</div></li>
+<li id="li-179"><div class="para" id="p-445">The total force holding the picture up is given by <span class="process-math">\(\vu+\vv\text{.}\)</span> The force acting to pull the picture down is given by the weight of the picture. Find the force vector <span class="process-math">\(\vw\)</span> acting to pull the picture down.</div></li>
+<li id="li-180"><div class="para" id="p-446">The picture will hang in equilibrium when the force acting to hold it up is equal in magnitude and opposite in direction to the force acting to pull it down. Equate these forces to find the components of the vectors <span class="process-math">\(\vu\)</span> and <span class="process-math">\(\vv\text{.}\)</span>
 </div></li>
 </ol>
 </div></article></section></section></div>
@@ -1222,7 +1247,7 @@ a = 0, -3.
 <a class="previous-button button" href="S-9-1-Functions.html" title="Previous"><span class="icon">&lt;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon">^</span><span class="name">Top</span></a><a class="next-button button" href="S-9-3-Dot-Product.html" title="Next"><span class="name">Next</span><span class="icon">&gt;</span></a>
 </div></main>
 </div>
-<div id="ptx-page-footer">
+<div id="ptx-page-footer" class="ptx-page-footer">
 <a class="pretext-link" href="https://pretextbook.org" title="PreTeXt"><div class="logo"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="338 3000 8772 6866"><g style="stroke-width:.025in; stroke:black; fill:none"><polyline points="472,3590 472,9732 " style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round; "></polyline><path style="stroke:#000000;stroke-width:126;stroke-linecap:butt;" d="M 4724,9448 A 4660 4660  0  0  1  8598  9259"></path><path style="stroke:#000000;stroke-width:174;stroke-linecap:butt;" d="M 4488,9685 A 4228 4228  0  0  0   472  9732"></path><path style="stroke:#000000;stroke-width:126;stroke-linecap:butt;" d="M 4724,3590 A 4241 4241  0  0  1  8598  3496"></path><path style="stroke:#000000;stroke-width:126;stroke-linecap:round;" d="M 850,3496  A 4241 4241  0  0  1  4724  3590"></path><path style="stroke:#000000;stroke-width:126;stroke-linecap:round;" d="M 850,9259  A 4507 4507  0  0  1  4724  9448"></path><polyline points="5385,4299 4062,8125" style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="8598,3496 8598,9259" style="stroke:#000000;stroke-width:126; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="850,3496 850,9259" style="stroke:#000000;stroke-width:126; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="4960,9685 4488,9685" style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="3070,4582 1889,6141 3070,7700" style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="6418,4582 7600,6141 6418,7700" style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="8976,3590 8976,9732" style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round;"></polyline><path style="stroke:#000000;stroke-width:174;stroke-linecap:butt;" d="M 4960,9685 A 4228 4228  0  0  1  8976  9732"></path></g></svg></div></a><a class="runestone-link" href="https://runestone.academy" title="Runestone Academy"><img class="logo" src="https://runestone.academy/runestone/static/images/RAIcon_cropped.png"></a><a class="mathjax-link" href="https://www.mathjax.org" title="MathJax"><img class="logo" src="https://www.mathjax.org/badge/badge-square-2.png"></a>
 </div>
 <!--Start: Google Global Site Tag code--><!--*** DO NOT COPY ANOTHER PROJECT'S MAGIC NUMBERS/ID ***--><!--***           GET YOUR OWN FROM GOOGLE             ***-->

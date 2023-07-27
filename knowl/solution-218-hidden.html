@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="en-US" dir="ltr">
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
 <!--*                                          *-->
@@ -11,27 +11,17 @@
 <meta name="robots" content="noindex, nofollow">
 </head>
 <body class="ignore-math"><div class="solution solution-like"><div class="para logical">
-<div class="para">By the <a class="external" href="https://activecalculus.org/single/sec-4-4-FTC.html#wtR" target="_blank">Total Change Theorem</a><a href="" class="fn-knowl original" data-knowl="./knowl/fn-33-hidden.html" title="Footnote 12.8.2"><sup> 2 </sup></a>, with <span class="process-math">\(y\)</span> fixed, we have that</div>
+<div class="para">Denote by <span class="process-math">\(D\)</span> the region inside the circle <span class="process-math">\(C\text{.}\)</span> We can describe <span class="process-math">\(D\)</span> readily in polar coordinates with the inequalities <span class="process-math">\(0\leq r \leq 2\)</span> and <span class="process-math">\(0\leq \theta\leq 2\pi\text{.}\)</span> Thus, we need to calculate</div>
 <div class="displaymath process-math">
 \begin{align*}
-F_2(c,y) - F_2(a,y) &amp;=
-\int_a^c \frac{\partial F_2}{\partial x}(x,y)\,
-dx\text{.}\\
-\end{align*}
-<p class="intertext">Similarly,</p>
-\begin{align*}
-F_1(x,b) - F_1(x,d) &amp;=
-\int_d^b \frac{\partial F_1}{\partial y}(x,y)\,
-dy\text{.}
+\iint_D \left(\frac{\partial F_2}{\partial x} -
+\frac{\partial F_1}{\partial y}\right)\, dA &amp;= \iint_D
+(6xy-2)\, dA\\
+&amp;= \int_0^2 \int_0^{2\pi}
+(6r^2\cos(\theta)\sin(\theta) - 2)r\, d\theta\, dr\text{.}
 \end{align*}
 </div>
-<div class="para">Therefore, we have</div>
-<div class="displaymath process-math">
-\begin{equation*}
-\oint_C\vF\cdot d\vr = \int\limits_b^d\!\! \int\limits_{a\mathstrut}^c
-\frac{\partial F_2}{\partial x}(x,y)\, dx\, dy +
-\int\limits_{a\mathstrut}^c\!\! \int\limits_d^b \frac{\partial F_1}{\partial y}(x,y)\, dy\, dx\text{.}
-\end{equation*}
+<div class="para">Using SageMath to calculate this, we obtain <span class="process-math">\(-8\pi\text{.}\)</span>
 </div>
 </div></div></body>
 </html>

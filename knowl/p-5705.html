@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="en-US" dir="ltr">
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
 <!--*                                          *-->
@@ -12,7 +12,34 @@
 </head>
 <body class="ignore-math">
 <h6 class="heading"><span class="type">Paragraph</span></h6>
-<div class="para">In this part, we will consider the top half of the unit ball shown in <a href="" class="xref" data-knowl="./knowl/fig_Vector_DivThm_Poisongas2.html" title="Figure 12.12.5">Figure 12.12.5</a>, with boundary and normal vectors as shown in the plot. If the flux integral of a poisonous gas through <span class="process-math">\(S_{\text{top}}\)</span> is <span class="process-math">\(15\)</span> and the flux integral of the poison gas through <span class="process-math">\(S_{\text{mid}}\)</span> is <span class="process-math">\(-20\text{,}\)</span> is the top half of the unit ball emitting or absorbing poisonous gas? Explain your reasoning.</div>
+<div class="para logical">
+<div class="para">We set up and evaluate each of these flux integrals using <a href="" class="xref" data-knowl="./knowl/thm_flux_int_calc.html" title="Theorem 12.9.7">Theorem 12.9.7</a>:</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/thm_flux_int_calc.html">
+\begin{gather*}
+S_1: \quad \int_0^{1} \int_0^{1-s} \langle (0)s-t,st-e^1,t(0-s) \rangle \cdot \langle 1,0,0 \rangle \enspace dt ds\\
+S_2: \quad \int_0^{1} \int_0^{1-s} \langle s(0)-t,0(t)-e^s,t(s-0) \rangle \cdot \langle 0,-1,0 \rangle \enspace dt ds\\
+S_3: \quad \int_0^{1} \int_0^{1-s} \langle st-0,t(0)-e^s, 0(s-t) \rangle \cdot \langle 0,0,1 \rangle \enspace dt ds\\
+S_4: \quad \int_0^{1} \int_0^{1-s} \langle st-(1-s-t),t(1-s-t)+e^s,(1-s-t)(s-t) \rangle \cdot \langle 1,1,1 \rangle \enspace dt ds
+\end{gather*}
+</div>
+<div class="para">A neat calculation trick we can use is that we can subtract the first and third from the second and fourth (remember the direction of flux) and do one integral. We can do this because the bounds on <em class="alert">all</em> of our parameterizations is the same. If we were to write out everything, we would get the following integals:</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/thm_flux_int_calc.html">
+\begin{gather*}
+S_1: \quad \int_0^{1} \int_0^{1-s} -t \enspace dt ds\\
+S_2: \quad \int_0^{1} \int_0^{1-s} -e^s \enspace dt ds\\
+S_3: \quad \int_0^{1} \int_0^{1-s} \0 \enspace dt ds\\
+S_4: \quad \int_0^{1} \int_0^{1-s} -1+2s+t+e^s-s^2 \enspace dt ds
+\end{gather*}
+</div>
+<div class="para">Combining these we get:</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/thm_flux_int_calc.html">
+\begin{equation*}
+S_4-S_1+S_2-S_3: \quad \int_0^{1} \int_0^{1-s} -1+2s+2t-s^2 \enspace dt ds
+\end{equation*}
+</div>
+<div class="para">Which will evaluate to <span class="process-math">\(-\frac{1}{12}\text{.}\)</span>
+</div>
+</div>
 <span class="incontext"><a href="S_Vector_DivThm.html#p-5705" class="internal">in-context</a></span>
 </body>
 </html>

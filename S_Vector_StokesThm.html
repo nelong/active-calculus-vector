@@ -5,10 +5,10 @@
 <!--*         https://pretextbook.org          *-->
 <!--*                                          *-->
 <!--********************************************-->
-<html lang="en-US">
+<html lang="en-US" dir="ltr">
 <head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Stokes' Theorem</title>
+<title>Stokes’ Theorem</title>
 <meta name="Keywords" content="Authored in PreTeXt">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta property="og:type" content="book">
@@ -16,20 +16,38 @@
 <meta property="book:author" content="Steve Schlicker">
 <meta property="book:author" content="Mitchel T. Keller">
 <meta property="book:author" content="Nicholas Long">
-<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
+<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>
+var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
 window.MathJax = {
-  tex: {
-    inlineMath: [['\\(','\\)']],
-    tags: "none",
-    tagSide: "right",
-    tagIndent: ".8em",
-    packages: {'[+]': ['base', 'extpfeil', 'ams', 'amscd', 'color', 'newcommand', 'knowl']}
+  "tex": {
+    "inlineMath": [
+      [
+        "\\(",
+        "\\)"
+      ]
+    ],
+    "tags": "none",
+    "tagSide": "right",
+    "tagIndent": ".8em",
+    "packages": {
+      "[+]": [
+        "base",
+        "extpfeil",
+        "ams",
+        "amscd",
+        "color",
+        "newcommand",
+        "knowl"
+      ]
+    }
   },
-  options: {
-    ignoreHtmlClass: "tex2jax_ignore|ignore-math",
-    processHtmlClass: "process-math",
-    renderActions: {
-        findScript: [10, function (doc) {
+  "options": {
+    "ignoreHtmlClass": "tex2jax_ignore|ignore-math",
+    "processHtmlClass": "process-math",
+    "renderActions": {
+      "findScript": [
+        10,
+        function (doc) {
             document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
                 var display = !!node.type.match(/; *mode=display/);
                 var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
@@ -39,65 +57,70 @@ window.MathJax = {
                 math.end = {node: text, delim: '', n: 0};
                 doc.math.push(math);
             });
-        }, '']
-    },
+        },
+        ""
+      ]
+    }
   },
-  chtml: {
-    scale: 0.98,
-    mtextInheritFont: true
+  "chtml": {
+    "scale": 0.98,
+    "mtextInheritFont": true
   },
-  loader: {
-    load: ['input/asciimath', '[tex]/extpfeil', '[tex]/amscd', '[tex]/color', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
-    paths: {pretext: "https://pretextbook.org/js/lib"},
+  "loader": {
+    "load": [
+      "input/asciimath",
+      "[tex]/extpfeil",
+      "[tex]/amscd",
+      "[tex]/color",
+      "[tex]/newcommand",
+      "[pretext]/mathjaxknowl3.js"
+    ],
+    "paths": {
+      "pretext": "https://pretextbook.org/js/lib"
+    }
   },
-  startup: {
+  "startup": {
     pageReady() {
       return MathJax.startup.defaultPageReady().then(function () {
       console.log("in ready function");
       rsMathReady();
       }
     )}
-  },
+  }
 };
 </script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><link href="https://webwork-ptx.aimath.org/webwork2_files/js/apps/MathView/mathview.css" rel="stylesheet">
-<script src="https://pretextbook.org/js/0.2/pretext-webwork/2.17/pretext-webwork.js"></script><script src="https://webwork-ptx.aimath.org/webwork2_files/node_modules/iframe-resizer/js/iframeResizer.min.js"></script><script async="" src="https://cse.google.com/cse.js?cx=015103900096539427448:ngwuia10qci"></script><script src="https://unpkg.com/lunr/lunr.js"></script><script src="lunr-pretext-search-index.js" async=""></script><script src="https://pretextbook.org/js/0.2/pretext_search.js"></script><link href="https://pretextbook.org/css/0.6/pretext_search.css" rel="stylesheet" type="text/css">
-<script>js_version = 0.2</script><script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.2/pretext.js"></script><script>miniversion=0.1</script><script src="https://pretextbook.org/js/0.2/pretext_add_on.js?x=1"></script><script src="https://pretextbook.org/js/0.2/user_preferences.js"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
+<script src="https://pretextbook.org/js/0.3/pretext-webwork/2.17/pretext-webwork.js"></script><script src="https://webwork-ptx.aimath.org/webwork2_files/node_modules/iframe-resizer/js/iframeResizer.min.js"></script><script async="" src="https://cse.google.com/cse.js?cx=015103900096539427448:ngwuia10qci"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js" integrity="sha512-4xUl/d6D6THrAnXAwGajXkoWaeMNwEKK4iNfq5DotEbLPAfk6FSxSP3ydNxqDgCw1c/0Z1Jg6L8h2j+++9BZmg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="lunr-pretext-search-index.js" async=""></script><script src="https://pretextbook.org/js/0.3/pretext_search.js"></script><link href="https://pretextbook.org/css/0.7/pretext_search.css" rel="stylesheet" type="text/css">
+<script>js_version = 0.3</script><script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.3/pretext.js"></script><script>miniversion=0.1</script><script src="https://pretextbook.org/js/0.3/pretext_add_on.js?x=1"></script><script src="https://pretextbook.org/js/0.3/user_preferences.js"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
 </script><link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700&amp;family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&amp;family=Tinos:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" rel="stylesheet">
 <link href="https://fonts.cdnfonts.com/css/dejavu-serif" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:opsz,wdth,wght@8..144,50..150,100..900&amp;display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wdth,wght@75..100,300..800&amp;display=swap" rel="stylesheet">
-<link href="https://pretextbook.org/css/0.6/pretext.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.6/pretext_add_on.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.6/shell_default.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.6/banner_default.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.6/navbar_default.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.6/toc_default.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.6/knowls_default.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.6/style_default.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.6/colors_blue_grey.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.6/setcolors.css" rel="stylesheet" type="text/css">
-<!--Start: Google Global Site Tag code--><!--*** DO NOT COPY ANOTHER PROJECT'S MAGIC NUMBERS/ID ***--><!--***           GET YOUR OWN FROM GOOGLE             ***-->
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-QJKN634F7R"></script><script>  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-QJKN634F7R');
-</script><!--End: Google Global Site Tag code-->
+<link href="https://pretextbook.org/css/0.7/pretext.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/pretext_add_on.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/shell_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/banner_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/navbar_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/toc_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/knowls_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/style_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/colors_blue_grey.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/setcolors.css" rel="stylesheet" type="text/css">
 </head>
 <body id="acmulti" class="pretext book ignore-math">
-<a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead"><div class="ptx-banner">
-<a id="logo-link" href=""></a><div class="title-container">
+<a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead"><div class="ptx-banner">
+<a id="logo-link" class="logo-link" href=""></a><div class="title-container">
 <h1 class="heading"><a href="book-1.html"><span class="title">Active Calculus - Multivariable + Vector</span></a></h1>
 <p class="byline">Steve Schlicker, Mitchel T. Keller, Nicholas Long</p>
 </div>
-<div id="searchresultsplaceholder" style="display: none">
-<button id="closesearchresults" onclick="document.getElementById('searchresultsplaceholder').style.display = 'none'; return false;">x</button><h2>Search Results: <span id="searchterms"></span>
+<div id="searchresultsplaceholder" class="searchresultsplaceholder" style="display: none">
+<button id="closesearchresults" class="closesearchresults" onclick="document.getElementById('searchresultsplaceholder').style.display = 'none'; return false;">x</button><h2>Search Results: <span id="searchterms" class="searchterms"></span>
 </h2>
-<div id="searchempty"><span>No results.</span></div>
-<ol id="searchresults"></ol>
+<div id="searchempty" class="searchempty"><span>No results.</span></div>
+<ol id="searchresults" class="searchresults"></ol>
 </div>
-</div></header><nav id="ptx-navbar" class="navbar"><button class="toc-toggle button" aria-label="Show or hide table of contents"><span class="icon">☰</span><span class="name">Contents</span></button><a class="index-button button" href="index-1.html" title="Index"><span class="name">Index</span></a><button id="user-preferences-button" class="user-preferences-button button" title="Modify user preferences"><span id="theavatarbutton" class="name">You!</span><div id="preferences_menu_holder" class="hidden"><ol id="preferences_menu" style="font-family: 'Roboto Serif', serif;">
+</div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><button class="toc-toggle button" aria-label="Show or hide table of contents"><span class="icon">☰</span><span class="name">Contents</span></button><a class="index-button button" href="index-1.html" title="Index"><span class="name">Index</span></a><button id="user-preferences-button" class="user-preferences-button button" title="Modify user preferences"><span id="avatarbutton" class="avatarbutton name">You!</span><div id="preferences_menu_holder" class="preferences_menu_holder hidden"><ol id="preferences_menu" class="preferences_menu" style="font-family: 'Roboto Serif', serif;">
 <li data-env="avatar" tabindex="-1">Choose avatar<div class="wrap_to_submenu"><span class="to_submenu">▻</span></div>
 <ol class="hidden avatar">
 <li data-val="You!" tabindex="-1">
@@ -201,7 +224,7 @@ window.MathJax = {
 </li>
 </ol></div></button><span class="treebuttons"><a class="previous-button button" href="S_Vector_ScalarSurfaceIntegral.html" title="Previous"><span class="icon">&lt;</span><span class="name">Prev</span></a><a class="up-button button" href="C_Vector.html" title="Up"><span class="icon">^</span><span class="name">Up</span></a><a class="next-button button" href="S_Vector_DivThm.html" title="Next"><span class="name">Next</span><span class="icon">&gt;</span></a></span><div class="searchwrapper" role="search"><div class="gcse-search"></div></div>
 <div class="searchbox"><div class="searchwidget">
-<input id="ptxsearch" type="text" name="terms" placeholder="Search" onchange="doSearch()"><button id="searchbutton" type="button" onclick="doSearch()">🔍</button>
+<input id="ptxsearch" class="ptxsearch" type="text" name="terms" placeholder="Search" onchange="doSearch()"><button id="searchbutton" class="searchbutton" type="button" onclick="doSearch()">🔍</button>
 </div></div></nav><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\newcommand{\R}{\mathbb{R}}
 \newcommand{\va}{\mathbf{a}}
 \newcommand{\vb}{\mathbf{b}}
@@ -246,7 +269,7 @@ window.MathJax = {
 \newcommand{\fillinmath}[1]{\mathchoice{\colorbox{fillinmathshade}{$\displaystyle     \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\textstyle        \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptstyle      \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptscriptstyle\phantom{\,#1\,}$}}}
 \)</span></div>
 <div class="ptx-page">
-<div id="ptx-sidebar"><nav id="ptx-toc" class="depth2"><ul class="structural">
+<div id="ptx-sidebar" class="ptx-sidebar"><nav id="ptx-toc" class="ptx-toc depth2"><ul class="structural">
 <li>
 <div class="toc-item"><a href="frontmatter.html" class="internal"><span class="title">Front Matter</span></a></div>
 <ul class="structural">
@@ -574,14 +597,14 @@ window.MathJax = {
 </ul>
 </li>
 <li>
-<div class="toc-item"><a href="S_ScalarLineIntegral.html" class="internal"><span class="codenumber">12.5</span> <span class="title">Line Integrals of Scalar Functions</span></a></div>
+<div class="toc-item"><a href="S_Vector_ScalarLineIntegral.html" class="internal"><span class="codenumber">12.5</span> <span class="title">Line Integrals of Scalar Functions</span></a></div>
 <ul class="structural">
-<li><div class="toc-item"><a href="S_ScalarLineIntegral.html#subsection-124" class="internal"><span class="codenumber">12.5.1</span> <span class="title">Defining line integrals of scalar functions</span></a></div></li>
-<li><div class="toc-item"><a href="S_ScalarLineIntegral.html#subsection-125" class="internal"><span class="codenumber">12.5.2</span> <span class="title">Using Parameterizations to Calculate Scalar Line Integrals</span></a></div></li>
-<li><div class="toc-item"><a href="S_ScalarLineIntegral.html#subsection-126" class="internal"><span class="codenumber">12.5.3</span> <span class="title">Properties of Scalar Line Integrals</span></a></div></li>
-<li><div class="toc-item"><a href="S_ScalarLineIntegral.html#subsection-127" class="internal"><span class="codenumber">12.5.4</span> <span class="title">Visualizations of Scalar Line Integrals as Area Under a Curve</span></a></div></li>
-<li><div class="toc-item"><a href="S_ScalarLineIntegral.html#subsection-128" class="internal"><span class="codenumber">12.5.5</span> <span class="title">Summary</span></a></div></li>
-<li><div class="toc-item"><a href="S_ScalarLineIntegral.html#exercises-30" class="internal"><span class="codenumber">12.5.6</span> <span class="title">Exercises</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_ScalarLineIntegral.html#subsection-124" class="internal"><span class="codenumber">12.5.1</span> <span class="title">Defining line integrals of scalar functions</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_ScalarLineIntegral.html#subsection-125" class="internal"><span class="codenumber">12.5.2</span> <span class="title">Using Parameterizations to Calculate Scalar Line Integrals</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_ScalarLineIntegral.html#subsection-126" class="internal"><span class="codenumber">12.5.3</span> <span class="title">Properties of Scalar Line Integrals</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_ScalarLineIntegral.html#subsection-127" class="internal"><span class="codenumber">12.5.4</span> <span class="title">Visualizations of Scalar Line Integrals as Area Under a Curve</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_ScalarLineIntegral.html#subsection-128" class="internal"><span class="codenumber">12.5.5</span> <span class="title">Summary</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_ScalarLineIntegral.html#exercises-30" class="internal"><span class="codenumber">12.5.6</span> <span class="title">Exercises</span></a></div></li>
 </ul>
 </li>
 <li>
@@ -607,10 +630,10 @@ window.MathJax = {
 </ul>
 </li>
 <li>
-<div class="toc-item"><a href="S_Vector_GreensTheorem.html" class="internal"><span class="codenumber">12.8</span> <span class="title">Green's Theorem</span></a></div>
+<div class="toc-item"><a href="S_Vector_GreensTheorem.html" class="internal"><span class="codenumber">12.8</span> <span class="title">Green’s Theorem</span></a></div>
 <ul class="structural">
 <li><div class="toc-item"><a href="S_Vector_GreensTheorem.html#SS_Vector_GreensTheorem_Circulation" class="internal"><span class="codenumber">12.8.1</span> <span class="title">Circulation</span></a></div></li>
-<li><div class="toc-item"><a href="S_Vector_GreensTheorem.html#subsection-140" class="internal"><span class="codenumber">12.8.2</span> <span class="title">Green's Theorem</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_GreensTheorem.html#subsection-140" class="internal"><span class="codenumber">12.8.2</span> <span class="title">Green’s Theorem</span></a></div></li>
 <li><div class="toc-item"><a href="S_Vector_GreensTheorem.html#subsection-141" class="internal"><span class="codenumber">12.8.3</span> <span class="title">What happens when vector fields are not smooth?</span></a></div></li>
 <li><div class="toc-item"><a href="S_Vector_GreensTheorem.html#subsection-142" class="internal"><span class="codenumber">12.8.4</span> <span class="title">Summary</span></a></div></li>
 <li><div class="toc-item"><a href="S_Vector_GreensTheorem.html#exercises-33" class="internal"><span class="codenumber">12.8.5</span> <span class="title">Exercises</span></a></div></li>
@@ -620,27 +643,27 @@ window.MathJax = {
 <div class="toc-item"><a href="S_Vector_FluxInt.html" class="internal"><span class="codenumber">12.9</span> <span class="title">Flux Integrals</span></a></div>
 <ul class="structural">
 <li><div class="toc-item"><a href="S_Vector_FluxInt.html#SS_Vector_FluxInt_Idea" class="internal"><span class="codenumber">12.9.1</span> <span class="title">The Idea of the Flux of a Vector Field through a Surface</span></a></div></li>
-<li><div class="toc-item"><a href="S_Vector_FluxInt.html#subsection-144" class="internal"><span class="codenumber">12.9.2</span> <span class="title">Measuring the Flux of a Vector Field through a Surface</span></a></div></li>
-<li><div class="toc-item"><a href="S_Vector_FluxInt.html#SS_Vector_FluxInt_Calculate" class="internal"><span class="codenumber">12.9.3</span> <span class="title">Efficiently Calculating Flux Integrals</span></a></div></li>
-<li><div class="toc-item"><a href="S_Vector_FluxInt.html#subsection-146" class="internal"><span class="codenumber">12.9.4</span> <span class="title">Summary</span></a></div></li>
-<li><div class="toc-item"><a href="S_Vector_FluxInt.html#exercises-34" class="internal"><span class="codenumber">12.9.5</span> <span class="title">Exercises</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_FluxInt.html#subsection-144" class="internal"><span class="codenumber">12.9.2</span> <span class="title">The Details of Measuring the Flux of a Vector Field through a Surface</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_FluxInt.html#subsection-145" class="internal"><span class="codenumber">12.9.3</span> <span class="title">Summary</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_FluxInt.html#exercises-34" class="internal"><span class="codenumber">12.9.4</span> <span class="title">Exercises</span></a></div></li>
 </ul>
 </li>
 <li>
 <div class="toc-item"><a href="S_Vector_ScalarSurfaceIntegral.html" class="internal"><span class="codenumber">12.10</span> <span class="title">Surface Integrals of Scalar Valued Functions</span></a></div>
 <ul class="structural">
-<li><div class="toc-item"><a href="S_Vector_ScalarSurfaceIntegral.html#subsection-147" class="internal"><span class="codenumber">12.10.1</span> <span class="title">Defining surface integrals of scalar functions</span></a></div></li>
-<li><div class="toc-item"><a href="S_Vector_ScalarSurfaceIntegral.html#subsection-148" class="internal"><span class="codenumber">12.10.2</span> <span class="title">Properties of Scalar Surface Integrals</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_ScalarSurfaceIntegral.html#subsection-146" class="internal"><span class="codenumber">12.10.1</span> <span class="title">Defining surface integrals of scalar functions</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_ScalarSurfaceIntegral.html#subsection-147" class="internal"><span class="codenumber">12.10.2</span> <span class="title">Properties of Scalar Surface Integrals</span></a></div></li>
 <li><div class="toc-item"><a href="S_Vector_ScalarSurfaceIntegral.html#exercises-35" class="internal"><span class="codenumber">12.10.3</span> <span class="title">Exercises</span></a></div></li>
 </ul>
 </li>
 <li class="active">
-<div class="toc-item"><a href="S_Vector_StokesThm.html" class="internal"><span class="codenumber">12.11</span> <span class="title">Stokes' Theorem</span></a></div>
+<div class="toc-item"><a href="S_Vector_StokesThm.html" class="internal"><span class="codenumber">12.11</span> <span class="title">Stokes’ Theorem</span></a></div>
 <ul class="structural">
-<li><div class="toc-item"><a href="S_Vector_StokesThm.html#SS_Vector_StokesThm_Development" class="internal"><span class="codenumber">12.11.1</span> <span class="title">Circulation in three dimensions and Stokes' Theorem</span></a></div></li>
-<li><div class="toc-item"><a href="S_Vector_StokesThm.html#SS_Vector_StokesThm_Verify" class="internal"><span class="codenumber">12.11.2</span> <span class="title">Verifying and Applying Stokes' Theorem</span></a></div></li>
-<li><div class="toc-item"><a href="S_Vector_StokesThm.html#subsection-151" class="internal"><span class="codenumber">12.11.3</span> <span class="title">Summary</span></a></div></li>
-<li><div class="toc-item"><a href="S_Vector_StokesThm.html#exercises-36" class="internal"><span class="codenumber">12.11.4</span> <span class="title">Exercises</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_StokesThm.html#SS_Vector_StokesThm_Development" class="internal"><span class="codenumber">12.11.1</span> <span class="title">Circulation in three dimensions and Stokes’ Theorem</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_StokesThm.html#SS_Vector_StokesThm_Verify" class="internal"><span class="codenumber">12.11.2</span> <span class="title">Verifying and Applying Stokes’ Theorem</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_StokesThm.html#surfaceboundaries" class="internal"><span class="codenumber">12.11.3</span> <span class="title">Practice with Surfaces and thier Boundaries</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_StokesThm.html#subsection-151" class="internal"><span class="codenumber">12.11.4</span> <span class="title">Summary</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_StokesThm.html#exercises-36" class="internal"><span class="codenumber">12.11.5</span> <span class="title">Exercises</span></a></div></li>
 </ul>
 </li>
 <li>
@@ -660,268 +683,419 @@ window.MathJax = {
 </li>
 </ul></nav></div>
 <main class="ptx-main"><div id="ptx-content" class="ptx-content"><section class="section" id="S_Vector_StokesThm"><h2 class="heading hide-type">
-<span class="type">Section</span> <span class="codenumber">12.11</span> <span class="title">Stokes' Theorem</span>
+<span class="type">Section</span> <span class="codenumber">12.11</span> <span class="title">Stokes’ Theorem</span>
 </h2>
 <article class="objectives goal-like" id="objectives-36"><h3 class="heading"><span class="type">Motivating Questions</span></h3>
 <ul class="disc">
-<li id="li-1811"><div class="para" id="p-5636">What is the relationship between the circulation of a vector field <span class="process-math">\(\vF\)</span> along a simple closed curve <span class="process-math">\(C\)</span> in three-dimensional space and the flux integral of <span class="process-math">\(\curl(\vF)\)</span> through a surface with <span class="process-math">\(C\)</span> as its boundary?</div></li>
-<li id="li-1812"><div class="para" id="p-5637">Why does the flux integral of <span class="process-math">\(\curl(\vF)\)</span> through a surface with boundary only depend on the boundary of the surface and not the shape of the surface's interior?</div></li>
-</ul></article><section class="introduction" id="introduction-89"><div class="para" id="p-5638">When we studied <a href="" class="xref" data-knowl="./knowl/thm_Green.html" title="Theorem 12.8.3: Green's Theorem">Green's Theorem</a> in <a href="S_Vector_GreensTheorem.html" class="internal" title="Section 12.8: Green's Theorem">Section 12.8</a>, we saw how integrating the circulation density over a region in the plane bounded by a simple closed curve gave an alternative way of calculating the circulation along the boundary curve. When we consider simple closed curves in <span class="process-math">\(\R^3\text{,}\)</span> the situation gets more complicated. However, there is an interesting, and perhaps surprising, generalization of <a href="" class="xref" data-knowl="./knowl/thm_Green.html" title="Theorem 12.8.3: Green's Theorem">Green's Theorem</a> for us to examine.</div> <article class="exploration project-like" id="PA_Vector_StokesThm"><h3 class="heading">
+<li id="li-1778"><div class="para" id="p-5596">What is the relationship between the circulation of a vector field <span class="process-math">\(\vF\)</span> along a simple closed curve <span class="process-math">\(C\)</span> in	three-dimensional space and the flux integral of <span class="process-math">\(\curl(\vF)\)</span> through a surface with <span class="process-math">\(C\)</span> as	its boundary?</div></li>
+<li id="li-1779"><div class="para" id="p-5597">Why does the flux integral of <span class="process-math">\(\curl(\vF)\)</span> through a surface with boundary only depend on the boundary of the surface and not the shape of the surface’s interior?</div></li>
+</ul></article><section class="introduction" id="introduction-90"><div class="para" id="p-5598">When we studied <a href="" class="xref" data-knowl="./knowl/thm_Green.html" title="Theorem 12.8.3: Green’s Theorem">Green’s Theorem</a> in <a href="S_Vector_GreensTheorem.html" class="internal" title="Section 12.8: Green’s Theorem">Section 12.8</a>, we saw how integrating the circulation density over a region in the plane bounded by a simple closed curve is equivalent to calculating the circulation along the boundary curve. When we consider simple closed curves in <span class="process-math">\(\R^3\text{,}\)</span> the situation gets more complicated. However, there is an interesting, and perhaps surprising, generalization of <a href="" class="xref" data-knowl="./knowl/thm_Green.html" title="Theorem 12.8.3: Green’s Theorem">Green’s Theorem</a> for us to examine.</div> <article class="exploration project-like" id="PA_Vector_StokesThm"><h3 class="heading">
 <span class="type">Preview Activity</span><span class="space"> </span><span class="codenumber">12.11.1</span><span class="period">.</span>
 </h3>
-<div class="introduction" id="introduction-90"><div class="para" id="p-5639">In this activity, we will look at how we can apply the ideas about circulation along overlapping curves from the beginning of <a href="S_Vector_GreensTheorem.html#SS_Vector_GreensTheorem_Circulation" class="internal" title="Subsection 12.8.1: Circulation">Subsection 12.8.1</a> to curves in space.</div></div>
+<div class="introduction" id="introduction-91"><div class="para" id="p-5599">In this activity, we will look at how we can apply the ideas about circulation along overlapping curves from the beginning of <a href="S_Vector_GreensTheorem.html#SS_Vector_GreensTheorem_Circulation" class="internal" title="Subsection 12.8.1: Circulation">Subsection 12.8.1</a> to curves in space.</div></div>
 <article class="task exercise-like" id="Stokes_PA_task1"><h4 class="heading"><span class="codenumber">(a)</span></h4>
-<div class="introduction" id="introduction-91">
-<div class="para" id="p-5640">For this part, consider the curves in <a href="" class="xref" data-knowl="./knowl/fig_Vector_StokesThm_curves_high_line.html" title="Figure 12.11.1">Figure 12.11.1</a>, where the yellow curve is <span class="process-math">\(Y\text{,}\)</span> the blue curve is <span class="process-math">\(B\text{,}\)</span> and the magenta curve is <span class="process-math">\(M\text{.}\)</span>
-</div> <figure class="figure figure-like" id="fig_Vector_StokesThm_curves_high_line"><iframe id="int_Vector_StokesThm_curves_high_line" width="600" height="600" src="int_Vector_StokesThm_curves_high_line-if.html"></iframe><figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">12.11.1<span class="period">.</span></span><span class="space"> </span>Three curves in space</figcaption></figure>
+<div class="introduction" id="introduction-92">
+<div class="para" id="p-5600">For this part, consider the curves in <a href="" class="xref" data-knowl="./knowl/fig_Vector_StokesThm_curves_high_line.html" title="Figure 12.11.1">Figure 12.11.1</a>, where the yellow curve is <span class="process-math">\(Y\text{,}\)</span> the blue curve is <span class="process-math">\(B\text{,}\)</span> and the magenta curve is	<span class="process-math">\(M\text{.}\)</span>
+</div> <figure class="figure figure-like" id="fig_Vector_StokesThm_curves_high_line"><iframe id="int_Vector_StokesThm_curves_high_line" width="600" height="600" src="int_Vector_StokesThm_curves_high_line-if.html"></iframe><figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">12.11.1<span class="period">.</span></span><span class="space"> </span>Three curves in space</figcaption></figure> <div class="para" id="p-5601">You should also go back and refamiliarize yourself with our notation for combining paths (as used in line integrals) from <a href="" class="xref" data-knowl="./knowl/path_convention.html" title="Convention 12.2.13: Describing Paths in Line Integrals">Convention 12.2.13</a>. In our convention, <span class="process-math">\(Y+M\)</span> would be closed loop, but <span class="process-math">\(Y-M\)</span> would not make sense because the segment <span class="process-math">\(-M\)</span> does not begin where <span class="process-math">\(Y\)</span> begins.</div>
 </div>
-<article class="task exercise-like" id="task-252"><h5 class="heading"><span class="codenumber">(i)</span></h5>
-<div class="para" id="p-5641">Write out the circulation line integrals of the closed curve consisting of the yellow curve <span class="process-math">\(Y\)</span> and the and blue curve <span class="process-math">\(B\text{.}\)</span> (Remember to consider orientation!)</div></article><article class="task exercise-like" id="task-253"><h5 class="heading"><span class="codenumber">(ii)</span></h5>
-<div class="para" id="p-5642">Write out the circulation line integrals of the closed curve consisting of the magenta curve <span class="process-math">\(M\)</span> and the blue curve <span class="process-math">\(B\text{.}\)</span> (Remember to consider orientation!)</div></article><article class="task exercise-like" id="task-254"><h5 class="heading"><span class="codenumber">(iii)</span></h5>
-<div class="para" id="p-5643">Write out the circulation line integrals of the closed curve consisting of the yellow curve <span class="process-math">\(Y\)</span> and the magenta curve <span class="process-math">\(M\text{.}\)</span>
-</div></article><article class="task exercise-like" id="task-255"><h5 class="heading"><span class="codenumber">(iv)</span></h5>
-<div class="para" id="p-5644">Why does it make sense that we can add the results of the first two parts and get the third?</div></article><article class="task exercise-like" id="task-256"><h5 class="heading"><span class="codenumber">(v)</span></h5>
-<div class="para" id="p-5645">Would your arguments from above change at all if you considered the curves depicted in <a href="" class="xref" data-knowl="./knowl/fig_Vector_StokesThm_curves_low_line.html" title="Figure 12.11.2">Figure 12.11.2</a>?</div> <figure class="figure figure-like" id="fig_Vector_StokesThm_curves_low_line"><iframe id="int_Vector_StokesThm_curves_low_line" width="600" height="600" src="int_Vector_StokesThm_curves_low_line-if.html"></iframe><figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">12.11.2<span class="period">.</span></span><span class="space"> </span>Three slightly different curves in space</figcaption></figure></article></article><article class="task exercise-like" id="Stokes_PA_task2"><h4 class="heading"><span class="codenumber">(b)</span></h4>
-<div class="para" id="p-5646">We will now let <span class="process-math">\(C\)</span> be the simple closed curve consisting of the yellow and magenta curves in <a href="" class="xref" data-knowl="./knowl/fig_Vector_StokesThm_curves_high_line.html" title="Figure 12.11.1">Figure 12.11.1</a>. You can see <span class="process-math">\(C\)</span> plotted in red in <a href="" class="xref" data-knowl="./knowl/fig_Vector_StokesThm_fill_in_surfaces.html" title="Figure 12.11.3">Figure 12.11.3</a>. The drop-down allows you to select three different surfaces. Visually verify that each of the three surfaces contains <span class="process-math">\(C\text{.}\)</span> Notice that the scale on the <span class="process-math">\(z\)</span>-axis changes as you select different surfaces.</div> <figure class="figure figure-like" id="fig_Vector_StokesThm_fill_in_surfaces"><iframe id="int_Vector_StokesThm_pringle_surfaces" width="600" height="650" src="int_Vector_StokesThm_pringle_surfaces-if.html"></iframe><figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">12.11.3<span class="period">.</span></span><span class="space"> </span>Surfaces containing a common simple closed curve</figcaption></figure> <div class="para" id="p-5647"></div></article></article></section><section class="subsection" id="SS_Vector_StokesThm_Development"><h3 class="heading hide-type">
-<span class="type">Subsection</span> <span class="codenumber">12.11.1</span> <span class="title">Circulation in three dimensions and Stokes' Theorem</span>
+<article class="task exercise-like" id="task-257"><h5 class="heading"><span class="codenumber">(i)</span></h5>
+<div class="para" id="p-5602">Using the three segments in <a href="" class="xref" data-knowl="./knowl/fig_Vector_StokesThm_curves_high_line.html" title="Figure 12.11.1">Figure 12.11.1</a>, write out at least four different closed curves in terms of <span class="process-math">\(B\text{,}\)</span> <span class="process-math">\(Y\text{,}\)</span> and <span class="process-math">\(M\text{.}\)</span> (Remember to consider orientation!)</div></article><article class="task exercise-like" id="task-258"><h5 class="heading"><span class="codenumber">(ii)</span></h5>
+<div class="para" id="p-5603">Let <span class="process-math">\(C_1=M+B\)</span> and <span class="process-math">\(C_2=Y-B\text{.}\)</span> How would you describe the curve given by <span class="process-math">\(C_1+C_2\text{?}\)</span>
+</div></article><article class="task exercise-like" id="task-259"><h5 class="heading"><span class="codenumber">(iii)</span></h5>
+<div class="para" id="p-5604">How would the circulation around <span class="process-math">\(C_1+C_2\)</span> compare to the circulation around <span class="process-math">\(C_1\)</span> and the circulation around <span class="process-math">\(C_2\text{?}\)</span> Write an equation in terms of <span class="process-math">\(\int_{C_1} \vF \cdot d\vr \text{,}\)</span> <span class="process-math">\(\int_{C_2} \vF \cdot d\vr \text{,}\)</span> and <span class="process-math">\(\int_{C_1+C_2} \vF \cdot d\vr \text{.}\)</span> Be sure to write a few sentences justifying your equation and its meaning.</div></article><article class="task exercise-like" id="task-260"><h5 class="heading"><span class="codenumber">(iv)</span></h5>
+<div class="para" id="p-5605">Would your arguments or equations from any of the parts above change if you considered the curves depicted in <a href="" class="xref" data-knowl="./knowl/fig_Vector_StokesThm_curves_low_line.html" title="Figure 12.11.2">Figure 12.11.2</a>?</div> <figure class="figure figure-like" id="fig_Vector_StokesThm_curves_low_line"><iframe id="int_Vector_StokesThm_curves_low_line" width="600" height="600" src="int_Vector_StokesThm_curves_low_line-if.html"></iframe><figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">12.11.2<span class="period">.</span></span><span class="space"> </span>Three slightly different curves in space</figcaption></figure></article></article><article class="task exercise-like" id="Stokes_PA_task2"><h4 class="heading"><span class="codenumber">(b)</span></h4>
+<div class="para" id="p-5606">We will now let <span class="process-math">\(C\)</span> be the simple closed curve consisting of the yellow and magenta curves in <a href="" class="xref" data-knowl="./knowl/fig_Vector_StokesThm_curves_high_line.html" title="Figure 12.11.1">Figure 12.11.1</a>. You can see <span class="process-math">\(C\)</span> plotted in red in <a href="" class="xref" data-knowl="./knowl/fig_Vector_StokesThm_fill_in_surfaces.html" title="Figure 12.11.3">Figure 12.11.3</a>. The drop-down allows you to select three different surfaces. You can visually verify that each of the three surfaces contains <span class="process-math">\(C\text{.}\)</span> Notice that the scale on the <span class="process-math">\(z\)</span>-axis changes as you select different surfaces.</div> <figure class="figure figure-like" id="fig_Vector_StokesThm_fill_in_surfaces"><iframe id="int_Vector_StokesThm_pringle_surfaces" width="600" height="650" src="int_Vector_StokesThm_pringle_surfaces-if.html"></iframe><figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">12.11.3<span class="period">.</span></span><span class="space"> </span>Surfaces containing a common simple closed curve</figcaption></figure> <div class="para" id="p-5607"></div> <div class="para logical" id="p-5608">
+<div class="para">The simple closed curve consisting of the yellow and magenta curves in <a href="" class="xref" data-knowl="./knowl/fig_Vector_StokesThm_curves_high_line.html" title="Figure 12.11.1">Figure 12.11.1</a> can be parameterized by <span class="process-math">\(\langle \cos(t), \sin(t), \cos(2t)\rangle \)</span> with <span class="process-math">\(0\leq t\leq 2 \pi\text{.}\)</span> We will denote <span class="process-math">\(Y+M\)</span> as <span class="process-math">\(C_3\text{.}\)</span> Use the parameterization of <span class="process-math">\(C_3\)</span> to show that <span class="process-math">\(C_3\)</span> is on each of the following surfaces:</div>
+<ul class="disc">
+<li id="li-1780"><div class="para" id="p-derived-li-1780"><span class="process-math">\(\displaystyle x^2-y^2=z\)</span></div></li>
+<li id="li-1781"><div class="para" id="p-derived-li-1781"><span class="process-math">\(\displaystyle z=x^4-y^4\)</span></div></li>
+<li id="li-1782"><div class="para" id="p-derived-li-1782"><span class="process-math">\(\displaystyle z=1-2y^2\)</span></div></li>
+<li id="li-1783"><div class="para" id="p-derived-li-1783"><span class="process-math">\(\displaystyle z=-\cos(\pi \sqrt{x^2+y^2})(x^2-y^2)\)</span></div></li>
+</ul>
+</div></article></article></section><section class="subsection" id="SS_Vector_StokesThm_Development"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">12.11.1</span> <span class="title">Circulation in three dimensions and Stokes’ Theorem</span>
 </h3>
-<div class="para" id="p-5648">In <a href="" class="xref" data-knowl="./knowl/PA_Vector_StokesThm.html" title="Preview Activity 12.11.1">Preview Activity 12.11.1</a>, we saw that a simple closed curve in <span class="process-math">\(\R^3\)</span> can bound many different surfaces. For now, however, we want to focus on a smooth surface <span class="process-math">\(S\)</span> in <span class="process-math">\(\R^3\)</span> that has a well-defined normal vector <span class="process-math">\(\vn\)</span> at every point and a boundary curve <span class="process-math">\(C\text{.}\)</span> We will use the normal vector to define an orientation of <span class="process-math">\(C\)</span> so that if a person were to walk along <span class="process-math">\(C\)</span> in the direction of the orientation with the top of their head pointing in the direction of <span class="process-math">\(\vn\text{,}\)</span> their left arm would be over the surface <span class="process-math">\(S\text{.}\)</span> Notice that this is the same convention that we used with <a href="" class="xref" data-knowl="./knowl/thm_Green.html" title="Theorem 12.8.3: Green's Theorem">Green's Theorem</a> if we assume that the normal vector being used is <span class="process-math">\(\vk\text{.}\)</span>
+<div class="para" id="p-5609">In <a href="" class="xref" data-knowl="./knowl/Stokes_PA_task2.html" title="Task 12.11.1.b">Task 12.11.1.b</a>, we saw that a simple closed curve in <span class="process-math">\(\R^3\)</span> can bound many different surfaces. For now, however, we want to focus on a smooth surface <span class="process-math">\(S\)</span> in <span class="process-math">\(\R^3\)</span> that has a well-defined normal vector <span class="process-math">\(\vn\)</span> at every point and a boundary curve <span class="process-math">\(C\text{.}\)</span> We will use the normal vector to define an orientation of <span class="process-math">\(C\)</span> so that if a person were to walk along <span class="process-math">\(C\)</span> in the direction of the orientation with the top of their head pointing in the direction of <span class="process-math">\(\vn\text{,}\)</span> their left arm would be over the surface <span class="process-math">\(S\text{.}\)</span> Notice that this is the same convention that we used with <a href="" class="xref" data-knowl="./knowl/thm_Green.html" title="Theorem 12.8.3: Green’s Theorem">Green’s Theorem</a> if we assume that the normal vector being used is <span class="process-math">\(\vk\text{.}\)</span>
 </div>
-<div class="para" id="p-5649">In <a href="" class="xref" data-knowl="./knowl/fig_Vector_StokesThm_surface_boundary.html" title="Figure 12.11.4">Figure 12.11.4</a>, we show the curve <span class="process-math">\(C\)</span> from <a href="" class="xref" data-knowl="./knowl/PA_Vector_StokesThm.html" title="Preview Activity 12.11.1">Preview Activity 12.11.1</a> in magenta as well as a surface <span class="process-math">\(S\)</span> that has <span class="process-math">\(C\)</span> as its boundary. The chosen normal vector <span class="process-math">\(\vn\)</span> to <span class="process-math">\(S\)</span> is shown, as is the orientation of <span class="process-math">\(C\)</span> that matches <span class="process-math">\(\vn\text{.}\)</span>
+<div class="para" id="p-5610">In <a href="" class="xref" data-knowl="./knowl/fig_Vector_StokesThm_surface_boundary.html" title="Figure 12.11.4">Figure 12.11.4</a>, we show the curve <span class="process-math">\(C\)</span> from <a href="" class="xref" data-knowl="./knowl/PA_Vector_StokesThm.html" title="Preview Activity 12.11.1">Preview Activity 12.11.1</a> in magenta as well as a surface <span class="process-math">\(S\)</span> that has <span class="process-math">\(C\)</span> as its boundary. The chosen normal vector <span class="process-math">\(\vn\)</span> to <span class="process-math">\(S\)</span> is shown, as is the orientation of <span class="process-math">\(C\)</span> that matches <span class="process-math">\(\vn\text{.}\)</span>
 </div>
-<figure class="figure figure-like" id="fig_Vector_StokesThm_surface_boundary"><iframe id="int_Vector_StokesThm_surface_boundary" width="600" height="600" src="int_Vector_StokesThm_surface_boundary-if.html"></iframe><figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">12.11.4<span class="period">.</span></span><span class="space"> </span>A surface <span class="process-math">\(S\)</span> (and normal vector) bounded by an oriented simple closed curve <span class="process-math">\(C\)</span></figcaption></figure><div class="para" id="p-5650">Thinking back to <a href="" class="xref" data-knowl="./knowl/thm_Green.html" title="Theorem 12.8.3: Green's Theorem">Green's Theorem</a>, our main idea was that we could calculate the circulation around a simple closed curve in <span class="process-math">\(\R^2\)</span> by taking the double integral of the circulation density over the region bounded by the curve. As we saw in <a href="" class="xref" data-knowl="./knowl/PA_Vector_StokesThm.html" title="Preview Activity 12.11.1">Preview Activity 12.11.1</a>, we can break up <span class="process-math">\(\oint_C\vF\cdot d\vr\)</span> into line integrals around other simple closed curves so that overlapping portions are oriented oppositely just as we did with the square grid for Green's Theorem. To find a three-dimensional analog of Green's Theorem, we require that a simple closed curve <span class="process-math">\(C\)</span> in three dimensions bound a smooth surface <span class="process-math">\(S\)</span> with a normal vector <span class="process-math">\(\vn\text{.}\)</span> In doing this, we can choose our “smaller” curves similar to the squares we used in Green's Theorem to lie on the surface <span class="process-math">\(S\text{.}\)</span> This gives us almost all the ingredients used in Green's Theorem, but we still need to find a suitable replacement for the circulation density.</div>
-<div class="para" id="p-5651">As we saw in <a href="S_Vector_Curl.html" class="internal" title="Section 12.7: The Curl of a Vector Field">Section 12.7</a>, the curl of a vector field in <span class="process-math">\(\R^3\)</span> measures the rotation of the vector field. <a href="" class="xref" data-knowl="./knowl/thm_Vector_Curl_rot_strength.html" title="Theorem 12.7.18">Theorem 12.7.18</a> says that for a unit vector <span class="process-math">\(\vv\text{,}\)</span> the scalar <span class="process-math">\((\curl(\vF)(a,b,c))\cdot \vv\)</span> measures the rotational strength of <span class="process-math">\(\vF\)</span> at the point <span class="process-math">\((a,b,c)\)</span> around the axis defined by <span class="process-math">\(\vv\text{.}\)</span> When <span class="process-math">\(\vv\)</span> is the normal vector to the surface <span class="process-math">\(S\)</span> at the point <span class="process-math">\((a,b,c)\text{,}\)</span> we have the appropriate analog for the circulation density of <span class="process-math">\(\vF\)</span> on <span class="process-math">\(S\)</span> at <span class="process-math">\((a,b,c)\text{.}\)</span> Thus, the equivalent idea to integrating the circulation density of a two-dimensional vector field over a region in the plane is calculating the flux integral <span class="process-math">\(\iint_D
-\curl(\vF)\cdot (\vr_s\times \vr_t)\, dA\text{,}\)</span> where <span class="process-math">\(\vr(s,t)\)</span> on the domain <span class="process-math">\(D\)</span> gives a parametrization of the smooth surface <span class="process-math">\(S\text{.}\)</span>
+<figure class="figure figure-like" id="fig_Vector_StokesThm_surface_boundary"><iframe id="int_Vector_StokesThm_surface_boundary" width="600" height="600" src="int_Vector_StokesThm_surface_boundary-if.html"></iframe><figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">12.11.4<span class="period">.</span></span><span class="space"> </span>A surface <span class="process-math">\(S\)</span> (and normal vector) bounded by an oriented simple closed curve <span class="process-math">\(C\)</span></figcaption></figure><div class="para" id="p-5611">Thinking back to <a href="" class="xref" data-knowl="./knowl/thm_Green.html" title="Theorem 12.8.3: Green’s Theorem">Green’s Theorem</a>, our main idea was that we could calculate the circulation around a simple closed curve in <span class="process-math">\(\R^2\)</span> by taking the double integral of the circulation density over the region bounded by the curve. As we saw in <a href="" class="xref" data-knowl="./knowl/PA_Vector_StokesThm.html" title="Preview Activity 12.11.1">Preview Activity 12.11.1</a>, we can break up <span class="process-math">\(\oint_C\vF\cdot d\vr\)</span> into line integrals around other simple closed curves so that overlapping portions are oriented oppositely just as we did with the square grid for Green’s Theorem. To find a three-dimensional analog of Green’s Theorem, we require that a simple closed curve <span class="process-math">\(C\)</span> in three dimensions bound a smooth surface <span class="process-math">\(S\)</span> with a normal vector <span class="process-math">\(\vn\text{.}\)</span> In doing this, we can choose our “smaller” curves similar to the squares we used in Green’s Theorem to lie on the surface <span class="process-math">\(S\text{.}\)</span> This gives us almost all the ingredients used in Green’s Theorem, but we still need to find a suitable replacement for the circulation density.</div>
+<div class="para" id="p-5612">As we saw in <a href="S_Vector_Curl.html" class="internal" title="Section 12.7: The Curl of a Vector Field">Section 12.7</a>, the curl of a vector field in <span class="process-math">\(\R^3\)</span> measures the rotation of the vector field. <a href="" class="xref" data-knowl="./knowl/thm_Vector_Curl_rot_strength.html" title="Theorem 12.7.18">Theorem 12.7.18</a> says that for a unit vector <span class="process-math">\(\vv\text{,}\)</span> the scalar <span class="process-math">\((\curl(\vF)(a,b,c))\cdot \vv\)</span> measures the rotational strength of <span class="process-math">\(\vF\)</span> at the point <span class="process-math">\((a,b,c)\)</span> around the axis defined by <span class="process-math">\(\vv\text{.}\)</span> When <span class="process-math">\(\vv\)</span> is the normal vector to the surface <span class="process-math">\(S\)</span> at the point <span class="process-math">\((a,b,c)\text{,}\)</span> we have the appropriate analog for the circulation density of <span class="process-math">\(\vF\)</span> on <span class="process-math">\(S\)</span> at <span class="process-math">\((a,b,c)\text{.}\)</span> Thus, the equivalent idea to integrating the circulation density of a two-dimensional vector field over a region in the plane is calculating the flux integral <span class="process-math">\(\iint_D \curl(\vF)\cdot (\vr_s\times \vr_t)\, dA\text{,}\)</span> where <span class="process-math">\(\vr(s,t)\)</span> on the domain <span class="process-math">\(D\)</span> gives a parametrization of the smooth surface <span class="process-math">\(S\text{.}\)</span>
 </div>
-<div class="para" id="p-5652">A rigorous proof of the following theorem is beyond the scope of this text. However, the previous subsection and our discussion of <a href="" class="xref" data-knowl="./knowl/thm_Green.html" title="Theorem 12.8.3: Green's Theorem">Green's Theorem</a> provide an intuitive description of why this theorem is true.</div>
+<div class="para" id="p-5613">A rigorous proof of the following theorem is beyond the scope of this text. However, the <a href="" class="xref" data-knowl="./knowl/Stokes_PA_task1.html" title="Task 12.11.1.a">Task 12.11.1.a</a> and our discussion of <a href="" class="xref" data-knowl="./knowl/thm_Green.html" title="Theorem 12.8.3: Green’s Theorem">Green’s Theorem</a> provide an intuitive description of why this theorem is true.</div>
 <article class="theorem theorem-like" id="thm_Stokes"><h4 class="heading">
-<span class="type">Theorem</span><span class="space"> </span><span class="codenumber">12.11.5</span><span class="period">.</span><span class="space"> </span><span class="title">Stokes' Theorem.</span>
+<span class="type">Theorem</span><span class="space"> </span><span class="codenumber">12.11.5</span><span class="period">.</span><span class="space"> </span><span class="title">Stokes’ Theorem.</span>
 </h4>
-<div class="para logical" id="p-5653">
+<div class="para logical" id="p-5614">
 <div class="para">Let <span class="process-math">\(S\)</span> be a smooth surface in <span class="process-math">\(\R^3\)</span> with a simple closed curve <span class="process-math">\(C\)</span> as its boundary. Let <span class="process-math">\(\vF\)</span> be a vector field that is smooth on <span class="process-math">\(S\)</span> and <span class="process-math">\(C\text{.}\)</span> Suppose that <span class="process-math">\(\vr(s,t)\)</span> on the domain <span class="process-math">\(D\)</span> gives a parametrization of <span class="process-math">\(S\)</span> for which <span class="process-math">\(C\)</span> is oriented so that a person walking along <span class="process-math">\(C\)</span> in the direction of its orientation and head pointing in the direction of the normal vector <span class="process-math">\(\vr_s\times \vr_t\)</span> would have their left hand above <span class="process-math">\(S\text{.}\)</span> In this setting, the circulation of <span class="process-math">\(\vF\)</span> along <span class="process-math">\(C\)</span> is equal to the flux of <span class="process-math">\(\curl(\vF)\)</span> through <span class="process-math">\(S\text{.}\)</span> That is,</div>
 <div class="displaymath process-math">
 \begin{equation*}
-\oint\limits_C \vF\cdot d\vr = \iint\limits_{D} (\curl(\vF))\cdot
-(\vr_s\times\vr_t)\, dA\text{.}
+\oint\limits_C \vF\cdot d\vr = \iint\limits_{D} (\curl(\vF))\cdot	(\vr_s\times\vr_t)\, dA\text{.}
 \end{equation*}
 </div>
-</div></article><div class="para" id="p-5654">When we looked <a href="" class="xref" data-knowl="./knowl/thm_Green.html" title="Theorem 12.8.3: Green's Theorem">Green's Theorem</a>, it was generally most useful when we were given a line integral and we calculated it using a double integral. In fact, except in the circumstances described in exercises <a href="" class="xref" data-knowl="./knowl/ez_Vector_GreensTheorem_AreaViaLineInt.html" title="Exercise 12.8.5.6">12.8.5.6</a> and <a href="" class="xref" data-knowl="./knowl/ez_Vector_GreensTheorem_centroid.html" title="Exercise 12.8.5.8">12.8.5.8</a>, we did not use Green's Theorem to rewrite a double integral as a line integral because of the difficulty of finding a suitable vector field. The situation for <a href="" class="xref" data-knowl="./knowl/thm_Stokes.html" title="Theorem 12.11.5: Stokes' Theorem">Stokes' Theorem</a> will be similar, with the exception of <a href="" class="xref" data-knowl="./knowl/ez_Vector_StokesThm_potential.html" title="Exercise 12.11.4.4">Exercise 4</a> in this section. However, Stokes' Theorem gives us an interesting additional piece of freedom: selecting the surface <span class="process-math">\(S\)</span> through which we calculate the flux of <span class="process-math">\(\curl(\vF)\)</span> from amongst possibly several reasonable surfaces with boundary <span class="process-math">\(C\text{.}\)</span> The next two activities focus on the relationships between surfaces and their boundary.</div>
-<article class="activity project-like" id="act_Vector_StokesThm_boundary"><h4 class="heading">
+</div></article></section><section class="subsection" id="SS_Vector_StokesThm_Verify"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">12.11.2</span> <span class="title">Verifying and Applying Stokes’ Theorem</span>
+</h3>
+<div class="para" id="p-5615">In this subsection, we will look at some examples and activities that will verify Stokes’ Theorem by calculation both side for a few different situations.</div>
+<article class="example example-like" id="verifyStokes"><h4 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">12.11.6</span><span class="period">.</span>
+</h4>
+<div class="introduction" id="introduction-93"><div class="para" id="p-5616">In this example, we will verify Stoke’s Theorem for the curve used in <a href="" class="xref" data-knowl="./knowl/PA_Vector_StokesThm.html" title="Preview Activity 12.11.1">Preview Activity 12.11.1</a> using the parameterization and surfaces from <a href="" class="xref" data-knowl="./knowl/Stokes_PA_task2.html" title="Task 12.11.1.b">Task 12.11.1.b</a>. We will use the vector field <span class="process-math">\(\vF=\langle z-x, y+z, xy \rangle \)</span> throughout this problem.</div></div>
+<article class="task exercise-like" id="verifyStokespart1"><h5 class="heading"><span class="codenumber">(a)</span></h5>
+<div class="para logical" id="p-5617">
+<div class="para">In this part, we will calculate the circulation of <span class="process-math">\(\vF=\langle z-x, y+z, xy \rangle \)</span> around the curve <span class="process-math">\(C\)</span> with parameterization given by <span class="process-math">\(\vr(t)= \langle \cos(t), \sin(t), \cos(2t)\rangle \)</span> with <span class="process-math">\(0\leq t\leq 2 \pi\text{.}\)</span> Note here that <span class="process-math">\(\vr'(t)= \langle -\sin(t), \cos(t), -2 \sin(2t) \rangle \text{.}\)</span> Applying <a href="" class="xref" data-knowl="./knowl/thm_LineIntParam.html" title="Theorem 12.3.5">Theorem 12.3.5</a> to our problem, we get</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/thm_LineIntParam.html">
+\begin{equation*}
+\int_C \vF \cdot d\vr = \int_0^{2\pi} \langle \cos(2t)-\cos(t),\sin(t)+\cos(2t),\cos(t)\sin(t) \rangle \cdot \langle -\sin(t), \cos(t), -2 \sin(2t) \rangle \enspace dt
+\end{equation*}
+</div>
+<div class="para">If you were to write out this dot product and combine like terms, then you would be left with four terms. Each of these can be evaluated using a few trig identities and substitutions. In fact, three of the four terms will correspond to functions that have as much area below the axis as above and thus will have integrals of zero.</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/thm_LineIntParam.html" id="md-79">
+\begin{align*}
+\int_C \vF \cdot d\vr \amp = \int_0^{2\pi} 2\cos(t)\sin(t) \enspace dt \\
+\amp - \int_0^{2\pi} \cos(2t)\sin(t) \enspace dt \\
+\amp + \int_0^{2\pi} \cos(2t)\cos(t) \enspace dt \\
+\amp - \int_0^{2\pi} 2\cos(t)\sin(t)\sin(2t) \enspace dt \\
+\amp = 0 -0 + 0 -\pi = -\pi 
+\end{align*}
+</div>
+<div class="para">The circulation of <span class="process-math">\(\vF\)</span> around <span class="process-math">\(C_3\)</span> is <span class="process-math">\(-\pi\text{.}\)</span> This result being negative means that more of the vector field moves opposite the direction of travel given by the parameterization.</div>
+</div></article><article class="task exercise-like" id="verifyStokespart2"><h5 class="heading"><span class="codenumber">(b)</span></h5>
+<div class="para" id="p-5618">In this part, we will calculate the flux of <span class="process-math">\(\curl(\vF) \)</span> through a surface with boundary <span class="process-math">\(C\text{.}\)</span> As demonstrated by <a href="" class="xref" data-knowl="./knowl/Stokes_PA_task2.html" title="Task 12.11.1.b">Task 12.11.1.b</a>, there are several different surfaces that we can use in this problem. For our first case, we will use the part of the surface <span class="process-math">\(z=1-2y^2\)</span> that is bounded by <span class="process-math">\(C\)</span> as shown in <a href="" class="xref" data-knowl="./knowl/fig_stokes_example_12y2.html" title="Figure 12.11.7">Figure 12.11.7</a>. This surface can be parameterized by <span class="process-math">\(\vr(s,t)=\langle s\cos(t),s*\sin(t), 1-2 s^2 \sin(t)^2 \rangle \)</span> with <span class="process-math">\(s \in [0,1]\)</span> and <span class="process-math">\(t \in [0,2\pi]\text{.}\)</span>
+</div> <figure class="figure figure-like" id="fig_stokes_example_12y2"><iframe id="int_Vector_StokesThm_verify1" width="600" height="650" src="int_Vector_StokesThm_verify1-if.html"></iframe><figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">12.11.7<span class="period">.</span></span><span class="space"> </span>A portion of the surface <span class="process-math">\(z=1-2y^2\)</span> bounded by <span class="process-math">\(C\)</span></figcaption></figure> <div class="para logical" id="p-5619">
+<div class="para">Using our parameterization, we get the following for the partial derivative functions and the corresponding normal vector:</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/act_Vector_FluxInt_Function.html" id="md-80">
+\begin{align*}
+\vr_s(s,t) \amp =\langle \cos(t), \sin(t),-4s\sin(t)^2\rangle \\
+\vr_r(s,t) \amp =\langle -s\sin(t), s\cos(t),-4s^2\sin(t)\cos(t)\rangle \\
+\vw=\vr_s \times \vr_t \amp =\langle -4s^2\sin(t)^2\cos(t)+4s^2\sin(t)^2\cos(t) , \\
+\amp \quad \quad  4s^2\cos(t)^2\sin(t)+4s^2\sin(t)^2\sin(t), s \cos(t)^2 + s \sin(t)^2 \rangle \\
+\amp = \langle 0, 4s^2\sin(t), s \rangle 
+\end{align*}
+</div>
+<div class="para">
+<aside class="aside aside-like" id="aside-7"></aside> In particular, our parameterization yields <span class="process-math">\(\vr_s \times \vr_t \enspace dA = \langle 0,4s\sin(t), 1 \rangle s \enspace ds dt\text{.}\)</span> Since we used polar coordinates as our parameter, <span class="process-math">\(dA = s ds dt\text{.}\)</span>
+</div>
+</div> <div class="para logical" id="p-5620">
+<div class="para">The next step in setting up the flux integral on the right side of Stokes’ Theorem is calculating the curl of <span class="process-math">\(\vF\text{.}\)</span> Since <span class="process-math">\(\vF=\langle z-x, y+z, xy \rangle \text{,}\)</span> <span class="process-math">\(\curl(\vF)=\langle x-1,1-y,0 \rangle \)</span> and converting to <span class="process-math">\(s\)</span> and <span class="process-math">\(t\)</span> gives <span class="process-math">\(\curl(\vF) (s,t)=\langle s\cos(t)-1,1-s\sin(t),0 \rangle \text{.}\)</span> Now we are able to apply <a href="" class="xref" data-knowl="./knowl/thm_flux_int_calc.html" title="Theorem 12.9.7">Theorem 12.9.7</a>, which give the following iterated integral:</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/thm_flux_int_calc.html">
+\begin{equation*}
+\int_0^1 \int_0^{2\pi} \langle s\cos(t)-1,1-s\sin(t),0 \rangle \cdot \langle 0,4s\sin(t), 1 \rangle s \enspace dt ds
+\end{equation*}
+</div>
+<div class="para">Evaluating this dot product, then computing each integral gives</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/thm_flux_int_calc.html">
+\begin{equation*}
+\int_0^1 \int_0^{2\pi} -4s^3 \sin(t)^2 + 4s^2 \sin(t) \enspace dt ds = -\pi
+\end{equation*}
+</div>
+<div class="para">which matches our result for the calculation of the circulation around <span class="process-math">\(C\text{.}\)</span>
+</div>
+</div></article><article class="task exercise-like" id="verifyStokespart3"><h5 class="heading"><span class="codenumber">(c)</span></h5>
+<div class="para" id="p-5621">As we saw in <a href="" class="xref" data-knowl="./knowl/Stokes_PA_task2.html" title="Task 12.11.1.b">Task 12.11.1.b</a> there is more than one surface that has <span class="process-math">\(C\)</span> as a boundary. We will calculate the flux integral (the right side of Stokes’ Theorem) for a different surface to help motivate why it will not matter which surface we use (as long as we have the correct orientation and boundary). For this part we will use the surface <span class="process-math">\(z=x^2-y^2\text{,}\)</span> which will be parameterized by <span class="process-math">\(\vr(s,t)=\langle s\cos(t),s*\sin(t),  s^2 (\cos(t)^2-\sin(t)^2) \rangle \)</span> with <span class="process-math">\(s \in [0,1]\)</span> and <span class="process-math">\(t \in [0,2\pi]\text{.}\)</span> Additionally, we will use the trig identity <span class="process-math">\(\cos(2t)=\cos(t)^2-\sin(t)^2 \)</span> to write the last component of our parameterization as <span class="process-math">\(s^2 \cos(2t)\text{.}\)</span>
+</div> <div class="para logical" id="p-5622">
+<div class="para">Using our parameterization, we get the following for the partial derivative functions and the corresponding normal vector:</div>
+<div class="displaymath process-math" id="md-81">
+\begin{align*}
+\vr_s(s,t) \amp =\langle \cos(t), \sin(t),2s\cos(2t)\rangle \\
+\vr_r(s,t) \amp =\langle -s\sin(t), s\cos(t),-2s^2\sin(2t)\rangle \\
+\vw=\vr_s \times \vr_t \amp =\langle -2s^2\sin(2t)\sin(t)-2s^2\cos(2t)\cos(t) , \\
+\amp \quad \quad  2s^2\cos(t)\sin(2t)-2s^2\sin(t)\cos(2t), s \cos(t)^2 + s \sin(t)^2 \rangle \\
+\amp = \langle -2s^2 \cos(t), 2s^2 \sin(t), s \rangle 
+\end{align*}
+</div>
+<div class="para">Your algebraic simplifications may vary in the last step; Remember that the algebra may look a bit different but you should be consistent with your work and get the same result in the end.</div>
+</div> <div class="para logical" id="p-5623">
+<div class="para">Now we are ready to set up the flux integral as the following iterated integral:</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\int_0^1 \int_0^{2\pi} \langle s\cos(t)-1,1-s\sin(t),0 \rangle \cdot \langle -2s^2 \cos(t), 2s^2 \sin(t), s \rangle  \enspace dt ds
+\end{equation*}
+</div>
+<div class="para">You probably noticed that this integral will look more slightly more complicated than our work in the previous part, but if we are consistent, we should get the same result. Evaluating this dot product, then computing each integral gives:</div>
+<div class="displaymath process-math" id="md-82">
+\begin{gather*}
+\int_0^1 \int_0^{2\pi} (-2s^2 \cos(t))(s\cos(t)-1) + (2s^2 \sin(t))(1-s\sin(t)) \enspace dt ds \\
+\int_0^1 \int_0^{2\pi} -2s^3 \cos(t)^2 + 2s^2 \cos(t) + 2s^2 \sin(t) -2s^3\sin(t)^2 \enspace dt ds \\
+\int_0^1 \int_0^{2\pi} -2s^3  + 2s^2 \cos(t) + 2s^2 \sin(t)  \enspace dt ds 
+\end{gather*}
+</div>
+<div class="para">Because both sine and cosine will integrate to zero over the interval from zero to <span class="process-math">\(2\pi\text{,}\)</span> we only need to evaluate</div>
+<div class="displaymath process-math">
+\begin{equation*}
+2 \pi \int_0^1  -2s^3  \enspace ds= -\pi
+\end{equation*}
+</div>
+<div class="para">which gives exactly the same result as our circulation integrate <em class="alert">AND</em> our flux integral with the other surface.</div>
+</div></article></article><div class="para" id="p-5624">We close this subsection with a pair of activities. The first focuses on calculating both of the integrals in <a href="" class="xref" data-knowl="./knowl/thm_Stokes.html" title="Theorem 12.11.5: Stokes’ Theorem">Stokes’ Theorem</a>. The second asks you to calculate some line integrals along simple closed curves and gives you the discretion to choose the best method to use for this (as well as the best surface to use, if you choose Stokes’ Theorem).</div>
+<article class="activity project-like" id="act_Vector_StokesThm_verify"><h4 class="heading">
 <span class="type">Activity</span><span class="space"> </span><span class="codenumber">12.11.2</span><span class="period">.</span>
 </h4>
-<div class="introduction" id="introduction-92"><div class="para logical" id="p-5655">
-<div class="para">Because <a href="" class="xref" data-knowl="./knowl/thm_Stokes.html" title="Theorem 12.11.5: Stokes' Theorem">Stokes' Theorem</a> requires us to consider a surface (with normal vector) and the boundary of the surface, this activity will give you a chance to practice identifying the boundary of some surfaces in <span class="process-math">\(\R^3\text{.}\)</span> For each surface below:</div>
+<div class="introduction" id="introduction-94"><div class="para" id="p-5625">In this activity, we will verify <a href="" class="xref" data-knowl="./knowl/thm_Stokes.html" title="Theorem 12.11.5: Stokes’ Theorem">Stokes’ Theorem</a> by calculating both a line integral and a flux integral.</div></div>
+<article class="task exercise-like" id="task_Vector_StokesThm_verify_sphere"><h5 class="heading"><span class="codenumber">(a)</span></h5>
+<div class="introduction" id="introduction-95"><div class="para" id="p-5626">Consider the vector field <span class="process-math">\(\vF = \langle x^2 ,y^2 ,z^2 \rangle\)</span> and the circle <span class="process-math">\(C_1\)</span> parametrized as <span class="process-math">\(\vr(t) =\langle \sqrt{2}\cos(t), \sqrt{2}\cos(t), 2\sin(t)\rangle\)</span> for <span class="process-math">\(0\leq t\leq 2\pi\text{.}\)</span>
+</div></div>
+<article class="task exercise-like" id="task-266"><h6 class="heading"><span class="codenumber">(i)</span></h6>
+<div class="para" id="p-5627">Calculate <span class="process-math">\(\oint_{C_1} \vF\cdot d\vr\)</span> directly using the given parametrization.</div></article><article class="task exercise-like" id="task-267"><h6 class="heading"><span class="codenumber">(ii)</span></h6>
+<div class="para" id="p-5628">Let <span class="process-math">\(S_1\)</span> be the hemisphere of the sphere of radius <span class="process-math">\(2\)</span> centered at the origin with <span class="process-math">\(y\leq x\text{.}\)</span> Calculate the flux of <span class="process-math">\(\curl(\vF)\)</span> through <span class="process-math">\(S_1\text{.}\)</span>
+</div></article><article class="task exercise-like" id="task-268"><h6 class="heading"><span class="codenumber">(iii)</span></h6>
+<div class="para" id="p-5629">What could you have observed about <span class="process-math">\(\vF\)</span> that would have gotten you the same answer without doing either of the above calculations?</div></article></article><article class="task exercise-like" id="task_Vector_StokesThm_verify_triangle"><h5 class="heading"><span class="codenumber">(b)</span></h5>
+<div class="introduction" id="introduction-96"><div class="para" id="p-5630">Consider the vector field <span class="process-math">\(\vG = x\vi + y^2z\vj + x^2\vk\)</span> and the curve <span class="process-math">\(C_2\text{,}\)</span> which is the triangle with vertices <span class="process-math">\((1,0,0)\text{,}\)</span> <span class="process-math">\((0,1,0)\text{,}\)</span> and <span class="process-math">\((0,0,1)\)</span> with orientation corresponding to the order the points are listed here.</div></div>
+<article class="task exercise-like" id="task-270"><h6 class="heading"><span class="codenumber">(i)</span></h6>
+<div class="para" id="p-5631">Find the circulation of <span class="process-math">\(\vG\)</span> along <span class="process-math">\(C_2\)</span> by calculating the appropriate line integrals.</div></article><article class="task exercise-like" id="task-271"><h6 class="heading"><span class="codenumber">(ii)</span></h6>
+<div class="para" id="p-5632">The vertices of <span class="process-math">\(C_2\)</span> lie in a plane. Let <span class="process-math">\(S_2\)</span> be the portion of this plane lying in the first octant, i.e., the portion with <span class="process-math">\(x,y,z\geq 0\text{.}\)</span> Find the flux of <span class="process-math">\(\curl(\vG)\)</span> through <span class="process-math">\(S_2\text{.}\)</span>
+</div></article><article class="task exercise-like" id="task-272"><h6 class="heading"><span class="codenumber">(iii)</span></h6>
+<div class="para" id="p-5633">Explain why the sign of your answer to the previous two parts makes sense.</div></article></article></article><article class="activity project-like" id="act_Vector_StokesThm_use"><h4 class="heading">
+<span class="type">Activity</span><span class="space"> </span><span class="codenumber">12.11.3</span><span class="period">.</span>
+</h4>
+<article class="task exercise-like" id="task_act_Vector_StokesThm_use_cylinder"><h5 class="heading"><span class="codenumber">(a)</span></h5>
+<div class="para" id="p-5634">Find the circulation of <span class="process-math">\(\vF = \langle 3yz, xz, -xy\rangle\)</span> along the curve <span class="process-math">\(C\)</span> consisting of (given in order of the orientation) the quarter-circle of radius <span class="process-math">\(1\)</span> centered at <span class="process-math">\((0,-2,0)\)</span> in the plane <span class="process-math">\(y=-2\)</span> from <span class="process-math">\((0,-2,1)\)</span> to <span class="process-math">\((1,-2,0)\text{,}\)</span> the line segment from <span class="process-math">\((1,-2,0)\)</span> to <span class="process-math">\((1,5,0)\text{,}\)</span> the quarter-circle of radius <span class="process-math">\(1\)</span> centered at <span class="process-math">\((0,5,0)\)</span> in the plane <span class="process-math">\(y=5\)</span> from <span class="process-math">\((1,5,0)\)</span> to <span class="process-math">\((0,5,1)\text{,}\)</span> and the line segment from <span class="process-math">\((0,5,1)\)</span> to <span class="process-math">\((0,-2,1)\text{.}\)</span>
+</div></article><article class="task exercise-like" id="task_act_Vector_StokesThm_use_circle"><h5 class="heading"><span class="codenumber">(b)</span></h5>
+<div class="para" id="p-5635">Find the circulation of <span class="process-math">\(\vG = 3z^2\vi -z^2 + 2x\vj+zy\vk\)</span> along the circle in the <span class="process-math">\(xy\)</span>-plane of radius <span class="process-math">\(3\)</span> centered at the origin. Assume the counterclockwise orientation of the circle.</div></article></article><div class="para" id="p-5636">In part <a href="" class="xref" data-knowl="./knowl/task_act_Vector_StokesThm_use_circle.html" title="Task 12.11.3.b">part b</a> of <a href="" class="xref" data-knowl="./knowl/act_Vector_StokesThm_use.html" title="Activity 12.11.3">Activity 12.11.3</a>, there are two “reasonable” choices for the surface bounded by the circle. If you did not do so while doing the activity, we encourage you to identify both of them and compare which one makes doing the flux integral easier. In general, this will vary depending on the (curl of the) vector field in question, so we cannot give a rule for determining what surface or coordinate system to use. However, we do encourage you to think about which surface will make evaluating the flux integral easiest.</div></section><section class="subsection" id="surfaceboundaries"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">12.11.3</span> <span class="title">Practice with Surfaces and thier Boundaries</span>
+</h3>
+<div class="para" id="p-5637">When we looked <a href="" class="xref" data-knowl="./knowl/thm_Green.html" title="Theorem 12.8.3: Green’s Theorem">Green’s Theorem</a>, it was generally most useful when we were given a line integral and we calculated it using a double integral. In fact, except in the circumstances described in exercises <a href="" class="xref" data-knowl="./knowl/ez_Vector_GreensTheorem_AreaViaLineInt.html" title="Exercise 12.8.5.6">12.8.5.6</a> and <a href="" class="xref" data-knowl="./knowl/ez_Vector_GreensTheorem_centroid.html" title="Exercise 12.8.5.8">12.8.5.8</a>, we did not use Green’s Theorem to rewrite a double integral as a line integral because of the difficulty of finding a suitable vector field. The situation for <a href="" class="xref" data-knowl="./knowl/thm_Stokes.html" title="Theorem 12.11.5: Stokes’ Theorem">Stokes’ Theorem</a> will be similar, with the exception of <a href="" class="xref" data-knowl="./knowl/ez_Vector_StokesThm_potential.html" title="Exercise 12.11.5.4">Exercise 4</a> in this section. However, Stokes’ Theorem gives us an interesting additional piece of freedom: selecting the surface <span class="process-math">\(S\)</span> through which we calculate the flux of <span class="process-math">\(\curl(\vF)\)</span> from amongst possibly several reasonable surfaces with boundary <span class="process-math">\(C\text{.}\)</span> The next two activities focus on the relationships between surfaces and their boundary.</div>
+<article class="activity project-like" id="act_Vector_StokesThm_boundary"><h4 class="heading">
+<span class="type">Activity</span><span class="space"> </span><span class="codenumber">12.11.4</span><span class="period">.</span>
+</h4>
+<div class="introduction" id="introduction-97"><div class="para logical" id="p-5638">
+<div class="para">Because <a href="" class="xref" data-knowl="./knowl/thm_Stokes.html" title="Theorem 12.11.5: Stokes’ Theorem">Stokes’ Theorem</a> requires us toconsider a surface (with normal vector) and the boundary of	the surface, this activity will give you a chance to practice	identifying the boundary of some surfaces in <span class="process-math">\(\R^3\text{.}\)</span> For	each surface below:</div>
 <ul class="disc">
-<li id="li-1813"><div class="para" id="p-derived-li-1813">Describe the boundary in words.</div></li>
-<li id="li-1814"><div class="para" id="p-derived-li-1814">Find a parametrization for the boundary.</div></li>
-<li id="li-1815"><div class="para" id="p-derived-li-1815">Ensure that a person walking along the boundary in the direction of your parametrization with head pointing in the direction of the surface's normal vector would hold their left hand over the surface.</div></li>
+<li id="li-1784"><div class="para" id="p-derived-li-1784">Describe the boundary in words.</div></li>
+<li id="li-1785"><div class="para" id="p-derived-li-1785">Find a parametrization for the boundary.</div></li>
+<li id="li-1786"><div class="para" id="p-derived-li-1786">Ensure that a person walking along the boundary in the direction of your parametrization with head pointing in the direction of the surface’s normal vector would hold their left hand over the surface.</div></li>
 </ul>
 </div></div>
 <article class="task exercise-like" id="task_Vector_StokesThm_boundary_sphere"><h5 class="heading"><span class="codenumber">(a)</span></h5>
-<div class="introduction" id="introduction-93"><div class="para" id="p-5656">The surface <span class="process-math">\(S\)</span> is the portion of the sphere <span class="process-math">\(x^2+y^2+z^2=4\)</span> described below. Assume the outward orientation on the sphere.</div></div>
-<article class="task exercise-like" id="task_Vector_StokesThm_boundary_sphere_upper"><h6 class="heading"><span class="codenumber">(i)</span></h6>
-<div class="para" id="p-5657">The points with <span class="process-math">\(z\geq 0\text{.}\)</span>
-</div></article><article class="task exercise-like" id="task_Vector_StokesThm_boundary_sphere_yx"><h6 class="heading"><span class="codenumber">(ii)</span></h6>
-<div class="para" id="p-5658">The points with <span class="process-math">\(z\geq x\text{.}\)</span>
-</div></article></article><article class="task exercise-like" id="task_Vector_StokesThm_boundary_hyppar"><h5 class="heading"><span class="codenumber">(b)</span></h5>
-<div class="para" id="p-5659">The surface <span class="process-math">\(S\)</span> is the portion of the hyperbolic paraboloid <span class="process-math">\(z=x^2-y^2\)</span> with <span class="process-math">\(x^2+y^2\leq 1\text{.}\)</span> Assume the “upward” orientation, e.g., the normal vector at <span class="process-math">\((0,0,0)\)</span> is <span class="process-math">\(\vk\text{.}\)</span>
-</div></article><article class="task exercise-like" id="task_Vector_StokesThm_boundary_cylinder"><h5 class="heading"><span class="codenumber">(c)</span></h5>
-<div class="para" id="p-5660">The surface <span class="process-math">\(S\)</span> is the portion of the cylinder <span class="process-math">\(x^2+y^2=4\)</span> for which <span class="process-math">\(-2\leq z\leq 2\text{,}\)</span> assuming the outward orientation.</div>
+<div class="para" id="p-5639">The surface <span class="process-math">\(S_1\)</span> is the portion of the sphere <span class="process-math">\(x^2+y^2+z^2=4\)</span> with <span class="process-math">\(z\geq x\text{.}\)</span> Assume the outward orientation on the sphere.</div></article><article class="task exercise-like" id="task_Vector_StokesThm_boundary_sphere2"><h5 class="heading"><span class="codenumber">(b)</span></h5>
+<div class="para" id="p-5640">The surface <span class="process-math">\(S_2\)</span> is the portion of the sphere <span class="process-math">\(x^2+y^2+z^2=4\)</span> with <span class="process-math">\(z\geq 0\text{.}\)</span> Assume the outward orientation on the sphere.</div></article><article class="task exercise-like" id="task_Vector_StokesThm_boundary_hyppar"><h5 class="heading"><span class="codenumber">(c)</span></h5>
+<div class="para" id="p-5641">The surface <span class="process-math">\(S_3\)</span> is the portion of the hyperbolic	paraboloid <span class="process-math">\(z=x^2-y^2\)</span> with <span class="process-math">\(x^2+y^2\leq 1\text{.}\)</span> Assume	the “upward” orientation, e.g., the normal vector at	<span class="process-math">\((0,0,0)\)</span> is <span class="process-math">\(\vk\text{.}\)</span>
+</div></article><article class="task exercise-like" id="task_Vector_StokesThm_boundary_cylinder"><h5 class="heading"><span class="codenumber">(d)</span></h5>
+<div class="para" id="p-5642">The surface <span class="process-math">\(S_4\)</span> is the portion of the cylinder <span class="process-math">\(x^2+y^2=4\)</span> for which <span class="process-math">\(-2\leq z\leq 2\text{,}\)</span> assuming the	outward orientation.</div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-18" id="hint-18"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-18"><div class="hint solution-like"><div class="para" id="p-5661">It is fine for the boundary of a surface to be made up of more than one curve. Think carefully about how each piece is oriented!</div></div></div>
+<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-16" id="hint-16"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-16"><div class="hint solution-like"><div class="para" id="p-5643">It is fine for the boundary of a surface to be made up of more than one curve. Think carefully about how each piece is	oriented!</div></div></div>
 </div></article></article><article class="activity project-like" id="act_Vector_StokesThm_surface"><h4 class="heading">
-<span class="type">Activity</span><span class="space"> </span><span class="codenumber">12.11.3</span><span class="period">.</span>
+<span class="type">Activity</span><span class="space"> </span><span class="codenumber">12.11.5</span><span class="period">.</span>
 </h4>
-<div class="introduction" id="introduction-94"><div class="para logical" id="p-5662">
-<div class="para">In some sense, this activity considers the reverse problem of that considered in <a href="" class="xref" data-knowl="./knowl/act_Vector_StokesThm_boundary.html" title="Activity 12.11.2">Activity 12.11.2</a>. Here, each part of the activity gives you an oriented simple closed curve <span class="process-math">\(C\)</span> in <span class="process-math">\(\R^3\text{,}\)</span> and your task is to find</div>
+<div class="introduction" id="introduction-98"><div class="para logical" id="p-5644">
+<div class="para">In some sense, this activity considers the reverse problem of that considered in <a href="" class="xref" data-knowl="./knowl/act_Vector_StokesThm_boundary.html" title="Activity 12.11.4">Activity 12.11.4</a>. Here, each part of the activity gives you an oriented simple closed curve <span class="process-math">\(C\)</span> in <span class="process-math">\(\R^3\text{,}\)</span> and your task is to find</div>
 <ul class="disc">
-<li id="li-1816"><div class="para" id="p-derived-li-1816">a surface <span class="process-math">\(S\)</span> so that <span class="process-math">\(C\)</span> is the boundary of <span class="process-math">\(S\)</span> and</div></li>
-<li id="li-1817"><div class="para" id="p-derived-li-1817">a normal vector for the <span class="process-math">\(S\)</span> so that a person walking along <span class="process-math">\(C\)</span> in the direction of the given orientation with head pointing in the direction of your chosen normal vector would have their left hand over <span class="process-math">\(S\text{.}\)</span>
+<li id="li-1787"><div class="para" id="p-derived-li-1787">a surface <span class="process-math">\(S\)</span> so that <span class="process-math">\(C\)</span> is the boundary of <span class="process-math">\(S\)</span> and</div></li>
+<li id="li-1788"><div class="para" id="p-derived-li-1788">a normal vector for the <span class="process-math">\(S\)</span> so that a person walking along <span class="process-math">\(C\)</span> in the direction of the given orientation with head pointing in the direction of your chosen normal vector would have their left hand over <span class="process-math">\(S\text{.}\)</span>
 </div></li>
 </ul>
 <div class="para">You are encouraged to think about multiple possible answers, since as we saw in <a href="" class="xref" data-knowl="./knowl/PA_Vector_StokesThm.html" title="Preview Activity 12.11.1">Preview Activity 12.11.1</a>, there may be more than one reasonable choice of a surface with a particular boundary.</div>
 </div></div>
 <article class="task exercise-like" id="task_Vector_StokesThm_surface_triangle"><h5 class="heading"><span class="codenumber">(a)</span></h5>
-<div class="para" id="p-5663">The curve <span class="process-math">\(C\)</span> is the triangle with vertices <span class="process-math">\((1,0,0)\text{,}\)</span> <span class="process-math">\((0,1,0)\text{,}\)</span> and <span class="process-math">\((0,0,1)\)</span> with orientation corresponding to the order the points are listed here.</div></article><article class="task exercise-like" id="task_Vector_StokesThm_surface_circle"><h5 class="heading"><span class="codenumber">(b)</span></h5>
-<div class="para" id="p-5664">The curve <span class="process-math">\(C\)</span> is the circle parametrized as <span class="process-math">\(\vr(t) =
-\langle \sqrt{2}\cos(t), \sqrt{2}\cos(t), 2\sin(t)\)</span> for <span class="process-math">\(0\leq t\leq 2\pi\text{.}\)</span>
+<div class="para" id="p-5645">The curve <span class="process-math">\(C\)</span> is the triangle with vertices <span class="process-math">\((1,0,0)\text{,}\)</span> <span class="process-math">\((0,1,0)\text{,}\)</span> and <span class="process-math">\((0,0,1)\)</span> with orientation corresponding to the order the points are listed here.</div></article><article class="task exercise-like" id="task_Vector_StokesThm_surface_circle"><h5 class="heading"><span class="codenumber">(b)</span></h5>
+<div class="para" id="p-5646">The curve <span class="process-math">\(C\)</span> is the circle parametrized as <span class="process-math">\(\vr(t) =\langle \sqrt{2}\cos(t), \sqrt{2}\cos(t), 2\sin(t)\)</span> for <span class="process-math">\(0\leq t\leq 2\pi\text{.}\)</span>
 </div></article><article class="task exercise-like" id="task_Vector_StokesThm_surface_cylinder"><h5 class="heading"><span class="codenumber">(c)</span></h5>
-<div class="para logical" id="p-5665">
-<div class="para">The curve <span class="process-math">\(C\)</span> consists of (given in order of the orientation)</div>
+<div class="para logical" id="p-5647">
+<div class="para">The curve <span class="process-math">\(C\)</span> consists of (given in order of the	orientation)</div>
 <ul class="disc">
-<li id="li-1818"><div class="para" id="p-derived-li-1818">the quarter-circle <span class="process-math">\(C_1\)</span>of radius <span class="process-math">\(2\)</span> centered at the origin in the <span class="process-math">\(xy\)</span>-plane from <span class="process-math">\((2,0,0)\)</span> to <span class="process-math">\((0,2,0)\text{,}\)</span>
+<li id="li-1789"><div class="para" id="p-derived-li-1789">the quarter-circle <span class="process-math">\(C_1\)</span>of radius <span class="process-math">\(2\)</span> centered at the origin in the <span class="process-math">\(xy\)</span>-plane from <span class="process-math">\((2,0,0)\)</span> to <span class="process-math">\((0,2,0)\text{,}\)</span>
 </div></li>
-<li id="li-1819"><div class="para" id="p-derived-li-1819">the line segment <span class="process-math">\(C_2\)</span> from <span class="process-math">\((0,2,0)\)</span> to <span class="process-math">\((0,2,2)\text{,}\)</span>
+<li id="li-1790"><div class="para" id="p-derived-li-1790">the line segment <span class="process-math">\(C_2\)</span> from <span class="process-math">\((0,2,0)\)</span> to <span class="process-math">\((0,2,2)\text{,}\)</span>
 </div></li>
-<li id="li-1820"><div class="para" id="p-derived-li-1820">the quarter-circle <span class="process-math">\(C_3\)</span> of radius <span class="process-math">\(2\)</span> centered at <span class="process-math">\((0,0,2)\)</span> in the plane <span class="process-math">\(z=2\)</span> from <span class="process-math">\((0,2,2)\)</span> to <span class="process-math">\((2,0,2)\text{,}\)</span> and</div></li>
-<li id="li-1821"><div class="para" id="p-derived-li-1821">the line segment <span class="process-math">\(C_4\)</span> from <span class="process-math">\((2,0,2)\)</span> to <span class="process-math">\((2,0,0)\text{.}\)</span>
+<li id="li-1791"><div class="para" id="p-derived-li-1791">the quarter-circle <span class="process-math">\(C_3\)</span> of radius <span class="process-math">\(2\)</span> centered at <span class="process-math">\((0,0,2)\)</span> in the plane <span class="process-math">\(z=2\)</span> from <span class="process-math">\((0,2,2)\)</span> to <span class="process-math">\((2,0,2)\text{,}\)</span> and</div></li>
+<li id="li-1792"><div class="para" id="p-derived-li-1792">the line segment <span class="process-math">\(C_4\)</span> from <span class="process-math">\((2,0,2)\)</span> to <span class="process-math">\((2,0,0)\text{.}\)</span>
 </div></li>
 </ul>
-</div></article></article></section><section class="subsection" id="SS_Vector_StokesThm_Verify"><h3 class="heading hide-type">
-<span class="type">Subsection</span> <span class="codenumber">12.11.2</span> <span class="title">Verifying and Applying Stokes' Theorem</span>
+</div></article></article></section><section class="subsection" id="subsection-151"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">12.11.4</span> <span class="title">Summary</span>
 </h3>
-<div class="para" id="p-5666">We close this section with a pair of activities. The first focuses on calculating both of the integrals in <a href="" class="xref" data-knowl="./knowl/thm_Stokes.html" title="Theorem 12.11.5: Stokes' Theorem">Stokes' Theorem</a>. The second asks you to calculate some line integrals along simple closed curves and gives you the discretion to choose the best method to use for this (as well as the best surface to use, if you choose Stokes' Theorem).</div>
-<article class="activity project-like" id="act_Vector_StokesThm_verify"><h4 class="heading">
-<span class="type">Activity</span><span class="space"> </span><span class="codenumber">12.11.4</span><span class="period">.</span>
-</h4>
-<div class="introduction" id="introduction-95"><div class="para" id="p-5667">In this activity, we will verify <a href="" class="xref" data-knowl="./knowl/thm_Stokes.html" title="Theorem 12.11.5: Stokes' Theorem">Stokes' Theorem</a> by calculating both a line integral and a flux integral.</div></div>
-<article class="task exercise-like" id="task_Vector_StokesThm_verify_sphere"><h5 class="heading"><span class="codenumber">(a)</span></h5>
-<div class="introduction" id="introduction-96"><div class="para" id="p-5668">Consider the vector field <span class="process-math">\(\vF = \langle x^2 ,y^2 ,z^2 \rangle\)</span> and the circle <span class="process-math">\(C_1\)</span> parametrized as <span class="process-math">\(\vr(t) =
-\langle \sqrt{2}\cos(t), \sqrt{2}\cos(t), 2\sin(t)\rangle\)</span> for <span class="process-math">\(0\leq t\leq 2\pi\text{.}\)</span>
-</div></div>
-<article class="task exercise-like" id="task-267"><h6 class="heading"><span class="codenumber">(i)</span></h6>
-<div class="para" id="p-5669">Calculate <span class="process-math">\(\oint_{C_1} \vF\cdot d\vr\)</span> directly using the given parametrization.</div></article><article class="task exercise-like" id="task-268"><h6 class="heading"><span class="codenumber">(ii)</span></h6>
-<div class="para" id="p-5670">Let <span class="process-math">\(S_1\)</span> be the hemisphere of the sphere of radius <span class="process-math">\(2\)</span> centered at the origin with <span class="process-math">\(y\leq x\text{.}\)</span> Calculate the flux of <span class="process-math">\(\curl(\vF)\)</span> through <span class="process-math">\(S_1\text{.}\)</span>
-</div></article><article class="task exercise-like" id="task-269"><h6 class="heading"><span class="codenumber">(iii)</span></h6>
-<div class="para" id="p-5671">What could you have observed about <span class="process-math">\(\vF\)</span> that would have gotten you the same answer without doing either of the above calculations?</div></article></article><article class="task exercise-like" id="task_Vector_StokesThm_verify_triangle"><h5 class="heading"><span class="codenumber">(b)</span></h5>
-<div class="introduction" id="introduction-97"><div class="para" id="p-5672">Consider the vector field <span class="process-math">\(\vG = x\vi + y^2z\vj +
-x^2\vk\)</span> and the curve <span class="process-math">\(C_2\text{,}\)</span> which is the triangle with vertices <span class="process-math">\((1,0,0)\text{,}\)</span> <span class="process-math">\((0,1,0)\text{,}\)</span> and <span class="process-math">\((0,0,1)\)</span> with orientation corresponding to the order the points are listed here.</div></div>
-<article class="task exercise-like" id="task-271"><h6 class="heading"><span class="codenumber">(i)</span></h6>
-<div class="para" id="p-5673">Find the circulation of <span class="process-math">\(\vG\)</span> along <span class="process-math">\(C_2\)</span> by calculating the appropriate line integrals.</div></article><article class="task exercise-like" id="task-272"><h6 class="heading"><span class="codenumber">(ii)</span></h6>
-<div class="para" id="p-5674">The vertices of <span class="process-math">\(C_2\)</span> lie in a plane. Let <span class="process-math">\(S_2\)</span> be the portion of this plane lying in the first octant, i.e., the portion with <span class="process-math">\(x,y,z\geq 0\text{.}\)</span> Find the flux of <span class="process-math">\(\curl(\vG)\)</span> through <span class="process-math">\(S_2\text{.}\)</span>
-</div></article><article class="task exercise-like" id="task-273"><h6 class="heading"><span class="codenumber">(iii)</span></h6>
-<div class="para" id="p-5675">Explain why the sign of your answer to the previous two parts makes sense.</div></article></article></article><article class="activity project-like" id="act_Vector_StokesThm_use"><h4 class="heading">
-<span class="type">Activity</span><span class="space"> </span><span class="codenumber">12.11.5</span><span class="period">.</span>
-</h4>
-<article class="task exercise-like" id="task_act_Vector_StokesThm_use_cylinder"><h5 class="heading"><span class="codenumber">(a)</span></h5>
-<div class="para" id="p-5676">Find the circulation of <span class="process-math">\(\vF = \langle 3yz, xz,
--xy\rangle\)</span> along the curve <span class="process-math">\(C\)</span> consisting of (given in order of the orientation) the quarter-circle of radius <span class="process-math">\(1\)</span> centered at <span class="process-math">\((0,-2,0)\)</span> in the plane <span class="process-math">\(y=-2\)</span> from <span class="process-math">\((0,-2,1)\)</span> to <span class="process-math">\((1,-2,0)\text{,}\)</span> the line segment from <span class="process-math">\((1,-2,0)\)</span> to <span class="process-math">\((1,5,0)\text{,}\)</span> the quarter-circle of radius <span class="process-math">\(1\)</span> centered at <span class="process-math">\((0,5,0)\)</span> in the plane <span class="process-math">\(y=5\)</span> from <span class="process-math">\((1,5,0)\)</span> to <span class="process-math">\((0,5,1)\text{,}\)</span> and the line segment from <span class="process-math">\((0,5,1)\)</span> to <span class="process-math">\((0,-2,1)\text{.}\)</span>
-</div></article><article class="task exercise-like" id="task_act_Vector_StokesThm_use_circle"><h5 class="heading"><span class="codenumber">(b)</span></h5>
-<div class="para" id="p-5677">Find the circulation of <span class="process-math">\(\vG = 3z^2\vi -z^2 + 2x\vj+zy\vk\)</span> along the circle in the <span class="process-math">\(xy\)</span>-plane of radius <span class="process-math">\(3\)</span> centered at the origin. Assume the counterclockwise orientation of the circle.</div></article></article><div class="para" id="p-5678">In part <a href="" class="xref" data-knowl="./knowl/task_act_Vector_StokesThm_use_circle.html" title="Task 12.11.5.b">part b</a> of <a href="" class="xref" data-knowl="./knowl/act_Vector_StokesThm_use.html" title="Activity 12.11.5">Activity 12.11.5</a>, there are two “reasonable” choices for the surface bounded by the circle. If you did not do so while doing the activity, we encourage you to identify both of them and compare which one makes doing the flux integral easier. In general, this will vary depending on the (curl of the) vector field in question, so we cannot give a rule for determining what surface or coordinate system to use. However, we do encourage you to think about which surface will make evaluating the flux integral easiest.</div></section><section class="subsection" id="subsection-151"><h3 class="heading hide-type">
-<span class="type">Subsection</span> <span class="codenumber">12.11.3</span> <span class="title">Summary</span>
-</h3>
-<div class="para logical" id="p-5679"><ul class="disc">
-<li id="li-1822"><div class="para" id="p-5680">
-<a href="" class="xref" data-knowl="./knowl/thm_Stokes.html" title="Theorem 12.11.5: Stokes' Theorem">Stokes' Theorem</a> tells us that we can calculate the circulation of a smooth vector field along a simple closed curve in <span class="process-math">\(\R^3\)</span> that bounds a surface (with normal vector) on which the vector field is also smooth by calculating the flux of the curl of the vector field through the surface.</div></li>
-<li id="li-1823"><div class="para" id="p-5681">Given two surfaces <span class="process-math">\(S_1\)</span> and <span class="process-math">\(S_2\)</span> with the same boundary <span class="process-math">\(C\)</span> (and assuming normal vectors that give the same orientation on <span class="process-math">\(C\)</span>), the flux of <span class="process-math">\(\curl(\vF)\)</span> through <span class="process-math">\(S_1\)</span> and through <span class="process-math">\(S_2\)</span> is the same because <a href="" class="xref" data-knowl="./knowl/thm_Stokes.html" title="Theorem 12.11.5: Stokes' Theorem">Stokes' Theorem</a> tells us that this flux is equal to the circulation of <span class="process-math">\(\vF\)</span> along <span class="process-math">\(C\text{.}\)</span>
+<div class="para logical" id="p-5648"><ul class="disc">
+<li id="li-1793"><div class="para" id="p-5649">
+<a href="" class="xref" data-knowl="./knowl/thm_Stokes.html" title="Theorem 12.11.5: Stokes’ Theorem">Stokes’ Theorem</a> tells us that we can calculate the circulation of a smooth vector field along a simple closed curve in <span class="process-math">\(\R^3\)</span> that bounds a surface (with normal vector) on which the vector field is also smooth by calculating the flux of the curl of the vector field through the surface.</div></li>
+<li id="li-1794"><div class="para" id="p-5650">Given two surfaces <span class="process-math">\(S_1\)</span> and <span class="process-math">\(S_2\)</span> with the same boundary <span class="process-math">\(C\)</span> (and assuming normal vectors that give the same orientation on <span class="process-math">\(C\)</span>), the flux of <span class="process-math">\(\curl(\vF)\)</span> through <span class="process-math">\(S_1\)</span> and through <span class="process-math">\(S_2\)</span> is the same because <a href="" class="xref" data-knowl="./knowl/thm_Stokes.html" title="Theorem 12.11.5: Stokes’ Theorem">Stokes’ Theorem</a> tells us that this flux is equal to the circulation of <span class="process-math">\(\vF\)</span> along <span class="process-math">\(C\text{.}\)</span>
 </div></li>
 </ul></div></section><section class="exercises" id="exercises-36"><h3 class="heading hide-type">
-<span class="type">Exercises</span> <span class="codenumber">12.11.4</span> <span class="title">Exercises</span>
+<span class="type">Exercises</span> <span class="codenumber">12.11.5</span> <span class="title">Exercises</span>
 </h3>
 <article class="exercise exercise-like" id="Library__Michigan__Chap20Sec4__Q13.pg"><h4 class="heading"><span class="codenumber">1<span class="period">.</span></span></h4>
-<div id="webwork-314" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="314" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/WHFreeman/Rogawski_Calculus_Early_Transcendentals_Second_Edition/16_Line_and_Surface_Integrals/16.4_Parametrized_Surfaces_and_Surface_Integrals/16.4.15.pg" data-courseID="mitchkeller-dev" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
-<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-314')">Activate</button></div>
+<div id="webwork-316" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="316" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/ASU-topics/setCalculus/stef16_8p2.pg" data-courseID="mitchkeller-dev" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-316')">Activate</button></div>
 <div class="problem-contents">
-<div class="para logical" id="p-5682">
-<div class="para">Calculate <span class="process-math">\(\iint_{\mathcal{S}} f(x,y,z)\,dS\)</span> For</div>
-<div class="displaymath process-math">
-\begin{equation*}
-y = 7-z^2  \text{,} \qquad 0\le x, z\le 9 \text{;}\qquad f(x,y,z)=z
-\end{equation*}
-</div>
-<div class="para">
-<span class="process-math">\(\iint_{\mathcal{S}} f(x,y,z)\,dS=\)</span> <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>
-</div>
-</div>
-<div class="solutions">
-<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-251" id="solution-251"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-251"><div class="solution solution-like">
-<span class="process-math">\(y=g( x,z )\text{:}\)</span><div class="displaymath process-math">
-\begin{equation*}
-\iint_S  f( x,y,z ) \,dS=
-\end{equation*}
-</div>
-<div class="displaymath process-math">
-\begin{equation*}
-\iint_{\mathcal{D}} f\left(x,g( x,z ),z\right)\sqrt{1+ g_x^2+ g_z^2} \,dx \,dz 
-\quad \mathbf{(1)}
-\end{equation*}
-</div>Since <span class="process-math">\(y=g( x,z )=7- z^2\text{,}\)</span> we have <span class="process-math">\(g_x =0\text{,}\)</span> <span class="process-math">\(g_z =-2z\text{,}\)</span> hence:<div class="displaymath process-math">
-\begin{equation*}
-\sqrt{1+ g_x^2+ g_z^2}=\sqrt{1+4 z^2}
-\end{equation*}
-</div>
-<div class="displaymath process-math">
-\begin{equation*}
-f\left(x,g( x,z ),z\right)=z
-\end{equation*}
-</div>The domain of integration is the square <span class="process-math">\(\left[0,9\right]\times \left[0,9\right]\)</span> in the <span class="process-math">\(xz\)</span>-plane. By <span class="process-math">\(\mathbf{(1)}\)</span> we get:<div class="displaymath process-math">
-\begin{equation*}
-\iint_S  f( x,y,z ) \,dS =
-\int_0^{9} \int_0^{9} z\sqrt{1+4 z^2} \,dz \,dx=
-\end{equation*}
-</div>
-<div class="displaymath process-math">
-\begin{equation*}
-\left(\int_0^{9} 1 \,dx\right)\left(\int_0^{9} z \sqrt{1+4 z^2} \,dz\right)=9\int_0^{9} z \sqrt{1+4 z^2} \,dz
-\end{equation*}
-</div>We use the substitution <span class="process-math">\(u={1+4 z^2}, \,du= 8z \,dz\)</span> to compute the integral. This gives:<div class="displaymath process-math">
-\begin{equation*}
-\iint_S  f( x,y,z ) \,dS =
-9\int_0^{9} z\sqrt{1+4 z^2} \,dz=
-\end{equation*}
-</div>
-<div class="displaymath process-math">
-\begin{equation*}
-9\int_1^{325} \frac{u^{1/2}}{8} \,du = \frac{18}3\cdot\left(\frac{{325}^{3/2}-1}{8}\right)\approx 4393.52
-\end{equation*}
-</div>
-</div></div>
-</div>
+<div class="para" id="p-5651">Verify Stokes’ theorem for the helicoid <span class="process-math">\(\Psi(r,\theta) = \langle r\cos \theta, r\sin \theta, \theta \rangle\)</span> where <span class="process-math">\((r,\theta)\)</span> lies in the rectangle <span class="process-math">\([0,1] \times [0,\pi/2]\text{,}\)</span> and <span class="process-math">\(\mathbf{F}\)</span> is the vector field <span class="process-math">\(\mathbf{F} = \langle 9 z, 3 x, 6 y \rangle\text{.}\)</span>
+</div> <div class="para" id="p-5652">First, compute the surface integral:</div> <div class="para" id="p-5653">
+<span class="process-math">\(\iint_M (\nabla \times \mathbf{F})\cdot d\mathbf{S}=
+\int_a^b\int_c^d f(r, \theta) dr\,d\theta\text{,}\)</span> where</div> <div class="para" id="p-5654">
+<span class="process-math">\(a =\)</span><span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>, <span class="process-math">\(b =\)</span><span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>, <span class="process-math">\(c =\)</span><span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>, <span class="process-math">\(d =\)</span><span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>, and</div> <div class="para" id="p-5655">
+<span class="process-math">\(f(r, \theta) =\)</span> <span class="fillin underline" role="img" aria-label="50-character blank" style="width: 22.7272727272727em;"></span> (use "t" for theta).</div> <div class="para" id="p-5656">Finally, the value of the surface integral is <span class="fillin underline" role="img" aria-label="30-character blank" style="width: 13.6363636363636em;"></span>.</div> <div class="para" id="p-5657">Next compute the line integral on that part of the boundary from <span class="process-math">\((1,0,0)\)</span> to <span class="process-math">\((0,1,\pi/2)\text{.}\)</span>
+</div> <div class="para" id="p-5658">
+<span class="process-math">\(\int_C \mathbf{F}\cdot d\mathbf{r} = \int_a^b g(\theta)\,d\theta\text{,}\)</span> where</div> <div class="para" id="p-5659">
+<span class="process-math">\(a =\)</span><span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>, <span class="process-math">\(b =\)</span><span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>, and</div> <div class="para" id="p-5660">
+<span class="process-math">\(g(\theta) =\)</span> <span class="fillin underline" role="img" aria-label="50-character blank" style="width: 22.7272727272727em;"></span> (use "t" for theta).</div>
+<div class="solutions"></div>
 </div>
 </div></article><article class="exercise exercise-like" id="Library__Rochester__setVectorCalculus3__ur_vc_13_8.pg"><h4 class="heading"><span class="codenumber">2<span class="period">.</span></span></h4>
-<div id="webwork-315" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="315" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Rochester/setVectorCalculus3/ur_vc_13_1.pg" data-courseID="mitchkeller-dev" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
-<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-315')">Activate</button></div>
+<div id="webwork-317" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="317" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/WHFreeman/Rogawski_Calculus_Early_Transcendentals_Second_Edition/17_Fundamental_Theorems_of_Vector_Analysis/17.3_Divergence_Theorem/17.3.9.pg" data-courseID="mitchkeller-dev" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-317')">Activate</button></div>
 <div class="problem-contents">
-<div class="para" id="p-5684">Evaluate <span class="process-math">\(\displaystyle \int\!\!\int_{S} \sqrt{ 1 + x^{2} + y^{2} } \: dS\)</span> where <span class="process-math">\(S\)</span> is the helicoid: <span class="process-math">\(\mathbf{r}(u, v) = u\cos(v)\mathbf{i} + u\sin(v)\mathbf{j} + v\mathbf{k}\text{,}\)</span> with <span class="process-math">\(0 \leq u \leq 5, 0 \leq v \leq 3\pi\)</span>
+<div class="para" id="p-5670">Verify the Divergence Theorem for the vector field and region:</div> <div class="para" id="p-5671">
+<span class="process-math">\(\mathbf{F} = \left\lt  9x ,9z ,4y \right&gt;\)</span> and the region <span class="process-math">\(x^2+y^2\le 1\text{,}\)</span> <span class="process-math">\(0\le z \le 2\)</span>
+</div> <div class="para" id="p-5672">
+<span class="process-math">\(\iint_{\mathcal{S}} \mathbf{F} \cdot d\mathbf{S} =\)</span> <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>
+</div> <div class="para" id="p-5673">
+<span class="process-math">\(\iiint_{\mathcal{R}} \text{div} (\mathbf{F}) \,dV=\)</span> <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>
+</div>
+<div class="solutions">
+<a href="" data-knowl="" class="id-ref solution-knowl original has-image" data-refid="hk-solution-249" id="solution-249"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-249"><div class="solution solution-like">
+<div class="image-box" style="width: 43.3333333333333%; margin-left: 28.3333333333333%; margin-right: 28.3333333333333%;"><img src="generated/webwork/images/webwork-317-image-1.png" class="contained"></div> With <span class="process-math">\(z_0=2\)</span> Let <span class="process-math">\(\mathcal{S}\)</span> be the surface of the cylinder and <span class="process-math">\(\mathcal{R}\)</span> the region enclosed by <span class="process-math">\(\mathcal{S}\text{.}\)</span> We compute the two sides of the Divergence Theorem:<div class="displaymath process-math">
+\begin{equation*}
+\iint_{\mathcal{S}} \mathbf{F} \cdot d\mathbf{S} =
+\iiint_{\mathcal{R}} \text{div} (\mathbf{F}) \,dV
+\end{equation*}
+</div>We first calculate the surface integral. <em class="alert">Step 1.</em> Integral over the side of the cylinder. The side of the cylinder is parametrized by<div class="displaymath process-math">
+\begin{equation*}
+\Phi (\theta ,z)=(\cos \theta , \sin \theta ,z),\quad 0\le \theta \le 2\pi ,\quad 0\le z\le 2
+\end{equation*}
+</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\mathbf{n} = \left\lt   \cos \theta , \sin \theta ,0 \right&gt;
+\end{equation*}
+</div>Then,<div class="displaymath process-math">
+\begin{equation*}
+\mathbf{F} \left(\Phi (\theta ,z)\right)\cdot \mathbf{n}  =
+\end{equation*}
+</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\left\lt  9 \cos \theta ,9 z,4\sin \theta  \right&gt; \cdot  \left\lt   \cos \theta , \sin \theta ,0 \right&gt;=
+\end{equation*}
+</div>
+<div class="displaymath process-math">
+\begin{equation*}
+9 \cos^2\theta +9 z  \sin \theta
+\end{equation*}
+</div>We obtain the integral<div class="displaymath process-math">
+\begin{equation*}
+\iint_{\mathrm{side}} \mathbf{F} \cdot d\mathbf{S}  =
+\int_0^{2} \int_0^{2\pi } \left(9 \cos^2\theta +9 z  \sin \theta \right) \,d\theta  \,dz=
+\end{equation*}
+</div>
+<div class="displaymath process-math">
+\begin{equation*}
+18 \int_0^{2\pi } \cos^2\theta  \,d\theta +\left(\int_0^{2} 9 z \,dz\right)\left(\int_0^{2\pi }  \sin \theta  \,d\theta \right)=
+\end{equation*}
+</div>
+<div class="displaymath process-math">
+\begin{equation*}
+18\cdot \left(\frac{\theta }{2}+\frac{\sin 2\theta }{4}\bigg|_0^{2\pi }\right)+0=
+18\pi
+\end{equation*}
+</div>
+<em class="alert">Step 2.</em> Integral over the top of the cylinder. The top of the cylinder is parametrized by<div class="displaymath process-math">
+\begin{equation*}
+\Phi(x,y)=(x,y,2)
+\end{equation*}
+</div>with parameter domain <span class="process-math">\(\mathcal{D}=\lbrace (x,y):\, x^2+ y^2\le 1\rbrace\text{.}\)</span> The upward pointing normal is<div class="displaymath process-math">
+\begin{equation*}
+\mathbf{n} ={\mathbf{T} }_x \times {\mathbf{T} }_y =
+\left\lt  1,0,0 \right&gt;\times \left\lt  0,1,0 \right&gt; =
+\end{equation*}
+</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\mathbf{i} \times \mathbf{j} =\mathbf{k}
+= \left\lt  0,0,1 \right&gt;
+\end{equation*}
+</div>Also,<div class="displaymath process-math">
+\begin{equation*}
+\mathbf{F} \left(\Phi (x,y)\right)\cdot \mathbf{n} = \left\lt  9 x,18,4 y \right&gt;\cdot \left\lt  0,0,1 \right&gt;=4 y
+\end{equation*}
+</div>Hence,<div class="displaymath process-math">
+\begin{equation*}
+\iint_{\mathrm{top}} \mathbf{F} \cdot d\mathbf{S} =\iint_{\mathcal{D}} 4 y \,dA=0
+\end{equation*}
+</div>The last integral is zero due to symmetry. <div class="image-box" style="width: 40%; margin-left: 30%; margin-right: 30%;"><img src="generated/webwork/images/webwork-317-image-2.png" class="contained"></div> <em class="alert">Step 3.</em> Integral over the bottom of the cylinder. We parametrize the bottom by<div class="displaymath process-math">
+\begin{equation*}
+\Phi (x,y)=(x,y,0),\quad (x,y)\in \mathcal{D}
+\end{equation*}
+</div>The downward pointing normal is <span class="process-math">\(\mathbf{n} = \left\lt  0,0,-1 \right&gt;\text{.}\)</span> Then<div class="displaymath process-math">
+\begin{equation*}
+\mathbf{F} \left(\Phi (x,y)\right)\cdot \mathbf{n} = \left\lt  9 x,0,4 y \right&gt;\cdot \left\lt  0,0,-1 \right&gt; =-4 y
+\end{equation*}
+</div>We obtain the following integral, which is zero due to symmetry:<div class="displaymath process-math">
+\begin{equation*}
+\iint_{\mathrm{bottom}} \mathbf{F} \cdot d\mathbf{S} =\iint_{\mathcal{D}} -4 y \,dA=0
+\end{equation*}
+</div>Adding the integrals we get<div class="displaymath process-math">
+\begin{equation*}
+\iint_{\mathcal{S}} \mathbf{F} \cdot d\mathbf{S}  =
+\end{equation*}
+</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\iint_{\mathrm{side}} \mathbf{F} \cdot d\mathbf{S} +\iint_{\mathrm{top}} \mathbf{F} \cdot d\mathbf{S} +\iint_{\mathrm{bottom}} \mathbf{F} \cdot d\mathbf{S} 
+=
+\end{equation*}
+</div>
+<div class="displaymath process-math">
+\begin{equation*}
+18\pi +0+0=18\pi \quad\mathbf{(1)}
+\end{equation*}
+</div>
+<em class="alert">Step 4.</em> Compare with integral of divergence.<div class="displaymath process-math">
+\begin{equation*}
+\text{div}  (\mathbf{F} ) =
+\text{div} \left\lt  9 x,9 z,4 y \right&gt;=
+\end{equation*}
+</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\frac{\partial }{\partial x}(9 x)+\frac{\partial }{\partial y}(9 z)+\frac{\partial }{\partial z}(4 y)=9
+\end{equation*}
+</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\iiint_{\mathcal{R}} \text{div}  \left(\mathbf{F} \right) \,dV =
+\iiint_{\mathcal{R}} 9 \,dV=
+\end{equation*}
+</div>
+<div class="displaymath process-math">
+\begin{equation*}
+9\iiint_{\mathcal{R}} \,dV=9\, \mathrm{Vol} (\mathcal{R})
+= 9\cdot \pi \cdot 2=18\pi\quad\mathbf{(2)}
+\end{equation*}
+</div>The equality of <span class="process-math">\(\mathbf{(1)}\)</span> and <span class="process-math">\(\mathbf{(2)}\)</span> verifies the Divergence Theorem.</div></div>
+</div>
+</div>
+</div></article><article class="exercise exercise-like" id="Library__ASU-topics__setCalculus__stef16_8p2.pg"><h4 class="heading"><span class="codenumber">3<span class="period">.</span></span></h4>
+<div id="webwork-318" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="318" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/FortLewis/Calc3/20-2-Divergence-theorem/HGM5-20-2-16-Divergence-theorem.pg" data-courseID="mitchkeller-dev" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-318')">Activate</button></div>
+<div class="problem-contents">
+<div class="para" id="p-5676">Use the divergence theorem to calculate the flux of the vector field <span class="process-math">\(\vec{F}(x,y,z) = x^3 \vec{i}
++ y^3 \vec{j} + z^3 \vec{k}\)</span> out of the closed, outward-oriented surface <span class="process-math">\(S\)</span> bounding the solid <span class="process-math">\(x^2 + y^2 \leq 4, \ 
+0 \leq z \leq 6.\)</span>
+</div> <div class="para" id="p-5677">
+<span class="process-math">\(\displaystyle \iint\limits_S \vec{F} \cdot d\vec{A} =\)</span> <span class="fillin underline" role="img" aria-label="30-character blank" style="width: 13.6363636363636em;"></span>
 </div>
 <div class="solutions"></div>
 </div>
-</div></article><article class="exercise exercise-like" id="Library__ASU-topics__setCalculus__stef16_8p2.pg"><h4 class="heading"><span class="codenumber">3<span class="period">.</span></span></h4>
-<div id="webwork-316" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="316" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Michigan/Chap20Sec4/Q13.pg" data-courseID="mitchkeller-dev" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
-<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-316')">Activate</button></div>
-<div class="problem-contents">
-<div class="para" id="p-5686">Find <span class="process-math">\(\int_C\vec F\cdot d\vec r\)</span> where <span class="process-math">\(C\)</span> is a circle of radius <span class="process-math">\(3\)</span> in the plane <span class="process-math">\(x+y+z=3\text{,}\)</span> centered at <span class="process-math">\((3,3,-3)\)</span> and oriented clockwise when viewed from the origin, if <span class="process-math">\(\vec F = 4y\vec i - 5x\vec j + 3\!\left(y-x\right)\vec k\)</span>
-</div> <div class="para" id="p-5687">
-<span class="process-math">\(\int_C\vec F\cdot d\vec r =\)</span> <span class="fillin underline" role="img" aria-label="35-character blank" style="width: 15.9090909090909em;"></span>
-</div>
-<div class="solutions">
-<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-252" id="solution-252"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-252"><div class="solution solution-like">
-<div class="displaymath process-math">
-\begin{equation*}
-\mbox{curl }\vec F = \left|
-\begin{array}{ccc}
-\vec i \amp  \vec j \amp  \vec k\\
-\frac{\partial}{\partial x}\ \amp  \ \frac{\partial}{\partial y} \ \amp 
-\ \frac{\partial}{\partial z}\\
-4y \amp  -5x \amp  3\!\left(y-x\right)
-\end{array}
-\right| = 3\vec i + 3\vec j -9 \vec k,
-\end{equation*}
-</div>writing <span class="process-math">\(S\)</span> for the disk in the plane enclosed by the circle, Stokes' Theorem gives<div class="displaymath process-math">
-\begin{equation*}
-\int_C\vec F\cdot d\vec r = \int_S\mbox{curl }\vec F\cdot d\vec A =
-\int_S(3\vec i + 3\vec j -9 \vec k)\cdot d\vec A.
-\end{equation*}
-</div>Now <span class="process-math">\(d\vec A = \vec n\,dA\text{,}\)</span> where <span class="process-math">\(\vec n\)</span> is the unit vector perpendicular to the plane and <span class="process-math">\(dA\)</span> an area element on the plane, so <span class="process-math">\(\vec n = \frac1{\sqrt3}(\vec i + \vec j + \vec k)\text{,}\)</span> and<div class="displaymath process-math">
-\begin{equation*}
-\int_C\vec F\,d\vec r = \int_S(3\vec i+3\vec j -9\vec k)\cdot
-\frac{\vec i+\vec j+\vec k}{\sqrt{3}}\,dA = \int_S \frac{-3}{\sqrt 3}\,dA = \frac{-3}{\sqrt 3}\mbox{ Area of circle} = \frac{-27\pi}{\sqrt{3}}.
-\end{equation*}
-</div>
-</div></div>
-</div>
-</div>
 </div></article><article class="exercise exercise-like" id="ez_Vector_StokesThm_potential"><h4 class="heading"><span class="codenumber">4<span class="period">.</span></span></h4>
-<div class="introduction" id="introduction-98"><div class="para" id="p-5689">
-<a href="" class="xref" data-knowl="./knowl/thm_Stokes.html" title="Theorem 12.11.5: Stokes' Theorem">Stokes' Theorem</a> is generally used to turn a line integral into a flux integral. Sometimes it is possible to be given a flux integral and recognize that the given vector field <span class="process-math">\(\vF\)</span> is <span class="process-math">\(\curl(\vG)\)</span> for some vector field <span class="process-math">\(\vG\text{,}\)</span> however. When this is the case, we call <span class="process-math">\(\vG\)</span> a <dfn class="terminology">vector potential</dfn> for the vector field <span class="process-math">\(\vF\text{,}\)</span> much like a function <span class="process-math">\(f\)</span> so that <span class="process-math">\(\vF =
+<div class="introduction" id="introduction-99"><div class="para" id="p-5679">
+<a href="" class="xref" data-knowl="./knowl/thm_Stokes.html" title="Theorem 12.11.5: Stokes’ Theorem">Stokes’ Theorem</a> is generally used to turn a line integral into a flux integral. Sometimes it is possible to be given a flux integral and recognize that the given vector field <span class="process-math">\(\vF\)</span> is <span class="process-math">\(\curl(\vG)\)</span> for some vector field <span class="process-math">\(\vG\text{,}\)</span> however. When this is the case, we call <span class="process-math">\(\vG\)</span> a <dfn class="terminology">vector potential</dfn> for the vector field <span class="process-math">\(\vF\text{,}\)</span> much like a function <span class="process-math">\(f\)</span> so that <span class="process-math">\(\vF =
 \grad(f)\)</span> is called a potential function for <span class="process-math">\(\vF\text{.}\)</span>
 </div></div>
 <article class="task exercise-like" id="task_Vector_StokesThm_potential_find"><h5 class="heading"><span class="codenumber">(a)</span></h5>
-<div class="para" id="p-5690">Find a vector field <span class="process-math">\(\vF\)</span> so that <span class="process-math">\(\curl(\vF) =
+<div class="para" id="p-5680">Find a vector field <span class="process-math">\(\vF\)</span> so that <span class="process-math">\(\curl(\vF) =
 \langle x-y^2,4xy-y-4,-4xz\rangle\text{.}\)</span>
 </div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-19" id="hint-19"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-19"><div class="hint solution-like"><div class="para" id="p-5691">Your experience in finding potential functions for gradient vector fields will be useful to you here, although you will have more flexibility.</div></div></div>
+<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-17" id="hint-17"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-17"><div class="hint solution-like"><div class="para" id="p-5681">Your experience in finding potential functions for gradient vector fields will be useful to you here, although you will have more flexibility.</div></div></div>
 </div></article><article class="task exercise-like" id="task_Vector_StokesThm_potential_find2"><h5 class="heading"><span class="codenumber">(b)</span></h5>
-<div class="para" id="p-5692">When finding an anti-derivative of a function of a single variable, you know that there is an infinite family of anti-derivatives, but that any two anti-derivatives differ by a constant. This is why we write expressions such as <span class="process-math">\(\displaystyle\int\cos(x)\, dx = \sin(x) + C\text{.}\)</span> A similar phenomenon occurs with (scalar) potential functions for gradient vector fields. Find a <em class="emphasis">second</em> vector field <span class="process-math">\(\vG\)</span> with the same curl as in <a href="" class="xref" data-knowl="./knowl/task_Vector_StokesThm_potential_find.html" title="Task 12.11.4.4.a">part a</a>, and do so in a way that <span class="process-math">\(\vF-\vG\)</span> is <em class="emphasis">not</em> a constant vector. That is, after simplifying fully, <span class="process-math">\(\vF-\vG\)</span> must contain at least one of the variables <span class="process-math">\(x,y,z\text{.}\)</span>
+<div class="para" id="p-5682">When finding an anti-derivative of a function of a single variable, you know that there is an infinite family of anti-derivatives, but that any two anti-derivatives differ by a constant. This is why we write expressions such as <span class="process-math">\(\displaystyle\int\cos(x)\, dx = \sin(x) + C\text{.}\)</span> A similar phenomenon occurs with (scalar) potential functions for gradient vector fields. Find a <em class="emphasis">second</em> vector field <span class="process-math">\(\vG\)</span> with the same curl as in <a href="" class="xref" data-knowl="./knowl/task_Vector_StokesThm_potential_find.html" title="Task 12.11.5.4.a">part a</a>, and do so in a way that <span class="process-math">\(\vF-\vG\)</span> is <em class="emphasis">not</em> a constant vector. That is, after simplifying fully, <span class="process-math">\(\vF-\vG\)</span> must contain at least one of the variables <span class="process-math">\(x,y,z\text{.}\)</span>
 </div></article><article class="task exercise-like" id="task_Vector_StokesThm_potential_gradient"><h5 class="heading"><span class="codenumber">(c)</span></h5>
-<div class="para" id="p-5693">Verify that for the vector fields you found above, <span class="process-math">\(\vF-\vG\)</span> is a gradient vector field. Explain why for <em class="emphasis">every</em> pair <span class="process-math">\(\vF, \vG\)</span> of vector potentials for a vector field <span class="process-math">\(\vH\text{,}\)</span> you must have that <span class="process-math">\(\vF-\vG\)</span> is a gradient vector field.</div></article><article class="task exercise-like" id="task_Vector_StokesThm_potential_div"><h5 class="heading"><span class="codenumber">(d)</span></h5>
-<div class="para" id="p-5694">Explain why if <span class="process-math">\(\vH\)</span> is a vector field with a vector potential <span class="process-math">\(\vF\text{,}\)</span> <span class="process-math">\(\divg(\vH) = 0\text{.}\)</span> Such a vector field is called a <dfn class="terminology">solenoidal vector field</dfn> or <dfn class="terminology">divergence-free vector field</dfn>.</div></article></article></section></section></div>
+<div class="para" id="p-5683">Verify that for the vector fields you found above, <span class="process-math">\(\vF-\vG\)</span> is a gradient vector field. Explain why for <em class="emphasis">every</em> pair <span class="process-math">\(\vF, \vG\)</span> of vector potentials for a vector field <span class="process-math">\(\vH\text{,}\)</span> you must have that <span class="process-math">\(\vF-\vG\)</span> is a gradient vector field.</div></article><article class="task exercise-like" id="task_Vector_StokesThm_potential_div"><h5 class="heading"><span class="codenumber">(d)</span></h5>
+<div class="para" id="p-5684">Explain why if <span class="process-math">\(\vH\)</span> is a vector field with a vector potential <span class="process-math">\(\vF\text{,}\)</span> <span class="process-math">\(\divg(\vH) = 0\text{.}\)</span> Such a vector field is called a <dfn class="terminology">solenoidal vector field</dfn> or <dfn class="terminology">divergence-free vector field</dfn>.</div></article></article><article class="exercise exercise-like" id="exercise-453"><h4 class="heading"><span class="codenumber">5<span class="period">.</span></span></h4>
+<div class="para" id="p-5685">Repeat the steps of <a href="" class="xref" data-knowl="./knowl/verifyStokespart2.html" title="Task 12.11.6.b">Task 12.11.6.b</a> and <a href="" class="xref" data-knowl="./knowl/verifyStokespart3.html" title="Task 12.11.6.c">Task 12.11.6.c</a> with the surface <span class="process-math">\(z=x^4-y^4\)</span> to verify Stokes’ Theorem for another different surface. Your flux integral should calculate to <span class="process-math">\(-\pi\)</span> as in <a href="" class="xref" data-knowl="./knowl/verifyStokes.html" title="Example 12.11.6">Example 12.11.6</a>.</div></article></section></section></div>
 <div class="ptx-content-footer">
 <a class="previous-button button" href="S_Vector_ScalarSurfaceIntegral.html" title="Previous"><span class="icon">&lt;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon">^</span><span class="name">Top</span></a><a class="next-button button" href="S_Vector_DivThm.html" title="Next"><span class="name">Next</span><span class="icon">&gt;</span></a>
 </div></main>
 </div>
-<div id="ptx-page-footer">
+<div id="ptx-page-footer" class="ptx-page-footer">
 <a class="pretext-link" href="https://pretextbook.org" title="PreTeXt"><div class="logo"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="338 3000 8772 6866"><g style="stroke-width:.025in; stroke:black; fill:none"><polyline points="472,3590 472,9732 " style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round; "></polyline><path style="stroke:#000000;stroke-width:126;stroke-linecap:butt;" d="M 4724,9448 A 4660 4660  0  0  1  8598  9259"></path><path style="stroke:#000000;stroke-width:174;stroke-linecap:butt;" d="M 4488,9685 A 4228 4228  0  0  0   472  9732"></path><path style="stroke:#000000;stroke-width:126;stroke-linecap:butt;" d="M 4724,3590 A 4241 4241  0  0  1  8598  3496"></path><path style="stroke:#000000;stroke-width:126;stroke-linecap:round;" d="M 850,3496  A 4241 4241  0  0  1  4724  3590"></path><path style="stroke:#000000;stroke-width:126;stroke-linecap:round;" d="M 850,9259  A 4507 4507  0  0  1  4724  9448"></path><polyline points="5385,4299 4062,8125" style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="8598,3496 8598,9259" style="stroke:#000000;stroke-width:126; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="850,3496 850,9259" style="stroke:#000000;stroke-width:126; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="4960,9685 4488,9685" style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="3070,4582 1889,6141 3070,7700" style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="6418,4582 7600,6141 6418,7700" style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="8976,3590 8976,9732" style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round;"></polyline><path style="stroke:#000000;stroke-width:174;stroke-linecap:butt;" d="M 4960,9685 A 4228 4228  0  0  1  8976  9732"></path></g></svg></div></a><a class="runestone-link" href="https://runestone.academy" title="Runestone Academy"><img class="logo" src="https://runestone.academy/runestone/static/images/RAIcon_cropped.png"></a><a class="mathjax-link" href="https://www.mathjax.org" title="MathJax"><img class="logo" src="https://www.mathjax.org/badge/badge-square-2.png"></a>
 </div>
 <!--Start: Google Global Site Tag code--><!--*** DO NOT COPY ANOTHER PROJECT'S MAGIC NUMBERS/ID ***--><!--***           GET YOUR OWN FROM GOOGLE             ***-->

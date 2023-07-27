@@ -5,7 +5,7 @@
 <!--*         https://pretextbook.org          *-->
 <!--*                                          *-->
 <!--********************************************-->
-<html lang="en-US">
+<html lang="en-US" dir="ltr">
 <head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Surface Integrals of Scalar Valued Functions</title>
@@ -16,20 +16,38 @@
 <meta property="book:author" content="Steve Schlicker">
 <meta property="book:author" content="Mitchel T. Keller">
 <meta property="book:author" content="Nicholas Long">
-<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
+<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>
+var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
 window.MathJax = {
-  tex: {
-    inlineMath: [['\\(','\\)']],
-    tags: "none",
-    tagSide: "right",
-    tagIndent: ".8em",
-    packages: {'[+]': ['base', 'extpfeil', 'ams', 'amscd', 'color', 'newcommand', 'knowl']}
+  "tex": {
+    "inlineMath": [
+      [
+        "\\(",
+        "\\)"
+      ]
+    ],
+    "tags": "none",
+    "tagSide": "right",
+    "tagIndent": ".8em",
+    "packages": {
+      "[+]": [
+        "base",
+        "extpfeil",
+        "ams",
+        "amscd",
+        "color",
+        "newcommand",
+        "knowl"
+      ]
+    }
   },
-  options: {
-    ignoreHtmlClass: "tex2jax_ignore|ignore-math",
-    processHtmlClass: "process-math",
-    renderActions: {
-        findScript: [10, function (doc) {
+  "options": {
+    "ignoreHtmlClass": "tex2jax_ignore|ignore-math",
+    "processHtmlClass": "process-math",
+    "renderActions": {
+      "findScript": [
+        10,
+        function (doc) {
             document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
                 var display = !!node.type.match(/; *mode=display/);
                 var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
@@ -39,65 +57,70 @@ window.MathJax = {
                 math.end = {node: text, delim: '', n: 0};
                 doc.math.push(math);
             });
-        }, '']
-    },
+        },
+        ""
+      ]
+    }
   },
-  chtml: {
-    scale: 0.98,
-    mtextInheritFont: true
+  "chtml": {
+    "scale": 0.98,
+    "mtextInheritFont": true
   },
-  loader: {
-    load: ['input/asciimath', '[tex]/extpfeil', '[tex]/amscd', '[tex]/color', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
-    paths: {pretext: "https://pretextbook.org/js/lib"},
+  "loader": {
+    "load": [
+      "input/asciimath",
+      "[tex]/extpfeil",
+      "[tex]/amscd",
+      "[tex]/color",
+      "[tex]/newcommand",
+      "[pretext]/mathjaxknowl3.js"
+    ],
+    "paths": {
+      "pretext": "https://pretextbook.org/js/lib"
+    }
   },
-  startup: {
+  "startup": {
     pageReady() {
       return MathJax.startup.defaultPageReady().then(function () {
       console.log("in ready function");
       rsMathReady();
       }
     )}
-  },
+  }
 };
 </script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><link href="https://webwork-ptx.aimath.org/webwork2_files/js/apps/MathView/mathview.css" rel="stylesheet">
-<script src="https://pretextbook.org/js/0.2/pretext-webwork/2.17/pretext-webwork.js"></script><script src="https://webwork-ptx.aimath.org/webwork2_files/node_modules/iframe-resizer/js/iframeResizer.min.js"></script><script async="" src="https://cse.google.com/cse.js?cx=015103900096539427448:ngwuia10qci"></script><script src="https://unpkg.com/lunr/lunr.js"></script><script src="lunr-pretext-search-index.js" async=""></script><script src="https://pretextbook.org/js/0.2/pretext_search.js"></script><link href="https://pretextbook.org/css/0.6/pretext_search.css" rel="stylesheet" type="text/css">
-<script>js_version = 0.2</script><script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.2/pretext.js"></script><script>miniversion=0.1</script><script src="https://pretextbook.org/js/0.2/pretext_add_on.js?x=1"></script><script src="https://pretextbook.org/js/0.2/user_preferences.js"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
+<script src="https://pretextbook.org/js/0.3/pretext-webwork/2.17/pretext-webwork.js"></script><script src="https://webwork-ptx.aimath.org/webwork2_files/node_modules/iframe-resizer/js/iframeResizer.min.js"></script><script async="" src="https://cse.google.com/cse.js?cx=015103900096539427448:ngwuia10qci"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js" integrity="sha512-4xUl/d6D6THrAnXAwGajXkoWaeMNwEKK4iNfq5DotEbLPAfk6FSxSP3ydNxqDgCw1c/0Z1Jg6L8h2j+++9BZmg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="lunr-pretext-search-index.js" async=""></script><script src="https://pretextbook.org/js/0.3/pretext_search.js"></script><link href="https://pretextbook.org/css/0.7/pretext_search.css" rel="stylesheet" type="text/css">
+<script>js_version = 0.3</script><script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.3/pretext.js"></script><script>miniversion=0.1</script><script src="https://pretextbook.org/js/0.3/pretext_add_on.js?x=1"></script><script src="https://pretextbook.org/js/0.3/user_preferences.js"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
 </script><link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700&amp;family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&amp;family=Tinos:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" rel="stylesheet">
 <link href="https://fonts.cdnfonts.com/css/dejavu-serif" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:opsz,wdth,wght@8..144,50..150,100..900&amp;display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wdth,wght@75..100,300..800&amp;display=swap" rel="stylesheet">
-<link href="https://pretextbook.org/css/0.6/pretext.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.6/pretext_add_on.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.6/shell_default.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.6/banner_default.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.6/navbar_default.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.6/toc_default.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.6/knowls_default.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.6/style_default.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.6/colors_blue_grey.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.6/setcolors.css" rel="stylesheet" type="text/css">
-<!--Start: Google Global Site Tag code--><!--*** DO NOT COPY ANOTHER PROJECT'S MAGIC NUMBERS/ID ***--><!--***           GET YOUR OWN FROM GOOGLE             ***-->
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-QJKN634F7R"></script><script>  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-QJKN634F7R');
-</script><!--End: Google Global Site Tag code-->
+<link href="https://pretextbook.org/css/0.7/pretext.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/pretext_add_on.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/shell_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/banner_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/navbar_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/toc_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/knowls_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/style_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/colors_blue_grey.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/setcolors.css" rel="stylesheet" type="text/css">
 </head>
 <body id="acmulti" class="pretext book ignore-math">
-<a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead"><div class="ptx-banner">
-<a id="logo-link" href=""></a><div class="title-container">
+<a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead"><div class="ptx-banner">
+<a id="logo-link" class="logo-link" href=""></a><div class="title-container">
 <h1 class="heading"><a href="book-1.html"><span class="title">Active Calculus - Multivariable + Vector</span></a></h1>
 <p class="byline">Steve Schlicker, Mitchel T. Keller, Nicholas Long</p>
 </div>
-<div id="searchresultsplaceholder" style="display: none">
-<button id="closesearchresults" onclick="document.getElementById('searchresultsplaceholder').style.display = 'none'; return false;">x</button><h2>Search Results: <span id="searchterms"></span>
+<div id="searchresultsplaceholder" class="searchresultsplaceholder" style="display: none">
+<button id="closesearchresults" class="closesearchresults" onclick="document.getElementById('searchresultsplaceholder').style.display = 'none'; return false;">x</button><h2>Search Results: <span id="searchterms" class="searchterms"></span>
 </h2>
-<div id="searchempty"><span>No results.</span></div>
-<ol id="searchresults"></ol>
+<div id="searchempty" class="searchempty"><span>No results.</span></div>
+<ol id="searchresults" class="searchresults"></ol>
 </div>
-</div></header><nav id="ptx-navbar" class="navbar"><button class="toc-toggle button" aria-label="Show or hide table of contents"><span class="icon">☰</span><span class="name">Contents</span></button><a class="index-button button" href="index-1.html" title="Index"><span class="name">Index</span></a><button id="user-preferences-button" class="user-preferences-button button" title="Modify user preferences"><span id="theavatarbutton" class="name">You!</span><div id="preferences_menu_holder" class="hidden"><ol id="preferences_menu" style="font-family: 'Roboto Serif', serif;">
+</div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><button class="toc-toggle button" aria-label="Show or hide table of contents"><span class="icon">☰</span><span class="name">Contents</span></button><a class="index-button button" href="index-1.html" title="Index"><span class="name">Index</span></a><button id="user-preferences-button" class="user-preferences-button button" title="Modify user preferences"><span id="avatarbutton" class="avatarbutton name">You!</span><div id="preferences_menu_holder" class="preferences_menu_holder hidden"><ol id="preferences_menu" class="preferences_menu" style="font-family: 'Roboto Serif', serif;">
 <li data-env="avatar" tabindex="-1">Choose avatar<div class="wrap_to_submenu"><span class="to_submenu">▻</span></div>
 <ol class="hidden avatar">
 <li data-val="You!" tabindex="-1">
@@ -201,7 +224,7 @@ window.MathJax = {
 </li>
 </ol></div></button><span class="treebuttons"><a class="previous-button button" href="S_Vector_FluxInt.html" title="Previous"><span class="icon">&lt;</span><span class="name">Prev</span></a><a class="up-button button" href="C_Vector.html" title="Up"><span class="icon">^</span><span class="name">Up</span></a><a class="next-button button" href="S_Vector_StokesThm.html" title="Next"><span class="name">Next</span><span class="icon">&gt;</span></a></span><div class="searchwrapper" role="search"><div class="gcse-search"></div></div>
 <div class="searchbox"><div class="searchwidget">
-<input id="ptxsearch" type="text" name="terms" placeholder="Search" onchange="doSearch()"><button id="searchbutton" type="button" onclick="doSearch()">🔍</button>
+<input id="ptxsearch" class="ptxsearch" type="text" name="terms" placeholder="Search" onchange="doSearch()"><button id="searchbutton" class="searchbutton" type="button" onclick="doSearch()">🔍</button>
 </div></div></nav><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\newcommand{\R}{\mathbb{R}}
 \newcommand{\va}{\mathbf{a}}
 \newcommand{\vb}{\mathbf{b}}
@@ -246,7 +269,7 @@ window.MathJax = {
 \newcommand{\fillinmath}[1]{\mathchoice{\colorbox{fillinmathshade}{$\displaystyle     \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\textstyle        \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptstyle      \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptscriptstyle\phantom{\,#1\,}$}}}
 \)</span></div>
 <div class="ptx-page">
-<div id="ptx-sidebar"><nav id="ptx-toc" class="depth2"><ul class="structural">
+<div id="ptx-sidebar" class="ptx-sidebar"><nav id="ptx-toc" class="ptx-toc depth2"><ul class="structural">
 <li>
 <div class="toc-item"><a href="frontmatter.html" class="internal"><span class="title">Front Matter</span></a></div>
 <ul class="structural">
@@ -574,14 +597,14 @@ window.MathJax = {
 </ul>
 </li>
 <li>
-<div class="toc-item"><a href="S_ScalarLineIntegral.html" class="internal"><span class="codenumber">12.5</span> <span class="title">Line Integrals of Scalar Functions</span></a></div>
+<div class="toc-item"><a href="S_Vector_ScalarLineIntegral.html" class="internal"><span class="codenumber">12.5</span> <span class="title">Line Integrals of Scalar Functions</span></a></div>
 <ul class="structural">
-<li><div class="toc-item"><a href="S_ScalarLineIntegral.html#subsection-124" class="internal"><span class="codenumber">12.5.1</span> <span class="title">Defining line integrals of scalar functions</span></a></div></li>
-<li><div class="toc-item"><a href="S_ScalarLineIntegral.html#subsection-125" class="internal"><span class="codenumber">12.5.2</span> <span class="title">Using Parameterizations to Calculate Scalar Line Integrals</span></a></div></li>
-<li><div class="toc-item"><a href="S_ScalarLineIntegral.html#subsection-126" class="internal"><span class="codenumber">12.5.3</span> <span class="title">Properties of Scalar Line Integrals</span></a></div></li>
-<li><div class="toc-item"><a href="S_ScalarLineIntegral.html#subsection-127" class="internal"><span class="codenumber">12.5.4</span> <span class="title">Visualizations of Scalar Line Integrals as Area Under a Curve</span></a></div></li>
-<li><div class="toc-item"><a href="S_ScalarLineIntegral.html#subsection-128" class="internal"><span class="codenumber">12.5.5</span> <span class="title">Summary</span></a></div></li>
-<li><div class="toc-item"><a href="S_ScalarLineIntegral.html#exercises-30" class="internal"><span class="codenumber">12.5.6</span> <span class="title">Exercises</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_ScalarLineIntegral.html#subsection-124" class="internal"><span class="codenumber">12.5.1</span> <span class="title">Defining line integrals of scalar functions</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_ScalarLineIntegral.html#subsection-125" class="internal"><span class="codenumber">12.5.2</span> <span class="title">Using Parameterizations to Calculate Scalar Line Integrals</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_ScalarLineIntegral.html#subsection-126" class="internal"><span class="codenumber">12.5.3</span> <span class="title">Properties of Scalar Line Integrals</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_ScalarLineIntegral.html#subsection-127" class="internal"><span class="codenumber">12.5.4</span> <span class="title">Visualizations of Scalar Line Integrals as Area Under a Curve</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_ScalarLineIntegral.html#subsection-128" class="internal"><span class="codenumber">12.5.5</span> <span class="title">Summary</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_ScalarLineIntegral.html#exercises-30" class="internal"><span class="codenumber">12.5.6</span> <span class="title">Exercises</span></a></div></li>
 </ul>
 </li>
 <li>
@@ -607,10 +630,10 @@ window.MathJax = {
 </ul>
 </li>
 <li>
-<div class="toc-item"><a href="S_Vector_GreensTheorem.html" class="internal"><span class="codenumber">12.8</span> <span class="title">Green's Theorem</span></a></div>
+<div class="toc-item"><a href="S_Vector_GreensTheorem.html" class="internal"><span class="codenumber">12.8</span> <span class="title">Green’s Theorem</span></a></div>
 <ul class="structural">
 <li><div class="toc-item"><a href="S_Vector_GreensTheorem.html#SS_Vector_GreensTheorem_Circulation" class="internal"><span class="codenumber">12.8.1</span> <span class="title">Circulation</span></a></div></li>
-<li><div class="toc-item"><a href="S_Vector_GreensTheorem.html#subsection-140" class="internal"><span class="codenumber">12.8.2</span> <span class="title">Green's Theorem</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_GreensTheorem.html#subsection-140" class="internal"><span class="codenumber">12.8.2</span> <span class="title">Green’s Theorem</span></a></div></li>
 <li><div class="toc-item"><a href="S_Vector_GreensTheorem.html#subsection-141" class="internal"><span class="codenumber">12.8.3</span> <span class="title">What happens when vector fields are not smooth?</span></a></div></li>
 <li><div class="toc-item"><a href="S_Vector_GreensTheorem.html#subsection-142" class="internal"><span class="codenumber">12.8.4</span> <span class="title">Summary</span></a></div></li>
 <li><div class="toc-item"><a href="S_Vector_GreensTheorem.html#exercises-33" class="internal"><span class="codenumber">12.8.5</span> <span class="title">Exercises</span></a></div></li>
@@ -620,27 +643,27 @@ window.MathJax = {
 <div class="toc-item"><a href="S_Vector_FluxInt.html" class="internal"><span class="codenumber">12.9</span> <span class="title">Flux Integrals</span></a></div>
 <ul class="structural">
 <li><div class="toc-item"><a href="S_Vector_FluxInt.html#SS_Vector_FluxInt_Idea" class="internal"><span class="codenumber">12.9.1</span> <span class="title">The Idea of the Flux of a Vector Field through a Surface</span></a></div></li>
-<li><div class="toc-item"><a href="S_Vector_FluxInt.html#subsection-144" class="internal"><span class="codenumber">12.9.2</span> <span class="title">Measuring the Flux of a Vector Field through a Surface</span></a></div></li>
-<li><div class="toc-item"><a href="S_Vector_FluxInt.html#SS_Vector_FluxInt_Calculate" class="internal"><span class="codenumber">12.9.3</span> <span class="title">Efficiently Calculating Flux Integrals</span></a></div></li>
-<li><div class="toc-item"><a href="S_Vector_FluxInt.html#subsection-146" class="internal"><span class="codenumber">12.9.4</span> <span class="title">Summary</span></a></div></li>
-<li><div class="toc-item"><a href="S_Vector_FluxInt.html#exercises-34" class="internal"><span class="codenumber">12.9.5</span> <span class="title">Exercises</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_FluxInt.html#subsection-144" class="internal"><span class="codenumber">12.9.2</span> <span class="title">The Details of Measuring the Flux of a Vector Field through a Surface</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_FluxInt.html#subsection-145" class="internal"><span class="codenumber">12.9.3</span> <span class="title">Summary</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_FluxInt.html#exercises-34" class="internal"><span class="codenumber">12.9.4</span> <span class="title">Exercises</span></a></div></li>
 </ul>
 </li>
 <li class="active">
 <div class="toc-item"><a href="S_Vector_ScalarSurfaceIntegral.html" class="internal"><span class="codenumber">12.10</span> <span class="title">Surface Integrals of Scalar Valued Functions</span></a></div>
 <ul class="structural">
-<li><div class="toc-item"><a href="S_Vector_ScalarSurfaceIntegral.html#subsection-147" class="internal"><span class="codenumber">12.10.1</span> <span class="title">Defining surface integrals of scalar functions</span></a></div></li>
-<li><div class="toc-item"><a href="S_Vector_ScalarSurfaceIntegral.html#subsection-148" class="internal"><span class="codenumber">12.10.2</span> <span class="title">Properties of Scalar Surface Integrals</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_ScalarSurfaceIntegral.html#subsection-146" class="internal"><span class="codenumber">12.10.1</span> <span class="title">Defining surface integrals of scalar functions</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_ScalarSurfaceIntegral.html#subsection-147" class="internal"><span class="codenumber">12.10.2</span> <span class="title">Properties of Scalar Surface Integrals</span></a></div></li>
 <li><div class="toc-item"><a href="S_Vector_ScalarSurfaceIntegral.html#exercises-35" class="internal"><span class="codenumber">12.10.3</span> <span class="title">Exercises</span></a></div></li>
 </ul>
 </li>
 <li>
-<div class="toc-item"><a href="S_Vector_StokesThm.html" class="internal"><span class="codenumber">12.11</span> <span class="title">Stokes' Theorem</span></a></div>
+<div class="toc-item"><a href="S_Vector_StokesThm.html" class="internal"><span class="codenumber">12.11</span> <span class="title">Stokes’ Theorem</span></a></div>
 <ul class="structural">
-<li><div class="toc-item"><a href="S_Vector_StokesThm.html#SS_Vector_StokesThm_Development" class="internal"><span class="codenumber">12.11.1</span> <span class="title">Circulation in three dimensions and Stokes' Theorem</span></a></div></li>
-<li><div class="toc-item"><a href="S_Vector_StokesThm.html#SS_Vector_StokesThm_Verify" class="internal"><span class="codenumber">12.11.2</span> <span class="title">Verifying and Applying Stokes' Theorem</span></a></div></li>
-<li><div class="toc-item"><a href="S_Vector_StokesThm.html#subsection-151" class="internal"><span class="codenumber">12.11.3</span> <span class="title">Summary</span></a></div></li>
-<li><div class="toc-item"><a href="S_Vector_StokesThm.html#exercises-36" class="internal"><span class="codenumber">12.11.4</span> <span class="title">Exercises</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_StokesThm.html#SS_Vector_StokesThm_Development" class="internal"><span class="codenumber">12.11.1</span> <span class="title">Circulation in three dimensions and Stokes’ Theorem</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_StokesThm.html#SS_Vector_StokesThm_Verify" class="internal"><span class="codenumber">12.11.2</span> <span class="title">Verifying and Applying Stokes’ Theorem</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_StokesThm.html#surfaceboundaries" class="internal"><span class="codenumber">12.11.3</span> <span class="title">Practice with Surfaces and thier Boundaries</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_StokesThm.html#subsection-151" class="internal"><span class="codenumber">12.11.4</span> <span class="title">Summary</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_StokesThm.html#exercises-36" class="internal"><span class="codenumber">12.11.5</span> <span class="title">Exercises</span></a></div></li>
 </ul>
 </li>
 <li>
@@ -664,25 +687,49 @@ window.MathJax = {
 </h2>
 <article class="objectives goal-like" id="objectives-35"><h3 class="heading"><span class="type">Motivating Questions</span></h3>
 <ul class="disc">
-<li id="li-1798"><div class="para" id="p-5575">What does a scalar surface integral measure?</div></li>
-<li id="li-1799"><div class="para" id="p-5576">How can you efficently calculate scalar surface integrals?</div></li>
-<li id="li-1800"><div class="para" id="p-5577">How do scalar surface integrals relate to flux integrals?</div></li>
-</ul></article><section class="introduction" id="introduction-86"><div class="para" id="p-5578">In <a href="S_Vector_FluxInt.html" class="internal" title="Section 12.9: Flux Integrals">Section 12.9</a>, the idea of a flux integral was introduced by looking at how much of a vector field flows through a given section of a surface in space. In particular, the flux integral measured the accumulated amount of the vector field that is orthogonal to the surface (which changes at different points on the surface.) <a href="" class="xref" data-knowl="./knowl/thm_flux_int_calc.html" title="Theorem 12.9.7">Theorem 12.9.7</a> shows the best way to calculate the flux integral in terms of a parameterization of the surface. This was an extension of the method for computing the surface area given in <a href="S-11-6-Parametric-Surfaces-Surface-Area.html" class="internal" title="Section 11.6: Surfaces Defined Parametrically and Surface Area">Section 11.6</a>.</div> <div class="para logical" id="p-5579">
-<div class="para">Just as we generalized line integrals of vector fields into scalar line integrals in <code class="code-inline tex2jax_ignore">[cross-reference to target(s) "S_Vector_ScalarLineIntegral" missing or not unique]</code>, we will spend this section looking at the following questions:</div>
+<li id="li-1762"><div class="para" id="p-5527">What does a scalar surface integral measure?</div></li>
+<li id="li-1763"><div class="para" id="p-5528">How can you efficently calculate scalar surface integrals?</div></li>
+<li id="li-1764"><div class="para" id="p-5529">How do scalar surface integrals relate to flux integrals?</div></li>
+</ul></article><section class="introduction" id="introduction-85"><article class="exploration project-like" id="exploration-35"><h3 class="heading">
+<span class="type">Preview Activity</span><span class="space"> </span><span class="codenumber">12.10.1</span><span class="period">.</span>
+</h3>
+<div class="introduction" id="introduction-86">
+<div class="para" id="p-5530">In <a href="" class="xref" data-knowl="./knowl/PA_ScalarLI.html" title="Preview Activity 12.5.1">Preview Activity 12.5.1</a> we looked at how to understand line integrals of scalar functions through the analogy of running a mining machine along a given path. In short, the amount of Copium mined depended on the density of Copium at points on the path and the length of the path driven by the mining rig.</div> <figure class="figure figure-like" id="CopiumPlot2"><div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="external//images/CopiumMinePlot.svg" class="contained"></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">12.10.1<span class="period">.</span></span><span class="space"> </span>A plot of land with density of Copium deposits and the edges of the plot drawn in yellow</figcaption></figure> <div class="para" id="p-5531">The opening tasks of <a href="" class="xref" data-knowl="./knowl/PA_ScalarLI.html" title="Preview Activity 12.5.1">Preview Activity 12.5.1</a> had you estimating the amount of Copium mined by driving along the edge of a plot of land (drawn in yellow on <a href="" class="xref" data-knowl="./knowl/CopiumPlot2.html" title="Figure 12.10.1">Figure 12.10.1</a>). This iterpretation meant that the scalar function we are using was measuring the linear density of Copium to have our Riemann sum of Linear Density of Copium times the distance traveled make sense.</div>
+</div>
+<article class="task exercise-like" id="task-237"><h4 class="heading"><span class="codenumber">(a)</span></h4>
+<article class="task exercise-like" id="task-238"><h5 class="heading"><span class="codenumber">(i)</span></h5>
+<div class="para" id="p-5533">Break the mining plot (the area inside the yellow segments of <a href="" class="xref" data-knowl="./knowl/CopiumPlot2.html" title="Figure 12.10.1">Figure 12.10.1</a>) into three pieces. Estimate the area of the three pieces you are using. Write a few sentences explaining your methods of estimating the areas.</div></article><article class="task exercise-like" id="task-239"><h5 class="heading"><span class="codenumber">(ii)</span></h5>
+<div class="para" id="p-5534">For each of the three pieces you used in part (a), estimate the average density of Copium on each of your three pieces. Write a few sentences explaining your methods of estimating the average density on each piece.</div></article><article class="task exercise-like" id="task-240"><h5 class="heading"><span class="codenumber">(iii)</span></h5>
+<div class="para" id="p-5535">Give an estimate for the total amount of Copium on your mining plot and explain your computation.</div></article></article><article class="task exercise-like" id="task-241"><h4 class="heading"><span class="codenumber">(b)</span></h4>
+<div class="para logical" id="p-5536">
+<div class="para">What if instead of your mining plot being on a flat piece of land as represented in <a href="" class="xref" data-knowl="./knowl/CopiumPlot2.html" title="Figure 12.10.1">Figure 12.10.1</a>, your mining plot was on a hill as represented in <a href="" class="xref" data-knowl="./knowl/fig_3D_CopiumMining.html" title="Figure 12.10.2">Figure 12.10.2</a>. If we had the same copium density plot as a function of the <span class="process-math">\((x,y)\)</span> coordinates, would you expect:</div>
 <ul class="disc">
-<li id="li-1801"><div class="para" id="p-derived-li-1801">How could we measure the accumulation of a scalar valued function along a surface in space?</div></li>
-<li id="li-1802"><div class="para" id="p-derived-li-1802">What would that accmulation measure?</div></li>
-<li id="li-1803"><div class="para" id="p-derived-li-1803">What is the most efficient way to calculate this?</div></li>
+<li id="li-1765"><div class="para" id="p-derived-li-1765">the total amount of Copium available on <a href="" class="xref" data-knowl="./knowl/fig_3D_CopiumMining.html" title="Figure 12.10.2">Figure 12.10.2</a> to be greater than on <a href="" class="xref" data-knowl="./knowl/CopiumPlot2.html" title="Figure 12.10.1">Figure 12.10.1</a>
+</div></li>
+<li id="li-1766"><div class="para" id="p-derived-li-1766">the total amount of Copium available on <a href="" class="xref" data-knowl="./knowl/fig_3D_CopiumMining.html" title="Figure 12.10.2">Figure 12.10.2</a> to be lesser than on <a href="" class="xref" data-knowl="./knowl/CopiumPlot2.html" title="Figure 12.10.1">Figure 12.10.1</a>
+</div></li>
+<li id="li-1767"><div class="para" id="p-derived-li-1767">the total amount of Copium available on <a href="" class="xref" data-knowl="./knowl/fig_3D_CopiumMining.html" title="Figure 12.10.2">Figure 12.10.2</a> to be the same as on <a href="" class="xref" data-knowl="./knowl/CopiumPlot2.html" title="Figure 12.10.1">Figure 12.10.1</a>
+</div></li>
 </ul>
-</div></section><section class="subsection" id="subsection-147"><h3 class="heading hide-type">
+<div class="para">Explain your reasoning for your choice of options above.</div>
+</div>
+<figure class="figure figure-like" id="fig_3D_CopiumMining"><iframe id="interactive-29" width="600" height="672" src="interactive-29-if.html"></iframe><figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">12.10.2<span class="period">.</span></span><span class="space"> </span>A 3D plot of the region including our mining area (shown with boundary in red)</figcaption></figure></article></article> <div class="para" id="p-5537">In <a href="S_Vector_FluxInt.html" class="internal" title="Section 12.9: Flux Integrals">Section 12.9</a>, the idea of a flux integral was introduced by looking at how much of a vector field flows through a given section of a surface in space. In particular, the flux integral measured the accumulated amount of the vector field that is orthogonal to the surface (which changes at different points on the surface.) <a href="" class="xref" data-knowl="./knowl/thm_flux_int_calc.html" title="Theorem 12.9.7">Theorem 12.9.7</a> shows the best way to calculate the flux integral in terms of a parameterization of the surface. This was an extension of the method for computing the surface area given in <a href="S-11-6-Parametric-Surfaces-Surface-Area.html" class="internal" title="Section 11.6: Surfaces Defined Parametrically and Surface Area">Section 11.6</a>.</div> <div class="para logical" id="p-5538">
+<div class="para">Just as we generalized line integrals of vector fields into scalar line integrals in <a href="S_Vector_ScalarLineIntegral.html" class="internal" title="Section 12.5: Line Integrals of Scalar Functions">Section 12.5</a>, we will spend this section looking at the following questions:</div>
+<ul class="disc">
+<li id="li-1768"><div class="para" id="p-derived-li-1768">How could we measure the accumulation of a scalar valued function along a surface in space?</div></li>
+<li id="li-1769"><div class="para" id="p-derived-li-1769">What would that accmulation measure?</div></li>
+<li id="li-1770"><div class="para" id="p-derived-li-1770">What is the most efficient way to calculate this?</div></li>
+</ul>
+</div></section><section class="subsection" id="subsection-146"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">12.10.1</span> <span class="title">Defining surface integrals of scalar functions</span>
 </h3>
-<div class="para" id="p-5580">In order to create a Riemann sum that will measure the acculumation of <span class="process-math">\(f(x,y,z)\text{,}\)</span> a scalar valued function, over <span class="process-math">\(S_1\text{.}\)</span> a bounded smooth surface in space, we will break our surface into smaller piecese where we can approximate the output of <span class="process-math">\(f\)</span> and the surface area of each piece. In <a href="S-11-6-Parametric-Surfaces-Surface-Area.html#SS-11-6-2-Surface-Area-Parametrically-Defined-Surfaces" class="internal" title="Subsection 11.6.2: The Surface Area of Parametrically Defined Surfaces">Subsection 11.6.2</a> and <a href="S_Vector_FluxInt.html" class="internal" title="Section 12.9: Flux Integrals">Section 12.9</a>, we developed the way to measure surface area given a parameterization for the surface.</div>
-<div class="para" id="p-5581">Suppose that <span class="process-math">\(S_1\)</span> is parametrized by <span class="process-math">\(\vr(s,t)\)</span> with <span class="process-math">\(a\leq s\leq b\)</span> and <span class="process-math">\(c \leq t \leq d\text{.}\)</span> In our classic calculus style, we slice our region of interest into smaller pieces. Specifically, we slice <span class="process-math">\(a\leq s\leq b\)</span> into <span class="process-math">\(n\)</span> equally-sized subintervals with endpoints <span class="process-math">\(s_1,\ldots,s_n\)</span> and <span class="process-math">\(c \leq t \leq d\)</span> into <span class="process-math">\(m\)</span> equally-sized subintervals with endpoints <span class="process-math">\(t_1,\ldots,t_m\text{.}\)</span> This divides <span class="process-math">\(D\)</span> into <span class="process-math">\(nm\)</span> rectangles of size <span class="process-math">\(\Delta{s}=\frac{b-a}{n}\)</span> by <span class="process-math">\(\Delta{t}=\frac{d-c}{m}\text{.}\)</span> We index these rectangles as <span class="process-math">\(D_{i,j}\text{.}\)</span> Every <span class="process-math">\(D_{i,j}\)</span> has area (in the <span class="process-math">\(st\)</span>-plane) of <span class="process-math">\(\Delta{s}\Delta{t}\text{.}\)</span> The partition of <span class="process-math">\(D\)</span> into the rectangles <span class="process-math">\(D_{i,j}\)</span> also partitions <span class="process-math">\(Q\)</span> into <span class="process-math">\(nm\)</span> corresponding pieces which we call <span class="process-math">\(Q_{i,j}=\vr(D_{i,j})\text{.}\)</span> From <a href="S-11-6-Parametric-Surfaces-Surface-Area.html" class="internal" title="Section 11.6: Surfaces Defined Parametrically and Surface Area">Section 11.6</a> (specifically <a href="" class="xref" data-knowl="./knowl/eq_11_6_parallelogram_area.html" title="Equation 11.6.1">(11.6.1)</a>) the surface area of <span class="process-math">\(Q_{i,j}\)</span> is approximated by <span class="process-math">\(SA_{i,j}=\vecmag{(\vr_s \times \vr_t)(s_i,t_j)}\Delta{s}\Delta{t}\text{.}\)</span>
+<div class="para" id="p-5539">In order to create a Riemann sum that will measure the acculumation of <span class="process-math">\(f(x,y,z)\text{,}\)</span> a scalar valued function, over <span class="process-math">\(S_1\text{,}\)</span> a smooth, bounded surface in space, we will break our surface into smaller piecese where we can approximate the output of <span class="process-math">\(f\)</span> and the surface area of each piece. In <a href="S-11-6-Parametric-Surfaces-Surface-Area.html#SS-11-6-2-Surface-Area-Parametrically-Defined-Surfaces" class="internal" title="Subsection 11.6.2: The Surface Area of Parametrically Defined Surfaces">Subsection 11.6.2</a> and <a href="S_Vector_FluxInt.html" class="internal" title="Section 12.9: Flux Integrals">Section 12.9</a>, we developed the way to measure surface area given a parameterization for the surface.</div>
+<div class="para" id="p-5540">Suppose that <span class="process-math">\(S_1\)</span> is parametrized by <span class="process-math">\(\vr(s,t)\)</span> with <span class="process-math">\(a\leq s\leq b\)</span> and <span class="process-math">\(c \leq t \leq d\text{.}\)</span> In our classic calculus style, we slice our region of interest into smaller pieces. Specifically, we slice <span class="process-math">\(a\leq s\leq b\)</span> into <span class="process-math">\(n\)</span> equally-sized subintervals with endpoints <span class="process-math">\(s_1,\ldots,s_n\)</span> and <span class="process-math">\(c \leq t \leq d\)</span> into <span class="process-math">\(m\)</span> equally-sized subintervals with endpoints <span class="process-math">\(t_1,\ldots,t_m\text{.}\)</span> This divides <span class="process-math">\(D\)</span> into <span class="process-math">\(nm\)</span> rectangles of size <span class="process-math">\(\Delta{s}=\frac{b-a}{n}\)</span> by <span class="process-math">\(\Delta{t}=\frac{d-c}{m}\text{.}\)</span> We index these rectangles as <span class="process-math">\(D_{i,j}\text{.}\)</span> Every <span class="process-math">\(D_{i,j}\)</span> has area (in the <span class="process-math">\(st\)</span>-plane) of <span class="process-math">\(\Delta{s}\Delta{t}\text{.}\)</span> The partition of <span class="process-math">\(D\)</span> into the rectangles <span class="process-math">\(D_{i,j}\)</span> also partitions <span class="process-math">\(Q\)</span> into <span class="process-math">\(nm\)</span> corresponding pieces which we call <span class="process-math">\(Q_{i,j}=\vr(D_{i,j})\text{.}\)</span> From <a href="S-11-6-Parametric-Surfaces-Surface-Area.html" class="internal" title="Section 11.6: Surfaces Defined Parametrically and Surface Area">Section 11.6</a> (specifically <a href="" class="xref" data-knowl="./knowl/eq_11_6_parallelogram_area.html" title="Equation 11.6.1">(11.6.1)</a>) the surface area of <span class="process-math">\(Q_{i,j}\)</span> is approximated by <span class="process-math">\(SA_{i,j}=\vecmag{(\vr_s \times \vr_t)(s_i,t_j)}\Delta{s}\Delta{t}\text{.}\)</span>
 </div>
-<figure class="figure figure-like" id="fig_SurfaceAreaPieces"><iframe id="interactive-27" width="600" height="672" src="interactive-27-if.html"></iframe><figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">12.10.1<span class="period">.</span></span><span class="space"> </span>Pieces of the tangent planes used to approximate surface area</figcaption></figure><div class="para logical" id="p-5582">
-<div class="para">So to measure the accumulation of the output of <span class="process-math">\(f(x,y,z)\)</span> over <span class="process-math">\(S_1\)</span> we use the following Riemann sum:</div>
-<div class="displaymath process-math" id="md-70">
+<figure class="figure figure-like" id="fig_SurfaceAreaPieces"><iframe id="interactive-30" width="600" height="672" src="interactive-30-if.html"></iframe><figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">12.10.3<span class="period">.</span></span><span class="space"> </span>Pieces of the tangent planes used to approximate surface area</figcaption></figure><div class="para logical" id="p-5541">
+<div class="para">So to measure the accumulation of the output of <span class="process-math">\(f(x,y,z)\)</span> over <span class="process-math">\(S_1\text{,}\)</span> we use the following Riemann sum:</div>
+<div class="displaymath process-math" id="md-72">
 \begin{gather*}
 \sum_{i=0}^{k-1} \sum_{i=0}^{m-1} f(x_{i,j}^*,y_{i,j}^*,z_{i,j}^*) SA_{i,j}= \\
 \sum_{i=0}^{k-1} \sum_{i=0}^{m-1} f(x(s_{i}^*,t_{j}^*),y(s_{i}^*,t_{j}^*),z(s_{i}^*,t_{j}^*)) SA_{i,j}= \\
@@ -692,88 +739,150 @@ window.MathJax = {
 <div class="para">This Riemann sum ends up being the double integral (over the variables <span class="process-math">\(s\)</span> and <span class="process-math">\(t\)</span>) of the function <span class="process-math">\(f(x(t,s),y(s,t),z(s,t)) \Vert{(\vr_s \times \vr_t)(s,t)}\Vert\text{,}\)</span> which leads to the following theorem.</div>
 </div>
 <article class="theorem theorem-like" id="ScalarSurfaceIntDef"><h4 class="heading">
-<span class="type">Theorem</span><span class="space"> </span><span class="codenumber">12.10.2</span><span class="period">.</span>
+<span class="type">Theorem</span><span class="space"> </span><span class="codenumber">12.10.4</span><span class="period">.</span>
 </h4>
-<div class="para logical" id="p-5583">
+<div class="para logical" id="p-5542">
 <div class="para">Let a smooth surface <span class="process-math">\(S_1\)</span> be parametrized by <span class="process-math">\(\vr(s,t)\)</span> over a domain <span class="process-math">\(D\)</span> and let <span class="process-math">\(f\)</span> be a continuous function on a neighborhood around <span class="process-math">\(S_1\text{.}\)</span> The acculumation of <span class="process-math">\(f(x,y,z)\)</span> over <span class="process-math">\(S_1\)</span> is deonted by <span class="process-math">\(\iint_{S_1} f \enspace dS\)</span> and is called the scalar surface integral of <span class="process-math">\(f\)</span> over <span class="process-math">\(S_1\text{.}\)</span> The scalar surface integral of <span class="process-math">\(f\)</span> over <span class="process-math">\(S_1\)</span> is computed as</div>
 <div class="displaymath process-math">
 \begin{equation*}
 \iint_{S_1} f \enspace dS = \iint_D f(s,t) \Vert{(\vr_s \times \vr_t)(s,t)}\Vert \enspace dA\text{.}
 \end{equation*}
 </div>
-</div></article><article class="activity project-like" id="ScalarSurfaceInt_Sensemaking"><h4 class="heading">
-<span class="type">Activity</span><span class="space"> </span><span class="codenumber">12.10.1</span><span class="period">.</span>
+</div></article><article class="example example-like" id="example-27"><h4 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">12.10.5</span><span class="period">.</span>
 </h4>
-<div class="introduction" id="introduction-87"><div class="para" id="p-5584">In this activity, we will try to understand the scalar surface integral by looking at whether the value of the scalar surface integral will be positive, negative, or zero over a common surfaces.</div></div>
+<article class="task exercise-like" id="task-242"><h5 class="heading"><span class="codenumber">(a)</span></h5>
+<div class="para logical" id="p-5543">
+<div class="para">For our first part of our example, we will calculuate the scalar integral of <span class="process-math">\(f(x,y,z)=x\)</span> on the surface <span class="process-math">\(S_1\)</span> given by <span class="process-math">\(x^2+y^2=z^2\)</span> such that <span class="process-math">\(1\leq z \leq 3\text{.}\)</span> This is the same part of the cone used in <a href="" class="xref" data-knowl="./knowl/flux_int_example1.html" title="Example 12.9.8">Example 12.9.8</a>. Without using any calculations or parameterizations, we can reason that this scalar surface integral will be zero. In a scalar surface integral, we are calculating the accumulation of the scalar output over a surface area in space. In <a href="" class="xref" data-knowl="./knowl/fig_Scalar_Surface_Int_Example1.html" title="Figure 12.10.6">Figure 12.10.6</a>, you can see that we can symmetrically break our surface <span class="process-math">\(S_1\)</span> into two regions that have exactly the same surface area properties <em class="alert">and</em> symmetric output values for our scalar function, <span class="process-math">\(f\text{.}\)</span> The only difference between the red (<span class="process-math">\(S_3\)</span>) and green (<span class="process-math">\(S_2\)</span>) of <a href="" class="xref" data-knowl="./knowl/fig_Scalar_Surface_Int_Example1.html" title="Figure 12.10.6">Figure 12.10.6</a> is that the output of <span class="process-math">\(f\)</span> will be negative on the red surface <span class="process-math">\(S_3\)</span> and positive on the green surface <span class="process-math">\(S_2\text{.}\)</span> No matter how we break up the Riemann sum or the corresponding scalar surface integral for the green side of our surface, applying the same pattern to the red side will give the same result but with an opposite sign. In other words,</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/flux_int_example1.html ./knowl/fig_Scalar_Surface_Int_Example1.html ./knowl/fig_Scalar_Surface_Int_Example1.html">
+\begin{equation*}
+\int_{S_3} f \enspace dS = - \int_{S_2} f \enspace dS\text{.}
+\end{equation*}
+</div>
+</div> <figure class="figure figure-like" id="fig_Scalar_Surface_Int_Example1"><iframe id="interactive-31" width="600" height="672" src="interactive-31-if.html"></iframe><figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">12.10.6<span class="period">.</span></span><span class="space"> </span>The surface <span class="process-math">\(S_1\)</span> divided into regions <span class="process-math">\(S_2\)</span> with positive x-coordinate in green and <span class="process-math">\(S_3\)</span> with negative x-coordinate in red</figcaption></figure> <div class="para logical" id="p-5544">
+<div class="para">Therefore,</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\int_{S_1} f \enspace dS = \int_{S_2} f \enspace dS + \int_{S_3} f \enspace dS = \int_{S_2} f \enspace dS - \int_{S_2} f \enspace dS =0
+\end{equation*}
+</div>
+</div></article><article class="task exercise-like" id="task-243"><h5 class="heading"><span class="codenumber">(b)</span></h5>
+<div class="para logical" id="p-5545">
+<div class="para">From a calculation standpoint, we can still verify this result using our parameterization from <a href="" class="xref" data-knowl="./knowl/flux_int_example1.html" title="Example 12.9.8">Example 12.9.8</a> and <a href="" class="xref" data-knowl="./knowl/ScalarSurfaceIntDef.html" title="Theorem 12.10.4">Theorem 12.10.4</a>. Specifically, we will use the parameterization of <span class="process-math">\(S_1\)</span> given by <span class="process-math">\(\vr(s,t)=\langle s \cos(t), s \sin(t), s \rangle \)</span> with bounds <span class="process-math">\(1\leq s \leq 3\)</span> and <span class="process-math">\(0 \leq t \lt 2 \pi\text{.}\)</span> We also know from <a href="" class="xref" data-knowl="./knowl/flux_int_example1.html" title="Example 12.9.8">Example 12.9.8</a> that</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/flux_int_example1.html ./knowl/ScalarSurfaceIntDef.html ./knowl/flux_int_example1.html ./knowl/ScalarSurfaceIntDef.html">
+\begin{equation*}
+\vw= \vr_s \times \vr_t = \langle-s \cos(t), -s \sin(t), s \rangle 
+\end{equation*}
+</div>
+<div class="para">The length of <span class="process-math">\(\vw\)</span> will be <span class="process-math">\(\sqrt{s^2(\cos(t)^2+\sin(t)^2) +s^2}=2s\text{.}\)</span> Thus, <a href="" class="xref" data-knowl="./knowl/ScalarSurfaceIntDef.html" title="Theorem 12.10.4">Theorem 12.10.4</a> gives</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/flux_int_example1.html ./knowl/ScalarSurfaceIntDef.html ./knowl/flux_int_example1.html ./knowl/ScalarSurfaceIntDef.html">
+\begin{equation*}
+\int_{S_1} f \enspace dS = \int_1^3 \int_0^{2\pi} (s \cos(t)) \enspace 2s dt ds =0
+\end{equation*}
+</div>
+<div class="para">because the inside integral is <span class="process-math">\(\int_0^{2\pi} \cos(t) dt = 0\text{.}\)</span>
+</div>
+</div></article><article class="task exercise-like" id="task-244"><h5 class="heading"><span class="codenumber">(c)</span></h5>
+<div class="para logical" id="p-5546">
+<div class="para">If we want to calculate the integral of <span class="process-math">\(f(x,y,z) = x\)</span> over <span class="process-math">\(S_2\)</span> given by <span class="process-math">\(x^2+y^2=z^2\)</span> such that <span class="process-math">\(1\leq z \leq 3\)</span> and <span class="process-math">\(0\leq x \text{,}\)</span> then we have very little extra work to do. Only the bounds on the integral will change since we are using the same parameterization and function from the first example. We can use the parameterization given by <span class="process-math">\(\vr(s,t)=\langle s \cos(t), s \sin(t), s \rangle \)</span> with <span class="process-math">\(1\leq s \leq 3\)</span> and <span class="process-math">\(-\frac{\pi}{2} \leq t \lt \frac{\pi}{2} \text{.}\)</span> The length of <span class="process-math">\(\vw\)</span> will be <span class="process-math">\(\sqrt{s^2(\cos(t)^2+\sin(t)^2) +s^2}=2s\text{.}\)</span> Thus, <a href="" class="xref" data-knowl="./knowl/ScalarSurfaceIntDef.html" title="Theorem 12.10.4">Theorem 12.10.4</a> gives</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/ScalarSurfaceIntDef.html" id="md-73">
+\begin{align*}
+\int_{S_2} f \enspace dS \amp =  \int_1^3 \int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} (s \cos(t)) \enspace 2s dt ds\\
+\amp = \int_1^3 2s^2 [\sin(t)]_{|_{t=-\frac{\pi}{2}}^{\frac{\pi}{2}}}   \enspace  ds\\
+\amp = \int_1^3 4s^2   \enspace  ds\\
+\amp = \int_1^3 4s^2  = 104/3 \enspace  ds
+\end{align*}
+</div>
+</div> <div class="para" id="p-5547">It should make sense to you why the result of <span class="process-math">\(\int_{S_2} f \enspace dS\)</span> is positive because the output of our function is non-negative for all points on <span class="process-math">\(S_2\text{.}\)</span> Remember that the Riemann sum used in calculating surface integrals of scalar functions is the product of the function’s output on each piece times the estimate of the surface area. Thus, if the function’s output is positive for all points on the surface, then the scalar surface integral will also be positive.</div></article><article class="task exercise-like" id="task-245"><h5 class="heading"><span class="codenumber">(d)</span></h5>
+<div class="para logical" id="p-5548">
+<div class="para">For our last example, we will calculate</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\int_{S_1} z-x^2 \enspace dS 
+\end{equation*}
+</div>
+<div class="para">We can reuse the parameterization and calculations above for <span class="process-math">\(S_1\)</span> here and skip right to setting up the iterated integral. We will take a moment here to note that converting our scalar function <span class="process-math">\(g(x,y,z)= z-x^2\)</span> to a function of <span class="process-math">\(s\)</span> and <span class="process-math">\(t\)</span> will give <span class="process-math">\(g(s,t)=s-s^2 \cos(t)^2\text{.}\)</span> Therefore, we get the following iterated integral</div>
+<div class="displaymath process-math" id="md-74">
+\begin{align*}
+\int_{S_1} z-x^2 \enspace dS \amp =  \int_1^3 \int_{0}^{2 \pi} (s-s^2 \cos(t)^2) \enspace 2s dt ds\\
+\amp = \int_1^3 2s^2 [t-s(\frac{2t+\sin(2t)}{4})]_{|_{t=0}^{2 \pi}} \enspace  ds\\
+\amp = \int_1^3 2s^2 (-\pi (s-2)) \enspace  ds = -\frac{16\pi}{3}
+\end{align*}
+</div>
+</div> <div class="para" id="p-5549">This result is a bit more difficult to to make sense of as being negative. In <a href="" class="xref" data-knowl="./knowl/fig_Scalar_Surface_Int_Example2.html" title="Figure 12.10.7">Figure 12.10.7</a> we have a plot of the surface <span class="process-math">\(S_1\)</span> in blue and the parabolic cylinder surface given by <span class="process-math">\(z-x^2=0\)</span> is plotted in yellow. The points on the yellow surface correspond to where our scalar function (<span class="process-math">\(g(x,y,z)= z-x^2\)</span>) gives an output of zero. The points inside the parabolic cylinder have a <span class="process-math">\(z\)</span>-coordinate greater than <span class="process-math">\(x^2\)</span> (which means that <span class="process-math">\(g\)</span> will have a positive output for these points.) The points outside of the parabolic cylinder have a <span class="process-math">\(z\)</span>-coordinate less than <span class="process-math">\(x^2\)</span> (which means that <span class="process-math">\(g\)</span> will have a negative output for these points.) In order to make an argument about whether <span class="process-math">\(\int_{S_1} z-x^2 \enspace dS\)</span> is positive/negative/zero, we will need to assess whether there is more surface area with a positive output of <span class="process-math">\(g\text{,}\)</span> more with a negative output, or an equal amount of positive-negative outputs. Actually, our problem is even harder than this. Beacuse the Riemann sum is the product of the output for each piece of our surface times the surface area estimate, we will need to think about which points/pieces have larger or smaller outputs for <span class="process-math">\(g\text{.}\)</span> This is <em class="alert">VERY</em> difficult in general because you will need to a systematic way of estimating both the output of <span class="process-math">\(g\)</span> and the surface area of different pieces of your surface.</div> <figure class="figure figure-like" id="fig_Scalar_Surface_Int_Example2"><iframe id="interactive-32" width="600" height="672" src="interactive-32-if.html"></iframe><figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">12.10.7<span class="period">.</span></span><span class="space"> </span>The surface <span class="process-math">\(S_1\)</span> is plotted with the surface given by <span class="process-math">\(z-x^2=0\)</span></figcaption></figure> <div class="para" id="p-5550">In our case, there is more surface area of <span class="process-math">\(S_1\)</span> inside the parabolic cylinder than outside. For <span class="process-math">\((x,y,z)\)</span> points that are far away from the yellow surface, the magnitude of the output of <span class="process-math">\(g\)</span> for that point will be large. For <span class="process-math">\((x,y,z)\)</span> points that are close to the yellow surface, thier <span class="process-math">\(z\)</span>-coordinates will be close to <span class="process-math">\(x^2\)</span> and thus the output of <span class="process-math">\(g\)</span> will be close to zero. This means that in order to properly estimate the scalar surface integral, we will need to assess whether there is a greater weighted surface area inside the parabolic cylinder than outside, where the weight of each surface area piece is given by how far the piece is from the yellow surface (the parabolic cylinder surface). This is not an easy argument to make and is not easy to verify visually for this example. For some examples you may be able to make a nice geometric arguement about the size of scalar surface integrals, but the algebraic calculation given by <a href="" class="xref" data-knowl="./knowl/ScalarSurfaceIntDef.html" title="Theorem 12.10.4">Theorem 12.10.4</a> gives an exact value.</div></article></article><article class="activity project-like" id="ScalarSurfaceInt_Sensemaking"><h4 class="heading">
+<span class="type">Activity</span><span class="space"> </span><span class="codenumber">12.10.2</span><span class="period">.</span>
+</h4>
+<div class="introduction" id="introduction-87"><div class="para" id="p-5551">In this activity, we will try to understand the scalar surface integral by looking at whether the value of the scalar surface integral will be positive, negative, or zero over a common surfaces.</div></div>
 <article class="task exercise-like" id="task_SSIS_1"><h5 class="heading"><span class="codenumber">(a)</span></h5>
-<div class="para logical" id="p-5585">
+<div class="para logical" id="p-5552">
 <div class="para">Throughout this activity we will use one of three surfaces. For each of the three surfaces given, you need to draw a plot of the surface and make sure you have labeled a proper scale for each coordinate direction.</div>
 <ol class="decimal">
-<li id="li-1804"><div class="para" id="p-derived-li-1804">
+<li id="li-1771"><div class="para" id="p-derived-li-1771">
 <span class="process-math">\(S_1\)</span> is the top half (<span class="process-math">\(z \geq 0\)</span>) of the sphere of radius one centered at the origin in 3-space</div></li>
-<li id="li-1805"><div class="para" id="p-derived-li-1805">
+<li id="li-1772"><div class="para" id="p-derived-li-1772">
 <span class="process-math">\(S_2\)</span> is the bottom half (<span class="process-math">\(z \leq 0\)</span>) of the sphere of radius one centered at the origin in 3-space</div></li>
-<li id="li-1806"><div class="para" id="p-derived-li-1806">
+<li id="li-1773"><div class="para" id="p-derived-li-1773">
 <span class="process-math">\(S_3\)</span> is the disc of radius one centered at <span class="process-math">\((1,0,0)\)</span> on the <span class="process-math">\(x=1\)</span> fundamental plane</div></li>
 </ol>
 </div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-239" id="solution-239"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-239"><div class="solution solution-like"><div class="para" id="p-5587">Write out a longer description?</div></div></div>
+<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-238" id="solution-238"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-238"><div class="solution solution-like"><div class="para" id="p-5554">Write out a longer description?</div></div></div>
 </div></article><article class="task exercise-like" id="task_SSIS_2"><h5 class="heading"><span class="codenumber">(b)</span></h5>
-<div class="para" id="p-5588">State whether <span class="process-math">\(\iint_{S_1} x \enspace dS\)</span> would be positive, negative, or zero. Be sure to justify your answer in terms of the function being integrated <em class="emphasis">and</em> the particulars of the region of integration.</div>
+<div class="para" id="p-5555">State whether <span class="process-math">\(\iint_{S_1} x \enspace dS\)</span> would be positive, negative, or zero. Be sure to justify your answer in terms of the function being integrated <em class="emphasis">and</em> the particulars of the region of integration.</div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-240" id="solution-240"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-240"><div class="solution solution-like"><div class="para" id="p-5590">Write out a longer description?</div></div></div>
+<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-239" id="solution-239"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-239"><div class="solution solution-like"><div class="para" id="p-5557">Write out a longer description?</div></div></div>
 </div></article><article class="task exercise-like" id="task_SSIS_3"><h5 class="heading"><span class="codenumber">(c)</span></h5>
-<div class="para" id="p-5591">State whether <span class="process-math">\(\iint_{S_2} z \enspace dS\)</span> would be positive, negative, or zero. Be sure to justify your answer in terms of the function being integrated <em class="emphasis">and</em> the particulars of the region of integration.</div>
+<div class="para" id="p-5558">State whether <span class="process-math">\(\iint_{S_2} z \enspace dS\)</span> would be positive, negative, or zero. Be sure to justify your answer in terms of the function being integrated <em class="emphasis">and</em> the particulars of the region of integration.</div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-241" id="solution-241"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-241"><div class="solution solution-like"><div class="para" id="p-5593">Write out a longer description?</div></div></div>
+<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-240" id="solution-240"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-240"><div class="solution solution-like"><div class="para" id="p-5560">Write out a longer description?</div></div></div>
 </div></article><article class="task exercise-like" id="task_SSIS_4"><h5 class="heading"><span class="codenumber">(d)</span></h5>
-<div class="para" id="p-5594">State whether <span class="process-math">\(\iint_{S_3} x+z \enspace dS\)</span> would be positive, negative, or zero. Be sure to justify your answer in terms of the function being integrated <em class="emphasis">and</em> the particulars of the region of integration.</div>
+<div class="para" id="p-5561">State whether <span class="process-math">\(\iint_{S_3} x+z \enspace dS\)</span> would be positive, negative, or zero. Be sure to justify your answer in terms of the function being integrated <em class="emphasis">and</em> the particulars of the region of integration.</div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-242" id="solution-242"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-242"><div class="solution solution-like"><div class="para" id="p-5596">Write out a longer description?</div></div></div>
+<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-241" id="solution-241"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-241"><div class="solution solution-like"><div class="para" id="p-5563">Write out a longer description?</div></div></div>
 </div></article><article class="task exercise-like" id="task_SSIS_5"><h5 class="heading"><span class="codenumber">(e)</span></h5>
-<div class="para" id="p-5597">State whether <span class="process-math">\(\iint_{S_1} x+z \enspace dS\)</span> would be positive, negative, or zero. Be sure to justify your answer in terms of the function being integrated <em class="emphasis">and</em> the particulars of the region of integration.</div>
+<div class="para" id="p-5564">State whether <span class="process-math">\(\iint_{S_1} x+z \enspace dS\)</span> would be positive, negative, or zero. Be sure to justify your answer in terms of the function being integrated <em class="emphasis">and</em> the particulars of the region of integration.</div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-243" id="solution-243"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-243"><div class="solution solution-like"><div class="para" id="p-5599">Write out a longer description?</div></div></div>
-</div></article></article></section><section class="subsection" id="subsection-148"><h3 class="heading hide-type">
+<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-242" id="solution-242"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-242"><div class="solution solution-like"><div class="para" id="p-5566">Write out a longer description?</div></div></div>
+</div></article></article></section><section class="subsection" id="subsection-147"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">12.10.2</span> <span class="title">Properties of Scalar Surface Integrals</span>
 </h3>
-<div class="para" id="p-5600">Before stating some useful properties of scalar line integrals, we will recall some convenient notation. If <span class="process-math">\(C_1\)</span> and <span class="process-math">\(C_2\)</span> are oriented curves, with <span class="process-math">\(C_1\)</span> from a point <span class="process-math">\(P\)</span> to a point <span class="process-math">\(Q\)</span> and <span class="process-math">\(C_2\)</span> from <span class="process-math">\(Q\)</span> to a point <span class="process-math">\(R\text{,}\)</span> we denote by <span class="process-math">\(C_1+C_2\)</span> the oriented curve from <span class="process-math">\(P\)</span> to <span class="process-math">\(R\)</span> that follows <span class="process-math">\(C_1\)</span> to <span class="process-math">\(Q\)</span> and then continues along <span class="process-math">\(C_2\)</span> to <span class="process-math">\(R\text{.}\)</span>  Also, if <span class="process-math">\(C\)</span> is an oriented curve, <span class="process-math">\(-C\)</span> denotes the same curve but with the opposite orientation. The list below summarizes some other properties of line integrals, each of which has a familiar analogue amongst the properties of definite integrals.</div>
+<div class="para" id="p-5567">Before stating some useful properties of scalar line integrals, we will recall some convenient notation. If <span class="process-math">\(C_1\)</span> and <span class="process-math">\(C_2\)</span> are oriented curves, with <span class="process-math">\(C_1\)</span> from a point <span class="process-math">\(P\)</span> to a point <span class="process-math">\(Q\)</span> and <span class="process-math">\(C_2\)</span> from <span class="process-math">\(Q\)</span> to a point <span class="process-math">\(R\text{,}\)</span> we denote by <span class="process-math">\(C_1+C_2\)</span> the oriented curve from <span class="process-math">\(P\)</span> to <span class="process-math">\(R\)</span> that follows <span class="process-math">\(C_1\)</span> to <span class="process-math">\(Q\)</span> and then continues along <span class="process-math">\(C_2\)</span> to <span class="process-math">\(R\text{.}\)</span>  Also, if <span class="process-math">\(C\)</span> is an oriented curve, <span class="process-math">\(-C\)</span> denotes the same curve but with the opposite orientation. The list below summarizes some other properties of line integrals, each of which has a familiar analogue amongst the properties of definite integrals.</div>
 <article class="assemblage assemblage-like" id="asm_ScalarSurfaceInt_Properties"><h4 class="heading"><span class="title">Properties of Scalar Line Integrals.</span></h4>
-<div class="para logical" id="p-5601">
+<div class="para logical" id="p-5568">
 <div class="para">For a constant scalar <span class="process-math">\(k\text{,}\)</span> scalar valued functions<span class="process-math">\(f\)</span> and <span class="process-math">\(g\text{,}\)</span> and oriented surfaces <span class="process-math">\(S_1\)</span>and <span class="process-math">\(S_2\text{,}\)</span> the following properties hold:</div>
 <ol class="lower-alpha">
-<li id="li-1807"><div class="para" id="p-5602"><span class="process-math">\(\displaystyle \displaystyle \iint_{S_1} (k f) \enspace dS = k \iint_{S_1} f \enspace dS\)</span></div></li>
-<li id="li-1808"><div class="para" id="p-5603"><span class="process-math">\(\displaystyle \displaystyle\iint_{S_1} (f+g) \enspace dS = \iint_{S_1} f dS + \iint_{S_1} g \enspace dS \)</span></div></li>
-<li id="li-1809"><div class="para" id="p-5604"><span class="process-math">\(\displaystyle \displaystyle\iint_{-S_1} f \enspace dS = \iint_{S_1} f \enspace dS\)</span></div></li>
-<li id="li-1810"><div class="para" id="p-5605"><span class="process-math">\(\displaystyle \displaystyle\iint_{S_1+S_2} f \enspace dS = \iint_{S_1} f \enspace dS + \iint_{S_2} f \enspace dS\)</span></div></li>
+<li id="li-1774"><div class="para" id="p-5569"><span class="process-math">\(\displaystyle \displaystyle \iint_{S_1} (k f) \enspace dS = k \iint_{S_1} f \enspace dS\)</span></div></li>
+<li id="li-1775"><div class="para" id="p-5570"><span class="process-math">\(\displaystyle \displaystyle\iint_{S_1} (f+g) \enspace dS = \iint_{S_1} f dS + \iint_{S_1} g \enspace dS \)</span></div></li>
+<li id="li-1776"><div class="para" id="p-5571"><span class="process-math">\(\displaystyle \displaystyle\iint_{-S_1} f \enspace dS = \iint_{S_1} f \enspace dS\)</span></div></li>
+<li id="li-1777"><div class="para" id="p-5572"><span class="process-math">\(\displaystyle \displaystyle\iint_{S_1+S_2} f \enspace dS = \iint_{S_1} f \enspace dS + \iint_{S_2} f \enspace dS\)</span></div></li>
 </ol>
 </div></article><article class="activity project-like" id="Explain_SSI_Properties"><h4 class="heading">
-<span class="type">Activity</span><span class="space"> </span><span class="codenumber">12.10.2</span><span class="period">.</span><span class="space"> </span><span class="title">Explaining Properties of Scalar Surface Integrals.</span>
+<span class="type">Activity</span><span class="space"> </span><span class="codenumber">12.10.3</span><span class="period">.</span><span class="space"> </span><span class="title">Explaining Properties of Scalar Surface Integrals.</span>
 </h4>
-<div class="introduction" id="introduction-88"><div class="para" id="p-5606">In this activity, we will be explaining each of the Properties from <a href="" class="xref" data-knowl="./knowl/asm_ScalarLineInt_Properties.html" title="Assemblage: Properties of Scalar Line Integrals">Properties of Scalar Line Integrals</a> in the context of a new analogy. We have just purchased a plot of land that spans two mountains, Sugar Mountain and Spice Mountain. We will label the plot of land on Sugar Mountain <span class="process-math">\(S_1\)</span> and the plot of land on Spice Mountain <span class="process-math">\(S_2\text{.}\)</span> Unfortunately there are two types of toxic organisms on the surface of your new land (which may be why you got the land so cheap). Let <span class="process-math">\(f\)</span> be the density of the toxic fungus on your new plot of land and let <span class="process-math">\(g\)</span> be the density of toxic bacteria on the new plot.</div></div>
-<article class="task exercise-like" id="task-246"><h5 class="heading"><span class="codenumber">(a)</span></h5>
-<div class="para" id="p-5607">Explain in your own words what <span class="process-math">\(\iint_{S_1} f \enspace dS\)</span> means in the above analogy and what exactly would be measured by this scalar line integral.</div>
-<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-244" id="solution-244"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-244"><div class="solution solution-like">The scalar surface integral <span class="process-math">\(\iint_{S_1} f \enspace dS\)</span> would calculate the accumulation of toxic fungus on the Sugar Mountain part of your plot. In particular, <span class="process-math">\(\iint_{S_1} f \enspace dS\)</span> measures the total amount of toxic fungus on your Sugar Mountain land.</div></div></article><article class="task exercise-like" id="task-247"><h5 class="heading"><span class="codenumber">(b)</span></h5>
-<div class="para" id="p-5608">Explain in your own words what <span class="process-math">\(\displaystyle \iint_{S_1} (k f) \enspace dS = k \iint_{S_1} f \enspace dS\)</span> means in the new analogy. It may be helpful to describe each side of the equation separately and say why they are equal in the analogy.</div>
-<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-245" id="solution-245"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-245"><div class="solution solution-like">asdf</div></div></article><article class="task exercise-like" id="task-248"><h5 class="heading"><span class="codenumber">(c)</span></h5>
-<div class="para" id="p-5609">Explain in your own words what <span class="process-math">\(\displaystyle \iint_{S_2} (f+g) \enspace dS = \iint_{S_2} f \enspace dS + \iint_{S_2} g \enspace dS\)</span> means in the new analogy. It may be helpful to describe each side of the equation separately and say why they are equal in the analogy.</div>
-<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-246" id="solution-246"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-246"><div class="solution solution-like">asdf</div></div></article><article class="task exercise-like" id="task-249"><h5 class="heading"><span class="codenumber">(d)</span></h5>
-<div class="para" id="p-5610">Explain in your own words what <span class="process-math">\(\displaystyle \iint_{-S_2} f \enspace dS = \iint_{S_2} f \enspace dS\)</span> means in the new analogy. It may be helpful to describe each side of the equation separately and say why they are equal in the analogy.</div>
-<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-247" id="solution-247"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-247"><div class="solution solution-like">asdf</div></div></article><article class="task exercise-like" id="task-250"><h5 class="heading"><span class="codenumber">(e)</span></h5>
-<div class="para" id="p-5611">Explain in your own words what <span class="process-math">\(\displaystyle \iint_{S_1+S_2} f \enspace dS = \iint_{S_1} f \enspace dS + \iint_{S_2} f \enspace dS\)</span> means in the new analogy. It may be helpful to describe each side of the equation separately and say why they are equal in the analogy.</div>
-<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-248" id="solution-248"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-248"><div class="solution solution-like">asdf</div></div></article></article><div class="para" id="p-5612">We will spend the last part of this section looking at a couple of examples of how to compute scalar surface integrals using parameterizations of surfaces.</div>
+<div class="introduction" id="introduction-88"><div class="para" id="p-5573">In this activity, we will be explaining each of the Properties from <a href="" class="xref" data-knowl="./knowl/asm_ScalarLineInt_Properties.html" title="Assemblage: Properties of Scalar Line Integrals">Properties of Scalar Line Integrals</a> in the context of a new analogy. We have just purchased a plot of land that spans two mountains, Sugar Mountain and Spice Mountain. We will label the plot of land on Sugar Mountain <span class="process-math">\(S_1\)</span> and the plot of land on Spice Mountain <span class="process-math">\(S_2\text{.}\)</span> Unfortunately there are two types of toxic organisms on the surface of your new land (which may be why you got the land so cheap). Let <span class="process-math">\(f\)</span> be the density of the toxic fungus on your new plot of land and let <span class="process-math">\(g\)</span> be the density of toxic bacteria on the new plot.</div></div>
+<article class="task exercise-like" id="task-251"><h5 class="heading"><span class="codenumber">(a)</span></h5>
+<div class="para" id="p-5574">Explain in your own words what <span class="process-math">\(\iint_{S_1} f \enspace dS\)</span> means in the above analogy and what exactly would be measured by this scalar line integral.</div>
+<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-243" id="solution-243"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-243"><div class="solution solution-like"><div class="para" id="p-5576">The scalar surface integral <span class="process-math">\(\iint_{S_1} f \enspace dS\)</span> would calculate the accumulation of toxic fungus on the Sugar Mountain part of your plot. In particular, <span class="process-math">\(\iint_{S_1} f \enspace dS\)</span> measures the total amount of toxic fungus on your Sugar Mountain land.</div></div></div></article><article class="task exercise-like" id="task-252"><h5 class="heading"><span class="codenumber">(b)</span></h5>
+<div class="para" id="p-5577">Explain in your own words what <span class="process-math">\(\displaystyle \iint_{S_1} (2 f) \enspace dS = 2 \iint_{S_1} f \enspace dS\)</span> means in the new analogy. It may be helpful to describe each side of the equation separately and say why they are equal in the analogy.</div>
+<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-244" id="solution-244"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-244"><div class="solution solution-like">asdf</div></div></article><article class="task exercise-like" id="task-253"><h5 class="heading"><span class="codenumber">(c)</span></h5>
+<div class="para" id="p-5578">Explain in your own words what <span class="process-math">\(\displaystyle \iint_{S_2} (f+g) \enspace dS = \iint_{S_2} f \enspace dS + \iint_{S_2} g \enspace dS\)</span> means in the new analogy. It may be helpful to describe each side of the equation separately and say why they are equal in the analogy.</div>
+<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-245" id="solution-245"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-245"><div class="solution solution-like">asdf</div></div></article><article class="task exercise-like" id="task-254"><h5 class="heading"><span class="codenumber">(d)</span></h5>
+<div class="para" id="p-5579">Explain in your own words what <span class="process-math">\(\displaystyle \iint_{-S_2} f \enspace dS = \iint_{S_2} f \enspace dS\)</span> means in the new analogy. It may be helpful to describe each side of the equation separately and say why they are equal in the analogy.</div>
+<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-246" id="solution-246"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-246"><div class="solution solution-like">asdf</div></div></article><article class="task exercise-like" id="task-255"><h5 class="heading"><span class="codenumber">(e)</span></h5>
+<div class="para" id="p-5580">Explain in your own words what <span class="process-math">\(\displaystyle \iint_{S_1+S_2} f \enspace dS = \iint_{S_1} f \enspace dS + \iint_{S_2} f \enspace dS\)</span> means in the new analogy. It may be helpful to describe each side of the equation separately and say why they are equal in the analogy.</div>
+<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-247" id="solution-247"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-247"><div class="solution solution-like">asdf</div></div></article></article><div class="para" id="p-5581">We will spend the last part of this section looking at a couple of examples of how to compute scalar surface integrals using parameterizations of surfaces.</div>
 <article class="example example-like" id="ScalarSurfaceInt_Example1"><h4 class="heading">
-<span class="type">Example</span><span class="space"> </span><span class="codenumber">12.10.3</span><span class="period">.</span>
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">12.10.8</span><span class="period">.</span>
 </h4>
-<div class="para logical" id="p-5613">
-<div class="para">Let us return to some of the problems from <a href="" class="xref" data-knowl="./knowl/ScalarSurfaceInt_Sensemaking.html" title="Activity 12.10.1">Activity 12.10.1</a>. Specifically, we will compute the answer to <a href="" class="xref" data-knowl="./knowl/task_SSIS_2.html" title="Task 12.10.1.b">Task 12.10.1.b</a>. We will compute <span class="process-math">\(\iint_{S_1} x \enspace dS\)</span> where <span class="process-math">\(S_1\)</span> is the top half (<span class="process-math">\(z \geq 0\)</span>) of the sphere of radius one centered at the origin in 3-space. Our surface can be parameterized by <span class="process-math">\(\vr(s,t)=\langle \cos(s)\sin(t),\sin(s)\sin(t),\cos(t)\rangle\)</span> where <span class="process-math">\(s \in [0,2\pi]\)</span> and <span class="process-math">\(t \in [0,\pi]\text{.}\)</span> Using <a href="" class="xref" data-knowl="./knowl/ScalarSurfaceIntDef.html" title="Theorem 12.10.2">Theorem 12.10.2</a>, we need to compute the partial derivatives of <span class="process-math">\(\vr\)</span> with respect to <span class="process-math">\(s\)</span> and <span class="process-math">\(t\text{,}\)</span> then compute <span class="process-math">\(\Vert{\vr_s \times \vr_t}\Vert \text{.}\)</span> For our parameterization, we get</div>
-<div class="displaymath process-math" data-contains-math-knowls="./knowl/ScalarSurfaceInt_Sensemaking.html ./knowl/task_SSIS_2.html ./knowl/ScalarSurfaceIntDef.html" id="md-71">
-\begin{gather*}
-\vr_s = \langle -\sin(s)\sin(t),\cos(s)\sin(t),0\rangle \\
-\vr_t = \langle \cos(s)\cos(t),\sin(s)\cos(t),-\sin(t)\rangle \\
-\vr_s \times \vr_t = \langle -(\sin(t))^2 \cos(s), \break - (\sin(t))^2 \sin(s), -(\cos(s))^2 \cos(t) \sin(t) -(\sin(s))^2 \cos(t) \sin(t) \rangle 
-\end{gather*}
+<div class="para logical" id="p-5582">
+<div class="para">Let us return to some of the problems from <a href="" class="xref" data-knowl="./knowl/ScalarSurfaceInt_Sensemaking.html" title="Activity 12.10.2">Activity 12.10.2</a>. Specifically, we will compute the answer to <a href="" class="xref" data-knowl="./knowl/task_SSIS_2.html" title="Task 12.10.2.b">Task 12.10.2.b</a>. We will compute <span class="process-math">\(\iint_{S_1} x \enspace dS\)</span> where <span class="process-math">\(S_1\)</span> is the top half (<span class="process-math">\(z \geq 0\)</span>) of the sphere of radius one centered at the origin in 3-space. Our surface can be parameterized by <span class="process-math">\(\vr(s,t)=\langle \cos(s)\sin(t),\sin(s)\sin(t),\cos(t)\rangle\)</span> where <span class="process-math">\(s \in [0,2\pi]\)</span> and <span class="process-math">\(t \in [0,\pi]\text{.}\)</span> Using <a href="" class="xref" data-knowl="./knowl/ScalarSurfaceIntDef.html" title="Theorem 12.10.4">Theorem 12.10.4</a>, we need to compute the partial derivatives of <span class="process-math">\(\vr\)</span> with respect to <span class="process-math">\(s\)</span> and <span class="process-math">\(t\text{,}\)</span> then compute <span class="process-math">\(\Vert{\vr_s \times \vr_t}\Vert \text{.}\)</span> For our parameterization, we get</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/ScalarSurfaceInt_Sensemaking.html ./knowl/task_SSIS_2.html ./knowl/ScalarSurfaceIntDef.html" id="md-75">
+\begin{align*}
+\vr_s \amp = \langle -\sin(s)\sin(t),\cos(s)\sin(t),0\rangle \\
+\vr_t \amp = \langle \cos(s)\cos(t),\sin(s)\cos(t),-\sin(t)\rangle \\
+\vr_s \times \vr_t \amp = \langle -(\sin(t))^2 \cos(s), \\
+\amp \quad \quad - (\sin(t))^2 \sin(s), -(\cos(s))^2 \cos(t) \sin(t) -(\sin(s))^2 \cos(t) \sin(t) \rangle 
+\end{align*}
 </div>
 <div class="para">Simplifying <span class="process-math">\(\vr_s \times \vr_t\)</span> we get</div>
 <div class="displaymath process-math" data-contains-math-knowls="./knowl/ScalarSurfaceInt_Sensemaking.html ./knowl/task_SSIS_2.html ./knowl/ScalarSurfaceIntDef.html">
@@ -783,20 +892,20 @@ window.MathJax = {
 </div>
 <div class="para">Note that <span class="process-math">\(\vr_s \times \vr_t = \sin(t) \vr(s,t)\text{.}\)</span> This should make sense because the normal vector to a sphere should be the outward pointing vector from the center of the sphere. Note here that <span class="process-math">\(\Vert{\vr_s \times \vr_t}\Vert = \sin(t)\)</span> because <span class="process-math">\(\Vert{\vr(s,t)}\Vert = 1\)</span> for any <span class="process-math">\(s\)</span> or <span class="process-math">\(t\text{.}\)</span>
 </div>
-</div> <div class="para logical" id="p-5614">
-<div class="para">We can now use <a href="" class="xref" data-knowl="./knowl/ScalarSurfaceIntDef.html" title="Theorem 12.10.2">Theorem 12.10.2</a> to compute the scalar surface integral as</div>
-<div class="displaymath process-math" data-contains-math-knowls="./knowl/ScalarSurfaceIntDef.html" id="md-72">
+</div> <div class="para logical" id="p-5583">
+<div class="para">We can now use <a href="" class="xref" data-knowl="./knowl/ScalarSurfaceIntDef.html" title="Theorem 12.10.4">Theorem 12.10.4</a> to compute the scalar surface integral as</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/ScalarSurfaceIntDef.html" id="md-76">
 \begin{gather*}
 \iint_{S_1} x \enspace dS = \int_0^{\pi}\int_0^{2\pi} \cos(s)\sin(t) (\sin(t)) \enspace ds dt\\
 = \int_0^{\pi}(\sin(t))^2 dt [\sin(s)]|_{0}^{2\pi} = \int_0^{\pi}(\sin(t))^2 dt [0] =0
 \end{gather*}
 </div>
-</div> <div class="para" id="p-5615">This result should match your answer for <a href="" class="xref" data-knowl="./knowl/task_SSIS_2.html" title="Task 12.10.1.b">Task 12.10.1.b</a> since the output of the function <span class="process-math">\(f(x,y,z)=x\)</span> would be symmetric but opposite in sign for the parts of the surface in octants 1 and 4 as compared to octants 2 and 3.</div></article><article class="example example-like" id="ScalarSurfaceInt_Example2"><h4 class="heading">
-<span class="type">Example</span><span class="space"> </span><span class="codenumber">12.10.4</span><span class="period">.</span>
+</div> <div class="para" id="p-5584">This result should match your answer for <a href="" class="xref" data-knowl="./knowl/task_SSIS_2.html" title="Task 12.10.2.b">Task 12.10.2.b</a> since the output of the function <span class="process-math">\(f(x,y,z)=x\)</span> would be symmetric but opposite in sign for the parts of the surface in octants 1 and 4 as compared to octants 2 and 3.</div></article><article class="example example-like" id="ScalarSurfaceInt_Example2"><h4 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">12.10.9</span><span class="period">.</span>
 </h4>
-<div class="para logical" id="p-5616">
-<div class="para">For this example, we will compute the answer to <a href="" class="xref" data-knowl="./knowl/task_SSIS_4.html" title="Task 12.10.1.d">Task 12.10.1.d</a>. We will compute <span class="process-math">\(\iint_{S_3} x+z \enspace dS\)</span> where <span class="process-math">\(S_3\)</span> is the disc of radius one centered at <span class="process-math">\((1,0,0)\)</span> on the <span class="process-math">\(x=1\)</span> fundamental plane. Our surface can be parameterized by <span class="process-math">\(\vr(s,t)=\langle 1,s\cos(t),s\sin(t)\rangle\)</span> where <span class="process-math">\(s \in [0,1]\)</span> and <span class="process-math">\(t \in [0,2\pi]\text{.}\)</span> Using  <a href="" class="xref" data-knowl="./knowl/ScalarSurfaceIntDef.html" title="Theorem 12.10.2">Theorem 12.10.2</a>, we need to compute the partial derivatives of <span class="process-math">\(\vr\)</span> with respect to <span class="process-math">\(s\)</span> and <span class="process-math">\(t\text{,}\)</span> then compute <span class="process-math">\(\Vert{\vr_s \times \vr_t}\Vert \text{.}\)</span> For our parameterization, we get</div>
-<div class="displaymath process-math" data-contains-math-knowls="./knowl/task_SSIS_4.html ./knowl/ScalarSurfaceIntDef.html" id="md-73">
+<div class="para logical" id="p-5585">
+<div class="para">For this example, we will compute the answer to <a href="" class="xref" data-knowl="./knowl/task_SSIS_4.html" title="Task 12.10.2.d">Task 12.10.2.d</a>. We will compute <span class="process-math">\(\iint_{S_3} x+z \enspace dS\)</span> where <span class="process-math">\(S_3\)</span> is the disc of radius one centered at <span class="process-math">\((1,0,0)\)</span> on the <span class="process-math">\(x=1\)</span> fundamental plane. Our surface can be parameterized by <span class="process-math">\(\vr(s,t)=\langle 1,s\cos(t),s\sin(t)\rangle\)</span> where <span class="process-math">\(s \in [0,1]\)</span> and <span class="process-math">\(t \in [0,2\pi]\text{.}\)</span> Using  <a href="" class="xref" data-knowl="./knowl/ScalarSurfaceIntDef.html" title="Theorem 12.10.4">Theorem 12.10.4</a>, we need to compute the partial derivatives of <span class="process-math">\(\vr\)</span> with respect to <span class="process-math">\(s\)</span> and <span class="process-math">\(t\text{,}\)</span> then compute <span class="process-math">\(\Vert{\vr_s \times \vr_t}\Vert \text{.}\)</span> For our parameterization, we get</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/task_SSIS_4.html ./knowl/ScalarSurfaceIntDef.html" id="md-77">
 \begin{gather*}
 \vr_s = \langle 0, \cos(t), \sin(t) \rangle \\
 \vr_t = \langle 0, -s\sin(t), s\cos(t) \rangle \\
@@ -811,9 +920,9 @@ window.MathJax = {
 </div>
 <div class="para">and thus <span class="process-math">\(\Vert{\vr_s \times \vr_t}\Vert = s\text{.}\)</span> This may be a familiar result from a change of coordinates between rectangular coordinates and polar coordinates, <span class="process-math">\(dA = dx dy = r dr d\theta\text{.}\)</span>
 </div>
-</div> <div class="para logical" id="p-5617">
-<div class="para">We can now use  <a href="" class="xref" data-knowl="./knowl/ScalarSurfaceIntDef.html" title="Theorem 12.10.2">Theorem 12.10.2</a> to compute the scalar surface integral as</div>
-<div class="displaymath process-math" data-contains-math-knowls="./knowl/ScalarSurfaceIntDef.html" id="md-74">
+</div> <div class="para logical" id="p-5586">
+<div class="para">We can now use  <a href="" class="xref" data-knowl="./knowl/ScalarSurfaceIntDef.html" title="Theorem 12.10.4">Theorem 12.10.4</a> to compute the scalar surface integral as</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/ScalarSurfaceIntDef.html" id="md-78">
 \begin{gather*}
 \iint_{S_3} x+z \enspace dS = \int_0^{2\pi}\int_0^{1} (1+s\sin(t)) (s) ds dt \\
 = \int_0^{2\pi} \int_0^{1} s+s^2\sin(t) ds dt \\
@@ -821,200 +930,68 @@ window.MathJax = {
 = \frac{1}{2} (2\pi) + 0 = \pi 
 \end{gather*}
 </div>
-</div> <div class="para" id="p-5618">This result should match your answer for <a href="" class="xref" data-knowl="./knowl/task_SSIS_4.html" title="Task 12.10.1.d">Task 12.10.1.d</a> since the output of the function <span class="process-math">\(f(x,y,z) = x+z\)</span> equals <span class="process-math">\(1+z\text{.}\)</span> The values of <span class="process-math">\(z\)</span> will be symmetric but opposite in sign for the parts of the surface above and below the <span class="process-math">\(xy\)</span>-plane. Thus the scalar surface integral will be one times the area of <span class="process-math">\(S_3\)</span> which gives the value <span class="process-math">\(\pi\text{.}\)</span>
+</div> <div class="para" id="p-5587">This result should match your answer for <a href="" class="xref" data-knowl="./knowl/task_SSIS_4.html" title="Task 12.10.2.d">Task 12.10.2.d</a> since the output of the function <span class="process-math">\(f(x,y,z) = x+z\)</span> equals <span class="process-math">\(1+z\text{.}\)</span> The values of <span class="process-math">\(z\)</span> will be symmetric but opposite in sign for the parts of the surface above and below the <span class="process-math">\(xy\)</span>-plane. Thus the scalar surface integral will be one times the area of <span class="process-math">\(S_3\)</span> which gives the value <span class="process-math">\(\pi\text{.}\)</span>
 </div></article></section><section class="exercises" id="exercises-35"><h3 class="heading hide-type">
 <span class="type">Exercises</span> <span class="codenumber">12.10.3</span> <span class="title">Exercises</span>
 </h3>
 <article class="exercise exercise-like" id="Library__WHFreeman__Rogawski_Calculus_Early_Transcendentals_Second_Edition__16_Line_and_Surface_Integrals__16.4_Parametrized_Surfaces_and_Surface_Integrals__16.4.3.pg"><h4 class="heading"><span class="codenumber">1<span class="period">.</span></span></h4>
-<div id="webwork-311" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="311" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/WHFreeman/Rogawski_Calculus_Early_Transcendentals_Second_Edition/16_Line_and_Surface_Integrals/16.5_Surface_Integrals_of_Vector_Fields/16.5.3.pg" data-courseID="mitchkeller-dev" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
-<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-311')">Activate</button></div>
+<div class="introduction" id="introduction-89"><div class="para" id="p-5588">asdf</div></div>
+<div id="webwork-313" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="313" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Rochester/setVectorCalculus3/ur_vc_13_1.pg" data-courseID="mitchkeller-dev" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-313')">Activate</button></div>
 <div class="problem-contents">
-<div class="para logical" id="p-5619">
-<div class="para">Let <span class="process-math">\(\mathcal{S}\)</span> be the square in the <span class="process-math">\(xy\)</span>-plane shown in the figure below, oriented with the normal pointing in the positive <span class="process-math">\(z\)</span>-direction.  Estimate</div>
-<div class="displaymath process-math">
-\begin{equation*}
-\iint_{\mathcal{S}} \mathbf{F} \cdot \,d\mathbf{S}
-\end{equation*}
-</div>
-<div class="para">where <span class="process-math">\(\mathbf{F}\)</span> is a vector field whose values at the labeled points are</div>
-<div class="displaymath process-math">
-\begin{equation*}
-\begin{array}{llll} \mathbf{F}(A) \amp = \left\lt -1,9,-2\right&gt;,\amp \qquad \mathbf{F}(B) \amp = \left\lt -9,7,-9\right&gt;\\
-\mathbf{F}(C) \amp = \left\lt 6,-4,-8\right&gt;,\amp \qquad \mathbf{F}(D) \amp = \left\lt 4,-5,7\right&gt;\end{array}
-\end{equation*}
-</div>
-</div> <div class="image-box" style="width: 27.1666666666667%; margin-left: 36.4166666666667%; margin-right: 36.4166666666667%;"><img src="generated/webwork/images/webwork-311-image-1.png" class="contained"></div> <div class="para" id="p-5620">
-<span class="process-math">\(\iint_{\mathcal{S}} \mathbf{F} \cdot \,d\mathbf{S} \approx\)</span> <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>
-</div>
-<div class="solutions">
-<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-249" id="solution-249"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-249"><div class="solution solution-like">
-<span class="process-math">\(S\)</span> is <span class="process-math">\(= \left\lt 0,0,1\right&gt;\text{.}\)</span> We estimate the vector surface integral <span class="process-math">\(\iint_S  \mathbf{F} \cdot d\mathbf{S}\)</span> using the division and sample points given in the Figure. Each subsquare has area <span class="process-math">\(\frac14\text{,}\)</span> therefore we obtain the following estimation:<div class="displaymath process-math">
-\begin{equation*}
-\iint_S  \mathbf{F} \cdot d\mathbf{S}  \approx
-\end{equation*}
-</div>
-<div class="displaymath process-math">
-\begin{equation*}
-\left(\mathbf{F} (A)\cdot {\mathbf{e}}_n + \mathbf{F} (B) \cdot {\mathbf{e}}_n +\mathbf{F} (C) \cdot {\mathbf{e}}_n + \mathbf{F} (D) \cdot {\mathbf{e}}_n\right) \cdot \frac14 =
-\end{equation*}
-</div>
-<div class="displaymath process-math">
-\begin{equation*}
-(\left\lt -1,9,-2\right&gt;\cdot \left\lt 0,0,1\right&gt;+\left\lt -9,7,-9\right&gt;\cdot \left\lt 0,0,1\right&gt;+
-\end{equation*}
-</div>
-<div class="displaymath process-math">
-\begin{equation*}
-\left\lt 6,-4,-8\right&gt;\cdot \left\lt 0,0,1\right&gt;+\left\lt 4,-5,7\right&gt;\cdot \left\lt 0,0,1\right&gt;) \cdot \frac14 =
-\end{equation*}
-</div>
-<div class="displaymath process-math">
-\begin{equation*}
-(-2 - 9 - 8+7) \cdot \frac14=-3
-\end{equation*}
-</div>
-</div></div>
-</div>
-</div>
-</div></article><article class="exercise exercise-like" id="Library__WHFreeman__Rogawski_Calculus_Early_Transcendentals_Second_Edition__16_Line_and_Surface_Integrals__16.4_Parametrized_Surfaces_and_Surface_Integrals__16.4.15.pg"><h4 class="heading"><span class="codenumber">2<span class="period">.</span></span></h4>
-<div id="webwork-312" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="312" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/AlfredUniv/anton8e/chapter16/16_6/prob4.pg" data-courseID="mitchkeller-dev" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
-<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-312')">Activate</button></div>
-<div class="problem-contents">
-<div class="para" id="p-5622">F = <span class="process-math">\(5x\boldsymbol{i}+5y\boldsymbol{j}+4z\boldsymbol{k}\)</span> and <span class="process-math">\(\sigma\)</span> is the portion of the cone <span class="process-math">\(z = \sqrt{x^2+y^2}\)</span> between the planes <span class="process-math">\(z = 3\)</span> and <span class="process-math">\(z = 9\)</span> oriented with normal vectors pointing upwards. Find the flux of the flow field F across <span class="process-math">\(\sigma\text{:}\)</span> <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>
+<div class="para" id="p-5589">Evaluate <span class="process-math">\(\displaystyle \int\!\!\int_{S} \sqrt{ 1 + x^{2} + y^{2} } \: dS\)</span> where <span class="process-math">\(S\)</span> is the helicoid: <span class="process-math">\(\mathbf{r}(u, v) = u\cos(v)\mathbf{i} + u\sin(v)\mathbf{j} + v\mathbf{k}\text{,}\)</span> with <span class="process-math">\(0 \leq u \leq 4, 0 \leq v \leq 2\pi\)</span>
 </div>
 <div class="solutions"></div>
 </div>
-</div></article><article class="exercise exercise-like" id="Library__Rochester__setVectorCalculus3__ur_vc_13_1.pg"><h4 class="heading"><span class="codenumber">3<span class="period">.</span></span></h4>
-<div id="webwork-313" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="313" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/WHFreeman/Rogawski_Calculus_Early_Transcendentals_Second_Edition/16_Line_and_Surface_Integrals/16.4_Parametrized_Surfaces_and_Surface_Integrals/16.4.3.pg" data-courseID="mitchkeller-dev" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
-<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-313')">Activate</button></div>
+</div></article><article class="exercise exercise-like" id="Library__WHFreeman__Rogawski_Calculus_Early_Transcendentals_Second_Edition__16_Line_and_Surface_Integrals__16.4_Parametrized_Surfaces_and_Surface_Integrals__16.4.15.pg"><h4 class="heading"><span class="codenumber">2<span class="period">.</span></span></h4>
+<div id="webwork-314" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="314" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Michigan/Chap20Sec4/Q13.pg" data-courseID="mitchkeller-dev" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-314')">Activate</button></div>
 <div class="problem-contents">
-<div class="para" id="p-5624">Show that <span class="process-math">\(\Phi(u,v)= (7 u+4 ,u-v,13 u+v)\)</span> parametrizes the plane <span class="process-math">\(2x-y-z=8\text{.}\)</span> Then:</div> <div class="para" id="p-5625">
-<em class="alert">(a)</em> Calculate <span class="process-math">\({\mathbf{T}}_u\)</span> , <span class="process-math">\({\mathbf{T}}_v\text{,}\)</span> and <span class="process-math">\({\mathbf{n}}(u,v)\text{.}\)</span>
-</div> <div class="para" id="p-5626">
-<em class="alert">(b)</em> Find the area of <span class="process-math">\(\mathcal{S}=\Phi(\mathcal{D})\text{,}\)</span> where <span class="process-math">\(\mathcal{D}= (u,v) : 0\le u\le 4, 0\le v \le 5\text{.}\)</span>
-</div> <div class="para" id="p-5627">
-<em class="alert">(c)</em> Express <span class="process-math">\(f(x,y,z)=yz\)</span> in terms of <span class="process-math">\(u\)</span> and <span class="process-math">\(v\)</span> and evaluate <span class="process-math">\(\iint_{\mathcal{S}} f(x,y,z)\,d \mathcal{S}\text{.}\)</span>
-</div> <div class="para" id="p-5628">
-<em class="alert">(a)</em>  <span class="process-math">\({\mathbf{T}}_u=\)</span> <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span> , <span class="process-math">\({\mathbf{T}}_v=\)</span> <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span> ,  <span class="process-math">\({\mathbf{n}}(u,v)=\)</span> <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>
-</div> <div class="para" id="p-5629">
-<em class="alert">(b)</em> <span class="process-math">\(Area(S)=\)</span> <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>
-</div> <div class="para" id="p-5630">
-<em class="alert">(c)</em> <span class="process-math">\(\iint_{\mathcal{S}} f(x,y,z)\,d \mathcal{S}=\)</span> <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>
+<div class="para" id="p-5591">Find <span class="process-math">\(\int_C\vec F\cdot d\vec r\)</span> where <span class="process-math">\(C\)</span> is a circle of radius <span class="process-math">\(3\)</span> in the plane <span class="process-math">\(x+y+z=9\text{,}\)</span> centered at <span class="process-math">\((3,1,5)\)</span> and oriented clockwise when viewed from the origin, if <span class="process-math">\(\vec F = 5y\vec i - x\vec j + 2\!\left(y-x\right)\vec k\)</span>
+</div> <div class="para" id="p-5592">
+<span class="process-math">\(\int_C\vec F\cdot d\vec r =\)</span> <span class="fillin underline" role="img" aria-label="35-character blank" style="width: 15.9090909090909em;"></span>
 </div>
 <div class="solutions">
-<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-250" id="solution-250"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-250"><div class="solution solution-like">
-<span class="process-math">\(x=7 u+4\text{,}\)</span> <span class="process-math">\(y=u-v\text{,}\)</span> and <span class="process-math">\(z=13 u+v\)</span> satisfy the equation of the plane,<div class="displaymath process-math">
-\begin{equation*}
-2x-y-z =2(7 u+4 )-( u-v )-( 13 u+v )=
-\end{equation*}
-</div>
+<a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-248" id="solution-248"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-248"><div class="solution solution-like">
 <div class="displaymath process-math">
 \begin{equation*}
-14 u+8-u+v-13 u-v=8
+\mbox{curl }\vec F = \left|
+\begin{array}{ccc}
+\vec i \amp  \vec j \amp  \vec k\\
+\frac{\partial}{\partial x}\ \amp  \ \frac{\partial}{\partial y} \ \amp 
+\ \frac{\partial}{\partial z}\\
+5y \amp  -x \amp  2\!\left(y-x\right)
+\end{array}
+\right| = 2\vec i + 2\vec j -6 \vec k,
 \end{equation*}
-</div>Moreover, for any <span class="process-math">\(x\text{,}\)</span> <span class="process-math">\(y\text{,}\)</span> <span class="process-math">\(z\)</span> satisfying <span class="process-math">\(2x-y-z=8\text{,}\)</span> there are values of <span class="process-math">\(u\)</span> and <span class="process-math">\(v\)</span> such that <span class="process-math">\(x=7 u+4\text{,}\)</span> <span class="process-math">\(y=u-v\text{,}\)</span> and <span class="process-math">\(z=13 u+v\text{,}\)</span> since the following equations can be solved for <span class="process-math">\(u\)</span> and <span class="process-math">\(v\text{:}\)</span><div class="displaymath process-math">
+</div>writing <span class="process-math">\(S\)</span> for the disk in the plane enclosed by the circle, Stokes’ Theorem gives<div class="displaymath process-math">
 \begin{equation*}
-\begin{array}{rcl}x\amp {}={}\amp 7 u+4\\
-\noalign{\smallskip}
-y\amp =\amp u-v\\
-\noalign{\smallskip}
-z\amp =\amp 13 u+v\\
-\noalign{\smallskip}
-2x-y-z\amp =\amp 8\end{array}\quad\Rightarrow\quad
-u=\frac{x-4}{7},\quad v=\frac{x-4}{7}-y
+\int_C\vec F\cdot d\vec r = \int_S\mbox{curl }\vec F\cdot d\vec A =
+\int_S(2\vec i + 2\vec j -6 \vec k)\cdot d\vec A.
 \end{equation*}
-</div>We conclude that <span class="process-math">\(\mathrm{\Phi }( u,v )\)</span> parametrizes the whole plane <span class="process-math">\(2x-y-z=8\text{.}\)</span> <em class="alert">(a)</em> The tangent vectors <span class="process-math">\({\mathbf{T} }_u\)</span> and <span class="process-math">\({\mathbf{T} }_v\)</span> are:<div class="displaymath process-math">
+</div>Now <span class="process-math">\(d\vec A = \vec n\,dA\text{,}\)</span> where <span class="process-math">\(\vec n\)</span> is the unit vector perpendicular to the plane and <span class="process-math">\(dA\)</span> an area element on the plane, so <span class="process-math">\(\vec n = \frac1{\sqrt3}(\vec i + \vec j + \vec k)\text{,}\)</span> and<div class="displaymath process-math">
 \begin{equation*}
-{\mathbf{T} }_u =\frac{\partial \phi }{\partial u}=\frac{\partial }{\partial u}( 7 u+4,u-v,13 u+v )= \left\lt  7,1,13 \right&gt;
-\end{equation*}
-</div>
-<div class="displaymath process-math">
-\begin{equation*}
-{\mathbf{T} }_v =\frac{\partial \phi }{\partial v}=\frac{\partial }{\partial v}( 7 u+4,u-v,13 u+v )= \left\lt  0,-1,1 \right&gt;
-\end{equation*}
-</div>The normal vector is the following cross product:<div class="displaymath process-math">
-\begin{equation*}
-\mathbf{n} ( u,v )={\mathbf{T} }_u \times {\mathbf{T} }_v = \left|\begin{array}{rrr}\mathbf{i} \amp \mathbf{j} \amp \mathbf{k} \\ 7\amp 1\amp 13\\ 0\amp -1\amp 1\end{array}\right|=
-\end{equation*}
-</div>
-<div class="displaymath process-math">
-\begin{equation*}
-\left|\begin{array}{rr}1\amp 13\\ -1\amp 1\end{array}\right|\mathbf{i} -\left|\begin{array}{rr}7\amp 13\\ 0\amp 1\end{array}\right|\mathbf{j} +\left|\begin{array}{rr}7\amp 1\\ 0\amp -1\end{array}\right|\mathbf{k}=
-\end{equation*}
-</div>
-<div class="displaymath process-math">
-\begin{equation*}
-14 \mathbf{i} -7 \mathbf{j} -7 \mathbf{k} = \left\lt  14,-7,-7 \right&gt;
-\end{equation*}
-</div>
-<em class="alert">(b)</em> That area of <span class="process-math">\(S=\mathrm{\Phi }(\mathcal{D})\)</span> is the following surface integral:<div class="displaymath process-math">
-\begin{equation*}
-Area(S)=\iint_{\mathcal{D}} \| \mathbf{n} ( u,v )\|  \,du \,dv=
-\end{equation*}
-</div>
-<div class="displaymath process-math">
-\begin{equation*}
-\iint_{\mathcal{D}} \| \left\lt  14,-7,-7 \right&gt;\|  \,du \,dv=
-7\sqrt{6}\iint_{\mathcal{D}} 1 \,du \,dv=
-\end{equation*}
-</div>
-<div class="displaymath process-math">
-\begin{equation*}
-7\sqrt{6}\, \mathrm{Area} (\mathcal{D})
-=7\sqrt{6}\cdot 4\cdot 5=140 \sqrt{6}
-\end{equation*}
-</div>
-<em class="alert">(c)</em>  We express <span class="process-math">\(f( x,y,z )=yz\)</span> in terms of the parameters <span class="process-math">\(u\)</span> and <span class="process-math">\(v\text{:}\)</span><div class="displaymath process-math">
-\begin{equation*}
-f\left(\phi ( u,v )\right)=( u-v )(13 u+v )=13 u^2-12 uv- v^2
-\end{equation*}
-</div>Using the Theorem on Surface Integrals we have:<div class="displaymath process-math">
-\begin{equation*}
-\iint_S f( x,y,z ) \,dS =
-\iint_{\mathcal{D}}f\left(\phi ( u,v )\right)\| \mathbf{n} ( u,v )\|  \,du \,dv=
-\end{equation*}
-</div>
-<div class="displaymath process-math">
-\begin{equation*}
-\iint_{\mathcal{D}} \left(13 u^2-12uv- v^2\right)\| \left\lt  14,-7,-7 \right&gt;\|  \,du \,dv=
-\end{equation*}
-</div>
-<div class="displaymath process-math">
-\begin{equation*}
-7\sqrt{6}\int_0^{5} \int_0^{4} \left(13 u^2-12uv- v^2\right) \,du \,dv=
-\end{equation*}
-</div>
-<div class="displaymath process-math">
-\begin{equation*}
-7\sqrt{6}\int_0^{5} \left( \frac{13 u^3}3 -\frac{12u^2v}2- v^2u\right)\bigg|_{u=0}^{4} \,dv=
-\end{equation*}
-</div>
-<div class="displaymath process-math">
-\begin{equation*}
-7\sqrt{6}\int_0^{5} \left(\frac{832}3-\frac{192v}2-4 v^2\right) \,dv
-=
-\end{equation*}
-</div>
-<div class="displaymath process-math">
-\begin{equation*}
-7\sqrt{6}\left(\frac{832v}3-\frac{192v^2}4-\frac{4 v^3}3 \right)\bigg|_0^{5}
-=\frac{1680\sqrt{6}}{12}
-\end{equation*}
-</div>
-<div class="displaymath process-math">
-\begin{equation*}
-\approx 342.929
+\int_C\vec F\,d\vec r = \int_S(2\vec i+2\vec j -6\vec k)\cdot
+\frac{\vec i+\vec j+\vec k}{\sqrt{3}}\,dA = \int_S \frac{-2}{\sqrt 3}\,dA = \frac{-2}{\sqrt 3}\mbox{ Area of circle} = \frac{-18\pi}{\sqrt{3}}.
 \end{equation*}
 </div>
 </div></div>
 </div>
+</div>
+</div></article><article class="exercise exercise-like" id="Library__Rochester__setVectorCalculus3__ur_vc_13_1.pg"><h4 class="heading"><span class="codenumber">3<span class="period">.</span></span></h4>
+<div id="webwork-315" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="315" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Rochester/setVectorCalculus3/ur_vc_13_8.pg" data-courseID="mitchkeller-dev" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-315')">Activate</button></div>
+<div class="problem-contents">
+<div class="para" id="p-5594">Use Stokes’ Theorem to evaluate <span class="process-math">\(\displaystyle \int_{C} \mathbf{F} \cdot d\mathbf{r}\)</span> where <span class="process-math">\(\mathbf{F}(x, y, z) = x\mathbf{i} + y\mathbf{j} + 
+6\!(x^{2} + y^{2})\mathbf{k}\)</span> and <span class="process-math">\(C\)</span> is the boundary of the part of the paraboloid where <span class="process-math">\(z = 64 - x^{2} - y^{2}\)</span> which lies above the xy-plane and <span class="process-math">\(C\)</span> is oriented counterclockwise when viewed from above.</div>
+<div class="solutions"></div>
 </div>
 </div></article></section></section></div>
 <div class="ptx-content-footer">
 <a class="previous-button button" href="S_Vector_FluxInt.html" title="Previous"><span class="icon">&lt;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon">^</span><span class="name">Top</span></a><a class="next-button button" href="S_Vector_StokesThm.html" title="Next"><span class="name">Next</span><span class="icon">&gt;</span></a>
 </div></main>
 </div>
-<div id="ptx-page-footer">
+<div id="ptx-page-footer" class="ptx-page-footer">
 <a class="pretext-link" href="https://pretextbook.org" title="PreTeXt"><div class="logo"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="338 3000 8772 6866"><g style="stroke-width:.025in; stroke:black; fill:none"><polyline points="472,3590 472,9732 " style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round; "></polyline><path style="stroke:#000000;stroke-width:126;stroke-linecap:butt;" d="M 4724,9448 A 4660 4660  0  0  1  8598  9259"></path><path style="stroke:#000000;stroke-width:174;stroke-linecap:butt;" d="M 4488,9685 A 4228 4228  0  0  0   472  9732"></path><path style="stroke:#000000;stroke-width:126;stroke-linecap:butt;" d="M 4724,3590 A 4241 4241  0  0  1  8598  3496"></path><path style="stroke:#000000;stroke-width:126;stroke-linecap:round;" d="M 850,3496  A 4241 4241  0  0  1  4724  3590"></path><path style="stroke:#000000;stroke-width:126;stroke-linecap:round;" d="M 850,9259  A 4507 4507  0  0  1  4724  9448"></path><polyline points="5385,4299 4062,8125" style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="8598,3496 8598,9259" style="stroke:#000000;stroke-width:126; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="850,3496 850,9259" style="stroke:#000000;stroke-width:126; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="4960,9685 4488,9685" style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="3070,4582 1889,6141 3070,7700" style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="6418,4582 7600,6141 6418,7700" style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="8976,3590 8976,9732" style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round;"></polyline><path style="stroke:#000000;stroke-width:174;stroke-linecap:butt;" d="M 4960,9685 A 4228 4228  0  0  1  8976  9732"></path></g></svg></div></a><a class="runestone-link" href="https://runestone.academy" title="Runestone Academy"><img class="logo" src="https://runestone.academy/runestone/static/images/RAIcon_cropped.png"></a><a class="mathjax-link" href="https://www.mathjax.org" title="MathJax"><img class="logo" src="https://www.mathjax.org/badge/badge-square-2.png"></a>
 </div>
 <!--Start: Google Global Site Tag code--><!--*** DO NOT COPY ANOTHER PROJECT'S MAGIC NUMBERS/ID ***--><!--***           GET YOUR OWN FROM GOOGLE             ***-->

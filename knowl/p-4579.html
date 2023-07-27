@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="en-US" dir="ltr">
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
 <!--*                                          *-->
@@ -12,7 +12,22 @@
 </head>
 <body class="ignore-math">
 <h5 class="heading"><span class="type">Paragraph</span></h5>
-<div class="para">In this example, we will look at the particulars of applying a parameterization of <span class="process-math">\(C\)</span> (given by <span class="process-math">\(\vr(t) =\langle f(t),g(t),h(t)\rangle\)</span> with <span class="process-math">\(t \in [a,b]\)</span>) to <a href="" class="xref" data-knowl="./knowl/def_Vector_IdeaLineIntegral_LineIntegral.html" title="Definition 12.2.9">Definition 12.2.9</a>. In particular, we will use this parameterization and a set of points along <span class="process-math">\(C\)</span> that are equally spaced in terms of parameter values.</div>
+<div class="para logical">
+<div class="para">We can now substitute these pieces into <a href="" class="xref" data-knowl="./knowl/def_Vector_IdeaLineIntegral_LineIntegral.html" title="Definition 12.2.9">Definition 12.2.9</a> to get the following</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/def_Vector_IdeaLineIntegral_LineIntegral.html">
+\begin{gather*}
+\int_C \vF\cdot d\vr = \lim_{|\Delta \vr_i \to 0} \sum_{i=1}^{n}\vF(\vr_i)\cdot\Delta\vr_i\\
+\lim_{|\Delta t \to 0} \sum_{i=1}^{n} \vF(t_i) \cdot	\left(\frac{\vr(t_{i}) - \vr(t_{i}-\Delta t)}{\Delta t}\right) \Delta t 
+\end{gather*}
+</div>
+<div class="para">When evaluating the limit as <span class="process-math">\(\Delta t\to 0\text{,}\)</span> the expression in the parentheses will be <span class="process-math">\(\frac{d\vr}{dt}(t_i)\text{.}\)</span> We then have a Riemann sum that changes the evaluation of a line integral of a vector field along an oriented curve to a definite integral of a function of one variable. In particular,</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/def_Vector_IdeaLineIntegral_LineIntegral.html">
+\begin{equation*}
+\int_C \vF \cdot d\vr = \int\limits_a^b \vF(\vr(t))\cdot \frac{d\vr}{dt}(t)\, dt
+\end{equation*}
+</div>
+<div class="para">Note that after evaluating the dot product, <span class="process-math">\(\vF(\vr(t))\cdot \frac{d\vr}{dt}(t)\)</span> is (scalar) function of <span class="process-math">\(t\text{.}\)</span> This process will work with other ways of spliting the curve <span class="process-math">\(C\)</span> into different parts, but the algebra is more complex and not any more illuminating for understanding underlying ideas.</div>
+</div>
 <span class="incontext"><a href="S_Vector_ParamLineIntegrals.html#p-4579" class="internal">in-context</a></span>
 </body>
 </html>

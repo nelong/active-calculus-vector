@@ -5,7 +5,7 @@
 <!--*         https://pretextbook.org          *-->
 <!--*                                          *-->
 <!--********************************************-->
-<html lang="en-US">
+<html lang="en-US" dir="ltr">
 <head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Change of Variables</title>
@@ -16,20 +16,38 @@
 <meta property="book:author" content="Steve Schlicker">
 <meta property="book:author" content="Mitchel T. Keller">
 <meta property="book:author" content="Nicholas Long">
-<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
+<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>
+var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
 window.MathJax = {
-  tex: {
-    inlineMath: [['\\(','\\)']],
-    tags: "none",
-    tagSide: "right",
-    tagIndent: ".8em",
-    packages: {'[+]': ['base', 'extpfeil', 'ams', 'amscd', 'color', 'newcommand', 'knowl']}
+  "tex": {
+    "inlineMath": [
+      [
+        "\\(",
+        "\\)"
+      ]
+    ],
+    "tags": "none",
+    "tagSide": "right",
+    "tagIndent": ".8em",
+    "packages": {
+      "[+]": [
+        "base",
+        "extpfeil",
+        "ams",
+        "amscd",
+        "color",
+        "newcommand",
+        "knowl"
+      ]
+    }
   },
-  options: {
-    ignoreHtmlClass: "tex2jax_ignore|ignore-math",
-    processHtmlClass: "process-math",
-    renderActions: {
-        findScript: [10, function (doc) {
+  "options": {
+    "ignoreHtmlClass": "tex2jax_ignore|ignore-math",
+    "processHtmlClass": "process-math",
+    "renderActions": {
+      "findScript": [
+        10,
+        function (doc) {
             document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
                 var display = !!node.type.match(/; *mode=display/);
                 var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
@@ -39,65 +57,70 @@ window.MathJax = {
                 math.end = {node: text, delim: '', n: 0};
                 doc.math.push(math);
             });
-        }, '']
-    },
+        },
+        ""
+      ]
+    }
   },
-  chtml: {
-    scale: 0.98,
-    mtextInheritFont: true
+  "chtml": {
+    "scale": 0.98,
+    "mtextInheritFont": true
   },
-  loader: {
-    load: ['input/asciimath', '[tex]/extpfeil', '[tex]/amscd', '[tex]/color', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
-    paths: {pretext: "https://pretextbook.org/js/lib"},
+  "loader": {
+    "load": [
+      "input/asciimath",
+      "[tex]/extpfeil",
+      "[tex]/amscd",
+      "[tex]/color",
+      "[tex]/newcommand",
+      "[pretext]/mathjaxknowl3.js"
+    ],
+    "paths": {
+      "pretext": "https://pretextbook.org/js/lib"
+    }
   },
-  startup: {
+  "startup": {
     pageReady() {
       return MathJax.startup.defaultPageReady().then(function () {
       console.log("in ready function");
       rsMathReady();
       }
     )}
-  },
+  }
 };
 </script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><link href="https://webwork-ptx.aimath.org/webwork2_files/js/apps/MathView/mathview.css" rel="stylesheet">
-<script src="https://pretextbook.org/js/0.2/pretext-webwork/2.17/pretext-webwork.js"></script><script src="https://webwork-ptx.aimath.org/webwork2_files/node_modules/iframe-resizer/js/iframeResizer.min.js"></script><script async="" src="https://cse.google.com/cse.js?cx=015103900096539427448:ngwuia10qci"></script><script src="https://unpkg.com/lunr/lunr.js"></script><script src="lunr-pretext-search-index.js" async=""></script><script src="https://pretextbook.org/js/0.2/pretext_search.js"></script><link href="https://pretextbook.org/css/0.6/pretext_search.css" rel="stylesheet" type="text/css">
-<script>js_version = 0.2</script><script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.2/pretext.js"></script><script>miniversion=0.1</script><script src="https://pretextbook.org/js/0.2/pretext_add_on.js?x=1"></script><script src="https://pretextbook.org/js/0.2/user_preferences.js"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
+<script src="https://pretextbook.org/js/0.3/pretext-webwork/2.17/pretext-webwork.js"></script><script src="https://webwork-ptx.aimath.org/webwork2_files/node_modules/iframe-resizer/js/iframeResizer.min.js"></script><script async="" src="https://cse.google.com/cse.js?cx=015103900096539427448:ngwuia10qci"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js" integrity="sha512-4xUl/d6D6THrAnXAwGajXkoWaeMNwEKK4iNfq5DotEbLPAfk6FSxSP3ydNxqDgCw1c/0Z1Jg6L8h2j+++9BZmg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="lunr-pretext-search-index.js" async=""></script><script src="https://pretextbook.org/js/0.3/pretext_search.js"></script><link href="https://pretextbook.org/css/0.7/pretext_search.css" rel="stylesheet" type="text/css">
+<script>js_version = 0.3</script><script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.3/pretext.js"></script><script>miniversion=0.1</script><script src="https://pretextbook.org/js/0.3/pretext_add_on.js?x=1"></script><script src="https://pretextbook.org/js/0.3/user_preferences.js"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
 </script><link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700&amp;family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&amp;family=Tinos:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" rel="stylesheet">
 <link href="https://fonts.cdnfonts.com/css/dejavu-serif" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:opsz,wdth,wght@8..144,50..150,100..900&amp;display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wdth,wght@75..100,300..800&amp;display=swap" rel="stylesheet">
-<link href="https://pretextbook.org/css/0.6/pretext.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.6/pretext_add_on.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.6/shell_default.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.6/banner_default.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.6/navbar_default.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.6/toc_default.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.6/knowls_default.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.6/style_default.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.6/colors_blue_grey.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.6/setcolors.css" rel="stylesheet" type="text/css">
-<!--Start: Google Global Site Tag code--><!--*** DO NOT COPY ANOTHER PROJECT'S MAGIC NUMBERS/ID ***--><!--***           GET YOUR OWN FROM GOOGLE             ***-->
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-QJKN634F7R"></script><script>  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-QJKN634F7R');
-</script><!--End: Google Global Site Tag code-->
+<link href="https://pretextbook.org/css/0.7/pretext.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/pretext_add_on.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/shell_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/banner_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/navbar_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/toc_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/knowls_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/style_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/colors_blue_grey.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/setcolors.css" rel="stylesheet" type="text/css">
 </head>
 <body id="acmulti" class="pretext book ignore-math">
-<a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead"><div class="ptx-banner">
-<a id="logo-link" href=""></a><div class="title-container">
+<a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead"><div class="ptx-banner">
+<a id="logo-link" class="logo-link" href=""></a><div class="title-container">
 <h1 class="heading"><a href="book-1.html"><span class="title">Active Calculus - Multivariable + Vector</span></a></h1>
 <p class="byline">Steve Schlicker, Mitchel T. Keller, Nicholas Long</p>
 </div>
-<div id="searchresultsplaceholder" style="display: none">
-<button id="closesearchresults" onclick="document.getElementById('searchresultsplaceholder').style.display = 'none'; return false;">x</button><h2>Search Results: <span id="searchterms"></span>
+<div id="searchresultsplaceholder" class="searchresultsplaceholder" style="display: none">
+<button id="closesearchresults" class="closesearchresults" onclick="document.getElementById('searchresultsplaceholder').style.display = 'none'; return false;">x</button><h2>Search Results: <span id="searchterms" class="searchterms"></span>
 </h2>
-<div id="searchempty"><span>No results.</span></div>
-<ol id="searchresults"></ol>
+<div id="searchempty" class="searchempty"><span>No results.</span></div>
+<ol id="searchresults" class="searchresults"></ol>
 </div>
-</div></header><nav id="ptx-navbar" class="navbar"><button class="toc-toggle button" aria-label="Show or hide table of contents"><span class="icon">☰</span><span class="name">Contents</span></button><a class="index-button button" href="index-1.html" title="Index"><span class="name">Index</span></a><button id="user-preferences-button" class="user-preferences-button button" title="Modify user preferences"><span id="theavatarbutton" class="name">You!</span><div id="preferences_menu_holder" class="hidden"><ol id="preferences_menu" style="font-family: 'Roboto Serif', serif;">
+</div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><button class="toc-toggle button" aria-label="Show or hide table of contents"><span class="icon">☰</span><span class="name">Contents</span></button><a class="index-button button" href="index-1.html" title="Index"><span class="name">Index</span></a><button id="user-preferences-button" class="user-preferences-button button" title="Modify user preferences"><span id="avatarbutton" class="avatarbutton name">You!</span><div id="preferences_menu_holder" class="preferences_menu_holder hidden"><ol id="preferences_menu" class="preferences_menu" style="font-family: 'Roboto Serif', serif;">
 <li data-env="avatar" tabindex="-1">Choose avatar<div class="wrap_to_submenu"><span class="to_submenu">▻</span></div>
 <ol class="hidden avatar">
 <li data-val="You!" tabindex="-1">
@@ -201,7 +224,7 @@ window.MathJax = {
 </li>
 </ol></div></button><span class="treebuttons"><a class="previous-button button" href="S-11-8-Triple-Integrals-Cylindrical-Spherical.html" title="Previous"><span class="icon">&lt;</span><span class="name">Prev</span></a><a class="up-button button" href="C-11.html" title="Up"><span class="icon">^</span><span class="name">Up</span></a><a class="next-button button" href="C_Vector.html" title="Next"><span class="name">Next</span><span class="icon">&gt;</span></a></span><div class="searchwrapper" role="search"><div class="gcse-search"></div></div>
 <div class="searchbox"><div class="searchwidget">
-<input id="ptxsearch" type="text" name="terms" placeholder="Search" onchange="doSearch()"><button id="searchbutton" type="button" onclick="doSearch()">🔍</button>
+<input id="ptxsearch" class="ptxsearch" type="text" name="terms" placeholder="Search" onchange="doSearch()"><button id="searchbutton" class="searchbutton" type="button" onclick="doSearch()">🔍</button>
 </div></div></nav><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\newcommand{\R}{\mathbb{R}}
 \newcommand{\va}{\mathbf{a}}
 \newcommand{\vb}{\mathbf{b}}
@@ -246,7 +269,7 @@ window.MathJax = {
 \newcommand{\fillinmath}[1]{\mathchoice{\colorbox{fillinmathshade}{$\displaystyle     \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\textstyle        \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptstyle      \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptscriptstyle\phantom{\,#1\,}$}}}
 \)</span></div>
 <div class="ptx-page">
-<div id="ptx-sidebar"><nav id="ptx-toc" class="depth2"><ul class="structural">
+<div id="ptx-sidebar" class="ptx-sidebar"><nav id="ptx-toc" class="ptx-toc depth2"><ul class="structural">
 <li>
 <div class="toc-item"><a href="frontmatter.html" class="internal"><span class="title">Front Matter</span></a></div>
 <ul class="structural">
@@ -574,14 +597,14 @@ window.MathJax = {
 </ul>
 </li>
 <li>
-<div class="toc-item"><a href="S_ScalarLineIntegral.html" class="internal"><span class="codenumber">12.5</span> <span class="title">Line Integrals of Scalar Functions</span></a></div>
+<div class="toc-item"><a href="S_Vector_ScalarLineIntegral.html" class="internal"><span class="codenumber">12.5</span> <span class="title">Line Integrals of Scalar Functions</span></a></div>
 <ul class="structural">
-<li><div class="toc-item"><a href="S_ScalarLineIntegral.html#subsection-124" class="internal"><span class="codenumber">12.5.1</span> <span class="title">Defining line integrals of scalar functions</span></a></div></li>
-<li><div class="toc-item"><a href="S_ScalarLineIntegral.html#subsection-125" class="internal"><span class="codenumber">12.5.2</span> <span class="title">Using Parameterizations to Calculate Scalar Line Integrals</span></a></div></li>
-<li><div class="toc-item"><a href="S_ScalarLineIntegral.html#subsection-126" class="internal"><span class="codenumber">12.5.3</span> <span class="title">Properties of Scalar Line Integrals</span></a></div></li>
-<li><div class="toc-item"><a href="S_ScalarLineIntegral.html#subsection-127" class="internal"><span class="codenumber">12.5.4</span> <span class="title">Visualizations of Scalar Line Integrals as Area Under a Curve</span></a></div></li>
-<li><div class="toc-item"><a href="S_ScalarLineIntegral.html#subsection-128" class="internal"><span class="codenumber">12.5.5</span> <span class="title">Summary</span></a></div></li>
-<li><div class="toc-item"><a href="S_ScalarLineIntegral.html#exercises-30" class="internal"><span class="codenumber">12.5.6</span> <span class="title">Exercises</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_ScalarLineIntegral.html#subsection-124" class="internal"><span class="codenumber">12.5.1</span> <span class="title">Defining line integrals of scalar functions</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_ScalarLineIntegral.html#subsection-125" class="internal"><span class="codenumber">12.5.2</span> <span class="title">Using Parameterizations to Calculate Scalar Line Integrals</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_ScalarLineIntegral.html#subsection-126" class="internal"><span class="codenumber">12.5.3</span> <span class="title">Properties of Scalar Line Integrals</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_ScalarLineIntegral.html#subsection-127" class="internal"><span class="codenumber">12.5.4</span> <span class="title">Visualizations of Scalar Line Integrals as Area Under a Curve</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_ScalarLineIntegral.html#subsection-128" class="internal"><span class="codenumber">12.5.5</span> <span class="title">Summary</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_ScalarLineIntegral.html#exercises-30" class="internal"><span class="codenumber">12.5.6</span> <span class="title">Exercises</span></a></div></li>
 </ul>
 </li>
 <li>
@@ -607,10 +630,10 @@ window.MathJax = {
 </ul>
 </li>
 <li>
-<div class="toc-item"><a href="S_Vector_GreensTheorem.html" class="internal"><span class="codenumber">12.8</span> <span class="title">Green's Theorem</span></a></div>
+<div class="toc-item"><a href="S_Vector_GreensTheorem.html" class="internal"><span class="codenumber">12.8</span> <span class="title">Green’s Theorem</span></a></div>
 <ul class="structural">
 <li><div class="toc-item"><a href="S_Vector_GreensTheorem.html#SS_Vector_GreensTheorem_Circulation" class="internal"><span class="codenumber">12.8.1</span> <span class="title">Circulation</span></a></div></li>
-<li><div class="toc-item"><a href="S_Vector_GreensTheorem.html#subsection-140" class="internal"><span class="codenumber">12.8.2</span> <span class="title">Green's Theorem</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_GreensTheorem.html#subsection-140" class="internal"><span class="codenumber">12.8.2</span> <span class="title">Green’s Theorem</span></a></div></li>
 <li><div class="toc-item"><a href="S_Vector_GreensTheorem.html#subsection-141" class="internal"><span class="codenumber">12.8.3</span> <span class="title">What happens when vector fields are not smooth?</span></a></div></li>
 <li><div class="toc-item"><a href="S_Vector_GreensTheorem.html#subsection-142" class="internal"><span class="codenumber">12.8.4</span> <span class="title">Summary</span></a></div></li>
 <li><div class="toc-item"><a href="S_Vector_GreensTheorem.html#exercises-33" class="internal"><span class="codenumber">12.8.5</span> <span class="title">Exercises</span></a></div></li>
@@ -620,27 +643,27 @@ window.MathJax = {
 <div class="toc-item"><a href="S_Vector_FluxInt.html" class="internal"><span class="codenumber">12.9</span> <span class="title">Flux Integrals</span></a></div>
 <ul class="structural">
 <li><div class="toc-item"><a href="S_Vector_FluxInt.html#SS_Vector_FluxInt_Idea" class="internal"><span class="codenumber">12.9.1</span> <span class="title">The Idea of the Flux of a Vector Field through a Surface</span></a></div></li>
-<li><div class="toc-item"><a href="S_Vector_FluxInt.html#subsection-144" class="internal"><span class="codenumber">12.9.2</span> <span class="title">Measuring the Flux of a Vector Field through a Surface</span></a></div></li>
-<li><div class="toc-item"><a href="S_Vector_FluxInt.html#SS_Vector_FluxInt_Calculate" class="internal"><span class="codenumber">12.9.3</span> <span class="title">Efficiently Calculating Flux Integrals</span></a></div></li>
-<li><div class="toc-item"><a href="S_Vector_FluxInt.html#subsection-146" class="internal"><span class="codenumber">12.9.4</span> <span class="title">Summary</span></a></div></li>
-<li><div class="toc-item"><a href="S_Vector_FluxInt.html#exercises-34" class="internal"><span class="codenumber">12.9.5</span> <span class="title">Exercises</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_FluxInt.html#subsection-144" class="internal"><span class="codenumber">12.9.2</span> <span class="title">The Details of Measuring the Flux of a Vector Field through a Surface</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_FluxInt.html#subsection-145" class="internal"><span class="codenumber">12.9.3</span> <span class="title">Summary</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_FluxInt.html#exercises-34" class="internal"><span class="codenumber">12.9.4</span> <span class="title">Exercises</span></a></div></li>
 </ul>
 </li>
 <li>
 <div class="toc-item"><a href="S_Vector_ScalarSurfaceIntegral.html" class="internal"><span class="codenumber">12.10</span> <span class="title">Surface Integrals of Scalar Valued Functions</span></a></div>
 <ul class="structural">
-<li><div class="toc-item"><a href="S_Vector_ScalarSurfaceIntegral.html#subsection-147" class="internal"><span class="codenumber">12.10.1</span> <span class="title">Defining surface integrals of scalar functions</span></a></div></li>
-<li><div class="toc-item"><a href="S_Vector_ScalarSurfaceIntegral.html#subsection-148" class="internal"><span class="codenumber">12.10.2</span> <span class="title">Properties of Scalar Surface Integrals</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_ScalarSurfaceIntegral.html#subsection-146" class="internal"><span class="codenumber">12.10.1</span> <span class="title">Defining surface integrals of scalar functions</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_ScalarSurfaceIntegral.html#subsection-147" class="internal"><span class="codenumber">12.10.2</span> <span class="title">Properties of Scalar Surface Integrals</span></a></div></li>
 <li><div class="toc-item"><a href="S_Vector_ScalarSurfaceIntegral.html#exercises-35" class="internal"><span class="codenumber">12.10.3</span> <span class="title">Exercises</span></a></div></li>
 </ul>
 </li>
 <li>
-<div class="toc-item"><a href="S_Vector_StokesThm.html" class="internal"><span class="codenumber">12.11</span> <span class="title">Stokes' Theorem</span></a></div>
+<div class="toc-item"><a href="S_Vector_StokesThm.html" class="internal"><span class="codenumber">12.11</span> <span class="title">Stokes’ Theorem</span></a></div>
 <ul class="structural">
-<li><div class="toc-item"><a href="S_Vector_StokesThm.html#SS_Vector_StokesThm_Development" class="internal"><span class="codenumber">12.11.1</span> <span class="title">Circulation in three dimensions and Stokes' Theorem</span></a></div></li>
-<li><div class="toc-item"><a href="S_Vector_StokesThm.html#SS_Vector_StokesThm_Verify" class="internal"><span class="codenumber">12.11.2</span> <span class="title">Verifying and Applying Stokes' Theorem</span></a></div></li>
-<li><div class="toc-item"><a href="S_Vector_StokesThm.html#subsection-151" class="internal"><span class="codenumber">12.11.3</span> <span class="title">Summary</span></a></div></li>
-<li><div class="toc-item"><a href="S_Vector_StokesThm.html#exercises-36" class="internal"><span class="codenumber">12.11.4</span> <span class="title">Exercises</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_StokesThm.html#SS_Vector_StokesThm_Development" class="internal"><span class="codenumber">12.11.1</span> <span class="title">Circulation in three dimensions and Stokes’ Theorem</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_StokesThm.html#SS_Vector_StokesThm_Verify" class="internal"><span class="codenumber">12.11.2</span> <span class="title">Verifying and Applying Stokes’ Theorem</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_StokesThm.html#surfaceboundaries" class="internal"><span class="codenumber">12.11.3</span> <span class="title">Practice with Surfaces and thier Boundaries</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_StokesThm.html#subsection-151" class="internal"><span class="codenumber">12.11.4</span> <span class="title">Summary</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_StokesThm.html#exercises-36" class="internal"><span class="codenumber">12.11.5</span> <span class="title">Exercises</span></a></div></li>
 </ul>
 </li>
 <li>
@@ -665,9 +688,9 @@ window.MathJax = {
 </h2>
 <article class="objectives goal-like" id="objectives-25"><h3 class="heading"><span class="type">Motivating Questions</span></h3>
 <ul class="disc">
-<li id="li-1500"><div class="para" id="p-4222">What is a change of variables?</div></li>
-<li id="li-1501"><div class="para" id="p-4223">What is the Jacobian, and how is it related to a change of variables?</div></li>
-</ul></article><section class="introduction" id="introduction-25"><div class="para logical" id="p-4224">
+<li id="li-1472"><div class="para" id="p-4194">What is a change of variables?</div></li>
+<li id="li-1473"><div class="para" id="p-4195">What is the Jacobian, and how is it related to a change of variables?</div></li>
+</ul></article><section class="introduction" id="introduction-25"><div class="para logical" id="p-4196">
 <div class="para">In single variable calculus, we encountered the idea of a change of variable in a definite integral through the method of substitution. For example, given the definite integral</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -680,10 +703,10 @@ window.MathJax = {
 \int_0^2 2x(x^2+1)^3 \, dx = \int_1^5 u^3 \, du.
 \end{equation*}
 </div>
-</div> <div class="para" id="p-4225">The latter integral, of course, is far easier to evaluate.</div> <div class="para" id="p-4226">Through our work with polar, cylindrical, and spherical coordinates, we have already implicitly seen some of the issues that arise in using a change of variables with two or three variables present. In what follows, we seek to understand the general ideas behind any change of variables in a multiple integral.</div> <article class="exploration project-like" id="PA_11_9"><h3 class="heading">
+</div> <div class="para" id="p-4197">The latter integral, of course, is far easier to evaluate.</div> <div class="para" id="p-4198">Through our work with polar, cylindrical, and spherical coordinates, we have already implicitly seen some of the issues that arise in using a change of variables with two or three variables present. In what follows, we seek to understand the general ideas behind any change of variables in a multiple integral.</div> <article class="exploration project-like" id="PA_11_9"><h3 class="heading">
 <span class="type">Preview Activity</span><span class="space"> </span><span class="codenumber">11.9.1</span><span class="period">.</span>
 </h3>
-<div class="para logical" id="p-4227">
+<div class="para logical" id="p-4199">
 <div class="para">Consider the double integral</div>
 <div class="displaymath process-math" id="eq_11_9_COV_PA">
 \begin{equation}
@@ -692,12 +715,12 @@ I = \iint_D x^2+y^2 \, dA,\tag{11.9.1}
 </div>
 <div class="para">where <span class="process-math">\(D\)</span> is the upper half of the unit disk.</div>
 </div> <ol class="lower-alpha">
-<li id="li-1502"><div class="para" id="p-derived-li-1502"><ol class="lower-roman">
-<li id="li-1503"><div class="para" id="p-4228">Write the double integral <span class="process-math">\(I\)</span> given in Equation <a href="" class="xref" data-knowl="./knowl/eq_11_9_COV_PA.html" title="Equation 11.9.1">(11.9.1)</a> as an iterated integral in rectangular coordinates.</div></li>
-<li id="li-1504"><div class="para" id="p-4229">Write the double integral <span class="process-math">\(I\)</span> given in Equation  <a href="" class="xref" data-knowl="./knowl/eq_11_9_COV_PA.html" title="Equation 11.9.1">(11.9.1)</a> as an iterated integral in polar coordinates.</div></li>
+<li id="li-1474"><div class="para" id="p-derived-li-1474"><ol class="lower-roman">
+<li id="li-1475"><div class="para" id="p-4200">Write the double integral <span class="process-math">\(I\)</span> given in Equation <a href="" class="xref" data-knowl="./knowl/eq_11_9_COV_PA.html" title="Equation 11.9.1">(11.9.1)</a> as an iterated integral in rectangular coordinates.</div></li>
+<li id="li-1476"><div class="para" id="p-4201">Write the double integral <span class="process-math">\(I\)</span> given in Equation  <a href="" class="xref" data-knowl="./knowl/eq_11_9_COV_PA.html" title="Equation 11.9.1">(11.9.1)</a> as an iterated integral in polar coordinates.</div></li>
 </ol></div></li>
-<li id="li-1505">
-<div class="para logical" id="p-4230">
+<li id="li-1477">
+<div class="para logical" id="p-4202">
 <div class="para">When we write the double integral <a href="" class="xref" data-knowl="./knowl/eq_11_9_COV_PA.html" title="Equation 11.9.1">(11.9.1)</a> as an iterated integral in polar coordinates we make a change of variables, namely</div>
 <div class="displaymath process-math" data-contains-math-knowls="./knowl/eq_11_9_COV_PA.html" id="eq_11_9_pol_to_rect">
 \begin{equation}
@@ -705,19 +728,19 @@ x = r \cos(\theta)  \ \ \ \ \ \text{ and }  \ \ \ \ \ y = r \sin(\theta).\tag{11
 \end{equation}
 </div>
 </div>
-<div class="para" id="p-4231">We also then have to change <span class="process-math">\(dA\)</span> to <span class="process-math">\(r \, dr \, d\theta\text{.}\)</span> This process also identifies a “polar rectangle” <span class="process-math">\([r_1, r_2] \times [\theta_1, \theta_2]\)</span> with the original Cartesian rectangle, under the transformation<a href="" data-knowl="" class="id-ref fn-knowl original" data-refid="hk-fn-25" id="fn-25"><sup> 1 </sup></a> in Equation <a href="" class="xref" data-knowl="./knowl/eq_11_9_pol_to_rect.html" title="Equation 11.9.2">(11.9.2)</a>. The vertices of the polar rectangle are transformed into the vertices of a closed and bounded region in rectangular coordinates.</div>
-<div class="para" id="p-4232">To work with a numerical example, let's now consider the polar rectangle <span class="process-math">\(P\)</span> given by <span class="process-math">\([1, 2] \times [\frac{\pi}{6}, \frac{\pi}{4}]\text{,}\)</span> so that <span class="process-math">\(r_1 = 1\text{,}\)</span> <span class="process-math">\(r_2=2\text{,}\)</span> <span class="process-math">\(\theta_1 = \frac{\pi}{6}\text{,}\)</span> and <span class="process-math">\(\theta_2 = \frac{\pi}{4}\text{.}\)</span>
+<div class="para" id="p-4203">We also then have to change <span class="process-math">\(dA\)</span> to <span class="process-math">\(r \, dr \, d\theta\text{.}\)</span> This process also identifies a “polar rectangle” <span class="process-math">\([r_1, r_2] \times [\theta_1, \theta_2]\)</span> with the original Cartesian rectangle, under the transformation<a href="" data-knowl="" class="id-ref fn-knowl original" data-refid="hk-fn-25" id="fn-25"><sup> 1 </sup></a> in Equation <a href="" class="xref" data-knowl="./knowl/eq_11_9_pol_to_rect.html" title="Equation 11.9.2">(11.9.2)</a>. The vertices of the polar rectangle are transformed into the vertices of a closed and bounded region in rectangular coordinates.</div>
+<div class="para" id="p-4204">To work with a numerical example, let’s now consider the polar rectangle <span class="process-math">\(P\)</span> given by <span class="process-math">\([1, 2] \times [\frac{\pi}{6}, \frac{\pi}{4}]\text{,}\)</span> so that <span class="process-math">\(r_1 = 1\text{,}\)</span> <span class="process-math">\(r_2=2\text{,}\)</span> <span class="process-math">\(\theta_1 = \frac{\pi}{6}\text{,}\)</span> and <span class="process-math">\(\theta_2 = \frac{\pi}{4}\text{.}\)</span>
 </div>
 <ol class="lower-roman">
-<li id="li-1506"><div class="para" id="p-4233">Use the transformation determined by the equations in <a href="" class="xref" data-knowl="./knowl/eq_11_9_pol_to_rect.html" title="Equation 11.9.2">(11.9.2)</a> to find the rectangular vertices that correspond to the polar vertices in the polar rectangle <span class="process-math">\(P\text{.}\)</span> In other words, by substituting appropriate values of <span class="process-math">\(r\)</span> and <span class="process-math">\(\theta\)</span> into the two equations in <a href="" class="xref" data-knowl="./knowl/eq_11_9_pol_to_rect.html" title="Equation 11.9.2">(11.9.2)</a>, find the values of the corresponding <span class="process-math">\(x\)</span> and <span class="process-math">\(y\)</span> coordinates for the vertices of the polar rectangle <span class="process-math">\(P\text{.}\)</span> Label the point that corresponds to the polar vertex <span class="process-math">\((r_1, \theta_1)\)</span> as <span class="process-math">\((x_1, y_1)\text{,}\)</span> the point corresponding to the polar vertex <span class="process-math">\((r_2, \theta_1)\)</span> as <span class="process-math">\((x_2, y_2)\text{,}\)</span> the point corresponding to the polar vertex <span class="process-math">\((r_1, \theta_2)\)</span> as <span class="process-math">\((x_3, y_3)\text{,}\)</span> and the point corresponding to the polar vertex <span class="process-math">\((r_2, \theta_2)\)</span> as <span class="process-math">\((x_4, y_4)\text{.}\)</span>
+<li id="li-1478"><div class="para" id="p-4205">Use the transformation determined by the equations in <a href="" class="xref" data-knowl="./knowl/eq_11_9_pol_to_rect.html" title="Equation 11.9.2">(11.9.2)</a> to find the rectangular vertices that correspond to the polar vertices in the polar rectangle <span class="process-math">\(P\text{.}\)</span> In other words, by substituting appropriate values of <span class="process-math">\(r\)</span> and <span class="process-math">\(\theta\)</span> into the two equations in <a href="" class="xref" data-knowl="./knowl/eq_11_9_pol_to_rect.html" title="Equation 11.9.2">(11.9.2)</a>, find the values of the corresponding <span class="process-math">\(x\)</span> and <span class="process-math">\(y\)</span> coordinates for the vertices of the polar rectangle <span class="process-math">\(P\text{.}\)</span> Label the point that corresponds to the polar vertex <span class="process-math">\((r_1, \theta_1)\)</span> as <span class="process-math">\((x_1, y_1)\text{,}\)</span> the point corresponding to the polar vertex <span class="process-math">\((r_2, \theta_1)\)</span> as <span class="process-math">\((x_2, y_2)\text{,}\)</span> the point corresponding to the polar vertex <span class="process-math">\((r_1, \theta_2)\)</span> as <span class="process-math">\((x_3, y_3)\text{,}\)</span> and the point corresponding to the polar vertex <span class="process-math">\((r_2, \theta_2)\)</span> as <span class="process-math">\((x_4, y_4)\text{.}\)</span>
 </div></li>
-<li id="li-1507"><div class="para" id="p-4234">Draw a picture of the figure in rectangular coordinates that has the points <span class="process-math">\((x_1,y_1)\text{,}\)</span> <span class="process-math">\((x_2,y_2)\text{,}\)</span> <span class="process-math">\((x_3, y_3)\text{,}\)</span> and <span class="process-math">\((x_4,y_4)\)</span> as vertices. (Note carefully that because of the trigonometric functions in the transformation, this region will not look like a Cartesian rectangle.) What is the area of this region in rectangular coordinates? How does this area compare to the area of the original polar rectangle?</div></li>
+<li id="li-1479"><div class="para" id="p-4206">Draw a picture of the figure in rectangular coordinates that has the points <span class="process-math">\((x_1,y_1)\text{,}\)</span> <span class="process-math">\((x_2,y_2)\text{,}\)</span> <span class="process-math">\((x_3, y_3)\text{,}\)</span> and <span class="process-math">\((x_4,y_4)\)</span> as vertices. (Note carefully that because of the trigonometric functions in the transformation, this region will not look like a Cartesian rectangle.) What is the area of this region in rectangular coordinates? How does this area compare to the area of the original polar rectangle?</div></li>
 </ol>
 </li>
 </ol></article></section><section class="subsection" id="subsection-99"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">11.9.1</span> <span class="title">Change of Variables in Polar Coordinates</span>
 </h3>
-<div class="para logical" id="p-4235">
+<div class="para logical" id="p-4207">
 <div class="para">The general idea behind a change of variables is suggested by <a href="" class="xref" data-knowl="./knowl/PA_11_9.html" title="Preview Activity 11.9.1">Preview Activity 11.9.1</a>. There, we saw that in a change of variables from rectangular coordinates to polar coordinates, a polar rectangle <span class="process-math">\([r_1, r_2] \times [\theta_1, \theta_2]\)</span> gets mapped to a Cartesian rectangle under the transformation</div>
 <div class="displaymath process-math" data-contains-math-knowls="./knowl/PA_11_9.html">
 \begin{equation*}
@@ -725,13 +748,13 @@ x = r \cos(\theta)  \ \ \ \ \ \text{ and }  \ \ \ \ \ y = r \sin(\theta).
 \end{equation*}
 </div>
 </div>
-<div class="para" id="p-4236">The vertices of the polar rectangle <span class="process-math">\(P\)</span> are transformed into the vertices of a closed and bounded region <span class="process-math">\(P'\)</span> in rectangular coordinates. If we view the standard coordinate system as having the horizontal axis represent <span class="process-math">\(r\)</span> and the vertical axis represent <span class="process-math">\(\theta\text{,}\)</span> then the polar rectangle <span class="process-math">\(P\)</span> appears to us at left in <a href="" class="xref" data-knowl="./knowl/F_11_9_Change_vars1_a.html" title="Figure 11.9.1">Figure 11.9.1</a>. The image <span class="process-math">\(P'\)</span> of the polar rectangle <span class="process-math">\(P\)</span> under the transformation given by <a href="" class="xref" data-knowl="./knowl/eq_11_9_pol_to_rect.html" title="Equation 11.9.2">(11.9.2)</a> is shown at right in <a href="" class="xref" data-knowl="./knowl/F_11_9_Change_vars1_a.html" title="Figure 11.9.1">Figure 11.9.1</a>. We thus see that there is a correspondence between a simple region (a traditional, right-angled rectangle) and a more complicated region (a fraction of an annulus) under the function <span class="process-math">\(T\)</span> given by <span class="process-math">\(T(r, \theta) = (r\cos(\theta), r\sin(\theta))\text{.}\)</span>
+<div class="para" id="p-4208">The vertices of the polar rectangle <span class="process-math">\(P\)</span> are transformed into the vertices of a closed and bounded region <span class="process-math">\(P'\)</span> in rectangular coordinates. If we view the standard coordinate system as having the horizontal axis represent <span class="process-math">\(r\)</span> and the vertical axis represent <span class="process-math">\(\theta\text{,}\)</span> then the polar rectangle <span class="process-math">\(P\)</span> appears to us at left in <a href="" class="xref" data-knowl="./knowl/F_11_9_Change_vars1_a.html" title="Figure 11.9.1">Figure 11.9.1</a>. The image <span class="process-math">\(P'\)</span> of the polar rectangle <span class="process-math">\(P\)</span> under the transformation given by <a href="" class="xref" data-knowl="./knowl/eq_11_9_pol_to_rect.html" title="Equation 11.9.2">(11.9.2)</a> is shown at right in <a href="" class="xref" data-knowl="./knowl/F_11_9_Change_vars1_a.html" title="Figure 11.9.1">Figure 11.9.1</a>. We thus see that there is a correspondence between a simple region (a traditional, right-angled rectangle) and a more complicated region (a fraction of an annulus) under the function <span class="process-math">\(T\)</span> given by <span class="process-math">\(T(r, \theta) = (r\cos(\theta), r\sin(\theta))\text{.}\)</span>
 </div>
 <figure class="figure figure-like" id="F_11_9_Change_vars1_a"><div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="external/images/fig_11_9_polar_change.svg" role="img" class="contained"></div>
-<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">11.9.1<span class="period">.</span></span><span class="space"> </span>A rectangle <span class="process-math">\(P\)</span> and its image <span class="process-math">\(P'\text{.}\)</span></figcaption></figure><div class="para" id="p-4237">Furthermore, as <a href="" class="xref" data-knowl="./knowl/PA_11_9.html" title="Preview Activity 11.9.1">Preview Activity 11.9.1</a> suggests, it follows generally that for an original polar rectangle <span class="process-math">\(P = [r_1, r_2] \times [\theta_1, \theta_2]\text{,}\)</span> the area of the transformed rectangle <span class="process-math">\(P'\)</span> is given by <span class="process-math">\(\frac{r_2+r_1}{2} \Delta r \Delta \theta\text{.}\)</span> Therefore, as <span class="process-math">\(\Delta r\)</span> and <span class="process-math">\(\Delta \theta\)</span> go to 0 this area becomes the familiar area element <span class="process-math">\(dA = r \, dr \, d\theta\)</span> in polar coordinates. When we proceed to working with other transformations for different changes in coordinates, we have to understand how the transformation affects area so that we may use the correct area element in the new system of variables.</div></section><section class="subsection" id="subsection-100"><h3 class="heading hide-type">
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">11.9.1<span class="period">.</span></span><span class="space"> </span>A rectangle <span class="process-math">\(P\)</span> and its image <span class="process-math">\(P'\text{.}\)</span></figcaption></figure><div class="para" id="p-4209">Furthermore, as <a href="" class="xref" data-knowl="./knowl/PA_11_9.html" title="Preview Activity 11.9.1">Preview Activity 11.9.1</a> suggests, it follows generally that for an original polar rectangle <span class="process-math">\(P = [r_1, r_2] \times [\theta_1, \theta_2]\text{,}\)</span> the area of the transformed rectangle <span class="process-math">\(P'\)</span> is given by <span class="process-math">\(\frac{r_2+r_1}{2} \Delta r \Delta \theta\text{.}\)</span> Therefore, as <span class="process-math">\(\Delta r\)</span> and <span class="process-math">\(\Delta \theta\)</span> go to 0 this area becomes the familiar area element <span class="process-math">\(dA = r \, dr \, d\theta\)</span> in polar coordinates. When we proceed to working with other transformations for different changes in coordinates, we have to understand how the transformation affects area so that we may use the correct area element in the new system of variables.</div></section><section class="subsection" id="subsection-100"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">11.9.2</span> <span class="title">General Change of Coordinates</span>
 </h3>
-<div class="para logical" id="p-4238">
+<div class="para logical" id="p-4210">
 <div class="para">We first focus on double integrals. As with single integrals, we may be able to simplify a double integral of the form</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -749,29 +772,29 @@ x = x(s, t) \ \ \ \ \ \text{ and }  \ \ \ \ \  y = y(s, t)
 <article class="activity project-like" id="A_11_9_1"><h4 class="heading">
 <span class="type">Activity</span><span class="space"> </span><span class="codenumber">11.9.2</span><span class="period">.</span>
 </h4>
-<div class="para logical" id="p-4239">
+<div class="para logical" id="p-4211">
 <div class="para">Consider the change of variables</div>
 <div class="displaymath process-math">
 \begin{equation*}
 x = s + 2 t \ \ \ \ \ \text{ and }  \ \ \ \ \ y = 2 s + \sqrt{t}.
 \end{equation*}
 </div>
-</div> <div class="para logical" id="p-4240">
-<div class="para">Let's see what happens to the rectangle <span class="process-math">\(T = [0,1] \times [1,4]\)</span> in the <span class="process-math">\(st\)</span>-plane under this change of variable.</div>
+</div> <div class="para logical" id="p-4212">
+<div class="para">Let’s see what happens to the rectangle <span class="process-math">\(T = [0,1] \times [1,4]\)</span> in the <span class="process-math">\(st\)</span>-plane under this change of variable.</div>
 <ol class="lower-alpha">
-<li id="li-1508"><div class="para" id="p-4241">Draw a labeled picture of <span class="process-math">\(T\)</span> in the <span class="process-math">\(st\)</span>-plane.</div></li>
-<li id="li-1509"><div class="para" id="p-4242">Find the image of the <span class="process-math">\(st\)</span>-vertex <span class="process-math">\((0,1)\)</span> in the <span class="process-math">\(xy\)</span>-plane.  Likewise, find the respective images of the other three vertices of the rectangle <span class="process-math">\(T\text{:}\)</span> <span class="process-math">\((0,4)\text{,}\)</span> <span class="process-math">\((1,1)\text{,}\)</span> and <span class="process-math">\((1,4)\text{.}\)</span>
+<li id="li-1480"><div class="para" id="p-4213">Draw a labeled picture of <span class="process-math">\(T\)</span> in the <span class="process-math">\(st\)</span>-plane.</div></li>
+<li id="li-1481"><div class="para" id="p-4214">Find the image of the <span class="process-math">\(st\)</span>-vertex <span class="process-math">\((0,1)\)</span> in the <span class="process-math">\(xy\)</span>-plane.  Likewise, find the respective images of the other three vertices of the rectangle <span class="process-math">\(T\text{:}\)</span> <span class="process-math">\((0,4)\text{,}\)</span> <span class="process-math">\((1,1)\text{,}\)</span> and <span class="process-math">\((1,4)\text{.}\)</span>
 </div></li>
-<li id="li-1510"><div class="para" id="p-4243">In the <span class="process-math">\(xy\)</span>-plane, draw a labeled picture of the image, <span class="process-math">\(T'\text{,}\)</span> of the original <span class="process-math">\(st\)</span>-rectangle <span class="process-math">\(T\text{.}\)</span> What appears to be the shape of the image, <span class="process-math">\(T'\text{?}\)</span>
+<li id="li-1482"><div class="para" id="p-4215">In the <span class="process-math">\(xy\)</span>-plane, draw a labeled picture of the image, <span class="process-math">\(T'\text{,}\)</span> of the original <span class="process-math">\(st\)</span>-rectangle <span class="process-math">\(T\text{.}\)</span> What appears to be the shape of the image, <span class="process-math">\(T'\text{?}\)</span>
 </div></li>
-<li id="li-1511"><div class="para" id="p-4244">To transform an integral with a change of variables,  we need to determine the area element <span class="process-math">\(dA\)</span> for image of the  transformed rectangle. Note that <span class="process-math">\(T'\)</span> is not exactly a parallelogram since the equations that define the transformation are not linear. But we can approximate the area of <span class="process-math">\(T'\)</span> with the area of a parallelogram. How would we find the area of a parallelogram that approximates the area of the <span class="process-math">\(xy\)</span>-figure <span class="process-math">\(T'\text{?}\)</span> (Hint: Remember what the cross product of two vectors tells us.)</div></li>
+<li id="li-1483"><div class="para" id="p-4216">To transform an integral with a change of variables,  we need to determine the area element <span class="process-math">\(dA\)</span> for image of the  transformed rectangle. Note that <span class="process-math">\(T'\)</span> is not exactly a parallelogram since the equations that define the transformation are not linear. But we can approximate the area of <span class="process-math">\(T'\)</span> with the area of a parallelogram. How would we find the area of a parallelogram that approximates the area of the <span class="process-math">\(xy\)</span>-figure <span class="process-math">\(T'\text{?}\)</span> (Hint: Remember what the cross product of two vectors tells us.)</div></li>
 </ol>
-</div></article><div class="para" id="p-4245">
-<a href="" class="xref" data-knowl="./knowl/A_11_9_1.html" title="Activity 11.9.2">Activity 11.9.2</a> presents the general idea of how a change of variables works. We partition a rectangular domain in the <span class="process-math">\(st\)</span> system into subrectangles. Let <span class="process-math">\(T = [a, b] \times [a+\Delta s, b+\Delta t]\)</span> be one of these subrectangles. Then we transform this into a region <span class="process-math">\(T'\)</span> in the standard <span class="process-math">\(xy\)</span> Cartesian coordinate system. The region <span class="process-math">\(T'\)</span> is called the <em class="emphasis">image</em> of <span class="process-math">\(T\text{;}\)</span> the region <span class="process-math">\(T\)</span> is the <em class="emphasis">pre-image</em> of <span class="process-math">\(T'\text{.}\)</span> Although the sides of this <span class="process-math">\(xy\)</span> region <span class="process-math">\(T'\)</span> aren't necessarily straight (linear), we will approximate the element of area <span class="process-math">\(dA\)</span> for this region with the area of the parallelogram whose sides are given by the vectors <span class="process-math">\(\vv\)</span> and <span class="process-math">\(\vw\text{,}\)</span> where <span class="process-math">\(\vv\)</span> is the vector from <span class="process-math">\((x(a, b), y(a, b))\)</span> to <span class="process-math">\((x(a + \Delta s, b), y(a + \Delta s, b))\text{,}\)</span> and <span class="process-math">\(\vw\)</span> is the vector from <span class="process-math">\((x(a, b), y(a, b))\)</span> to <span class="process-math">\((x(a, b + \Delta t), y(a, b + \Delta t))\text{.}\)</span>
+</div></article><div class="para" id="p-4217">
+<a href="" class="xref" data-knowl="./knowl/A_11_9_1.html" title="Activity 11.9.2">Activity 11.9.2</a> presents the general idea of how a change of variables works. We partition a rectangular domain in the <span class="process-math">\(st\)</span> system into subrectangles. Let <span class="process-math">\(T = [a, b] \times [a+\Delta s, b+\Delta t]\)</span> be one of these subrectangles. Then we transform this into a region <span class="process-math">\(T'\)</span> in the standard <span class="process-math">\(xy\)</span> Cartesian coordinate system. The region <span class="process-math">\(T'\)</span> is called the <em class="emphasis">image</em> of <span class="process-math">\(T\text{;}\)</span> the region <span class="process-math">\(T\)</span> is the <em class="emphasis">pre-image</em> of <span class="process-math">\(T'\text{.}\)</span> Although the sides of this <span class="process-math">\(xy\)</span> region <span class="process-math">\(T'\)</span> aren’t necessarily straight (linear), we will approximate the element of area <span class="process-math">\(dA\)</span> for this region with the area of the parallelogram whose sides are given by the vectors <span class="process-math">\(\vv\)</span> and <span class="process-math">\(\vw\text{,}\)</span> where <span class="process-math">\(\vv\)</span> is the vector from <span class="process-math">\((x(a, b), y(a, b))\)</span> to <span class="process-math">\((x(a + \Delta s, b), y(a + \Delta s, b))\text{,}\)</span> and <span class="process-math">\(\vw\)</span> is the vector from <span class="process-math">\((x(a, b), y(a, b))\)</span> to <span class="process-math">\((x(a, b + \Delta t), y(a, b + \Delta t))\text{.}\)</span>
 </div>
-<div class="para" id="p-4246">An example of an image <span class="process-math">\(T'\)</span> in the <span class="process-math">\(xy\)</span>-plane that results from a transformation of a rectangle <span class="process-math">\(T\)</span> in the <span class="process-math">\(st\)</span>-plane is shown in <a href="" class="xref" data-knowl="./knowl/F_11_9_Change_vars_ex.html" title="Figure 11.9.2">Figure 11.9.2</a>.</div>
+<div class="para" id="p-4218">An example of an image <span class="process-math">\(T'\)</span> in the <span class="process-math">\(xy\)</span>-plane that results from a transformation of a rectangle <span class="process-math">\(T\)</span> in the <span class="process-math">\(st\)</span>-plane is shown in <a href="" class="xref" data-knowl="./knowl/F_11_9_Change_vars_ex.html" title="Figure 11.9.2">Figure 11.9.2</a>.</div>
 <figure class="figure figure-like" id="F_11_9_Change_vars_ex"><div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="external/images/fig_11_9_general_change.svg" role="img" class="contained"></div>
-<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">11.9.2<span class="period">.</span></span><span class="space"> </span>Approximating an area of an image resulting from a transformation.</figcaption></figure><div class="para logical" id="p-4247">
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">11.9.2<span class="period">.</span></span><span class="space"> </span>Approximating an area of an image resulting from a transformation.</figcaption></figure><div class="para logical" id="p-4219">
 <div class="para">The components of the vector <span class="process-math">\(\vv\)</span> are</div>
 <div class="displaymath process-math" id="md-40">
 \begin{align*}
@@ -785,7 +808,7 @@ x = s + 2 t \ \ \ \ \ \text{ and }  \ \ \ \ \ y = 2 s + \sqrt{t}.
 \end{align*}
 </div>
 </div>
-<div class="para logical" id="p-4248">
+<div class="para logical" id="p-4220">
 <div class="para">Slightly rewriting <span class="process-math">\(\vv\)</span> and <span class="process-math">\(\vw\text{,}\)</span> we have</div>
 <div class="displaymath process-math" id="md-42">
 \begin{align*}
@@ -794,7 +817,7 @@ x = s + 2 t \ \ \ \ \ \text{ and }  \ \ \ \ \ y = 2 s + \sqrt{t}.
 \end{align*}
 </div>
 </div>
-<div class="para logical" id="p-4249">
+<div class="para logical" id="p-4221">
 <div class="para">For small <span class="process-math">\(\Delta s\)</span> and <span class="process-math">\(\Delta t\text{,}\)</span> the definition of the partial derivative tells us that</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -802,7 +825,7 @@ x = s + 2 t \ \ \ \ \ \text{ and }  \ \ \ \ \ y = 2 s + \sqrt{t}.
 \end{equation*}
 </div>
 </div>
-<div class="para logical" id="p-4250">
+<div class="para logical" id="p-4222">
 <div class="para">Recall that the area of the parallelogram with sides <span class="process-math">\(\vv\)</span> and <span class="process-math">\(\vw\)</span> is the length of the cross product of the two vectors, <span class="process-math">\(|\vv \times \vw|\text{.}\)</span> From this, we observe that</div>
 <div class="displaymath process-math" id="md-43">
 \begin{align*}
@@ -811,7 +834,7 @@ x = s + 2 t \ \ \ \ \ \text{ and }  \ \ \ \ \ y = 2 s + \sqrt{t}.
 \end{align*}
 </div>
 </div>
-<div class="para logical" id="p-4251">
+<div class="para logical" id="p-4223">
 <div class="para">Finally, by computing the magnitude of the cross product, we see that</div>
 <div class="displaymath process-math" id="md-44">
 \begin{align*}
@@ -820,7 +843,7 @@ x = s + 2 t \ \ \ \ \ \text{ and }  \ \ \ \ \ y = 2 s + \sqrt{t}.
 \end{align*}
 </div>
 </div>
-<div class="para logical" id="p-4252">
+<div class="para logical" id="p-4224">
 <div class="para">Therefore, as the number of subdivisions increases without bound in each direction, <span class="process-math">\(\Delta s\)</span> and <span class="process-math">\(\Delta t\)</span> both go to zero, and we have</div>
 <div class="displaymath process-math" id="E_Area_Element">
 \begin{equation}
@@ -828,7 +851,7 @@ dA = \left|\frac{\partial x}{\partial s} \frac{\partial y}{\partial t} - \frac{\
 \end{equation}
 </div>
 </div>
-<div class="para logical" id="p-4253">
+<div class="para logical" id="p-4225">
 <div class="para">Equation <a href="" class="xref" data-knowl="./knowl/E_Area_Element.html" title="Equation 11.9.3">(11.9.3)</a> hence determines the general change of variable formula in a double integral, and we can now say that</div>
 <div class="displaymath process-math" data-contains-math-knowls="./knowl/E_Area_Element.html">
 \begin{equation*}
@@ -836,7 +859,7 @@ dA = \left|\frac{\partial x}{\partial s} \frac{\partial y}{\partial t} - \frac{\
 \end{equation*}
 </div>
 </div>
-<div class="para logical" id="p-4254">
+<div class="para logical" id="p-4226">
 <div class="para">The quantity</div>
 <div class="displaymath process-math" data-contains-math-knowls="./knowl/S-9-4-Cross-Product.html ./knowl/S-9-4-Cross-Product.html">
 \begin{equation*}
@@ -853,9 +876,9 @@ dA = \left|\frac{\partial x}{\partial s} \frac{\partial y}{\partial t} - \frac{\
 \end{array}  \right] \text{.}\)</span> Note that, as discussed in <a href="S-9-4-Cross-Product.html" class="internal" title="Section 9.4: The Cross Product">Section 9.4</a>, the absolute value of the determinant of <span class="process-math">\(\left[ \begin{array}{cc} \frac{\partial x}{\partial s} \amp  \frac{\partial x}{\partial t}  \\ \frac{\partial y}{\partial s} \amp  \frac{\partial y}{\partial t} 
 \end{array}  \right]\)</span> is the area of the parallelogram determined by the vectors <span class="process-math">\(\vv\)</span> and <span class="process-math">\(\vw\text{,}\)</span> and so the area element <span class="process-math">\(dA\)</span> in <span class="process-math">\(xy\)</span>-coordinates is also represented by the area element <span class="process-math">\(\left| \frac{\partial (x,y)}{\partial (s,t)} \right| \, ds \, dt\)</span> in <span class="process-math">\(st\)</span>-coordinates, and <span class="process-math">\(\left| \frac{\partial (x,y)}{\partial (s,t)} \right|\)</span> is the factor by which the transformation magnifies area.</div>
 </div>
-<div class="para" id="p-4255">To summarize, the preceding change of variable formula that we have derived now follows.</div>
+<div class="para" id="p-4227">To summarize, the preceding change of variable formula that we have derived now follows.</div>
 <article class="assemblage assemblage-like" id="Change-of-variable"><h4 class="heading"><span class="title">Change of Variables in a Double Integral.</span></h4>
-<div class="para logical" id="p-4256">
+<div class="para logical" id="p-4228">
 <div class="para">Suppose a change of variables <span class="process-math">\(x = x(s,t)\)</span> and <span class="process-math">\(y = y(s,t)\)</span> transforms a closed and bounded region <span class="process-math">\(R\)</span> in the <span class="process-math">\(st\)</span>-plane into a closed and bounded region <span class="process-math">\(R'\)</span> in the <span class="process-math">\(xy\)</span>-plane. Under modest conditions (that are studied in advanced calculus), it follows that</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -865,17 +888,17 @@ dA = \left|\frac{\partial x}{\partial s} \frac{\partial y}{\partial t} - \frac{\
 </div></article><article class="activity project-like" id="A_11_9_2"><h4 class="heading">
 <span class="type">Activity</span><span class="space"> </span><span class="codenumber">11.9.3</span><span class="period">.</span>
 </h4>
-<div class="para logical" id="p-4257">
+<div class="para logical" id="p-4229">
 <div class="para">Find the Jacobian when changing from rectangular to polar coordinates. That is, for the transformation given by <span class="process-math">\(x = r\cos(\theta)\text{,}\)</span> <span class="process-math">\(y = r\sin(\theta)\text{,}\)</span> determine a simplified expression for the quantity</div>
 <div class="displaymath process-math">
 \begin{equation*}
 \frac{\partial x}{\partial r} \frac{\partial y}{\partial \theta} - \frac{\partial x}{\partial \theta} \frac{\partial y}{\partial r}.
 \end{equation*}
 </div>
-</div> <div class="para" id="p-4258">What do you observe about your result? How is this connected to our earlier work with double integrals in polar coordinates?</div></article><article class="activity project-like" id="A_11_9_4"><h4 class="heading">
+</div> <div class="para" id="p-4230">What do you observe about your result? How is this connected to our earlier work with double integrals in polar coordinates?</div></article><article class="activity project-like" id="A_11_9_4"><h4 class="heading">
 <span class="type">Activity</span><span class="space"> </span><span class="codenumber">11.9.4</span><span class="period">.</span>
 </h4>
-<div class="para logical" id="p-4259">
+<div class="para logical" id="p-4231">
 <div class="para">Let <span class="process-math">\(D'\)</span> be the region in the <span class="process-math">\(xy\)</span>-plane bounded by the lines <span class="process-math">\(y=0\text{,}\)</span> <span class="process-math">\(x=0\text{,}\)</span> and <span class="process-math">\(x+y=1\text{.}\)</span> We will evaluate the double integral</div>
 <div class="displaymath process-math" id="eq_11_9_COV_ex">
 \begin{equation}
@@ -884,29 +907,29 @@ dA = \left|\frac{\partial x}{\partial s} \frac{\partial y}{\partial t} - \frac{\
 </div>
 <div class="para">with a change of variables.</div>
 </div> <ol class="lower-alpha">
-<li id="li-1512"><div class="para" id="p-4260">Sketch the region <span class="process-math">\(D'\)</span> in the <span class="process-math">\(xy\)</span>-plane.</div></li>
-<li id="li-1513"><div class="para" id="p-4261">We would like to make a substitution that makes the integrand easier to antidifferentiate. Let <span class="process-math">\(s = x+y\)</span> and <span class="process-math">\(t = x-y\text{.}\)</span> Explain why this should make antidifferentiation easier by making the corresponding substitutions and writing the new integrand in terms of <span class="process-math">\(s\)</span> and <span class="process-math">\(t\text{.}\)</span>
+<li id="li-1484"><div class="para" id="p-4232">Sketch the region <span class="process-math">\(D'\)</span> in the <span class="process-math">\(xy\)</span>-plane.</div></li>
+<li id="li-1485"><div class="para" id="p-4233">We would like to make a substitution that makes the integrand easier to antidifferentiate. Let <span class="process-math">\(s = x+y\)</span> and <span class="process-math">\(t = x-y\text{.}\)</span> Explain why this should make antidifferentiation easier by making the corresponding substitutions and writing the new integrand in terms of <span class="process-math">\(s\)</span> and <span class="process-math">\(t\text{.}\)</span>
 </div></li>
-<li id="li-1514"><div class="para" id="p-4262">Solve the equations <span class="process-math">\(s = x+y\)</span> and <span class="process-math">\(t = x-y\)</span> for <span class="process-math">\(x\)</span> and <span class="process-math">\(y\text{.}\)</span> (Doing so determines the standard form of the transformation, since we will have <span class="process-math">\(x\)</span> as a function of <span class="process-math">\(s\)</span> and <span class="process-math">\(t\text{,}\)</span> and <span class="process-math">\(y\)</span> as a function of <span class="process-math">\(s\)</span> and <span class="process-math">\(t\text{.}\)</span>)</div></li>
-<li id="li-1515">
-<div class="para" id="p-4263">To actually execute this change of variables, we need to know the <span class="process-math">\(st\)</span>-region <span class="process-math">\(D\)</span> that corresponds to the <span class="process-math">\(xy\)</span>-region <span class="process-math">\(D'\text{.}\)</span>
+<li id="li-1486"><div class="para" id="p-4234">Solve the equations <span class="process-math">\(s = x+y\)</span> and <span class="process-math">\(t = x-y\)</span> for <span class="process-math">\(x\)</span> and <span class="process-math">\(y\text{.}\)</span> (Doing so determines the standard form of the transformation, since we will have <span class="process-math">\(x\)</span> as a function of <span class="process-math">\(s\)</span> and <span class="process-math">\(t\text{,}\)</span> and <span class="process-math">\(y\)</span> as a function of <span class="process-math">\(s\)</span> and <span class="process-math">\(t\text{.}\)</span>)</div></li>
+<li id="li-1487">
+<div class="para" id="p-4235">To actually execute this change of variables, we need to know the <span class="process-math">\(st\)</span>-region <span class="process-math">\(D\)</span> that corresponds to the <span class="process-math">\(xy\)</span>-region <span class="process-math">\(D'\text{.}\)</span>
 </div>
 <ol class="lower-roman">
-<li id="li-1516"><div class="para" id="p-4264">What <span class="process-math">\(st\)</span> equation corresponds to the <span class="process-math">\(xy\)</span> equation <span class="process-math">\(x+y=1\text{?}\)</span>
+<li id="li-1488"><div class="para" id="p-4236">What <span class="process-math">\(st\)</span> equation corresponds to the <span class="process-math">\(xy\)</span> equation <span class="process-math">\(x+y=1\text{?}\)</span>
 </div></li>
-<li id="li-1517"><div class="para" id="p-4265">What <span class="process-math">\(st\)</span> equation corresponds to the <span class="process-math">\(xy\)</span> equation <span class="process-math">\(x=0\text{?}\)</span>
+<li id="li-1489"><div class="para" id="p-4237">What <span class="process-math">\(st\)</span> equation corresponds to the <span class="process-math">\(xy\)</span> equation <span class="process-math">\(x=0\text{?}\)</span>
 </div></li>
-<li id="li-1518"><div class="para" id="p-4266">What <span class="process-math">\(st\)</span> equation corresponds to the <span class="process-math">\(xy\)</span> equation <span class="process-math">\(y=0\text{?}\)</span>
+<li id="li-1490"><div class="para" id="p-4238">What <span class="process-math">\(st\)</span> equation corresponds to the <span class="process-math">\(xy\)</span> equation <span class="process-math">\(y=0\text{?}\)</span>
 </div></li>
-<li id="li-1519"><div class="para" id="p-4267">Sketch the <span class="process-math">\(st\)</span> region <span class="process-math">\(D\)</span> that corresponds to the <span class="process-math">\(xy\)</span> domain <span class="process-math">\(D'\text{.}\)</span>
+<li id="li-1491"><div class="para" id="p-4239">Sketch the <span class="process-math">\(st\)</span> region <span class="process-math">\(D\)</span> that corresponds to the <span class="process-math">\(xy\)</span> domain <span class="process-math">\(D'\text{.}\)</span>
 </div></li>
 </ol>
 </li>
-<li id="li-1520"><div class="para" id="p-4268">Make the change of variables indicated by <span class="process-math">\(s = x+y\)</span> and <span class="process-math">\(t = x-y\)</span> in the double integral <a href="" class="xref" data-knowl="./knowl/eq_11_9_COV_ex.html" title="Equation 11.9.4">(11.9.4)</a> and set up an iterated integral in <span class="process-math">\(st\)</span> variables whose value is the original given double integral. Finally, evaluate the iterated integral.</div></li>
+<li id="li-1492"><div class="para" id="p-4240">Make the change of variables indicated by <span class="process-math">\(s = x+y\)</span> and <span class="process-math">\(t = x-y\)</span> in the double integral <a href="" class="xref" data-knowl="./knowl/eq_11_9_COV_ex.html" title="Equation 11.9.4">(11.9.4)</a> and set up an iterated integral in <span class="process-math">\(st\)</span> variables whose value is the original given double integral. Finally, evaluate the iterated integral.</div></li>
 </ol></article></section><section class="subsection" id="subsection-101"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">11.9.3</span> <span class="title">Change of Variables in a Triple Integral</span>
 </h3>
-<div class="para logical" id="p-4269">
+<div class="para logical" id="p-4241">
 <div class="para">The argument for the change of variable formula for triple integrals is complicated, and we will not go into the details. The general process, though, is the same as the two-dimensional case. Given a solid <span class="process-math">\(S'\)</span> in the <span class="process-math">\(xyz\)</span>-coordinate system in <span class="process-math">\(\R^3\text{,}\)</span> a change of variables transformation <span class="process-math">\(x=x(s,t,u)\text{,}\)</span> <span class="process-math">\(y=y(s,t,u)\text{,}\)</span> and <span class="process-math">\(z = z(s,t,u)\)</span> transforms <span class="process-math">\(S'\)</span> into a region <span class="process-math">\(S\)</span> in <span class="process-math">\(stu\)</span>-coordinates. Any function <span class="process-math">\(f = f(x,y,z)\)</span> defined on <span class="process-math">\(S'\)</span> can be considered as a function <span class="process-math">\(f = f(x(s,t,u), y(s,y,u), z(s,t,u))\)</span> in <span class="process-math">\(stu\)</span>-coordinates defined on <span class="process-math">\(S\text{.}\)</span> The volume element <span class="process-math">\(dV\)</span> in <span class="process-math">\(xyz\)</span>-coordinates cooresponds to a scaled volume element in <span class="process-math">\(stu\)</span>-coordinates, where the scale factor is given by the absolute value of the Jacobian, <span class="process-math">\(\frac{\partial(x,y,z)}{\partial(s,t,u)}\text{,}\)</span> which is the determinant of the <span class="process-math">\(3 \times 3\)</span> matrix</div>
 <div class="displaymath process-math" data-contains-math-knowls="./knowl/S-9-4-Cross-Product.html">
 \begin{equation*}
@@ -921,8 +944,8 @@ dA = \left|\frac{\partial x}{\partial s} \frac{\partial y}{\partial t} - \frac{\
 \end{equation*}
 </div>
 </div>
-<div class="para" id="p-4270">To summarize, <article class="assemblage assemblage-like" id="Change-of-variable-3D"><h4 class="heading"><span class="title">Change of Variables in a Triple Integral.</span></h4>
-<div class="para logical" id="p-4271">
+<div class="para" id="p-4242">To summarize, <article class="assemblage assemblage-like" id="Change-of-variable-3D"><h4 class="heading"><span class="title">Change of Variables in a Triple Integral.</span></h4>
+<div class="para logical" id="p-4243">
 <div class="para">Suppose a change of variables <span class="process-math">\(x = x(s,t,u)\text{,}\)</span> <span class="process-math">\(y = y(s,t,u)\text{,}\)</span> and <span class="process-math">\(z = z(s,t,u)\)</span> transforms a closed and bounded region <span class="process-math">\(S\)</span> in <span class="process-math">\(stu\)</span>-coordinates into a closed and bounded region <span class="process-math">\(S'\)</span> in <span class="process-math">\(xyz\)</span>-coordinates. Under modest conditions (that are studied in advanced calculus), the triple integral <span class="process-math">\(\iiint_{S'} f(x,y,z) \, dV \)</span> is equal to</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -934,25 +957,25 @@ dA = \left|\frac{\partial x}{\partial s} \frac{\partial y}{\partial t} - \frac{\
 <article class="activity project-like" id="A_11_9_3"><h4 class="heading">
 <span class="type">Activity</span><span class="space"> </span><span class="codenumber">11.9.5</span><span class="period">.</span>
 </h4>
-<div class="para logical" id="p-4272">
+<div class="para logical" id="p-4244">
 <div class="para">Find the Jacobian when changing from Cartesian to cylindrical coordinates. That is, for the transformation given by <span class="process-math">\(x = r\cos(\theta)\text{,}\)</span> <span class="process-math">\(y = r\sin(\theta)\text{,}\)</span> and <span class="process-math">\(z = z\text{,}\)</span> determine a simplified expression for the quantity</div>
 <div class="displaymath process-math">
 \begin{equation*}
 \frac{\partial(x,y,z)}{\partial(r,\theta,z)}.
 \end{equation*}
 </div>
-</div> <div class="para" id="p-4273">What do you observe about your result? How is this connected to our earlier work with triple integrals in cylindrial coordinates?</div></article><article class="activity project-like" id="A_11_9_5"><h4 class="heading">
+</div> <div class="para" id="p-4245">What do you observe about your result? How is this connected to our earlier work with triple integrals in cylindrial coordinates?</div></article><article class="activity project-like" id="A_11_9_5"><h4 class="heading">
 <span class="type">Activity</span><span class="space"> </span><span class="codenumber">11.9.6</span><span class="period">.</span>
 </h4>
-<div class="para logical" id="p-4274">
+<div class="para logical" id="p-4246">
 <div class="para">Consider the solid <span class="process-math">\(S'\)</span> defined by the inequalities <span class="process-math">\(0 \leq x \leq 2\text{,}\)</span> <span class="process-math">\(\frac{x}{2} \leq y \leq \frac{x}{2}+1\text{,}\)</span> and <span class="process-math">\(0 \leq z \leq 6\text{.}\)</span> Consider the transformation defined by <span class="process-math">\(s = \frac{x}{2}\text{,}\)</span> <span class="process-math">\(t = \frac{x-2y}{2}\text{,}\)</span>  and <span class="process-math">\(u = \frac{z}{3}\text{.}\)</span> Let <span class="process-math">\(f(x,y,x) = x-2y+z\text{.}\)</span>
 </div>
 <ol class="lower-alpha">
-<li id="li-1521"><div class="para" id="p-4275">The transformation turns the solid <span class="process-math">\(S'\)</span> in <span class="process-math">\(xyz\)</span>-coordinates into a box <span class="process-math">\(S\)</span> in  <span class="process-math">\(stu\)</span>-coordinates. Apply the transformation to the boundries of the solid <span class="process-math">\(S'\)</span> to find <span class="process-math">\(stu\)</span>-coordinatte descriptions of the box <span class="process-math">\(S\text{.}\)</span>
+<li id="li-1493"><div class="para" id="p-4247">The transformation turns the solid <span class="process-math">\(S'\)</span> in <span class="process-math">\(xyz\)</span>-coordinates into a box <span class="process-math">\(S\)</span> in  <span class="process-math">\(stu\)</span>-coordinates. Apply the transformation to the boundries of the solid <span class="process-math">\(S'\)</span> to find <span class="process-math">\(stu\)</span>-coordinatte descriptions of the box <span class="process-math">\(S\text{.}\)</span>
 </div></li>
-<li id="li-1522"><div class="para" id="p-4276">Find the Jacobian <span class="process-math">\(\frac{\partial(x,y,z)}{\partial(s,t,u)}\text{.}\)</span>
+<li id="li-1494"><div class="para" id="p-4248">Find the Jacobian <span class="process-math">\(\frac{\partial(x,y,z)}{\partial(s,t,u)}\text{.}\)</span>
 </div></li>
-<li id="li-1523"><div class="para logical" id="p-4277">
+<li id="li-1495"><div class="para logical" id="p-4249">
 <div class="para">Use the transformation to perform a change of variables and evaluate <span class="process-math">\(\iiint_{S'} f(x,y,z) \, dV\)</span> by evaluating</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -965,8 +988,8 @@ dA = \left|\frac{\partial x}{\partial s} \frac{\partial y}{\partial t} - \frac{\
 <span class="type">Subsection</span> <span class="codenumber">11.9.4</span> <span class="title">Summary</span>
 </h3>
 <ul class="disc">
-<li id="li-1524"><div class="para" id="p-4278">If an integral is described in terms of one set of variables, we may write that set of variables in terms of another set of the same number of variables. If the new variables are chosen appropriately, the transformed integral may be easier to evaluate.</div></li>
-<li id="li-1525"><div class="para" id="p-4279">The Jacobian is a scalar function that relates the area or volume element in one coordinate system to the corresponding element in a new system determined by a change of variables.</div></li>
+<li id="li-1496"><div class="para" id="p-4250">If an integral is described in terms of one set of variables, we may write that set of variables in terms of another set of the same number of variables. If the new variables are chosen appropriately, the transformed integral may be easier to evaluate.</div></li>
+<li id="li-1497"><div class="para" id="p-4251">The Jacobian is a scalar function that relates the area or volume element in one coordinate system to the corresponding element in a new system determined by a change of variables.</div></li>
 </ul></section><section class="exercises" id="exercises-25"><h3 class="heading hide-type">
 <span class="type">Exercises</span> <span class="codenumber">11.9.5</span> <span class="title">Exercises</span>
 </h3>
@@ -974,8 +997,8 @@ dA = \left|\frac{\partial x}{\partial s} \frac{\partial y}{\partial t} - \frac{\
 <div id="webwork-270" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="270" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Michigan/Chap16Sec7/Q01.pg" data-courseID="mitchkeller-dev" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-270')">Activate</button></div>
 <div class="problem-contents">
-<div class="para" id="p-4280">Find the absolute value of the Jacobian, <span class="process-math">\(\left|\frac{\partial (x,y)}{\partial (s,t)}\right|\text{,}\)</span> for the change of variables given by <span class="process-math">\(x = 8s+2t, y = 3s+3t\)</span>
-</div> <div class="para" id="p-4281">
+<div class="para" id="p-4252">Find the absolute value of the Jacobian, <span class="process-math">\(\left|\frac{\partial (x,y)}{\partial (s,t)}\right|\text{,}\)</span> for the change of variables given by <span class="process-math">\(x = 8s+2t, y = 3s+3t\)</span>
+</div> <div class="para" id="p-4253">
 <span class="process-math">\(\left|\frac{\partial(x,y)}{\partial(s,t)}\right| =\)</span><span class="fillin underline" role="img" aria-label="35-character blank" style="width: 15.9090909090909em;"></span>
 </div>
 <div class="solutions">
@@ -1006,8 +1029,8 @@ y_s\amp  y_t
 <div id="webwork-271" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="271" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Michigan/Chap16Sec7/Q05.pg" data-courseID="mitchkeller-dev" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-271')">Activate</button></div>
 <div class="problem-contents">
-<div class="para" id="p-4283">Find the Jacobian. <span class="process-math">\(\frac{\partial (x,y,z)}{\partial (s,t,u)}\text{,}\)</span> where <span class="process-math">\(x = 4t-5s+3u, y = u-\left(5s+t\right), z = 5t-4s-4u\text{.}\)</span>
-</div> <div class="para" id="p-4284">
+<div class="para" id="p-4255">Find the Jacobian. <span class="process-math">\(\frac{\partial (x,y,z)}{\partial (s,t,u)}\text{,}\)</span> where <span class="process-math">\(x = 4t-5s+3u, y = u-\left(5s+t\right), z = 5t-4s-4u\text{.}\)</span>
+</div> <div class="para" id="p-4256">
 <span class="process-math">\(\frac{\partial (x,y,z)}{\partial (s,t,u)} =\)</span> <span class="fillin underline" role="img" aria-label="35-character blank" style="width: 15.9090909090909em;"></span>
 </div>
 <div class="solutions">
@@ -1039,12 +1062,12 @@ z_s \amp  z_t \amp  z_u
 <div id="webwork-272" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="272" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/maCalcDB/setVectorCalculus1/UR_VC_11_1.pg" data-courseID="mitchkeller-dev" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-272')">Activate</button></div>
 <div class="problem-contents">
-<div class="para" id="p-4286">Consider the transformation <span class="process-math">\(T: x = \frac{12}{37}u - \frac{35}{37}v, \ \ y = \frac{35}{37}u +
+<div class="para" id="p-4258">Consider the transformation <span class="process-math">\(T: x = \frac{12}{37}u - \frac{35}{37}v, \ \ y = \frac{35}{37}u +
 \frac{12}{37}v\)</span>
-</div> <div class="para" id="p-4287">A. Compute the Jacobian:</div> <div class="para" id="p-4288">
+</div> <div class="para" id="p-4259">A. Compute the Jacobian:</div> <div class="para" id="p-4260">
 <span class="process-math">\(\frac{\partial(x, y)}{\partial(u, v)} =\)</span> <span class="fillin underline" role="img" aria-label="30-character blank" style="width: 13.6363636363636em;"></span>
-</div> <div class="para" id="p-4289">B. The transformation is linear, which implies that it transforms lines into lines.  Thus, it transforms the square <span class="process-math">\(S:-37 \leq u \leq 37, -37 \leq v \leq
-37\)</span> into a square <span class="process-math">\(T(S)\)</span> with vertices:</div> <div class="para" id="p-4290">T(37, 37) = (<span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>, <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>)</div> <div class="para" id="p-4291">T(-37, 37) = (<span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>, <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>)</div> <div class="para" id="p-4292">T(-37, -37) = (<span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>, <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>)</div> <div class="para" id="p-4293">T(37, -37) = (<span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>, <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>)</div> <div class="para" id="p-4294">C. Use the transformation <span class="process-math">\(T\)</span> to evaluate the integral <span class="process-math">\(\int \!\!
+</div> <div class="para" id="p-4261">B. The transformation is linear, which implies that it transforms lines into lines.  Thus, it transforms the square <span class="process-math">\(S:-37 \leq u \leq 37, -37 \leq v \leq
+37\)</span> into a square <span class="process-math">\(T(S)\)</span> with vertices:</div> <div class="para" id="p-4262">T(37, 37) = (<span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>, <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>)</div> <div class="para" id="p-4263">T(-37, 37) = (<span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>, <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>)</div> <div class="para" id="p-4264">T(-37, -37) = (<span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>, <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>)</div> <div class="para" id="p-4265">T(37, -37) = (<span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>, <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>)</div> <div class="para" id="p-4266">C. Use the transformation <span class="process-math">\(T\)</span> to evaluate the integral <span class="process-math">\(\int \!\!
 \int_{T(S)} \ x^2 + y^2 \ {dA}\)</span>
 </div>
 <div class="solutions"></div>
@@ -1053,8 +1076,8 @@ z_s \amp  z_t \amp  z_u
 <div id="webwork-273" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="273" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Michigan/Chap16Sec7/Q23.pg" data-courseID="mitchkeller-dev" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-273')">Activate</button></div>
 <div class="problem-contents">
-<div class="para" id="p-4305">Use the change of variables <span class="process-math">\(s=y\text{,}\)</span> <span class="process-math">\(t=y-x^2\)</span> to evaluate <span class="process-math">\(\int\int_R x \,dx\,dy\)</span> over the region <span class="process-math">\(R\)</span> in the first quadrant bounded by <span class="process-math">\(y=0\text{,}\)</span> <span class="process-math">\(y=4\text{,}\)</span> <span class="process-math">\(y=x^2\text{,}\)</span> and <span class="process-math">\(y=x^2-3\text{.}\)</span>
-</div> <div class="para" id="p-4306">
+<div class="para" id="p-4277">Use the change of variables <span class="process-math">\(s=y\text{,}\)</span> <span class="process-math">\(t=y-x^2\)</span> to evaluate <span class="process-math">\(\int\int_R x \,dx\,dy\)</span> over the region <span class="process-math">\(R\)</span> in the first quadrant bounded by <span class="process-math">\(y=0\text{,}\)</span> <span class="process-math">\(y=4\text{,}\)</span> <span class="process-math">\(y=x^2\text{,}\)</span> and <span class="process-math">\(y=x^2-3\text{.}\)</span>
+</div> <div class="para" id="p-4278">
 <span class="process-math">\(\int\int_R x \,dx\,dy =\)</span> <span class="fillin underline" role="img" aria-label="35-character blank" style="width: 15.9090909090909em;"></span>
 </div>
 <div class="solutions">
@@ -1087,8 +1110,8 @@ dx\,dy =
 <div id="webwork-274" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="274" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Michigan/Chap16Sec7/Q21.pg" data-courseID="mitchkeller-dev" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-274')">Activate</button></div>
 <div class="problem-contents">
-<div class="para" id="p-4308">Use the change of variables <span class="process-math">\(s = x + 2 y\text{,}\)</span> <span class="process-math">\(t = y\)</span> to find the area of the ellipse <span class="process-math">\(x^2 + 4 x y + 5 y^2 \le 1\text{.}\)</span>
-</div> <div class="para" id="p-4309">area = <span class="fillin underline" role="img" aria-label="35-character blank" style="width: 15.9090909090909em;"></span>
+<div class="para" id="p-4280">Use the change of variables <span class="process-math">\(s = x + 2 y\text{,}\)</span> <span class="process-math">\(t = y\)</span> to find the area of the ellipse <span class="process-math">\(x^2 + 4 x y + 5 y^2 \le 1\text{.}\)</span>
+</div> <div class="para" id="p-4281">area = <span class="fillin underline" role="img" aria-label="35-character blank" style="width: 15.9090909090909em;"></span>
 </div>
 <div class="solutions">
 <a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-82" id="solution-82"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-82"><div class="solution solution-like">
@@ -1130,8 +1153,8 @@ s^2+t^2\le 1.
 <div id="webwork-275" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="275" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Michigan/Chap16Sec7/Q25.pg" data-courseID="mitchkeller-dev" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-275')">Activate</button></div>
 <div class="problem-contents">
-<div class="para" id="p-4311">Use the change of variables <span class="process-math">\(s=xy\text{,}\)</span> <span class="process-math">\(t=xy^2\)</span> to compute <span class="process-math">\(\int_R xy^2\,dA\text{,}\)</span> where <span class="process-math">\(R\)</span> is the region bounded by <span class="process-math">\(xy=2,\ xy=5,\ xy^2=2,\ xy^2=5\text{.}\)</span>
-</div> <div class="para" id="p-4312">
+<div class="para" id="p-4283">Use the change of variables <span class="process-math">\(s=xy\text{,}\)</span> <span class="process-math">\(t=xy^2\)</span> to compute <span class="process-math">\(\int_R xy^2\,dA\text{,}\)</span> where <span class="process-math">\(R\)</span> is the region bounded by <span class="process-math">\(xy=2,\ xy=5,\ xy^2=2,\ xy^2=5\text{.}\)</span>
+</div> <div class="para" id="p-4284">
 <span class="process-math">\(\int_R xy^2\,dA =\)</span> <span class="fillin underline" role="img" aria-label="35-character blank" style="width: 15.9090909090909em;"></span>
 </div>
 <div class="solutions">
@@ -1174,7 +1197,7 @@ s^2+t^2\le 1.
 <div id="webwork-276" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="276" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Michigan/Chap16Sec7/Q09.pg" data-courseID="mitchkeller-dev" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-276')">Activate</button></div>
 <div class="problem-contents">
-<div class="para logical" id="p-4314">
+<div class="para logical" id="p-4286">
 <div class="para">Find positive numbers <span class="process-math">\(a\)</span> and <span class="process-math">\(b\)</span> so that the change of variables <span class="process-math">\(s=ax, t=by\)</span> transforms the integral <span class="process-math">\(\int\int_R \,dx\,dy\)</span> into</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1183,11 +1206,11 @@ s^2+t^2\le 1.
 </div>
 <div class="para">for the region <span class="process-math">\(R\text{,}\)</span> the rectangle <span class="process-math">\(0\le x \le 45\text{,}\)</span> <span class="process-math">\(0\le y \le 20\)</span> and the region <span class="process-math">\(T\text{,}\)</span> the square <span class="process-math">\(0\le s, t \le 1\text{.}\)</span>
 </div>
-</div> <div class="para" id="p-4315">
+</div> <div class="para" id="p-4287">
 <span class="process-math">\(a =\)</span> <span class="fillin underline" role="img" aria-label="35-character blank" style="width: 15.9090909090909em;"></span>
-</div> <div class="para" id="p-4316">
+</div> <div class="para" id="p-4288">
 <span class="process-math">\(b =\)</span> <span class="fillin underline" role="img" aria-label="35-character blank" style="width: 15.9090909090909em;"></span>
-</div> <div class="para" id="p-4317">What is <span class="process-math">\(\left\vert \frac{\partial(x,y)}{\partial(s,t)}\right\vert\)</span> in this case?</div> <div class="para" id="p-4318">
+</div> <div class="para" id="p-4289">What is <span class="process-math">\(\left\vert \frac{\partial(x,y)}{\partial(s,t)}\right\vert\)</span> in this case?</div> <div class="para" id="p-4290">
 <span class="process-math">\(\left\vert \frac{\partial(x,y)}{\partial(s,t)}\right\vert =\)</span> <span class="fillin underline" role="img" aria-label="35-character blank" style="width: 15.9090909090909em;"></span>
 </div>
 <div class="solutions">
@@ -1218,7 +1241,7 @@ s^2+t^2\le 1.
 <div id="webwork-277" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="277" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Michigan/Chap16Sec7/Q13.pg" data-courseID="mitchkeller-dev" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-277')">Activate</button></div>
 <div class="problem-contents">
-<div class="para logical" id="p-4322">
+<div class="para logical" id="p-4294">
 <div class="para">Find a number <span class="process-math">\(a\)</span> so that the change of variables <span class="process-math">\(s=x+ay, t=y\)</span> transforms the integral <span class="process-math">\(\int\int_R \,dx\,dy\)</span> over the parallelogram <span class="process-math">\(R\)</span> in the <span class="process-math">\(xy\)</span>-plane with vertices <span class="process-math">\((0,0)\text{,}\)</span> <span class="process-math">\((24,0)\text{,}\)</span> <span class="process-math">\((-32,5)\text{,}\)</span> <span class="process-math">\((-8,5)\)</span> into an integral</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1226,9 +1249,9 @@ s^2+t^2\le 1.
 \end{equation*}
 </div>
 <div class="para">over a rectangle <span class="process-math">\(T\)</span> in the <span class="process-math">\(st\)</span>-plane.</div>
-</div> <div class="para" id="p-4323">
+</div> <div class="para" id="p-4295">
 <span class="process-math">\(a =\)</span><span class="fillin underline" role="img" aria-label="35-character blank" style="width: 15.9090909090909em;"></span>
-</div> <div class="para" id="p-4324">What is <span class="process-math">\(\left\vert \frac{\partial(x,y)}{\partial(s,t)}\right\vert\)</span> in this case?</div> <div class="para" id="p-4325">
+</div> <div class="para" id="p-4296">What is <span class="process-math">\(\left\vert \frac{\partial(x,y)}{\partial(s,t)}\right\vert\)</span> in this case?</div> <div class="para" id="p-4297">
 <span class="process-math">\(\left\vert \frac{\partial(x,y)}{\partial(s,t)}\right\vert =\)</span> <span class="fillin underline" role="img" aria-label="35-character blank" style="width: 15.9090909090909em;"></span>
 </div>
 <div class="solutions">
@@ -1268,9 +1291,9 @@ T: 0\le  t \le 5, 0\le  s\le 24.
 <div id="webwork-278" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="278" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Michigan/Chap16Sec7/Q19.pg" data-courseID="mitchkeller-dev" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-278')">Activate</button></div>
 <div class="problem-contents">
-<div class="para" id="p-4328">In this problem we use the change of variables <span class="process-math">\(x=5 s + t\text{,}\)</span> <span class="process-math">\(y = s - 2 t\)</span> to compute the integral <span class="process-math">\(\int_R (x+y)\,dA\text{,}\)</span> where <span class="process-math">\(R\)</span> is the parallelogram with vertices <span class="process-math">\((x,y)=(0,0)\text{,}\)</span> <span class="process-math">\((5,1)\text{,}\)</span> <span class="process-math">\((6,-1)\text{,}\)</span> and <span class="process-math">\((1,-2)\text{.}\)</span>
-</div> <div class="para" id="p-4329">First find the magnitude of the Jacobian, <span class="process-math">\(\left|\frac{\partial(x,y)}{\partial(s,t)}\right| =\)</span> <span class="fillin underline" role="img" aria-label="15-character blank" style="width: 6.818181818181818em;"></span>.</div> <div class="para" id="p-4330">Then, with <span class="process-math">\(a =\)</span> <span class="fillin underline" role="img" aria-label="15-character blank" style="width: 6.818181818181818em;"></span>, <span class="process-math">\(b =\)</span> <span class="fillin underline" role="img" aria-label="15-character blank" style="width: 6.818181818181818em;"></span>,</div> <div class="para" id="p-4331">
-<span class="process-math">\(c =\)</span> <span class="fillin underline" role="img" aria-label="15-character blank" style="width: 6.818181818181818em;"></span>, and <span class="process-math">\(d =\)</span> <span class="fillin underline" role="img" aria-label="15-character blank" style="width: 6.818181818181818em;"></span>,</div> <div class="para" id="p-4332">
+<div class="para" id="p-4300">In this problem we use the change of variables <span class="process-math">\(x=5 s + t\text{,}\)</span> <span class="process-math">\(y = s - 2 t\)</span> to compute the integral <span class="process-math">\(\int_R (x+y)\,dA\text{,}\)</span> where <span class="process-math">\(R\)</span> is the parallelogram with vertices <span class="process-math">\((x,y)=(0,0)\text{,}\)</span> <span class="process-math">\((5,1)\text{,}\)</span> <span class="process-math">\((6,-1)\text{,}\)</span> and <span class="process-math">\((1,-2)\text{.}\)</span>
+</div> <div class="para" id="p-4301">First find the magnitude of the Jacobian, <span class="process-math">\(\left|\frac{\partial(x,y)}{\partial(s,t)}\right| =\)</span> <span class="fillin underline" role="img" aria-label="15-character blank" style="width: 6.818181818181818em;"></span>.</div> <div class="para" id="p-4302">Then, with <span class="process-math">\(a =\)</span> <span class="fillin underline" role="img" aria-label="15-character blank" style="width: 6.818181818181818em;"></span>, <span class="process-math">\(b =\)</span> <span class="fillin underline" role="img" aria-label="15-character blank" style="width: 6.818181818181818em;"></span>,</div> <div class="para" id="p-4303">
+<span class="process-math">\(c =\)</span> <span class="fillin underline" role="img" aria-label="15-character blank" style="width: 6.818181818181818em;"></span>, and <span class="process-math">\(d =\)</span> <span class="fillin underline" role="img" aria-label="15-character blank" style="width: 6.818181818181818em;"></span>,</div> <div class="para" id="p-4304">
 <span class="process-math">\(\int_R (x+y)\,dA =
 \int_a^b\,\int_c^d\, (\)</span> <span class="fillin underline" role="img" aria-label="5-character blank" style="width: 2.272727272727273em;"></span> <span class="process-math">\(s +\)</span> <span class="fillin underline" role="img" aria-label="5-character blank" style="width: 2.272727272727273em;"></span> <span class="process-math">\(t +\)</span> <span class="fillin underline" role="img" aria-label="5-character blank" style="width: 2.272727272727273em;"></span> <span class="process-math">\()\; dt\, ds\)</span> = <span class="fillin underline" role="img" aria-label="25-character blank" style="width: 11.3636363636364em;"></span>
 </div>
@@ -1326,21 +1349,21 @@ y \amp  = \amp  s - 2 t
 </div>
 </div>
 </div></article><article class="exercise exercise-like" id="exercise-389"><h4 class="heading"><span class="codenumber">10<span class="period">.</span></span></h4>
-<div class="para logical" id="p-4342">
+<div class="para logical" id="p-4314">
 <div class="para">Let <span class="process-math">\(D'\)</span> be the region in the <span class="process-math">\(xy\)</span>-plane that is the parallelogram with vertices <span class="process-math">\((3,3)\text{,}\)</span> <span class="process-math">\((4,5)\text{,}\)</span> <span class="process-math">\((5,4)\text{,}\)</span> and <span class="process-math">\((6,6)\text{.}\)</span>
 </div>
 <ol class="lower-alpha">
-<li id="li-1526"><div class="para" id="p-4343">Sketch and label the region <span class="process-math">\(D'\)</span> in the <span class="process-math">\(xy\)</span>-plane.</div></li>
-<li id="li-1527"><div class="para" id="p-4344">Consider the integral <span class="process-math">\(\iint_{D'} (x+y) \, dA\text{.}\)</span>  Explain why this integral would be difficult to set up as an iterated integral.</div></li>
-<li id="li-1528"><div class="para" id="p-4345">Let a change of variables be given by <span class="process-math">\(x = 2u + v\text{,}\)</span> <span class="process-math">\(y = u + 2v\text{.}\)</span>  Using substitution or elimination, solve this system of equations for <span class="process-math">\(u\)</span> and <span class="process-math">\(v\)</span> in terms of <span class="process-math">\(x\)</span> and <span class="process-math">\(y\text{.}\)</span>
+<li id="li-1498"><div class="para" id="p-4315">Sketch and label the region <span class="process-math">\(D'\)</span> in the <span class="process-math">\(xy\)</span>-plane.</div></li>
+<li id="li-1499"><div class="para" id="p-4316">Consider the integral <span class="process-math">\(\iint_{D'} (x+y) \, dA\text{.}\)</span>  Explain why this integral would be difficult to set up as an iterated integral.</div></li>
+<li id="li-1500"><div class="para" id="p-4317">Let a change of variables be given by <span class="process-math">\(x = 2u + v\text{,}\)</span> <span class="process-math">\(y = u + 2v\text{.}\)</span>  Using substitution or elimination, solve this system of equations for <span class="process-math">\(u\)</span> and <span class="process-math">\(v\)</span> in terms of <span class="process-math">\(x\)</span> and <span class="process-math">\(y\text{.}\)</span>
 </div></li>
-<li id="li-1529"><div class="para" id="p-4346">Use your work in (c) to find the pre-image, <span class="process-math">\(D\text{,}\)</span> which lies in the <span class="process-math">\(uv\)</span>-plane, of the originally given region <span class="process-math">\(D'\text{,}\)</span> which lies in the <span class="process-math">\(xy\)</span>-plane.  For instance, what <span class="process-math">\(uv\)</span> point corresponds to <span class="process-math">\((3,3)\)</span> in the <span class="process-math">\(xy\)</span>-plane?</div></li>
-<li id="li-1530"><div class="para" id="p-4347">Use the change of variables in (c) and your other work to write a new iterated integral in <span class="process-math">\(u\)</span> and <span class="process-math">\(v\)</span> that is equivalent to the original <span class="process-math">\(xy\)</span> integral <span class="process-math">\(\iint_{D'} (x+y) \, dA\text{.}\)</span>
+<li id="li-1501"><div class="para" id="p-4318">Use your work in (c) to find the pre-image, <span class="process-math">\(D\text{,}\)</span> which lies in the <span class="process-math">\(uv\)</span>-plane, of the originally given region <span class="process-math">\(D'\text{,}\)</span> which lies in the <span class="process-math">\(xy\)</span>-plane.  For instance, what <span class="process-math">\(uv\)</span> point corresponds to <span class="process-math">\((3,3)\)</span> in the <span class="process-math">\(xy\)</span>-plane?</div></li>
+<li id="li-1502"><div class="para" id="p-4319">Use the change of variables in (c) and your other work to write a new iterated integral in <span class="process-math">\(u\)</span> and <span class="process-math">\(v\)</span> that is equivalent to the original <span class="process-math">\(xy\)</span> integral <span class="process-math">\(\iint_{D'} (x+y) \, dA\text{.}\)</span>
 </div></li>
-<li id="li-1531"><div class="para" id="p-4348">Finally, evaluate the <span class="process-math">\(uv\)</span> integral, and write a sentence to explain why the change of variables made the integration easier.</div></li>
+<li id="li-1503"><div class="para" id="p-4320">Finally, evaluate the <span class="process-math">\(uv\)</span> integral, and write a sentence to explain why the change of variables made the integration easier.</div></li>
 </ol>
 </div></article><article class="exercise exercise-like" id="exercise-390"><h4 class="heading"><span class="codenumber">11<span class="period">.</span></span></h4>
-<div class="para logical" id="p-4349">
+<div class="para logical" id="p-4321">
 <div class="para">Consider the change of variables</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1349,18 +1372,18 @@ x(\rho, \theta, \phi) = \rho \sin(\phi) \cos(\theta) \ \ \ \ \ y(\rho, \theta, \
 </div>
 <div class="para">which is the transformation from spherical coordinates to rectangular coordinates. Determine the Jacobian of the transformation. How is the result connected to our earlier work with iterated integrals in spherical coordinates?</div>
 </div></article><article class="exercise exercise-like" id="exercise-391"><h4 class="heading"><span class="codenumber">12<span class="period">.</span></span></h4>
-<div class="para logical" id="p-4350">
+<div class="para logical" id="p-4322">
 <div class="para">In this problem, our goal is to find the volume of the ellipsoid <span class="process-math">\(\frac{x^2}{a^2} + \frac{y^2}{b^2} + \frac{z^2}{c^2} = 1\text{.}\)</span>
 </div>
 <ol class="lower-alpha">
-<li id="li-1532"><div class="para" id="p-4351">Set up an iterated integral in rectangular coordinates whose value is the volume of the ellipsoid.  Do so by using symmetry and taking 8 times the volume of the ellipsoid in the first octant where <span class="process-math">\(x\text{,}\)</span> <span class="process-math">\(y\text{,}\)</span> and <span class="process-math">\(z\)</span> are all nonnegative.</div></li>
-<li id="li-1533"><div class="para" id="p-4352">Explain why it makes sense to use the substitution <span class="process-math">\(x = as\text{,}\)</span> <span class="process-math">\(y = bt\text{,}\)</span> and <span class="process-math">\(z = cu\)</span> in order to make the region of integration simpler.</div></li>
-<li id="li-1534"><div class="para" id="p-4353">Compute the Jacobian of the transformation given in (b).</div></li>
-<li id="li-1535"><div class="para" id="p-4354">Execute the given change of variables and set up the corresponding new iterated integral in <span class="process-math">\(s\text{,}\)</span> <span class="process-math">\(t\text{,}\)</span> and <span class="process-math">\(u\text{.}\)</span>
+<li id="li-1504"><div class="para" id="p-4323">Set up an iterated integral in rectangular coordinates whose value is the volume of the ellipsoid.  Do so by using symmetry and taking 8 times the volume of the ellipsoid in the first octant where <span class="process-math">\(x\text{,}\)</span> <span class="process-math">\(y\text{,}\)</span> and <span class="process-math">\(z\)</span> are all nonnegative.</div></li>
+<li id="li-1505"><div class="para" id="p-4324">Explain why it makes sense to use the substitution <span class="process-math">\(x = as\text{,}\)</span> <span class="process-math">\(y = bt\text{,}\)</span> and <span class="process-math">\(z = cu\)</span> in order to make the region of integration simpler.</div></li>
+<li id="li-1506"><div class="para" id="p-4325">Compute the Jacobian of the transformation given in (b).</div></li>
+<li id="li-1507"><div class="para" id="p-4326">Execute the given change of variables and set up the corresponding new iterated integral in <span class="process-math">\(s\text{,}\)</span> <span class="process-math">\(t\text{,}\)</span> and <span class="process-math">\(u\text{.}\)</span>
 </div></li>
-<li id="li-1536"><div class="para" id="p-4355">Explain why this new integral is better, but is still difficult to evaluate.  What additional change of variables would make the resulting integral easier to evaluate?</div></li>
-<li id="li-1537"><div class="para" id="p-4356">Convert the integral from (d) to a new integral in spherical coordinates.</div></li>
-<li id="li-1538"><div class="para" id="p-4357">Finally, evaluate the iterated integral in (f) and hence determine the volume of the ellipsoid.</div></li>
+<li id="li-1508"><div class="para" id="p-4327">Explain why this new integral is better, but is still difficult to evaluate.  What additional change of variables would make the resulting integral easier to evaluate?</div></li>
+<li id="li-1509"><div class="para" id="p-4328">Convert the integral from (d) to a new integral in spherical coordinates.</div></li>
+<li id="li-1510"><div class="para" id="p-4329">Finally, evaluate the iterated integral in (f) and hence determine the volume of the ellipsoid.</div></li>
 </ol>
 </div></article></section></section><div class="hidden-content tex2jax_ignore" id="hk-fn-25"><div class="fn">A <em class="emphasis">transformation</em> is another name for function:  here, the equations <span class="process-math">\(x = r\cos(\theta)\)</span> and <span class="process-math">\(y = r\sin(\theta)\)</span> define a function <span class="process-math">\(T\)</span> by <span class="process-math">\(T(r, \theta) = (r\cos(\theta), r\sin(\theta))\)</span> so that <span class="process-math">\(T\)</span> is a function (transformation) from <span class="process-math">\(\R^2\)</span> to <span class="process-math">\(\R^2\text{.}\)</span>  We view this transformation as mapping a version of the <span class="process-math">\(xy\)</span>-plane where the axes are viewed as representing <span class="process-math">\(r\)</span> and <span class="process-math">\(\theta\)</span> (the <span class="process-math">\(r \theta\)</span>-plane) to the familiar <span class="process-math">\(xy\)</span>-plane.</div></div>
 </div>
@@ -1368,7 +1391,7 @@ x(\rho, \theta, \phi) = \rho \sin(\phi) \cos(\theta) \ \ \ \ \ y(\rho, \theta, \
 <a class="previous-button button" href="S-11-8-Triple-Integrals-Cylindrical-Spherical.html" title="Previous"><span class="icon">&lt;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon">^</span><span class="name">Top</span></a><a class="next-button button" href="C_Vector.html" title="Next"><span class="name">Next</span><span class="icon">&gt;</span></a>
 </div></main>
 </div>
-<div id="ptx-page-footer">
+<div id="ptx-page-footer" class="ptx-page-footer">
 <a class="pretext-link" href="https://pretextbook.org" title="PreTeXt"><div class="logo"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="338 3000 8772 6866"><g style="stroke-width:.025in; stroke:black; fill:none"><polyline points="472,3590 472,9732 " style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round; "></polyline><path style="stroke:#000000;stroke-width:126;stroke-linecap:butt;" d="M 4724,9448 A 4660 4660  0  0  1  8598  9259"></path><path style="stroke:#000000;stroke-width:174;stroke-linecap:butt;" d="M 4488,9685 A 4228 4228  0  0  0   472  9732"></path><path style="stroke:#000000;stroke-width:126;stroke-linecap:butt;" d="M 4724,3590 A 4241 4241  0  0  1  8598  3496"></path><path style="stroke:#000000;stroke-width:126;stroke-linecap:round;" d="M 850,3496  A 4241 4241  0  0  1  4724  3590"></path><path style="stroke:#000000;stroke-width:126;stroke-linecap:round;" d="M 850,9259  A 4507 4507  0  0  1  4724  9448"></path><polyline points="5385,4299 4062,8125" style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="8598,3496 8598,9259" style="stroke:#000000;stroke-width:126; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="850,3496 850,9259" style="stroke:#000000;stroke-width:126; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="4960,9685 4488,9685" style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="3070,4582 1889,6141 3070,7700" style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="6418,4582 7600,6141 6418,7700" style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="8976,3590 8976,9732" style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round;"></polyline><path style="stroke:#000000;stroke-width:174;stroke-linecap:butt;" d="M 4960,9685 A 4228 4228  0  0  1  8976  9732"></path></g></svg></div></a><a class="runestone-link" href="https://runestone.academy" title="Runestone Academy"><img class="logo" src="https://runestone.academy/runestone/static/images/RAIcon_cropped.png"></a><a class="mathjax-link" href="https://www.mathjax.org" title="MathJax"><img class="logo" src="https://www.mathjax.org/badge/badge-square-2.png"></a>
 </div>
 <!--Start: Google Global Site Tag code--><!--*** DO NOT COPY ANOTHER PROJECT'S MAGIC NUMBERS/ID ***--><!--***           GET YOUR OWN FROM GOOGLE             ***-->

@@ -5,7 +5,7 @@
 <!--*         https://pretextbook.org          *-->
 <!--*                                          *-->
 <!--********************************************-->
-<html lang="en-US">
+<html lang="en-US" dir="ltr">
 <head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Double Integrals over General Regions</title>
@@ -16,20 +16,38 @@
 <meta property="book:author" content="Steve Schlicker">
 <meta property="book:author" content="Mitchel T. Keller">
 <meta property="book:author" content="Nicholas Long">
-<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
+<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>
+var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
 window.MathJax = {
-  tex: {
-    inlineMath: [['\\(','\\)']],
-    tags: "none",
-    tagSide: "right",
-    tagIndent: ".8em",
-    packages: {'[+]': ['base', 'extpfeil', 'ams', 'amscd', 'color', 'newcommand', 'knowl']}
+  "tex": {
+    "inlineMath": [
+      [
+        "\\(",
+        "\\)"
+      ]
+    ],
+    "tags": "none",
+    "tagSide": "right",
+    "tagIndent": ".8em",
+    "packages": {
+      "[+]": [
+        "base",
+        "extpfeil",
+        "ams",
+        "amscd",
+        "color",
+        "newcommand",
+        "knowl"
+      ]
+    }
   },
-  options: {
-    ignoreHtmlClass: "tex2jax_ignore|ignore-math",
-    processHtmlClass: "process-math",
-    renderActions: {
-        findScript: [10, function (doc) {
+  "options": {
+    "ignoreHtmlClass": "tex2jax_ignore|ignore-math",
+    "processHtmlClass": "process-math",
+    "renderActions": {
+      "findScript": [
+        10,
+        function (doc) {
             document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
                 var display = !!node.type.match(/; *mode=display/);
                 var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
@@ -39,65 +57,70 @@ window.MathJax = {
                 math.end = {node: text, delim: '', n: 0};
                 doc.math.push(math);
             });
-        }, '']
-    },
+        },
+        ""
+      ]
+    }
   },
-  chtml: {
-    scale: 0.98,
-    mtextInheritFont: true
+  "chtml": {
+    "scale": 0.98,
+    "mtextInheritFont": true
   },
-  loader: {
-    load: ['input/asciimath', '[tex]/extpfeil', '[tex]/amscd', '[tex]/color', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
-    paths: {pretext: "https://pretextbook.org/js/lib"},
+  "loader": {
+    "load": [
+      "input/asciimath",
+      "[tex]/extpfeil",
+      "[tex]/amscd",
+      "[tex]/color",
+      "[tex]/newcommand",
+      "[pretext]/mathjaxknowl3.js"
+    ],
+    "paths": {
+      "pretext": "https://pretextbook.org/js/lib"
+    }
   },
-  startup: {
+  "startup": {
     pageReady() {
       return MathJax.startup.defaultPageReady().then(function () {
       console.log("in ready function");
       rsMathReady();
       }
     )}
-  },
+  }
 };
 </script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><link href="https://webwork-ptx.aimath.org/webwork2_files/js/apps/MathView/mathview.css" rel="stylesheet">
-<script src="https://pretextbook.org/js/0.2/pretext-webwork/2.17/pretext-webwork.js"></script><script src="https://webwork-ptx.aimath.org/webwork2_files/node_modules/iframe-resizer/js/iframeResizer.min.js"></script><script async="" src="https://cse.google.com/cse.js?cx=015103900096539427448:ngwuia10qci"></script><script src="https://unpkg.com/lunr/lunr.js"></script><script src="lunr-pretext-search-index.js" async=""></script><script src="https://pretextbook.org/js/0.2/pretext_search.js"></script><link href="https://pretextbook.org/css/0.6/pretext_search.css" rel="stylesheet" type="text/css">
-<script>js_version = 0.2</script><script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.2/pretext.js"></script><script>miniversion=0.1</script><script src="https://pretextbook.org/js/0.2/pretext_add_on.js?x=1"></script><script src="https://pretextbook.org/js/0.2/user_preferences.js"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
+<script src="https://pretextbook.org/js/0.3/pretext-webwork/2.17/pretext-webwork.js"></script><script src="https://webwork-ptx.aimath.org/webwork2_files/node_modules/iframe-resizer/js/iframeResizer.min.js"></script><script async="" src="https://cse.google.com/cse.js?cx=015103900096539427448:ngwuia10qci"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js" integrity="sha512-4xUl/d6D6THrAnXAwGajXkoWaeMNwEKK4iNfq5DotEbLPAfk6FSxSP3ydNxqDgCw1c/0Z1Jg6L8h2j+++9BZmg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="lunr-pretext-search-index.js" async=""></script><script src="https://pretextbook.org/js/0.3/pretext_search.js"></script><link href="https://pretextbook.org/css/0.7/pretext_search.css" rel="stylesheet" type="text/css">
+<script>js_version = 0.3</script><script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.3/pretext.js"></script><script>miniversion=0.1</script><script src="https://pretextbook.org/js/0.3/pretext_add_on.js?x=1"></script><script src="https://pretextbook.org/js/0.3/user_preferences.js"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
 </script><link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700&amp;family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&amp;family=Tinos:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" rel="stylesheet">
 <link href="https://fonts.cdnfonts.com/css/dejavu-serif" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:opsz,wdth,wght@8..144,50..150,100..900&amp;display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wdth,wght@75..100,300..800&amp;display=swap" rel="stylesheet">
-<link href="https://pretextbook.org/css/0.6/pretext.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.6/pretext_add_on.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.6/shell_default.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.6/banner_default.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.6/navbar_default.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.6/toc_default.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.6/knowls_default.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.6/style_default.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.6/colors_blue_grey.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.6/setcolors.css" rel="stylesheet" type="text/css">
-<!--Start: Google Global Site Tag code--><!--*** DO NOT COPY ANOTHER PROJECT'S MAGIC NUMBERS/ID ***--><!--***           GET YOUR OWN FROM GOOGLE             ***-->
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-QJKN634F7R"></script><script>  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-QJKN634F7R');
-</script><!--End: Google Global Site Tag code-->
+<link href="https://pretextbook.org/css/0.7/pretext.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/pretext_add_on.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/shell_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/banner_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/navbar_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/toc_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/knowls_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/style_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/colors_blue_grey.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/setcolors.css" rel="stylesheet" type="text/css">
 </head>
 <body id="acmulti" class="pretext book ignore-math">
-<a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead"><div class="ptx-banner">
-<a id="logo-link" href=""></a><div class="title-container">
+<a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead"><div class="ptx-banner">
+<a id="logo-link" class="logo-link" href=""></a><div class="title-container">
 <h1 class="heading"><a href="book-1.html"><span class="title">Active Calculus - Multivariable + Vector</span></a></h1>
 <p class="byline">Steve Schlicker, Mitchel T. Keller, Nicholas Long</p>
 </div>
-<div id="searchresultsplaceholder" style="display: none">
-<button id="closesearchresults" onclick="document.getElementById('searchresultsplaceholder').style.display = 'none'; return false;">x</button><h2>Search Results: <span id="searchterms"></span>
+<div id="searchresultsplaceholder" class="searchresultsplaceholder" style="display: none">
+<button id="closesearchresults" class="closesearchresults" onclick="document.getElementById('searchresultsplaceholder').style.display = 'none'; return false;">x</button><h2>Search Results: <span id="searchterms" class="searchterms"></span>
 </h2>
-<div id="searchempty"><span>No results.</span></div>
-<ol id="searchresults"></ol>
+<div id="searchempty" class="searchempty"><span>No results.</span></div>
+<ol id="searchresults" class="searchresults"></ol>
 </div>
-</div></header><nav id="ptx-navbar" class="navbar"><button class="toc-toggle button" aria-label="Show or hide table of contents"><span class="icon">☰</span><span class="name">Contents</span></button><a class="index-button button" href="index-1.html" title="Index"><span class="name">Index</span></a><button id="user-preferences-button" class="user-preferences-button button" title="Modify user preferences"><span id="theavatarbutton" class="name">You!</span><div id="preferences_menu_holder" class="hidden"><ol id="preferences_menu" style="font-family: 'Roboto Serif', serif;">
+</div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><button class="toc-toggle button" aria-label="Show or hide table of contents"><span class="icon">☰</span><span class="name">Contents</span></button><a class="index-button button" href="index-1.html" title="Index"><span class="name">Index</span></a><button id="user-preferences-button" class="user-preferences-button button" title="Modify user preferences"><span id="avatarbutton" class="avatarbutton name">You!</span><div id="preferences_menu_holder" class="preferences_menu_holder hidden"><ol id="preferences_menu" class="preferences_menu" style="font-family: 'Roboto Serif', serif;">
 <li data-env="avatar" tabindex="-1">Choose avatar<div class="wrap_to_submenu"><span class="to_submenu">▻</span></div>
 <ol class="hidden avatar">
 <li data-val="You!" tabindex="-1">
@@ -201,7 +224,7 @@ window.MathJax = {
 </li>
 </ol></div></button><span class="treebuttons"><a class="previous-button button" href="S-11-2-Iterated-Integrals.html" title="Previous"><span class="icon">&lt;</span><span class="name">Prev</span></a><a class="up-button button" href="C-11.html" title="Up"><span class="icon">^</span><span class="name">Up</span></a><a class="next-button button" href="S-11-4-Double-Integrals-Applications.html" title="Next"><span class="name">Next</span><span class="icon">&gt;</span></a></span><div class="searchwrapper" role="search"><div class="gcse-search"></div></div>
 <div class="searchbox"><div class="searchwidget">
-<input id="ptxsearch" type="text" name="terms" placeholder="Search" onchange="doSearch()"><button id="searchbutton" type="button" onclick="doSearch()">🔍</button>
+<input id="ptxsearch" class="ptxsearch" type="text" name="terms" placeholder="Search" onchange="doSearch()"><button id="searchbutton" class="searchbutton" type="button" onclick="doSearch()">🔍</button>
 </div></div></nav><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\newcommand{\R}{\mathbb{R}}
 \newcommand{\va}{\mathbf{a}}
 \newcommand{\vb}{\mathbf{b}}
@@ -246,7 +269,7 @@ window.MathJax = {
 \newcommand{\fillinmath}[1]{\mathchoice{\colorbox{fillinmathshade}{$\displaystyle     \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\textstyle        \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptstyle      \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptscriptstyle\phantom{\,#1\,}$}}}
 \)</span></div>
 <div class="ptx-page">
-<div id="ptx-sidebar"><nav id="ptx-toc" class="depth2"><ul class="structural">
+<div id="ptx-sidebar" class="ptx-sidebar"><nav id="ptx-toc" class="ptx-toc depth2"><ul class="structural">
 <li>
 <div class="toc-item"><a href="frontmatter.html" class="internal"><span class="title">Front Matter</span></a></div>
 <ul class="structural">
@@ -574,14 +597,14 @@ window.MathJax = {
 </ul>
 </li>
 <li>
-<div class="toc-item"><a href="S_ScalarLineIntegral.html" class="internal"><span class="codenumber">12.5</span> <span class="title">Line Integrals of Scalar Functions</span></a></div>
+<div class="toc-item"><a href="S_Vector_ScalarLineIntegral.html" class="internal"><span class="codenumber">12.5</span> <span class="title">Line Integrals of Scalar Functions</span></a></div>
 <ul class="structural">
-<li><div class="toc-item"><a href="S_ScalarLineIntegral.html#subsection-124" class="internal"><span class="codenumber">12.5.1</span> <span class="title">Defining line integrals of scalar functions</span></a></div></li>
-<li><div class="toc-item"><a href="S_ScalarLineIntegral.html#subsection-125" class="internal"><span class="codenumber">12.5.2</span> <span class="title">Using Parameterizations to Calculate Scalar Line Integrals</span></a></div></li>
-<li><div class="toc-item"><a href="S_ScalarLineIntegral.html#subsection-126" class="internal"><span class="codenumber">12.5.3</span> <span class="title">Properties of Scalar Line Integrals</span></a></div></li>
-<li><div class="toc-item"><a href="S_ScalarLineIntegral.html#subsection-127" class="internal"><span class="codenumber">12.5.4</span> <span class="title">Visualizations of Scalar Line Integrals as Area Under a Curve</span></a></div></li>
-<li><div class="toc-item"><a href="S_ScalarLineIntegral.html#subsection-128" class="internal"><span class="codenumber">12.5.5</span> <span class="title">Summary</span></a></div></li>
-<li><div class="toc-item"><a href="S_ScalarLineIntegral.html#exercises-30" class="internal"><span class="codenumber">12.5.6</span> <span class="title">Exercises</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_ScalarLineIntegral.html#subsection-124" class="internal"><span class="codenumber">12.5.1</span> <span class="title">Defining line integrals of scalar functions</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_ScalarLineIntegral.html#subsection-125" class="internal"><span class="codenumber">12.5.2</span> <span class="title">Using Parameterizations to Calculate Scalar Line Integrals</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_ScalarLineIntegral.html#subsection-126" class="internal"><span class="codenumber">12.5.3</span> <span class="title">Properties of Scalar Line Integrals</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_ScalarLineIntegral.html#subsection-127" class="internal"><span class="codenumber">12.5.4</span> <span class="title">Visualizations of Scalar Line Integrals as Area Under a Curve</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_ScalarLineIntegral.html#subsection-128" class="internal"><span class="codenumber">12.5.5</span> <span class="title">Summary</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_ScalarLineIntegral.html#exercises-30" class="internal"><span class="codenumber">12.5.6</span> <span class="title">Exercises</span></a></div></li>
 </ul>
 </li>
 <li>
@@ -607,10 +630,10 @@ window.MathJax = {
 </ul>
 </li>
 <li>
-<div class="toc-item"><a href="S_Vector_GreensTheorem.html" class="internal"><span class="codenumber">12.8</span> <span class="title">Green's Theorem</span></a></div>
+<div class="toc-item"><a href="S_Vector_GreensTheorem.html" class="internal"><span class="codenumber">12.8</span> <span class="title">Green’s Theorem</span></a></div>
 <ul class="structural">
 <li><div class="toc-item"><a href="S_Vector_GreensTheorem.html#SS_Vector_GreensTheorem_Circulation" class="internal"><span class="codenumber">12.8.1</span> <span class="title">Circulation</span></a></div></li>
-<li><div class="toc-item"><a href="S_Vector_GreensTheorem.html#subsection-140" class="internal"><span class="codenumber">12.8.2</span> <span class="title">Green's Theorem</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_GreensTheorem.html#subsection-140" class="internal"><span class="codenumber">12.8.2</span> <span class="title">Green’s Theorem</span></a></div></li>
 <li><div class="toc-item"><a href="S_Vector_GreensTheorem.html#subsection-141" class="internal"><span class="codenumber">12.8.3</span> <span class="title">What happens when vector fields are not smooth?</span></a></div></li>
 <li><div class="toc-item"><a href="S_Vector_GreensTheorem.html#subsection-142" class="internal"><span class="codenumber">12.8.4</span> <span class="title">Summary</span></a></div></li>
 <li><div class="toc-item"><a href="S_Vector_GreensTheorem.html#exercises-33" class="internal"><span class="codenumber">12.8.5</span> <span class="title">Exercises</span></a></div></li>
@@ -620,27 +643,27 @@ window.MathJax = {
 <div class="toc-item"><a href="S_Vector_FluxInt.html" class="internal"><span class="codenumber">12.9</span> <span class="title">Flux Integrals</span></a></div>
 <ul class="structural">
 <li><div class="toc-item"><a href="S_Vector_FluxInt.html#SS_Vector_FluxInt_Idea" class="internal"><span class="codenumber">12.9.1</span> <span class="title">The Idea of the Flux of a Vector Field through a Surface</span></a></div></li>
-<li><div class="toc-item"><a href="S_Vector_FluxInt.html#subsection-144" class="internal"><span class="codenumber">12.9.2</span> <span class="title">Measuring the Flux of a Vector Field through a Surface</span></a></div></li>
-<li><div class="toc-item"><a href="S_Vector_FluxInt.html#SS_Vector_FluxInt_Calculate" class="internal"><span class="codenumber">12.9.3</span> <span class="title">Efficiently Calculating Flux Integrals</span></a></div></li>
-<li><div class="toc-item"><a href="S_Vector_FluxInt.html#subsection-146" class="internal"><span class="codenumber">12.9.4</span> <span class="title">Summary</span></a></div></li>
-<li><div class="toc-item"><a href="S_Vector_FluxInt.html#exercises-34" class="internal"><span class="codenumber">12.9.5</span> <span class="title">Exercises</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_FluxInt.html#subsection-144" class="internal"><span class="codenumber">12.9.2</span> <span class="title">The Details of Measuring the Flux of a Vector Field through a Surface</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_FluxInt.html#subsection-145" class="internal"><span class="codenumber">12.9.3</span> <span class="title">Summary</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_FluxInt.html#exercises-34" class="internal"><span class="codenumber">12.9.4</span> <span class="title">Exercises</span></a></div></li>
 </ul>
 </li>
 <li>
 <div class="toc-item"><a href="S_Vector_ScalarSurfaceIntegral.html" class="internal"><span class="codenumber">12.10</span> <span class="title">Surface Integrals of Scalar Valued Functions</span></a></div>
 <ul class="structural">
-<li><div class="toc-item"><a href="S_Vector_ScalarSurfaceIntegral.html#subsection-147" class="internal"><span class="codenumber">12.10.1</span> <span class="title">Defining surface integrals of scalar functions</span></a></div></li>
-<li><div class="toc-item"><a href="S_Vector_ScalarSurfaceIntegral.html#subsection-148" class="internal"><span class="codenumber">12.10.2</span> <span class="title">Properties of Scalar Surface Integrals</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_ScalarSurfaceIntegral.html#subsection-146" class="internal"><span class="codenumber">12.10.1</span> <span class="title">Defining surface integrals of scalar functions</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_ScalarSurfaceIntegral.html#subsection-147" class="internal"><span class="codenumber">12.10.2</span> <span class="title">Properties of Scalar Surface Integrals</span></a></div></li>
 <li><div class="toc-item"><a href="S_Vector_ScalarSurfaceIntegral.html#exercises-35" class="internal"><span class="codenumber">12.10.3</span> <span class="title">Exercises</span></a></div></li>
 </ul>
 </li>
 <li>
-<div class="toc-item"><a href="S_Vector_StokesThm.html" class="internal"><span class="codenumber">12.11</span> <span class="title">Stokes' Theorem</span></a></div>
+<div class="toc-item"><a href="S_Vector_StokesThm.html" class="internal"><span class="codenumber">12.11</span> <span class="title">Stokes’ Theorem</span></a></div>
 <ul class="structural">
-<li><div class="toc-item"><a href="S_Vector_StokesThm.html#SS_Vector_StokesThm_Development" class="internal"><span class="codenumber">12.11.1</span> <span class="title">Circulation in three dimensions and Stokes' Theorem</span></a></div></li>
-<li><div class="toc-item"><a href="S_Vector_StokesThm.html#SS_Vector_StokesThm_Verify" class="internal"><span class="codenumber">12.11.2</span> <span class="title">Verifying and Applying Stokes' Theorem</span></a></div></li>
-<li><div class="toc-item"><a href="S_Vector_StokesThm.html#subsection-151" class="internal"><span class="codenumber">12.11.3</span> <span class="title">Summary</span></a></div></li>
-<li><div class="toc-item"><a href="S_Vector_StokesThm.html#exercises-36" class="internal"><span class="codenumber">12.11.4</span> <span class="title">Exercises</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_StokesThm.html#SS_Vector_StokesThm_Development" class="internal"><span class="codenumber">12.11.1</span> <span class="title">Circulation in three dimensions and Stokes’ Theorem</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_StokesThm.html#SS_Vector_StokesThm_Verify" class="internal"><span class="codenumber">12.11.2</span> <span class="title">Verifying and Applying Stokes’ Theorem</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_StokesThm.html#surfaceboundaries" class="internal"><span class="codenumber">12.11.3</span> <span class="title">Practice with Surfaces and thier Boundaries</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_StokesThm.html#subsection-151" class="internal"><span class="codenumber">12.11.4</span> <span class="title">Summary</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_StokesThm.html#exercises-36" class="internal"><span class="codenumber">12.11.5</span> <span class="title">Exercises</span></a></div></li>
 </ul>
 </li>
 <li>
@@ -664,9 +687,9 @@ window.MathJax = {
 </h2>
 <article class="objectives goal-like" id="objectives-19"><h3 class="heading"><span class="type">Motivating Questions</span></h3>
 <ul class="disc">
-<li id="li-1161"><div class="para" id="p-3150">How do we define a double integral over a non-rectangular region?</div></li>
-<li id="li-1162"><div class="para" id="p-3151">What general form does an iterated integral over a non-rectangular region have?</div></li>
-</ul></article><section class="introduction" id="introduction-19"><div class="para logical" id="p-3152">
+<li id="li-1135"><div class="para" id="p-3124">How do we define a double integral over a non-rectangular region?</div></li>
+<li id="li-1136"><div class="para" id="p-3125">What general form does an iterated integral over a non-rectangular region have?</div></li>
+</ul></article><section class="introduction" id="introduction-19"><div class="para logical" id="p-3126">
 <div class="para">Recall that we defined the double integral of a continuous function <span class="process-math">\(f = f(x,y)\)</span> over a rectangle <span class="process-math">\(R = [a,b] \times [c,d]\)</span> as</div>
 <div class="displaymath process-math" data-contains-math-knowls="./knowl/S-11-1-Double-Integrals-Rectangles.html">
 \begin{equation*}
@@ -679,10 +702,10 @@ window.MathJax = {
 \int_a^b \int_c^d f(x,y) \, dy \, dx \ \ \ \ \ \text{ or }  \ \ \ \ \ \int_c^d \int_a^b f(x,y) \, dx \, dy.
 \end{equation*}
 </div>
-</div> <div class="para" id="p-3153">It is natural to wonder how we might define and evaluate a double integral over a non-rectangular region; we explore one such example in the following preview activity.</div> <article class="exploration project-like" id="PA_11_3"><h3 class="heading">
+</div> <div class="para" id="p-3127">It is natural to wonder how we might define and evaluate a double integral over a non-rectangular region; we explore one such example in the following preview activity.</div> <article class="exploration project-like" id="PA_11_3"><h3 class="heading">
 <span class="type">Preview Activity</span><span class="space"> </span><span class="codenumber">11.3.1</span><span class="period">.</span>
 </h3>
-<div class="para logical" id="p-3154">
+<div class="para logical" id="p-3128">
 <div class="para">A tetrahedron is a three-dimensional figure with four faces, each of which is a triangle. A picture of the tetrahedron <span class="process-math">\(T\)</span> with vertices <span class="process-math">\((0,0,0)\text{,}\)</span> <span class="process-math">\((1,0,0)\text{,}\)</span> <span class="process-math">\((0,1,0)\text{,}\)</span> and <span class="process-math">\((0,0,1)\)</span> is shown at left in <a href="" class="xref" data-knowl="./knowl/F_11_3_Tetrahedron_PA.html" title="Figure 11.3.1">Figure 11.3.1</a>. If we place one vertex at the origin and let vectors <span class="process-math">\(\va\text{,}\)</span> <span class="process-math">\(\vb\text{,}\)</span> and <span class="process-math">\(\vc\)</span> be determined by the edges of the tetrahedron that have one end at the origin, then a formula that tells us the volume <span class="process-math">\(V\)</span> of the tetrahedron is</div>
 <div class="displaymath process-math" data-contains-math-knowls="./knowl/F_11_3_Tetrahedron_PA.html" id="eq_11_3_tetrahedron_volume">
 \begin{equation}
@@ -694,9 +717,9 @@ V = \frac{1}{6} \lvert \va \cdot (\vb \times \vc) \rvert.\tag{11.3.1}
 <div class="sbspanel top" style="width:50%;"><img src="external/images/fig_11_3_tetra_project.svg" role="img" class="contained"></div>
 </div></div>
 <figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">11.3.1<span class="period">.</span></span><span class="space"> </span>Left: The tetrahedron <span class="process-math">\(T\text{.}\)</span> Right: Projecting <span class="process-math">\(T\)</span> onto the <span class="process-math">\(xy\)</span>-plane.</figcaption></figure> <ol class="lower-alpha">
-<li id="li-1163"><div class="para" id="p-3155">Use the formula <a href="" class="xref" data-knowl="./knowl/eq_11_3_tetrahedron_volume.html" title="Equation 11.3.1">(11.3.1)</a> to find the volume of the tetrahedron <span class="process-math">\(T\text{.}\)</span>
+<li id="li-1137"><div class="para" id="p-3129">Use the formula <a href="" class="xref" data-knowl="./knowl/eq_11_3_tetrahedron_volume.html" title="Equation 11.3.1">(11.3.1)</a> to find the volume of the tetrahedron <span class="process-math">\(T\text{.}\)</span>
 </div></li>
-<li id="li-1164"><div class="para logical" id="p-3156">
+<li id="li-1138"><div class="para logical" id="p-3130">
 <div class="para">Instead of memorizing or looking up the formula for the volume of a tetrahedron, we can use a double integral to calculate the volume of the tetrahedron <span class="process-math">\(T\text{.}\)</span> To see how, notice that the top face of the tetrahedron <span class="process-math">\(T\)</span> is the plane whose equation is</div>
 <div class="displaymath process-math" data-contains-math-knowls="./knowl/F_11_3_Tetrahedron_PA.html ./knowl/F_11_3_Tetrahedron_PA.html">
 \begin{equation*}
@@ -709,7 +732,7 @@ z = 1-(x+y).
 \int_{x=?}^{x=?} \int_{y=?}^{y=?} 1-(x+y) \, dy \, dx.
 \end{equation*}
 </div>
-<div class="para">The issue that is new here is how we find the limits on the integrals; note that the outer integral's limits are in <span class="process-math">\(x\text{,}\)</span> while the inner ones are in <span class="process-math">\(y\text{,}\)</span> since we have chosen <span class="process-math">\(dA = dy \, dx\text{.}\)</span> To see the domain over which we need to integrate, think of standing way above the tetrahedron looking straight down on it, which means we are projecting the entire tetrahedron onto the <span class="process-math">\(xy\)</span>-plane. The resulting domain is the triangular region shown at right in <a href="" class="xref" data-knowl="./knowl/F_11_3_Tetrahedron_PA.html" title="Figure 11.3.1">Figure 11.3.1</a>. Explain why we can represent the triangular region with the inequalities</div>
+<div class="para">The issue that is new here is how we find the limits on the integrals; note that the outer integral’s limits are in <span class="process-math">\(x\text{,}\)</span> while the inner ones are in <span class="process-math">\(y\text{,}\)</span> since we have chosen <span class="process-math">\(dA = dy \, dx\text{.}\)</span> To see the domain over which we need to integrate, think of standing way above the tetrahedron looking straight down on it, which means we are projecting the entire tetrahedron onto the <span class="process-math">\(xy\)</span>-plane. The resulting domain is the triangular region shown at right in <a href="" class="xref" data-knowl="./knowl/F_11_3_Tetrahedron_PA.html" title="Figure 11.3.1">Figure 11.3.1</a>. Explain why we can represent the triangular region with the inequalities</div>
 <div class="displaymath process-math" data-contains-math-knowls="./knowl/F_11_3_Tetrahedron_PA.html ./knowl/F_11_3_Tetrahedron_PA.html">
 \begin{equation*}
 0 \leq y \leq 1-x \ \ \ \text{ and }  \ \ \ 0 \leq x \leq 1.
@@ -717,7 +740,7 @@ z = 1-(x+y).
 </div>
 <div class="para">(Hint: Consider the cross sectional slice shown at right in <a href="" class="xref" data-knowl="./knowl/F_11_3_Tetrahedron_PA.html" title="Figure 11.3.1">Figure 11.3.1</a>.)</div>
 </div></li>
-<li id="li-1165"><div class="para logical" id="p-3157">
+<li id="li-1139"><div class="para logical" id="p-3131">
 <div class="para">Explain why it makes sense to now write the volume integral in the form</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -725,7 +748,7 @@ z = 1-(x+y).
 \end{equation*}
 </div>
 </div></li>
-<li id="li-1166"><div class="para logical" id="p-3158">
+<li id="li-1140"><div class="para logical" id="p-3132">
 <div class="para">Use the Fundamental Theorem of Calculus to evaluate the iterated integral</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -737,24 +760,24 @@ z = 1-(x+y).
 </ol></article></section><section class="subsection" id="subsection-79"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">11.3.1</span> <span class="title">Double Integrals over General Regions</span>
 </h3>
-<div class="para logical" id="p-3159">
+<div class="para logical" id="p-3133">
 <div class="para">So far, we have learned that a double integral over a rectangular region may be interpreted in one of two ways:</div>
 <ul class="disc">
-<li id="li-1167"><div class="para" id="p-3160">
+<li id="li-1141"><div class="para" id="p-3134">
 <span class="process-math">\(\iint_R f(x,y) \, dA\)</span> tells us the volume of the solids the graph of <span class="process-math">\(f\)</span> bounds above the <span class="process-math">\(xy\)</span>-plane over the rectangle <span class="process-math">\(R\)</span> minus the volume of the solids the graph of <span class="process-math">\(f\)</span> bounds below the <span class="process-math">\(xy\)</span>-plane under the rectangle <span class="process-math">\(R\text{;}\)</span>
 </div></li>
-<li id="li-1168"><div class="para" id="p-3161">
+<li id="li-1142"><div class="para" id="p-3135">
 <span class="process-math">\(\frac{1}{A(R)} \iint_R f(x,y) \, dA\text{,}\)</span> where <span class="process-math">\(A(R)\)</span> is the area of <span class="process-math">\(R\)</span> tells us the average value of the function <span class="process-math">\(f\)</span> on <span class="process-math">\(R\text{.}\)</span> If <span class="process-math">\(f(x, y) \geq  0\)</span> on <span class="process-math">\(R\text{,}\)</span> we can interpret this average value of <span class="process-math">\(f\)</span> on <span class="process-math">\(R\)</span> as the height of the box with base <span class="process-math">\(R\)</span> that has the same volume as the volume of the surface defined by <span class="process-math">\(f\)</span> over <span class="process-math">\(R\text{.}\)</span>
 </div></li>
 </ul>
 </div>
-<div class="para" id="p-3162">As we saw in <a href="" class="xref" data-knowl="./knowl/PA_11_1.html" title="Preview Activity 11.1.1">Preview Activity 11.1.1</a>, a function <span class="process-math">\(f = f(x,y)\)</span> may be considered over regions other than rectangular ones, and thus we want to understand how to set up and evaluate double integrals over non-rectangular regions. Note that if we can, then the two interpretations of the double integral noted above will naturally extend to solid regions with non-rectangular bases.</div>
-<div class="para" id="p-3163">So, suppose <span class="process-math">\(f\)</span> is a continuous function on a closed, bounded domain <span class="process-math">\(D\text{.}\)</span> For example, consider <span class="process-math">\(D\)</span> as the circular domain shown at left in <a href="" class="xref" data-knowl="./knowl/F_11_3_nonrect_domain_1.html" title="Figure 11.3.2">Figure 11.3.2</a>.</div>
+<div class="para" id="p-3136">As we saw in <a href="" class="xref" data-knowl="./knowl/PA_11_1.html" title="Preview Activity 11.1.1">Preview Activity 11.1.1</a>, a function <span class="process-math">\(f = f(x,y)\)</span> may be considered over regions other than rectangular ones, and thus we want to understand how to set up and evaluate double integrals over non-rectangular regions. Note that if we can, then the two interpretations of the double integral noted above will naturally extend to solid regions with non-rectangular bases.</div>
+<div class="para" id="p-3137">So, suppose <span class="process-math">\(f\)</span> is a continuous function on a closed, bounded domain <span class="process-math">\(D\text{.}\)</span> For example, consider <span class="process-math">\(D\)</span> as the circular domain shown at left in <a href="" class="xref" data-knowl="./knowl/F_11_3_nonrect_domain_1.html" title="Figure 11.3.2">Figure 11.3.2</a>.</div>
 <figure class="figure figure-like" id="F_11_3_nonrect_domain_1"><div class="sidebyside"><div class="sbsrow" style="margin-left:0%;margin-right:0%;">
 <div class="sbspanel top" style="width:50%;"><img src="external/images/fig_11_3_circular.svg" role="img" class="contained"></div>
 <div class="sbspanel top" style="width:50%;"><img src="external/images/fig_11_3_circular_rect.svg" role="img" class="contained"></div>
 </div></div>
-<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">11.3.2<span class="period">.</span></span><span class="space"> </span>Left: A non-rectangular domain. Right: Enclosing this domain in a rectangle.</figcaption></figure><div class="para logical" id="p-3164">
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">11.3.2<span class="period">.</span></span><span class="space"> </span>Left: A non-rectangular domain. Right: Enclosing this domain in a rectangle.</figcaption></figure><div class="para logical" id="p-3138">
 <div class="para">We can enclose <span class="process-math">\(D\)</span> in a rectangular domain <span class="process-math">\(R\)</span> as shown at right in <a href="" class="xref" data-knowl="./knowl/F_11_3_nonrect_domain_1.html" title="Figure 11.3.2">Figure 11.3.2</a> and extend the function <span class="process-math">\(f\)</span> to be defined over <span class="process-math">\(R\)</span> in order to be able to use the definition of the double integral over a rectangle. We extend <span class="process-math">\(f\)</span> in such a way that its values at the points in <span class="process-math">\(R\)</span> that are not in <span class="process-math">\(D\)</span> contribute 0 to the value of the integral. In other words, define a function <span class="process-math">\(F = F(x, y)\)</span> on <span class="process-math">\(R\)</span> as</div>
 <div class="displaymath process-math" data-contains-math-knowls="./knowl/F_11_3_nonrect_domain_1.html">
 \begin{equation*}
@@ -763,7 +786,7 @@ F(x,y) = \begin{cases}f(x,y), \amp \text{ if }  (x,y) \in D, \\ 0, \amp \text{ i
 \end{equation*}
 </div>
 </div>
-<div class="para logical" id="p-3165">
+<div class="para logical" id="p-3139">
 <div class="para">We then say that the double integral of <span class="process-math">\(f\)</span> over <span class="process-math">\(D\)</span> is the same as the double integral of <span class="process-math">\(F\)</span> over <span class="process-math">\(R\text{,}\)</span> and thus</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -771,8 +794,8 @@ F(x,y) = \begin{cases}f(x,y), \amp \text{ if }  (x,y) \in D, \\ 0, \amp \text{ i
 \end{equation*}
 </div>
 </div>
-<div class="para" id="p-3166">In practice, we just ignore everything that is in <span class="process-math">\(R\)</span> but not in <span class="process-math">\(D\text{,}\)</span> since these regions contribute 0 to the value of the integral.</div>
-<div class="para logical" id="p-3167">
+<div class="para" id="p-3140">In practice, we just ignore everything that is in <span class="process-math">\(R\)</span> but not in <span class="process-math">\(D\text{,}\)</span> since these regions contribute 0 to the value of the integral.</div>
+<div class="para logical" id="p-3141">
 <div class="para">Just as with double integrals over rectangles, a double integral over a domain <span class="process-math">\(D\)</span> can be evaluated as an iterated integral. If the region <span class="process-math">\(D\)</span> can be described by the inequalities <span class="process-math">\(g_1(x) \leq y \leq g_2(x)\)</span> and <span class="process-math">\(a \leq x \leq b\text{,}\)</span> where <span class="process-math">\(g_1=g_1(x)\)</span> and <span class="process-math">\(g_2=g_2(x)\)</span> are functions of only <span class="process-math">\(x\text{,}\)</span> then</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -780,7 +803,7 @@ F(x,y) = \begin{cases}f(x,y), \amp \text{ if }  (x,y) \in D, \\ 0, \amp \text{ i
 \end{equation*}
 </div>
 </div>
-<div class="para logical" id="p-3168">
+<div class="para logical" id="p-3142">
 <div class="para">Alternatively, if the region <span class="process-math">\(D\)</span> is described by the inequalities <span class="process-math">\(h_1(y) \leq x \leq h_2(y)\)</span> and <span class="process-math">\(c \leq y \leq d\text{,}\)</span> where <span class="process-math">\(h_1=h_1(y)\)</span> and <span class="process-math">\(h_2=h_2(y)\)</span> are functions of only <span class="process-math">\(y\text{,}\)</span> we have</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -788,29 +811,29 @@ F(x,y) = \begin{cases}f(x,y), \amp \text{ if }  (x,y) \in D, \\ 0, \amp \text{ i
 \end{equation*}
 </div>
 </div>
-<div class="para" id="p-3169">The structure of an iterated integral is of particular note:</div>
-<div class="para logical" id="p-3170">
+<div class="para" id="p-3143">The structure of an iterated integral is of particular note:</div>
+<div class="para logical" id="p-3144">
 <div class="para">In an iterated double integral:</div>
 <ul class="disc">
-<li id="li-1169"><div class="para" id="p-3171">the limits on the outer integral must be constants;</div></li>
-<li id="li-1170"><div class="para" id="p-3172">the limits on the inner integral must be constants or in terms of only the remaining variable — that is, if the inner integral is with respect to <span class="process-math">\(y\text{,}\)</span> then its limits may only involve <span class="process-math">\(x\)</span> and constants, and vice versa.</div></li>
+<li id="li-1143"><div class="para" id="p-3145">the limits on the outer integral must be constants;</div></li>
+<li id="li-1144"><div class="para" id="p-3146">the limits on the inner integral must be constants or in terms of only the remaining variable — that is, if the inner integral is with respect to <span class="process-math">\(y\text{,}\)</span> then its limits may only involve <span class="process-math">\(x\)</span> and constants, and vice versa.</div></li>
 </ul>
 </div>
-<div class="para" id="p-3173">We next consider a detailed example.</div>
+<div class="para" id="p-3147">We next consider a detailed example.</div>
 <article class="example example-like" id="example-6"><h4 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">11.3.3</span><span class="period">.</span>
 </h4>
-<div class="para" id="p-3174">Let <span class="process-math">\(f(x,y) = x^2y\)</span> be defined on the triangle <span class="process-math">\(D\)</span> with vertices <span class="process-math">\((0,0)\text{,}\)</span> <span class="process-math">\((2,0)\text{,}\)</span> and <span class="process-math">\((2,3)\)</span> as shown at left in <a href="" class="xref" data-knowl="./knowl/F_11_3_DI_1.html" title="Figure 11.3.4">Figure 11.3.4</a>.</div> <figure class="figure figure-like" id="F_11_3_DI_1"><div class="sidebyside"><div class="sbsrow" style="margin-left:0.166666666666667%;margin-right:0.166666666666667%;">
+<div class="para" id="p-3148">Let <span class="process-math">\(f(x,y) = x^2y\)</span> be defined on the triangle <span class="process-math">\(D\)</span> with vertices <span class="process-math">\((0,0)\text{,}\)</span> <span class="process-math">\((2,0)\text{,}\)</span> and <span class="process-math">\((2,3)\)</span> as shown at left in <a href="" class="xref" data-knowl="./knowl/F_11_3_DI_1.html" title="Figure 11.3.4">Figure 11.3.4</a>.</div> <figure class="figure figure-like" id="F_11_3_DI_1"><div class="sidebyside"><div class="sbsrow" style="margin-left:0.166666666666667%;margin-right:0.166666666666667%;">
 <div class="sbspanel top" style="width:33.1103678929766%;"><img src="external/images/fig_11_3_triangular.svg" role="img" class="contained"></div>
 <div class="sbspanel top" style="width:33.1103678929766%;"><img src="external/images/fig_11_3_triangular_v.svg" role="img" class="contained"></div>
 <div class="sbspanel top" style="width:33.1103678929766%;"><img src="external/images/fig_11_3_triangular_h.svg" role="img" class="contained"></div>
 </div></div>
-<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">11.3.4<span class="period">.</span></span><span class="space"> </span>A triangular domain and slices in the <span class="process-math">\(y\)</span> and <span class="process-math">\(x\)</span> directions.</figcaption></figure> <div class="para logical" id="p-3175">
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">11.3.4<span class="period">.</span></span><span class="space"> </span>A triangular domain and slices in the <span class="process-math">\(y\)</span> and <span class="process-math">\(x\)</span> directions.</figcaption></figure> <div class="para logical" id="p-3149">
 <div class="para">To evaluate <span class="process-math">\(\iint_D f(x,y) \, dA\text{,}\)</span> we must first describe the region <span class="process-math">\(D\)</span> in terms of the variables <span class="process-math">\(x\)</span> and <span class="process-math">\(y\text{.}\)</span> We take two approaches.</div>
 <dl class="description-list">
-<dt id="li-1171">Approach 1: Integrate first with respect to <span class="process-math">\(y\text{.}\)</span>
+<dt id="li-1145">Approach 1: Integrate first with respect to <span class="process-math">\(y\text{.}\)</span>
 </dt>
-<dd><div class="para logical" id="p-3176">
+<dd><div class="para logical" id="p-3150">
 <div class="para">In this case we choose to evaluate the double integral as an iterated integral in the form</div>
 <div class="displaymath process-math" data-contains-math-knowls="./knowl/F_11_3_DI_1.html">
 \begin{equation*}
@@ -846,9 +869,9 @@ g_1(x) \leq y \leq g_2(x) \ \ \ \ \ \text{ and }  \ \ \ \ \ a \leq x \leq b.
 \end{align*}
 </div>
 </div></dd>
-<dt id="li-1172">Approach 2: Integrate first with respect to <span class="process-math">\(x\text{.}\)</span>
+<dt id="li-1146">Approach 2: Integrate first with respect to <span class="process-math">\(x\text{.}\)</span>
 </dt>
-<dd><div class="para logical" id="p-3177">
+<dd><div class="para logical" id="p-3151">
 <div class="para">In this case, we choose to evaluate the double integral as an iterated integral in the form</div>
 <div class="displaymath process-math" data-contains-math-knowls="./knowl/F_11_3_DI_1.html">
 \begin{equation*}
@@ -886,13 +909,13 @@ h_1(y) \leq x \leq h_2(y) \ \ \ \ \ \text{ and }   \ \ \ \ \  c \leq y \leq d.
 </div>
 </div></dd>
 </dl>
-</div> <div class="para" id="p-3178">We see, of course, that in the situation where <span class="process-math">\(D\)</span> can be described in two different ways, the order in which we choose to set up and evaluate the double integral doesn't matter, and the same value results in either case.</div></article><div class="para logical" id="p-3179">
+</div> <div class="para" id="p-3152">We see, of course, that in the situation where <span class="process-math">\(D\)</span> can be described in two different ways, the order in which we choose to set up and evaluate the double integral doesn’t matter, and the same value results in either case.</div></article><div class="para logical" id="p-3153">
 <div class="para">The meaning of a double integral over a non-rectangular region, <span class="process-math">\(D\text{,}\)</span> parallels the meaning over a rectangular region. In particular,</div>
 <ul class="disc">
-<li id="li-1173"><div class="para" id="p-3180">
+<li id="li-1147"><div class="para" id="p-3154">
 <span class="process-math">\(\iint_D f(x,y) \, dA\)</span> tells us the volume of the solids the graph of <span class="process-math">\(f\)</span> bounds above the <span class="process-math">\(xy\)</span>-plane over the closed, bounded region <span class="process-math">\(D\)</span> minus the volume of the solids the graph of <span class="process-math">\(f\)</span> bounds below the <span class="process-math">\(xy\)</span>-plane under the region <span class="process-math">\(D\text{;}\)</span>
 </div></li>
-<li id="li-1174"><div class="para" id="p-3181">
+<li id="li-1148"><div class="para" id="p-3155">
 <span class="process-math">\(\frac{1}{A(D)} \iint_R f(x,y) \, dA\text{,}\)</span> where <span class="process-math">\(A(D)\)</span> is the area of <span class="process-math">\(D\)</span> tells us the average value of the function <span class="process-math">\(f\)</span> on <span class="process-math">\(D\text{.}\)</span> If <span class="process-math">\(f(x, y) \geq  0\)</span> on <span class="process-math">\(D\text{,}\)</span> we can interpret this average value of <span class="process-math">\(f\)</span> on <span class="process-math">\(D\)</span> as the height of the solid with base <span class="process-math">\(D\)</span> and constant cross-sectional area <span class="process-math">\(D\)</span> that has the same volume as the volume of the surface defined by <span class="process-math">\(f\)</span> over <span class="process-math">\(D\text{.}\)</span>
 </div></li>
 </ul>
@@ -900,21 +923,21 @@ h_1(y) \leq x \leq h_2(y) \ \ \ \ \ \text{ and }   \ \ \ \ \  c \leq y \leq d.
 <article class="activity project-like" id="A_11_3_1"><h4 class="heading">
 <span class="type">Activity</span><span class="space"> </span><span class="codenumber">11.3.2</span><span class="period">.</span>
 </h4>
-<div class="para logical" id="p-3182">
+<div class="para logical" id="p-3156">
 <div class="para">Consider the double integral <span class="process-math">\(\iint_D (4-x-2y) \, dA\text{,}\)</span> where <span class="process-math">\(D\)</span> is the triangular region with vertices (0,0), (4,0), and (0,2).</div>
 <ol class="lower-alpha">
-<li id="li-1175"><div class="para" id="p-3183">Write the given integral as an iterated integral of the form <span class="process-math">\(\iint_D (4-x-2y) \, dy \, dx\text{.}\)</span> Draw a labeled picture of <span class="process-math">\(D\)</span> with relevant cross sections.</div></li>
-<li id="li-1176"><div class="para" id="p-3184">Write the given integral as an iterated integral of the form <span class="process-math">\(\iint_D (4-x-2y) \, dx \, dy\text{.}\)</span> Draw a labeled picture of <span class="process-math">\(D\)</span> with relevant cross sections.</div></li>
-<li id="li-1177"><div class="para" id="p-3185">Evaluate the two iterated integrals from (a) and (b), and verify that they produce the same value. Give at least one interpretation of the meaning of your result.</div></li>
+<li id="li-1149"><div class="para" id="p-3157">Write the given integral as an iterated integral of the form <span class="process-math">\(\iint_D (4-x-2y) \, dy \, dx\text{.}\)</span> Draw a labeled picture of <span class="process-math">\(D\)</span> with relevant cross sections.</div></li>
+<li id="li-1150"><div class="para" id="p-3158">Write the given integral as an iterated integral of the form <span class="process-math">\(\iint_D (4-x-2y) \, dx \, dy\text{.}\)</span> Draw a labeled picture of <span class="process-math">\(D\)</span> with relevant cross sections.</div></li>
+<li id="li-1151"><div class="para" id="p-3159">Evaluate the two iterated integrals from (a) and (b), and verify that they produce the same value. Give at least one interpretation of the meaning of your result.</div></li>
 </ol>
 </div></article><article class="activity project-like" id="A_11_3_2"><h4 class="heading">
 <span class="type">Activity</span><span class="space"> </span><span class="codenumber">11.3.3</span><span class="period">.</span>
 </h4>
-<div class="para logical" id="p-3186">
+<div class="para logical" id="p-3160">
 <div class="para">Consider the iterated integral <span class="process-math">\(\int_{x=0}^{x=1} \int_{y=x}^{y=\sqrt{x}} (4x+10y) \, dy \, dx\text{.}\)</span>
 </div>
 <ol class="lower-alpha">
-<li id="li-1178"><div class="para logical" id="p-3187">
+<li id="li-1152"><div class="para logical" id="p-3161">
 <div class="para">Sketch the region of integration, <span class="process-math">\(D\text{,}\)</span> for which</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -922,7 +945,7 @@ h_1(y) \leq x \leq h_2(y) \ \ \ \ \ \text{ and }   \ \ \ \ \  c \leq y \leq d.
 \end{equation*}
 </div>
 </div></li>
-<li id="li-1179"><div class="para logical" id="p-3188">
+<li id="li-1153"><div class="para logical" id="p-3162">
 <div class="para">Determine the equivalent iterated integral that results from integrating in the opposite order (<span class="process-math">\(dx \, dy\text{,}\)</span> instead of <span class="process-math">\(dy \, dx\)</span>).  That is, determine the limits of integration for which</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -930,33 +953,33 @@ h_1(y) \leq x \leq h_2(y) \ \ \ \ \ \text{ and }   \ \ \ \ \  c \leq y \leq d.
 \end{equation*}
 </div>
 </div></li>
-<li id="li-1180"><div class="para" id="p-3189">Evaluate one of the two iterated integrals above. Explain what the value you obtained tells you.</div></li>
-<li id="li-1181"><div class="para" id="p-3190">Set up and evaluate a single definite integral to determine the exact area of <span class="process-math">\(D\text{,}\)</span> <span class="process-math">\(A(D)\text{.}\)</span>
+<li id="li-1154"><div class="para" id="p-3163">Evaluate one of the two iterated integrals above. Explain what the value you obtained tells you.</div></li>
+<li id="li-1155"><div class="para" id="p-3164">Set up and evaluate a single definite integral to determine the exact area of <span class="process-math">\(D\text{,}\)</span> <span class="process-math">\(A(D)\text{.}\)</span>
 </div></li>
-<li id="li-1182"><div class="para" id="p-3191">Determine the exact average value of <span class="process-math">\(f(x,y) = 4x  + 10y\)</span> over <span class="process-math">\(D\text{.}\)</span>
+<li id="li-1156"><div class="para" id="p-3165">Determine the exact average value of <span class="process-math">\(f(x,y) = 4x  + 10y\)</span> over <span class="process-math">\(D\text{.}\)</span>
 </div></li>
 </ol>
 </div></article><article class="activity project-like" id="A_11_3_3"><h4 class="heading">
 <span class="type">Activity</span><span class="space"> </span><span class="codenumber">11.3.4</span><span class="period">.</span>
 </h4>
-<div class="para logical" id="p-3192">
+<div class="para logical" id="p-3166">
 <div class="para">Consider the iterated integral <span class="process-math">\(\int_{x=0}^{x=4} \int_{y=x/2}^{y=2} e^{y^2} \, dy \, dx\text{.}\)</span>
 </div>
 <ol class="lower-alpha">
-<li id="li-1183"><div class="para" id="p-3193">Explain why we cannot find a simple antiderivative for <span class="process-math">\(e^{y^2}\)</span> with respect to <span class="process-math">\(y\text{,}\)</span> and thus are unable to evaluate <span class="process-math">\(\int_{x=0}^{x=4} \int_{y=x/2}^{y=2} e^{y^2} \, dy \, dx\)</span> in the indicated order using the Fundamental Theorem of Calculus.</div></li>
-<li id="li-1184"><div class="para" id="p-3194">Given that <span class="process-math">\(\iint_D e^{y^2} \, dA = \int_{x=0}^{x=4} \int_{y=x/2}^{y=2} e^{y^2} \, dy \, dx\text{,}\)</span> sketch the region of integration, <span class="process-math">\(D\text{.}\)</span>
+<li id="li-1157"><div class="para" id="p-3167">Explain why we cannot find a simple antiderivative for <span class="process-math">\(e^{y^2}\)</span> with respect to <span class="process-math">\(y\text{,}\)</span> and thus are unable to evaluate <span class="process-math">\(\int_{x=0}^{x=4} \int_{y=x/2}^{y=2} e^{y^2} \, dy \, dx\)</span> in the indicated order using the Fundamental Theorem of Calculus.</div></li>
+<li id="li-1158"><div class="para" id="p-3168">Given that <span class="process-math">\(\iint_D e^{y^2} \, dA = \int_{x=0}^{x=4} \int_{y=x/2}^{y=2} e^{y^2} \, dy \, dx\text{,}\)</span> sketch the region of integration, <span class="process-math">\(D\text{.}\)</span>
 </div></li>
-<li id="li-1185"><div class="para" id="p-3195">Rewrite the given iterated integral in the opposite order, using <span class="process-math">\(dA = dx \, dy\text{.}\)</span> (Hint: You may need more than one integral.)</div></li>
-<li id="li-1186"><div class="para" id="p-3196">Use the Fundamental Theorem of Calculus to evaluate the iterated integral you developed in (c).  Write one sentence to explain the meaning of the value you found.</div></li>
-<li id="li-1187"><div class="para" id="p-3197">What is the important lesson this activity offers regarding the order in which we set up an iterated integral?</div></li>
+<li id="li-1159"><div class="para" id="p-3169">Rewrite the given iterated integral in the opposite order, using <span class="process-math">\(dA = dx \, dy\text{.}\)</span> (Hint: You may need more than one integral.)</div></li>
+<li id="li-1160"><div class="para" id="p-3170">Use the Fundamental Theorem of Calculus to evaluate the iterated integral you developed in (c).  Write one sentence to explain the meaning of the value you found.</div></li>
+<li id="li-1161"><div class="para" id="p-3171">What is the important lesson this activity offers regarding the order in which we set up an iterated integral?</div></li>
 </ol>
 </div></article></section><section class="subsection" id="subsection-80"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">11.3.2</span> <span class="title">Summary</span>
 </h3>
 <ul class="disc">
-<li id="li-1188"><div class="para" id="p-3198">For a double integral <span class="process-math">\(\iint_D f(x,y) \, dA\)</span> over a non-rectangular region <span class="process-math">\(D\text{,}\)</span> we enclose <span class="process-math">\(D\)</span> in a rectangle <span class="process-math">\(R\)</span> and then extend integrand <span class="process-math">\(f\)</span> to a function <span class="process-math">\(F\)</span> so that <span class="process-math">\(F(x,y) = 0\)</span> at all points in <span class="process-math">\(R\)</span> outside of <span class="process-math">\(D\)</span> and <span class="process-math">\(F(x,y) = f(x,y)\)</span> for all points in <span class="process-math">\(D\text{.}\)</span> We then define <span class="process-math">\(\iint_D f(x,y) \, dA\)</span> to be equal to <span class="process-math">\(\iint_R F(x,y) \, dA\text{.}\)</span>
+<li id="li-1162"><div class="para" id="p-3172">For a double integral <span class="process-math">\(\iint_D f(x,y) \, dA\)</span> over a non-rectangular region <span class="process-math">\(D\text{,}\)</span> we enclose <span class="process-math">\(D\)</span> in a rectangle <span class="process-math">\(R\)</span> and then extend integrand <span class="process-math">\(f\)</span> to a function <span class="process-math">\(F\)</span> so that <span class="process-math">\(F(x,y) = 0\)</span> at all points in <span class="process-math">\(R\)</span> outside of <span class="process-math">\(D\)</span> and <span class="process-math">\(F(x,y) = f(x,y)\)</span> for all points in <span class="process-math">\(D\text{.}\)</span> We then define <span class="process-math">\(\iint_D f(x,y) \, dA\)</span> to be equal to <span class="process-math">\(\iint_R F(x,y) \, dA\text{.}\)</span>
 </div></li>
-<li id="li-1189"><div class="para logical" id="p-3199">
+<li id="li-1163"><div class="para logical" id="p-3173">
 <div class="para">In an iterated double integral, the limits on the outer integral must be constants while the limits on the inner integral must be constants or in terms of only the remaining variable. In other words, an iterated double integral has one of the following forms (which result in the same value):</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -979,7 +1002,7 @@ h_1(y) \leq x \leq h_2(y) \ \ \ \ \ \text{ and }   \ \ \ \ \  c \leq y \leq d.
 <div id="webwork-200" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="200" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/maCalcDB/setVMultIntegrals1Double/ur_vc_8_10.pg" data-courseID="mitchkeller-dev" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-200')">Activate</button></div>
 <div class="problem-contents">
-<div class="para" id="p-3200">Evaluate the double integral <span class="process-math">\(\displaystyle I = \int\!\!\int_{\mathbf{D}} xy \: d\!A\)</span> where <span class="process-math">\(\mathbf{D}\)</span> is the triangular region with vertices <span class="process-math">\((0, 0), (1, 0), (0, 4)\text{.}\)</span>
+<div class="para" id="p-3174">Evaluate the double integral <span class="process-math">\(\displaystyle I = \int\!\!\int_{\mathbf{D}} xy \: d\!A\)</span> where <span class="process-math">\(\mathbf{D}\)</span> is the triangular region with vertices <span class="process-math">\((0, 0), (1, 0), (0, 4)\text{.}\)</span>
 </div>
 <div class="solutions"></div>
 </div>
@@ -987,7 +1010,7 @@ h_1(y) \leq x \leq h_2(y) \ \ \ \ \ \text{ and }   \ \ \ \ \  c \leq y \leq d.
 <div id="webwork-201" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="201" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/272/setStewart15_3/problem_2.pg" data-courseID="mitchkeller-dev" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-201')">Activate</button></div>
 <div class="problem-contents">
-<div class="para" id="p-3202">Evaluate the double integral <span class="process-math">\(\displaystyle I = \int\!\!\int_{\mathbf{D}} xy \: d\!A\)</span> where <span class="process-math">\(\mathbf{D}\)</span> is the triangular region with vertices <span class="process-math">\((0, 0), (2, 0), (0, 2)\text{.}\)</span>
+<div class="para" id="p-3176">Evaluate the double integral <span class="process-math">\(\displaystyle I = \int\!\!\int_{\mathbf{D}} xy \: d\!A\)</span> where <span class="process-math">\(\mathbf{D}\)</span> is the triangular region with vertices <span class="process-math">\((0, 0), (2, 0), (0, 2)\text{.}\)</span>
 </div>
 <div class="solutions"></div>
 </div>
@@ -995,7 +1018,7 @@ h_1(y) \leq x \leq h_2(y) \ \ \ \ \ \text{ and }   \ \ \ \ \  c \leq y \leq d.
 <div id="webwork-202" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="202" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/maCalcDB/setVMultIntegrals1Double/ur_vc_8_12.pg" data-courseID="mitchkeller-dev" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-202')">Activate</button></div>
 <div class="problem-contents">
-<div class="para" id="p-3204">Evaluate the integral by reversing the order of integration.</div> <div class="para" id="p-3205">
+<div class="para" id="p-3178">Evaluate the integral by reversing the order of integration.</div> <div class="para" id="p-3179">
 <span class="process-math">\(\int_{0}^{1}\!\!\int_{4y}^{4} e^{x^{2}} \, dx dy =\)</span> <span class="fillin underline" role="img" aria-label="50-character blank" style="width: 22.7272727272727em;"></span>
 </div>
 <div class="solutions"></div>
@@ -1004,24 +1027,24 @@ h_1(y) \leq x \leq h_2(y) \ \ \ \ \ \text{ and }   \ \ \ \ \  c \leq y \leq d.
 <div id="webwork-203" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="203" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/FortLewis/Calc3/16-1-Double-integrals/HGM4-16-1-15-Double-integrals.pg" data-courseID="mitchkeller-dev" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-203')">Activate</button></div>
 <div class="problem-contents">
-<div class="para" id="p-3207">Decide, without calculation, if each of the integrals below are positive, negative, or zero.  Let D be the region inside the unit circle centered at the origin. Let T, B, R, and L denote the regions enclosed by the top half, the bottom half, the right half, and the left half of unit circle, respectively.</div> <div class="para logical" id="p-3208"><ol class="lower-alpha">
-<li id="li-1190"><div class="para" id="p-3209"><span class="process-math">\(\displaystyle \displaystyle \iint\limits_B (y^3 + y^5) \, dA\)</span></div></li>
-<li id="li-1191"><div class="para" id="p-3210"><span class="process-math">\(\displaystyle \displaystyle \iint\limits_D (y^3 + y^5) \, dA\)</span></div></li>
-<li id="li-1192"><div class="para" id="p-3211"><span class="process-math">\(\displaystyle \displaystyle \iint\limits_L (y^3 + y^5) \, dA\)</span></div></li>
-<li id="li-1193"><div class="para" id="p-3212"><span class="process-math">\(\displaystyle \displaystyle \iint\limits_T (y^3 + y^5) \, dA\)</span></div></li>
-<li id="li-1194"><div class="para" id="p-3213"><span class="process-math">\(\displaystyle \displaystyle \iint\limits_R (y^3 + y^5) \, dA\)</span></div></li>
+<div class="para" id="p-3181">Decide, without calculation, if each of the integrals below are positive, negative, or zero.  Let D be the region inside the unit circle centered at the origin. Let T, B, R, and L denote the regions enclosed by the top half, the bottom half, the right half, and the left half of unit circle, respectively.</div> <div class="para logical" id="p-3182"><ol class="lower-alpha">
+<li id="li-1164"><div class="para" id="p-3183"><span class="process-math">\(\displaystyle \displaystyle \iint\limits_B (y^3 + y^5) \, dA\)</span></div></li>
+<li id="li-1165"><div class="para" id="p-3184"><span class="process-math">\(\displaystyle \displaystyle \iint\limits_D (y^3 + y^5) \, dA\)</span></div></li>
+<li id="li-1166"><div class="para" id="p-3185"><span class="process-math">\(\displaystyle \displaystyle \iint\limits_L (y^3 + y^5) \, dA\)</span></div></li>
+<li id="li-1167"><div class="para" id="p-3186"><span class="process-math">\(\displaystyle \displaystyle \iint\limits_T (y^3 + y^5) \, dA\)</span></div></li>
+<li id="li-1168"><div class="para" id="p-3187"><span class="process-math">\(\displaystyle \displaystyle \iint\limits_R (y^3 + y^5) \, dA\)</span></div></li>
 </ol></div>
 </div>
 </div></article><article class="exercise exercise-like" id="Library__Michigan__Chap16Sec2__Q41.pg"><h4 class="heading"><span class="codenumber">5<span class="period">.</span></span></h4>
 <div id="webwork-204" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="204" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Michigan/Chap16Sec2/Q41.pg" data-courseID="mitchkeller-dev" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-204')">Activate</button></div>
 <div class="problem-contents">
-<div class="para" id="p-3214">The region <span class="process-math">\(W\)</span> lies below the surface <span class="process-math">\(f(x,y) = 7 e^{-(x-3)^2-y^2}\)</span> and above the disk <span class="process-math">\(x^2+y^2\le 16\)</span> in the <span class="process-math">\(xy\)</span>-plane.</div> <div class="para" id="p-3215">
-<em class="alert">(a)</em> Think about what the contours of <span class="process-math">\(f\)</span> look like.  You may want to using <span class="process-math">\(f(x,y)=1\)</span> as an example.  Sketch a rough contour diagram on a separate sheet of paper.</div> <div class="para" id="p-3216">
+<div class="para" id="p-3188">The region <span class="process-math">\(W\)</span> lies below the surface <span class="process-math">\(f(x,y) = 7 e^{-(x-3)^2-y^2}\)</span> and above the disk <span class="process-math">\(x^2+y^2\le 16\)</span> in the <span class="process-math">\(xy\)</span>-plane.</div> <div class="para" id="p-3189">
+<em class="alert">(a)</em> Think about what the contours of <span class="process-math">\(f\)</span> look like.  You may want to using <span class="process-math">\(f(x,y)=1\)</span> as an example.  Sketch a rough contour diagram on a separate sheet of paper.</div> <div class="para" id="p-3190">
 <em class="alert">(b)</em> Write an integral giving the area of the cross-section of <span class="process-math">\(W\)</span> in the plane <span class="process-math">\(x=3\text{.}\)</span>
-</div> <div class="para" id="p-3217">Area = <span class="process-math">\(\int_a^b\)</span> <span class="fillin underline" role="img" aria-label="35-character blank" style="width: 15.9090909090909em;"></span> <span class="process-math">\(d\)</span><span class="fillin underline" role="img" aria-label="5-character blank" style="width: 2.272727272727273em;"></span>,</div> <div class="para" id="p-3218">where <span class="process-math">\(a =\)</span> <span class="fillin underline" role="img" aria-label="5-character blank" style="width: 2.272727272727273em;"></span> and <span class="process-math">\(b =\)</span><span class="fillin underline" role="img" aria-label="5-character blank" style="width: 2.272727272727273em;"></span>
-</div> <div class="para" id="p-3219">
-<em class="alert">(c)</em> Use your work from (b) to write an iterated double integral giving the volume of <span class="process-math">\(W\text{,}\)</span> using the work from (b) to inform the construction of the inside integral.</div> <div class="para" id="p-3220">Volume = <span class="process-math">\(\int_a^b\int_c^d\)</span> <span class="fillin underline" role="img" aria-label="35-character blank" style="width: 15.9090909090909em;"></span> <span class="process-math">\(d\)</span><span class="fillin underline" role="img" aria-label="5-character blank" style="width: 2.272727272727273em;"></span> <span class="process-math">\(d\)</span><span class="fillin underline" role="img" aria-label="5-character blank" style="width: 2.272727272727273em;"></span>,</div> <div class="para" id="p-3221">where <span class="process-math">\(a =\)</span> <span class="fillin underline" role="img" aria-label="5-character blank" style="width: 2.272727272727273em;"></span>, <span class="process-math">\(b =\)</span><span class="fillin underline" role="img" aria-label="5-character blank" style="width: 2.272727272727273em;"></span> <span class="process-math">\(c =\)</span> <span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span> and <span class="process-math">\(d =\)</span><span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>
+</div> <div class="para" id="p-3191">Area = <span class="process-math">\(\int_a^b\)</span> <span class="fillin underline" role="img" aria-label="35-character blank" style="width: 15.9090909090909em;"></span> <span class="process-math">\(d\)</span><span class="fillin underline" role="img" aria-label="5-character blank" style="width: 2.272727272727273em;"></span>,</div> <div class="para" id="p-3192">where <span class="process-math">\(a =\)</span> <span class="fillin underline" role="img" aria-label="5-character blank" style="width: 2.272727272727273em;"></span> and <span class="process-math">\(b =\)</span><span class="fillin underline" role="img" aria-label="5-character blank" style="width: 2.272727272727273em;"></span>
+</div> <div class="para" id="p-3193">
+<em class="alert">(c)</em> Use your work from (b) to write an iterated double integral giving the volume of <span class="process-math">\(W\text{,}\)</span> using the work from (b) to inform the construction of the inside integral.</div> <div class="para" id="p-3194">Volume = <span class="process-math">\(\int_a^b\int_c^d\)</span> <span class="fillin underline" role="img" aria-label="35-character blank" style="width: 15.9090909090909em;"></span> <span class="process-math">\(d\)</span><span class="fillin underline" role="img" aria-label="5-character blank" style="width: 2.272727272727273em;"></span> <span class="process-math">\(d\)</span><span class="fillin underline" role="img" aria-label="5-character blank" style="width: 2.272727272727273em;"></span>,</div> <div class="para" id="p-3195">where <span class="process-math">\(a =\)</span> <span class="fillin underline" role="img" aria-label="5-character blank" style="width: 2.272727272727273em;"></span>, <span class="process-math">\(b =\)</span><span class="fillin underline" role="img" aria-label="5-character blank" style="width: 2.272727272727273em;"></span> <span class="process-math">\(c =\)</span> <span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span> and <span class="process-math">\(d =\)</span><span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>
 </div>
 <div class="solutions">
 <a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-59" id="solution-59"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-59"><div class="solution solution-like">
@@ -1053,24 +1076,24 @@ h_1(y) \leq x \leq h_2(y) \ \ \ \ \ \text{ and }   \ \ \ \ \  c \leq y \leq d.
 <div id="webwork-205" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="205" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/FortLewis/Calc3/16-2-Iterated-integrals/HGM4-16-2-43-Iterated-integrals.pg" data-courseID="mitchkeller-dev" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-205')">Activate</button></div>
 <div class="problem-contents">
-<div class="para" id="p-3233">Set up a double integral in rectangular coordinates for calculating the volume of the solid under the graph of the function <span class="process-math">\(f(x,y) = 33-x^{2}-y^{2}\)</span> and above the plane <span class="process-math">\(z = 8\text{.}\)</span>
-</div> <div class="para" id="p-3234">
-<em class="emphasis">Instructions:</em> Please enter the integrand in the first answer box. Depending on the order of integration you choose, enter <em class="emphasis">dx</em> and <em class="emphasis">dy</em> in either order into the second and third answer boxes with only one <em class="emphasis">dx</em> or <em class="emphasis">dy</em> in each box.  Then, enter the limits of integration.</div> <div class="para" id="p-3235">
+<div class="para" id="p-3207">Set up a double integral in rectangular coordinates for calculating the volume of the solid under the graph of the function <span class="process-math">\(f(x,y) = 33-x^{2}-y^{2}\)</span> and above the plane <span class="process-math">\(z = 8\text{.}\)</span>
+</div> <div class="para" id="p-3208">
+<em class="emphasis">Instructions:</em> Please enter the integrand in the first answer box. Depending on the order of integration you choose, enter <em class="emphasis">dx</em> and <em class="emphasis">dy</em> in either order into the second and third answer boxes with only one <em class="emphasis">dx</em> or <em class="emphasis">dy</em> in each box.  Then, enter the limits of integration.</div> <div class="para" id="p-3209">
 <span class="process-math">\(\displaystyle \int_A^B \int_C^D\)</span> <span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span> <span class="fillin underline" role="img" aria-label="5-character blank" style="width: 2.272727272727273em;"></span> <span class="fillin underline" role="img" aria-label="5-character blank" style="width: 2.272727272727273em;"></span>
-</div> <div class="para" id="p-3236">A = <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>
-</div> <div class="para" id="p-3237">B = <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>
-</div> <div class="para" id="p-3238">C = <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>
-</div> <div class="para" id="p-3239">D = <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>
+</div> <div class="para" id="p-3210">A = <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>
+</div> <div class="para" id="p-3211">B = <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>
+</div> <div class="para" id="p-3212">C = <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>
+</div> <div class="para" id="p-3213">D = <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>
 </div>
 <div class="solutions">
 <a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-60" id="solution-60"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-60"><div class="solution solution-like">
-<div class="para" id="p-3241">SOLUTION</div> <div class="para" id="p-3242">The function <span class="process-math">\(f(x,y) = 33-x^{2}-y^{2}\)</span> intersects the plane <span class="process-math">\(z = 8\)</span> when <span class="process-math">\(x^2 + y^2 = 25\text{.}\)</span>
-</div> <div class="para" id="p-3243">Thus the region of integration is</div> <div class="para" id="p-3244"><span class="process-math">\(\begin{array}{lcl}  D \amp =\amp  \left \lbrace (x,y) \, | \, -5 \le x  \le 5, 
+<div class="para" id="p-3215">SOLUTION</div> <div class="para" id="p-3216">The function <span class="process-math">\(f(x,y) = 33-x^{2}-y^{2}\)</span> intersects the plane <span class="process-math">\(z = 8\)</span> when <span class="process-math">\(x^2 + y^2 = 25\text{.}\)</span>
+</div> <div class="para" id="p-3217">Thus the region of integration is</div> <div class="para" id="p-3218"><span class="process-math">\(\begin{array}{lcl}  D \amp =\amp  \left \lbrace (x,y) \, | \, -5 \le x  \le 5, 
 -\sqrt{25-x^2} \le y \le \sqrt{25-x^2} \right\rbrace  \\
 \amp =\amp  \left \lbrace (x,y) \, | \, -5 \le y  \le 5,
--\sqrt{25-y^2} \le x \le \sqrt{25-y^2} \right\rbrace  \end{array}\text{.}\)</span></div> <div class="para" id="p-3245">The volume is then</div> <div class="para" id="p-3246">
+-\sqrt{25-y^2} \le x \le \sqrt{25-y^2} \right\rbrace  \end{array}\text{.}\)</span></div> <div class="para" id="p-3219">The volume is then</div> <div class="para" id="p-3220">
 <span class="process-math">\(V= \int_{-5}^{5} \int_{-\sqrt{25-x^2}}^{\sqrt{25-x^2}} \left( 33-x^2-y^2 - 8
-\right) \, dy \, dx\)</span> or</div> <div class="para" id="p-3247"><span class="process-math">\(V= \int_{-5}^{5} \int_{-\sqrt{25-y^2}}^{\sqrt{25-y^2}} \left( 33-x^2-y^2 - 8
+\right) \, dy \, dx\)</span> or</div> <div class="para" id="p-3221"><span class="process-math">\(V= \int_{-5}^{5} \int_{-\sqrt{25-y^2}}^{\sqrt{25-y^2}} \left( 33-x^2-y^2 - 8
 \right) \, dx \, dy\text{.}\)</span></div>
 </div></div>
 </div>
@@ -1079,22 +1102,22 @@ h_1(y) \leq x \leq h_2(y) \ \ \ \ \ \text{ and }   \ \ \ \ \  c \leq y \leq d.
 <div id="webwork-206" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="206" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Rochester/setVMultIntegrals1Double/ur_vc_8_11.pg" data-courseID="mitchkeller-dev" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-206')">Activate</button></div>
 <div class="problem-contents">
-<div class="para" id="p-3248">Find the volume of the solid bounded by the planes x = 0, y = 0, z = 0, and x + y + z = 8.</div>
+<div class="para" id="p-3222">Find the volume of the solid bounded by the planes x = 0, y = 0, z = 0, and x + y + z = 8.</div>
 <div class="solutions"></div>
 </div>
 </div></article><article class="exercise exercise-like" id="Library__ASU-topics__setCalculus__stef__stef15_3p3.pg"><h4 class="heading"><span class="codenumber">8<span class="period">.</span></span></h4>
 <div id="webwork-207" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="207" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/ASU-topics/setCalculus/stef/stef15_3p3.pg" data-courseID="mitchkeller-dev" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-207')">Activate</button></div>
 <div class="problem-contents">
-<div class="para" id="p-3250">Consider the integral <span class="process-math">\(\displaystyle \int_0^8 \int_0^{\sqrt{64-y}}  f(x,y) dx dy\text{.}\)</span> If we change the order of integration we obtain the sum of two integrals:</div> <div class="para" id="p-3251"><span class="process-math">\(\displaystyle \int_a^b
+<div class="para" id="p-3224">Consider the integral <span class="process-math">\(\displaystyle \int_0^8 \int_0^{\sqrt{64-y}}  f(x,y) dx dy\text{.}\)</span> If we change the order of integration we obtain the sum of two integrals:</div> <div class="para" id="p-3225"><span class="process-math">\(\displaystyle \int_a^b
 \int_{g_1(x)}^{g_2(x)} f(x,y)  dy dx + \displaystyle \int_c^d
-\int_{g_3(x)}^{g_4(x)} f(x,y)  dy dx\)</span></div> <div class="para" id="p-3252">
+\int_{g_3(x)}^{g_4(x)} f(x,y)  dy dx\)</span></div> <div class="para" id="p-3226">
 <span class="process-math">\(a =\)</span> <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>   <span class="process-math">\(b =\)</span> <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>
-</div> <div class="para" id="p-3253">
+</div> <div class="para" id="p-3227">
 <span class="process-math">\(g_1(x) =\)</span> <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>   <span class="process-math">\(g_2(x) =\)</span> <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>
-</div> <div class="para" id="p-3254">
+</div> <div class="para" id="p-3228">
 <span class="process-math">\(c =\)</span> <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>   <span class="process-math">\(d =\)</span> <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>
-</div> <div class="para" id="p-3255">
+</div> <div class="para" id="p-3229">
 <span class="process-math">\(g_3(x) =\)</span> <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>   <span class="process-math">\(g_4(x) =\)</span> <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>
 </div>
 <div class="solutions"></div>
@@ -1103,100 +1126,105 @@ h_1(y) \leq x \leq h_2(y) \ \ \ \ \ \text{ and }   \ \ \ \ \  c \leq y \leq d.
 <div id="webwork-208" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="208" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/FortLewis/Calc3/16-1-Double-integrals/HGM4-16-1-32-Double-integrals.pg" data-courseID="mitchkeller-dev" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-208')">Activate</button></div>
 <div class="problem-contents">
-<div class="para" id="p-3264">A pile of earth standing on flat ground has height 9 meters. The ground is the xy-plane.  The origin is directly below the top of the pile and the z-axis is upward.  The cross-section at height z is given by <span class="process-math">\(x^2 + y^2 = 9 - z\)</span> for <span class="process-math">\(0 \leq z \leq 9\text{,}\)</span> with <span class="process-math">\(x, y,\)</span> and <span class="process-math">\(z\)</span> in meters.</div> <div class="para" id="p-3265">(a) What equation gives the edge of the base of the pile? <ul style="list-style:circle;">
-<li id="li-1195"><div class="para" id="p-3266"><span class="process-math">\(\displaystyle x^2 + y^2 = 3\)</span></div></li>
-<li id="li-1196"><div class="para" id="p-3267"><span class="process-math">\(\displaystyle x^2 + y^2 = 9\)</span></div></li>
-<li id="li-1197"><div class="para" id="p-3268"><span class="process-math">\(\displaystyle x + y = 9\)</span></div></li>
-<li id="li-1198"><div class="para" id="p-3269"><span class="process-math">\(\displaystyle x + y = 3\)</span></div></li>
-<li id="li-1199"><div class="para" id="p-3270">None of the above</div></li>
+<div class="para" id="p-3238">A pile of earth standing on flat ground has height 9 meters. The ground is the xy-plane.  The origin is directly below the top of the pile and the z-axis is upward.  The cross-section at height z is given by <span class="process-math">\(x^2 + y^2 = 9 - z\)</span> for <span class="process-math">\(0 \leq z \leq 9\text{,}\)</span> with <span class="process-math">\(x, y,\)</span> and <span class="process-math">\(z\)</span> in meters.</div> <div class="para logical" id="p-3239">
+<div class="para">(a) What equation gives the edge of the base of the pile?</div>
+<ul class="circle">
+<li id="li-1169"><div class="para" id="p-3240"><span class="process-math">\(\displaystyle x^2 + y^2 = 3\)</span></div></li>
+<li id="li-1170"><div class="para" id="p-3241"><span class="process-math">\(\displaystyle x^2 + y^2 = 9\)</span></div></li>
+<li id="li-1171"><div class="para" id="p-3242"><span class="process-math">\(\displaystyle x + y = 9\)</span></div></li>
+<li id="li-1172"><div class="para" id="p-3243"><span class="process-math">\(\displaystyle x + y = 3\)</span></div></li>
+<li id="li-1173"><div class="para" id="p-3244">None of the above</div></li>
 </ul>
-</div> <div class="para" id="p-3271">(b) What is the area of the base of the pile?</div> <div class="para" id="p-3272">(c) What equation gives the cross-section of the pile with the plane <span class="process-math">\(z = 7\text{?}\)</span> <ul style="list-style:circle;">
-<li id="li-1200"><div class="para" id="p-3273"><span class="process-math">\(\displaystyle x^2 + y^2 = 49\)</span></div></li>
-<li id="li-1201"><div class="para" id="p-3274"><span class="process-math">\(\displaystyle x^2 + y^2 = 7\)</span></div></li>
-<li id="li-1202"><div class="para" id="p-3275"><span class="process-math">\(\displaystyle x^2 + y^2 = 2\)</span></div></li>
-<li id="li-1203"><div class="para" id="p-3276"><span class="process-math">\(\displaystyle x^2 + y^2 = \sqrt{2}\)</span></div></li>
-<li id="li-1204"><div class="para" id="p-3277">None of the above</div></li>
+</div> <div class="para" id="p-3245">(b) What is the area of the base of the pile?</div> <div class="para logical" id="p-3246">
+<div class="para">(c) What equation gives the cross-section of the pile with the plane <span class="process-math">\(z = 7\text{?}\)</span>
+</div>
+<ul class="circle">
+<li id="li-1174"><div class="para" id="p-3247"><span class="process-math">\(\displaystyle x^2 + y^2 = 49\)</span></div></li>
+<li id="li-1175"><div class="para" id="p-3248"><span class="process-math">\(\displaystyle x^2 + y^2 = 7\)</span></div></li>
+<li id="li-1176"><div class="para" id="p-3249"><span class="process-math">\(\displaystyle x^2 + y^2 = 2\)</span></div></li>
+<li id="li-1177"><div class="para" id="p-3250"><span class="process-math">\(\displaystyle x^2 + y^2 = \sqrt{2}\)</span></div></li>
+<li id="li-1178"><div class="para" id="p-3251">None of the above</div></li>
 </ul>
-</div> <div class="para" id="p-3278">(d) What is the area of the cross-section <span class="process-math">\(z = 7\)</span> of the pile?</div> <div class="para" id="p-3279">(e) What is <span class="process-math">\(A(z)\text{,}\)</span> the area of a horizontal cross-section at height <span class="process-math">\(z\text{?}\)</span>
-</div> <div class="para" id="p-3280">
-<span class="process-math">\(A(z) =\)</span> <span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span> square meters</div> <div class="para" id="p-3281">(f) Use your answer in part (e) to find the volume of the pile.</div> <div class="para" id="p-3282">Volume = <span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span> cubic meters</div>
+</div> <div class="para" id="p-3252">(d) What is the area of the cross-section <span class="process-math">\(z = 7\)</span> of the pile?</div> <div class="para" id="p-3253">(e) What is <span class="process-math">\(A(z)\text{,}\)</span> the area of a horizontal cross-section at height <span class="process-math">\(z\text{?}\)</span>
+</div> <div class="para" id="p-3254">
+<span class="process-math">\(A(z) =\)</span> <span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span> square meters</div> <div class="para" id="p-3255">(f) Use your answer in part (e) to find the volume of the pile.</div> <div class="para" id="p-3256">Volume = <span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span> cubic meters</div>
 <div class="solutions"></div>
 </div>
 </div></article><article class="exercise exercise-like" id="Library__Rochester__setVMultIntegrals1Double__ur_vc_8_13.pg"><h4 class="heading"><span class="codenumber">10<span class="period">.</span></span></h4>
 <div id="webwork-209" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="209" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Rochester/setVMultIntegrals1Double/ur_vc_8_13.pg" data-courseID="mitchkeller-dev" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-209')">Activate</button></div>
 <div class="problem-contents">
-<div class="para" id="p-3287">Match the following integrals with the verbal descriptions of the solids whose volumes they give.  Put the letter of the verbal description to the left of the corresponding integral.</div> <div class="para logical" id="p-3288"><ol class="lower-alpha">
-<li id="li-1205"><div class="para" id="p-3289"><span class="process-math">\(\displaystyle \displaystyle \int_{-1}^{1}\!\!\int_{-\sqrt{1-x^{2}}}^{\sqrt{1-x^{2}}} 
+<div class="para" id="p-3261">Match the following integrals with the verbal descriptions of the solids whose volumes they give.  Put the letter of the verbal description to the left of the corresponding integral.</div> <div class="para logical" id="p-3262"><ol class="lower-alpha">
+<li id="li-1179"><div class="para" id="p-3263"><span class="process-math">\(\displaystyle \displaystyle \int_{-1}^{1}\!\!\int_{-\sqrt{1-x^{2}}}^{\sqrt{1-x^{2}}} 
 1 - x^{2} - y^{2}\: dy dx\)</span></div></li>
-<li id="li-1206"><div class="para" id="p-3290"><span class="process-math">\(\displaystyle \displaystyle \int_{0}^{2}\!\!\int_{-2}^{2} \sqrt{4 - y^{2}} \: dy dx\)</span></div></li>
-<li id="li-1207"><div class="para" id="p-3291"><span class="process-math">\(\displaystyle \displaystyle \int_{0}^{\frac{1}{\sqrt{3}}}\!\!\int_{0}^{\frac{1}{2}\sqrt{1-3y^{2}}} 
+<li id="li-1180"><div class="para" id="p-3264"><span class="process-math">\(\displaystyle \displaystyle \int_{0}^{2}\!\!\int_{-2}^{2} \sqrt{4 - y^{2}} \: dy dx\)</span></div></li>
+<li id="li-1181"><div class="para" id="p-3265"><span class="process-math">\(\displaystyle \displaystyle \int_{0}^{\frac{1}{\sqrt{3}}}\!\!\int_{0}^{\frac{1}{2}\sqrt{1-3y^{2}}} 
 \sqrt{1 -4x^{2} - 3y^{2}} \: dx dy\)</span></div></li>
-<li id="li-1208"><div class="para" id="p-3292"><span class="process-math">\(\displaystyle \displaystyle \int_{-2}^{2}\!\!\int_{4}^{4 + \sqrt{4-x^{2}}} 
+<li id="li-1182"><div class="para" id="p-3266"><span class="process-math">\(\displaystyle \displaystyle \int_{-2}^{2}\!\!\int_{4}^{4 + \sqrt{4-x^{2}}} 
 4x + 3y \: dy dx\)</span></div></li>
-<li id="li-1209"><div class="para" id="p-3293"><span class="process-math">\(\displaystyle \displaystyle \int_{0}^{1}\!\!\int_{y^{2}}^{\sqrt{y}} 
+<li id="li-1183"><div class="para" id="p-3267"><span class="process-math">\(\displaystyle \displaystyle \int_{0}^{1}\!\!\int_{y^{2}}^{\sqrt{y}} 
 4x^{2} + 3y^{2} \: dx dy\)</span></div></li>
-</ol></div> <div class="para logical" id="p-3294"><ol class="upper-alpha">
-<li id="li-1210"><div class="para" id="p-3295">Solid under a plane and over one half of a circular disk.</div></li>
-<li id="li-1211"><div class="para" id="p-3296">Solid under an elliptic paraboloid and over a planar region bounded by two parabolas.</div></li>
-<li id="li-1212"><div class="para" id="p-3297">One eighth of an ellipsoid.</div></li>
-<li id="li-1213"><div class="para" id="p-3298">Solid bounded by a circular paraboloid and a plane.</div></li>
-<li id="li-1214"><div class="para" id="p-3299">One half of a cylindrical rod.</div></li>
+</ol></div> <div class="para logical" id="p-3268"><ol class="upper-alpha">
+<li id="li-1184"><div class="para" id="p-3269">Solid under a plane and over one half of a circular disk.</div></li>
+<li id="li-1185"><div class="para" id="p-3270">Solid under an elliptic paraboloid and over a planar region bounded by two parabolas.</div></li>
+<li id="li-1186"><div class="para" id="p-3271">One eighth of an ellipsoid.</div></li>
+<li id="li-1187"><div class="para" id="p-3272">Solid bounded by a circular paraboloid and a plane.</div></li>
+<li id="li-1188"><div class="para" id="p-3273">One half of a cylindrical rod.</div></li>
 </ol></div>
 </div>
 </div></article><article class="exercise exercise-like" id="exercise-299"><h4 class="heading"><span class="codenumber">11<span class="period">.</span></span></h4>
-<div class="para logical" id="p-3300">
+<div class="para logical" id="p-3274">
 <div class="para">For each of the following iterated integrals,</div>
 <ul class="disc">
-<li id="li-1215"><div class="para" id="p-3301">sketch the region of integration,</div></li>
-<li id="li-1216"><div class="para" id="p-3302">write an equivalent iterated integral expression in the opposite order of integration,</div></li>
-<li id="li-1217"><div class="para" id="p-3303">choose one of the two orders and evaluate the integral.</div></li>
+<li id="li-1189"><div class="para" id="p-3275">sketch the region of integration,</div></li>
+<li id="li-1190"><div class="para" id="p-3276">write an equivalent iterated integral expression in the opposite order of integration,</div></li>
+<li id="li-1191"><div class="para" id="p-3277">choose one of the two orders and evaluate the integral.</div></li>
 </ul>
 <ol class="lower-alpha">
-<li id="li-1218"><div class="para" id="p-3304"><span class="process-math">\(\displaystyle \int_{x=0}^{x=1}  \int_{y=x^2}^{y=x} xy \, dy  \, dx\)</span></div></li>
-<li id="li-1219"><div class="para" id="p-3305"><span class="process-math">\(\displaystyle \int_{y=0}^{y=2}  \int_{x=-\sqrt{4-y^2}}^{x=0} xy \, dx  \, dy\)</span></div></li>
-<li id="li-1220"><div class="para" id="p-3306"><span class="process-math">\(\displaystyle \int_{x=0}^{x=1}  \int_{y=x^4}^{y=x^{1/4}} x+y \, dy  \, dx\)</span></div></li>
-<li id="li-1221"><div class="para" id="p-3307"><span class="process-math">\(\displaystyle \int_{y=0}^{y=2}  \int_{x=y/2}^{x=2y} x+y \, dx  \, dy\)</span></div></li>
+<li id="li-1192"><div class="para" id="p-3278"><span class="process-math">\(\displaystyle \int_{x=0}^{x=1}  \int_{y=x^2}^{y=x} xy \, dy  \, dx\)</span></div></li>
+<li id="li-1193"><div class="para" id="p-3279"><span class="process-math">\(\displaystyle \int_{y=0}^{y=2}  \int_{x=-\sqrt{4-y^2}}^{x=0} xy \, dx  \, dy\)</span></div></li>
+<li id="li-1194"><div class="para" id="p-3280"><span class="process-math">\(\displaystyle \int_{x=0}^{x=1}  \int_{y=x^4}^{y=x^{1/4}} x+y \, dy  \, dx\)</span></div></li>
+<li id="li-1195"><div class="para" id="p-3281"><span class="process-math">\(\displaystyle \int_{y=0}^{y=2}  \int_{x=y/2}^{x=2y} x+y \, dx  \, dy\)</span></div></li>
 </ol>
 </div></article><article class="exercise exercise-like" id="exercise-300"><h4 class="heading"><span class="codenumber">12<span class="period">.</span></span></h4>
-<div class="para logical" id="p-3308">
+<div class="para logical" id="p-3282">
 <div class="para">The temperature at any point on a metal plate in the <span class="process-math">\(xy\)</span>-plane is given by <span class="process-math">\(T(x,y) = 100-4x^2 - y^2\text{,}\)</span> where <span class="process-math">\(x\)</span> and <span class="process-math">\(y\)</span> are measured in inches and <span class="process-math">\(T\)</span> in degrees Celsius. Consider the portion of the plate that lies on the region <span class="process-math">\(D\)</span> that is the finite region that lies between the parabolas <span class="process-math">\(x = y^2\)</span> and <span class="process-math">\(x = 3 - 2y^2\text{.}\)</span>
 </div>
 <ol class="lower-alpha">
-<li id="li-1222"><div class="para" id="p-3309">Construct a labeled sketch of the region <span class="process-math">\(D\text{.}\)</span>
+<li id="li-1196"><div class="para" id="p-3283">Construct a labeled sketch of the region <span class="process-math">\(D\text{.}\)</span>
 </div></li>
-<li id="li-1223"><div class="para" id="p-3310">Set up an iterated integral whose value is <span class="process-math">\(\iint_D T(x,y) \, dA\text{,}\)</span> using <span class="process-math">\(dA = dx dy\text{.}\)</span> (Hint: It is possible that more than one integral is needed.)</div></li>
-<li id="li-1224"><div class="para" id="p-3311">Set up an integrated integral whose value is <span class="process-math">\(\iint_D T(x,y) \, dA\text{,}\)</span> using <span class="process-math">\(dA = dy dx\text{.}\)</span> (Hint: It is possible that more than one integral is needed.)</div></li>
-<li id="li-1225"><div class="para" id="p-3312">Use the Fundamental Theorem of Calculus to evaluate the integrals you determined in (b) and (c).</div></li>
-<li id="li-1226"><div class="para" id="p-3313">Determine the exact average temperature, <span class="process-math">\(T_{\operatorname{AVG}(D)}\text{,}\)</span> over the region <span class="process-math">\(D\text{.}\)</span>
+<li id="li-1197"><div class="para" id="p-3284">Set up an iterated integral whose value is <span class="process-math">\(\iint_D T(x,y) \, dA\text{,}\)</span> using <span class="process-math">\(dA = dx dy\text{.}\)</span> (Hint: It is possible that more than one integral is needed.)</div></li>
+<li id="li-1198"><div class="para" id="p-3285">Set up an integrated integral whose value is <span class="process-math">\(\iint_D T(x,y) \, dA\text{,}\)</span> using <span class="process-math">\(dA = dy dx\text{.}\)</span> (Hint: It is possible that more than one integral is needed.)</div></li>
+<li id="li-1199"><div class="para" id="p-3286">Use the Fundamental Theorem of Calculus to evaluate the integrals you determined in (b) and (c).</div></li>
+<li id="li-1200"><div class="para" id="p-3287">Determine the exact average temperature, <span class="process-math">\(T_{\operatorname{AVG}(D)}\text{,}\)</span> over the region <span class="process-math">\(D\text{.}\)</span>
 </div></li>
 </ol>
 </div></article><article class="exercise exercise-like" id="exercise-301"><h4 class="heading"><span class="codenumber">13<span class="period">.</span></span></h4>
-<div class="para logical" id="p-3314">
+<div class="para logical" id="p-3288">
 <div class="para">Consider the solid that is given by the following description: the base is the given region <span class="process-math">\(D\text{,}\)</span> while the top is given by the surface <span class="process-math">\(z = p(x,y)\text{.}\)</span> In each setting below, set up, but do not evaluate, an iterated integral whose value is the exact volume of the solid. Include a labeled sketch of <span class="process-math">\(D\)</span> in each case.</div>
 <ol class="lower-alpha">
-<li id="li-1227"><div class="para" id="p-3315">
+<li id="li-1201"><div class="para" id="p-3289">
 <span class="process-math">\(D\)</span> is the interior of the quarter circle of radius 2, centered at the origin, that lies in the second quadrant of the plane; <span class="process-math">\(p(x,y) = 16-x^2-y^2\text{.}\)</span>
 </div></li>
-<li id="li-1228"><div class="para" id="p-3316">
+<li id="li-1202"><div class="para" id="p-3290">
 <span class="process-math">\(D\)</span> is the finite region between the line <span class="process-math">\(y = x + 1\)</span> and the parabola <span class="process-math">\(y = x^2\text{;}\)</span> <span class="process-math">\(p(x,y) = 10-x-2y\text{.}\)</span>
 </div></li>
-<li id="li-1229"><div class="para" id="p-3317">
+<li id="li-1203"><div class="para" id="p-3291">
 <span class="process-math">\(D\)</span> is the triangular region with vertices <span class="process-math">\((1,1)\text{,}\)</span> <span class="process-math">\((2,2)\text{,}\)</span> and <span class="process-math">\((2,3)\text{;}\)</span> <span class="process-math">\(p(x,y) = e^{-xy}\text{.}\)</span>
 </div></li>
-<li id="li-1230"><div class="para" id="p-3318">
+<li id="li-1204"><div class="para" id="p-3292">
 <span class="process-math">\(D\)</span> is the region bounded by the <span class="process-math">\(y\)</span>-axis, <span class="process-math">\(y = 4\)</span> and <span class="process-math">\(x = \sqrt{y}\text{;}\)</span> <span class="process-math">\(p(x,y) = \sqrt{1 + x^2 + y^2}\text{.}\)</span>
 </div></li>
 </ol>
 </div></article><article class="exercise exercise-like" id="exercise-302"><h4 class="heading"><span class="codenumber">14<span class="period">.</span></span></h4>
-<div class="para logical" id="p-3319">
+<div class="para logical" id="p-3293">
 <div class="para">Consider the iterated integral <span class="process-math">\(\displaystyle I = \int_{x=0}^{x=4} \int_{y=\sqrt{x}}^{y=2} \cos(y^3) \, dy \, dx\text{.}\)</span>
 </div>
 <ol class="lower-alpha">
-<li id="li-1231"><div class="para" id="p-3320">Sketch the region of integration.</div></li>
-<li id="li-1232"><div class="para" id="p-3321">Write an equivalent iterated integral with the order of integration reversed.</div></li>
-<li id="li-1233"><div class="para" id="p-3322">Choose one of the two orders of integration and evaluate the iterated integral you chose by hand.  Explain the reasoning behind your choice.</div></li>
-<li id="li-1234"><div class="para" id="p-3323">Determine the exact average value of <span class="process-math">\(\cos(y^3)\)</span> over the region <span class="process-math">\(D\)</span> that is determined by the iterated integral <span class="process-math">\(I\text{.}\)</span>
+<li id="li-1205"><div class="para" id="p-3294">Sketch the region of integration.</div></li>
+<li id="li-1206"><div class="para" id="p-3295">Write an equivalent iterated integral with the order of integration reversed.</div></li>
+<li id="li-1207"><div class="para" id="p-3296">Choose one of the two orders of integration and evaluate the iterated integral you chose by hand.  Explain the reasoning behind your choice.</div></li>
+<li id="li-1208"><div class="para" id="p-3297">Determine the exact average value of <span class="process-math">\(\cos(y^3)\)</span> over the region <span class="process-math">\(D\)</span> that is determined by the iterated integral <span class="process-math">\(I\text{.}\)</span>
 </div></li>
 </ol>
 </div></article></section></section></div>
@@ -1204,7 +1232,7 @@ h_1(y) \leq x \leq h_2(y) \ \ \ \ \ \text{ and }   \ \ \ \ \  c \leq y \leq d.
 <a class="previous-button button" href="S-11-2-Iterated-Integrals.html" title="Previous"><span class="icon">&lt;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon">^</span><span class="name">Top</span></a><a class="next-button button" href="S-11-4-Double-Integrals-Applications.html" title="Next"><span class="name">Next</span><span class="icon">&gt;</span></a>
 </div></main>
 </div>
-<div id="ptx-page-footer">
+<div id="ptx-page-footer" class="ptx-page-footer">
 <a class="pretext-link" href="https://pretextbook.org" title="PreTeXt"><div class="logo"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="338 3000 8772 6866"><g style="stroke-width:.025in; stroke:black; fill:none"><polyline points="472,3590 472,9732 " style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round; "></polyline><path style="stroke:#000000;stroke-width:126;stroke-linecap:butt;" d="M 4724,9448 A 4660 4660  0  0  1  8598  9259"></path><path style="stroke:#000000;stroke-width:174;stroke-linecap:butt;" d="M 4488,9685 A 4228 4228  0  0  0   472  9732"></path><path style="stroke:#000000;stroke-width:126;stroke-linecap:butt;" d="M 4724,3590 A 4241 4241  0  0  1  8598  3496"></path><path style="stroke:#000000;stroke-width:126;stroke-linecap:round;" d="M 850,3496  A 4241 4241  0  0  1  4724  3590"></path><path style="stroke:#000000;stroke-width:126;stroke-linecap:round;" d="M 850,9259  A 4507 4507  0  0  1  4724  9448"></path><polyline points="5385,4299 4062,8125" style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="8598,3496 8598,9259" style="stroke:#000000;stroke-width:126; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="850,3496 850,9259" style="stroke:#000000;stroke-width:126; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="4960,9685 4488,9685" style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="3070,4582 1889,6141 3070,7700" style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="6418,4582 7600,6141 6418,7700" style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="8976,3590 8976,9732" style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round;"></polyline><path style="stroke:#000000;stroke-width:174;stroke-linecap:butt;" d="M 4960,9685 A 4228 4228  0  0  1  8976  9732"></path></g></svg></div></a><a class="runestone-link" href="https://runestone.academy" title="Runestone Academy"><img class="logo" src="https://runestone.academy/runestone/static/images/RAIcon_cropped.png"></a><a class="mathjax-link" href="https://www.mathjax.org" title="MathJax"><img class="logo" src="https://www.mathjax.org/badge/badge-square-2.png"></a>
 </div>
 <!--Start: Google Global Site Tag code--><!--*** DO NOT COPY ANOTHER PROJECT'S MAGIC NUMBERS/ID ***--><!--***           GET YOUR OWN FROM GOOGLE             ***-->

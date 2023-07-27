@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="en-US" dir="ltr">
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
 <!--*                                          *-->
@@ -15,20 +15,41 @@
 <h4 class="heading">
 <span class="type">Solution</span><span class="space"> </span><span class="codenumber">12.8.5.3.1</span><span class="period">.</span>
 </h4>
-<em class="alert">(a)</em> The curve, <span class="process-math">\(C\text{,}\)</span> is closed and oriented in the correct direction for Green's Theorem. Writing <span class="process-math">\(A\)</span> for the interior of the circle, we have<div class="displaymath process-math">
+<em class="alert">(a)</em> We see that <span class="process-math">\(\vec F,\vec G,\vec H\)</span> are all gradient vector fields, since<div class="displaymath process-math">
 \begin{equation*}
-\int_C \left( 3(x^2-y)\vec i +7(y^2+x)\vec j\right)\cdot d\vec r =
-\int_A \left(\frac{\partial}{\partial x}7 (y^2+x) -
-\frac{\partial}{\partial y}3(x^2-y)\right) dx\,dy
+\nabla (3xy) = \vec F\quad\mbox{for all }x,y,
 \end{equation*}
 </div>
 <div class="displaymath process-math">
 \begin{equation*}
-= \int_A (7-(-3))\, dx\,dy
-= 10 \int_A dx\,dy = 10\cdot \mbox{Area of }A = 250\pi.
+\nabla (\tan^{-1}\!\left(\frac{x}{y}\right)) = \vec G\quad\mbox{except where }y=0,
+\end{equation*}
+</div>and<div class="displaymath process-math">
+\begin{equation*}
+\nabla (4\sqrt{x^{2}+y^{2}}) = \vec H\quad\mbox{except at }(0,0).
+\end{equation*}
+</div>Other answers are possible. <em class="alert">(b)</em> Parameterizing the unit circle, <span class="process-math">\(C\text{,}\)</span> by <span class="process-math">\(x=\cos t\text{,}\)</span> <span class="process-math">\(y=\sin t\text{,}\)</span> <span class="process-math">\(0\le t\le 2\pi\text{,}\)</span> we have <span class="process-math">\(\vec r'(t) =-\sin t\,\vec i+ \cos t\,\vec j\text{,}\)</span> so<div class="displaymath process-math">
+\begin{equation*}
+\int_C\vec F\cdot d\vec r = 3\int_0^{2\pi}((\sin t)\vec i+(\cos t)\vec
+j)\cdot ((-\sin t)\vec i+(\cos t)\vec j)\,dt = 3\int_0^{2\pi}\cos (2t)\,dt
+= 0.
+\end{equation*}
+</div>The vector field <span class="process-math">\(\vec G\)</span> is tangent to the circle, pointing in the opposite direction to the parameterization, and of length 1 everywhere.  Thus<div class="displaymath process-math">
+\begin{equation*}
+\int_C\vec G\cdot d\vec r= -1\cdot\hbox{ Length of circle }=-2\pi.
+\end{equation*}
+</div>The vector field <span class="process-math">\(\vec H\)</span> points radially outward, so it is perpendicular to the circle everywhere.  Thus<div class="displaymath process-math">
+\begin{equation*}
+\int_C\vec H\cdot d\vec r = 0.
 \end{equation*}
 </div>
-<em class="alert">(b)</em> The circle given has radius <span class="process-math">\(R\)</span> and center <span class="process-math">\((a,b)\text{.}\)</span> The argument in part (a) works for any circle of radius <span class="process-math">\(R\text{,}\)</span> oriented counterclockwise. So the line integral has the value <span class="process-math">\(10\pi R^2\text{.}\)</span>
+<em class="alert">(c)</em> Green’s Theorem does not apply to the computation of the line integrals for <span class="process-math">\(\vec G\)</span> and <span class="process-math">\(\vec H\)</span> because their domains do not include the origin, which is in the interior, <span class="process-math">\(R\text{,}\)</span> of the circle. Green’s Theorem does apply to <span class="process-math">\(\vec F=3y\vec i+3x\vec j\text{.}\)</span><div class="displaymath process-math">
+\begin{equation*}
+\int_C\vec F\cdot d\vec r =
+\int_R\left(\frac{\partial}{\partial x} F_2 -
+\frac{\partial}{\partial y} F_1\right)\,dx\,dy = \int 0\,dx\,dy=0.
+\end{equation*}
+</div>
 </div>
 <span class="incontext"><a href="S_Vector_GreensTheorem.html#solution-229" class="internal">in-context</a></span>
 </body>

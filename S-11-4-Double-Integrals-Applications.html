@@ -5,7 +5,7 @@
 <!--*         https://pretextbook.org          *-->
 <!--*                                          *-->
 <!--********************************************-->
-<html lang="en-US">
+<html lang="en-US" dir="ltr">
 <head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Applications of Double Integrals</title>
@@ -16,20 +16,38 @@
 <meta property="book:author" content="Steve Schlicker">
 <meta property="book:author" content="Mitchel T. Keller">
 <meta property="book:author" content="Nicholas Long">
-<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
+<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>
+var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
 window.MathJax = {
-  tex: {
-    inlineMath: [['\\(','\\)']],
-    tags: "none",
-    tagSide: "right",
-    tagIndent: ".8em",
-    packages: {'[+]': ['base', 'extpfeil', 'ams', 'amscd', 'color', 'newcommand', 'knowl']}
+  "tex": {
+    "inlineMath": [
+      [
+        "\\(",
+        "\\)"
+      ]
+    ],
+    "tags": "none",
+    "tagSide": "right",
+    "tagIndent": ".8em",
+    "packages": {
+      "[+]": [
+        "base",
+        "extpfeil",
+        "ams",
+        "amscd",
+        "color",
+        "newcommand",
+        "knowl"
+      ]
+    }
   },
-  options: {
-    ignoreHtmlClass: "tex2jax_ignore|ignore-math",
-    processHtmlClass: "process-math",
-    renderActions: {
-        findScript: [10, function (doc) {
+  "options": {
+    "ignoreHtmlClass": "tex2jax_ignore|ignore-math",
+    "processHtmlClass": "process-math",
+    "renderActions": {
+      "findScript": [
+        10,
+        function (doc) {
             document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
                 var display = !!node.type.match(/; *mode=display/);
                 var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
@@ -39,65 +57,70 @@ window.MathJax = {
                 math.end = {node: text, delim: '', n: 0};
                 doc.math.push(math);
             });
-        }, '']
-    },
+        },
+        ""
+      ]
+    }
   },
-  chtml: {
-    scale: 0.98,
-    mtextInheritFont: true
+  "chtml": {
+    "scale": 0.98,
+    "mtextInheritFont": true
   },
-  loader: {
-    load: ['input/asciimath', '[tex]/extpfeil', '[tex]/amscd', '[tex]/color', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
-    paths: {pretext: "https://pretextbook.org/js/lib"},
+  "loader": {
+    "load": [
+      "input/asciimath",
+      "[tex]/extpfeil",
+      "[tex]/amscd",
+      "[tex]/color",
+      "[tex]/newcommand",
+      "[pretext]/mathjaxknowl3.js"
+    ],
+    "paths": {
+      "pretext": "https://pretextbook.org/js/lib"
+    }
   },
-  startup: {
+  "startup": {
     pageReady() {
       return MathJax.startup.defaultPageReady().then(function () {
       console.log("in ready function");
       rsMathReady();
       }
     )}
-  },
+  }
 };
 </script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><link href="https://webwork-ptx.aimath.org/webwork2_files/js/apps/MathView/mathview.css" rel="stylesheet">
-<script src="https://pretextbook.org/js/0.2/pretext-webwork/2.17/pretext-webwork.js"></script><script src="https://webwork-ptx.aimath.org/webwork2_files/node_modules/iframe-resizer/js/iframeResizer.min.js"></script><script async="" src="https://cse.google.com/cse.js?cx=015103900096539427448:ngwuia10qci"></script><script src="https://unpkg.com/lunr/lunr.js"></script><script src="lunr-pretext-search-index.js" async=""></script><script src="https://pretextbook.org/js/0.2/pretext_search.js"></script><link href="https://pretextbook.org/css/0.6/pretext_search.css" rel="stylesheet" type="text/css">
-<script>js_version = 0.2</script><script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.2/pretext.js"></script><script>miniversion=0.1</script><script src="https://pretextbook.org/js/0.2/pretext_add_on.js?x=1"></script><script src="https://pretextbook.org/js/0.2/user_preferences.js"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
+<script src="https://pretextbook.org/js/0.3/pretext-webwork/2.17/pretext-webwork.js"></script><script src="https://webwork-ptx.aimath.org/webwork2_files/node_modules/iframe-resizer/js/iframeResizer.min.js"></script><script async="" src="https://cse.google.com/cse.js?cx=015103900096539427448:ngwuia10qci"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js" integrity="sha512-4xUl/d6D6THrAnXAwGajXkoWaeMNwEKK4iNfq5DotEbLPAfk6FSxSP3ydNxqDgCw1c/0Z1Jg6L8h2j+++9BZmg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="lunr-pretext-search-index.js" async=""></script><script src="https://pretextbook.org/js/0.3/pretext_search.js"></script><link href="https://pretextbook.org/css/0.7/pretext_search.css" rel="stylesheet" type="text/css">
+<script>js_version = 0.3</script><script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.3/pretext.js"></script><script>miniversion=0.1</script><script src="https://pretextbook.org/js/0.3/pretext_add_on.js?x=1"></script><script src="https://pretextbook.org/js/0.3/user_preferences.js"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
 </script><link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700&amp;family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&amp;family=Tinos:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" rel="stylesheet">
 <link href="https://fonts.cdnfonts.com/css/dejavu-serif" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:opsz,wdth,wght@8..144,50..150,100..900&amp;display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wdth,wght@75..100,300..800&amp;display=swap" rel="stylesheet">
-<link href="https://pretextbook.org/css/0.6/pretext.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.6/pretext_add_on.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.6/shell_default.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.6/banner_default.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.6/navbar_default.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.6/toc_default.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.6/knowls_default.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.6/style_default.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.6/colors_blue_grey.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.6/setcolors.css" rel="stylesheet" type="text/css">
-<!--Start: Google Global Site Tag code--><!--*** DO NOT COPY ANOTHER PROJECT'S MAGIC NUMBERS/ID ***--><!--***           GET YOUR OWN FROM GOOGLE             ***-->
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-QJKN634F7R"></script><script>  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-QJKN634F7R');
-</script><!--End: Google Global Site Tag code-->
+<link href="https://pretextbook.org/css/0.7/pretext.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/pretext_add_on.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/shell_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/banner_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/navbar_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/toc_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/knowls_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/style_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/colors_blue_grey.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/setcolors.css" rel="stylesheet" type="text/css">
 </head>
 <body id="acmulti" class="pretext book ignore-math">
-<a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead"><div class="ptx-banner">
-<a id="logo-link" href=""></a><div class="title-container">
+<a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead"><div class="ptx-banner">
+<a id="logo-link" class="logo-link" href=""></a><div class="title-container">
 <h1 class="heading"><a href="book-1.html"><span class="title">Active Calculus - Multivariable + Vector</span></a></h1>
 <p class="byline">Steve Schlicker, Mitchel T. Keller, Nicholas Long</p>
 </div>
-<div id="searchresultsplaceholder" style="display: none">
-<button id="closesearchresults" onclick="document.getElementById('searchresultsplaceholder').style.display = 'none'; return false;">x</button><h2>Search Results: <span id="searchterms"></span>
+<div id="searchresultsplaceholder" class="searchresultsplaceholder" style="display: none">
+<button id="closesearchresults" class="closesearchresults" onclick="document.getElementById('searchresultsplaceholder').style.display = 'none'; return false;">x</button><h2>Search Results: <span id="searchterms" class="searchterms"></span>
 </h2>
-<div id="searchempty"><span>No results.</span></div>
-<ol id="searchresults"></ol>
+<div id="searchempty" class="searchempty"><span>No results.</span></div>
+<ol id="searchresults" class="searchresults"></ol>
 </div>
-</div></header><nav id="ptx-navbar" class="navbar"><button class="toc-toggle button" aria-label="Show or hide table of contents"><span class="icon">☰</span><span class="name">Contents</span></button><a class="index-button button" href="index-1.html" title="Index"><span class="name">Index</span></a><button id="user-preferences-button" class="user-preferences-button button" title="Modify user preferences"><span id="theavatarbutton" class="name">You!</span><div id="preferences_menu_holder" class="hidden"><ol id="preferences_menu" style="font-family: 'Roboto Serif', serif;">
+</div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><button class="toc-toggle button" aria-label="Show or hide table of contents"><span class="icon">☰</span><span class="name">Contents</span></button><a class="index-button button" href="index-1.html" title="Index"><span class="name">Index</span></a><button id="user-preferences-button" class="user-preferences-button button" title="Modify user preferences"><span id="avatarbutton" class="avatarbutton name">You!</span><div id="preferences_menu_holder" class="preferences_menu_holder hidden"><ol id="preferences_menu" class="preferences_menu" style="font-family: 'Roboto Serif', serif;">
 <li data-env="avatar" tabindex="-1">Choose avatar<div class="wrap_to_submenu"><span class="to_submenu">▻</span></div>
 <ol class="hidden avatar">
 <li data-val="You!" tabindex="-1">
@@ -201,7 +224,7 @@ window.MathJax = {
 </li>
 </ol></div></button><span class="treebuttons"><a class="previous-button button" href="S-11-3-Double-Integrals-General.html" title="Previous"><span class="icon">&lt;</span><span class="name">Prev</span></a><a class="up-button button" href="C-11.html" title="Up"><span class="icon">^</span><span class="name">Up</span></a><a class="next-button button" href="S-11-5-Double-Integrals-Polar.html" title="Next"><span class="name">Next</span><span class="icon">&gt;</span></a></span><div class="searchwrapper" role="search"><div class="gcse-search"></div></div>
 <div class="searchbox"><div class="searchwidget">
-<input id="ptxsearch" type="text" name="terms" placeholder="Search" onchange="doSearch()"><button id="searchbutton" type="button" onclick="doSearch()">🔍</button>
+<input id="ptxsearch" class="ptxsearch" type="text" name="terms" placeholder="Search" onchange="doSearch()"><button id="searchbutton" class="searchbutton" type="button" onclick="doSearch()">🔍</button>
 </div></div></nav><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\newcommand{\R}{\mathbb{R}}
 \newcommand{\va}{\mathbf{a}}
 \newcommand{\vb}{\mathbf{b}}
@@ -246,7 +269,7 @@ window.MathJax = {
 \newcommand{\fillinmath}[1]{\mathchoice{\colorbox{fillinmathshade}{$\displaystyle     \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\textstyle        \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptstyle      \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptscriptstyle\phantom{\,#1\,}$}}}
 \)</span></div>
 <div class="ptx-page">
-<div id="ptx-sidebar"><nav id="ptx-toc" class="depth2"><ul class="structural">
+<div id="ptx-sidebar" class="ptx-sidebar"><nav id="ptx-toc" class="ptx-toc depth2"><ul class="structural">
 <li>
 <div class="toc-item"><a href="frontmatter.html" class="internal"><span class="title">Front Matter</span></a></div>
 <ul class="structural">
@@ -574,14 +597,14 @@ window.MathJax = {
 </ul>
 </li>
 <li>
-<div class="toc-item"><a href="S_ScalarLineIntegral.html" class="internal"><span class="codenumber">12.5</span> <span class="title">Line Integrals of Scalar Functions</span></a></div>
+<div class="toc-item"><a href="S_Vector_ScalarLineIntegral.html" class="internal"><span class="codenumber">12.5</span> <span class="title">Line Integrals of Scalar Functions</span></a></div>
 <ul class="structural">
-<li><div class="toc-item"><a href="S_ScalarLineIntegral.html#subsection-124" class="internal"><span class="codenumber">12.5.1</span> <span class="title">Defining line integrals of scalar functions</span></a></div></li>
-<li><div class="toc-item"><a href="S_ScalarLineIntegral.html#subsection-125" class="internal"><span class="codenumber">12.5.2</span> <span class="title">Using Parameterizations to Calculate Scalar Line Integrals</span></a></div></li>
-<li><div class="toc-item"><a href="S_ScalarLineIntegral.html#subsection-126" class="internal"><span class="codenumber">12.5.3</span> <span class="title">Properties of Scalar Line Integrals</span></a></div></li>
-<li><div class="toc-item"><a href="S_ScalarLineIntegral.html#subsection-127" class="internal"><span class="codenumber">12.5.4</span> <span class="title">Visualizations of Scalar Line Integrals as Area Under a Curve</span></a></div></li>
-<li><div class="toc-item"><a href="S_ScalarLineIntegral.html#subsection-128" class="internal"><span class="codenumber">12.5.5</span> <span class="title">Summary</span></a></div></li>
-<li><div class="toc-item"><a href="S_ScalarLineIntegral.html#exercises-30" class="internal"><span class="codenumber">12.5.6</span> <span class="title">Exercises</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_ScalarLineIntegral.html#subsection-124" class="internal"><span class="codenumber">12.5.1</span> <span class="title">Defining line integrals of scalar functions</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_ScalarLineIntegral.html#subsection-125" class="internal"><span class="codenumber">12.5.2</span> <span class="title">Using Parameterizations to Calculate Scalar Line Integrals</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_ScalarLineIntegral.html#subsection-126" class="internal"><span class="codenumber">12.5.3</span> <span class="title">Properties of Scalar Line Integrals</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_ScalarLineIntegral.html#subsection-127" class="internal"><span class="codenumber">12.5.4</span> <span class="title">Visualizations of Scalar Line Integrals as Area Under a Curve</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_ScalarLineIntegral.html#subsection-128" class="internal"><span class="codenumber">12.5.5</span> <span class="title">Summary</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_ScalarLineIntegral.html#exercises-30" class="internal"><span class="codenumber">12.5.6</span> <span class="title">Exercises</span></a></div></li>
 </ul>
 </li>
 <li>
@@ -607,10 +630,10 @@ window.MathJax = {
 </ul>
 </li>
 <li>
-<div class="toc-item"><a href="S_Vector_GreensTheorem.html" class="internal"><span class="codenumber">12.8</span> <span class="title">Green's Theorem</span></a></div>
+<div class="toc-item"><a href="S_Vector_GreensTheorem.html" class="internal"><span class="codenumber">12.8</span> <span class="title">Green’s Theorem</span></a></div>
 <ul class="structural">
 <li><div class="toc-item"><a href="S_Vector_GreensTheorem.html#SS_Vector_GreensTheorem_Circulation" class="internal"><span class="codenumber">12.8.1</span> <span class="title">Circulation</span></a></div></li>
-<li><div class="toc-item"><a href="S_Vector_GreensTheorem.html#subsection-140" class="internal"><span class="codenumber">12.8.2</span> <span class="title">Green's Theorem</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_GreensTheorem.html#subsection-140" class="internal"><span class="codenumber">12.8.2</span> <span class="title">Green’s Theorem</span></a></div></li>
 <li><div class="toc-item"><a href="S_Vector_GreensTheorem.html#subsection-141" class="internal"><span class="codenumber">12.8.3</span> <span class="title">What happens when vector fields are not smooth?</span></a></div></li>
 <li><div class="toc-item"><a href="S_Vector_GreensTheorem.html#subsection-142" class="internal"><span class="codenumber">12.8.4</span> <span class="title">Summary</span></a></div></li>
 <li><div class="toc-item"><a href="S_Vector_GreensTheorem.html#exercises-33" class="internal"><span class="codenumber">12.8.5</span> <span class="title">Exercises</span></a></div></li>
@@ -620,27 +643,27 @@ window.MathJax = {
 <div class="toc-item"><a href="S_Vector_FluxInt.html" class="internal"><span class="codenumber">12.9</span> <span class="title">Flux Integrals</span></a></div>
 <ul class="structural">
 <li><div class="toc-item"><a href="S_Vector_FluxInt.html#SS_Vector_FluxInt_Idea" class="internal"><span class="codenumber">12.9.1</span> <span class="title">The Idea of the Flux of a Vector Field through a Surface</span></a></div></li>
-<li><div class="toc-item"><a href="S_Vector_FluxInt.html#subsection-144" class="internal"><span class="codenumber">12.9.2</span> <span class="title">Measuring the Flux of a Vector Field through a Surface</span></a></div></li>
-<li><div class="toc-item"><a href="S_Vector_FluxInt.html#SS_Vector_FluxInt_Calculate" class="internal"><span class="codenumber">12.9.3</span> <span class="title">Efficiently Calculating Flux Integrals</span></a></div></li>
-<li><div class="toc-item"><a href="S_Vector_FluxInt.html#subsection-146" class="internal"><span class="codenumber">12.9.4</span> <span class="title">Summary</span></a></div></li>
-<li><div class="toc-item"><a href="S_Vector_FluxInt.html#exercises-34" class="internal"><span class="codenumber">12.9.5</span> <span class="title">Exercises</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_FluxInt.html#subsection-144" class="internal"><span class="codenumber">12.9.2</span> <span class="title">The Details of Measuring the Flux of a Vector Field through a Surface</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_FluxInt.html#subsection-145" class="internal"><span class="codenumber">12.9.3</span> <span class="title">Summary</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_FluxInt.html#exercises-34" class="internal"><span class="codenumber">12.9.4</span> <span class="title">Exercises</span></a></div></li>
 </ul>
 </li>
 <li>
 <div class="toc-item"><a href="S_Vector_ScalarSurfaceIntegral.html" class="internal"><span class="codenumber">12.10</span> <span class="title">Surface Integrals of Scalar Valued Functions</span></a></div>
 <ul class="structural">
-<li><div class="toc-item"><a href="S_Vector_ScalarSurfaceIntegral.html#subsection-147" class="internal"><span class="codenumber">12.10.1</span> <span class="title">Defining surface integrals of scalar functions</span></a></div></li>
-<li><div class="toc-item"><a href="S_Vector_ScalarSurfaceIntegral.html#subsection-148" class="internal"><span class="codenumber">12.10.2</span> <span class="title">Properties of Scalar Surface Integrals</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_ScalarSurfaceIntegral.html#subsection-146" class="internal"><span class="codenumber">12.10.1</span> <span class="title">Defining surface integrals of scalar functions</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_ScalarSurfaceIntegral.html#subsection-147" class="internal"><span class="codenumber">12.10.2</span> <span class="title">Properties of Scalar Surface Integrals</span></a></div></li>
 <li><div class="toc-item"><a href="S_Vector_ScalarSurfaceIntegral.html#exercises-35" class="internal"><span class="codenumber">12.10.3</span> <span class="title">Exercises</span></a></div></li>
 </ul>
 </li>
 <li>
-<div class="toc-item"><a href="S_Vector_StokesThm.html" class="internal"><span class="codenumber">12.11</span> <span class="title">Stokes' Theorem</span></a></div>
+<div class="toc-item"><a href="S_Vector_StokesThm.html" class="internal"><span class="codenumber">12.11</span> <span class="title">Stokes’ Theorem</span></a></div>
 <ul class="structural">
-<li><div class="toc-item"><a href="S_Vector_StokesThm.html#SS_Vector_StokesThm_Development" class="internal"><span class="codenumber">12.11.1</span> <span class="title">Circulation in three dimensions and Stokes' Theorem</span></a></div></li>
-<li><div class="toc-item"><a href="S_Vector_StokesThm.html#SS_Vector_StokesThm_Verify" class="internal"><span class="codenumber">12.11.2</span> <span class="title">Verifying and Applying Stokes' Theorem</span></a></div></li>
-<li><div class="toc-item"><a href="S_Vector_StokesThm.html#subsection-151" class="internal"><span class="codenumber">12.11.3</span> <span class="title">Summary</span></a></div></li>
-<li><div class="toc-item"><a href="S_Vector_StokesThm.html#exercises-36" class="internal"><span class="codenumber">12.11.4</span> <span class="title">Exercises</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_StokesThm.html#SS_Vector_StokesThm_Development" class="internal"><span class="codenumber">12.11.1</span> <span class="title">Circulation in three dimensions and Stokes’ Theorem</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_StokesThm.html#SS_Vector_StokesThm_Verify" class="internal"><span class="codenumber">12.11.2</span> <span class="title">Verifying and Applying Stokes’ Theorem</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_StokesThm.html#surfaceboundaries" class="internal"><span class="codenumber">12.11.3</span> <span class="title">Practice with Surfaces and thier Boundaries</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_StokesThm.html#subsection-151" class="internal"><span class="codenumber">12.11.4</span> <span class="title">Summary</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_StokesThm.html#exercises-36" class="internal"><span class="codenumber">12.11.5</span> <span class="title">Exercises</span></a></div></li>
 </ul>
 </li>
 <li>
@@ -665,14 +688,14 @@ window.MathJax = {
 </h2>
 <article class="objectives goal-like" id="objectives-20"><h3 class="heading"><span class="type">Motivating Questions</span></h3>
 <ul class="disc">
-<li id="li-1235"><div class="para" id="p-3324">If we have a mass density function for a lamina (thin plate), how does a double integral determine the mass of the lamina?</div></li>
-<li id="li-1236"><div class="para" id="p-3325">How may a double integral be used to find the area between two curves?</div></li>
-<li id="li-1237"><div class="para" id="p-3326">Given a mass density function on a lamina, how can we find the lamina's center of mass?</div></li>
-<li id="li-1238"><div class="para" id="p-3327">What is a joint probability density function? How do we determine the probability of an event if we know a probability density function?</div></li>
-</ul></article><section class="introduction" id="introduction-20"><div class="para" id="p-3328">So far, we have interpreted the double integral of a function <span class="process-math">\(f\)</span> over a domain <span class="process-math">\(D\)</span> in two different ways. First, <span class="process-math">\(\iint_D f(x,y) \, dA\)</span> tells us a difference of volumes — the volume the surface defined by <span class="process-math">\(f\)</span> bounds above the <span class="process-math">\(xy\)</span>-plane on <span class="process-math">\(D\)</span> minus the volume the surface bounds below the <span class="process-math">\(xy\)</span>-plane on <span class="process-math">\(D\text{.}\)</span> In addition, <span class="process-math">\(\frac{1}{A(D)} \iint_D f(x,y) \, dA\)</span> determines the average value of <span class="process-math">\(f\)</span> on <span class="process-math">\(D\text{.}\)</span> In this section, we investigate several other applications of double integrals, using the integration process as seen in <a href="" class="xref" data-knowl="./knowl/PA_11_4.html" title="Preview Activity 11.4.1">Preview Activity 11.4.1</a>: we partition into small regions, approximate the desired quantity on each small region, then use the integral to sum these values exactly in the limit.</div> <div class="para" id="p-3329">The following preview activity explores how a double integral can be used to determine the density of a thin plate with a mass density distribution. Recall that in single-variable calculus, we considered a similar problem and computed the mass of a one-dimensional rod with a mass-density distribution. There, as here, the key idea is that if density is constant, mass is the product of density and volume.</div> <article class="exploration project-like" id="PA_11_4"><h3 class="heading">
+<li id="li-1209"><div class="para" id="p-3298">If we have a mass density function for a lamina (thin plate), how does a double integral determine the mass of the lamina?</div></li>
+<li id="li-1210"><div class="para" id="p-3299">How may a double integral be used to find the area between two curves?</div></li>
+<li id="li-1211"><div class="para" id="p-3300">Given a mass density function on a lamina, how can we find the lamina’s center of mass?</div></li>
+<li id="li-1212"><div class="para" id="p-3301">What is a joint probability density function? How do we determine the probability of an event if we know a probability density function?</div></li>
+</ul></article><section class="introduction" id="introduction-20"><div class="para" id="p-3302">So far, we have interpreted the double integral of a function <span class="process-math">\(f\)</span> over a domain <span class="process-math">\(D\)</span> in two different ways. First, <span class="process-math">\(\iint_D f(x,y) \, dA\)</span> tells us a difference of volumes — the volume the surface defined by <span class="process-math">\(f\)</span> bounds above the <span class="process-math">\(xy\)</span>-plane on <span class="process-math">\(D\)</span> minus the volume the surface bounds below the <span class="process-math">\(xy\)</span>-plane on <span class="process-math">\(D\text{.}\)</span> In addition, <span class="process-math">\(\frac{1}{A(D)} \iint_D f(x,y) \, dA\)</span> determines the average value of <span class="process-math">\(f\)</span> on <span class="process-math">\(D\text{.}\)</span> In this section, we investigate several other applications of double integrals, using the integration process as seen in <a href="" class="xref" data-knowl="./knowl/PA_11_4.html" title="Preview Activity 11.4.1">Preview Activity 11.4.1</a>: we partition into small regions, approximate the desired quantity on each small region, then use the integral to sum these values exactly in the limit.</div> <div class="para" id="p-3303">The following preview activity explores how a double integral can be used to determine the density of a thin plate with a mass density distribution. Recall that in single-variable calculus, we considered a similar problem and computed the mass of a one-dimensional rod with a mass-density distribution. There, as here, the key idea is that if density is constant, mass is the product of density and volume.</div> <article class="exploration project-like" id="PA_11_4"><h3 class="heading">
 <span class="type">Preview Activity</span><span class="space"> </span><span class="codenumber">11.4.1</span><span class="period">.</span>
 </h3>
-<div class="para logical" id="p-3330">
+<div class="para logical" id="p-3304">
 <div class="para">Suppose that we have a flat, thin object (called a <dfn class="terminology">lamina</dfn>) whose density varies across the object. We can think of the density on a lamina as a measure of mass per unit area. As an example, consider a circular plate <span class="process-math">\(D\)</span> of radius 1 cm centered at the origin whose density <span class="process-math">\(\delta\)</span> varies depending on the distance from its center so that the density in grams per square centimeter at point <span class="process-math">\((x, y)\)</span> is</div>
 <div class="displaymath process-math" data-contains-math-knowls="./knowl/S-11-5-Double-Integrals-Polar.html">
 \begin{equation*}
@@ -680,10 +703,10 @@ window.MathJax = {
 \end{equation*}
 </div>
 <ol class="lower-alpha">
-<li id="li-1239"><div class="para" id="p-3331">Suppose that we partition the plate into subrectangles <span class="process-math">\(R_{ij}\text{,}\)</span> where <span class="process-math">\(1 \leq i \leq m\)</span> and <span class="process-math">\(1 \leq j \leq n\text{,}\)</span> of equal area <span class="process-math">\(\Delta A\text{,}\)</span> and select a point <span class="process-math">\((x_{ij}^*,y_{ij}^*)\)</span> in <span class="process-math">\(R_{ij}\)</span> for each <span class="process-math">\(i\)</span> and <span class="process-math">\(j\text{.}\)</span> What is the meaning of the quantity <span class="process-math">\(\delta(x_{ij}^*,y_{ij}^*) \Delta A\text{?}\)</span>
+<li id="li-1213"><div class="para" id="p-3305">Suppose that we partition the plate into subrectangles <span class="process-math">\(R_{ij}\text{,}\)</span> where <span class="process-math">\(1 \leq i \leq m\)</span> and <span class="process-math">\(1 \leq j \leq n\text{,}\)</span> of equal area <span class="process-math">\(\Delta A\text{,}\)</span> and select a point <span class="process-math">\((x_{ij}^*,y_{ij}^*)\)</span> in <span class="process-math">\(R_{ij}\)</span> for each <span class="process-math">\(i\)</span> and <span class="process-math">\(j\text{.}\)</span> What is the meaning of the quantity <span class="process-math">\(\delta(x_{ij}^*,y_{ij}^*) \Delta A\text{?}\)</span>
 </div></li>
-<li id="li-1240"><div class="para" id="p-3332">State a double Riemann sum that provides an approximation of the mass of the plate.</div></li>
-<li id="li-1241"><div class="para logical" id="p-3333">
+<li id="li-1214"><div class="para" id="p-3306">State a double Riemann sum that provides an approximation of the mass of the plate.</div></li>
+<li id="li-1215"><div class="para logical" id="p-3307">
 <div class="para">Explain why the double integral</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -692,44 +715,44 @@ window.MathJax = {
 </div>
 <div class="para">tells us the exact mass of the plate.</div>
 </div></li>
-<li id="li-1242"><div class="para" id="p-3334">Determine an iterated integral which, if evaluated, would give the exact mass of the plate.  Do not actually evaluate the integral. (This integral is considerably easier to evaluate in polar coordinates, which we will learn more about in <a href="S-11-5-Double-Integrals-Polar.html" class="internal" title="Section 11.5: Double Integrals in Polar Coordinates">Section 11.5</a>.)</div></li>
+<li id="li-1216"><div class="para" id="p-3308">Determine an iterated integral which, if evaluated, would give the exact mass of the plate.  Do not actually evaluate the integral. (This integral is considerably easier to evaluate in polar coordinates, which we will learn more about in <a href="S-11-5-Double-Integrals-Polar.html" class="internal" title="Section 11.5: Double Integrals in Polar Coordinates">Section 11.5</a>.)</div></li>
 </ol>
 </div></article></section><section class="subsection" id="subsection-81"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">11.4.1</span> <span class="title">Mass</span>
 </h3>
-<div class="para" id="p-3335">Density is a measure of some quantity per unit area or volume. For example, we can measure the human population density of some region as the number of humans in that region divided by the area of that region. In physics, the mass density of an object is the mass of the object per unit area or volume. As suggested by <a href="" class="xref" data-knowl="./knowl/PA_11_4.html" title="Preview Activity 11.4.1">Preview Activity 11.4.1</a>, the following holds in general.</div>
+<div class="para" id="p-3309">Density is a measure of some quantity per unit area or volume. For example, we can measure the human population density of some region as the number of humans in that region divided by the area of that region. In physics, the mass density of an object is the mass of the object per unit area or volume. As suggested by <a href="" class="xref" data-knowl="./knowl/PA_11_4.html" title="Preview Activity 11.4.1">Preview Activity 11.4.1</a>, the following holds in general.</div>
 <article class="assemblage assemblage-like" id="Lamina-mass"><h4 class="heading"><span class="title">The mass of a lamina.</span></h4>
-<div class="para" id="p-3336">If <span class="process-math">\(\delta(x, y)\)</span> describes the density of a lamina defined by a planar region <span class="process-math">\(D\text{,}\)</span> then the <em class="emphasis">mass</em> of <span class="process-math">\(D\)</span> is given by the double integral <span class="process-math">\(\iint_D \delta(x,y) \, dA\text{.}\)</span>
+<div class="para" id="p-3310">If <span class="process-math">\(\delta(x, y)\)</span> describes the density of a lamina defined by a planar region <span class="process-math">\(D\text{,}\)</span> then the <em class="emphasis">mass</em> of <span class="process-math">\(D\)</span> is given by the double integral <span class="process-math">\(\iint_D \delta(x,y) \, dA\text{.}\)</span>
 </div></article><article class="activity project-like" id="A_11_4_3"><h4 class="heading">
 <span class="type">Activity</span><span class="space"> </span><span class="codenumber">11.4.2</span><span class="period">.</span>
 </h4>
-<div class="para" id="p-3337">Let <span class="process-math">\(D\)</span> be a half-disk lamina of radius 3 in quadrants IV and I, centered at the origin as shown in <a href="" class="xref" data-knowl="./knowl/F_11_4_Mass_exercise.html" title="Figure 11.4.1">Figure 11.4.1</a>. Assume the density at point <span class="process-math">\((x,y)\)</span> is given by <span class="process-math">\(\delta(x,y) = x\text{.}\)</span> Find the exact mass of the lamina.</div> <figure class="figure figure-like" id="F_11_4_Mass_exercise"><div class="image-box" style="width: 50%; margin-left: 25%; margin-right: 25%;"><img src="external/images/fig_11_4_half_circle.svg" role="img" class="contained"></div>
+<div class="para" id="p-3311">Let <span class="process-math">\(D\)</span> be a half-disk lamina of radius 3 in quadrants IV and I, centered at the origin as shown in <a href="" class="xref" data-knowl="./knowl/F_11_4_Mass_exercise.html" title="Figure 11.4.1">Figure 11.4.1</a>. Assume the density at point <span class="process-math">\((x,y)\)</span> is given by <span class="process-math">\(\delta(x,y) = x\text{.}\)</span> Find the exact mass of the lamina.</div> <figure class="figure figure-like" id="F_11_4_Mass_exercise"><div class="image-box" style="width: 50%; margin-left: 25%; margin-right: 25%;"><img src="external/images/fig_11_4_half_circle.svg" role="img" class="contained"></div>
 <figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">11.4.1<span class="period">.</span></span><span class="space"> </span>A half disk lamina.</figcaption></figure></article></section><section class="subsection" id="subsection-82"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">11.4.2</span> <span class="title">Area</span>
 </h3>
-<div class="para" id="p-3338">If we consider the situation where the mass-density distribution is constant, we can also see how a double integral may be used to determine the area of a region. Assuming that <span class="process-math">\(\delta(x,y) = 1\)</span> over a closed bounded region <span class="process-math">\(D\text{,}\)</span> where the units of <span class="process-math">\(\delta\)</span> are “mass per unit of area,” it follows that <span class="process-math">\(\iint_D 1 \, dA\)</span> is the mass of the lamina. But since the density is constant, the numerical value of the integral is simply the area.</div>
-<div class="para" id="p-3339">As the following activity demonstrates, we can also see this fact by considering a three-dimensional solid whose height is always 1.</div>
+<div class="para" id="p-3312">If we consider the situation where the mass-density distribution is constant, we can also see how a double integral may be used to determine the area of a region. Assuming that <span class="process-math">\(\delta(x,y) = 1\)</span> over a closed bounded region <span class="process-math">\(D\text{,}\)</span> where the units of <span class="process-math">\(\delta\)</span> are “mass per unit of area,” it follows that <span class="process-math">\(\iint_D 1 \, dA\)</span> is the mass of the lamina. But since the density is constant, the numerical value of the integral is simply the area.</div>
+<div class="para" id="p-3313">As the following activity demonstrates, we can also see this fact by considering a three-dimensional solid whose height is always 1.</div>
 <article class="activity project-like" id="A_11_4_1"><h4 class="heading">
 <span class="type">Activity</span><span class="space"> </span><span class="codenumber">11.4.3</span><span class="period">.</span>
 </h4>
-<div class="para logical" id="p-3340">
+<div class="para logical" id="p-3314">
 <div class="para">Suppose we want to find the area of the bounded region <span class="process-math">\(D\)</span> between the curves</div>
 <div class="displaymath process-math">
 \begin{equation*}
 y = 1-x^2 \ \ \ \ \ \text{ and }  \ \ \ \ \ y=x-1.
 \end{equation*}
 </div>
-</div> <div class="para logical" id="p-3341">
+</div> <div class="para logical" id="p-3315">
 <div class="para">A picture of this region is shown in <a href="" class="xref" data-knowl="./knowl/F_11_4_Area_ex_1.html" title="Figure 11.4.2">Figure 11.4.2</a>.</div>
 <ol class="lower-alpha">
-<li id="li-1243"><div class="para" id="p-3342">The volume of a solid with constant height is given by the area of the base times the height.  Hence, we may interpret the area of the region <span class="process-math">\(D\)</span> as the volume of a solid with base <span class="process-math">\(D\)</span> and of uniform height 1. That is, the area of <span class="process-math">\(D\)</span> is given by <span class="process-math">\(\iint_D 1 \, dA\text{.}\)</span> Write an iterated integral whose value is <span class="process-math">\(\iint_D 1 \, dA\text{.}\)</span> (Hint: Which order of integration might be more efficient? Why?) <figure class="figure figure-like" id="F_11_4_Area_ex_1"><div class="image-box" style="width: 50%; margin-left: 25%; margin-right: 25%;"><img src="external/images/fig_11_4_area.svg" role="img" class="contained"></div>
+<li id="li-1217"><div class="para" id="p-3316">The volume of a solid with constant height is given by the area of the base times the height.  Hence, we may interpret the area of the region <span class="process-math">\(D\)</span> as the volume of a solid with base <span class="process-math">\(D\)</span> and of uniform height 1. That is, the area of <span class="process-math">\(D\)</span> is given by <span class="process-math">\(\iint_D 1 \, dA\text{.}\)</span> Write an iterated integral whose value is <span class="process-math">\(\iint_D 1 \, dA\text{.}\)</span> (Hint: Which order of integration might be more efficient? Why?) <figure class="figure figure-like" id="F_11_4_Area_ex_1"><div class="image-box" style="width: 50%; margin-left: 25%; margin-right: 25%;"><img src="external/images/fig_11_4_area.svg" role="img" class="contained"></div>
 <figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">11.4.2<span class="period">.</span></span><span class="space"> </span>The graphs of <span class="process-math">\(y = 1-x^2\)</span> and <span class="process-math">\(y=x-1\text{.}\)</span></figcaption></figure>
 </div></li>
-<li id="li-1244"><div class="para" id="p-3343">Evaluate the iterated integral from (a). What does the result tell you?</div></li>
+<li id="li-1218"><div class="para" id="p-3317">Evaluate the iterated integral from (a). What does the result tell you?</div></li>
 </ol>
-</div></article><div class="para" id="p-3344">We now formally state the conclusion from our earlier discussion and <a href="" class="xref" data-knowl="./knowl/A_11_4_1.html" title="Activity 11.4.3">Activity 11.4.3</a>.</div>
+</div></article><div class="para" id="p-3318">We now formally state the conclusion from our earlier discussion and <a href="" class="xref" data-knowl="./knowl/A_11_4_1.html" title="Activity 11.4.3">Activity 11.4.3</a>.</div>
 <article class="assemblage assemblage-like" id="Double-integral-area"><h4 class="heading"><span class="title">The double integral and area.</span></h4>
-<div class="para logical" id="p-3345">
+<div class="para logical" id="p-3319">
 <div class="para">Given a closed, bounded region <span class="process-math">\(D\)</span> in the plane, the area of <span class="process-math">\(D\text{,}\)</span> denoted <span class="process-math">\(A(D)\text{,}\)</span> is given by the double integral</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -739,12 +762,12 @@ A(D) = \iint_D 1 \, dA.
 </div></article></section><section class="subsection" id="subsection-83"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">11.4.3</span> <span class="title">Center of Mass</span>
 </h3>
-<div class="para" id="p-3346">The center of mass of an object is a point at which the object will balance perfectly. For example, the center of mass of a circular disk of uniform density is located at its center. For any object, if we throw it through the air, it will spin around its center of mass and behave as if all the mass is located at the center of mass.</div>
-<div class="para" id="p-3347">In order to understand the role that integrals play in determining the center of mass of an object with a nonuniform mass distribution, we start by finding the center of mass of a collection of <span class="process-math">\(N\)</span> distinct point-masses in the plane.</div>
-<div class="para" id="p-3348">Let <span class="process-math">\(m_1\text{,}\)</span> <span class="process-math">\(m_2\text{,}\)</span> <span class="process-math">\(\ldots\text{,}\)</span> <span class="process-math">\(m_N\)</span> be <span class="process-math">\(N\)</span> masses located in the plane. Think of these masses as connected by rigid rods of negligible weight from some central point <span class="process-math">\((x,y)\text{.}\)</span> A picture with four masses is shown in <a href="" class="xref" data-knowl="./knowl/F_11_4_COM.html" title="Figure 11.4.3">Figure 11.4.3</a>. Now imagine balancing this system by placing it on a thin pole at the point <span class="process-math">\((x,y)\)</span> perpendicular to the plane containing the masses. Unless the masses are perfectly balanced, the system will fall off the pole. The point <span class="process-math">\((\overline{x}, \overline{y})\)</span> at which the system will balance perfectly is called the <em class="emphasis">center of mass</em> of the system. Our goal is to determine the center of mass of a system of discrete masses, then extend this to a continuous lamina.</div>
+<div class="para" id="p-3320">The center of mass of an object is a point at which the object will balance perfectly. For example, the center of mass of a circular disk of uniform density is located at its center. For any object, if we throw it through the air, it will spin around its center of mass and behave as if all the mass is located at the center of mass.</div>
+<div class="para" id="p-3321">In order to understand the role that integrals play in determining the center of mass of an object with a nonuniform mass distribution, we start by finding the center of mass of a collection of <span class="process-math">\(N\)</span> distinct point-masses in the plane.</div>
+<div class="para" id="p-3322">Let <span class="process-math">\(m_1\text{,}\)</span> <span class="process-math">\(m_2\text{,}\)</span> <span class="process-math">\(\ldots\text{,}\)</span> <span class="process-math">\(m_N\)</span> be <span class="process-math">\(N\)</span> masses located in the plane. Think of these masses as connected by rigid rods of negligible weight from some central point <span class="process-math">\((x,y)\text{.}\)</span> A picture with four masses is shown in <a href="" class="xref" data-knowl="./knowl/F_11_4_COM.html" title="Figure 11.4.3">Figure 11.4.3</a>. Now imagine balancing this system by placing it on a thin pole at the point <span class="process-math">\((x,y)\)</span> perpendicular to the plane containing the masses. Unless the masses are perfectly balanced, the system will fall off the pole. The point <span class="process-math">\((\overline{x}, \overline{y})\)</span> at which the system will balance perfectly is called the <em class="emphasis">center of mass</em> of the system. Our goal is to determine the center of mass of a system of discrete masses, then extend this to a continuous lamina.</div>
 <figure class="figure figure-like" id="F_11_4_COM"><div class="image-box" style="width: 50%; margin-left: 25%; margin-right: 25%;"><img src="external/images/fig_11_4_masses.svg" role="img" class="contained"></div>
-<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">11.4.3<span class="period">.</span></span><span class="space"> </span>A center of mass <span class="process-math">\((\overline{x}, \overline{y})\)</span> of four masses.</figcaption></figure><div class="para" id="p-3349">Each mass exerts a force (called a <em class="emphasis">moment</em>) around the lines <span class="process-math">\(x=\overline{x}\)</span> and <span class="process-math">\(y=\overline{y}\)</span> that causes the system to tilt in the direction of the mass. These moments are dependent on the mass and the distance from the given line. Let <span class="process-math">\((x_1,y_1)\)</span> be the location of mass <span class="process-math">\(m_1\text{,}\)</span> <span class="process-math">\((x_2,y_2)\)</span> the location of mass <span class="process-math">\(m_2\text{,}\)</span> etc. In order to balance perfectly, the moments in the <span class="process-math">\(x\)</span> direction and in the <span class="process-math">\(y\)</span> direction must be in equilibrium. We determine these moments and solve the resulting system to find the equilibrium point <span class="process-math">\((\overline{x}, \overline{y})\)</span> at the center of mass.</div>
-<div class="para logical" id="p-3350">
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">11.4.3<span class="period">.</span></span><span class="space"> </span>A center of mass <span class="process-math">\((\overline{x}, \overline{y})\)</span> of four masses.</figcaption></figure><div class="para" id="p-3323">Each mass exerts a force (called a <em class="emphasis">moment</em>) around the lines <span class="process-math">\(x=\overline{x}\)</span> and <span class="process-math">\(y=\overline{y}\)</span> that causes the system to tilt in the direction of the mass. These moments are dependent on the mass and the distance from the given line. Let <span class="process-math">\((x_1,y_1)\)</span> be the location of mass <span class="process-math">\(m_1\text{,}\)</span> <span class="process-math">\((x_2,y_2)\)</span> the location of mass <span class="process-math">\(m_2\text{,}\)</span> etc. In order to balance perfectly, the moments in the <span class="process-math">\(x\)</span> direction and in the <span class="process-math">\(y\)</span> direction must be in equilibrium. We determine these moments and solve the resulting system to find the equilibrium point <span class="process-math">\((\overline{x}, \overline{y})\)</span> at the center of mass.</div>
+<div class="para logical" id="p-3324">
 <div class="para">The force that mass <span class="process-math">\(m_1\)</span> exerts to tilt the system from the line <span class="process-math">\(y=\overline{y}\)</span> is</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -758,7 +781,7 @@ m_2g(\overline{y}-y_2).
 \end{equation*}
 </div>
 </div>
-<div class="para logical" id="p-3351">
+<div class="para logical" id="p-3325">
 <div class="para">In general, the force that mass <span class="process-math">\(m_k\)</span> exerts to tilt the system from the line <span class="process-math">\(y= \overline{y}\)</span> is</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -766,7 +789,7 @@ m_kg(\overline{y}-y_k).
 \end{equation*}
 </div>
 </div>
-<div class="para logical" id="p-3352">
+<div class="para logical" id="p-3326">
 <div class="para">For the system to balance, we need the forces to sum to 0, so that</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -774,7 +797,7 @@ m_kg(\overline{y}-y_k).
 \end{equation*}
 </div>
 </div>
-<div class="para logical" id="p-3353">
+<div class="para logical" id="p-3327">
 <div class="para">Solving for <span class="process-math">\(\overline{y}\text{,}\)</span> we find that</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -782,7 +805,7 @@ m_kg(\overline{y}-y_k).
 \end{equation*}
 </div>
 </div>
-<div class="para logical" id="p-3354">
+<div class="para logical" id="p-3328">
 <div class="para">A similar argument shows that</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -790,7 +813,7 @@ m_kg(\overline{y}-y_k).
 \end{equation*}
 </div>
 </div>
-<div class="para logical" id="p-3355">
+<div class="para logical" id="p-3329">
 <div class="para">The value <span class="process-math">\(M_x~=~\sum_{k=1}^N m_ky_k\)</span> is called the <em class="emphasis">total moment</em> with respect to the <span class="process-math">\(x\)</span>-axis; <span class="process-math">\(M_y~=~\sum_{k=1}^N m_kx_k\)</span> is the <em class="emphasis">total moment</em> with respect to the <span class="process-math">\(y\)</span>-axis. Hence, the respective quotients of the moments to the total mass, <span class="process-math">\(M\text{,}\)</span> determines the center of mass of a point-mass system:</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -798,7 +821,7 @@ m_kg(\overline{y}-y_k).
 \end{equation*}
 </div>
 </div>
-<div class="para logical" id="p-3356">
+<div class="para logical" id="p-3330">
 <div class="para">Now, suppose that rather than a point-mass system, we have a continuous lamina with a variable mass-density <span class="process-math">\(\delta(x, y)\text{.}\)</span> We may estimate its center of mass by partitioning the lamina into <span class="process-math">\(mn\)</span> subrectangles of equal area <span class="process-math">\(\Delta A\text{,}\)</span> and treating the resulting partitioned lamina as a point-mass system. In particular, we select a point <span class="process-math">\((x_{ij}^*,y_{ij}^*)\)</span> in the <span class="process-math">\(ij\)</span>th subrectangle, and observe that the quanity</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -808,7 +831,7 @@ m_kg(\overline{y}-y_k).
 <div class="para">is density times area, so <span class="process-math">\(\delta(x_{ij}^*,y_{ij}^*) \Delta A\)</span> approximates the mass of the small portion of the lamina determined by the subrectangle <span class="process-math">\(R_{ij}\text{.}\)</span>
 </div>
 </div>
-<div class="para logical" id="p-3357">
+<div class="para logical" id="p-3331">
 <div class="para">We now treat <span class="process-math">\(\delta(x_{ij}^*,y_{ij}^*) \Delta A\)</span> as a point mass at the point <span class="process-math">\((x_{ij}^*,y_{ij}^*)\text{.}\)</span> The coordinates <span class="process-math">\((\overline{x}, \overline{y})\)</span> of the center of mass of these <span class="process-math">\(mn\)</span> point masses are thus given by</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -816,17 +839,17 @@ m_kg(\overline{y}-y_k).
 \end{equation*}
 </div>
 </div>
-<div class="para" id="p-3358">If we take the limit as <span class="process-math">\(m\)</span> and <span class="process-math">\(n\)</span> go to infinity, we obtain the exact center of mass <span class="process-math">\((\overline{x}, \overline{y})\)</span> of the continuous lamina.</div>
+<div class="para" id="p-3332">If we take the limit as <span class="process-math">\(m\)</span> and <span class="process-math">\(n\)</span> go to infinity, we obtain the exact center of mass <span class="process-math">\((\overline{x}, \overline{y})\)</span> of the continuous lamina.</div>
 <article class="assemblage assemblage-like" id="Lamina-center-of-mass"><h4 class="heading"><span class="title">The center of mass of a lamina.</span></h4>
-<div class="para logical" id="p-3359">
+<div class="para logical" id="p-3333">
 <div class="para">The coordinates <span class="process-math">\((\overline{x}, \overline{y})\)</span> of the <em class="emphasis">center of mass of a lamina</em> <span class="process-math">\(D\)</span> with density <span class="process-math">\(\delta = \delta(x,y)\)</span> are given by</div>
 <div class="displaymath process-math">
 \begin{equation*}
 \overline{x} = \frac{\iint_D x\delta(x,y) \, dA}{\iint_D \delta(x,y) \, dA} \ \ \ \ \ \text{ and }  \ \ \ \ \ \overline{y} = \frac{\iint_D y\delta(x,y) \, dA}{\iint_D \delta(x,y) \, dA}.
 \end{equation*}
 </div>
-</div></article><div class="para" id="p-3360">The center of mass of a lamina can then be thought of as a weighted average of all of the points in the lamina with the weights given by the density at each point. The <em class="emphasis">centroid</em> of a lamina is the just the average of all of the points in the lamina, or the center of mass if the density at each point is 1.</div>
-<div class="para logical" id="p-3361">
+</div></article><div class="para" id="p-3334">The center of mass of a lamina can then be thought of as a weighted average of all of the points in the lamina with the weights given by the density at each point. The <em class="emphasis">centroid</em> of a lamina is the just the average of all of the points in the lamina, or the center of mass if the density at each point is 1.</div>
+<div class="para logical" id="p-3335">
 <div class="para">The numerators of <span class="process-math">\(\overline{x}\)</span> and <span class="process-math">\(\overline{y}\)</span> are called the respective <em class="emphasis">moments</em> of the lamina about the coordinate axes. Thus, the moment of a lamina <span class="process-math">\(D\)</span> with density <span class="process-math">\(\delta = \delta(x,y)\)</span> about the <span class="process-math">\(y\)</span>-axis is</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -840,7 +863,7 @@ M_x = \iint_D y\delta(x,y) \, dA.
 \end{equation*}
 </div>
 </div>
-<div class="para logical" id="p-3362">
+<div class="para logical" id="p-3336">
 <div class="para">If <span class="process-math">\(M\)</span> is the mass of the lamina, it follows that the center of mass is</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -851,14 +874,14 @@ M_x = \iint_D y\delta(x,y) \, dA.
 <article class="activity project-like" id="A_11_4_4"><h4 class="heading">
 <span class="type">Activity</span><span class="space"> </span><span class="codenumber">11.4.4</span><span class="period">.</span>
 </h4>
-<div class="para" id="p-3363">In this activity we determine integrals that represent the center of mass of a lamina <span class="process-math">\(D\)</span> described by the triangular region bounded by the <span class="process-math">\(x\)</span>-axis and the lines <span class="process-math">\(x = 1\)</span> and <span class="process-math">\(y = 2x\)</span> in the first quadrant if the density at point <span class="process-math">\((x, y)\)</span> is <span class="process-math">\(\delta(x, y) = 6x + 6y + 6\text{.}\)</span> A picture of the lamina is shown in <a href="" class="xref" data-knowl="./knowl/F_11_4_COM_ex_1.html" title="Figure 11.4.4">Figure 11.4.4</a>.</div> <figure class="figure figure-like" id="F_11_4_COM_ex_1"><div class="image-box" style="width: 50%; margin-left: 25%; margin-right: 25%;"><img src="external/images/fig_11_4_triangle.svg" role="img" class="contained"></div>
+<div class="para" id="p-3337">In this activity we determine integrals that represent the center of mass of a lamina <span class="process-math">\(D\)</span> described by the triangular region bounded by the <span class="process-math">\(x\)</span>-axis and the lines <span class="process-math">\(x = 1\)</span> and <span class="process-math">\(y = 2x\)</span> in the first quadrant if the density at point <span class="process-math">\((x, y)\)</span> is <span class="process-math">\(\delta(x, y) = 6x + 6y + 6\text{.}\)</span> A picture of the lamina is shown in <a href="" class="xref" data-knowl="./knowl/F_11_4_COM_ex_1.html" title="Figure 11.4.4">Figure 11.4.4</a>.</div> <figure class="figure figure-like" id="F_11_4_COM_ex_1"><div class="image-box" style="width: 50%; margin-left: 25%; margin-right: 25%;"><img src="external/images/fig_11_4_triangle.svg" role="img" class="contained"></div>
 <figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">11.4.4<span class="period">.</span></span><span class="space"> </span>The lamina bounded by the <span class="process-math">\(x\)</span>-axis and the lines <span class="process-math">\(x = 1\)</span> and <span class="process-math">\(y = 2x\)</span> in the first quadrant.</figcaption></figure> <ol class="lower-alpha">
-<li id="li-1245"><div class="para" id="p-3364">Set up an iterated integral that represents the mass of the lamina.</div></li>
-<li id="li-1246"><div class="para" id="p-3365">Assume the mass of the lamina is 14. Set up two iterated integrals that represent the coordinates of the center of mass of the lamina.</div></li>
+<li id="li-1219"><div class="para" id="p-3338">Set up an iterated integral that represents the mass of the lamina.</div></li>
+<li id="li-1220"><div class="para" id="p-3339">Assume the mass of the lamina is 14. Set up two iterated integrals that represent the coordinates of the center of mass of the lamina.</div></li>
 </ol></article></section><section class="subsection" id="subsection-84"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">11.4.4</span> <span class="title">Probability</span>
 </h3>
-<div class="para logical" id="p-3366">
+<div class="para logical" id="p-3340">
 <div class="para">Calculating probabilities is a very important application of integration in the physical, social, and life sciences. To understand the basics, consider the game of darts in which a player throws a dart at a board and tries to hit a particular target. Let us suppose that a dart board is in the form of a disk <span class="process-math">\(D\)</span> with radius 10 inches. If we assume that a player throws a dart at random, and is not aiming at any particular point, then it is equally probable that the dart will strike any single point on the board. For instance, the probability that the dart will strike a particular 1 square inch region is <span class="process-math">\(\frac{1}{100 \pi}\text{,}\)</span> or the ratio of the area of the desired target to the total area of <span class="process-math">\(D\)</span> (assuming that the dart thrower always hits the board itself at some point). Similarly, the probability that the dart strikes a point in the disk <span class="process-math">\(D_3\)</span> of radius 3 inches is given by the area of <span class="process-math">\(D_3\)</span> divided by the area of <span class="process-math">\(D\text{.}\)</span> In other words, the probability that the dart strikes the disk <span class="process-math">\(D_3\)</span> is</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -866,7 +889,7 @@ M_x = \iint_D y\delta(x,y) \, dA.
 \end{equation*}
 </div>
 </div>
-<div class="para logical" id="p-3367">
+<div class="para logical" id="p-3341">
 <div class="para">The integrand, <span class="process-math">\(\frac{1}{100\pi}\text{,}\)</span> may be thought of as a <em class="emphasis">distribution function</em>, describing how the dart strikes are distributed across the board. In this case the distribution function is constant since we are assuming a uniform distribution, but we can easily envision situations where the distribution function varies. For example, if the player is fairly good and is aiming for the bulls eye (the center of <span class="process-math">\(D\)</span>), then the distribution function <span class="process-math">\(f\)</span> could be skewed toward the center, say</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -881,7 +904,7 @@ f(x,y) = K e^{-(x^2+y^2)}
 \end{equation*}
 </div>
 </div>
-<div class="para logical" id="p-3368">
+<div class="para logical" id="p-3342">
 <div class="para">For such a function <span class="process-math">\(f\text{,}\)</span> the probability that the dart strikes in the disk <span class="process-math">\(D_1\)</span> of radius 1 would be</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -889,7 +912,7 @@ f(x,y) = K e^{-(x^2+y^2)}
 \end{equation*}
 </div>
 </div>
-<div class="para logical" id="p-3369">
+<div class="para logical" id="p-3343">
 <div class="para">Indeed, the probability that the dart strikes in any region <span class="process-math">\(R\)</span> that lies within <span class="process-math">\(D\)</span> is given by</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -897,13 +920,13 @@ f(x,y) = K e^{-(x^2+y^2)}
 \end{equation*}
 </div>
 </div>
-<div class="para logical" id="p-3370">
+<div class="para logical" id="p-3344">
 <div class="para">The preceding discussion highlights the general idea behind calculating probabilities. We assume we have a <em class="emphasis">joint probability density function</em> <span class="process-math">\(f\text{,}\)</span> a function of two independent variables <span class="process-math">\(x\)</span> and <span class="process-math">\(y\)</span> defined on a domain <span class="process-math">\(D\)</span> that satisfies the conditions</div>
 <ul class="disc">
-<li id="li-1247"><div class="para" id="p-3371">
+<li id="li-1221"><div class="para" id="p-3345">
 <span class="process-math">\(f(x,y) \geq 0\)</span> for all <span class="process-math">\(x\)</span> and <span class="process-math">\(y\)</span> in <span class="process-math">\(D\text{,}\)</span>
 </div></li>
-<li id="li-1248"><div class="para logical" id="p-3372">
+<li id="li-1222"><div class="para logical" id="p-3346">
 <div class="para">the probability that <span class="process-math">\(x\)</span> is between some values <span class="process-math">\(a\)</span> and <span class="process-math">\(b\)</span> while <span class="process-math">\(y\)</span> is between some values <span class="process-math">\(c\)</span> and <span class="process-math">\(d\)</span> is given by</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -911,7 +934,7 @@ f(x,y) = K e^{-(x^2+y^2)}
 \end{equation*}
 </div>
 </div></li>
-<li id="li-1249"><div class="para logical" id="p-3373">
+<li id="li-1223"><div class="para logical" id="p-3347">
 <div class="para">The probability that the point <span class="process-math">\((x,y)\)</span> is in <span class="process-math">\(D\)</span> is 1, that is</div>
 <div class="displaymath process-math" id="eq_11_4_pdf">
 \begin{equation}
@@ -921,7 +944,7 @@ f(x,y) = K e^{-(x^2+y^2)}
 </div></li>
 </ul>
 </div>
-<div class="para logical" id="p-3374">
+<div class="para logical" id="p-3348">
 <div class="para">Note that it is possible that <span class="process-math">\(D\)</span> could be an infinite region and the limits on the integral in Equation <a href="" class="xref" data-knowl="./knowl/eq_11_4_pdf.html" title="Equation 11.4.1">(11.4.1)</a> could be infinite. When we have such a probability density function <span class="process-math">\(f=f(x,y)\text{,}\)</span> the probability that the point <span class="process-math">\((x,y)\)</span> is in some region <span class="process-math">\(R\)</span> contained in the domain <span class="process-math">\(D\)</span> (the notation we use here is “<span class="process-math">\(P((x,y)\in R)\)</span>”) is determined by</div>
 <div class="displaymath process-math" data-contains-math-knowls="./knowl/eq_11_4_pdf.html">
 \begin{equation*}
@@ -932,7 +955,7 @@ P((x,y)\in R) = \iint_R f(x,y) \, dA.
 <article class="activity project-like" id="A_11_4_6"><h4 class="heading">
 <span class="type">Activity</span><span class="space"> </span><span class="codenumber">11.4.5</span><span class="period">.</span>
 </h4>
-<div class="para logical" id="p-3375">
+<div class="para logical" id="p-3349">
 <div class="para">A firm manufactures smoke detectors. Two components for the detectors come from different suppliers — one in Michigan and one in Ohio. The company studies these components for their reliability and their data suggests that if <span class="process-math">\(x\)</span> is the life span (in years) of a randomly chosen component from the Michigan supplier and <span class="process-math">\(y\)</span> the life span (in years) of a randomly chosen component from the Ohio supplier, then the joint probability density function <span class="process-math">\(f\)</span> might be given by</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -940,7 +963,7 @@ f(x,y) = e^{-x} e^{-y}.
 \end{equation*}
 </div>
 <ol class="lower-alpha">
-<li id="li-1250"><div class="para logical" id="p-3376">
+<li id="li-1224"><div class="para logical" id="p-3350">
 <div class="para">Theoretically, the components might last forever, so the domain <span class="process-math">\(D\)</span> of the function <span class="process-math">\(f\)</span> is the set <span class="process-math">\(D\)</span> of all <span class="process-math">\((x,y)\)</span> such that <span class="process-math">\(x \ge 0\)</span> and <span class="process-math">\(y \ge 0\text{.}\)</span> To show that <span class="process-math">\(f\)</span> is a probability density function on <span class="process-math">\(D\)</span> we need to demonstrate that</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -955,20 +978,20 @@ f(x,y) = e^{-x} e^{-y}.
 </div>
 <div class="para">Use your knowledge of improper integrals to verify that <span class="process-math">\(f\)</span> is indeed a probability density function.</div>
 </div></li>
-<li id="li-1251"><div class="para" id="p-3377">Assume that the smoke detector fails only if both of the supplied components fail. To determine the probability that a randomly selected detector will fail within one year, we will need to determine the probability that the life span of each component is between 0 and 1 years. Set up an appropriate iterated integral, and evaluate the integral to determine the probability.</div></li>
-<li id="li-1252"><div class="para" id="p-3378">What is the probability that a randomly chosen smoke detector will fail between years 3 and 7?</div></li>
-<li id="li-1253"><div class="para" id="p-3379">Suppose that the manufacturer determines that one of the components is more likely to fail than the other, and hence conjectures that the probability density function is instead <span class="process-math">\(f(x,y) = K e^{-x} e^{-2y}.\)</span>  What is the value of <span class="process-math">\(K\text{?}\)</span>
+<li id="li-1225"><div class="para" id="p-3351">Assume that the smoke detector fails only if both of the supplied components fail. To determine the probability that a randomly selected detector will fail within one year, we will need to determine the probability that the life span of each component is between 0 and 1 years. Set up an appropriate iterated integral, and evaluate the integral to determine the probability.</div></li>
+<li id="li-1226"><div class="para" id="p-3352">What is the probability that a randomly chosen smoke detector will fail between years 3 and 7?</div></li>
+<li id="li-1227"><div class="para" id="p-3353">Suppose that the manufacturer determines that one of the components is more likely to fail than the other, and hence conjectures that the probability density function is instead <span class="process-math">\(f(x,y) = K e^{-x} e^{-2y}.\)</span>  What is the value of <span class="process-math">\(K\text{?}\)</span>
 </div></li>
 </ol>
 </div></article></section><section class="subsection" id="subsection-85"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">11.4.5</span> <span class="title">Summary</span>
 </h3>
 <ul class="disc">
-<li id="li-1254"><div class="para" id="p-3380">The mass of a lamina <span class="process-math">\(D\)</span> with a mass density function <span class="process-math">\(\delta = \delta(x,y)\)</span> is  <span class="process-math">\(\iint_D \delta(x,y) \, dA.\)</span>
+<li id="li-1228"><div class="para" id="p-3354">The mass of a lamina <span class="process-math">\(D\)</span> with a mass density function <span class="process-math">\(\delta = \delta(x,y)\)</span> is  <span class="process-math">\(\iint_D \delta(x,y) \, dA.\)</span>
 </div></li>
-<li id="li-1255"><div class="para" id="p-3381">The area of a region <span class="process-math">\(D\)</span> in the plane has the same numerical value as the volume of a solid of uniform height 1 and base <span class="process-math">\(D\text{,}\)</span> so the area of <span class="process-math">\(D\)</span> is given by <span class="process-math">\(\iint_D 1 \, dA.\)</span>
+<li id="li-1229"><div class="para" id="p-3355">The area of a region <span class="process-math">\(D\)</span> in the plane has the same numerical value as the volume of a solid of uniform height 1 and base <span class="process-math">\(D\text{,}\)</span> so the area of <span class="process-math">\(D\)</span> is given by <span class="process-math">\(\iint_D 1 \, dA.\)</span>
 </div></li>
-<li id="li-1256"><div class="para logical" id="p-3382">
+<li id="li-1230"><div class="para logical" id="p-3356">
 <div class="para">The center of mass, <span class="process-math">\((\overline{x},\overline{y})\text{,}\)</span> of a continuous lamina with a variable density <span class="process-math">\(\delta(x,y)\)</span> is given by</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -976,7 +999,7 @@ f(x,y) = e^{-x} e^{-y}.
 \end{equation*}
 </div>
 </div></li>
-<li id="li-1257"><div class="para logical" id="p-3383">
+<li id="li-1231"><div class="para logical" id="p-3357">
 <div class="para">Given a joint probability density function <span class="process-math">\(f\)</span> is a function of two independent variables <span class="process-math">\(x\)</span> and <span class="process-math">\(y\)</span> defined on a domain <span class="process-math">\(D\text{,}\)</span> if <span class="process-math">\(R\)</span> is some subregion of <span class="process-math">\(D\text{,}\)</span> then the probability that <span class="process-math">\((x,y)\)</span> is in <span class="process-math">\(R\)</span> is given by</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -991,13 +1014,13 @@ f(x,y) = e^{-x} e^{-y}.
 <div id="webwork-210" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="210" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Rochester/setIntegrals24Centroid/ur_in_24_1.pg" data-courseID="mitchkeller-dev" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-210')">Activate</button></div>
 <div class="problem-contents">
-<div class="para" id="p-3384">The masses <span class="process-math">\(m_i\)</span> are located at the points <span class="process-math">\(P_i\text{.}\)</span> Find the center of mass of the system.</div> <div class="para" id="p-3385">
+<div class="para" id="p-3358">The masses <span class="process-math">\(m_i\)</span> are located at the points <span class="process-math">\(P_i\text{.}\)</span> Find the center of mass of the system.</div> <div class="para" id="p-3359">
 <span class="process-math">\(m_1=1\text{,}\)</span> <span class="process-math">\(m_2=2\text{,}\)</span> <span class="process-math">\(m_3=3\text{.}\)</span>
-</div> <div class="para" id="p-3386">
+</div> <div class="para" id="p-3360">
 <span class="process-math">\(P_1=(9,-4)\text{,}\)</span> <span class="process-math">\(P_2=(-6,-8)\text{,}\)</span> <span class="process-math">\(P_3=(5,2)\text{.}\)</span>
-</div> <div class="para" id="p-3387">
+</div> <div class="para" id="p-3361">
 <span class="process-math">\(\bar x\)</span>= <span class="fillin underline" role="img" aria-label="30-character blank" style="width: 13.6363636363636em;"></span>
-</div> <div class="para" id="p-3388">
+</div> <div class="para" id="p-3362">
 <span class="process-math">\(\bar y\)</span>= <span class="fillin underline" role="img" aria-label="30-character blank" style="width: 13.6363636363636em;"></span>
 </div>
 <div class="solutions"></div>
@@ -1006,10 +1029,10 @@ f(x,y) = e^{-x} e^{-y}.
 <div id="webwork-211" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="211" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Rochester/setIntegrals24Centroid/ur_in_24_2.pg" data-courseID="mitchkeller-dev" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-211')">Activate</button></div>
 <div class="problem-contents">
-<div class="para" id="p-3391">Find the centroid <span class="process-math">\((\bar x,\bar y)\)</span> of the triangle with vertices at <span class="process-math">\((0,0)\text{,}\)</span> <span class="process-math">\((7,0)\text{,}\)</span> and <span class="process-math">\((0,4)\text{.}\)</span>
-</div> <div class="para" id="p-3392">
+<div class="para" id="p-3365">Find the centroid <span class="process-math">\((\bar x,\bar y)\)</span> of the triangle with vertices at <span class="process-math">\((0,0)\text{,}\)</span> <span class="process-math">\((7,0)\text{,}\)</span> and <span class="process-math">\((0,4)\text{.}\)</span>
+</div> <div class="para" id="p-3366">
 <span class="process-math">\(\bar x\)</span>= <span class="fillin underline" role="img" aria-label="30-character blank" style="width: 13.6363636363636em;"></span>
-</div> <div class="para" id="p-3393">
+</div> <div class="para" id="p-3367">
 <span class="process-math">\(\bar y\)</span>= <span class="fillin underline" role="img" aria-label="30-character blank" style="width: 13.6363636363636em;"></span>
 </div>
 <div class="solutions"></div>
@@ -1018,7 +1041,7 @@ f(x,y) = e^{-x} e^{-y}.
 <div id="webwork-212" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="212" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/272/setStewart15_5/problem_3.pg" data-courseID="mitchkeller-dev" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-212')">Activate</button></div>
 <div class="problem-contents">
-<div class="para" id="p-3396">Find the mass of the rectangular region <span class="process-math">\(0 \leq x \leq 2\text{,}\)</span> <span class="process-math">\(0
+<div class="para" id="p-3370">Find the mass of the rectangular region <span class="process-math">\(0 \leq x \leq 2\text{,}\)</span> <span class="process-math">\(0
 \leq y \leq 2\)</span> with density function <span class="process-math">\(\rho \left( x, y \right) = 2 - y\text{.}\)</span>
 </div>
 <div class="solutions"></div>
@@ -1027,7 +1050,7 @@ f(x,y) = e^{-x} e^{-y}.
 <div id="webwork-213" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="213" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/272/setStewart15_5/problem_3a.pg" data-courseID="mitchkeller-dev" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-213')">Activate</button></div>
 <div class="problem-contents">
-<div class="para" id="p-3398">Find the mass of the triangular region with vertices (0, 0), (4, 0), and (0, 1), with density function <span class="process-math">\(\rho \left( x, y \right) = x^2 + y^2\text{.}\)</span>
+<div class="para" id="p-3372">Find the mass of the triangular region with vertices (0, 0), (4, 0), and (0, 1), with density function <span class="process-math">\(\rho \left( x, y \right) = x^2 + y^2\text{.}\)</span>
 </div>
 <div class="solutions"></div>
 </div>
@@ -1035,15 +1058,15 @@ f(x,y) = e^{-x} e^{-y}.
 <div id="webwork-214" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="214" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/272/setStewart15_5/problem_5.pg" data-courseID="mitchkeller-dev" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-214')">Activate</button></div>
 <div class="problem-contents">
-<div class="para" id="p-3400">A lamina occupies the region inside the circle <span class="process-math">\(x^2 + y^2 = 12 y\)</span> but outside the circle <span class="process-math">\(x^2 + y^2 = 36\text{.}\)</span> The density at each point is inversely proportional to its distance from the orgin.</div> <div class="para" id="p-3401">Where is the center of mass?</div> <div class="para" id="p-3402">( <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>, <span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span> )</div>
+<div class="para" id="p-3374">A lamina occupies the region inside the circle <span class="process-math">\(x^2 + y^2 = 12 y\)</span> but outside the circle <span class="process-math">\(x^2 + y^2 = 36\text{.}\)</span> The density at each point is inversely proportional to its distance from the orgin.</div> <div class="para" id="p-3375">Where is the center of mass?</div> <div class="para" id="p-3376">( <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>, <span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span> )</div>
 <div class="solutions"></div>
 </div>
 </div></article><article class="exercise exercise-like" id="Library__272__setStewart15_5__problem_1.pg"><h4 class="heading"><span class="codenumber">6<span class="period">.</span></span></h4>
 <div id="webwork-215" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="215" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/272/setStewart15_5/problem_1.pg" data-courseID="mitchkeller-dev" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-215')">Activate</button></div>
 <div class="problem-contents">
-<div class="para" id="p-3405">A sprinkler distributes water in a circular pattern, supplying water to a depth of <span class="process-math">\(e^{-r}\)</span> feet per hour at a distance of r feet from the sprinkler.</div> <div class="para" id="p-3406">A. What is the total amount of water supplied per hour inside of a circle of radius 9?</div> <div class="para" id="p-3407">
-<span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span> <span class="process-math">\({ft}^3\)</span> per hour</div> <div class="para" id="p-3408">B. What is the total amount of water that goes through the sprinkler per hour?</div> <div class="para" id="p-3409">
+<div class="para" id="p-3379">A sprinkler distributes water in a circular pattern, supplying water to a depth of <span class="process-math">\(e^{-r}\)</span> feet per hour at a distance of r feet from the sprinkler.</div> <div class="para" id="p-3380">A. What is the total amount of water supplied per hour inside of a circle of radius 9?</div> <div class="para" id="p-3381">
+<span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span> <span class="process-math">\({ft}^3\)</span> per hour</div> <div class="para" id="p-3382">B. What is the total amount of water that goes through the sprinkler per hour?</div> <div class="para" id="p-3383">
 <span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span> <span class="process-math">\({ft}^3\)</span> per hour</div>
 <div class="solutions"></div>
 </div>
@@ -1051,8 +1074,8 @@ f(x,y) = e^{-x} e^{-y}.
 <div id="webwork-216" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="216" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Michigan/Chap16Sec6/Q03.pg" data-courseID="mitchkeller-dev" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-216')">Activate</button></div>
 <div class="problem-contents">
-<div class="para" id="p-3412">Let <span class="process-math">\(p\)</span> be the joint density function such that <span class="process-math">\(p(x,y) = \frac{1}{9} xy\)</span> in <span class="process-math">\(R\text{,}\)</span> the rectangle <span class="process-math">\(0 \le x \le 6, 0\le y \le 1\text{,}\)</span> and <span class="process-math">\(p(x,y)=0\)</span> outside <span class="process-math">\(R\text{.}\)</span>  Find the fraction of the population satisfying the constraint <span class="process-math">\(x+y \le 7\)</span>
-</div> <div class="para" id="p-3413">fraction = <span class="fillin underline" role="img" aria-label="35-character blank" style="width: 15.9090909090909em;"></span>
+<div class="para" id="p-3386">Let <span class="process-math">\(p\)</span> be the joint density function such that <span class="process-math">\(p(x,y) = \frac{1}{9} xy\)</span> in <span class="process-math">\(R\text{,}\)</span> the rectangle <span class="process-math">\(0 \le x \le 6, 0\le y \le 1\text{,}\)</span> and <span class="process-math">\(p(x,y)=0\)</span> outside <span class="process-math">\(R\text{.}\)</span>  Find the fraction of the population satisfying the constraint <span class="process-math">\(x+y \le 7\)</span>
+</div> <div class="para" id="p-3387">fraction = <span class="fillin underline" role="img" aria-label="35-character blank" style="width: 15.9090909090909em;"></span>
 </div>
 <div class="solutions">
 <a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-61" id="solution-61"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-61"><div class="solution solution-like">
@@ -1063,34 +1086,36 @@ f(x,y) = e^{-x} e^{-y}.
 <div id="webwork-217" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="217" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/maCalcDB/setVMultIntegrals3Appl/UR_VC_9_9.pg" data-courseID="mitchkeller-dev" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-217')">Activate</button></div>
 <div class="problem-contents">
-<div class="para" id="p-3415">A lamp has two bulbs, each of a type with an average lifetime of 2 hours.  The probability density function for the lifetime of a bulb is <span class="process-math">\(f(t) = \frac{1}{2}
+<div class="para" id="p-3389">A lamp has two bulbs, each of a type with an average lifetime of 2 hours.  The probability density function for the lifetime of a bulb is <span class="process-math">\(f(t) = \frac{1}{2}
 e^{-t/2}, t \geq 0\text{.}\)</span>
-</div> <div class="para" id="p-3416">What is the probability that both of the bulbs will fail within 5 hours?</div>
+</div> <div class="para" id="p-3390">What is the probability that both of the bulbs will fail within 5 hours?</div>
 <div class="solutions"></div>
 </div>
 </div></article><article class="exercise exercise-like" id="Library__Michigan__Chap16Sec6__Q09.pg"><h4 class="heading"><span class="codenumber">9<span class="period">.</span></span></h4>
 <div id="webwork-218" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="218" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Michigan/Chap16Sec6/Q09.pg" data-courseID="mitchkeller-dev" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-218')">Activate</button></div>
 <div class="problem-contents">
-<div class="para" id="p-3418">For the following two functions <span class="process-math">\(p(x,y)\text{,}\)</span> check whether <span class="process-math">\(p\)</span> is a joint density function.  Assume <span class="process-math">\(p(x,y)=0\)</span> outside the region <span class="process-math">\(R\text{.}\)</span>
-</div> <div class="para" id="p-3419">
+<div class="para" id="p-3392">For the following two functions <span class="process-math">\(p(x,y)\text{,}\)</span> check whether <span class="process-math">\(p\)</span> is a joint density function.  Assume <span class="process-math">\(p(x,y)=0\)</span> outside the region <span class="process-math">\(R\text{.}\)</span>
+</div> <div class="para" id="p-3393">
 <em class="alert">(a)</em> <span class="process-math">\(p(x,y)=1\text{,}\)</span> where <span class="process-math">\(R\)</span> is <span class="process-math">\(0 \le x \le 1,
 2 \le y \le 2.5\text{.}\)</span>
-</div> <div class="para" id="p-3420">
-<span class="process-math">\(p(x,y)\)</span> <ul style="list-style:circle;">
-<li id="li-1259"><div class="para" id="p-3422">is a joint density function</div></li>
-<li id="li-1260"><div class="para" id="p-3423">is not a joint density function</div></li>
+</div> <div class="para logical" id="p-3394">
+<div class="para"><span class="process-math">\(p(x,y)\)</span></div>
+<ul class="square">
+<li id="li-1232"><div class="para" id="p-3395">is a joint density function</div></li>
+<li id="li-1233"><div class="para" id="p-3396">is not a joint density function</div></li>
 </ul>
-</div> <div class="para" id="p-3424">
+</div> <div class="para" id="p-3397">
 <em class="alert">(b)</em> <span class="process-math">\(p(x,y)=2\text{,}\)</span> where <span class="process-math">\(R\)</span> is <span class="process-math">\(2 \le x \le 2.5,
 -1 \le y \le 3\text{.}\)</span>
-</div> <div class="para" id="p-3425">
-<span class="process-math">\(p(x,y)\)</span> <ul style="list-style:circle;">
-<li id="li-1262"><div class="para" id="p-3427">is a joint density function</div></li>
-<li id="li-1263"><div class="para" id="p-3428">is not a joint density function</div></li>
+</div> <div class="para logical" id="p-3398">
+<div class="para"><span class="process-math">\(p(x,y)\)</span></div>
+<ul class="square">
+<li id="li-1234"><div class="para" id="p-3399">is a joint density function</div></li>
+<li id="li-1235"><div class="para" id="p-3400">is not a joint density function</div></li>
 </ul>
-</div> <div class="para" id="p-3429">Then, for the region <span class="process-math">\(R\)</span> given by <span class="process-math">\(2 \le x \le 3,
-0 \le y \le 2\text{,}\)</span> what constant function <span class="process-math">\(p(x,y)\)</span> is a joint density function?</div> <div class="para" id="p-3430">
+</div> <div class="para" id="p-3401">Then, for the region <span class="process-math">\(R\)</span> given by <span class="process-math">\(2 \le x \le 3,
+0 \le y \le 2\text{,}\)</span> what constant function <span class="process-math">\(p(x,y)\)</span> is a joint density function?</div> <div class="para" id="p-3402">
 <span class="process-math">\(p(x,y) =\)</span> <span class="fillin underline" role="img" aria-label="15-character blank" style="width: 6.818181818181818em;"></span>
 </div>
 <div class="solutions">
@@ -1104,7 +1129,7 @@ e^{-t/2}, t \geq 0\text{.}\)</span>
 <div id="webwork-219" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="219" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Michigan/Chap16Sec6/Q15.pg" data-courseID="mitchkeller-dev" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-219')">Activate</button></div>
 <div class="problem-contents">
-<div class="para logical" id="p-3434">
+<div class="para logical" id="p-3406">
 <div class="para">Let <span class="process-math">\(x\)</span> and <span class="process-math">\(y\)</span> have joint density function</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1116,12 +1141,12 @@ p(x,y) =
 \end{equation*}
 </div>
 <div class="para">Find the probability that</div>
-</div> <div class="para" id="p-3435">
+</div> <div class="para" id="p-3407">
 <em class="alert">(a)</em> <span class="process-math">\(x &gt; 1/3\text{:}\)</span>
-</div> <div class="para" id="p-3436">probability = <span class="fillin underline" role="img" aria-label="25-character blank" style="width: 11.3636363636364em;"></span>
-</div> <div class="para" id="p-3437">
+</div> <div class="para" id="p-3408">probability = <span class="fillin underline" role="img" aria-label="25-character blank" style="width: 11.3636363636364em;"></span>
+</div> <div class="para" id="p-3409">
 <em class="alert">(b)</em> <span class="process-math">\(x \lt  \frac{1}{3} + y\text{:}\)</span>
-</div> <div class="para" id="p-3438">probability = <span class="fillin underline" role="img" aria-label="25-character blank" style="width: 11.3636363636364em;"></span>
+</div> <div class="para" id="p-3410">probability = <span class="fillin underline" role="img" aria-label="25-character blank" style="width: 11.3636363636364em;"></span>
 </div>
 <div class="solutions">
 <a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-63" id="solution-63"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-63"><div class="solution solution-like">
@@ -1179,25 +1204,25 @@ p(x,y) =
 </div>
 </div>
 </div></article><article class="exercise exercise-like" id="exercise-313"><h4 class="heading"><span class="codenumber">11<span class="period">.</span></span></h4>
-<div class="para logical" id="p-3441">
-<div class="para">A triangular plate is bounded by the graphs of the equations <span class="process-math">\(y = 2x\text{,}\)</span> <span class="process-math">\(y = 4x\text{,}\)</span> and <span class="process-math">\(y = 4\text{.}\)</span> The plate's density at <span class="process-math">\((x,y)\)</span> is given by <span class="process-math">\(\delta(x,y) = 4xy^2 + 1\text{,}\)</span> measured in grams per square centimeter (and <span class="process-math">\(x\)</span> and <span class="process-math">\(y\)</span> are measured in centimeters).</div>
+<div class="para logical" id="p-3413">
+<div class="para">A triangular plate is bounded by the graphs of the equations <span class="process-math">\(y = 2x\text{,}\)</span> <span class="process-math">\(y = 4x\text{,}\)</span> and <span class="process-math">\(y = 4\text{.}\)</span> The plate’s density at <span class="process-math">\((x,y)\)</span> is given by <span class="process-math">\(\delta(x,y) = 4xy^2 + 1\text{,}\)</span> measured in grams per square centimeter (and <span class="process-math">\(x\)</span> and <span class="process-math">\(y\)</span> are measured in centimeters).</div>
 <ol class="lower-alpha">
-<li id="li-1264"><div class="para" id="p-3442">Set up an iterated integral whose value is the mass of the plate. Include a labeled sketch of the region of integration.  Why did you choose the order of integration you did?</div></li>
-<li id="li-1265"><div class="para" id="p-3443">Determine the mass of the plate.</div></li>
-<li id="li-1266"><div class="para" id="p-3444">Determine the exact center of mass of the plate.  Draw and label the point you find on your sketch from (a).</div></li>
-<li id="li-1267"><div class="para" id="p-3445">What is the average density of the plate?  Include units on your answer.</div></li>
+<li id="li-1236"><div class="para" id="p-3414">Set up an iterated integral whose value is the mass of the plate. Include a labeled sketch of the region of integration.  Why did you choose the order of integration you did?</div></li>
+<li id="li-1237"><div class="para" id="p-3415">Determine the mass of the plate.</div></li>
+<li id="li-1238"><div class="para" id="p-3416">Determine the exact center of mass of the plate.  Draw and label the point you find on your sketch from (a).</div></li>
+<li id="li-1239"><div class="para" id="p-3417">What is the average density of the plate?  Include units on your answer.</div></li>
 </ol>
 </div></article><article class="exercise exercise-like" id="exercise-314"><h4 class="heading"><span class="codenumber">12<span class="period">.</span></span></h4>
-<div class="para logical" id="p-3446">
+<div class="para logical" id="p-3418">
 <div class="para">Let <span class="process-math">\(D\)</span> be a half-disk lamina of radius 3 in quadrants IV and I, centered at the origin as in <a href="" class="xref" data-knowl="./knowl/A_11_4_3.html" title="Activity 11.4.2">Activity 11.4.2</a>. Assume the density at point <span class="process-math">\((x,y)\)</span> is equal to <span class="process-math">\(x\text{.}\)</span>
 </div>
 <ol class="lower-alpha">
-<li id="li-1268"><div class="para" id="p-3447">Before doing any calculations, what do you expect the <span class="process-math">\(y\)</span>-coordinate of the center of mass to be? Why?</div></li>
-<li id="li-1269"><div class="para" id="p-3448">Set up iterated integral expressions which, if evaluated, will determine the exact center of mass of the lamina.</div></li>
-<li id="li-1270"><div class="para" id="p-3449">Use appropriate technology to evaluate the integrals to find the center of mass numerically.</div></li>
+<li id="li-1240"><div class="para" id="p-3419">Before doing any calculations, what do you expect the <span class="process-math">\(y\)</span>-coordinate of the center of mass to be? Why?</div></li>
+<li id="li-1241"><div class="para" id="p-3420">Set up iterated integral expressions which, if evaluated, will determine the exact center of mass of the lamina.</div></li>
+<li id="li-1242"><div class="para" id="p-3421">Use appropriate technology to evaluate the integrals to find the center of mass numerically.</div></li>
 </ol>
 </div></article><article class="exercise exercise-like" id="exercise-315"><h4 class="heading"><span class="codenumber">13<span class="period">.</span></span></h4>
-<div class="para logical" id="p-3450">
+<div class="para logical" id="p-3422">
 <div class="para">Let <span class="process-math">\(x\)</span> denote the time (in minutes) that a person spends waiting in a checkout line at a grocery store and <span class="process-math">\(y\)</span> the time (in minutes) that it takes to check out. Suppose the joint probability density for <span class="process-math">\(x\)</span> and <span class="process-math">\(y\)</span> is</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1205,9 +1230,9 @@ f(x,y) = \frac{1}{8} e^{-x/4-y/2}.
 \end{equation*}
 </div>
 <ol class="lower-alpha">
-<li id="li-1271"><div class="para" id="p-3451">What is the exact probability that a person spends between 0 to 5 minutes waiting in line, and then 0 to 5 minutes waiting to check out?</div></li>
-<li id="li-1272"><div class="para" id="p-3452">Set up, but do not evaluate, an iterated integral whose value determines the exact probability that a person spends at most 10 minutes total both waiting in line and checking out at this grocery store.</div></li>
-<li id="li-1273"><div class="para" id="p-3453">Set up, but do not evaluate, an iterated integral expression whose value determines the exact probability that a person spends at least 10 minutes total both waiting in line and checking out, but not more than 20 minutes.</div></li>
+<li id="li-1243"><div class="para" id="p-3423">What is the exact probability that a person spends between 0 to 5 minutes waiting in line, and then 0 to 5 minutes waiting to check out?</div></li>
+<li id="li-1244"><div class="para" id="p-3424">Set up, but do not evaluate, an iterated integral whose value determines the exact probability that a person spends at most 10 minutes total both waiting in line and checking out at this grocery store.</div></li>
+<li id="li-1245"><div class="para" id="p-3425">Set up, but do not evaluate, an iterated integral expression whose value determines the exact probability that a person spends at least 10 minutes total both waiting in line and checking out, but not more than 20 minutes.</div></li>
 </ol>
 </div></article></section></section><div class="hidden-content tex2jax_ignore" id="hk-fn-21"><div class="fn">This makes <span class="process-math">\(K = \frac{1}{\pi\left(1-e^{-100}\right)}\text{,}\)</span> which you can check.</div></div>
 </div>
@@ -1215,7 +1240,7 @@ f(x,y) = \frac{1}{8} e^{-x/4-y/2}.
 <a class="previous-button button" href="S-11-3-Double-Integrals-General.html" title="Previous"><span class="icon">&lt;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon">^</span><span class="name">Top</span></a><a class="next-button button" href="S-11-5-Double-Integrals-Polar.html" title="Next"><span class="name">Next</span><span class="icon">&gt;</span></a>
 </div></main>
 </div>
-<div id="ptx-page-footer">
+<div id="ptx-page-footer" class="ptx-page-footer">
 <a class="pretext-link" href="https://pretextbook.org" title="PreTeXt"><div class="logo"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="338 3000 8772 6866"><g style="stroke-width:.025in; stroke:black; fill:none"><polyline points="472,3590 472,9732 " style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round; "></polyline><path style="stroke:#000000;stroke-width:126;stroke-linecap:butt;" d="M 4724,9448 A 4660 4660  0  0  1  8598  9259"></path><path style="stroke:#000000;stroke-width:174;stroke-linecap:butt;" d="M 4488,9685 A 4228 4228  0  0  0   472  9732"></path><path style="stroke:#000000;stroke-width:126;stroke-linecap:butt;" d="M 4724,3590 A 4241 4241  0  0  1  8598  3496"></path><path style="stroke:#000000;stroke-width:126;stroke-linecap:round;" d="M 850,3496  A 4241 4241  0  0  1  4724  3590"></path><path style="stroke:#000000;stroke-width:126;stroke-linecap:round;" d="M 850,9259  A 4507 4507  0  0  1  4724  9448"></path><polyline points="5385,4299 4062,8125" style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="8598,3496 8598,9259" style="stroke:#000000;stroke-width:126; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="850,3496 850,9259" style="stroke:#000000;stroke-width:126; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="4960,9685 4488,9685" style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="3070,4582 1889,6141 3070,7700" style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="6418,4582 7600,6141 6418,7700" style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="8976,3590 8976,9732" style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round;"></polyline><path style="stroke:#000000;stroke-width:174;stroke-linecap:butt;" d="M 4960,9685 A 4228 4228  0  0  1  8976  9732"></path></g></svg></div></a><a class="runestone-link" href="https://runestone.academy" title="Runestone Academy"><img class="logo" src="https://runestone.academy/runestone/static/images/RAIcon_cropped.png"></a><a class="mathjax-link" href="https://www.mathjax.org" title="MathJax"><img class="logo" src="https://www.mathjax.org/badge/badge-square-2.png"></a>
 </div>
 <!--Start: Google Global Site Tag code--><!--*** DO NOT COPY ANOTHER PROJECT'S MAGIC NUMBERS/ID ***--><!--***           GET YOUR OWN FROM GOOGLE             ***-->

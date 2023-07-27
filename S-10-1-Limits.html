@@ -5,7 +5,7 @@
 <!--*         https://pretextbook.org          *-->
 <!--*                                          *-->
 <!--********************************************-->
-<html lang="en-US">
+<html lang="en-US" dir="ltr">
 <head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Limits</title>
@@ -16,20 +16,38 @@
 <meta property="book:author" content="Steve Schlicker">
 <meta property="book:author" content="Mitchel T. Keller">
 <meta property="book:author" content="Nicholas Long">
-<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
+<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>
+var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
 window.MathJax = {
-  tex: {
-    inlineMath: [['\\(','\\)']],
-    tags: "none",
-    tagSide: "right",
-    tagIndent: ".8em",
-    packages: {'[+]': ['base', 'extpfeil', 'ams', 'amscd', 'color', 'newcommand', 'knowl']}
+  "tex": {
+    "inlineMath": [
+      [
+        "\\(",
+        "\\)"
+      ]
+    ],
+    "tags": "none",
+    "tagSide": "right",
+    "tagIndent": ".8em",
+    "packages": {
+      "[+]": [
+        "base",
+        "extpfeil",
+        "ams",
+        "amscd",
+        "color",
+        "newcommand",
+        "knowl"
+      ]
+    }
   },
-  options: {
-    ignoreHtmlClass: "tex2jax_ignore|ignore-math",
-    processHtmlClass: "process-math",
-    renderActions: {
-        findScript: [10, function (doc) {
+  "options": {
+    "ignoreHtmlClass": "tex2jax_ignore|ignore-math",
+    "processHtmlClass": "process-math",
+    "renderActions": {
+      "findScript": [
+        10,
+        function (doc) {
             document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
                 var display = !!node.type.match(/; *mode=display/);
                 var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
@@ -39,65 +57,70 @@ window.MathJax = {
                 math.end = {node: text, delim: '', n: 0};
                 doc.math.push(math);
             });
-        }, '']
-    },
+        },
+        ""
+      ]
+    }
   },
-  chtml: {
-    scale: 0.98,
-    mtextInheritFont: true
+  "chtml": {
+    "scale": 0.98,
+    "mtextInheritFont": true
   },
-  loader: {
-    load: ['input/asciimath', '[tex]/extpfeil', '[tex]/amscd', '[tex]/color', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
-    paths: {pretext: "https://pretextbook.org/js/lib"},
+  "loader": {
+    "load": [
+      "input/asciimath",
+      "[tex]/extpfeil",
+      "[tex]/amscd",
+      "[tex]/color",
+      "[tex]/newcommand",
+      "[pretext]/mathjaxknowl3.js"
+    ],
+    "paths": {
+      "pretext": "https://pretextbook.org/js/lib"
+    }
   },
-  startup: {
+  "startup": {
     pageReady() {
       return MathJax.startup.defaultPageReady().then(function () {
       console.log("in ready function");
       rsMathReady();
       }
     )}
-  },
+  }
 };
 </script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><link href="https://webwork-ptx.aimath.org/webwork2_files/js/apps/MathView/mathview.css" rel="stylesheet">
-<script src="https://pretextbook.org/js/0.2/pretext-webwork/2.17/pretext-webwork.js"></script><script src="https://webwork-ptx.aimath.org/webwork2_files/node_modules/iframe-resizer/js/iframeResizer.min.js"></script><script async="" src="https://cse.google.com/cse.js?cx=015103900096539427448:ngwuia10qci"></script><script src="https://unpkg.com/lunr/lunr.js"></script><script src="lunr-pretext-search-index.js" async=""></script><script src="https://pretextbook.org/js/0.2/pretext_search.js"></script><link href="https://pretextbook.org/css/0.6/pretext_search.css" rel="stylesheet" type="text/css">
-<script>js_version = 0.2</script><script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.2/pretext.js"></script><script>miniversion=0.1</script><script src="https://pretextbook.org/js/0.2/pretext_add_on.js?x=1"></script><script src="https://pretextbook.org/js/0.2/user_preferences.js"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
+<script src="https://pretextbook.org/js/0.3/pretext-webwork/2.17/pretext-webwork.js"></script><script src="https://webwork-ptx.aimath.org/webwork2_files/node_modules/iframe-resizer/js/iframeResizer.min.js"></script><script async="" src="https://cse.google.com/cse.js?cx=015103900096539427448:ngwuia10qci"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js" integrity="sha512-4xUl/d6D6THrAnXAwGajXkoWaeMNwEKK4iNfq5DotEbLPAfk6FSxSP3ydNxqDgCw1c/0Z1Jg6L8h2j+++9BZmg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="lunr-pretext-search-index.js" async=""></script><script src="https://pretextbook.org/js/0.3/pretext_search.js"></script><link href="https://pretextbook.org/css/0.7/pretext_search.css" rel="stylesheet" type="text/css">
+<script>js_version = 0.3</script><script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.3/pretext.js"></script><script>miniversion=0.1</script><script src="https://pretextbook.org/js/0.3/pretext_add_on.js?x=1"></script><script src="https://pretextbook.org/js/0.3/user_preferences.js"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
 </script><link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700&amp;family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&amp;family=Tinos:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" rel="stylesheet">
 <link href="https://fonts.cdnfonts.com/css/dejavu-serif" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:opsz,wdth,wght@8..144,50..150,100..900&amp;display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wdth,wght@75..100,300..800&amp;display=swap" rel="stylesheet">
-<link href="https://pretextbook.org/css/0.6/pretext.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.6/pretext_add_on.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.6/shell_default.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.6/banner_default.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.6/navbar_default.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.6/toc_default.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.6/knowls_default.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.6/style_default.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.6/colors_blue_grey.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.6/setcolors.css" rel="stylesheet" type="text/css">
-<!--Start: Google Global Site Tag code--><!--*** DO NOT COPY ANOTHER PROJECT'S MAGIC NUMBERS/ID ***--><!--***           GET YOUR OWN FROM GOOGLE             ***-->
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-QJKN634F7R"></script><script>  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-QJKN634F7R');
-</script><!--End: Google Global Site Tag code-->
+<link href="https://pretextbook.org/css/0.7/pretext.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/pretext_add_on.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/shell_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/banner_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/navbar_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/toc_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/knowls_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/style_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/colors_blue_grey.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/setcolors.css" rel="stylesheet" type="text/css">
 </head>
 <body id="acmulti" class="pretext book ignore-math">
-<a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead"><div class="ptx-banner">
-<a id="logo-link" href=""></a><div class="title-container">
+<a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead"><div class="ptx-banner">
+<a id="logo-link" class="logo-link" href=""></a><div class="title-container">
 <h1 class="heading"><a href="book-1.html"><span class="title">Active Calculus - Multivariable + Vector</span></a></h1>
 <p class="byline">Steve Schlicker, Mitchel T. Keller, Nicholas Long</p>
 </div>
-<div id="searchresultsplaceholder" style="display: none">
-<button id="closesearchresults" onclick="document.getElementById('searchresultsplaceholder').style.display = 'none'; return false;">x</button><h2>Search Results: <span id="searchterms"></span>
+<div id="searchresultsplaceholder" class="searchresultsplaceholder" style="display: none">
+<button id="closesearchresults" class="closesearchresults" onclick="document.getElementById('searchresultsplaceholder').style.display = 'none'; return false;">x</button><h2>Search Results: <span id="searchterms" class="searchterms"></span>
 </h2>
-<div id="searchempty"><span>No results.</span></div>
-<ol id="searchresults"></ol>
+<div id="searchempty" class="searchempty"><span>No results.</span></div>
+<ol id="searchresults" class="searchresults"></ol>
 </div>
-</div></header><nav id="ptx-navbar" class="navbar"><button class="toc-toggle button" aria-label="Show or hide table of contents"><span class="icon">☰</span><span class="name">Contents</span></button><a class="index-button button" href="index-1.html" title="Index"><span class="name">Index</span></a><button id="user-preferences-button" class="user-preferences-button button" title="Modify user preferences"><span id="theavatarbutton" class="name">You!</span><div id="preferences_menu_holder" class="hidden"><ol id="preferences_menu" style="font-family: 'Roboto Serif', serif;">
+</div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><button class="toc-toggle button" aria-label="Show or hide table of contents"><span class="icon">☰</span><span class="name">Contents</span></button><a class="index-button button" href="index-1.html" title="Index"><span class="name">Index</span></a><button id="user-preferences-button" class="user-preferences-button button" title="Modify user preferences"><span id="avatarbutton" class="avatarbutton name">You!</span><div id="preferences_menu_holder" class="preferences_menu_holder hidden"><ol id="preferences_menu" class="preferences_menu" style="font-family: 'Roboto Serif', serif;">
 <li data-env="avatar" tabindex="-1">Choose avatar<div class="wrap_to_submenu"><span class="to_submenu">▻</span></div>
 <ol class="hidden avatar">
 <li data-val="You!" tabindex="-1">
@@ -201,7 +224,7 @@ window.MathJax = {
 </li>
 </ol></div></button><span class="treebuttons"><a class="previous-button button" href="C-10.html" title="Previous"><span class="icon">&lt;</span><span class="name">Prev</span></a><a class="up-button button" href="C-10.html" title="Up"><span class="icon">^</span><span class="name">Up</span></a><a class="next-button button" href="S-10-2-First-Order-Partial-Derivatives.html" title="Next"><span class="name">Next</span><span class="icon">&gt;</span></a></span><div class="searchwrapper" role="search"><div class="gcse-search"></div></div>
 <div class="searchbox"><div class="searchwidget">
-<input id="ptxsearch" type="text" name="terms" placeholder="Search" onchange="doSearch()"><button id="searchbutton" type="button" onclick="doSearch()">🔍</button>
+<input id="ptxsearch" class="ptxsearch" type="text" name="terms" placeholder="Search" onchange="doSearch()"><button id="searchbutton" class="searchbutton" type="button" onclick="doSearch()">🔍</button>
 </div></div></nav><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\newcommand{\R}{\mathbb{R}}
 \newcommand{\va}{\mathbf{a}}
 \newcommand{\vb}{\mathbf{b}}
@@ -246,7 +269,7 @@ window.MathJax = {
 \newcommand{\fillinmath}[1]{\mathchoice{\colorbox{fillinmathshade}{$\displaystyle     \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\textstyle        \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptstyle      \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptscriptstyle\phantom{\,#1\,}$}}}
 \)</span></div>
 <div class="ptx-page">
-<div id="ptx-sidebar"><nav id="ptx-toc" class="depth2"><ul class="structural">
+<div id="ptx-sidebar" class="ptx-sidebar"><nav id="ptx-toc" class="ptx-toc depth2"><ul class="structural">
 <li>
 <div class="toc-item"><a href="frontmatter.html" class="internal"><span class="title">Front Matter</span></a></div>
 <ul class="structural">
@@ -574,14 +597,14 @@ window.MathJax = {
 </ul>
 </li>
 <li>
-<div class="toc-item"><a href="S_ScalarLineIntegral.html" class="internal"><span class="codenumber">12.5</span> <span class="title">Line Integrals of Scalar Functions</span></a></div>
+<div class="toc-item"><a href="S_Vector_ScalarLineIntegral.html" class="internal"><span class="codenumber">12.5</span> <span class="title">Line Integrals of Scalar Functions</span></a></div>
 <ul class="structural">
-<li><div class="toc-item"><a href="S_ScalarLineIntegral.html#subsection-124" class="internal"><span class="codenumber">12.5.1</span> <span class="title">Defining line integrals of scalar functions</span></a></div></li>
-<li><div class="toc-item"><a href="S_ScalarLineIntegral.html#subsection-125" class="internal"><span class="codenumber">12.5.2</span> <span class="title">Using Parameterizations to Calculate Scalar Line Integrals</span></a></div></li>
-<li><div class="toc-item"><a href="S_ScalarLineIntegral.html#subsection-126" class="internal"><span class="codenumber">12.5.3</span> <span class="title">Properties of Scalar Line Integrals</span></a></div></li>
-<li><div class="toc-item"><a href="S_ScalarLineIntegral.html#subsection-127" class="internal"><span class="codenumber">12.5.4</span> <span class="title">Visualizations of Scalar Line Integrals as Area Under a Curve</span></a></div></li>
-<li><div class="toc-item"><a href="S_ScalarLineIntegral.html#subsection-128" class="internal"><span class="codenumber">12.5.5</span> <span class="title">Summary</span></a></div></li>
-<li><div class="toc-item"><a href="S_ScalarLineIntegral.html#exercises-30" class="internal"><span class="codenumber">12.5.6</span> <span class="title">Exercises</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_ScalarLineIntegral.html#subsection-124" class="internal"><span class="codenumber">12.5.1</span> <span class="title">Defining line integrals of scalar functions</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_ScalarLineIntegral.html#subsection-125" class="internal"><span class="codenumber">12.5.2</span> <span class="title">Using Parameterizations to Calculate Scalar Line Integrals</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_ScalarLineIntegral.html#subsection-126" class="internal"><span class="codenumber">12.5.3</span> <span class="title">Properties of Scalar Line Integrals</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_ScalarLineIntegral.html#subsection-127" class="internal"><span class="codenumber">12.5.4</span> <span class="title">Visualizations of Scalar Line Integrals as Area Under a Curve</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_ScalarLineIntegral.html#subsection-128" class="internal"><span class="codenumber">12.5.5</span> <span class="title">Summary</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_ScalarLineIntegral.html#exercises-30" class="internal"><span class="codenumber">12.5.6</span> <span class="title">Exercises</span></a></div></li>
 </ul>
 </li>
 <li>
@@ -607,10 +630,10 @@ window.MathJax = {
 </ul>
 </li>
 <li>
-<div class="toc-item"><a href="S_Vector_GreensTheorem.html" class="internal"><span class="codenumber">12.8</span> <span class="title">Green's Theorem</span></a></div>
+<div class="toc-item"><a href="S_Vector_GreensTheorem.html" class="internal"><span class="codenumber">12.8</span> <span class="title">Green’s Theorem</span></a></div>
 <ul class="structural">
 <li><div class="toc-item"><a href="S_Vector_GreensTheorem.html#SS_Vector_GreensTheorem_Circulation" class="internal"><span class="codenumber">12.8.1</span> <span class="title">Circulation</span></a></div></li>
-<li><div class="toc-item"><a href="S_Vector_GreensTheorem.html#subsection-140" class="internal"><span class="codenumber">12.8.2</span> <span class="title">Green's Theorem</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_GreensTheorem.html#subsection-140" class="internal"><span class="codenumber">12.8.2</span> <span class="title">Green’s Theorem</span></a></div></li>
 <li><div class="toc-item"><a href="S_Vector_GreensTheorem.html#subsection-141" class="internal"><span class="codenumber">12.8.3</span> <span class="title">What happens when vector fields are not smooth?</span></a></div></li>
 <li><div class="toc-item"><a href="S_Vector_GreensTheorem.html#subsection-142" class="internal"><span class="codenumber">12.8.4</span> <span class="title">Summary</span></a></div></li>
 <li><div class="toc-item"><a href="S_Vector_GreensTheorem.html#exercises-33" class="internal"><span class="codenumber">12.8.5</span> <span class="title">Exercises</span></a></div></li>
@@ -620,27 +643,27 @@ window.MathJax = {
 <div class="toc-item"><a href="S_Vector_FluxInt.html" class="internal"><span class="codenumber">12.9</span> <span class="title">Flux Integrals</span></a></div>
 <ul class="structural">
 <li><div class="toc-item"><a href="S_Vector_FluxInt.html#SS_Vector_FluxInt_Idea" class="internal"><span class="codenumber">12.9.1</span> <span class="title">The Idea of the Flux of a Vector Field through a Surface</span></a></div></li>
-<li><div class="toc-item"><a href="S_Vector_FluxInt.html#subsection-144" class="internal"><span class="codenumber">12.9.2</span> <span class="title">Measuring the Flux of a Vector Field through a Surface</span></a></div></li>
-<li><div class="toc-item"><a href="S_Vector_FluxInt.html#SS_Vector_FluxInt_Calculate" class="internal"><span class="codenumber">12.9.3</span> <span class="title">Efficiently Calculating Flux Integrals</span></a></div></li>
-<li><div class="toc-item"><a href="S_Vector_FluxInt.html#subsection-146" class="internal"><span class="codenumber">12.9.4</span> <span class="title">Summary</span></a></div></li>
-<li><div class="toc-item"><a href="S_Vector_FluxInt.html#exercises-34" class="internal"><span class="codenumber">12.9.5</span> <span class="title">Exercises</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_FluxInt.html#subsection-144" class="internal"><span class="codenumber">12.9.2</span> <span class="title">The Details of Measuring the Flux of a Vector Field through a Surface</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_FluxInt.html#subsection-145" class="internal"><span class="codenumber">12.9.3</span> <span class="title">Summary</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_FluxInt.html#exercises-34" class="internal"><span class="codenumber">12.9.4</span> <span class="title">Exercises</span></a></div></li>
 </ul>
 </li>
 <li>
 <div class="toc-item"><a href="S_Vector_ScalarSurfaceIntegral.html" class="internal"><span class="codenumber">12.10</span> <span class="title">Surface Integrals of Scalar Valued Functions</span></a></div>
 <ul class="structural">
-<li><div class="toc-item"><a href="S_Vector_ScalarSurfaceIntegral.html#subsection-147" class="internal"><span class="codenumber">12.10.1</span> <span class="title">Defining surface integrals of scalar functions</span></a></div></li>
-<li><div class="toc-item"><a href="S_Vector_ScalarSurfaceIntegral.html#subsection-148" class="internal"><span class="codenumber">12.10.2</span> <span class="title">Properties of Scalar Surface Integrals</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_ScalarSurfaceIntegral.html#subsection-146" class="internal"><span class="codenumber">12.10.1</span> <span class="title">Defining surface integrals of scalar functions</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_ScalarSurfaceIntegral.html#subsection-147" class="internal"><span class="codenumber">12.10.2</span> <span class="title">Properties of Scalar Surface Integrals</span></a></div></li>
 <li><div class="toc-item"><a href="S_Vector_ScalarSurfaceIntegral.html#exercises-35" class="internal"><span class="codenumber">12.10.3</span> <span class="title">Exercises</span></a></div></li>
 </ul>
 </li>
 <li>
-<div class="toc-item"><a href="S_Vector_StokesThm.html" class="internal"><span class="codenumber">12.11</span> <span class="title">Stokes' Theorem</span></a></div>
+<div class="toc-item"><a href="S_Vector_StokesThm.html" class="internal"><span class="codenumber">12.11</span> <span class="title">Stokes’ Theorem</span></a></div>
 <ul class="structural">
-<li><div class="toc-item"><a href="S_Vector_StokesThm.html#SS_Vector_StokesThm_Development" class="internal"><span class="codenumber">12.11.1</span> <span class="title">Circulation in three dimensions and Stokes' Theorem</span></a></div></li>
-<li><div class="toc-item"><a href="S_Vector_StokesThm.html#SS_Vector_StokesThm_Verify" class="internal"><span class="codenumber">12.11.2</span> <span class="title">Verifying and Applying Stokes' Theorem</span></a></div></li>
-<li><div class="toc-item"><a href="S_Vector_StokesThm.html#subsection-151" class="internal"><span class="codenumber">12.11.3</span> <span class="title">Summary</span></a></div></li>
-<li><div class="toc-item"><a href="S_Vector_StokesThm.html#exercises-36" class="internal"><span class="codenumber">12.11.4</span> <span class="title">Exercises</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_StokesThm.html#SS_Vector_StokesThm_Development" class="internal"><span class="codenumber">12.11.1</span> <span class="title">Circulation in three dimensions and Stokes’ Theorem</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_StokesThm.html#SS_Vector_StokesThm_Verify" class="internal"><span class="codenumber">12.11.2</span> <span class="title">Verifying and Applying Stokes’ Theorem</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_StokesThm.html#surfaceboundaries" class="internal"><span class="codenumber">12.11.3</span> <span class="title">Practice with Surfaces and thier Boundaries</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_StokesThm.html#subsection-151" class="internal"><span class="codenumber">12.11.4</span> <span class="title">Summary</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_StokesThm.html#exercises-36" class="internal"><span class="codenumber">12.11.5</span> <span class="title">Exercises</span></a></div></li>
 </ul>
 </li>
 <li>
@@ -664,14 +687,14 @@ window.MathJax = {
 </h2>
 <article class="objectives goal-like" id="objectives-9"><h3 class="heading"><span class="type">Motivating Questions</span></h3>
 <ul class="disc">
-<li id="li-511"><div class="para" id="p-1404">What do we mean by the limit of a function <span class="process-math">\(f\)</span> of two variables at a point <span class="process-math">\((a,b)\text{?}\)</span>
+<li id="li-510"><div class="para" id="p-1403">What do we mean by the limit of a function <span class="process-math">\(f\)</span> of two variables at a point <span class="process-math">\((a,b)\text{?}\)</span>
 </div></li>
-<li id="li-512"><div class="para" id="p-1405">What techniques can we use to show that a function of two variables does not have a limit at a point <span class="process-math">\((a,b)\text{?}\)</span>
+<li id="li-511"><div class="para" id="p-1404">What techniques can we use to show that a function of two variables does not have a limit at a point <span class="process-math">\((a,b)\text{?}\)</span>
 </div></li>
-<li id="li-513"><div class="para" id="p-1406">What does it mean for a function <span class="process-math">\(f\)</span> of two variables to be continuous at a point <span class="process-math">\((a,b)\text{?}\)</span>
+<li id="li-512"><div class="para" id="p-1405">What does it mean for a function <span class="process-math">\(f\)</span> of two variables to be continuous at a point <span class="process-math">\((a,b)\text{?}\)</span>
 </div></li>
-</ul></article><section class="introduction" id="introduction-9"><div class="para" id="p-1407">In this section, we will study limits of functions of several variables, with a focus on limits of functions of two variables. In single variable calculus, we studied the notion of limit, which turned out to be a critical concept that formed the basis for the derivative and the definite integral. In this section we will begin to understand how the concept of limit for functions of two variables is similar to what we encountered for functions of a single variable. The limit will again be the fundamental idea in multivariable calculus, and we will use this notion of the limit of a function of several variables to define the important concept of differentiability later in this chapter. We have already seen its use in the derivatives of vector-valued functions in <a href="S-9-7-Vector-Valued-Functions-Derivatives.html" class="internal" title="Section 9.7: Derivatives and Integrals of Vector-Valued Functions">Section 9.7</a>.</div> <div class="para logical" id="p-1408">
-<div class="para">Let's begin by reviewing what we mean by the limit of a function of one variable. We say that a function <span class="process-math">\(f\)</span> has a limit <span class="process-math">\(L\)</span> as <span class="process-math">\(x\)</span> approaches <span class="process-math">\(a\)</span> provided that we can make the values <span class="process-math">\(f(x)\)</span> as close to <span class="process-math">\(L\)</span> as we like by taking <span class="process-math">\(x\)</span> sufficiently close (but not equal) to <span class="process-math">\(a\text{.}\)</span> We denote this behavior by writing</div>
+</ul></article><section class="introduction" id="introduction-9"><div class="para" id="p-1406">In this section, we will study limits of functions of several variables, with a focus on limits of functions of two variables. In single variable calculus, we studied the notion of limit, which turned out to be a critical concept that formed the basis for the derivative and the definite integral. In this section we will begin to understand how the concept of limit for functions of two variables is similar to what we encountered for functions of a single variable. The limit will again be the fundamental idea in multivariable calculus, and we will use this notion of the limit of a function of several variables to define the important concept of differentiability later in this chapter. We have already seen its use in the derivatives of vector-valued functions in <a href="S-9-7-Vector-Valued-Functions-Derivatives.html" class="internal" title="Section 9.7: Derivatives and Integrals of Vector-Valued Functions">Section 9.7</a>.</div> <div class="para logical" id="p-1407">
+<div class="para">Let’s begin by reviewing what we mean by the limit of a function of one variable. We say that a function <span class="process-math">\(f\)</span> has a limit <span class="process-math">\(L\)</span> as <span class="process-math">\(x\)</span> approaches <span class="process-math">\(a\)</span> provided that we can make the values <span class="process-math">\(f(x)\)</span> as close to <span class="process-math">\(L\)</span> as we like by taking <span class="process-math">\(x\)</span> sufficiently close (but not equal) to <span class="process-math">\(a\text{.}\)</span> We denote this behavior by writing</div>
 <div class="displaymath process-math">
 \begin{equation*}
 \lim_{x\to a}f(x) = L.
@@ -680,10 +703,10 @@ window.MathJax = {
 </div> <article class="exploration project-like" id="PA_10_1"><h3 class="heading">
 <span class="type">Preview Activity</span><span class="space"> </span><span class="codenumber">10.1.1</span><span class="period">.</span>
 </h3>
-<div class="para logical" id="p-1409">
+<div class="para logical" id="p-1408">
 <div class="para">We investigate the limits of several different functions by working with tables and graphs.</div>
 <ol class="lower-alpha">
-<li id="li-514"><div class="para logical" id="p-1410">
+<li id="li-513"><div class="para logical" id="p-1409">
 <div class="para">Consider the function <span class="process-math">\(f\)</span> defined by</div>
 <div class="displaymath process-math" data-contains-math-knowls="./knowl/T-10-1-PA1_a.html">
 \begin{equation*}
@@ -707,13 +730,13 @@ f(x) = 3-x.
 <td class="c m b1 r0 l0 t0 lines"></td>
 <td class="c m b1 r0 l0 t0 lines"></td>
 </tr>
-</table></div></figure> <div class="para" id="p-1411"></div> What does the table suggest regarding <span class="process-math">\(\lim_{x\to 0}f(x)\text{?}\)</span>
+</table></div></figure> <div class="para" id="p-1410"></div> What does the table suggest regarding <span class="process-math">\(\lim_{x\to 0}f(x)\text{?}\)</span>
 </div>
 </div></li>
-<li id="li-515"><div class="para" id="p-1412">Explain how your results in (a) are reflected in <a href="" class="xref" data-knowl="./knowl/F_10_1_activity_1.html" title="Figure 10.1.2">Figure 10.1.2</a>. <figure class="figure figure-like" id="F_10_1_activity_1"><div class="image-box" style="width: 50%; margin-left: 25%; margin-right: 25%;"><img src="external/images/fig_10_1_activity_3.svg" role="img" class="contained"></div>
+<li id="li-514"><div class="para" id="p-1411">Explain how your results in (a) are reflected in <a href="" class="xref" data-knowl="./knowl/F_10_1_activity_1.html" title="Figure 10.1.2">Figure 10.1.2</a>. <figure class="figure figure-like" id="F_10_1_activity_1"><div class="image-box" style="width: 50%; margin-left: 25%; margin-right: 25%;"><img src="external/images/fig_10_1_activity_3.svg" role="img" class="contained"></div>
 <figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">10.1.2<span class="period">.</span></span><span class="space"> </span>The graph of <span class="process-math">\(f(x) = 3-x\text{.}\)</span></figcaption></figure>
 </div></li>
-<li id="li-516"><div class="para logical" id="p-1413">
+<li id="li-515"><div class="para logical" id="p-1412">
 <div class="para">Next, consider</div>
 <div class="displaymath process-math" data-contains-math-knowls="./knowl/T-10-1-PA1_b.html">
 \begin{equation*}
@@ -739,14 +762,14 @@ g(x) = \frac{x}{|x|}.
 <td class="c m b1 r0 l0 t0 lines"></td>
 <td class="c m b1 r0 l0 t0 lines"></td>
 </tr>
-</table></div></figure> <div class="para" id="p-1414"></div> What does this suggest about <span class="process-math">\(\lim_{x\to 0}g(x)\text{?}\)</span>
+</table></div></figure> <div class="para" id="p-1413"></div> What does this suggest about <span class="process-math">\(\lim_{x\to 0}g(x)\text{?}\)</span>
 </div>
 </div></li>
-<li id="li-517"><div class="para" id="p-1415">Explain how your results in (c) are reflected in <a href="" class="xref" data-knowl="./knowl/F_10_1_activity_2.html" title="Figure 10.1.4">Figure 10.1.4</a>. <figure class="figure figure-like" id="F_10_1_activity_2"><div class="image-box" style="width: 50%; margin-left: 25%; margin-right: 25%;"><img src="external/images/fig_10_1_activity_2.svg" role="img" class="contained"></div>
+<li id="li-516"><div class="para" id="p-1414">Explain how your results in (c) are reflected in <a href="" class="xref" data-knowl="./knowl/F_10_1_activity_2.html" title="Figure 10.1.4">Figure 10.1.4</a>. <figure class="figure figure-like" id="F_10_1_activity_2"><div class="image-box" style="width: 50%; margin-left: 25%; margin-right: 25%;"><img src="external/images/fig_10_1_activity_2.svg" role="img" class="contained"></div>
 <figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">10.1.4<span class="period">.</span></span><span class="space"> </span>The graph of <span class="process-math">\(g(x) = \frac{x}{|x|}\text{.}\)</span></figcaption></figure>
 </div></li>
-<li id="li-518"><div class="para logical" id="p-1416">
-<div class="para">Now, let's examine a function of two variables.  Let</div>
+<li id="li-517"><div class="para logical" id="p-1415">
+<div class="para">Now, let’s examine a function of two variables.  Let</div>
 <div class="displaymath process-math" data-contains-math-knowls="./knowl/T-10-1-PA1_c.html">
 \begin{equation*}
 f(x,y) = 3 - x - 2y.
@@ -805,16 +828,16 @@ f(x,y) = 3 - x - 2y.
 <td class="r m b1 r0 l0 t0 lines"></td>
 <td class="r m b1 r0 l0 t0 lines"></td>
 </tr>
-</table></div></figure> <div class="para" id="p-1417"></div> What does the table suggest about <span class="process-math">\(\lim_{(x,y)\to(0,0)} f(x,y)\text{?}\)</span>
+</table></div></figure> <div class="para" id="p-1416"></div> What does the table suggest about <span class="process-math">\(\lim_{(x,y)\to(0,0)} f(x,y)\text{?}\)</span>
 </div>
 </div></li>
-<li id="li-519"><div class="para" id="p-1418">Explain how your results in (e) are reflected in <a href="" class="xref" data-knowl="./knowl/F_10_1_activity_4.html" title="Figure 10.1.6">Figure 10.1.6</a>. Compare this limit to the limit in part (a). How are the limits similar and how are they different? <figure class="figure figure-like" id="F_10_1_activity_4"><div class="sidebyside"><div class="sbsrow" style="margin-left:0%;margin-right:0%;">
+<li id="li-518"><div class="para" id="p-1417">Explain how your results in (e) are reflected in <a href="" class="xref" data-knowl="./knowl/F_10_1_activity_4.html" title="Figure 10.1.6">Figure 10.1.6</a>. Compare this limit to the limit in part (a). How are the limits similar and how are they different? <figure class="figure figure-like" id="F_10_1_activity_4"><div class="sidebyside"><div class="sbsrow" style="margin-left:0%;margin-right:0%;">
 <div class="sbspanel top" style="width:50%;"><img src="external/images/fig_10_1_limit_contin.svg" role="img" class="contained"></div>
 <div class="sbspanel top" style="width:50%;"><img src="external/images/fig_10_1_cont_contour.svg" role="img" class="contained"></div>
 </div></div>
 <figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">10.1.6<span class="period">.</span></span><span class="space"> </span>Left: The graph of <span class="process-math">\(f(x,y) = 3 - x - 2y\text{.}\)</span> Right: A contour plot.</figcaption></figure>
 </div></li>
-<li id="li-520"><div class="para logical" id="p-1419">
+<li id="li-519"><div class="para logical" id="p-1418">
 <div class="para">Finally, consider</div>
 <div class="displaymath process-math" data-contains-math-knowls="./knowl/T-10-1-PA1_d.html">
 \begin{equation*}
@@ -870,10 +893,10 @@ g(x,y) = \frac{2xy}{x^2+y^2},
 <td class="c m b1 r0 l0 t0 lines"></td>
 <td class="c m b1 r0 l0 t0 lines"></td>
 </tr>
-</table></div></figure> <div class="para" id="p-1420"></div> What does this suggest about <span class="process-math">\(\lim_{(x,y)\to(0,0)} g(x,y)\text{?}\)</span>
+</table></div></figure> <div class="para" id="p-1419"></div> What does this suggest about <span class="process-math">\(\lim_{(x,y)\to(0,0)} g(x,y)\text{?}\)</span>
 </div>
 </div></li>
-<li id="li-521"><div class="para" id="p-1421">Explain how your results are reflected in <a href="" class="xref" data-knowl="./knowl/F_10_1_activity_5.html" title="Figure 10.1.8">Figure 10.1.8</a>. Compare this limit to the limit in part (c). How are the results similar and how are they different? <figure class="figure figure-like" id="F_10_1_activity_5"><div class="sidebyside"><div class="sbsrow" style="margin-left:0%;margin-right:0%;">
+<li id="li-520"><div class="para" id="p-1420">Explain how your results are reflected in <a href="" class="xref" data-knowl="./knowl/F_10_1_activity_5.html" title="Figure 10.1.8">Figure 10.1.8</a>. Compare this limit to the limit in part (c). How are the results similar and how are they different? <figure class="figure figure-like" id="F_10_1_activity_5"><div class="sidebyside"><div class="sbsrow" style="margin-left:0%;margin-right:0%;">
 <div class="sbspanel top" style="width:50%;"><img src="external/images/fig_10_1_limit_disc.svg" role="img" class="contained"></div>
 <div class="sbspanel top" style="width:50%;"><img src="external/images/fig_10_1_limit_contour.svg" role="img" class="contained"></div>
 </div></div>
@@ -883,23 +906,23 @@ g(x,y) = \frac{2xy}{x^2+y^2},
 </div></article></section><section class="subsection" id="subsection-43"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">10.1.1</span> <span class="title">Limits of Functions of Two Variables</span>
 </h3>
-<div class="para" id="p-1422">In <a href="" class="xref" data-knowl="./knowl/PA_10_1.html" title="Preview Activity 10.1.1">Preview Activity 10.1.1</a>, we recalled the notion of limit from single variable calculus and saw that a similar concept applies to functions of two variables. Though we will focus on functions of two variables, for the sake of discussion, all the ideas we establish here are valid for functions of any number of variables. In a natural followup to our work in <a href="" class="xref" data-knowl="./knowl/PA_10_1.html" title="Preview Activity 10.1.1">Preview Activity 10.1.1</a>, we now formally define what it means for a function of two variables to have a limit at a point.</div>
+<div class="para" id="p-1421">In <a href="" class="xref" data-knowl="./knowl/PA_10_1.html" title="Preview Activity 10.1.1">Preview Activity 10.1.1</a>, we recalled the notion of limit from single variable calculus and saw that a similar concept applies to functions of two variables. Though we will focus on functions of two variables, for the sake of discussion, all the ideas we establish here are valid for functions of any number of variables. In a natural followup to our work in <a href="" class="xref" data-knowl="./knowl/PA_10_1.html" title="Preview Activity 10.1.1">Preview Activity 10.1.1</a>, we now formally define what it means for a function of two variables to have a limit at a point.</div>
 <article class="definition definition-like" id="definition-15"><h4 class="heading">
 <span class="type">Definition</span><span class="space"> </span><span class="codenumber">10.1.9</span><span class="period">.</span>
 </h4>
-<div class="para logical" id="p-1423">
+<div class="para logical" id="p-1422">
 <div class="para">Given a function <span class="process-math">\(f = f(x,y)\text{,}\)</span> we say that <span class="process-math">\(f\)</span> <dfn class="terminology">has limit <span class="process-math">\(L\)</span> as <span class="process-math">\((x,y)\)</span> approaches <span class="process-math">\((a,b)\)</span></dfn> provided that we can make <span class="process-math">\(f(x,y)\)</span> as close to <span class="process-math">\(L\)</span> as we like by taking <span class="process-math">\((x,y)\)</span> sufficiently close (but not equal) to <span class="process-math">\((a,b)\text{.}\)</span> We write</div>
 <div class="displaymath process-math">
 \begin{equation*}
 \lim_{(x,y)\to(a,b)} f(x,y) = L.
 \end{equation*}
 </div>
-</div></article><div class="para" id="p-1424">To investigate the limit of a single variable function, <span class="process-math">\(\lim_{x\to
+</div></article><div class="para" id="p-1423">To investigate the limit of a single variable function, <span class="process-math">\(\lim_{x\to
 a}f(x)\text{,}\)</span> we often consider the behavior of <span class="process-math">\(f\)</span> as <span class="process-math">\(x\)</span> approaches <span class="process-math">\(a\)</span> from the right and from the left. Similarly, we may investigate limits of two-variable functions, <span class="process-math">\(\lim_{(x,y)\to(a,b)} f(x,y)\)</span> by considering the behavior of <span class="process-math">\(f\)</span> as <span class="process-math">\((x,y)\)</span> approaches <span class="process-math">\((a,b)\)</span> from various directions. This situation is more complicated because there are infinitely many ways in which <span class="process-math">\((x,y)\)</span> may approach <span class="process-math">\((a,b)\text{.}\)</span> In the next activity, we see how it is important to consider a variety of those paths in investigating whether or not a limit exists.</div>
 <article class="activity project-like" id="A_10_1_1"><h4 class="heading">
 <span class="type">Activity</span><span class="space"> </span><span class="codenumber">10.1.2</span><span class="period">.</span>
 </h4>
-<div class="para logical" id="p-1425">
+<div class="para logical" id="p-1424">
 <div class="para">Consider the function <span class="process-math">\(f\text{,}\)</span> defined by</div>
 <div class="displaymath process-math" data-contains-math-knowls="./knowl/F_10_1_disc_2.html">
 \begin{equation*}
@@ -910,9 +933,9 @@ f(x,y) = \frac{y}{\sqrt{x^2+y^2}},
 </div>
 </div> <figure class="figure figure-like" id="F_10_1_disc_2"><div class="image-box" style="width: 50%; margin-left: 25%; margin-right: 25%;"><img src="external/images/fig_10_1_disc_2.svg" role="img" class="contained"></div>
 <figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">10.1.10<span class="period">.</span></span><span class="space"> </span>The graph of <span class="process-math">\(f(x,y) = \frac{y}{\sqrt{x^2+y^2}}\text{.}\)</span></figcaption></figure> <ol class="lower-alpha">
-<li id="li-522"><div class="para" id="p-1426">Is <span class="process-math">\(f\)</span> defined at the point <span class="process-math">\((0,0)\text{?}\)</span>  What, if anything, does this say about whether <span class="process-math">\(f\)</span> has a limit at the point <span class="process-math">\((0,0)\text{?}\)</span>
+<li id="li-521"><div class="para" id="p-1425">Is <span class="process-math">\(f\)</span> defined at the point <span class="process-math">\((0,0)\text{?}\)</span>  What, if anything, does this say about whether <span class="process-math">\(f\)</span> has a limit at the point <span class="process-math">\((0,0)\text{?}\)</span>
 </div></li>
-<li id="li-523"><div class="para" id="p-1427">Values of <span class="process-math">\(f\)</span> (to three decimal places) at several points close to <span class="process-math">\((0,0)\)</span> are shown in <a href="" class="xref" data-knowl="./knowl/T-10-1-data.html" title="Table 10.1.11: Values of a function f">Table 10.1.11</a>. <figure class="table table-like" id="T-10-1-data"><figcaption><span class="type">Table</span><span class="space"> </span><span class="codenumber">10.1.11<span class="period">.</span></span><span class="space"> </span>Values of a function <span class="process-math">\(f\text{.}\)</span></figcaption><div class="tabular-box natural-width"><table class="tabular">
+<li id="li-522"><div class="para" id="p-1426">Values of <span class="process-math">\(f\)</span> (to three decimal places) at several points close to <span class="process-math">\((0,0)\)</span> are shown in <a href="" class="xref" data-knowl="./knowl/T-10-1-data.html" title="Table 10.1.11: Values of a function f">Table 10.1.11</a>. <figure class="table table-like" id="T-10-1-data"><figcaption><span class="type">Table</span><span class="space"> </span><span class="codenumber">10.1.11<span class="period">.</span></span><span class="space"> </span>Values of a function <span class="process-math">\(f\text{.}\)</span></figcaption><div class="tabular-box natural-width"><table class="tabular">
 <tr>
 <td class="c m b2 r0 l0 t1 lines"><span class="process-math">\(x\backslash y\)</span></td>
 <td class="r m b2 r0 l0 t1 lines"><span class="process-math">\(-1.000\)</span></td>
@@ -970,24 +993,24 @@ f(x,y) = \frac{y}{\sqrt{x^2+y^2}},
 <td class="c m b1 r0 l0 t0 lines">—</td>
 <td class="r m b1 r0 l0 t0 lines"><span class="process-math">\(0.707\)</span></td>
 </tr>
-</table></div></figure> <div class="para" id="p-1428"></div> Based on these calculations, state whether <span class="process-math">\(f\)</span> has a limit at <span class="process-math">\((0,0)\)</span> and give an argument supporting your statement. (Hint: The blank spaces in the table are there to help you see the patterns.)</div></li>
-<li id="li-524"><div class="para" id="p-1429">Now we formalize the conjecture from the previous part by considering what happens if we restrict our attention to different paths. First, we look at <span class="process-math">\(f\)</span> for points in the domain along the <span class="process-math">\(x\)</span>-axis;  that is, we consider what happens when <span class="process-math">\(y = 0\text{.}\)</span> What is the behavior of <span class="process-math">\(f(x,0)\)</span> as <span class="process-math">\(x \to 0\text{?}\)</span>  If we approach <span class="process-math">\((0,0)\)</span> by moving along the <span class="process-math">\(x\)</span>-axis, what value do we find as the limit?</div></li>
-<li id="li-525"><div class="para" id="p-1430">What is the behavior of <span class="process-math">\(f\)</span> along the line <span class="process-math">\(y=x\)</span> when <span class="process-math">\(x \gt 0\text{;}\)</span>  that is, what is the value of <span class="process-math">\(f(x,x)\)</span> when <span class="process-math">\(x&gt;0\text{?}\)</span>  If we approach <span class="process-math">\((0,0)\)</span> by moving along the line <span class="process-math">\(y=x\)</span> in the first quadrant (thus considering <span class="process-math">\(f(x,x)\)</span> as <span class="process-math">\(x \to 0^+\)</span>), what value do we find as the limit?</div></li>
-<li id="li-526"><div class="para" id="p-1431">In general, if <span class="process-math">\(\lim_{(x,y)\to(0,0)}f(x,y) = L\text{,}\)</span> then <span class="process-math">\(f(x,y)\)</span> approaches <span class="process-math">\(L\)</span> as <span class="process-math">\((x,y)\)</span> approaches <span class="process-math">\((0,0)\text{,}\)</span> regardless of the path we take in letting <span class="process-math">\((x,y) \to (0,0)\text{.}\)</span>   Explain what the last two parts of this activity imply about the existence of <span class="process-math">\(\lim_{(x,y)\to(0,0)} f(x,y)\text{.}\)</span>
+</table></div></figure> <div class="para" id="p-1427"></div> Based on these calculations, state whether <span class="process-math">\(f\)</span> has a limit at <span class="process-math">\((0,0)\)</span> and give an argument supporting your statement. (Hint: The blank spaces in the table are there to help you see the patterns.)</div></li>
+<li id="li-523"><div class="para" id="p-1428">Now we formalize the conjecture from the previous part by considering what happens if we restrict our attention to different paths. First, we look at <span class="process-math">\(f\)</span> for points in the domain along the <span class="process-math">\(x\)</span>-axis;  that is, we consider what happens when <span class="process-math">\(y = 0\text{.}\)</span> What is the behavior of <span class="process-math">\(f(x,0)\)</span> as <span class="process-math">\(x \to 0\text{?}\)</span>  If we approach <span class="process-math">\((0,0)\)</span> by moving along the <span class="process-math">\(x\)</span>-axis, what value do we find as the limit?</div></li>
+<li id="li-524"><div class="para" id="p-1429">What is the behavior of <span class="process-math">\(f\)</span> along the line <span class="process-math">\(y=x\)</span> when <span class="process-math">\(x \gt 0\text{;}\)</span>  that is, what is the value of <span class="process-math">\(f(x,x)\)</span> when <span class="process-math">\(x&gt;0\text{?}\)</span>  If we approach <span class="process-math">\((0,0)\)</span> by moving along the line <span class="process-math">\(y=x\)</span> in the first quadrant (thus considering <span class="process-math">\(f(x,x)\)</span> as <span class="process-math">\(x \to 0^+\)</span>), what value do we find as the limit?</div></li>
+<li id="li-525"><div class="para" id="p-1430">In general, if <span class="process-math">\(\lim_{(x,y)\to(0,0)}f(x,y) = L\text{,}\)</span> then <span class="process-math">\(f(x,y)\)</span> approaches <span class="process-math">\(L\)</span> as <span class="process-math">\((x,y)\)</span> approaches <span class="process-math">\((0,0)\text{,}\)</span> regardless of the path we take in letting <span class="process-math">\((x,y) \to (0,0)\text{.}\)</span>   Explain what the last two parts of this activity imply about the existence of <span class="process-math">\(\lim_{(x,y)\to(0,0)} f(x,y)\text{.}\)</span>
 </div></li>
-<li id="li-527"><div class="para" id="p-1432">Shown below in <a href="" class="xref" data-knowl="./knowl/F_10_1_limit_contour_2.html" title="Figure 10.1.12">Figure 10.1.12</a> is a set of contour lines of the function <span class="process-math">\(f\text{.}\)</span>  What is the behavior of <span class="process-math">\(f(x,y)\)</span> as <span class="process-math">\((x,y)\)</span> approaches <span class="process-math">\((0,0)\)</span> along any straight line? How does this observation reinforce your conclusion about the existence of <span class="process-math">\(\lim_{(x,y)\to(0,0)}f(x,y)\)</span> from the previous part of this activity? (Hint: Use the fact that a non-vertical line has equation <span class="process-math">\(y=mx\)</span> for some constant <span class="process-math">\(m\text{.}\)</span>) <figure class="figure figure-like" id="F_10_1_limit_contour_2"><div class="image-box" style="width: 50%; margin-left: 25%; margin-right: 25%;"><img src="external/images/fig_10_1_limit_contour_2.svg" role="img" class="contained"></div>
+<li id="li-526"><div class="para" id="p-1431">Shown below in <a href="" class="xref" data-knowl="./knowl/F_10_1_limit_contour_2.html" title="Figure 10.1.12">Figure 10.1.12</a> is a set of contour lines of the function <span class="process-math">\(f\text{.}\)</span>  What is the behavior of <span class="process-math">\(f(x,y)\)</span> as <span class="process-math">\((x,y)\)</span> approaches <span class="process-math">\((0,0)\)</span> along any straight line? How does this observation reinforce your conclusion about the existence of <span class="process-math">\(\lim_{(x,y)\to(0,0)}f(x,y)\)</span> from the previous part of this activity? (Hint: Use the fact that a non-vertical line has equation <span class="process-math">\(y=mx\)</span> for some constant <span class="process-math">\(m\text{.}\)</span>) <figure class="figure figure-like" id="F_10_1_limit_contour_2"><div class="image-box" style="width: 50%; margin-left: 25%; margin-right: 25%;"><img src="external/images/fig_10_1_limit_contour_2.svg" role="img" class="contained"></div>
 <figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">10.1.12<span class="period">.</span></span><span class="space"> </span>Contour lines of <span class="process-math">\(f(x,y) = \frac{y}{\sqrt{x^2+y^2}}\text{.}\)</span></figcaption></figure>
 </div></li>
-</ol></article><div class="para" id="p-1433">As we have seen in <a href="" class="xref" data-knowl="./knowl/A_10_1_1.html" title="Activity 10.1.2">Activity 10.1.2</a>, if <span class="process-math">\((x,y)\)</span> approaches <span class="process-math">\((a,b)\)</span> along two different paths and we find that <span class="process-math">\(f(x,y)\)</span> has two different limits, we can conclude that <span class="process-math">\(\lim_{(x,y)\to(a,b)}f(x,y)\)</span> does not exist. This is similar to the one-variable example <span class="process-math">\(g(x)=x/|x|\)</span> as shown in <a href="" class="xref" data-knowl="./knowl/F_10_1_one_variable.html" title="Figure 10.1.13">Figure 10.1.13</a>; <span class="process-math">\(\lim_{x\to0}g(x)\)</span> does not exist because we see different limits as <span class="process-math">\(x\)</span> approaches 0 from the left and the right.</div>
+</ol></article><div class="para" id="p-1432">As we have seen in <a href="" class="xref" data-knowl="./knowl/A_10_1_1.html" title="Activity 10.1.2">Activity 10.1.2</a>, if <span class="process-math">\((x,y)\)</span> approaches <span class="process-math">\((a,b)\)</span> along two different paths and we find that <span class="process-math">\(f(x,y)\)</span> has two different limits, we can conclude that <span class="process-math">\(\lim_{(x,y)\to(a,b)}f(x,y)\)</span> does not exist. This is similar to the one-variable example <span class="process-math">\(g(x)=x/|x|\)</span> as shown in <a href="" class="xref" data-knowl="./knowl/F_10_1_one_variable.html" title="Figure 10.1.13">Figure 10.1.13</a>; <span class="process-math">\(\lim_{x\to0}g(x)\)</span> does not exist because we see different limits as <span class="process-math">\(x\)</span> approaches 0 from the left and the right.</div>
 <figure class="figure figure-like" id="F_10_1_one_variable"><div class="image-box" style="width: 50%; margin-left: 25%; margin-right: 25%;"><img src="external/images/fig_10_1_activity_2.svg" role="img" class="contained"></div>
-<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">10.1.13<span class="period">.</span></span><span class="space"> </span>The graph of <span class="process-math">\(g(x) = \frac{x}{|x|}\text{.}\)</span></figcaption></figure><div class="para" id="p-1434">As a general rule, we have</div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">10.1.13<span class="period">.</span></span><span class="space"> </span>The graph of <span class="process-math">\(g(x) = \frac{x}{|x|}\text{.}\)</span></figcaption></figure><div class="para" id="p-1433">As a general rule, we have</div>
 <article class="assemblage assemblage-like" id="Limits-paths"><h4 class="heading"><span class="title">Limits along different paths.</span></h4>
-<div class="para" id="p-1435">If <span class="process-math">\(f(x,y)\)</span> has two different limits as <span class="process-math">\((x,y)\)</span> approaches <span class="process-math">\((a,b)\)</span> along two different paths, then <span class="process-math">\(\lim_{(x,y)\to(a,b)}f(x,y)\)</span> does not exist.</div></article><div class="para" id="p-1436">As the next activity shows, studying the limit of a two-variable function <span class="process-math">\(f\)</span> by considering the behavior of <span class="process-math">\(f\)</span> along various paths can require subtle insights.</div>
+<div class="para" id="p-1434">If <span class="process-math">\(f(x,y)\)</span> has two different limits as <span class="process-math">\((x,y)\)</span> approaches <span class="process-math">\((a,b)\)</span> along two different paths, then <span class="process-math">\(\lim_{(x,y)\to(a,b)}f(x,y)\)</span> does not exist.</div></article><div class="para" id="p-1435">As the next activity shows, studying the limit of a two-variable function <span class="process-math">\(f\)</span> by considering the behavior of <span class="process-math">\(f\)</span> along various paths can require subtle insights.</div>
 <article class="activity project-like" id="A_10_1_2"><h4 class="heading">
 <span class="type">Activity</span><span class="space"> </span><span class="codenumber">10.1.3</span><span class="period">.</span>
 </h4>
-<div class="para logical" id="p-1437">
-<div class="para">Let's consider the function <span class="process-math">\(g\)</span> defined by</div>
+<div class="para logical" id="p-1436">
+<div class="para">Let’s consider the function <span class="process-math">\(g\)</span> defined by</div>
 <div class="displaymath process-math">
 \begin{equation*}
 g(x,y) = \frac{x^2y}{x^4 + y^2}
@@ -996,20 +1019,20 @@ g(x,y) = \frac{x^2y}{x^4 + y^2}
 <div class="para">and investigate the limit <span class="process-math">\(\lim_{(x,y)\to(0,0)}g(x,y)\text{.}\)</span>
 </div>
 <ol class="lower-alpha">
-<li id="li-528"><div class="para" id="p-1438">What is the behavior of <span class="process-math">\(g\)</span> on the <span class="process-math">\(x\)</span>-axis?  That is, what is <span class="process-math">\(g(x,0)\)</span> and what is the limit of <span class="process-math">\(g\)</span> as <span class="process-math">\((x,y)\)</span> approaches <span class="process-math">\((0,0)\)</span> along the <span class="process-math">\(x\)</span>-axis?</div></li>
-<li id="li-529"><div class="para" id="p-1439">What is the behavior of <span class="process-math">\(g\)</span> on the <span class="process-math">\(y\)</span>-axis?  That is, what is <span class="process-math">\(g(0,y)\)</span> and what is the limit of <span class="process-math">\(g\)</span> as <span class="process-math">\((x,y)\)</span> approaches <span class="process-math">\((0,0)\)</span> along the <span class="process-math">\(y\)</span>-axis?</div></li>
-<li id="li-530"><div class="para" id="p-1440">What is the behavior of <span class="process-math">\(g\)</span> on the line <span class="process-math">\(y=mx\text{?}\)</span>  That is, what is <span class="process-math">\(g(x,mx)\)</span> and what is the limit of <span class="process-math">\(g\)</span> as <span class="process-math">\((x,y)\)</span> approaches <span class="process-math">\((0,0)\)</span> along the line <span class="process-math">\(y=mx\text{?}\)</span>
+<li id="li-527"><div class="para" id="p-1437">What is the behavior of <span class="process-math">\(g\)</span> on the <span class="process-math">\(x\)</span>-axis?  That is, what is <span class="process-math">\(g(x,0)\)</span> and what is the limit of <span class="process-math">\(g\)</span> as <span class="process-math">\((x,y)\)</span> approaches <span class="process-math">\((0,0)\)</span> along the <span class="process-math">\(x\)</span>-axis?</div></li>
+<li id="li-528"><div class="para" id="p-1438">What is the behavior of <span class="process-math">\(g\)</span> on the <span class="process-math">\(y\)</span>-axis?  That is, what is <span class="process-math">\(g(0,y)\)</span> and what is the limit of <span class="process-math">\(g\)</span> as <span class="process-math">\((x,y)\)</span> approaches <span class="process-math">\((0,0)\)</span> along the <span class="process-math">\(y\)</span>-axis?</div></li>
+<li id="li-529"><div class="para" id="p-1439">What is the behavior of <span class="process-math">\(g\)</span> on the line <span class="process-math">\(y=mx\text{?}\)</span>  That is, what is <span class="process-math">\(g(x,mx)\)</span> and what is the limit of <span class="process-math">\(g\)</span> as <span class="process-math">\((x,y)\)</span> approaches <span class="process-math">\((0,0)\)</span> along the line <span class="process-math">\(y=mx\text{?}\)</span>
 </div></li>
-<li id="li-531"><div class="para" id="p-1441">Based on what you have seen so far, do you think <span class="process-math">\(\lim_{(x,y)\to(0,0)}g(x,y)\)</span> exists?  If so, what do you think its value is?</div></li>
-<li id="li-532"><div class="para" id="p-1442">Now consider the behavior of <span class="process-math">\(g\)</span> on the parabola <span class="process-math">\(y=x^2\text{?}\)</span>  What is <span class="process-math">\(g(x,x^2)\)</span> and what is the limit of <span class="process-math">\(g\)</span> as <span class="process-math">\((x,y)\)</span> approaches <span class="process-math">\((0,0)\)</span> along this parabola?</div></li>
-<li id="li-533"><div class="para" id="p-1443">State whether the limit <span class="process-math">\(\lim_{(x,y)\to(0,0)} g(x,y)\)</span> exists or not and provide a justification of your statement.</div></li>
+<li id="li-530"><div class="para" id="p-1440">Based on what you have seen so far, do you think <span class="process-math">\(\lim_{(x,y)\to(0,0)}g(x,y)\)</span> exists?  If so, what do you think its value is?</div></li>
+<li id="li-531"><div class="para" id="p-1441">Now consider the behavior of <span class="process-math">\(g\)</span> on the parabola <span class="process-math">\(y=x^2\text{?}\)</span>  What is <span class="process-math">\(g(x,x^2)\)</span> and what is the limit of <span class="process-math">\(g\)</span> as <span class="process-math">\((x,y)\)</span> approaches <span class="process-math">\((0,0)\)</span> along this parabola?</div></li>
+<li id="li-532"><div class="para" id="p-1442">State whether the limit <span class="process-math">\(\lim_{(x,y)\to(0,0)} g(x,y)\)</span> exists or not and provide a justification of your statement.</div></li>
 </ol>
-</div></article><div class="para" id="p-1444">This activity shows that we need to be careful when studying the limit of a two-variable functions by considering its behavior along different paths. If we find two different paths that result in two different limits, then we may conclude that the limit does not exist. However, we can never conclude that the limit of a function exists only by considering its behavior along different paths.</div>
-<div class="para" id="p-1445">Generally speaking, concluding that a limit <span class="process-math">\(\lim_{(x,y)\to(a,b)}f(x,y)\)</span> exists requires a more careful argument.</div>
+</div></article><div class="para" id="p-1443">This activity shows that we need to be careful when studying the limit of a two-variable functions by considering its behavior along different paths. If we find two different paths that result in two different limits, then we may conclude that the limit does not exist. However, we can never conclude that the limit of a function exists only by considering its behavior along different paths.</div>
+<div class="para" id="p-1444">Generally speaking, concluding that a limit <span class="process-math">\(\lim_{(x,y)\to(a,b)}f(x,y)\)</span> exists requires a more careful argument.</div>
 <article class="example example-like" id="A_10_1_Limit_exists"><h4 class="heading">
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">10.1.14</span><span class="period">.</span>
 </h4>
-<div class="para logical" id="p-1446">
+<div class="para logical" id="p-1445">
 <div class="para">Consider the function <span class="process-math">\(f\)</span> defined by</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1017,7 +1040,7 @@ f(x,y) = \frac{x^2y^2}{x^2+y^2}.
 \end{equation*}
 </div>
 <div class="para">We want to know  whether <span class="process-math">\(\lim_{(x,y)\to(0,0)}f(x,y)\)</span> exists.</div>
-</div> <div class="para logical" id="p-1447">
+</div> <div class="para logical" id="p-1446">
 <div class="para">Note that if either <span class="process-math">\(x\)</span> or <span class="process-math">\(y\)</span> is 0, then <span class="process-math">\(f(x,y) = 0\text{.}\)</span> Therefore, if <span class="process-math">\(f\)</span> has a limit at <span class="process-math">\((0,0)\text{,}\)</span> it must be 0. We will therefore argue that</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1025,7 +1048,7 @@ f(x,y) = \frac{x^2y^2}{x^2+y^2}.
 \end{equation*}
 </div>
 <div class="para">by showing that we can make <span class="process-math">\(f(x,y)\)</span> as close to <span class="process-math">\(0\)</span> as we wish by taking <span class="process-math">\((x,y)\)</span> sufficiently close (but not equal) to <span class="process-math">\((0,0)\text{.}\)</span> In what follows, we view <span class="process-math">\(x\)</span> and <span class="process-math">\(y\)</span> as being real numbers that are close, but not equal, to 0.</div>
-</div> <div class="para logical" id="p-1448">
+</div> <div class="para logical" id="p-1447">
 <div class="para">Since <span class="process-math">\(0 \leq x^2\text{,}\)</span> we have</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1038,7 +1061,7 @@ y^2 \leq x^2+y^2,
 \frac{y^2}{x^2+y^2} \leq 1.
 \end{equation*}
 </div>
-</div> <div class="para logical" id="p-1449">
+</div> <div class="para logical" id="p-1448">
 <div class="para">Multiplying both sides by <span class="process-math">\(x^2\)</span> and observing that <span class="process-math">\(f(x,y) \ge 0\)</span> for all <span class="process-math">\((x,y)\)</span> gives</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1046,36 +1069,36 @@ y^2 \leq x^2+y^2,
 x^2\left(\frac{y^2}{x^2+y^2}\right) \leq x^2.
 \end{equation*}
 </div>
-</div> <div class="para logical" id="p-1450">
-<div class="para">Thus, <span class="process-math">\(0 \leq f(x,y) \leq x^2\text{.}\)</span> Since <span class="process-math">\(x^2 \to 0\)</span> as <span class="process-math">\(x \to 0\text{,}\)</span> we can make <span class="process-math">\(f(x,y)\)</span> as close to <span class="process-math">\(0\)</span> as we like by taking <span class="process-math">\(x\)</span> sufficiently close to <span class="process-math">\(0\)</span> (for this example, it turns out that we don't even need to worry about making <span class="process-math">\(y\)</span> close to 0). Therefore,</div>
+</div> <div class="para logical" id="p-1449">
+<div class="para">Thus, <span class="process-math">\(0 \leq f(x,y) \leq x^2\text{.}\)</span> Since <span class="process-math">\(x^2 \to 0\)</span> as <span class="process-math">\(x \to 0\text{,}\)</span> we can make <span class="process-math">\(f(x,y)\)</span> as close to <span class="process-math">\(0\)</span> as we like by taking <span class="process-math">\(x\)</span> sufficiently close to <span class="process-math">\(0\)</span> (for this example, it turns out that we don’t even need to worry about making <span class="process-math">\(y\)</span> close to 0). Therefore,</div>
 <div class="displaymath process-math">
 \begin{equation*}
 \lim_{(x,y) \to (0,0)} \frac{x^2y^2}{x^2+y^2} = 0.
 \end{equation*}
 </div>
-</div></article><div class="para" id="p-1451">In spite of the fact that these two most recent examples illustrate some of the complications that arise when studying limits of two-variable functions, many of the properties that are familiar from our study of single variable functions hold in precisely the same way.</div>
+</div></article><div class="para" id="p-1450">In spite of the fact that these two most recent examples illustrate some of the complications that arise when studying limits of two-variable functions, many of the properties that are familiar from our study of single variable functions hold in precisely the same way.</div>
 <article class="assemblage assemblage-like" id="Limit-properties"><h4 class="heading"><span class="title">Properties of Limits.</span></h4>
-<div class="para logical" id="p-1452">
+<div class="para logical" id="p-1451">
 <div class="para">Let <span class="process-math">\(f=f(x,y)\)</span> and <span class="process-math">\(g=g(x,y)\)</span> be functions so that <span class="process-math">\(\lim_{(x,y) \to
 (a,b)} f(x,y)\)</span> and <span class="process-math">\(\lim_{(x,y) \to (a,b)} g(x,y)\)</span> both exist. Then</div>
 <ol class="decimal">
-<li id="li-534"><div class="para" id="p-1453">
+<li id="li-533"><div class="para" id="p-1452">
 <span class="process-math">\(\displaystyle \lim_{(x,y)\to(a,b)} x = a\)</span>    and    <span class="process-math">\(\displaystyle \lim_{(x,y)\to(a,b)}
 y = b\)</span>
 </div></li>
-<li id="li-535"><div class="para" id="p-1454">
+<li id="li-534"><div class="para" id="p-1453">
 <span class="process-math">\(\displaystyle \lim_{(x,y) \to (a,b)} cf(x,y) = c\left(\lim_{(x,y) \to (a,b)}
 f(x,y)\right)\)</span> for any scalar <span class="process-math">\(c\)</span>
 </div></li>
-<li id="li-536"><div class="para" id="p-1455"><span class="process-math">\(\displaystyle \displaystyle \lim_{(x,y) \to (a,b)} [f(x,y) \pm g(x,y)] = \lim_{(x,y) \to (a,b)} f(x,y) \pm \lim_{(x,y) \to (a,b)} g(x,y) \)</span></div></li>
-<li id="li-537"><div class="para" id="p-1456"><span class="process-math">\(\displaystyle \displaystyle \lim_{(x,y) \to (a,b)} [f(x,y) g(x,y)] = \left(\lim_{(x,y) \to
+<li id="li-535"><div class="para" id="p-1454"><span class="process-math">\(\displaystyle \displaystyle \lim_{(x,y) \to (a,b)} [f(x,y) \pm g(x,y)] = \lim_{(x,y) \to (a,b)} f(x,y) \pm \lim_{(x,y) \to (a,b)} g(x,y) \)</span></div></li>
+<li id="li-536"><div class="para" id="p-1455"><span class="process-math">\(\displaystyle \displaystyle \lim_{(x,y) \to (a,b)} [f(x,y) g(x,y)] = \left(\lim_{(x,y) \to
 (a,b)} f(x,y)\right) \left(  \lim_{(x,y) \to (a,b)} g(x,y)\right) \)</span></div></li>
-<li id="li-538"><div class="para" id="p-1457">
+<li id="li-537"><div class="para" id="p-1456">
 <span class="process-math">\(\displaystyle \lim_{(x,y) \to (a,b)} \frac{f(x,y)}{g(x,y)} =
 \frac{\displaystyle \lim_{(x,y) \to (a,b)} f(x,y)}{\displaystyle \lim_{(x,y) \to (a,b)} g(x,y)}\)</span>   if   <span class="process-math">\(\displaystyle \lim_{(x,y) \to (a,b)} g(x,y) \neq 0\text{.}\)</span>
 </div></li>
 </ol>
-</div></article><div class="para logical" id="p-1458">
+</div></article><div class="para logical" id="p-1457">
 <div class="para">We can use these properties and results from single variable calculus to verify that many limits exist. For example, these properties show that the function <span class="process-math">\(f\)</span> defined by</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1089,65 +1112,65 @@ f(x,y) = 3x^2y^3 + 2xy^2 - 3x + 1
 \end{equation*}
 </div>
 </div>
-<div class="para" id="p-1459">The reason for this is that polynomial functions of a single variable have limits at every point.</div></section><section class="subsection" id="subsection-44"><h3 class="heading hide-type">
+<div class="para" id="p-1458">The reason for this is that polynomial functions of a single variable have limits at every point.</div></section><section class="subsection" id="subsection-44"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">10.1.2</span> <span class="title">Continuity</span>
 </h3>
-<div class="para logical" id="p-1460">
+<div class="para logical" id="p-1459">
 <div class="para">Recall that a function <span class="process-math">\(f\)</span> of a single variable <span class="process-math">\(x\)</span> is said to be continuous at <span class="process-math">\(x=a\)</span> provided that the following three conditions are satisfied:</div>
 <ol class="decimal">
-<li id="li-539"><div class="para" id="p-1461">
+<li id="li-538"><div class="para" id="p-1460">
 <span class="process-math">\(f(a)\)</span> exists,</div></li>
-<li id="li-540"><div class="para" id="p-1462">
+<li id="li-539"><div class="para" id="p-1461">
 <span class="process-math">\(\lim_{x\to a}f(x)\)</span> exists, and</div></li>
-<li id="li-541"><div class="para" id="p-1463"><span class="process-math">\(\lim_{x\to a}f(x)=f(a)\text{.}\)</span></div></li>
+<li id="li-540"><div class="para" id="p-1462"><span class="process-math">\(\lim_{x\to a}f(x)=f(a)\text{.}\)</span></div></li>
 </ol>
 </div>
-<div class="para" id="p-1464">Using our understanding of limits of multivariable functions, we can define continuity in the same way.</div>
+<div class="para" id="p-1463">Using our understanding of limits of multivariable functions, we can define continuity in the same way.</div>
 <article class="definition definition-like" id="definition-16"><h4 class="heading">
 <span class="type">Definition</span><span class="space"> </span><span class="codenumber">10.1.15</span><span class="period">.</span>
 </h4>
-<div class="para logical" id="p-1465">
+<div class="para logical" id="p-1464">
 <div class="para">A function <span class="process-math">\(f=f(x,y)\)</span> is <dfn class="terminology">continuous</dfn> at the point <span class="process-math">\((a,
 b)\)</span> provided that</div>
 <ol class="decimal">
-<li id="li-542"><div class="para" id="p-1466">
+<li id="li-541"><div class="para" id="p-1465">
 <span class="process-math">\(f\)</span> is defined at the point <span class="process-math">\((a, b)\text{,}\)</span>
 </div></li>
-<li id="li-543"><div class="para" id="p-1467">
+<li id="li-542"><div class="para" id="p-1466">
 <span class="process-math">\(\lim_{(x,y) \to (a,b)} f(x,y)\)</span> exists, and</div></li>
-<li id="li-544"><div class="para" id="p-1468"><span class="process-math">\(\lim_{(x,y) \to (a,b)} f(x,y) = f(a,b)\text{.}\)</span></div></li>
+<li id="li-543"><div class="para" id="p-1467"><span class="process-math">\(\lim_{(x,y) \to (a,b)} f(x,y) = f(a,b)\text{.}\)</span></div></li>
 </ol>
-</div></article><div class="para" id="p-1469">For instance, we have seen that the function <span class="process-math">\(f\)</span> defined by <span class="process-math">\(f(x,y) = 3x^2y^3 + 2xy^2
+</div></article><div class="para" id="p-1468">For instance, we have seen that the function <span class="process-math">\(f\)</span> defined by <span class="process-math">\(f(x,y) = 3x^2y^3 + 2xy^2
 - 3x + 1\)</span> is continous at every point. And just as with single variable functions, continuity has certain properties that are based on the properties of limits.</div>
 <article class="assemblage assemblage-like" id="Continuity-properties"><h4 class="heading"><span class="title">Properties of continuity.</span></h4>
-<div class="para logical" id="p-1470">
+<div class="para logical" id="p-1469">
 <div class="para">Let <span class="process-math">\(f\)</span> and <span class="process-math">\(g\)</span> be functions of two variables that are continuous at the point <span class="process-math">\((a,b)\text{.}\)</span> Then</div>
 <ol class="decimal">
-<li id="li-545"><div class="para" id="p-1471">
+<li id="li-544"><div class="para" id="p-1470">
 <span class="process-math">\(cf\)</span> is continuous at <span class="process-math">\((a,b)\)</span> for any scalar <span class="process-math">\(c\)</span>
 </div></li>
-<li id="li-546"><div class="para" id="p-1472">
+<li id="li-545"><div class="para" id="p-1471">
 <span class="process-math">\(f+g\)</span> is continuous at <span class="process-math">\((a,b)\)</span>
 </div></li>
-<li id="li-547"><div class="para" id="p-1473">
+<li id="li-546"><div class="para" id="p-1472">
 <span class="process-math">\(f-g\)</span> is continuous at <span class="process-math">\((a,b)\)</span>
 </div></li>
-<li id="li-548"><div class="para" id="p-1474">
+<li id="li-547"><div class="para" id="p-1473">
 <span class="process-math">\(fg\)</span> is continuous at <span class="process-math">\((a,b)\)</span>
 </div></li>
-<li id="li-549"><div class="para" id="p-1475">
+<li id="li-548"><div class="para" id="p-1474">
 <span class="process-math">\(\frac{f}{g}\)</span> is continuous at <span class="process-math">\((a,b)\)</span> if <span class="process-math">\(g(a,b) \neq 0\)</span>
 </div></li>
 </ol>
-</div></article><div class="para" id="p-1476">Using these properties, we can apply results from single variable calculus to decide about continuity of multivariable functions. For example, the coordinate functions <span class="process-math">\(f\)</span> and <span class="process-math">\(g\)</span> defined by <span class="process-math">\(f(x,y) = x\)</span> and <span class="process-math">\(g(x,y) = y\)</span> are continuous at every point. We can then use properties of continuity listed to conclude that every polynomial function in <span class="process-math">\(x\)</span> and <span class="process-math">\(y\)</span> is continuous at every point. For example, <span class="process-math">\(g(x,y)=x^2\)</span> and <span class="process-math">\(h(x,y)=y^3\)</span> are continuous functions, so their product <span class="process-math">\(f(x,y) = x^2y^3\)</span> is a continuous multivariable function.</div></section><section class="subsection" id="subsection-45"><h3 class="heading hide-type">
+</div></article><div class="para" id="p-1475">Using these properties, we can apply results from single variable calculus to decide about continuity of multivariable functions. For example, the coordinate functions <span class="process-math">\(f\)</span> and <span class="process-math">\(g\)</span> defined by <span class="process-math">\(f(x,y) = x\)</span> and <span class="process-math">\(g(x,y) = y\)</span> are continuous at every point. We can then use properties of continuity listed to conclude that every polynomial function in <span class="process-math">\(x\)</span> and <span class="process-math">\(y\)</span> is continuous at every point. For example, <span class="process-math">\(g(x,y)=x^2\)</span> and <span class="process-math">\(h(x,y)=y^3\)</span> are continuous functions, so their product <span class="process-math">\(f(x,y) = x^2y^3\)</span> is a continuous multivariable function.</div></section><section class="subsection" id="subsection-45"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">10.1.3</span> <span class="title">Summary</span>
 </h3>
 <ul class="disc">
-<li id="li-550"><div class="para" id="p-1477">A function <span class="process-math">\(f = f(x,y)\)</span> has a limit <span class="process-math">\(L\)</span> at a point <span class="process-math">\((a,b)\)</span> provided that we can make <span class="process-math">\(f(x,y)\)</span> as close to <span class="process-math">\(L\)</span> as we like by taking <span class="process-math">\((x,y)\)</span> sufficiently close (but not equal) to <span class="process-math">\((a,b)\text{.}\)</span>
+<li id="li-549"><div class="para" id="p-1476">A function <span class="process-math">\(f = f(x,y)\)</span> has a limit <span class="process-math">\(L\)</span> at a point <span class="process-math">\((a,b)\)</span> provided that we can make <span class="process-math">\(f(x,y)\)</span> as close to <span class="process-math">\(L\)</span> as we like by taking <span class="process-math">\((x,y)\)</span> sufficiently close (but not equal) to <span class="process-math">\((a,b)\text{.}\)</span>
 </div></li>
-<li id="li-551"><div class="para" id="p-1478">If <span class="process-math">\((x,y)\)</span> has two different limits as <span class="process-math">\((x,y)\)</span> approaches <span class="process-math">\((a,b)\)</span> along two different paths, we can conclude that <span class="process-math">\(\lim_{(x,y)\to(a,b)}f(x,y)\)</span> does not exist.</div></li>
-<li id="li-552"><div class="para" id="p-1479">Properties similar to those for one-variable functions allow us to conclude that many limits exist and to evaluate them.</div></li>
-<li id="li-553"><div class="para logical" id="p-1480">
+<li id="li-550"><div class="para" id="p-1477">If <span class="process-math">\((x,y)\)</span> has two different limits as <span class="process-math">\((x,y)\)</span> approaches <span class="process-math">\((a,b)\)</span> along two different paths, we can conclude that <span class="process-math">\(\lim_{(x,y)\to(a,b)}f(x,y)\)</span> does not exist.</div></li>
+<li id="li-551"><div class="para" id="p-1478">Properties similar to those for one-variable functions allow us to conclude that many limits exist and to evaluate them.</div></li>
+<li id="li-552"><div class="para logical" id="p-1479">
 <div class="para">A function <span class="process-math">\(f = f(x,y)\)</span> is continuous at a point <span class="process-math">\((a,b)\)</span> in its domain if <span class="process-math">\(f\)</span> has a limit at <span class="process-math">\((a,b)\)</span> and</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1162,15 +1185,15 @@ f(a,b) = \lim_{(x,y) \to (a,b)} f(x,y).
 <div id="webwork-93" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="93" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/272/setStewart14_2/UR_VC_5_4.pg" data-courseID="mitchkeller-dev" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-93')">Activate</button></div>
 <div class="problem-contents">
-<div class="para" id="p-1481">Find the limits, if they exist, or type <em class="emphasis">DNE</em>  for any which do not exist.</div> <div class="para logical" id="p-1482"><div class="displaymath process-math">
+<div class="para" id="p-1480">Find the limits, if they exist, or type <em class="emphasis">DNE</em>  for any which do not exist.</div> <div class="para logical" id="p-1481"><div class="displaymath process-math">
 \begin{equation*}
 \displaystyle \lim_{(x, y) \rightarrow (0, 0)} 
 \frac{2 x^2}{ 4 x^2+ 3 y^2}
 \end{equation*}
-</div></div> <div class="para" id="p-1483">1) Along the <span class="process-math">\(x\)</span>-axis:    <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>
-</div> <div class="para" id="p-1484">2) Along the <span class="process-math">\(y\)</span>-axis:    <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>
-</div> <div class="para" id="p-1485">3) Along the line <span class="process-math">\(y=mx\)</span> :    <span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span>
-</div> <div class="para" id="p-1486">4) The limit is:    <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>
+</div></div> <div class="para" id="p-1482">1) Along the <span class="process-math">\(x\)</span>-axis:    <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>
+</div> <div class="para" id="p-1483">2) Along the <span class="process-math">\(y\)</span>-axis:    <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>
+</div> <div class="para" id="p-1484">3) Along the line <span class="process-math">\(y=mx\)</span> :    <span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span>
+</div> <div class="para" id="p-1485">4) The limit is:    <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>
 </div>
 <div class="solutions"></div>
 </div>
@@ -1180,7 +1203,7 @@ f(a,b) = \lim_{(x,y) \to (a,b)} f(x,y).
 <div id="webwork-94" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="94" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Michigan/Chap12Sec6/Q13.pg" data-courseID="mitchkeller-dev" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-94')">Activate</button></div>
 <div class="problem-contents">
-<div class="para logical" id="p-1491">
+<div class="para logical" id="p-1490">
 <div class="para">In this problem we show that the function</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1189,16 +1212,16 @@ f(x,y) = \frac{2x-y^{2}}{x+y^{2}}
 </div>
 <div class="para">does not have a limit as <span class="process-math">\((x,y)\to (0,0)\text{.}\)</span>
 </div>
-</div> <div class="para" id="p-1492">
-<em class="alert">(a)</em> Suppose that we consider <span class="process-math">\((x,y)\to (0,0)\)</span> along the curve <span class="process-math">\(y = 4 x^{1/2}\text{.}\)</span>  Find the limit in this case:</div> <div class="para" id="p-1493">
+</div> <div class="para" id="p-1491">
+<em class="alert">(a)</em> Suppose that we consider <span class="process-math">\((x,y)\to (0,0)\)</span> along the curve <span class="process-math">\(y = 4 x^{1/2}\text{.}\)</span>  Find the limit in this case:</div> <div class="para" id="p-1492">
 <span class="process-math">\(\lim\limits_{(x,4 x^{1/2})\to(0,0)} \frac{2x-y^{2}}{x+y^{2}} =\)</span> <span class="fillin underline" role="img" aria-label="35-character blank" style="width: 15.9090909090909em;"></span>
-</div> <div class="para" id="p-1494">
-<em class="alert">(b)</em> Now consider <span class="process-math">\((x,y)\to (0,0)\)</span> along the curve <span class="process-math">\(y = 5 x^{1/2}\text{.}\)</span>  Find the limit in this case:</div> <div class="para" id="p-1495">
+</div> <div class="para" id="p-1493">
+<em class="alert">(b)</em> Now consider <span class="process-math">\((x,y)\to (0,0)\)</span> along the curve <span class="process-math">\(y = 5 x^{1/2}\text{.}\)</span>  Find the limit in this case:</div> <div class="para" id="p-1494">
 <span class="process-math">\(\lim\limits_{(x,5 x^{1/2})\to(0,0)} \frac{2x-y^{2}}{x+y^{2}} =\)</span> <span class="fillin underline" role="img" aria-label="35-character blank" style="width: 15.9090909090909em;"></span>
-</div> <div class="para" id="p-1496">
-<em class="alert">(c)</em> Note that the results from <em class="alert">(a)</em> and <em class="alert">(b)</em> indicate that <span class="process-math">\(f\)</span> has no limit as <span class="process-math">\((x,y)\to (0,0)\)</span> <em class="emphasis">(be sure you can explain why!)</em>.</div> <div class="para" id="p-1497">To show this more generally, consider <span class="process-math">\((x,y)\to (0,0)\)</span> along the curve <span class="process-math">\(y = m x^{1/2}\text{,}\)</span> for arbitrary <span class="process-math">\(m\text{.}\)</span>  Find the limit in this case:</div> <div class="para" id="p-1498">
+</div> <div class="para" id="p-1495">
+<em class="alert">(c)</em> Note that the results from <em class="alert">(a)</em> and <em class="alert">(b)</em> indicate that <span class="process-math">\(f\)</span> has no limit as <span class="process-math">\((x,y)\to (0,0)\)</span> <em class="emphasis">(be sure you can explain why!)</em>.</div> <div class="para" id="p-1496">To show this more generally, consider <span class="process-math">\((x,y)\to (0,0)\)</span> along the curve <span class="process-math">\(y = m x^{1/2}\text{,}\)</span> for arbitrary <span class="process-math">\(m\text{.}\)</span>  Find the limit in this case:</div> <div class="para" id="p-1497">
 <span class="process-math">\(\lim\limits_{(x,m x^{1/2})\to(0,0)} \frac{2x-y^{2}}{x+y^{2}} =\)</span> <span class="fillin underline" role="img" aria-label="35-character blank" style="width: 15.9090909090909em;"></span>
-</div> <div class="para" id="p-1499"><em class="emphasis">(Be sure that you can explain how this result also indicates that <span class="process-math">\(f\)</span> has no limit as <span class="process-math">\((x,y)\to(0,0)\text{.}\)</span></em></div>
+</div> <div class="para" id="p-1498"><em class="emphasis">(Be sure that you can explain how this result also indicates that <span class="process-math">\(f\)</span> has no limit as <span class="process-math">\((x,y)\to(0,0)\text{.}\)</span></em></div>
 <div class="solutions">
 <a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-25" id="solution-25"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-25"><div class="solution solution-like">
 <span class="process-math">\(f\)</span> does not have a limit as <span class="process-math">\((x,y)\)</span> approaches <span class="process-math">\((0,0)\text{.}\)</span> <em class="alert">(a)</em> If <span class="process-math">\((x,y)\)</span> tends to <span class="process-math">\((0,0)\)</span> along the curve <span class="process-math">\(y = 4 x^{1/2}\text{,}\)</span> then<div class="displaymath process-math">
@@ -1218,7 +1241,7 @@ f(x,y) = f(x,5 x^{1/2}) = \frac{2x-\left(5x^{0.5}\right)^{2}}{x+\left(5x^{0.5}\r
 \begin{equation*}
 \lim_{x\to0} f(x,5 x^{1/2}) = \frac{-23}{26}.
 \end{equation*}
-</div>Because we have two different values for these limits, we know that the function doesn't have a limit at <span class="process-math">\((0,0)\text{.}\)</span>  No matter how close we are to the origin, there will be points on <span class="process-math">\(f(x,y)\)</span> that are close to <span class="process-math">\(\frac{-14}{17}\)</span> and points that are close to <span class="process-math">\(\frac{-23}{26}\text{,}\)</span> whereas for the limit to exist the function must get close to a single value. <em class="alert">(c)</em> We can see this more generally by considering the limit as <span class="process-math">\((x,y)\)</span> tends to <span class="process-math">\((0,0)\)</span> along the curve <span class="process-math">\(y = m x^{1/2}\text{.}\)</span> Then<div class="displaymath process-math">
+</div>Because we have two different values for these limits, we know that the function doesn’t have a limit at <span class="process-math">\((0,0)\text{.}\)</span>  No matter how close we are to the origin, there will be points on <span class="process-math">\(f(x,y)\)</span> that are close to <span class="process-math">\(\frac{-14}{17}\)</span> and points that are close to <span class="process-math">\(\frac{-23}{26}\text{,}\)</span> whereas for the limit to exist the function must get close to a single value. <em class="alert">(c)</em> We can see this more generally by considering the limit as <span class="process-math">\((x,y)\)</span> tends to <span class="process-math">\((0,0)\)</span> along the curve <span class="process-math">\(y = m x^{1/2}\text{.}\)</span> Then<div class="displaymath process-math">
 \begin{equation*}
 f(x,y) = f(x,m x^{1/2}) = \frac{2-m^{2}}{1+m^{2}},
 \end{equation*}
@@ -1234,7 +1257,7 @@ f(x,y) = f(x,m x^{1/2}) = \frac{2-m^{2}}{1+m^{2}},
 <div id="webwork-95" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="95" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Michigan/Chap12Sec6/Q15.pg" data-courseID="mitchkeller-dev" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-95')">Activate</button></div>
 <div class="problem-contents">
-<div class="para logical" id="p-1503">
+<div class="para logical" id="p-1502">
 <div class="para">Show that the function</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1242,15 +1265,15 @@ f(x,y) = \frac{x^{4}y}{x^{8}+y^{4}}.
 \end{equation*}
 </div>
 <div class="para">does not have a limit at <span class="process-math">\((0,0)\)</span> by examining the following limits.</div>
-</div> <div class="para" id="p-1504">
+</div> <div class="para" id="p-1503">
 <em class="alert">(a)</em> Find the limit of <span class="process-math">\(f\)</span> as <span class="process-math">\((x,y) \to (0,0)\)</span> along the line <span class="process-math">\(y = x\text{.}\)</span>
-</div> <div class="para" id="p-1505">
+</div> <div class="para" id="p-1504">
 <span class="process-math">\(\lim\limits_{{}^{(x,y)\to(0,0)}_{y=x}} f(x,y) =\)</span> <span class="fillin underline" role="img" aria-label="35-character blank" style="width: 15.9090909090909em;"></span>
-</div> <div class="para" id="p-1506">
+</div> <div class="para" id="p-1505">
 <em class="alert">(b)</em> Find the limit of <span class="process-math">\(f\)</span> as <span class="process-math">\((x,y)\to(0,0)\)</span> along the curve <span class="process-math">\(y = x^4\text{.}\)</span>
-</div> <div class="para" id="p-1507">
+</div> <div class="para" id="p-1506">
 <span class="process-math">\(\lim\limits_{{}^{(x,y)\to(0,0)}_{y=x^4}} f(x,y) =\)</span> <span class="fillin underline" role="img" aria-label="35-character blank" style="width: 15.9090909090909em;"></span>
-</div> <div class="para" id="p-1508"><em class="emphasis">(Be sure that you are able to explain why the results in <em class="alert">(a)</em> and <em class="alert">(b)</em> indicate that <span class="process-math">\(f\)</span> does not have a limit at (0,0)!</em></div>
+</div> <div class="para" id="p-1507"><em class="emphasis">(Be sure that you are able to explain why the results in <em class="alert">(a)</em> and <em class="alert">(b)</em> indicate that <span class="process-math">\(f\)</span> does not have a limit at (0,0)!</em></div>
 <div class="solutions">
 <a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-26" id="solution-26"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-26"><div class="solution solution-like">
 <em class="alert">(a)</em> Let us suppose that <span class="process-math">\((x,y)\)</span> approaches <span class="process-math">\((0,0)\)</span> along the line <span class="process-math">\(y=x\text{.}\)</span> Then<div class="displaymath process-math">
@@ -1282,7 +1305,7 @@ f(x,y)=f(x,x^4) = \frac{x^{8}}{x^{8} + x^{16}} = 1
 <div id="webwork-96" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="96" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Rochester/setVmultivariable2Limits/UR_VC_5_4.pg" data-courseID="mitchkeller-dev" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-96')">Activate</button></div>
 <div class="problem-contents">
-<div class="para" id="p-1511">Find the limit, if it exists, or type N if it does not exist.</div> <div class="para" id="p-1512">
+<div class="para" id="p-1510">Find the limit, if it exists, or type N if it does not exist.</div> <div class="para" id="p-1511">
 <span class="process-math">\(\displaystyle \lim_{(x, y) \rightarrow (0, 0)} \frac{4 x^2}{ 4 x^2 + 4 y^2} =\)</span> <span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span>
 </div>
 <div class="solutions"></div>
@@ -1291,7 +1314,7 @@ f(x,y)=f(x,x^4) = \frac{x^{8}}{x^{8} + x^{16}} = 1
 <div id="webwork-97" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="97" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Rochester/setVmultivariable2Limits/UR_VC_5_5.pg" data-courseID="mitchkeller-dev" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-97')">Activate</button></div>
 <div class="problem-contents">
-<div class="para" id="p-1514">Find the limit, if it exists, or type N if it does not exist.</div> <div class="para" id="p-1515">
+<div class="para" id="p-1513">Find the limit, if it exists, or type N if it does not exist.</div> <div class="para" id="p-1514">
 <span class="process-math">\(\displaystyle \lim_{(x, y) \rightarrow (0, 0)} \frac{(x + 19y)^2}{x^2 + {19}^2y^2} =\)</span> <span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span>
 </div>
 <div class="solutions"></div>
@@ -1300,7 +1323,7 @@ f(x,y)=f(x,x^4) = \frac{x^{8}}{x^{8} + x^{16}} = 1
 <div id="webwork-98" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="98" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/maCalcDB/setVmultivariable2Limits/UR_VC_5_3.pg" data-courseID="mitchkeller-dev" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-98')">Activate</button></div>
 <div class="problem-contents">
-<div class="para" id="p-1517">Find the limit, if it exists, or type 'DNE' if it does not exist.</div> <div class="para" id="p-1518">
+<div class="para" id="p-1516">Find the limit, if it exists, or type ’DNE’ if it does not exist.</div> <div class="para" id="p-1517">
 <span class="process-math">\(\displaystyle \lim_{(x, y) \rightarrow (4, -5)} e^{\sqrt{4x^2 + 1y^2}} =\)</span> <span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span>
 </div>
 <div class="solutions"></div>
@@ -1309,7 +1332,7 @@ f(x,y)=f(x,x^4) = \frac{x^{8}}{x^{8} + x^{16}} = 1
 <div id="webwork-99" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="99" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Rochester/setVmultivariable2Limits/UR_VC_5_8.pg" data-courseID="mitchkeller-dev" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-99')">Activate</button></div>
 <div class="problem-contents">
-<div class="para" id="p-1520">Find the limit, if it exists, or type N if it does not exist.</div> <div class="para" id="p-1521">
+<div class="para" id="p-1519">Find the limit, if it exists, or type N if it does not exist.</div> <div class="para" id="p-1520">
 <span class="process-math">\(\displaystyle \lim_{(x, y, z) \rightarrow (0, 0, 0)} \frac{5 xy+ 4 yz+ xz
 }{25 x^2+ 16 y^2+ z^2} =\)</span> <span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span>
 </div>
@@ -1319,7 +1342,7 @@ f(x,y)=f(x,x^4) = \frac{x^{8}}{x^{8} + x^{16}} = 1
 <div id="webwork-100" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="100" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/maCalcDB/setVmultivariable2Limits/UR_VC_5_7.pg" data-courseID="mitchkeller-dev" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-100')">Activate</button></div>
 <div class="problem-contents">
-<div class="para" id="p-1523">Find the limit, if it exists, or type N if it does not exist.</div> <div class="para" id="p-1524">
+<div class="para" id="p-1522">Find the limit, if it exists, or type N if it does not exist.</div> <div class="para" id="p-1523">
 <span class="process-math">\(\displaystyle \lim_{(x, y, z) \rightarrow (1, 2, 3)} \frac{3 z e^{x^2+y^2}}{x^2+ 2 y^2+ 3 z^2} =\)</span> <span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span>
 </div>
 <div class="solutions"></div>
@@ -1328,7 +1351,7 @@ f(x,y)=f(x,x^4) = \frac{x^{8}}{x^{8} + x^{16}} = 1
 <div id="webwork-101" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="101" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/272/setStewart14_2/problem_3.pg" data-courseID="mitchkeller-dev" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-101')">Activate</button></div>
 <div class="problem-contents">
-<div class="para" id="p-1526">Find the limit (enter 'DNE' if the limit does not exist)</div> <div class="para logical" id="p-1527">
+<div class="para" id="p-1525">Find the limit (enter ’DNE’ if the limit does not exist)</div> <div class="para logical" id="p-1526">
 <div class="para">Hint: rationalize the denominator.</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1343,67 +1366,67 @@ f(x,y)=f(x,x^4) = \frac{x^{8}}{x^{8} + x^{16}} = 1
 <div id="webwork-102" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="102" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/272/setStewart14_2/problem_4.pg" data-courseID="mitchkeller-dev" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-102')">Activate</button></div>
 <div class="problem-contents">
-<div class="para" id="p-1529">The largest set on which the function <span class="process-math">\(f(x,y) = 1/(7 - x^2 - y^2)\)</span> is continuous is <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>
-</div> <div class="para logical" id="p-1530"><ol class="upper-alpha">
-<li id="li-554"><div class="para" id="p-1531">The exterior of the circle <span class="process-math">\(x^2 + y^2 = 7\)</span>
+<div class="para" id="p-1528">The largest set on which the function <span class="process-math">\(f(x,y) = 1/(7 - x^2 - y^2)\)</span> is continuous is <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>
+</div> <div class="para logical" id="p-1529"><ol class="upper-alpha">
+<li id="li-553"><div class="para" id="p-1530">The exterior of the circle <span class="process-math">\(x^2 + y^2 = 7\)</span>
 </div></li>
-<li id="li-555"><div class="para" id="p-1532">All of the xy-plane</div></li>
-<li id="li-556"><div class="para" id="p-1533">The interior of the circle <span class="process-math">\(x^2 + y^2 = 7\text{,}\)</span> plus the circle</div></li>
-<li id="li-557"><div class="para" id="p-1534">The interior of the circle <span class="process-math">\(x^2 + y^2 = 7\)</span>
+<li id="li-554"><div class="para" id="p-1531">All of the xy-plane</div></li>
+<li id="li-555"><div class="para" id="p-1532">The interior of the circle <span class="process-math">\(x^2 + y^2 = 7\text{,}\)</span> plus the circle</div></li>
+<li id="li-556"><div class="para" id="p-1533">The interior of the circle <span class="process-math">\(x^2 + y^2 = 7\)</span>
 </div></li>
-<li id="li-558"><div class="para" id="p-1535">All of the xy-plane except the circle <span class="process-math">\(x^2 + y^2 = 7\)</span>
+<li id="li-557"><div class="para" id="p-1534">All of the xy-plane except the circle <span class="process-math">\(x^2 + y^2 = 7\)</span>
 </div></li>
 </ol></div>
 <div class="solutions"></div>
 </div>
 </div></article><article class="exercise exercise-like" id="Ez_10_1_1"><h4 class="heading"><span class="codenumber">11<span class="period">.</span></span></h4>
-<div class="para logical" id="p-1537">
+<div class="para logical" id="p-1536">
 <div class="para">Consider the function <span class="process-math">\(f\)</span> defined by <span class="process-math">\(f(x,y) = \frac{xy}{x^2 + y^2 + 1}.\)</span>
 </div>
 <ol class="lower-alpha">
-<li id="li-559"><div class="para" id="p-1538">What is the domain of <span class="process-math">\(f\text{?}\)</span>
+<li id="li-558"><div class="para" id="p-1537">What is the domain of <span class="process-math">\(f\text{?}\)</span>
 </div></li>
-<li id="li-560"><div class="para" id="p-1539">Evaluate limit of <span class="process-math">\(f\)</span> at <span class="process-math">\((0,0)\)</span> along the following paths:  <span class="process-math">\(x = 0\text{,}\)</span> <span class="process-math">\(y = 0\text{,}\)</span> <span class="process-math">\(y = x\text{,}\)</span> and <span class="process-math">\(y = x^2\text{.}\)</span>
+<li id="li-559"><div class="para" id="p-1538">Evaluate limit of <span class="process-math">\(f\)</span> at <span class="process-math">\((0,0)\)</span> along the following paths:  <span class="process-math">\(x = 0\text{,}\)</span> <span class="process-math">\(y = 0\text{,}\)</span> <span class="process-math">\(y = x\text{,}\)</span> and <span class="process-math">\(y = x^2\text{.}\)</span>
 </div></li>
-<li id="li-561"><div class="para" id="p-1540">What do you conjecture is the value of <span class="process-math">\(\lim_{(x,y) \to (0,0)} f(x,y)\text{?}\)</span>
+<li id="li-560"><div class="para" id="p-1539">What do you conjecture is the value of <span class="process-math">\(\lim_{(x,y) \to (0,0)} f(x,y)\text{?}\)</span>
 </div></li>
-<li id="li-562"><div class="para" id="p-1541">Is <span class="process-math">\(f\)</span> continuous at <span class="process-math">\((0,0)\text{?}\)</span>  Why or why not?</div></li>
-<li id="li-563"><div class="para" id="p-1542">Use appropriate technology to sketch both surface and contour plots of <span class="process-math">\(f\)</span> near <span class="process-math">\((0,0)\text{.}\)</span>  Write several sentences to say how your plots affirm your findings in (a) - (d).</div></li>
+<li id="li-561"><div class="para" id="p-1540">Is <span class="process-math">\(f\)</span> continuous at <span class="process-math">\((0,0)\text{?}\)</span>  Why or why not?</div></li>
+<li id="li-562"><div class="para" id="p-1541">Use appropriate technology to sketch both surface and contour plots of <span class="process-math">\(f\)</span> near <span class="process-math">\((0,0)\text{.}\)</span>  Write several sentences to say how your plots affirm your findings in (a) - (d).</div></li>
 </ol>
 </div></article><article class="exercise exercise-like" id="Ez_10_1_2"><h4 class="heading"><span class="codenumber">12<span class="period">.</span></span></h4>
-<div class="para logical" id="p-1543">
+<div class="para logical" id="p-1542">
 <div class="para">Consider the function <span class="process-math">\(g\)</span> defined by <span class="process-math">\(g(x,y) = \frac{xy}{x^2 + y^2}.\)</span>
 </div>
 <ol class="lower-alpha">
-<li id="li-564"><div class="para" id="p-1544">What is the domain of <span class="process-math">\(g\text{?}\)</span>
+<li id="li-563"><div class="para" id="p-1543">What is the domain of <span class="process-math">\(g\text{?}\)</span>
 </div></li>
-<li id="li-565"><div class="para" id="p-1545">Evaluate limit of <span class="process-math">\(g\)</span> at <span class="process-math">\((0,0)\)</span> along the following paths:  <span class="process-math">\(x = 0\text{,}\)</span> <span class="process-math">\(y = x\text{,}\)</span> and <span class="process-math">\(y = 2x\text{.}\)</span>
+<li id="li-564"><div class="para" id="p-1544">Evaluate limit of <span class="process-math">\(g\)</span> at <span class="process-math">\((0,0)\)</span> along the following paths:  <span class="process-math">\(x = 0\text{,}\)</span> <span class="process-math">\(y = x\text{,}\)</span> and <span class="process-math">\(y = 2x\text{.}\)</span>
 </div></li>
-<li id="li-566"><div class="para" id="p-1546">What can you now say about the value of <span class="process-math">\(\lim_{(x,y) \to (0,0)} g(x,y)\text{?}\)</span>
+<li id="li-565"><div class="para" id="p-1545">What can you now say about the value of <span class="process-math">\(\lim_{(x,y) \to (0,0)} g(x,y)\text{?}\)</span>
 </div></li>
-<li id="li-567"><div class="para" id="p-1547">Is <span class="process-math">\(g\)</span> continuous at <span class="process-math">\((0,0)\text{?}\)</span>  Why or why not?</div></li>
-<li id="li-568"><div class="para" id="p-1548">Use appropriate technology to sketch both surface and contour plots of <span class="process-math">\(g\)</span> near <span class="process-math">\((0,0)\text{.}\)</span>  Write several sentences to say how your plots affirm your findings in (a) - (d).</div></li>
+<li id="li-566"><div class="para" id="p-1546">Is <span class="process-math">\(g\)</span> continuous at <span class="process-math">\((0,0)\text{?}\)</span>  Why or why not?</div></li>
+<li id="li-567"><div class="para" id="p-1547">Use appropriate technology to sketch both surface and contour plots of <span class="process-math">\(g\)</span> near <span class="process-math">\((0,0)\text{.}\)</span>  Write several sentences to say how your plots affirm your findings in (a) - (d).</div></li>
 </ol>
 </div></article><article class="exercise exercise-like" id="Ez_10_1_3"><h4 class="heading"><span class="codenumber">13<span class="period">.</span></span></h4>
-<div class="para logical" id="p-1549">
+<div class="para logical" id="p-1548">
 <div class="para">Consider the function <span class="process-math">\(h\)</span> defined by <span class="process-math">\(h(x,y) = \frac{2x^2y}{x^4 + y^2}.\)</span>
 </div>
 <ol class="lower-alpha">
-<li id="li-569"><div class="para" id="p-1550">What is the domain of <span class="process-math">\(h\text{?}\)</span>
+<li id="li-568"><div class="para" id="p-1549">What is the domain of <span class="process-math">\(h\text{?}\)</span>
 </div></li>
-<li id="li-570"><div class="para" id="p-1551">Evaluate the limit of <span class="process-math">\(h\)</span> at <span class="process-math">\((0,0)\)</span> along all linear paths the contain the origin. What does this tell us about <span class="process-math">\(\lim_{(x,y) \to (0,0)} h(x,y)\text{?}\)</span> (Hint: A non-vertical line throught the origin has the form <span class="process-math">\(y = mx \)</span> for some constant <span class="process-math">\(m\text{.}\)</span>)</div></li>
-<li id="li-571"><div class="para" id="p-1552">Does <span class="process-math">\(\lim_{(x,y) \to (0,0)} h(x,y)\)</span> exist? Verify your answer. Check by using appropriate technology to sketch both surface and contour plots of <span class="process-math">\(h\)</span> near <span class="process-math">\((0,0)\text{.}\)</span>  Write several sentences to say how your plots affirm your findings about <span class="process-math">\(\lim_{(x,y) \to (0,0)} h(x,y)\text{.}\)</span>
+<li id="li-569"><div class="para" id="p-1550">Evaluate the limit of <span class="process-math">\(h\)</span> at <span class="process-math">\((0,0)\)</span> along all linear paths the contain the origin. What does this tell us about <span class="process-math">\(\lim_{(x,y) \to (0,0)} h(x,y)\text{?}\)</span> (Hint: A non-vertical line throught the origin has the form <span class="process-math">\(y = mx \)</span> for some constant <span class="process-math">\(m\text{.}\)</span>)</div></li>
+<li id="li-570"><div class="para" id="p-1551">Does <span class="process-math">\(\lim_{(x,y) \to (0,0)} h(x,y)\)</span> exist? Verify your answer. Check by using appropriate technology to sketch both surface and contour plots of <span class="process-math">\(h\)</span> near <span class="process-math">\((0,0)\text{.}\)</span>  Write several sentences to say how your plots affirm your findings about <span class="process-math">\(\lim_{(x,y) \to (0,0)} h(x,y)\text{.}\)</span>
 </div></li>
 </ol>
 </div></article><article class="exercise exercise-like" id="Ez_10_1_4"><h4 class="heading"><span class="codenumber">14<span class="period">.</span></span></h4>
-<div class="para logical" id="p-1553">
+<div class="para logical" id="p-1552">
 <div class="para">For each of the following prompts, provide an example of a function of two variables with the desired properties (with justification), or explain why such a function does not exist.</div>
 <ol class="lower-alpha">
-<li id="li-572"><div class="para" id="p-1554">A function <span class="process-math">\(p\)</span> that is defined at <span class="process-math">\((0,0)\text{,}\)</span> but <span class="process-math">\(\lim_{(x,y) \to (0,0)} p(x,y)\)</span> does not exist.</div></li>
-<li id="li-573"><div class="para" id="p-1555">A function <span class="process-math">\(q\)</span> that does not have a limit at <span class="process-math">\((0,0)\text{,}\)</span> but that has the same limiting value along any line <span class="process-math">\(y = mx\)</span> as <span class="process-math">\(x \to 0\text{.}\)</span>
+<li id="li-571"><div class="para" id="p-1553">A function <span class="process-math">\(p\)</span> that is defined at <span class="process-math">\((0,0)\text{,}\)</span> but <span class="process-math">\(\lim_{(x,y) \to (0,0)} p(x,y)\)</span> does not exist.</div></li>
+<li id="li-572"><div class="para" id="p-1554">A function <span class="process-math">\(q\)</span> that does not have a limit at <span class="process-math">\((0,0)\text{,}\)</span> but that has the same limiting value along any line <span class="process-math">\(y = mx\)</span> as <span class="process-math">\(x \to 0\text{.}\)</span>
 </div></li>
-<li id="li-574"><div class="para" id="p-1556">A function <span class="process-math">\(r\)</span> that is continuous at <span class="process-math">\((0,0)\text{,}\)</span> but <span class="process-math">\(\lim_{(x,y) \to (0,0)} r(x,y)\)</span> does not exist.</div></li>
-<li id="li-575"><div class="para logical" id="p-1557">
+<li id="li-573"><div class="para" id="p-1555">A function <span class="process-math">\(r\)</span> that is continuous at <span class="process-math">\((0,0)\text{,}\)</span> but <span class="process-math">\(\lim_{(x,y) \to (0,0)} r(x,y)\)</span> does not exist.</div></li>
+<li id="li-574"><div class="para logical" id="p-1556">
 <div class="para">A function <span class="process-math">\(s\)</span> such that</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1412,17 +1435,17 @@ f(x,y)=f(x,x^4) = \frac{x^{8}}{x^{8} + x^{16}} = 1
 </div>
 <div class="para">for which  <span class="process-math">\(\lim_{(x,y) \to (0,0)} s(x,y)\)</span> exists.</div>
 </div></li>
-<li id="li-576"><div class="para" id="p-1558">A function <span class="process-math">\(t\)</span> that is not defined at <span class="process-math">\((1,1)\)</span> but <span class="process-math">\(\lim_{(x,y) \to (1,1)} t(x,y)\)</span> does exist.</div></li>
+<li id="li-575"><div class="para" id="p-1557">A function <span class="process-math">\(t\)</span> that is not defined at <span class="process-math">\((1,1)\)</span> but <span class="process-math">\(\lim_{(x,y) \to (1,1)} t(x,y)\)</span> does exist.</div></li>
 </ol>
 </div></article><article class="exercise exercise-like" id="Ez_10_1_5"><h4 class="heading"><span class="codenumber">15<span class="period">.</span></span></h4>
-<div class="para logical" id="p-1559">
+<div class="para logical" id="p-1558">
 <div class="para">Use the properties of continuity to determine the set of points at which each of the following functions is continuous. Justify your answers.</div>
 <ol class="lower-alpha">
-<li id="li-577"><div class="para" id="p-1560">The function <span class="process-math">\(f\)</span> defined by <span class="process-math">\(f(x,y) = \frac{x+2y}{x-y}\)</span>
+<li id="li-576"><div class="para" id="p-1559">The function <span class="process-math">\(f\)</span> defined by <span class="process-math">\(f(x,y) = \frac{x+2y}{x-y}\)</span>
 </div></li>
-<li id="li-578"><div class="para" id="p-1561">The function <span class="process-math">\(g\)</span> defined by <span class="process-math">\(g(x,y) = \frac{\sin(x)}{1+e^y}\)</span>
+<li id="li-577"><div class="para" id="p-1560">The function <span class="process-math">\(g\)</span> defined by <span class="process-math">\(g(x,y) = \frac{\sin(x)}{1+e^y}\)</span>
 </div></li>
-<li id="li-579"><div class="para logical" id="p-1562">
+<li id="li-578"><div class="para logical" id="p-1561">
 <div class="para">The function <span class="process-math">\(h\)</span> defined by</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1430,7 +1453,7 @@ h(x,y) = \begin{cases} \frac{xy}{x^2+y^2} \amp \text{ if } (x,y) \neq (0,0)  \\ 
 \end{equation*}
 </div>
 </div></li>
-<li id="li-580"><div class="para logical" id="p-1563">
+<li id="li-579"><div class="para logical" id="p-1562">
 <div class="para">The function <span class="process-math">\(k\)</span> defined by</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1444,7 +1467,7 @@ k(x,y) = \begin{cases} \frac{x^2y^4}{x^2+y^2} \amp \text{ if } (x,y) \neq (0,0) 
 <a class="previous-button button" href="C-10.html" title="Previous"><span class="icon">&lt;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon">^</span><span class="name">Top</span></a><a class="next-button button" href="S-10-2-First-Order-Partial-Derivatives.html" title="Next"><span class="name">Next</span><span class="icon">&gt;</span></a>
 </div></main>
 </div>
-<div id="ptx-page-footer">
+<div id="ptx-page-footer" class="ptx-page-footer">
 <a class="pretext-link" href="https://pretextbook.org" title="PreTeXt"><div class="logo"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="338 3000 8772 6866"><g style="stroke-width:.025in; stroke:black; fill:none"><polyline points="472,3590 472,9732 " style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round; "></polyline><path style="stroke:#000000;stroke-width:126;stroke-linecap:butt;" d="M 4724,9448 A 4660 4660  0  0  1  8598  9259"></path><path style="stroke:#000000;stroke-width:174;stroke-linecap:butt;" d="M 4488,9685 A 4228 4228  0  0  0   472  9732"></path><path style="stroke:#000000;stroke-width:126;stroke-linecap:butt;" d="M 4724,3590 A 4241 4241  0  0  1  8598  3496"></path><path style="stroke:#000000;stroke-width:126;stroke-linecap:round;" d="M 850,3496  A 4241 4241  0  0  1  4724  3590"></path><path style="stroke:#000000;stroke-width:126;stroke-linecap:round;" d="M 850,9259  A 4507 4507  0  0  1  4724  9448"></path><polyline points="5385,4299 4062,8125" style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="8598,3496 8598,9259" style="stroke:#000000;stroke-width:126; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="850,3496 850,9259" style="stroke:#000000;stroke-width:126; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="4960,9685 4488,9685" style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="3070,4582 1889,6141 3070,7700" style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="6418,4582 7600,6141 6418,7700" style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="8976,3590 8976,9732" style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round;"></polyline><path style="stroke:#000000;stroke-width:174;stroke-linecap:butt;" d="M 4960,9685 A 4228 4228  0  0  1  8976  9732"></path></g></svg></div></a><a class="runestone-link" href="https://runestone.academy" title="Runestone Academy"><img class="logo" src="https://runestone.academy/runestone/static/images/RAIcon_cropped.png"></a><a class="mathjax-link" href="https://www.mathjax.org" title="MathJax"><img class="logo" src="https://www.mathjax.org/badge/badge-square-2.png"></a>
 </div>
 <!--Start: Google Global Site Tag code--><!--*** DO NOT COPY ANOTHER PROJECT'S MAGIC NUMBERS/ID ***--><!--***           GET YOUR OWN FROM GOOGLE             ***-->

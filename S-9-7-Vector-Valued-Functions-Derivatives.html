@@ -5,7 +5,7 @@
 <!--*         https://pretextbook.org          *-->
 <!--*                                          *-->
 <!--********************************************-->
-<html lang="en-US">
+<html lang="en-US" dir="ltr">
 <head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Derivatives and Integrals of Vector-Valued Functions</title>
@@ -16,20 +16,38 @@
 <meta property="book:author" content="Steve Schlicker">
 <meta property="book:author" content="Mitchel T. Keller">
 <meta property="book:author" content="Nicholas Long">
-<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
+<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>
+var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
 window.MathJax = {
-  tex: {
-    inlineMath: [['\\(','\\)']],
-    tags: "none",
-    tagSide: "right",
-    tagIndent: ".8em",
-    packages: {'[+]': ['base', 'extpfeil', 'ams', 'amscd', 'color', 'newcommand', 'knowl']}
+  "tex": {
+    "inlineMath": [
+      [
+        "\\(",
+        "\\)"
+      ]
+    ],
+    "tags": "none",
+    "tagSide": "right",
+    "tagIndent": ".8em",
+    "packages": {
+      "[+]": [
+        "base",
+        "extpfeil",
+        "ams",
+        "amscd",
+        "color",
+        "newcommand",
+        "knowl"
+      ]
+    }
   },
-  options: {
-    ignoreHtmlClass: "tex2jax_ignore|ignore-math",
-    processHtmlClass: "process-math",
-    renderActions: {
-        findScript: [10, function (doc) {
+  "options": {
+    "ignoreHtmlClass": "tex2jax_ignore|ignore-math",
+    "processHtmlClass": "process-math",
+    "renderActions": {
+      "findScript": [
+        10,
+        function (doc) {
             document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
                 var display = !!node.type.match(/; *mode=display/);
                 var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
@@ -39,65 +57,70 @@ window.MathJax = {
                 math.end = {node: text, delim: '', n: 0};
                 doc.math.push(math);
             });
-        }, '']
-    },
+        },
+        ""
+      ]
+    }
   },
-  chtml: {
-    scale: 0.98,
-    mtextInheritFont: true
+  "chtml": {
+    "scale": 0.98,
+    "mtextInheritFont": true
   },
-  loader: {
-    load: ['input/asciimath', '[tex]/extpfeil', '[tex]/amscd', '[tex]/color', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
-    paths: {pretext: "https://pretextbook.org/js/lib"},
+  "loader": {
+    "load": [
+      "input/asciimath",
+      "[tex]/extpfeil",
+      "[tex]/amscd",
+      "[tex]/color",
+      "[tex]/newcommand",
+      "[pretext]/mathjaxknowl3.js"
+    ],
+    "paths": {
+      "pretext": "https://pretextbook.org/js/lib"
+    }
   },
-  startup: {
+  "startup": {
     pageReady() {
       return MathJax.startup.defaultPageReady().then(function () {
       console.log("in ready function");
       rsMathReady();
       }
     )}
-  },
+  }
 };
 </script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><link href="https://webwork-ptx.aimath.org/webwork2_files/js/apps/MathView/mathview.css" rel="stylesheet">
-<script src="https://pretextbook.org/js/0.2/pretext-webwork/2.17/pretext-webwork.js"></script><script src="https://webwork-ptx.aimath.org/webwork2_files/node_modules/iframe-resizer/js/iframeResizer.min.js"></script><script async="" src="https://cse.google.com/cse.js?cx=015103900096539427448:ngwuia10qci"></script><script src="https://unpkg.com/lunr/lunr.js"></script><script src="lunr-pretext-search-index.js" async=""></script><script src="https://pretextbook.org/js/0.2/pretext_search.js"></script><link href="https://pretextbook.org/css/0.6/pretext_search.css" rel="stylesheet" type="text/css">
-<script>js_version = 0.2</script><script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.2/pretext.js"></script><script>miniversion=0.1</script><script src="https://pretextbook.org/js/0.2/pretext_add_on.js?x=1"></script><script src="https://pretextbook.org/js/0.2/user_preferences.js"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
+<script src="https://pretextbook.org/js/0.3/pretext-webwork/2.17/pretext-webwork.js"></script><script src="https://webwork-ptx.aimath.org/webwork2_files/node_modules/iframe-resizer/js/iframeResizer.min.js"></script><script async="" src="https://cse.google.com/cse.js?cx=015103900096539427448:ngwuia10qci"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js" integrity="sha512-4xUl/d6D6THrAnXAwGajXkoWaeMNwEKK4iNfq5DotEbLPAfk6FSxSP3ydNxqDgCw1c/0Z1Jg6L8h2j+++9BZmg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="lunr-pretext-search-index.js" async=""></script><script src="https://pretextbook.org/js/0.3/pretext_search.js"></script><link href="https://pretextbook.org/css/0.7/pretext_search.css" rel="stylesheet" type="text/css">
+<script>js_version = 0.3</script><script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.3/pretext.js"></script><script>miniversion=0.1</script><script src="https://pretextbook.org/js/0.3/pretext_add_on.js?x=1"></script><script src="https://pretextbook.org/js/0.3/user_preferences.js"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
 </script><link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700&amp;family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&amp;family=Tinos:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" rel="stylesheet">
 <link href="https://fonts.cdnfonts.com/css/dejavu-serif" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:opsz,wdth,wght@8..144,50..150,100..900&amp;display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wdth,wght@75..100,300..800&amp;display=swap" rel="stylesheet">
-<link href="https://pretextbook.org/css/0.6/pretext.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.6/pretext_add_on.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.6/shell_default.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.6/banner_default.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.6/navbar_default.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.6/toc_default.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.6/knowls_default.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.6/style_default.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.6/colors_blue_grey.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.6/setcolors.css" rel="stylesheet" type="text/css">
-<!--Start: Google Global Site Tag code--><!--*** DO NOT COPY ANOTHER PROJECT'S MAGIC NUMBERS/ID ***--><!--***           GET YOUR OWN FROM GOOGLE             ***-->
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-QJKN634F7R"></script><script>  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-QJKN634F7R');
-</script><!--End: Google Global Site Tag code-->
+<link href="https://pretextbook.org/css/0.7/pretext.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/pretext_add_on.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/shell_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/banner_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/navbar_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/toc_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/knowls_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/style_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/colors_blue_grey.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/setcolors.css" rel="stylesheet" type="text/css">
 </head>
 <body id="acmulti" class="pretext book ignore-math">
-<a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead"><div class="ptx-banner">
-<a id="logo-link" href=""></a><div class="title-container">
+<a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead"><div class="ptx-banner">
+<a id="logo-link" class="logo-link" href=""></a><div class="title-container">
 <h1 class="heading"><a href="book-1.html"><span class="title">Active Calculus - Multivariable + Vector</span></a></h1>
 <p class="byline">Steve Schlicker, Mitchel T. Keller, Nicholas Long</p>
 </div>
-<div id="searchresultsplaceholder" style="display: none">
-<button id="closesearchresults" onclick="document.getElementById('searchresultsplaceholder').style.display = 'none'; return false;">x</button><h2>Search Results: <span id="searchterms"></span>
+<div id="searchresultsplaceholder" class="searchresultsplaceholder" style="display: none">
+<button id="closesearchresults" class="closesearchresults" onclick="document.getElementById('searchresultsplaceholder').style.display = 'none'; return false;">x</button><h2>Search Results: <span id="searchterms" class="searchterms"></span>
 </h2>
-<div id="searchempty"><span>No results.</span></div>
-<ol id="searchresults"></ol>
+<div id="searchempty" class="searchempty"><span>No results.</span></div>
+<ol id="searchresults" class="searchresults"></ol>
 </div>
-</div></header><nav id="ptx-navbar" class="navbar"><button class="toc-toggle button" aria-label="Show or hide table of contents"><span class="icon">☰</span><span class="name">Contents</span></button><a class="index-button button" href="index-1.html" title="Index"><span class="name">Index</span></a><button id="user-preferences-button" class="user-preferences-button button" title="Modify user preferences"><span id="theavatarbutton" class="name">You!</span><div id="preferences_menu_holder" class="hidden"><ol id="preferences_menu" style="font-family: 'Roboto Serif', serif;">
+</div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><button class="toc-toggle button" aria-label="Show or hide table of contents"><span class="icon">☰</span><span class="name">Contents</span></button><a class="index-button button" href="index-1.html" title="Index"><span class="name">Index</span></a><button id="user-preferences-button" class="user-preferences-button button" title="Modify user preferences"><span id="avatarbutton" class="avatarbutton name">You!</span><div id="preferences_menu_holder" class="preferences_menu_holder hidden"><ol id="preferences_menu" class="preferences_menu" style="font-family: 'Roboto Serif', serif;">
 <li data-env="avatar" tabindex="-1">Choose avatar<div class="wrap_to_submenu"><span class="to_submenu">▻</span></div>
 <ol class="hidden avatar">
 <li data-val="You!" tabindex="-1">
@@ -201,7 +224,7 @@ window.MathJax = {
 </li>
 </ol></div></button><span class="treebuttons"><a class="previous-button button" href="S-9-6-Vector-Valued-Functions.html" title="Previous"><span class="icon">&lt;</span><span class="name">Prev</span></a><a class="up-button button" href="C-9.html" title="Up"><span class="icon">^</span><span class="name">Up</span></a><a class="next-button button" href="S-9-8-Arc-Length-Curvature.html" title="Next"><span class="name">Next</span><span class="icon">&gt;</span></a></span><div class="searchwrapper" role="search"><div class="gcse-search"></div></div>
 <div class="searchbox"><div class="searchwidget">
-<input id="ptxsearch" type="text" name="terms" placeholder="Search" onchange="doSearch()"><button id="searchbutton" type="button" onclick="doSearch()">🔍</button>
+<input id="ptxsearch" class="ptxsearch" type="text" name="terms" placeholder="Search" onchange="doSearch()"><button id="searchbutton" class="searchbutton" type="button" onclick="doSearch()">🔍</button>
 </div></div></nav><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\newcommand{\R}{\mathbb{R}}
 \newcommand{\va}{\mathbf{a}}
 \newcommand{\vb}{\mathbf{b}}
@@ -246,7 +269,7 @@ window.MathJax = {
 \newcommand{\fillinmath}[1]{\mathchoice{\colorbox{fillinmathshade}{$\displaystyle     \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\textstyle        \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptstyle      \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptscriptstyle\phantom{\,#1\,}$}}}
 \)</span></div>
 <div class="ptx-page">
-<div id="ptx-sidebar"><nav id="ptx-toc" class="depth2"><ul class="structural">
+<div id="ptx-sidebar" class="ptx-sidebar"><nav id="ptx-toc" class="ptx-toc depth2"><ul class="structural">
 <li>
 <div class="toc-item"><a href="frontmatter.html" class="internal"><span class="title">Front Matter</span></a></div>
 <ul class="structural">
@@ -574,14 +597,14 @@ window.MathJax = {
 </ul>
 </li>
 <li>
-<div class="toc-item"><a href="S_ScalarLineIntegral.html" class="internal"><span class="codenumber">12.5</span> <span class="title">Line Integrals of Scalar Functions</span></a></div>
+<div class="toc-item"><a href="S_Vector_ScalarLineIntegral.html" class="internal"><span class="codenumber">12.5</span> <span class="title">Line Integrals of Scalar Functions</span></a></div>
 <ul class="structural">
-<li><div class="toc-item"><a href="S_ScalarLineIntegral.html#subsection-124" class="internal"><span class="codenumber">12.5.1</span> <span class="title">Defining line integrals of scalar functions</span></a></div></li>
-<li><div class="toc-item"><a href="S_ScalarLineIntegral.html#subsection-125" class="internal"><span class="codenumber">12.5.2</span> <span class="title">Using Parameterizations to Calculate Scalar Line Integrals</span></a></div></li>
-<li><div class="toc-item"><a href="S_ScalarLineIntegral.html#subsection-126" class="internal"><span class="codenumber">12.5.3</span> <span class="title">Properties of Scalar Line Integrals</span></a></div></li>
-<li><div class="toc-item"><a href="S_ScalarLineIntegral.html#subsection-127" class="internal"><span class="codenumber">12.5.4</span> <span class="title">Visualizations of Scalar Line Integrals as Area Under a Curve</span></a></div></li>
-<li><div class="toc-item"><a href="S_ScalarLineIntegral.html#subsection-128" class="internal"><span class="codenumber">12.5.5</span> <span class="title">Summary</span></a></div></li>
-<li><div class="toc-item"><a href="S_ScalarLineIntegral.html#exercises-30" class="internal"><span class="codenumber">12.5.6</span> <span class="title">Exercises</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_ScalarLineIntegral.html#subsection-124" class="internal"><span class="codenumber">12.5.1</span> <span class="title">Defining line integrals of scalar functions</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_ScalarLineIntegral.html#subsection-125" class="internal"><span class="codenumber">12.5.2</span> <span class="title">Using Parameterizations to Calculate Scalar Line Integrals</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_ScalarLineIntegral.html#subsection-126" class="internal"><span class="codenumber">12.5.3</span> <span class="title">Properties of Scalar Line Integrals</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_ScalarLineIntegral.html#subsection-127" class="internal"><span class="codenumber">12.5.4</span> <span class="title">Visualizations of Scalar Line Integrals as Area Under a Curve</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_ScalarLineIntegral.html#subsection-128" class="internal"><span class="codenumber">12.5.5</span> <span class="title">Summary</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_ScalarLineIntegral.html#exercises-30" class="internal"><span class="codenumber">12.5.6</span> <span class="title">Exercises</span></a></div></li>
 </ul>
 </li>
 <li>
@@ -607,10 +630,10 @@ window.MathJax = {
 </ul>
 </li>
 <li>
-<div class="toc-item"><a href="S_Vector_GreensTheorem.html" class="internal"><span class="codenumber">12.8</span> <span class="title">Green's Theorem</span></a></div>
+<div class="toc-item"><a href="S_Vector_GreensTheorem.html" class="internal"><span class="codenumber">12.8</span> <span class="title">Green’s Theorem</span></a></div>
 <ul class="structural">
 <li><div class="toc-item"><a href="S_Vector_GreensTheorem.html#SS_Vector_GreensTheorem_Circulation" class="internal"><span class="codenumber">12.8.1</span> <span class="title">Circulation</span></a></div></li>
-<li><div class="toc-item"><a href="S_Vector_GreensTheorem.html#subsection-140" class="internal"><span class="codenumber">12.8.2</span> <span class="title">Green's Theorem</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_GreensTheorem.html#subsection-140" class="internal"><span class="codenumber">12.8.2</span> <span class="title">Green’s Theorem</span></a></div></li>
 <li><div class="toc-item"><a href="S_Vector_GreensTheorem.html#subsection-141" class="internal"><span class="codenumber">12.8.3</span> <span class="title">What happens when vector fields are not smooth?</span></a></div></li>
 <li><div class="toc-item"><a href="S_Vector_GreensTheorem.html#subsection-142" class="internal"><span class="codenumber">12.8.4</span> <span class="title">Summary</span></a></div></li>
 <li><div class="toc-item"><a href="S_Vector_GreensTheorem.html#exercises-33" class="internal"><span class="codenumber">12.8.5</span> <span class="title">Exercises</span></a></div></li>
@@ -620,27 +643,27 @@ window.MathJax = {
 <div class="toc-item"><a href="S_Vector_FluxInt.html" class="internal"><span class="codenumber">12.9</span> <span class="title">Flux Integrals</span></a></div>
 <ul class="structural">
 <li><div class="toc-item"><a href="S_Vector_FluxInt.html#SS_Vector_FluxInt_Idea" class="internal"><span class="codenumber">12.9.1</span> <span class="title">The Idea of the Flux of a Vector Field through a Surface</span></a></div></li>
-<li><div class="toc-item"><a href="S_Vector_FluxInt.html#subsection-144" class="internal"><span class="codenumber">12.9.2</span> <span class="title">Measuring the Flux of a Vector Field through a Surface</span></a></div></li>
-<li><div class="toc-item"><a href="S_Vector_FluxInt.html#SS_Vector_FluxInt_Calculate" class="internal"><span class="codenumber">12.9.3</span> <span class="title">Efficiently Calculating Flux Integrals</span></a></div></li>
-<li><div class="toc-item"><a href="S_Vector_FluxInt.html#subsection-146" class="internal"><span class="codenumber">12.9.4</span> <span class="title">Summary</span></a></div></li>
-<li><div class="toc-item"><a href="S_Vector_FluxInt.html#exercises-34" class="internal"><span class="codenumber">12.9.5</span> <span class="title">Exercises</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_FluxInt.html#subsection-144" class="internal"><span class="codenumber">12.9.2</span> <span class="title">The Details of Measuring the Flux of a Vector Field through a Surface</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_FluxInt.html#subsection-145" class="internal"><span class="codenumber">12.9.3</span> <span class="title">Summary</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_FluxInt.html#exercises-34" class="internal"><span class="codenumber">12.9.4</span> <span class="title">Exercises</span></a></div></li>
 </ul>
 </li>
 <li>
 <div class="toc-item"><a href="S_Vector_ScalarSurfaceIntegral.html" class="internal"><span class="codenumber">12.10</span> <span class="title">Surface Integrals of Scalar Valued Functions</span></a></div>
 <ul class="structural">
-<li><div class="toc-item"><a href="S_Vector_ScalarSurfaceIntegral.html#subsection-147" class="internal"><span class="codenumber">12.10.1</span> <span class="title">Defining surface integrals of scalar functions</span></a></div></li>
-<li><div class="toc-item"><a href="S_Vector_ScalarSurfaceIntegral.html#subsection-148" class="internal"><span class="codenumber">12.10.2</span> <span class="title">Properties of Scalar Surface Integrals</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_ScalarSurfaceIntegral.html#subsection-146" class="internal"><span class="codenumber">12.10.1</span> <span class="title">Defining surface integrals of scalar functions</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_ScalarSurfaceIntegral.html#subsection-147" class="internal"><span class="codenumber">12.10.2</span> <span class="title">Properties of Scalar Surface Integrals</span></a></div></li>
 <li><div class="toc-item"><a href="S_Vector_ScalarSurfaceIntegral.html#exercises-35" class="internal"><span class="codenumber">12.10.3</span> <span class="title">Exercises</span></a></div></li>
 </ul>
 </li>
 <li>
-<div class="toc-item"><a href="S_Vector_StokesThm.html" class="internal"><span class="codenumber">12.11</span> <span class="title">Stokes' Theorem</span></a></div>
+<div class="toc-item"><a href="S_Vector_StokesThm.html" class="internal"><span class="codenumber">12.11</span> <span class="title">Stokes’ Theorem</span></a></div>
 <ul class="structural">
-<li><div class="toc-item"><a href="S_Vector_StokesThm.html#SS_Vector_StokesThm_Development" class="internal"><span class="codenumber">12.11.1</span> <span class="title">Circulation in three dimensions and Stokes' Theorem</span></a></div></li>
-<li><div class="toc-item"><a href="S_Vector_StokesThm.html#SS_Vector_StokesThm_Verify" class="internal"><span class="codenumber">12.11.2</span> <span class="title">Verifying and Applying Stokes' Theorem</span></a></div></li>
-<li><div class="toc-item"><a href="S_Vector_StokesThm.html#subsection-151" class="internal"><span class="codenumber">12.11.3</span> <span class="title">Summary</span></a></div></li>
-<li><div class="toc-item"><a href="S_Vector_StokesThm.html#exercises-36" class="internal"><span class="codenumber">12.11.4</span> <span class="title">Exercises</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_StokesThm.html#SS_Vector_StokesThm_Development" class="internal"><span class="codenumber">12.11.1</span> <span class="title">Circulation in three dimensions and Stokes’ Theorem</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_StokesThm.html#SS_Vector_StokesThm_Verify" class="internal"><span class="codenumber">12.11.2</span> <span class="title">Verifying and Applying Stokes’ Theorem</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_StokesThm.html#surfaceboundaries" class="internal"><span class="codenumber">12.11.3</span> <span class="title">Practice with Surfaces and thier Boundaries</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_StokesThm.html#subsection-151" class="internal"><span class="codenumber">12.11.4</span> <span class="title">Summary</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_StokesThm.html#exercises-36" class="internal"><span class="codenumber">12.11.5</span> <span class="title">Exercises</span></a></div></li>
 </ul>
 </li>
 <li>
@@ -664,12 +687,12 @@ window.MathJax = {
 </h2>
 <article class="objectives goal-like" id="objectives-7"><h3 class="heading"><span class="type">Motivating Questions</span></h3>
 <ul class="disc">
-<li id="li-402"><div class="para" id="p-1036">What do we mean by the derivative of a vector-valued function and how do we calculate it?</div></li>
-<li id="li-403"><div class="para" id="p-1037">What does the derivative of a vector-valued function measure?</div></li>
-<li id="li-404"><div class="para" id="p-1038">What do we mean by the integral of a vector-valued function and how do we compute it?</div></li>
-<li id="li-405"><div class="para" id="p-1039">How do we describe the motion of a projectile if the only force acting on the object is acceleration due to gravity?</div></li>
-</ul></article><section class="introduction" id="introduction-7"><div class="para" id="p-1040">A vector-valued function <span class="process-math">\(\vr\)</span> determines a curve in space as the collection of terminal points of the vectors <span class="process-math">\(\vr(t)\text{.}\)</span> If the curve is smooth, it is natural to ask whether <span class="process-math">\(\vr(t)\)</span> has a derivative. In the same way, our experiences with integrals in single-variable calculus prompt us to wonder what the integral of a vector-valued function might be and what it might tell us. We explore both of these questions in detail in this section.</div> <div class="para logical" id="p-1041">
-<div class="para">For now, let's recall some important ideas from calculus I. Given a function <span class="process-math">\(s\)</span> that measures the position of an object moving along an axis, its derivative, <span class="process-math">\(s'\text{,}\)</span> is defined by</div>
+<li id="li-401"><div class="para" id="p-1035">What do we mean by the derivative of a vector-valued function and how do we calculate it?</div></li>
+<li id="li-402"><div class="para" id="p-1036">What does the derivative of a vector-valued function measure?</div></li>
+<li id="li-403"><div class="para" id="p-1037">What do we mean by the integral of a vector-valued function and how do we compute it?</div></li>
+<li id="li-404"><div class="para" id="p-1038">How do we describe the motion of a projectile if the only force acting on the object is acceleration due to gravity?</div></li>
+</ul></article><section class="introduction" id="introduction-7"><div class="para" id="p-1039">A vector-valued function <span class="process-math">\(\vr\)</span> determines a curve in space as the collection of terminal points of the vectors <span class="process-math">\(\vr(t)\text{.}\)</span> If the curve is smooth, it is natural to ask whether <span class="process-math">\(\vr(t)\)</span> has a derivative. In the same way, our experiences with integrals in single-variable calculus prompt us to wonder what the integral of a vector-valued function might be and what it might tell us. We explore both of these questions in detail in this section.</div> <div class="para logical" id="p-1040">
+<div class="para">For now, let’s recall some important ideas from calculus I. Given a function <span class="process-math">\(s\)</span> that measures the position of an object moving along an axis, its derivative, <span class="process-math">\(s'\text{,}\)</span> is defined by</div>
 <div class="displaymath process-math">
 \begin{equation*}
 s'(t) = \lim_{h \to 0} \frac{s(t+h) - s(t)}{h},
@@ -677,23 +700,23 @@ s'(t) = \lim_{h \to 0} \frac{s(t+h) - s(t)}{h},
 </div>
 <div class="para">and measures the instantaneous rate of change of <span class="process-math">\(s\)</span> with respect to time. In particular, for a fixed value <span class="process-math">\(t = a\text{,}\)</span> <span class="process-math">\(s'(a)\)</span> measures the velocity of the moving object, as well as the slope of the tangent line to the curve <span class="process-math">\(y = s(t)\)</span> at the point <span class="process-math">\((a,s(a))\text{.}\)</span>
 </div>
-</div> <div class="para" id="p-1042">As we work with vector-valued functions, we will strive to update these ideas and perspectives into the context of curves in space and outputs that are vectors.</div> <article class="exploration project-like" id="PA_9_7"><h3 class="heading">
+</div> <div class="para" id="p-1041">As we work with vector-valued functions, we will strive to update these ideas and perspectives into the context of curves in space and outputs that are vectors.</div> <article class="exploration project-like" id="PA_9_7"><h3 class="heading">
 <span class="type">Preview Activity</span><span class="space"> </span><span class="codenumber">9.7.1</span><span class="period">.</span>
 </h3>
-<div class="para logical" id="p-1043">
+<div class="para logical" id="p-1042">
 <div class="para">Let <span class="process-math">\(\vr(t) = \cos(t) \vi + \sin(2t) \vj\)</span> describe the path traveled by an object at time <span class="process-math">\(t\text{.}\)</span>
 </div>
 <ol class="lower-alpha">
-<li id="li-406"><div class="para" id="p-1044">Use appropriate technology to help you sketch the graph of the vector-valued function <span class="process-math">\(\vr\text{,}\)</span> and then locate and label the point on the graph when <span class="process-math">\(t=\pi\text{.}\)</span>
+<li id="li-405"><div class="para" id="p-1043">Use appropriate technology to help you sketch the graph of the vector-valued function <span class="process-math">\(\vr\text{,}\)</span> and then locate and label the point on the graph when <span class="process-math">\(t=\pi\text{.}\)</span>
 </div></li>
-<li id="li-407"><div class="para" id="p-1045">Recall that for functions of a single variable, the derivative of a sum is the sum of the derivatives; that is, <span class="process-math">\(\frac{d}{dx}[f(x) + g(x)] = f'(x) + g'(x)\text{.}\)</span> With this idea in mind and viewing <span class="process-math">\(\vi\)</span> and <span class="process-math">\(\vj\)</span> as constant vectors, what do you expect the derivative of <span class="process-math">\(\vr\)</span> to be?  Write a proposed formula for <span class="process-math">\(\vr'(t)\text{.}\)</span>
+<li id="li-406"><div class="para" id="p-1044">Recall that for functions of a single variable, the derivative of a sum is the sum of the derivatives; that is, <span class="process-math">\(\frac{d}{dx}[f(x) + g(x)] = f'(x) + g'(x)\text{.}\)</span> With this idea in mind and viewing <span class="process-math">\(\vi\)</span> and <span class="process-math">\(\vj\)</span> as constant vectors, what do you expect the derivative of <span class="process-math">\(\vr\)</span> to be?  Write a proposed formula for <span class="process-math">\(\vr'(t)\text{.}\)</span>
 </div></li>
-<li id="li-408"><div class="para" id="p-1046">Use your result from part (b) to compute <span class="process-math">\(\vr'(\pi)\text{.}\)</span> Sketch this vector <span class="process-math">\(\vr'(\pi)\)</span> as emanating from the point on the graph of <span class="process-math">\(\vr\)</span> when <span class="process-math">\(t=\pi\)</span> , and explain what you think <span class="process-math">\(\vr'(\pi)\)</span> tells us about the object's motion.</div></li>
+<li id="li-407"><div class="para" id="p-1045">Use your result from part (b) to compute <span class="process-math">\(\vr'(\pi)\text{.}\)</span> Sketch this vector <span class="process-math">\(\vr'(\pi)\)</span> as emanating from the point on the graph of <span class="process-math">\(\vr\)</span> when <span class="process-math">\(t=\pi\)</span> , and explain what you think <span class="process-math">\(\vr'(\pi)\)</span> tells us about the object’s motion.</div></li>
 </ol>
 </div></article></section><section class="subsection" id="subsection-33"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">9.7.1</span> <span class="title">The Derivative</span>
 </h3>
-<div class="para logical" id="p-1047">
+<div class="para logical" id="p-1046">
 <div class="para">In single variable calculus, we define the derivative, <span class="process-math">\(f'\text{,}\)</span> of a given function <span class="process-math">\(f\)</span> by</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -705,7 +728,7 @@ f'(x) = \lim_{h \to 0} \frac{f(x+h) - f(x)}{h},
 <article class="definition definition-like" id="definition-12"><h4 class="heading">
 <span class="type">Definition</span><span class="space"> </span><span class="codenumber">9.7.1</span><span class="period">.</span>
 </h4>
-<div class="para logical" id="p-1048">
+<div class="para logical" id="p-1047">
 <div class="para">The <dfn class="terminology">derivative</dfn> of a vector-valued function <span class="process-math">\(\vr\)</span> is defined to be</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -717,12 +740,12 @@ f'(x) = \lim_{h \to 0} \frac{f(x+h) - f(x)}{h},
 </div></article><article class="activity project-like" id="A_9_7_1"><h4 class="heading">
 <span class="type">Activity</span><span class="space"> </span><span class="codenumber">9.7.2</span><span class="period">.</span>
 </h4>
-<div class="para" id="p-1049">Let's investigate how we can interpret the derivative <span class="process-math">\(\vr'(t)\text{.}\)</span> Let <span class="process-math">\(\vr\)</span> be the vector-valued function whose graph is shown in <a href="" class="xref" data-knowl="./knowl/F_9_7_VVF_tan_vector.html" title="Figure 9.7.2">Figure 9.7.2</a>, and let <span class="process-math">\(h\)</span> be a scalar that represents a small change in time. The vector <span class="process-math">\(\vr(t)\)</span> is the blue vector in <a href="" class="xref" data-knowl="./knowl/F_9_7_VVF_tan_vector.html" title="Figure 9.7.2">Figure 9.7.2</a> and <span class="process-math">\(\vr(t+h)\)</span> is the green vector.</div> <figure class="figure figure-like" id="F_9_7_VVF_tan_vector"><div class="image-box" style="width: 50%; margin-left: 25%; margin-right: 25%;"><img src="external/images/fig_9_7_curve_1.svg" role="img" class="contained"></div>
+<div class="para" id="p-1048">Let’s investigate how we can interpret the derivative <span class="process-math">\(\vr'(t)\text{.}\)</span> Let <span class="process-math">\(\vr\)</span> be the vector-valued function whose graph is shown in <a href="" class="xref" data-knowl="./knowl/F_9_7_VVF_tan_vector.html" title="Figure 9.7.2">Figure 9.7.2</a>, and let <span class="process-math">\(h\)</span> be a scalar that represents a small change in time. The vector <span class="process-math">\(\vr(t)\)</span> is the blue vector in <a href="" class="xref" data-knowl="./knowl/F_9_7_VVF_tan_vector.html" title="Figure 9.7.2">Figure 9.7.2</a> and <span class="process-math">\(\vr(t+h)\)</span> is the green vector.</div> <figure class="figure figure-like" id="F_9_7_VVF_tan_vector"><div class="image-box" style="width: 50%; margin-left: 25%; margin-right: 25%;"><img src="external/images/fig_9_7_curve_1.svg" role="img" class="contained"></div>
 <figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">9.7.2<span class="period">.</span></span><span class="space"> </span>A single difference quotient.</figcaption></figure> <ol class="lower-alpha">
-<li id="li-409"><div class="para" id="p-1050">Is the quantity <span class="process-math">\(\vr(t+h)-\vr(t)\)</span> a vector or a scalar? Identify this object in <a href="" class="xref" data-knowl="./knowl/F_9_7_VVF_tan_vector.html" title="Figure 9.7.2">Figure 9.7.2</a>.</div></li>
-<li id="li-410"><div class="para" id="p-1051">Is <span class="process-math">\(\frac{\vr(t+h)-\vr(t)}{h}\)</span> a vector or a scalar? Sketch a representative vector <span class="process-math">\(\frac{\vr(t+h)-\vr(t)}{h}\)</span> with <span class="process-math">\(h \lt  1\)</span> in <a href="" class="xref" data-knowl="./knowl/F_9_7_VVF_tan_vector.html" title="Figure 9.7.2">Figure 9.7.2</a>.</div></li>
-<li id="li-411"><div class="para" id="p-1052">Think of <span class="process-math">\(\vr(t)\)</span> as providing the position of an object moving along the curve these vectors trace out.  What do you think that the vector <span class="process-math">\(\frac{\vr(t+h)-\vr(t)}{h}\)</span> measures? Why?  (Hint: You might think analogously about difference quotients such as <span class="process-math">\(\frac{f(x+h) - f(x)}{h}\)</span> or <span class="process-math">\(\frac{s(t+h) - s(t)}{h}\)</span> from calculus I.)</div></li>
-<li id="li-412"><div class="para logical" id="p-1053">
+<li id="li-408"><div class="para" id="p-1049">Is the quantity <span class="process-math">\(\vr(t+h)-\vr(t)\)</span> a vector or a scalar? Identify this object in <a href="" class="xref" data-knowl="./knowl/F_9_7_VVF_tan_vector.html" title="Figure 9.7.2">Figure 9.7.2</a>.</div></li>
+<li id="li-409"><div class="para" id="p-1050">Is <span class="process-math">\(\frac{\vr(t+h)-\vr(t)}{h}\)</span> a vector or a scalar? Sketch a representative vector <span class="process-math">\(\frac{\vr(t+h)-\vr(t)}{h}\)</span> with <span class="process-math">\(h \lt  1\)</span> in <a href="" class="xref" data-knowl="./knowl/F_9_7_VVF_tan_vector.html" title="Figure 9.7.2">Figure 9.7.2</a>.</div></li>
+<li id="li-410"><div class="para" id="p-1051">Think of <span class="process-math">\(\vr(t)\)</span> as providing the position of an object moving along the curve these vectors trace out.  What do you think that the vector <span class="process-math">\(\frac{\vr(t+h)-\vr(t)}{h}\)</span> measures? Why?  (Hint: You might think analogously about difference quotients such as <span class="process-math">\(\frac{f(x+h) - f(x)}{h}\)</span> or <span class="process-math">\(\frac{s(t+h) - s(t)}{h}\)</span> from calculus I.)</div></li>
+<li id="li-411"><div class="para logical" id="p-1052">
 <div class="para">
 <a href="" class="xref" data-knowl="./knowl/F_9_7_VVF_tan_vector_quotients.html" title="Figure 9.7.3">Figure 9.7.3</a> presents three snapshots of the vectors <span class="process-math">\(\frac{\vr(t+h)-\vr(t)}{h}\)</span> as we let <span class="process-math">\(h \to 0\text{.}\)</span> Write 2-3 sentences to describe key attributes of the vector</div>
 <div class="displaymath process-math" data-contains-math-knowls="./knowl/F_9_7_VVF_tan_vector_quotients.html">
@@ -737,7 +760,7 @@ f'(x) = \lim_{h \to 0} \frac{f(x+h) - f(x)}{h},
 <div class="sbspanel top" style="width:33%;"><img src="external/images/fig_9_7_animate_04.svg" role="img" class="contained"></div>
 <div class="sbspanel top" style="width:33%;"><img src="external/images/fig_9_7_animate_06.svg" role="img" class="contained"></div>
 </div></div>
-<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">9.7.3<span class="period">.</span></span><span class="space"> </span>Snapshots of several difference quotients.</figcaption></figure></article><div class="para logical" id="p-1054">
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">9.7.3<span class="period">.</span></span><span class="space"> </span>Snapshots of several difference quotients.</figcaption></figure></article><div class="para logical" id="p-1053">
 <div class="para">As <a href="" class="xref" data-knowl="./knowl/A_9_7_1.html" title="Activity 9.7.2">Activity 9.7.2</a> indicates, if <span class="process-math">\(\vr(t)\)</span> determines the position of an object at time <span class="process-math">\(t\text{,}\)</span> then <span class="process-math">\(\frac{\vr(t+h)-\vr(t)}{h}\)</span> represents the average rate of change in the position of the object over the interval <span class="process-math">\([t,t+h]\text{,}\)</span> which is also the average velocity of the object on this interval. Thus, the derivative</div>
 <div class="displaymath process-math" data-contains-math-knowls="./knowl/A_9_7_1.html">
 \begin{equation*}
@@ -747,7 +770,7 @@ f'(x) = \lim_{h \to 0} \frac{f(x+h) - f(x)}{h},
 <div class="para">is the instantaneous rate of change of <span class="process-math">\(\vr(t)\)</span> at time <span class="process-math">\(t\)</span> (for those values of <span class="process-math">\(t\)</span> for which the limit exists), so <span class="process-math">\(\vr'(t) = \vv(t)\)</span> is the instantaneous velocity of the object at time <span class="process-math">\(t\text{.}\)</span> Furthermore, we can interpret the derivative <span class="process-math">\(\vr'(t)\)</span> as the direction vector of the line tangent to the graph of <span class="process-math">\(\vr\)</span> at the value <span class="process-math">\(t\text{.}\)</span>
 </div>
 </div>
-<div class="para logical" id="p-1055">
+<div class="para logical" id="p-1054">
 <div class="para">Similarly,</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -756,11 +779,11 @@ f'(x) = \lim_{h \to 0} \frac{f(x+h) - f(x)}{h},
 </div>
 <div class="para">is the instantaneous rate of change of the velocity of the object at time <span class="process-math">\(t\text{,}\)</span> for those values of <span class="process-math">\(t\)</span> for which the limits exists, and thus <span class="process-math">\(\vv'(t) = \va(t)\)</span> is the acceleration of the moving object.</div>
 </div>
-<div class="para" id="p-1056">
+<div class="para" id="p-1055">
 <em class="emphasis">Note well:</em> Both the velocity and acceleration are <em class="emphasis">vector quantities</em>: they have magnitude and direction. By contrast, the magnitude of the velocity vector, <span class="process-math">\(| \vv(t) |\text{,}\)</span> which is the <em class="emphasis">speed</em> of the object at time <span class="process-math">\(t\text{,}\)</span> is a scalar quantity.</div></section><section class="subsection" id="subsection-34"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">9.7.2</span> <span class="title">Computing Derivatives</span>
 </h3>
-<div class="para logical" id="p-1057">
+<div class="para logical" id="p-1056">
 <div class="para">As we learned in single variable calculus, computing derivatives from the definition is often difficult. Fortunately, properties of the limit make it straightforward to calculate the derivative of a vector-valued function similar to how we developed shortcut differentiation rules in calculus I. To see why, recall that the limit of a sum is the sum of the limits, and that we can remove constant factors from limits. Thus, as we observed in a particular example in <a href="" class="xref" data-knowl="./knowl/PA_9_7.html" title="Preview Activity 9.7.1">Preview Activity 9.7.1</a>, if <span class="process-math">\(\vr(t) = x(t) \vi + y(t)
 \vj + z(t) \vk\text{,}\)</span> it follows that</div>
 <div class="displaymath process-math" data-contains-math-knowls="./knowl/PA_9_7.html" id="md-12">
@@ -775,9 +798,9 @@ f'(x) = \lim_{h \to 0} \frac{f(x+h) - f(x)}{h},
 \end{align*}
 </div>
 </div>
-<div class="para" id="p-1058">Thus, we can calculate the derivative of a vector-valued function by simply differentiating its components.</div>
+<div class="para" id="p-1057">Thus, we can calculate the derivative of a vector-valued function by simply differentiating its components.</div>
 <article class="assemblage assemblage-like" id="Vector-valued-function-derivative"><h4 class="heading"><span class="title">The derivative of a vector-valued function.</span></h4>
-<div class="para logical" id="p-1059">
+<div class="para logical" id="p-1058">
 <div class="para">If <span class="process-math">\(\vr(t) = x(t) \vi + y(t) \vj + z(t) \vk\text{,}\)</span> then</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -788,16 +811,16 @@ f'(x) = \lim_{h \to 0} \frac{f(x+h) - f(x)}{h},
 </div></article><article class="activity project-like" id="A_9_7_2"><h4 class="heading">
 <span class="type">Activity</span><span class="space"> </span><span class="codenumber">9.7.3</span><span class="period">.</span>
 </h4>
-<div class="para logical" id="p-1060">
+<div class="para logical" id="p-1059">
 <div class="para">For each of the following vector-valued functions, find <span class="process-math">\(\vr'(t)\text{.}\)</span>
 </div>
 <ol class="lower-alpha">
-<li id="li-413"><div class="para" id="p-1061"><span class="process-math">\(\vr(t) = \langle \cos(t), t\sin(t), \ln(t) \rangle\text{.}\)</span></div></li>
-<li id="li-414"><div class="para" id="p-1062"><span class="process-math">\(\vr(t) = \langle t^2 + 3t, e^{-2t}, \frac{t}{t^2 + 1} \rangle\text{.}\)</span></div></li>
-<li id="li-415"><div class="para" id="p-1063"><span class="process-math">\(\vr(t) = \langle \tan(t), \cos(t^2), te^{-t} \rangle\text{.}\)</span></div></li>
-<li id="li-416"><div class="para" id="p-1064"><span class="process-math">\(\vr(t) = \langle \sqrt{t^4 + 4}, \sin(3t), \cos(4t) \rangle\text{.}\)</span></div></li>
+<li id="li-412"><div class="para" id="p-1060"><span class="process-math">\(\vr(t) = \langle \cos(t), t\sin(t), \ln(t) \rangle\text{.}\)</span></div></li>
+<li id="li-413"><div class="para" id="p-1061"><span class="process-math">\(\vr(t) = \langle t^2 + 3t, e^{-2t}, \frac{t}{t^2 + 1} \rangle\text{.}\)</span></div></li>
+<li id="li-414"><div class="para" id="p-1062"><span class="process-math">\(\vr(t) = \langle \tan(t), \cos(t^2), te^{-t} \rangle\text{.}\)</span></div></li>
+<li id="li-415"><div class="para" id="p-1063"><span class="process-math">\(\vr(t) = \langle \sqrt{t^4 + 4}, \sin(3t), \cos(4t) \rangle\text{.}\)</span></div></li>
 </ol>
-</div></article><div class="para logical" id="p-1065">
+</div></article><div class="para logical" id="p-1064">
 <div class="para">In first-semester calculus, we developed several important differentiation rules, including the constant multiple, product, quotient, and chain rules. For instance, recall that we formally state the product rule as</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -805,26 +828,26 @@ f'(x) = \lim_{h \to 0} \frac{f(x+h) - f(x)}{h},
 \end{equation*}
 </div>
 </div>
-<div class="para" id="p-1066">There are several analogous rules for vector-valued functions, including a product rule for scalar functions and vector-valued functions. These rules, which are easily verified, are summarized as follows.</div>
+<div class="para" id="p-1065">There are several analogous rules for vector-valued functions, including a product rule for scalar functions and vector-valued functions. These rules, which are easily verified, are summarized as follows.</div>
 <article class="assemblage assemblage-like" id="Vector-valued-functions-derivative-propoerties"><h4 class="heading"><span class="title">Properties of derivatives of vector-valued functions.</span></h4>
-<div class="para logical" id="p-1067">
+<div class="para logical" id="p-1066">
 <div class="para">Let <span class="process-math">\(f\)</span> be a differentiable real-valued function of a real variable <span class="process-math">\(t\)</span> and let <span class="process-math">\(\vr\)</span> and <span class="process-math">\(\vs\)</span> be differentiable vector-valued functions of the real variable <span class="process-math">\(t\text{.}\)</span> Then</div>
 <ol class="decimal">
-<li id="li-417"><div class="para" id="p-1068"><span class="process-math">\(\displaystyle \frac{d}{dt} \left[\vr(t) + \vs(t) \right] = \vr'(t) +
+<li id="li-416"><div class="para" id="p-1067"><span class="process-math">\(\displaystyle \frac{d}{dt} \left[\vr(t) + \vs(t) \right] = \vr'(t) +
 \vs'(t)\)</span></div></li>
-<li id="li-418"><div class="para" id="p-1069"><span class="process-math">\(\displaystyle \frac{d}{dt} [f(t) \vr(t)] = f(t) \vr'(t) + f'(t) \vr(t)\)</span></div></li>
-<li id="li-419"><div class="para" id="p-1070"><span class="process-math">\(\displaystyle \frac{d}{dt} \left[\vr(t) \cdot \vs(t) \right] = \vr'(t)
+<li id="li-417"><div class="para" id="p-1068"><span class="process-math">\(\displaystyle \frac{d}{dt} [f(t) \vr(t)] = f(t) \vr'(t) + f'(t) \vr(t)\)</span></div></li>
+<li id="li-418"><div class="para" id="p-1069"><span class="process-math">\(\displaystyle \frac{d}{dt} \left[\vr(t) \cdot \vs(t) \right] = \vr'(t)
 \cdot \vs(t) + \vr(t) \cdot \vs'(t)\)</span></div></li>
-<li id="li-420"><div class="para" id="p-1071"><span class="process-math">\(\displaystyle \frac{d}{dt} \left[\vr(t) \times \vs(t) \right] = \vr'(t)
+<li id="li-419"><div class="para" id="p-1070"><span class="process-math">\(\displaystyle \frac{d}{dt} \left[\vr(t) \times \vs(t) \right] = \vr'(t)
 \times \vs(t) + \vr(t) \times \vs'(t)\)</span></div></li>
-<li id="li-421"><div class="para" id="p-1072"><span class="process-math">\(\frac{d}{dt} \left[\vr(f(t))\right] = f'(t) \vr'(f(t))\text{.}\)</span></div></li>
+<li id="li-420"><div class="para" id="p-1071"><span class="process-math">\(\frac{d}{dt} \left[\vr(f(t))\right] = f'(t) \vr'(f(t))\text{.}\)</span></div></li>
 </ol>
-</div></article><div class="para" id="p-1073">
+</div></article><div class="para" id="p-1072">
 <em class="emphasis">Note well.</em> When applying these properties, use care to interpret the quantities involved as either scalars or vectors. For example, <span class="process-math">\(\vr(t) \cdot \vs(t)\)</span> defines a scalar function because we have taken the dot product of two vector-valued functions. However, <span class="process-math">\(\vr(t) \times \vs(t)\)</span> defines a vector-valued function since we have taken the cross product of two vector-valued functions.</div>
 <article class="activity project-like" id="A_9_7_8"><h4 class="heading">
 <span class="type">Activity</span><span class="space"> </span><span class="codenumber">9.7.4</span><span class="period">.</span>
 </h4>
-<div class="para logical" id="p-1074">
+<div class="para logical" id="p-1073">
 <div class="para">The left side of <a href="" class="xref" data-knowl="./knowl/F_9_7_space_curve.html" title="Figure 9.7.4">Figure 9.7.4</a> shows the curve described by the vector-valued function <span class="process-math">\(\vr\)</span> defined by</div>
 <div class="displaymath process-math" data-contains-math-knowls="./knowl/F_9_7_space_curve.html">
 \begin{equation*}
@@ -838,16 +861,16 @@ t-1\right\rangle.
 </div></div>
 <figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">9.7.4<span class="period">.</span></span><span class="space"> </span>The curve <span class="process-math">\(\vr(t) = \left\langle 2t-\frac12 t^2 + 1,
 t-1\right\rangle\)</span> and its speed.</figcaption></figure> <ol class="lower-alpha">
-<li id="li-422"><div class="para" id="p-1075">Find the object's velocity <span class="process-math">\(\vv(t)\text{.}\)</span>
+<li id="li-421"><div class="para" id="p-1074">Find the object’s velocity <span class="process-math">\(\vv(t)\text{.}\)</span>
 </div></li>
-<li id="li-423"><div class="para" id="p-1076">Find the object's acceleration <span class="process-math">\(\va(t)\text{.}\)</span>
+<li id="li-422"><div class="para" id="p-1075">Find the object’s acceleration <span class="process-math">\(\va(t)\text{.}\)</span>
 </div></li>
-<li id="li-424"><div class="para" id="p-1077">Indicate on the left of <a href="" class="xref" data-knowl="./knowl/F_9_7_space_curve.html" title="Figure 9.7.4">Figure 9.7.4</a> the object's position, velocity and acceleration at the times <span class="process-math">\(t=0, 2, 4\text{.}\)</span>  Draw the velocity and acceleration vectors with their tails placed at the object's position.</div></li>
-<li id="li-425"><div class="para" id="p-1078">Recall that the speed is <span class="process-math">\(|\vv| = \sqrt{\vv\cdot\vv}\text{.}\)</span> Find the object's speed and graph it as a function of time <span class="process-math">\(t\)</span> on the right of <a href="" class="xref" data-knowl="./knowl/F_9_7_space_curve.html" title="Figure 9.7.4">Figure 9.7.4</a>.  When is the object's speed the slowest?  When is the speed increasing?  When is it decreasing?</div></li>
-<li id="li-426"><div class="para" id="p-1079">What seems to be true about the angle between <span class="process-math">\(\vv\)</span> and <span class="process-math">\(\va\)</span> when the speed is at a minimum?  What is the angle between <span class="process-math">\(\vv\)</span> and <span class="process-math">\(\va\)</span> when the speed is increasing?  when the speed is decreasing?</div></li>
-<li id="li-427"><div class="para" id="p-1080">Since the square root is an increasing function, we see that the speed increases precisely when <span class="process-math">\(\vv\cdot\vv\)</span> is increasing.  Use the product rule for the dot product to express <span class="process-math">\(\frac{d}{dt}(\vv\cdot\vv)\)</span> in terms of the velocity <span class="process-math">\(\vv\)</span> and acceleration <span class="process-math">\(\va\text{.}\)</span>  Use this to explain why the speed is increasing when <span class="process-math">\(\vv\cdot\va &gt; 0\)</span> and decreasing when <span class="process-math">\(\vv\cdot\va \lt  0\text{.}\)</span> Compare this to part (d).</div></li>
-<li id="li-428"><div class="para logical" id="p-1081">
-<div class="para">Show that the speed's rate of change is</div>
+<li id="li-423"><div class="para" id="p-1076">Indicate on the left of <a href="" class="xref" data-knowl="./knowl/F_9_7_space_curve.html" title="Figure 9.7.4">Figure 9.7.4</a> the object’s position, velocity and acceleration at the times <span class="process-math">\(t=0, 2, 4\text{.}\)</span>  Draw the velocity and acceleration vectors with their tails placed at the object’s position.</div></li>
+<li id="li-424"><div class="para" id="p-1077">Recall that the speed is <span class="process-math">\(|\vv| = \sqrt{\vv\cdot\vv}\text{.}\)</span> Find the object’s speed and graph it as a function of time <span class="process-math">\(t\)</span> on the right of <a href="" class="xref" data-knowl="./knowl/F_9_7_space_curve.html" title="Figure 9.7.4">Figure 9.7.4</a>.  When is the object’s speed the slowest?  When is the speed increasing?  When is it decreasing?</div></li>
+<li id="li-425"><div class="para" id="p-1078">What seems to be true about the angle between <span class="process-math">\(\vv\)</span> and <span class="process-math">\(\va\)</span> when the speed is at a minimum?  What is the angle between <span class="process-math">\(\vv\)</span> and <span class="process-math">\(\va\)</span> when the speed is increasing?  when the speed is decreasing?</div></li>
+<li id="li-426"><div class="para" id="p-1079">Since the square root is an increasing function, we see that the speed increases precisely when <span class="process-math">\(\vv\cdot\vv\)</span> is increasing.  Use the product rule for the dot product to express <span class="process-math">\(\frac{d}{dt}(\vv\cdot\vv)\)</span> in terms of the velocity <span class="process-math">\(\vv\)</span> and acceleration <span class="process-math">\(\va\text{.}\)</span>  Use this to explain why the speed is increasing when <span class="process-math">\(\vv\cdot\va &gt; 0\)</span> and decreasing when <span class="process-math">\(\vv\cdot\va \lt  0\text{.}\)</span> Compare this to part (d).</div></li>
+<li id="li-427"><div class="para logical" id="p-1080">
+<div class="para">Show that the speed’s rate of change is</div>
 <div class="displaymath process-math">
 \begin{equation*}
 \frac{d}{dt}|\vv(t)| = \comp_{\vv} \va.
@@ -857,8 +880,8 @@ t-1\right\rangle\)</span> and its speed.</figcaption></figure> <ol class="lower-
 </ol></article></section><section class="subsection" id="subsection-35"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">9.7.3</span> <span class="title">Tangent Lines</span>
 </h3>
-<div class="para" id="p-1082">One of the most important ideas in first-semester calculus is that a differentiable function is <em class="emphasis">locally linear</em>: that is, when viewed up close, the curve generated by a differentiable function looks very much like a line. Indeed, when we zoom in sufficiently far on a particular point, the curve looks indistinguishable from its tangent line.</div>
-<div class="para logical" id="p-1083">
+<div class="para" id="p-1081">One of the most important ideas in first-semester calculus is that a differentiable function is <em class="emphasis">locally linear</em>: that is, when viewed up close, the curve generated by a differentiable function looks very much like a line. Indeed, when we zoom in sufficiently far on a particular point, the curve looks indistinguishable from its tangent line.</div>
+<div class="para logical" id="p-1082">
 <div class="para">In the same way, we expect that a smooth curve in 3-space will be locally linear. In the following activity, we investigate how to find the tangent line to such a curve. Recall from our work in <a href="S-9-5-Lines-Planes.html" class="internal" title="Section 9.5: Lines and Planes in Space">Section 9.5</a> that the vector equation of a line that passes through the point at the tip of the vector <span class="process-math">\(\vL_0 = \langle
 x_0, y_0, z_0 \rangle\)</span> in the direction of the vector <span class="process-math">\(\vu = \langle
 a, b, c \rangle\)</span> can be written as</div>
@@ -868,7 +891,7 @@ a, b, c \rangle\)</span> can be written as</div>
 \end{equation*}
 </div>
 </div>
-<div class="para logical" id="p-1084">
+<div class="para logical" id="p-1083">
 <div class="para">In parametric form, the line <span class="process-math">\(\vL\)</span> is given by</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -879,7 +902,7 @@ x(t) = x_0 + at, \ \ y(t) = y_0 + bt, \ \ z(t) = z_0 + ct.
 <article class="activity project-like" id="A_9_7_4"><h4 class="heading">
 <span class="type">Activity</span><span class="space"> </span><span class="codenumber">9.7.5</span><span class="period">.</span>
 </h4>
-<div class="para logical" id="p-1085">
+<div class="para logical" id="p-1084">
 <div class="para">Let</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -888,15 +911,15 @@ x(t) = x_0 + at, \ \ y(t) = y_0 + bt, \ \ z(t) = z_0 + ct.
 </div>
 <div class="para">Sketch the curve using some appropriate tool.</div>
 <ol class="lower-alpha">
-<li id="li-429"><div class="para" id="p-1086">Determine the coordinates of the point on the curve traced out by <span class="process-math">\(\vr(t)\)</span> when <span class="process-math">\(t = \pi\text{.}\)</span>
+<li id="li-428"><div class="para" id="p-1085">Determine the coordinates of the point on the curve traced out by <span class="process-math">\(\vr(t)\)</span> when <span class="process-math">\(t = \pi\text{.}\)</span>
 </div></li>
-<li id="li-430"><div class="para" id="p-1087">Find a direction vector for the line tangent to the graph of <span class="process-math">\(\vr\)</span> at the point where <span class="process-math">\(t=\pi\text{.}\)</span>
+<li id="li-429"><div class="para" id="p-1086">Find a direction vector for the line tangent to the graph of <span class="process-math">\(\vr\)</span> at the point where <span class="process-math">\(t=\pi\text{.}\)</span>
 </div></li>
-<li id="li-431"><div class="para" id="p-1088">Find the parametric equations of the line tangent to the graph of <span class="process-math">\(\vr\)</span> when <span class="process-math">\(t=\pi\text{.}\)</span>
+<li id="li-430"><div class="para" id="p-1087">Find the parametric equations of the line tangent to the graph of <span class="process-math">\(\vr\)</span> when <span class="process-math">\(t=\pi\text{.}\)</span>
 </div></li>
-<li id="li-432"><div class="para" id="p-1089">Sketch a plot of the curve <span class="process-math">\(\vr(t)\)</span> and its tangent line near the point where <span class="process-math">\(t = \pi\text{.}\)</span>  In addition, include a sketch of <span class="process-math">\(\vr'(\pi)\text{.}\)</span>  What is the important role of <span class="process-math">\(\vr'(\pi)\)</span> in this activity?</div></li>
+<li id="li-431"><div class="para" id="p-1088">Sketch a plot of the curve <span class="process-math">\(\vr(t)\)</span> and its tangent line near the point where <span class="process-math">\(t = \pi\text{.}\)</span>  In addition, include a sketch of <span class="process-math">\(\vr'(\pi)\text{.}\)</span>  What is the important role of <span class="process-math">\(\vr'(\pi)\)</span> in this activity?</div></li>
 </ol>
-</div></article><div class="para logical" id="p-1090">
+</div></article><div class="para logical" id="p-1089">
 <div class="para">We see that our work in <a href="" class="xref" data-knowl="./knowl/A_9_7_4.html" title="Activity 9.7.5">Activity 9.7.5</a> can be generalized. Given a differentiable vector-valued function <span class="process-math">\(\vr\text{,}\)</span> the tangent line to the curve at the input value <span class="process-math">\(a\)</span> is given by</div>
 <div class="displaymath process-math" data-contains-math-knowls="./knowl/A_9_7_4.html" id="E_TanLineVecFxn">
 \begin{equation}
@@ -904,7 +927,7 @@ x(t) = x_0 + at, \ \ y(t) = y_0 + bt, \ \ z(t) = z_0 + ct.
 \end{equation}
 </div>
 </div>
-<div class="para logical" id="p-1091">
+<div class="para logical" id="p-1090">
 <div class="para">Here we see that because the tangent line is determined entirely by a given point and direction, the point is provided by the function <span class="process-math">\(\vr\text{,}\)</span> evaluated at <span class="process-math">\(t = a\text{,}\)</span> while the direction is provided by the derivative, <span class="process-math">\(\vr'\text{,}\)</span> again evaluated at <span class="process-math">\(t = a\text{.}\)</span> Note how analogous the formula for <span class="process-math">\(\vL(t)\)</span> is to the tangent line approximation from single-variable calculus: in that context, for a given function <span class="process-math">\(y = f(x)\)</span> at a value <span class="process-math">\(x = a\text{,}\)</span> we found that the tangent line can be expressed by the linear function <span class="process-math">\(y = L(x)\)</span> whose formula is</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -912,7 +935,7 @@ L(x) = f(a) + f'(a)(x-a).
 \end{equation*}
 </div>
 </div>
-<div class="para logical" id="p-1092">
+<div class="para logical" id="p-1091">
 <div class="para">Equation <a href="" class="xref" data-knowl="./knowl/E_TanLineVecFxn.html" title="Equation 9.7.1">(9.7.1)</a> for the tangent line <span class="process-math">\(\vL(t)\)</span> to the vector-valued function <span class="process-math">\(\vr(t)\)</span> is nearly identical. Indeed, because there are multiple parameterizations for a single line, it is even possible to write the parameterization as</div>
 <div class="displaymath process-math" data-contains-math-knowls="./knowl/E_TanLineVecFxn.html ./knowl/E_TanLineVecFxn.html ./knowl/E_TanLineVecFxn2.html" id="E_TanLineVecFxn2">
 \begin{equation}
@@ -920,27 +943,27 @@ L(x) = f(a) + f'(a)(x-a).
 \vr'(a).\tag{9.7.2}
 \end{equation}
 </div>
-<div class="para">(For example, in Equation <a href="" class="xref" data-knowl="./knowl/E_TanLineVecFxn.html" title="Equation 9.7.1">(9.7.1)</a>, <span class="process-math">\(\vL(0) = \vr(a)\text{,}\)</span> so the line's parameterization “starts” at <span class="process-math">\(t = 0\text{.}\)</span>  When we write the parameterization in the form of Equation <a href="" class="xref" data-knowl="./knowl/E_TanLineVecFxn2.html" title="Equation 9.7.2">(9.7.2)</a>, <span class="process-math">\(\vL(a) = \vr(a)\text{,}\)</span> so the line's parameterization “starts” at <span class="process-math">\(t = a\text{.}\)</span>)</div>
+<div class="para">(For example, in Equation <a href="" class="xref" data-knowl="./knowl/E_TanLineVecFxn.html" title="Equation 9.7.1">(9.7.1)</a>, <span class="process-math">\(\vL(0) = \vr(a)\text{,}\)</span> so the line’s parameterization “starts” at <span class="process-math">\(t = 0\text{.}\)</span>  When we write the parameterization in the form of Equation <a href="" class="xref" data-knowl="./knowl/E_TanLineVecFxn2.html" title="Equation 9.7.2">(9.7.2)</a>, <span class="process-math">\(\vL(a) = \vr(a)\text{,}\)</span> so the line’s parameterization “starts” at <span class="process-math">\(t = a\text{.}\)</span>)</div>
 </div>
-<div class="para" id="p-1093">As we will learn more in Chapter 10, a smooth surface in 3-space is also locally linear. That means that the surface will look like a plane, which we call its <em class="emphasis">tangent plane</em>, as we zoom in on the graph. It is possible to use tangent lines to traces of the surface to generate a formula for the tangent plane; see <a href="" class="xref" data-knowl="./knowl/Ez_9_7_3.html" title="Exercise 9.7.7.15">Exercise 9.7.7.15</a> at the end of this section for more details.</div></section><section class="subsection" id="subsection-36"><h3 class="heading hide-type">
+<div class="para" id="p-1092">As we will learn more in Chapter 10, a smooth surface in 3-space is also locally linear. That means that the surface will look like a plane, which we call its <em class="emphasis">tangent plane</em>, as we zoom in on the graph. It is possible to use tangent lines to traces of the surface to generate a formula for the tangent plane; see <a href="" class="xref" data-knowl="./knowl/Ez_9_7_3.html" title="Exercise 9.7.7.15">Exercise 9.7.7.15</a> at the end of this section for more details.</div></section><section class="subsection" id="subsection-36"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">9.7.4</span> <span class="title">Integrating a Vector-Valued Function</span>
 </h3>
-<div class="para" id="p-1094">Recall from single variable calculus that an antiderivative of a function <span class="process-math">\(f\)</span> of the independent variable <span class="process-math">\(x\)</span> is a function <span class="process-math">\(F\)</span> that satisfies <span class="process-math">\(F'(x) = f(x)\text{.}\)</span> We then defined the indefinite integral <span class="process-math">\(\int f(x) \ dx\)</span> to be the general antiderivative of <span class="process-math">\(f\text{.}\)</span> Recall that the general antiderivative includes an added constant <span class="process-math">\(C\)</span> in order to indicate that the general antiderivative is in fact an entire family of functions. We can do the similar work with vector-valued functions.</div>
+<div class="para" id="p-1093">Recall from single variable calculus that an antiderivative of a function <span class="process-math">\(f\)</span> of the independent variable <span class="process-math">\(x\)</span> is a function <span class="process-math">\(F\)</span> that satisfies <span class="process-math">\(F'(x) = f(x)\text{.}\)</span> We then defined the indefinite integral <span class="process-math">\(\int f(x) \ dx\)</span> to be the general antiderivative of <span class="process-math">\(f\text{.}\)</span> Recall that the general antiderivative includes an added constant <span class="process-math">\(C\)</span> in order to indicate that the general antiderivative is in fact an entire family of functions. We can do the similar work with vector-valued functions.</div>
 <article class="definition definition-like" id="definition-13"><h4 class="heading">
 <span class="type">Definition</span><span class="space"> </span><span class="codenumber">9.7.5</span><span class="period">.</span>
 </h4>
-<div class="para logical" id="p-1095">
+<div class="para logical" id="p-1094">
 <div class="para">An <dfn class="terminology">antiderivative</dfn> of a vector-valued function <span class="process-math">\(\vr\)</span> is a vector-valued function <span class="process-math">\(\vR\)</span> such that</div>
 <div class="displaymath process-math">
 \begin{equation*}
 \vR'(t) = \vr(t).
 \end{equation*}
 </div>
-</div> <div class="para" id="p-1096">The <dfn class="terminology">indefinite integral</dfn> <span class="process-math">\(\int \vr(t) \ dt\)</span> of a vector-valued function <span class="process-math">\(\vr\)</span> is the general antiderivative of <span class="process-math">\(\vr\)</span> and represents the collection of all antiderivatives of <span class="process-math">\(\vr\text{.}\)</span>
-</div></article><div class="para" id="p-1097">The same reasoning that allows us to differentiate a vector-valued function componentwise applies to integrating as well. Recall that the integral of a sum is the sum of the integrals and also that we can remove constant factors from integrals. So, given <span class="process-math">\({\vr(t) = x(t) \vi
+</div> <div class="para" id="p-1095">The <dfn class="terminology">indefinite integral</dfn> <span class="process-math">\(\int \vr(t) \ dt\)</span> of a vector-valued function <span class="process-math">\(\vr\)</span> is the general antiderivative of <span class="process-math">\(\vr\)</span> and represents the collection of all antiderivatives of <span class="process-math">\(\vr\text{.}\)</span>
+</div></article><div class="para" id="p-1096">The same reasoning that allows us to differentiate a vector-valued function componentwise applies to integrating as well. Recall that the integral of a sum is the sum of the integrals and also that we can remove constant factors from integrals. So, given <span class="process-math">\({\vr(t) = x(t) \vi
 + y(t) \vj + z(t) \vk}\text{,}\)</span> it follows that we can integrate componentwise. Expressed more formally,</div>
 <article class="assemblage assemblage-like" id="Vector-valued-function-integral"><h4 class="heading"><span class="title">Integrating a vector-valued function.</span></h4>
-<div class="para logical" id="p-1098">
+<div class="para logical" id="p-1097">
 <div class="para">If <span class="process-math">\(\vr(t) = x(t) \vi + y(t) \vj + z(t) \vk\text{,}\)</span> then</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -948,40 +971,40 @@ L(x) = f(a) + f'(a)(x-a).
 y(t) \ dt \right) \vj + \left(\int z(t) \ dt\right) \vk.
 \end{equation*}
 </div>
-</div></article><div class="para" id="p-1099">In light of being able to integrate and differentiate componentwise with vector-valued functions, we can solve many problems that are analogous to those we encountered in single-variable calculus. For instance, recall problems where we were given an object moving along an axis with velocity function <span class="process-math">\(v\)</span> and an initial position <span class="process-math">\(s(0)\text{.}\)</span> In that context, we were able to differentiate <span class="process-math">\(v\)</span> in order to find acceleration, and integrate <span class="process-math">\(v\)</span> and use the initial condition in order to find the position function <span class="process-math">\(s\text{.}\)</span> In the following activity, we explore similar ideas with vector-valued functions.</div>
+</div></article><div class="para" id="p-1098">In light of being able to integrate and differentiate componentwise with vector-valued functions, we can solve many problems that are analogous to those we encountered in single-variable calculus. For instance, recall problems where we were given an object moving along an axis with velocity function <span class="process-math">\(v\)</span> and an initial position <span class="process-math">\(s(0)\text{.}\)</span> In that context, we were able to differentiate <span class="process-math">\(v\)</span> in order to find acceleration, and integrate <span class="process-math">\(v\)</span> and use the initial condition in order to find the position function <span class="process-math">\(s\text{.}\)</span> In the following activity, we explore similar ideas with vector-valued functions.</div>
 <article class="activity project-like" id="A_9_7_7"><h4 class="heading">
 <span class="type">Activity</span><span class="space"> </span><span class="codenumber">9.7.6</span><span class="period">.</span>
 </h4>
-<div class="para logical" id="p-1100">
+<div class="para logical" id="p-1099">
 <div class="para">Suppose a moving object in space has its velocity given by</div>
 <div class="displaymath process-math">
 \begin{equation*}
 \vv(t) = (-2\sin(2t)) \vi + (2 \cos(t)) \vj + \left(1 - \frac{1}{1+t}\right) \vk.
 \end{equation*}
 </div>
-</div> <div class="para logical" id="p-1101">
+</div> <div class="para logical" id="p-1100">
 <div class="para">A graph of the position of the object for times <span class="process-math">\(t\)</span> in <span class="process-math">\([-0.5,3]\)</span> is shown in <a href="" class="xref" data-knowl="./knowl/F_9_7_VVD_Example.html" title="Figure 9.7.6">Figure 9.7.6</a>. Suppose further that the object is at the point <span class="process-math">\((1.5,-1,0)\)</span> at time <span class="process-math">\(t=0\text{.}\)</span>
 </div>
 <ol class="lower-alpha">
-<li id="li-433"><div class="para" id="p-1102">Determine <span class="process-math">\(\va(t)\text{,}\)</span> the acceleration of the object at time <span class="process-math">\(t\text{.}\)</span>
+<li id="li-432"><div class="para" id="p-1101">Determine <span class="process-math">\(\va(t)\text{,}\)</span> the acceleration of the object at time <span class="process-math">\(t\text{.}\)</span>
 </div></li>
-<li id="li-434"><div class="para" id="p-1103">Determine <span class="process-math">\(\vr(t)\text{,}\)</span> position of the object at time <span class="process-math">\(t\text{.}\)</span>
+<li id="li-433"><div class="para" id="p-1102">Determine <span class="process-math">\(\vr(t)\text{,}\)</span> position of the object at time <span class="process-math">\(t\text{.}\)</span>
 </div></li>
-<li id="li-435"><div class="para" id="p-1104">Compute and sketch the position, velocity, and acceleration vectors of the object at time <span class="process-math">\(t=1\text{,}\)</span> using <a href="" class="xref" data-knowl="./knowl/F_9_7_VVD_Example.html" title="Figure 9.7.6">Figure 9.7.6</a>.</div></li>
-<li id="li-436"><div class="para" id="p-1105">Finally, determine the vector equation for the tangent line, <span class="process-math">\(\vL(t)\text{,}\)</span> that is tangent to the position curve at <span class="process-math">\(t = 1\text{.}\)</span>
+<li id="li-434"><div class="para" id="p-1103">Compute and sketch the position, velocity, and acceleration vectors of the object at time <span class="process-math">\(t=1\text{,}\)</span> using <a href="" class="xref" data-knowl="./knowl/F_9_7_VVD_Example.html" title="Figure 9.7.6">Figure 9.7.6</a>.</div></li>
+<li id="li-435"><div class="para" id="p-1104">Finally, determine the vector equation for the tangent line, <span class="process-math">\(\vL(t)\text{,}\)</span> that is tangent to the position curve at <span class="process-math">\(t = 1\text{.}\)</span>
 </div></li>
 </ol>
 </div> <figure class="figure figure-like" id="F_9_7_VVD_Example"><div class="image-box" style="width: 50%; margin-left: 25%; margin-right: 25%;"><img src="external/images/fig_9_7_activity.svg" role="img" class="contained"></div>
 <figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">9.7.6<span class="period">.</span></span><span class="space"> </span>The position graph for the function in <a href="" class="xref" data-knowl="./knowl/A_9_7_7.html" title="Activity 9.7.6">Activity 9.7.6</a>.</figcaption></figure></article></section><section class="subsection" id="subsection-37"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">9.7.5</span> <span class="title">Projectile Motion</span>
 </h3>
-<div class="para" id="p-1106">Any time that an object is launched into the air with a given velocity and launch angle, the path the object travels is determined almost exclusively by the force of gravity. Whether in sports such as archery or shotput, in military applications with artillery, or in important fields like firefighting, it is important to be able to know when and where a launched projectile will land. We can use our knowledge of vector-valued functions in order to completely determine the path traveled by an object that is launched from a given position at a given angle from the horizontal with a given initial velocity.</div>
+<div class="para" id="p-1105">Any time that an object is launched into the air with a given velocity and launch angle, the path the object travels is determined almost exclusively by the force of gravity. Whether in sports such as archery or shotput, in military applications with artillery, or in important fields like firefighting, it is important to be able to know when and where a launched projectile will land. We can use our knowledge of vector-valued functions in order to completely determine the path traveled by an object that is launched from a given position at a given angle from the horizontal with a given initial velocity.</div>
 <figure class="figure figure-like" id="F_9_7_Motion"><div class="image-box" style="width: 50%; margin-left: 25%; margin-right: 25%;"><img src="external/images/fig_9_7_projectile.svg" role="img" class="contained"></div>
-<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">9.7.7<span class="period">.</span></span><span class="space"> </span>Projectile motion.</figcaption></figure><div class="para" id="p-1107">Assume we fire a projectile from a launcher and the only force acting on the fired object is the force of gravity pulling down on the object. That is, we assume no effect due to spin, wind, or air resistance. With these assumptions, the motion of the object will be planar, so we can also assume that the motion occurs in two-dimensional space. Suppose we launch the object from an initial position <span class="process-math">\((x_0, y_0)\)</span> at an angle <span class="process-math">\(\theta\)</span> with the positive <span class="process-math">\(x\)</span>-axis as illustrated in <a href="" class="xref" data-knowl="./knowl/F_9_7_Motion.html" title="Figure 9.7.7">Figure 9.7.7</a>, and that we fire the object with an initial speed of <span class="process-math">\(v_0 = |\vv(0)|\text{,}\)</span> where <span class="process-math">\(\vv(t)\)</span> is the velocity vector of the object at time <span class="process-math">\(t\text{.}\)</span> Assume <span class="process-math">\(g\)</span> is the positive constant acceleration force due to gravity, which acts to pull the fired object toward the ground (in the negative <span class="process-math">\(y\)</span> direction). Note particularly that there is no external force acting on the object to move it in the <span class="process-math">\(x\)</span> direction.</div>
-<div class="para" id="p-1108">We first observe that since gravity only acts in the downward direction and that the acceleration due to gravity is constant, the acceleration vector is <span class="process-math">\(\langle 0, -g
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">9.7.7<span class="period">.</span></span><span class="space"> </span>Projectile motion.</figcaption></figure><div class="para" id="p-1106">Assume we fire a projectile from a launcher and the only force acting on the fired object is the force of gravity pulling down on the object. That is, we assume no effect due to spin, wind, or air resistance. With these assumptions, the motion of the object will be planar, so we can also assume that the motion occurs in two-dimensional space. Suppose we launch the object from an initial position <span class="process-math">\((x_0, y_0)\)</span> at an angle <span class="process-math">\(\theta\)</span> with the positive <span class="process-math">\(x\)</span>-axis as illustrated in <a href="" class="xref" data-knowl="./knowl/F_9_7_Motion.html" title="Figure 9.7.7">Figure 9.7.7</a>, and that we fire the object with an initial speed of <span class="process-math">\(v_0 = |\vv(0)|\text{,}\)</span> where <span class="process-math">\(\vv(t)\)</span> is the velocity vector of the object at time <span class="process-math">\(t\text{.}\)</span> Assume <span class="process-math">\(g\)</span> is the positive constant acceleration force due to gravity, which acts to pull the fired object toward the ground (in the negative <span class="process-math">\(y\)</span> direction). Note particularly that there is no external force acting on the object to move it in the <span class="process-math">\(x\)</span> direction.</div>
+<div class="para" id="p-1107">We first observe that since gravity only acts in the downward direction and that the acceleration due to gravity is constant, the acceleration vector is <span class="process-math">\(\langle 0, -g
 \rangle\text{.}\)</span> That is, <span class="process-math">\(\va(t) = \langle 0, -g \rangle\text{.}\)</span> We may use this fact about acceleration, together with the initial position and initial velocity in order to fully determine the position <span class="process-math">\(\vr(t)\)</span> of the object at time <span class="process-math">\(t\text{.}\)</span> In <a href="" class="xref" data-knowl="./knowl/Ez_9_7_5.html" title="Exercise 9.7.7.17">Exercise 9.7.7.17</a>, you can work through the details to show that the following general formula holds.</div>
 <article class="assemblage assemblage-like" id="Projectile-motion"><h4 class="heading"><span class="title">The motion of a projectile.</span></h4>
-<div class="para logical" id="p-1109">
+<div class="para logical" id="p-1108">
 <div class="para">If an object is launched from a point <span class="process-math">\((x_0,y_0)\)</span> with initial velocity <span class="process-math">\(v_0\)</span> at an angle <span class="process-math">\(\theta\)</span> with the horizontal, then the position of the object at time <span class="process-math">\(t\)</span> is given by</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -989,11 +1012,11 @@ y(t) \ dt \right) \vj + \left(\int z(t) \ dt\right) \vk.
 \sin(\theta)t + y_0 \right\rangle.
 \end{equation*}
 </div>
-</div></article><div class="para" id="p-1110">This assumes that the only force acting on the object is the acceleration <span class="process-math">\(g\)</span> due to gravity.</div></section><section class="subsection" id="subsection-38"><h3 class="heading hide-type">
+</div></article><div class="para" id="p-1109">This assumes that the only force acting on the object is the acceleration <span class="process-math">\(g\)</span> due to gravity.</div></section><section class="subsection" id="subsection-38"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">9.7.6</span> <span class="title">Summary</span>
 </h3>
 <ul class="disc">
-<li id="li-437"><div class="para logical" id="p-1111">
+<li id="li-436"><div class="para logical" id="p-1110">
 <div class="para">If <span class="process-math">\(\vr\)</span> is a vector-valued function, then the derivative of <span class="process-math">\(\vr\)</span> is defined by</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1010,9 +1033,9 @@ y(t) \ dt \right) \vj + \left(\int z(t) \ dt\right) \vk.
 x(t) \vi + y(t) \vj + z(t) \vk\text{.}\)</span>
 </div>
 </div></li>
-<li id="li-438"><div class="para" id="p-1112">The derivative <span class="process-math">\(\vr'(t)\)</span> of the vector-valued function <span class="process-math">\(\vr\)</span> tells us the instantaneous rate of change of <span class="process-math">\(\vr\)</span> with respect to time, <span class="process-math">\(t\text{,}\)</span> which can be interpreted as a direction vector for the line tangent to the graph of <span class="process-math">\(\vr\)</span> at the point <span class="process-math">\(\vr(t)\text{,}\)</span> or also as the instantaneous velocity of an object traveling along the graph defined by <span class="process-math">\(\vr(t)\)</span> at time <span class="process-math">\(t\text{.}\)</span>
+<li id="li-437"><div class="para" id="p-1111">The derivative <span class="process-math">\(\vr'(t)\)</span> of the vector-valued function <span class="process-math">\(\vr\)</span> tells us the instantaneous rate of change of <span class="process-math">\(\vr\)</span> with respect to time, <span class="process-math">\(t\text{,}\)</span> which can be interpreted as a direction vector for the line tangent to the graph of <span class="process-math">\(\vr\)</span> at the point <span class="process-math">\(\vr(t)\text{,}\)</span> or also as the instantaneous velocity of an object traveling along the graph defined by <span class="process-math">\(\vr(t)\)</span> at time <span class="process-math">\(t\text{.}\)</span>
 </div></li>
-<li id="li-439"><div class="para logical" id="p-1113">
+<li id="li-438"><div class="para logical" id="p-1112">
 <div class="para">An antiderivative of <span class="process-math">\(\vr\)</span> is a vector-valued function <span class="process-math">\(\vR\)</span> such that <span class="process-math">\(\vR'(t) = \vr(t)\text{.}\)</span>  The indefinite integral <span class="process-math">\(\int \vr(t) \
 dt\)</span> of a vector-valued function <span class="process-math">\(\vr\)</span> is the general antiderivative of <span class="process-math">\(\vr\)</span> (which is a collection of all of the antiderivatives of <span class="process-math">\(\vr\text{,}\)</span> with any two antiderivatives differing by at most a constant vector). Moreover, if <span class="process-math">\(\vr(t) = x(t) \vi + y(t) \vj + z(t) \vk\text{,}\)</span> then</div>
 <div class="displaymath process-math">
@@ -1022,7 +1045,7 @@ y(t) \ dt \right) \vj + \left(\int z(t) \ dt\right) \vk.
 \end{equation*}
 </div>
 </div></li>
-<li id="li-440"><div class="para logical" id="p-1114">
+<li id="li-439"><div class="para logical" id="p-1113">
 <div class="para">If an object is launched from a point <span class="process-math">\((x_0,y_0)\)</span> with initial velocity <span class="process-math">\(v_0\)</span> at an angle <span class="process-math">\(\theta\)</span> with the horizontal, then the position of the object at time <span class="process-math">\(t\)</span> is given by</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1035,14 +1058,14 @@ y(t) \ dt \right) \vj + \left(\int z(t) \ dt\right) \vk.
 </ul></section><section class="exercises" id="exercises-7"><h3 class="heading hide-type">
 <span class="type">Exercises</span> <span class="codenumber">9.7.7</span> <span class="title">Exercises</span>
 </h3>
-<div class="para" id="p-1115">The WeBWorK problems are written by many different authors. Some authors use parentheses when writing vectors, e.g., <span class="process-math">\((x(t),y(t),z(t))\)</span> instead of angle brackets <span class="process-math">\(\langle x(t),y(t),z(t) \rangle\text{.}\)</span> Please keep this in mind when working WeBWorK exercises.</div>
+<div class="para" id="p-1114">The WeBWorK problems are written by many different authors. Some authors use parentheses when writing vectors, e.g., <span class="process-math">\((x(t),y(t),z(t))\)</span> instead of angle brackets <span class="process-math">\(\langle x(t),y(t),z(t) \rangle\text{.}\)</span> Please keep this in mind when working WeBWorK exercises.</div>
 <article class="exercise exercise-like" id="Library__maCalcDB__setVecFunction2Curvature__ur_vc_4_3.pg"><h4 class="heading"><span class="codenumber">1<span class="period">.</span></span></h4>
 <div id="webwork-71" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="71" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/maCalcDB/setVecFunction2Curvature/ur_vc_4_3.pg" data-courseID="mitchkeller-dev" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-71')">Activate</button></div>
 <div class="problem-contents">
-<div class="para" id="p-1116">If <span class="process-math">\(\mathbf{r} (t) = \cos (8 t) \mathbf{i} + \sin (8 t) \mathbf{j}  - 2 t \mathbf{k}\text{,}\)</span> compute:</div> <div class="para" id="p-1117">A. The velocity vector <span class="process-math">\(\mathbf{v} (t) =\)</span> <span class="fillin underline" role="img" aria-label="15-character blank" style="width: 6.818181818181818em;"></span> <span class="process-math">\(\mathbf{i} +\)</span> <span class="fillin underline" role="img" aria-label="15-character blank" style="width: 6.818181818181818em;"></span> <span class="process-math">\(\mathbf{j} +\)</span> <span class="fillin underline" role="img" aria-label="15-character blank" style="width: 6.818181818181818em;"></span> <span class="process-math">\(\mathbf{k}\)</span>
-</div> <div class="para" id="p-1118">B. The acceleration vector <span class="process-math">\(\mathbf{a} (t) =\)</span> <span class="fillin underline" role="img" aria-label="15-character blank" style="width: 6.818181818181818em;"></span> <span class="process-math">\(\mathbf{i} +\)</span> <span class="fillin underline" role="img" aria-label="15-character blank" style="width: 6.818181818181818em;"></span> <span class="process-math">\(\mathbf{j} +\)</span> <span class="fillin underline" role="img" aria-label="15-character blank" style="width: 6.818181818181818em;"></span> <span class="process-math">\(\mathbf{k}\)</span>
-</div> <div class="para" id="p-1119">
+<div class="para" id="p-1115">If <span class="process-math">\(\mathbf{r} (t) = \cos (8 t) \mathbf{i} + \sin (8 t) \mathbf{j}  - 2 t \mathbf{k}\text{,}\)</span> compute:</div> <div class="para" id="p-1116">A. The velocity vector <span class="process-math">\(\mathbf{v} (t) =\)</span> <span class="fillin underline" role="img" aria-label="15-character blank" style="width: 6.818181818181818em;"></span> <span class="process-math">\(\mathbf{i} +\)</span> <span class="fillin underline" role="img" aria-label="15-character blank" style="width: 6.818181818181818em;"></span> <span class="process-math">\(\mathbf{j} +\)</span> <span class="fillin underline" role="img" aria-label="15-character blank" style="width: 6.818181818181818em;"></span> <span class="process-math">\(\mathbf{k}\)</span>
+</div> <div class="para" id="p-1117">B. The acceleration vector <span class="process-math">\(\mathbf{a} (t) =\)</span> <span class="fillin underline" role="img" aria-label="15-character blank" style="width: 6.818181818181818em;"></span> <span class="process-math">\(\mathbf{i} +\)</span> <span class="fillin underline" role="img" aria-label="15-character blank" style="width: 6.818181818181818em;"></span> <span class="process-math">\(\mathbf{j} +\)</span> <span class="fillin underline" role="img" aria-label="15-character blank" style="width: 6.818181818181818em;"></span> <span class="process-math">\(\mathbf{k}\)</span>
+</div> <div class="para" id="p-1118">
 <em class="alert">Note:</em> the coefficients in your answers must be entered in the form of expressions in the variable <span class="process-math">\(t\text{;}\)</span> e.g. “5 cos(2t)”</div>
 <div class="solutions"></div>
 </div>
@@ -1050,19 +1073,19 @@ y(t) \ dt \right) \vj + \left(\int z(t) \ dt\right) \vk.
 <div id="webwork-72" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="72" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/maCalcDB/setVecFunction3Motion/ur_vc_4_7.pg" data-courseID="mitchkeller-dev" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-72')">Activate</button></div>
 <div class="problem-contents">
-<div class="para" id="p-1126">Given that the acceleration vector is <span class="process-math">\(\mathbf{a} \left( t \right) = \left(
+<div class="para" id="p-1125">Given that the acceleration vector is <span class="process-math">\(\mathbf{a} \left( t \right) = \left(
 -25 \cos \left( 5 t \right) \right) \mathbf{i} + \left( -25 \sin
 \left( 5 t \right) \right) \mathbf{j} + \left( -5 t \right) \mathbf{k}\text{,}\)</span> the initial velocity is <span class="process-math">\(\mathbf{v} \left( 0 \right) = \mathbf{i + k}\text{,}\)</span> and the initial position vector is <span class="process-math">\(\mathbf{r} \left( 0 \right) = \mathbf{i +
-j + k}\text{,}\)</span> compute:</div> <div class="para" id="p-1127">A. The velocity vector <span class="process-math">\(\mathbf{v} \left( t \right) =\)</span> <span class="fillin underline" role="img" aria-label="15-character blank" style="width: 6.818181818181818em;"></span> <span class="process-math">\(\mathbf{i} +\)</span> <span class="fillin underline" role="img" aria-label="15-character blank" style="width: 6.818181818181818em;"></span> <span class="process-math">\(\mathbf{j} +\)</span> <span class="fillin underline" role="img" aria-label="15-character blank" style="width: 6.818181818181818em;"></span> <span class="process-math">\(\mathbf{k}\)</span>
-</div> <div class="para" id="p-1128">B. The position vector <span class="process-math">\(\mathbf{r} \left( t \right) =\)</span> <span class="fillin underline" role="img" aria-label="15-character blank" style="width: 6.818181818181818em;"></span> <span class="process-math">\(\mathbf{i} +\)</span> <span class="fillin underline" role="img" aria-label="15-character blank" style="width: 6.818181818181818em;"></span> <span class="process-math">\(\mathbf{j} +\)</span> <span class="fillin underline" role="img" aria-label="15-character blank" style="width: 6.818181818181818em;"></span> <span class="process-math">\(\mathbf{k}\)</span>
-</div> <div class="para" id="p-1129">Note: the coefficients in your answers must be entered in the form of expressions in the variable \emph{t}; e.g. “5 cos(2t)”</div>
+j + k}\text{,}\)</span> compute:</div> <div class="para" id="p-1126">A. The velocity vector <span class="process-math">\(\mathbf{v} \left( t \right) =\)</span> <span class="fillin underline" role="img" aria-label="15-character blank" style="width: 6.818181818181818em;"></span> <span class="process-math">\(\mathbf{i} +\)</span> <span class="fillin underline" role="img" aria-label="15-character blank" style="width: 6.818181818181818em;"></span> <span class="process-math">\(\mathbf{j} +\)</span> <span class="fillin underline" role="img" aria-label="15-character blank" style="width: 6.818181818181818em;"></span> <span class="process-math">\(\mathbf{k}\)</span>
+</div> <div class="para" id="p-1127">B. The position vector <span class="process-math">\(\mathbf{r} \left( t \right) =\)</span> <span class="fillin underline" role="img" aria-label="15-character blank" style="width: 6.818181818181818em;"></span> <span class="process-math">\(\mathbf{i} +\)</span> <span class="fillin underline" role="img" aria-label="15-character blank" style="width: 6.818181818181818em;"></span> <span class="process-math">\(\mathbf{j} +\)</span> <span class="fillin underline" role="img" aria-label="15-character blank" style="width: 6.818181818181818em;"></span> <span class="process-math">\(\mathbf{k}\)</span>
+</div> <div class="para" id="p-1128">Note: the coefficients in your answers must be entered in the form of expressions in the variable \emph{t}; e.g. “5 cos(2t)”</div>
 <div class="solutions"></div>
 </div>
 </div></article><article class="exercise exercise-like" id="Library__maCalcDB__setVecFunction1Curves__urvc_3_13.pg"><h4 class="heading"><span class="codenumber">3<span class="period">.</span></span></h4>
 <div id="webwork-73" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="73" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/maCalcDB/setVecFunction1Curves/urvc_3_13.pg" data-courseID="mitchkeller-dev" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-73')">Activate</button></div>
 <div class="problem-contents">
-<div class="para" id="p-1136">Evaluate</div> <div class="para" id="p-1137">
+<div class="para" id="p-1135">Evaluate</div> <div class="para" id="p-1136">
 <span class="process-math">\(\int_{0}^{1}(t\mathbf{i}+ t^2\mathbf{j}+t^3\mathbf{k})dt\)</span> = <span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span> <span class="process-math">\(\mathbf{i}+\)</span> <span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span><span class="process-math">\(\mathbf{j}+\)</span> <span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span><span class="process-math">\(\mathbf{k}\text{.}\)</span>
 </div>
 <div class="solutions"></div>
@@ -1071,12 +1094,12 @@ j + k}\text{,}\)</span> compute:</div> <div class="para" id="p-1127">A. The velo
 <div id="webwork-74" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="74" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/maCalcDB/setVecFunction1Curves/urvc_3_12.pg" data-courseID="mitchkeller-dev" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-74')">Activate</button></div>
 <div class="problem-contents">
-<div class="para" id="p-1141">Find parametric equations for line that is tangent to the curve <span class="process-math">\(x=\cos t,\  y=\sin t, \ z=t\)</span> at the point</div> <div class="para" id="p-1142">
-<span class="process-math">\((\cos(\frac{-3\pi}{6}) ,\sin(\frac{-3\pi}{6}) ,\frac{-3\pi}{6} )\)</span> .</div> <div class="para" id="p-1143">Parametrize the line so that it passes through the given point at t=0.  All three answers are required for credit.</div> <div class="para" id="p-1144">
+<div class="para" id="p-1140">Find parametric equations for line that is tangent to the curve <span class="process-math">\(x=\cos t,\  y=\sin t, \ z=t\)</span> at the point</div> <div class="para" id="p-1141">
+<span class="process-math">\((\cos(\frac{-3\pi}{6}) ,\sin(\frac{-3\pi}{6}) ,\frac{-3\pi}{6} )\)</span> .</div> <div class="para" id="p-1142">Parametrize the line so that it passes through the given point at t=0.  All three answers are required for credit.</div> <div class="para" id="p-1143">
 <span class="process-math">\(x(t)\)</span> = <span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span>
-</div> <div class="para" id="p-1145">
+</div> <div class="para" id="p-1144">
 <span class="process-math">\(y(t)\)</span> = <span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span>
-</div> <div class="para" id="p-1146">
+</div> <div class="para" id="p-1145">
 <span class="process-math">\(z(t)\)</span> = <span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span>
 </div>
 <div class="solutions"></div>
@@ -1085,37 +1108,37 @@ j + k}\text{,}\)</span> compute:</div> <div class="para" id="p-1127">A. The velo
 <div id="webwork-75" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="75" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/maCalcDB/setVecFunction1Curves/urvc_3_14.pg" data-courseID="mitchkeller-dev" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-75')">Activate</button></div>
 <div class="problem-contents">
-<div class="para" id="p-1148">If <span class="process-math">\(\mathbf{r}(t)= \cos(-2t)\mathbf{i}+\sin( -2t)\mathbf{j} - 10t
+<div class="para" id="p-1147">If <span class="process-math">\(\mathbf{r}(t)= \cos(-2t)\mathbf{i}+\sin( -2t)\mathbf{j} - 10t
 \mathbf{k}\)</span>
-</div> <div class="para" id="p-1149">compute <span class="process-math">\(\mathbf{r}'(t)\)</span>= <span class="fillin underline" role="img" aria-label="15-character blank" style="width: 6.818181818181818em;"></span> <span class="process-math">\(\mathbf{i}+\)</span> <span class="fillin underline" role="img" aria-label="15-character blank" style="width: 6.818181818181818em;"></span><span class="process-math">\(\mathbf{j}+\)</span> <span class="fillin underline" role="img" aria-label="15-character blank" style="width: 6.818181818181818em;"></span> <span class="process-math">\({\mathbf{k}}\)</span>
-</div> <div class="para" id="p-1150">and <span class="process-math">\(\int{\mathbf{r}}(t)\, dt\)</span>= <span class="fillin underline" role="img" aria-label="15-character blank" style="width: 6.818181818181818em;"></span> <span class="process-math">\(\mathbf{i}+\)</span> <span class="fillin underline" role="img" aria-label="15-character blank" style="width: 6.818181818181818em;"></span><span class="process-math">\(\mathbf{j}+\)</span> <span class="fillin underline" role="img" aria-label="15-character blank" style="width: 6.818181818181818em;"></span> <span class="process-math">\(\mathbf{k}
+</div> <div class="para" id="p-1148">compute <span class="process-math">\(\mathbf{r}'(t)\)</span>= <span class="fillin underline" role="img" aria-label="15-character blank" style="width: 6.818181818181818em;"></span> <span class="process-math">\(\mathbf{i}+\)</span> <span class="fillin underline" role="img" aria-label="15-character blank" style="width: 6.818181818181818em;"></span><span class="process-math">\(\mathbf{j}+\)</span> <span class="fillin underline" role="img" aria-label="15-character blank" style="width: 6.818181818181818em;"></span> <span class="process-math">\({\mathbf{k}}\)</span>
+</div> <div class="para" id="p-1149">and <span class="process-math">\(\int{\mathbf{r}}(t)\, dt\)</span>= <span class="fillin underline" role="img" aria-label="15-character blank" style="width: 6.818181818181818em;"></span> <span class="process-math">\(\mathbf{i}+\)</span> <span class="fillin underline" role="img" aria-label="15-character blank" style="width: 6.818181818181818em;"></span><span class="process-math">\(\mathbf{j}+\)</span> <span class="fillin underline" role="img" aria-label="15-character blank" style="width: 6.818181818181818em;"></span> <span class="process-math">\(\mathbf{k}
 + \mathbf{C}\)</span>
-</div> <div class="para" id="p-1151">with <span class="process-math">\(\mathbf{C}\)</span> a constant vector.</div>
+</div> <div class="para" id="p-1150">with <span class="process-math">\(\mathbf{C}\)</span> a constant vector.</div>
 <div class="solutions"></div>
 </div>
 </div></article><article class="exercise exercise-like" id="Library__maCalcDB__setVecFunction1Curves__urvc_3_10.pg"><h4 class="heading"><span class="codenumber">6<span class="period">.</span></span></h4>
 <div id="webwork-76" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="76" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/maCalcDB/setVecFunction1Curves/urvc_3_10.pg" data-courseID="mitchkeller-dev" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-76')">Activate</button></div>
 <div class="problem-contents">
-<div class="para" id="p-1158">For the given position vectors <span class="process-math">\(\mathbf{r}(t)\text{,}\)</span>
-</div> <div class="para" id="p-1159">compute the (tangent) velocity vector <span class="process-math">\(\mathbf{r}'(t)\)</span> for the given value of <span class="process-math">\(t\)</span> .</div> <div class="para" id="p-1160">A) <span class="process-math">\(\displaystyle \textrm{Let } \mathbf{r}(t)= (\cos 3t,\, \sin 3t )\text{.}\)</span>
-</div> <div class="para" id="p-1161">Then <span class="process-math">\(\mathbf{r}'(\frac{\pi}{4})\)</span>= ( <span class="fillin underline" role="img" aria-label="15-character blank" style="width: 6.818181818181818em;"></span> , <span class="fillin underline" role="img" aria-label="15-character blank" style="width: 6.818181818181818em;"></span> )?</div> <div class="para" id="p-1162">B) <span class="process-math">\(\displaystyle \textrm{Let }  {\mathbf{r}}(t)= (t^2,t^3)\text{.}\)</span>
-</div> <div class="para" id="p-1163">Then <span class="process-math">\({\mathbf{r}}'(4)\)</span>= ( <span class="fillin underline" role="img" aria-label="15-character blank" style="width: 6.818181818181818em;"></span> , <span class="fillin underline" role="img" aria-label="15-character blank" style="width: 6.818181818181818em;"></span> )?</div> <div class="para" id="p-1164">C) <span class="process-math">\(\displaystyle \textrm{Let }  \mathbf{r}(t)= e^{3t}\mathbf{i}+ e^{-4t}\mathbf{j}+
+<div class="para" id="p-1157">For the given position vectors <span class="process-math">\(\mathbf{r}(t)\text{,}\)</span>
+</div> <div class="para" id="p-1158">compute the (tangent) velocity vector <span class="process-math">\(\mathbf{r}'(t)\)</span> for the given value of <span class="process-math">\(t\)</span> .</div> <div class="para" id="p-1159">A) <span class="process-math">\(\displaystyle \textrm{Let } \mathbf{r}(t)= (\cos 3t,\, \sin 3t )\text{.}\)</span>
+</div> <div class="para" id="p-1160">Then <span class="process-math">\(\mathbf{r}'(\frac{\pi}{4})\)</span>= ( <span class="fillin underline" role="img" aria-label="15-character blank" style="width: 6.818181818181818em;"></span> , <span class="fillin underline" role="img" aria-label="15-character blank" style="width: 6.818181818181818em;"></span> )?</div> <div class="para" id="p-1161">B) <span class="process-math">\(\displaystyle \textrm{Let }  {\mathbf{r}}(t)= (t^2,t^3)\text{.}\)</span>
+</div> <div class="para" id="p-1162">Then <span class="process-math">\({\mathbf{r}}'(4)\)</span>= ( <span class="fillin underline" role="img" aria-label="15-character blank" style="width: 6.818181818181818em;"></span> , <span class="fillin underline" role="img" aria-label="15-character blank" style="width: 6.818181818181818em;"></span> )?</div> <div class="para" id="p-1163">C) <span class="process-math">\(\displaystyle \textrm{Let }  \mathbf{r}(t)= e^{3t}\mathbf{i}+ e^{-4t}\mathbf{j}+
 t\mathbf{k}\text{.}\)</span>
-</div> <div class="para" id="p-1165">Then <span class="process-math">\(\mathbf{r}'(-1)\)</span>= <span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span> <span class="process-math">\(\mathbf{i}+\)</span> <span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span><span class="process-math">\(\mathbf{j}+\)</span> <span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span> <span class="process-math">\(\mathbf{k}\)</span> ?</div>
+</div> <div class="para" id="p-1164">Then <span class="process-math">\(\mathbf{r}'(-1)\)</span>= <span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span> <span class="process-math">\(\mathbf{i}+\)</span> <span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span><span class="process-math">\(\mathbf{j}+\)</span> <span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span> <span class="process-math">\(\mathbf{k}\)</span> ?</div>
 <div class="solutions"></div>
 </div>
 </div></article><article class="exercise exercise-like" id="Library__FortLewis__Calc3__17-2-Motion-velocity__HGM4-17-2-30-Motion-velocity-acceleration.pg"><h4 class="heading"><span class="codenumber">7<span class="period">.</span></span></h4>
 <div id="webwork-77" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="77" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/FortLewis/Calc3/17-2-Motion-velocity/HGM4-17-2-30-Motion-velocity-acceleration.pg" data-courseID="mitchkeller-dev" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-77')">Activate</button></div>
 <div class="problem-contents">
-<div class="para" id="p-1173">Suppose <span class="process-math">\(\vec{r}(t) = \cos\!\left(\pi t\right)\boldsymbol{i}+\sin\!\left(\pi t\right)\boldsymbol{j}+4t\boldsymbol{k}\)</span> represents the position of a particle on a helix, where <span class="process-math">\(z\)</span> is the height of the particle.</div> <div class="para" id="p-1174">(a) What is <span class="process-math">\(t\)</span> when the particle has height <span class="process-math">\(12\text{?}\)</span>
-</div> <div class="para" id="p-1175">
+<div class="para" id="p-1172">Suppose <span class="process-math">\(\vec{r}(t) = \cos\!\left(\pi t\right)\boldsymbol{i}+\sin\!\left(\pi t\right)\boldsymbol{j}+4t\boldsymbol{k}\)</span> represents the position of a particle on a helix, where <span class="process-math">\(z\)</span> is the height of the particle.</div> <div class="para" id="p-1173">(a) What is <span class="process-math">\(t\)</span> when the particle has height <span class="process-math">\(12\text{?}\)</span>
+</div> <div class="para" id="p-1174">
 <span class="process-math">\(t =\)</span> <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>
-</div> <div class="para" id="p-1176">(b) What is the velocity of the particle when its height is <span class="process-math">\(12\text{?}\)</span>
-</div> <div class="para" id="p-1177">
+</div> <div class="para" id="p-1175">(b) What is the velocity of the particle when its height is <span class="process-math">\(12\text{?}\)</span>
+</div> <div class="para" id="p-1176">
 <span class="process-math">\(\vec{v} =\)</span> <span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span>
-</div> <div class="para" id="p-1178">(c) When the particle has height <span class="process-math">\(12\text{,}\)</span> it leaves the helix and moves along the tangent line at the constant velocity found in part (b).  Find a vector parametric equation for the position of the particle (in terms of the original parameter <span class="process-math">\(t\)</span>) as it moves along this tangent line.</div> <div class="para" id="p-1179">
+</div> <div class="para" id="p-1177">(c) When the particle has height <span class="process-math">\(12\text{,}\)</span> it leaves the helix and moves along the tangent line at the constant velocity found in part (b).  Find a vector parametric equation for the position of the particle (in terms of the original parameter <span class="process-math">\(t\)</span>) as it moves along this tangent line.</div> <div class="para" id="p-1178">
 <span class="process-math">\(L(t) =\)</span> <span class="fillin underline" role="img" aria-label="50-character blank" style="width: 22.7272727272727em;"></span>
 </div>
 <div class="solutions"></div>
@@ -1124,9 +1147,9 @@ t\mathbf{k}\text{.}\)</span>
 <div id="webwork-78" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="78" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/FortLewis/Calc3/17-2-Motion-velocity/HGM4-17-2-06-Motion-velocity-acceleration.pg" data-courseID="mitchkeller-dev" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-78')">Activate</button></div>
 <div class="problem-contents">
-<div class="para" id="p-1183">Suppose the displacement of a particle in motion at time <span class="process-math">\(t\)</span> is given by the parametric equations</div> <div class="para" id="p-1184"><span class="process-math">\(x(t) = \left(2t-1\right)^{3}, \quad y(t) = 9, \quad z(t) = 48t^{4}-32t^{3}.\)</span></div> <div class="para" id="p-1185">(a) Find the speed of the particle when <span class="process-math">\(t = 3\text{.}\)</span>
-</div> <div class="para" id="p-1186">Speed = <span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span>
-</div> <div class="para" id="p-1187">(b) Find <span class="process-math">\(t\)</span> when the particle is stationary.</div> <div class="para" id="p-1188">
+<div class="para" id="p-1182">Suppose the displacement of a particle in motion at time <span class="process-math">\(t\)</span> is given by the parametric equations</div> <div class="para" id="p-1183"><span class="process-math">\(x(t) = \left(2t-1\right)^{3}, \quad y(t) = 9, \quad z(t) = 48t^{4}-32t^{3}.\)</span></div> <div class="para" id="p-1184">(a) Find the speed of the particle when <span class="process-math">\(t = 3\text{.}\)</span>
+</div> <div class="para" id="p-1185">Speed = <span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span>
+</div> <div class="para" id="p-1186">(b) Find <span class="process-math">\(t\)</span> when the particle is stationary.</div> <div class="para" id="p-1187">
 <span class="process-math">\(t\)</span> = <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>
 </div>
 <div class="solutions"></div>
@@ -1135,10 +1158,10 @@ t\mathbf{k}\text{.}\)</span>
 <div id="webwork-79" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="79" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Dartmouth/setStewartCh14S2/problem_2.pg" data-courseID="mitchkeller-dev" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-79')">Activate</button></div>
 <div class="problem-contents">
-<div class="para" id="p-1191">Find the derivative of the vector function</div> <div class="para" id="p-1192">
-<span class="process-math">\(\mathbf r(t) = t\mathbf a \times (\mathbf b + t\mathbf c)\text{,}\)</span> where</div> <div class="para" id="p-1193">
+<div class="para" id="p-1190">Find the derivative of the vector function</div> <div class="para" id="p-1191">
+<span class="process-math">\(\mathbf r(t) = t\mathbf a \times (\mathbf b + t\mathbf c)\text{,}\)</span> where</div> <div class="para" id="p-1192">
 <span class="process-math">\(\mathbf a = \langle 3, 2, 2\rangle\text{,}\)</span> <span class="process-math">\(\mathbf b = \langle -2, 4, -4\rangle\text{,}\)</span> and <span class="process-math">\(\mathbf c = \langle -1, 1, 4\rangle\text{.}\)</span>
-</div> <div class="para" id="p-1194">
+</div> <div class="para" id="p-1193">
 <span class="process-math">\(\mathbf r'(t) = \langle\)</span> <span class="fillin underline" role="img" aria-label="25-character blank" style="width: 11.3636363636364em;"></span>, <span class="fillin underline" role="img" aria-label="25-character blank" style="width: 11.3636363636364em;"></span>, <span class="fillin underline" role="img" aria-label="25-character blank" style="width: 11.3636363636364em;"></span> <span class="process-math">\(\rangle\)</span>
 </div>
 <div class="solutions"></div>
@@ -1147,14 +1170,14 @@ t\mathbf{k}\text{.}\)</span>
 <div id="webwork-80" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="80" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/272/setStewart13_4/problem_2.pg" data-courseID="mitchkeller-dev" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-80')">Activate</button></div>
 <div class="problem-contents">
-<div class="para" id="p-1198">Let <span class="process-math">\(\mathbf{c}_1(t) = (e^{4t}, \sin(-2t), -4t^3)\text{,}\)</span> and <span class="process-math">\(\mathbf{c}_2(t) = (e^{-5t}, \cos(4t), 2t^3)\)</span>
-</div> <div class="para" id="p-1199">
+<div class="para" id="p-1197">Let <span class="process-math">\(\mathbf{c}_1(t) = (e^{4t}, \sin(-2t), -4t^3)\text{,}\)</span> and <span class="process-math">\(\mathbf{c}_2(t) = (e^{-5t}, \cos(4t), 2t^3)\)</span>
+</div> <div class="para" id="p-1198">
 <span class="process-math">\(\displaystyle \frac{d}{dt}\left[ \mathbf{c}_1(t) \cdot  \mathbf{c}_2(t)\right]  =\)</span><span class="fillin underline" role="img" aria-label="60-character blank" style="width: 27.2727272727273em;"></span>
-</div> <div class="para" id="p-1200">
+</div> <div class="para" id="p-1199">
 <span class="process-math">\(\displaystyle \frac{d}{dt}\left[ \mathbf{c}_1(t) \times  \mathbf{c}_2(t)\right]  =\)</span> <span class="fillin underline" role="img" aria-label="60-character blank" style="width: 27.2727272727273em;"></span><span class="process-math">\(\mathbf{i}\ +\)</span>
-</div> <div class="para" id="p-1201">
+</div> <div class="para" id="p-1200">
 <span class="process-math">\(\hspace{1.15in}\)</span>    <span class="fillin underline" role="img" aria-label="60-character blank" style="width: 27.2727272727273em;"></span><span class="process-math">\(\mathbf{j}\ +\)</span>
-</div> <div class="para" id="p-1202">
+</div> <div class="para" id="p-1201">
 <span class="process-math">\(\hspace{1.15in}\)</span>  <span class="fillin underline" role="img" aria-label="60-character blank" style="width: 27.2727272727273em;"></span><span class="process-math">\(\mathbf{k}\)</span>
 </div>
 <div class="solutions"></div>
@@ -1163,28 +1186,28 @@ t\mathbf{k}\text{.}\)</span>
 <div id="webwork-81" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="81" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/maCalcDB/setVecFunction3Motion/ur_vc_4_8.pg" data-courseID="mitchkeller-dev" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-81')">Activate</button></div>
 <div class="problem-contents">
-<div class="para" id="p-1207">A gun has a muzzle speed of 100 meters per second. What angle of elevation should be used to hit an object 200 meters away? Neglect air resistance and use <span class="process-math">\(g
-= 9.8\, \textrm{m}/\textrm{sec}^{2}\)</span> as the acceleration of gravity.</div> <div class="para" id="p-1208">Answer: <span class="fillin underline" role="img" aria-label="50-character blank" style="width: 22.7272727272727em;"></span> radians</div>
+<div class="para" id="p-1206">A gun has a muzzle speed of 100 meters per second. What angle of elevation should be used to hit an object 200 meters away? Neglect air resistance and use <span class="process-math">\(g
+= 9.8\, \textrm{m}/\textrm{sec}^{2}\)</span> as the acceleration of gravity.</div> <div class="para" id="p-1207">Answer: <span class="fillin underline" role="img" aria-label="50-character blank" style="width: 22.7272727272727em;"></span> radians</div>
 <div class="solutions"></div>
 </div>
 </div></article><article class="exercise exercise-like" id="Library__Michigan__Chap17Sec2__Q29.pg"><h4 class="heading"><span class="codenumber">12<span class="period">.</span></span></h4>
 <div id="webwork-82" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="82" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Michigan/Chap17Sec2/Q29.pg" data-courseID="mitchkeller-dev" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-82')">Activate</button></div>
 <div class="problem-contents">
-<div class="para logical" id="p-1210">
+<div class="para logical" id="p-1209">
 <div class="para">A child wanders slowly down a circular staircase from the top of a tower.  With <span class="process-math">\(x,y,z\)</span> in feet and the origin at the base of the tower, her position <span class="process-math">\(t\)</span> minutes from the start is given by</div>
 <div class="displaymath process-math">
 \begin{equation*}
 x=10\cos t,\quad y = 10 \sin t, \quad z = 100 - 5 t.
 \end{equation*}
 </div>
-</div> <div class="para" id="p-1211">
-<em class="alert">(a)</em> How tall is the tower?</div> <div class="para" id="p-1212">height = <span class="fillin underline" role="img" aria-label="35-character blank" style="width: 15.9090909090909em;"></span> ft</div> <div class="para" id="p-1213">
-<em class="alert">(b)</em> When does the child reach the bottom?</div> <div class="para" id="p-1214">time = <span class="fillin underline" role="img" aria-label="35-character blank" style="width: 15.9090909090909em;"></span> minutes</div> <div class="para" id="p-1215">
+</div> <div class="para" id="p-1210">
+<em class="alert">(a)</em> How tall is the tower?</div> <div class="para" id="p-1211">height = <span class="fillin underline" role="img" aria-label="35-character blank" style="width: 15.9090909090909em;"></span> ft</div> <div class="para" id="p-1212">
+<em class="alert">(b)</em> When does the child reach the bottom?</div> <div class="para" id="p-1213">time = <span class="fillin underline" role="img" aria-label="35-character blank" style="width: 15.9090909090909em;"></span> minutes</div> <div class="para" id="p-1214">
 <em class="alert">(c)</em> What is her speed at time  <span class="process-math">\(t\text{?}\)</span>
-</div> <div class="para" id="p-1216">speed = <span class="fillin underline" role="img" aria-label="35-character blank" style="width: 15.9090909090909em;"></span> ft/min</div> <div class="para" id="p-1217">
+</div> <div class="para" id="p-1215">speed = <span class="fillin underline" role="img" aria-label="35-character blank" style="width: 15.9090909090909em;"></span> ft/min</div> <div class="para" id="p-1216">
 <em class="alert">(d)</em> What is her acceleration at time <span class="process-math">\(t\text{?}\)</span>
-</div> <div class="para" id="p-1218">acceleration = <span class="fillin underline" role="img" aria-label="45-character blank" style="width: 20.4545454545455em;"></span> ft/min<span class="process-math">\({}^2\)</span>
+</div> <div class="para" id="p-1217">acceleration = <span class="fillin underline" role="img" aria-label="45-character blank" style="width: 20.4545454545455em;"></span> ft/min<span class="process-math">\({}^2\)</span>
 </div>
 <div class="solutions">
 <a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-23" id="solution-23"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-23"><div class="solution solution-like">
@@ -1208,18 +1231,18 @@ x=10\cos t,\quad y = 10 \sin t, \quad z = 100 - 5 t.
 </div>
 </div>
 </div></article><article class="exercise exercise-like" id="Ez_9_7_1"><h4 class="heading"><span class="codenumber">13<span class="period">.</span></span></h4>
-<div class="para logical" id="p-1223">
+<div class="para logical" id="p-1222">
 <div class="para">Compute the derivative of each of the following functions in two different ways: (1) use the rules provided in the theorem stated just after <a href="" class="xref" data-knowl="./knowl/A_9_7_2.html" title="Activity 9.7.3">Activity 9.7.3</a>, and (2) rewrite each given function so that it is stated as a single function (either a scalar function or a vector-valued function with three components), and differentiate component-wise. Compare your answers to ensure that they are the same.</div>
 <ol class="lower-alpha">
-<li id="li-441"><div class="para" id="p-1224"><span class="process-math">\(\displaystyle \vr(t) = \sin(t) \langle 2t, t^2, \arctan(t) \rangle\)</span></div></li>
-<li id="li-442"><div class="para" id="p-1225">
+<li id="li-440"><div class="para" id="p-1223"><span class="process-math">\(\displaystyle \vr(t) = \sin(t) \langle 2t, t^2, \arctan(t) \rangle\)</span></div></li>
+<li id="li-441"><div class="para" id="p-1224">
 <span class="process-math">\(\vs(t) = \vr(2^t)\text{,}\)</span> where <span class="process-math">\(\vr(t) = \langle t+2, \ln(t), 1 \rangle\text{.}\)</span>
 </div></li>
-<li id="li-443"><div class="para" id="p-1226"><span class="process-math">\(\displaystyle \vr(t) = \langle \cos(t), \sin(t), t \rangle \cdot \langle -\sin(t), \cos(t), 1 \rangle\)</span></div></li>
-<li id="li-444"><div class="para" id="p-1227"><span class="process-math">\(\displaystyle \vr(t) = \langle \cos(t), \sin(t), t \rangle \times \langle -\sin(t), \cos(t), 1 \rangle\)</span></div></li>
+<li id="li-442"><div class="para" id="p-1225"><span class="process-math">\(\displaystyle \vr(t) = \langle \cos(t), \sin(t), t \rangle \cdot \langle -\sin(t), \cos(t), 1 \rangle\)</span></div></li>
+<li id="li-443"><div class="para" id="p-1226"><span class="process-math">\(\displaystyle \vr(t) = \langle \cos(t), \sin(t), t \rangle \times \langle -\sin(t), \cos(t), 1 \rangle\)</span></div></li>
 </ol>
 </div></article><article class="exercise exercise-like" id="Ez_9_7_2"><h4 class="heading"><span class="codenumber">14<span class="period">.</span></span></h4>
-<div class="para logical" id="p-1228">
+<div class="para logical" id="p-1227">
 <div class="para">Consider the two vector-valued functions given by</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1233,44 +1256,44 @@ x=10\cos t,\quad y = 10 \sin t, \quad z = 100 - 5 t.
 \end{equation*}
 </div>
 <ol class="lower-alpha">
-<li id="li-445"><div class="para" id="p-1229">Determine the point of intersection of the curves generated by <span class="process-math">\(\vr(t)\)</span> and <span class="process-math">\(\vw(s)\text{.}\)</span>  To do so, you will have to find values of <span class="process-math">\(a\)</span> and <span class="process-math">\(b\)</span> that result in <span class="process-math">\(\vr(a)\)</span> and <span class="process-math">\(\vw(b)\)</span> being the same vector.</div></li>
-<li id="li-446"><div class="para" id="p-1230">Use the value of <span class="process-math">\(a\)</span> you determined in (a) to find a vector form of the tangent line to <span class="process-math">\(\vr(t)\)</span> at the point where <span class="process-math">\(t = a\text{.}\)</span>
+<li id="li-444"><div class="para" id="p-1228">Determine the point of intersection of the curves generated by <span class="process-math">\(\vr(t)\)</span> and <span class="process-math">\(\vw(s)\text{.}\)</span>  To do so, you will have to find values of <span class="process-math">\(a\)</span> and <span class="process-math">\(b\)</span> that result in <span class="process-math">\(\vr(a)\)</span> and <span class="process-math">\(\vw(b)\)</span> being the same vector.</div></li>
+<li id="li-445"><div class="para" id="p-1229">Use the value of <span class="process-math">\(a\)</span> you determined in (a) to find a vector form of the tangent line to <span class="process-math">\(\vr(t)\)</span> at the point where <span class="process-math">\(t = a\text{.}\)</span>
 </div></li>
-<li id="li-447"><div class="para" id="p-1231">Use the value of <span class="process-math">\(b\)</span> you determined in (a) to find a vector form of the tangent line to <span class="process-math">\(\vw(s)\)</span> at the point where <span class="process-math">\(s = b\text{.}\)</span>
+<li id="li-446"><div class="para" id="p-1230">Use the value of <span class="process-math">\(b\)</span> you determined in (a) to find a vector form of the tangent line to <span class="process-math">\(\vw(s)\)</span> at the point where <span class="process-math">\(s = b\text{.}\)</span>
 </div></li>
-<li id="li-448"><div class="para" id="p-1232">Suppose that <span class="process-math">\(z = f(x,y)\)</span> is a function that generates a surface in three-dimensional space, and that the curves generated by <span class="process-math">\(\vr(t)\)</span> and <span class="process-math">\(\vw(s)\)</span> both lie on this surface.  Note particularly that the point of intersection you found in (a) lies on this surface.  In addition, observe that the two tangent lines found in (b) and (c) both lie in the tangent plane to the surface at the point of intersection.  Use your preceding work to determine the equation of this tangent plane.</div></li>
+<li id="li-447"><div class="para" id="p-1231">Suppose that <span class="process-math">\(z = f(x,y)\)</span> is a function that generates a surface in three-dimensional space, and that the curves generated by <span class="process-math">\(\vr(t)\)</span> and <span class="process-math">\(\vw(s)\)</span> both lie on this surface.  Note particularly that the point of intersection you found in (a) lies on this surface.  In addition, observe that the two tangent lines found in (b) and (c) both lie in the tangent plane to the surface at the point of intersection.  Use your preceding work to determine the equation of this tangent plane.</div></li>
 </ol>
 </div></article><article class="exercise exercise-like" id="Ez_9_7_3"><h4 class="heading"><span class="codenumber">15<span class="period">.</span></span></h4>
-<div class="para logical" id="p-1233">
+<div class="para logical" id="p-1232">
 <div class="para">In this exercise, we determine the equation of a plane tangent to the surface defined by <span class="process-math">\(f(x,y) = \sqrt{x^2+y^2}\)</span> at the point <span class="process-math">\((3,4,5)\text{.}\)</span>
 </div>
 <ol class="lower-alpha">
-<li id="li-449"><div class="para" id="p-1234">Find a parameterization for the <span class="process-math">\(x=3\)</span> trace of <span class="process-math">\(f\text{.}\)</span> What is a direction vector for the line tangent to this trace at the point <span class="process-math">\((3,4,5)\text{?}\)</span>
+<li id="li-448"><div class="para" id="p-1233">Find a parameterization for the <span class="process-math">\(x=3\)</span> trace of <span class="process-math">\(f\text{.}\)</span> What is a direction vector for the line tangent to this trace at the point <span class="process-math">\((3,4,5)\text{?}\)</span>
 </div></li>
-<li id="li-450"><div class="para" id="p-1235">Find a parameterization for the <span class="process-math">\(y=4\)</span> trace of <span class="process-math">\(f\text{.}\)</span> What is a direction vector for the line tangent to this trace at the point <span class="process-math">\((3,4,5)\text{?}\)</span>
+<li id="li-449"><div class="para" id="p-1234">Find a parameterization for the <span class="process-math">\(y=4\)</span> trace of <span class="process-math">\(f\text{.}\)</span> What is a direction vector for the line tangent to this trace at the point <span class="process-math">\((3,4,5)\text{?}\)</span>
 </div></li>
-<li id="li-451"><div class="para" id="p-1236">The direction vectors in parts (a) and (b) form a plane containing the point <span class="process-math">\((3,4,5)\text{.}\)</span> What is a normal vector for this plane?</div></li>
-<li id="li-452"><div class="para" id="p-1237">Use your work in parts (a), (b), and (c) to determine an equation for the tangent plane.  Then, use appropriate technology to draw the graph of <span class="process-math">\(f\)</span> and the plane you determined on the same set of axes. What do you observe? (We will discuss tangent planes in more detail in Chapter 10.)</div></li>
+<li id="li-450"><div class="para" id="p-1235">The direction vectors in parts (a) and (b) form a plane containing the point <span class="process-math">\((3,4,5)\text{.}\)</span> What is a normal vector for this plane?</div></li>
+<li id="li-451"><div class="para" id="p-1236">Use your work in parts (a), (b), and (c) to determine an equation for the tangent plane.  Then, use appropriate technology to draw the graph of <span class="process-math">\(f\)</span> and the plane you determined on the same set of axes. What do you observe? (We will discuss tangent planes in more detail in Chapter 10.)</div></li>
 </ol>
 </div></article><article class="exercise exercise-like" id="Ez_9_7_4"><h4 class="heading"><span class="codenumber">16<span class="period">.</span></span></h4>
-<div class="para logical" id="p-1238">
+<div class="para logical" id="p-1237">
 <div class="para">For each given function <span class="process-math">\(\vr\text{,}\)</span> determine <span class="process-math">\(\int \vr(t) \ dt\text{.}\)</span> In addition, recalling the Fundamental Theorem of Calculus for functions of a single variable, also evaluate <span class="process-math">\(\int_0^1 \vr(t) \ dt\)</span> for each given function <span class="process-math">\(\vr\text{.}\)</span> Is the resulting quantity a scalar or a vector? What does it measure?</div>
 <ol class="lower-alpha">
-<li id="li-453"><div class="para" id="p-1239"><span class="process-math">\(\displaystyle \vr(t) = \left\langle \cos(t), \frac{1}{t+1}, te^t \right\rangle\)</span></div></li>
-<li id="li-454"><div class="para" id="p-1240"><span class="process-math">\(\displaystyle \vr(t) = \left\langle \cos(3t), \sin(2t), t \right\rangle\)</span></div></li>
-<li id="li-455"><div class="para" id="p-1241"><span class="process-math">\(\displaystyle \vr(t) = \left\langle \frac{t}{1+t^2}, te^{t^2}, \frac{1}{1+t^2} \right\rangle\)</span></div></li>
+<li id="li-452"><div class="para" id="p-1238"><span class="process-math">\(\displaystyle \vr(t) = \left\langle \cos(t), \frac{1}{t+1}, te^t \right\rangle\)</span></div></li>
+<li id="li-453"><div class="para" id="p-1239"><span class="process-math">\(\displaystyle \vr(t) = \left\langle \cos(3t), \sin(2t), t \right\rangle\)</span></div></li>
+<li id="li-454"><div class="para" id="p-1240"><span class="process-math">\(\displaystyle \vr(t) = \left\langle \frac{t}{1+t^2}, te^{t^2}, \frac{1}{1+t^2} \right\rangle\)</span></div></li>
 </ol>
 </div></article><article class="exercise exercise-like" id="Ez_9_7_5"><h4 class="heading"><span class="codenumber">17<span class="period">.</span></span></h4>
-<div class="para logical" id="p-1242">
+<div class="para logical" id="p-1241">
 <div class="para">In this exercise, we develop the formula for the position function of a projectile that has been launched at an initial speed of <span class="process-math">\(|\vv_0|\)</span> and a launch angle of <span class="process-math">\(\theta.\)</span> Recall that <span class="process-math">\(\va(t) = \langle 0, -g \rangle\)</span> is the constant acceleration of the projectile at any time <span class="process-math">\(t\text{.}\)</span>
 </div>
 <ol class="lower-alpha">
-<li id="li-456"><div class="para" id="p-1243">Find all velocity vectors for the given acceleration vector <span class="process-math">\(\va\text{.}\)</span>  When you anti-differentiate, remember that there is an arbitrary constant that arises in each component.</div></li>
-<li id="li-457"><div class="para" id="p-1244">Use the given information about initial speed and launch angle to find <span class="process-math">\(\vv_0\text{,}\)</span> the initial velocity of the projectile.  You will want to write the vector in terms of its components, which will involve <span class="process-math">\(\sin(\theta)\)</span> and <span class="process-math">\(\cos(\theta)\text{.}\)</span>
+<li id="li-455"><div class="para" id="p-1242">Find all velocity vectors for the given acceleration vector <span class="process-math">\(\va\text{.}\)</span>  When you anti-differentiate, remember that there is an arbitrary constant that arises in each component.</div></li>
+<li id="li-456"><div class="para" id="p-1243">Use the given information about initial speed and launch angle to find <span class="process-math">\(\vv_0\text{,}\)</span> the initial velocity of the projectile.  You will want to write the vector in terms of its components, which will involve <span class="process-math">\(\sin(\theta)\)</span> and <span class="process-math">\(\cos(\theta)\text{.}\)</span>
 </div></li>
-<li id="li-458"><div class="para" id="p-1245">Next, find the specific velocity vector function <span class="process-math">\(\vv\)</span> for the projectile. That is, combine your work in (a) and (b) in order to determine expressions in terms of <span class="process-math">\(|\vv_0|\)</span> and <span class="process-math">\(\theta\)</span> for the constants that arose when integrating.</div></li>
-<li id="li-459"><div class="para" id="p-1246">Find all possible position vectors for the velocity vector <span class="process-math">\(\vv(t)\)</span> you determined in (c).</div></li>
-<li id="li-460"><div class="para logical" id="p-1247">
+<li id="li-457"><div class="para" id="p-1244">Next, find the specific velocity vector function <span class="process-math">\(\vv\)</span> for the projectile. That is, combine your work in (a) and (b) in order to determine expressions in terms of <span class="process-math">\(|\vv_0|\)</span> and <span class="process-math">\(\theta\)</span> for the constants that arose when integrating.</div></li>
+<li id="li-458"><div class="para" id="p-1245">Find all possible position vectors for the velocity vector <span class="process-math">\(\vv(t)\)</span> you determined in (c).</div></li>
+<li id="li-459"><div class="para logical" id="p-1246">
 <div class="para">Let <span class="process-math">\(\vr(t)\)</span> denote the position vector function for the given projectile. Use the fact that the object is fired from the position <span class="process-math">\((x_0, y_0)\)</span> to show it follows that</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1280,9 +1303,9 @@ x=10\cos t,\quad y = 10 \sin t, \quad z = 100 - 5 t.
 </div></li>
 </ol>
 </div></article><article class="exercise exercise-like" id="Ez_9_7_6"><h4 class="heading"><span class="codenumber">18<span class="period">.</span></span></h4>
-<div class="para" id="p-1248">A <em class="emphasis">central force</em> is one that acts on an object so that the force <span class="process-math">\(\vF\)</span> is parallel to the object's position <span class="process-math">\(\vr\text{.}\)</span> Since Newton's Second Law says that an object's acceleration is proportional to the force exerted on it, the acceleration <span class="process-math">\(\va\)</span> of an object moving under a central force will be parallel to its position <span class="process-math">\(\vr\text{.}\)</span> For instance, the Earth's acceleration due to the gravitational force that the sun exerts on the Earth is parallel to the Earth's position vector as shown in <a href="" class="xref" data-knowl="./knowl/F_9_7_sun.html" title="Figure 9.7.8">Figure 9.7.8</a>.</div> <figure class="figure figure-like" id="F_9_7_sun"><div class="image-box" style="width: 50%; margin-left: 25%; margin-right: 25%;"><img src="external/images/fig_9_7_sun.svg" role="img" class="contained"></div>
+<div class="para" id="p-1247">A <em class="emphasis">central force</em> is one that acts on an object so that the force <span class="process-math">\(\vF\)</span> is parallel to the object’s position <span class="process-math">\(\vr\text{.}\)</span> Since Newton’s Second Law says that an object’s acceleration is proportional to the force exerted on it, the acceleration <span class="process-math">\(\va\)</span> of an object moving under a central force will be parallel to its position <span class="process-math">\(\vr\text{.}\)</span> For instance, the Earth’s acceleration due to the gravitational force that the sun exerts on the Earth is parallel to the Earth’s position vector as shown in <a href="" class="xref" data-knowl="./knowl/F_9_7_sun.html" title="Figure 9.7.8">Figure 9.7.8</a>.</div> <figure class="figure figure-like" id="F_9_7_sun"><div class="image-box" style="width: 50%; margin-left: 25%; margin-right: 25%;"><img src="external/images/fig_9_7_sun.svg" role="img" class="contained"></div>
 <figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">9.7.8<span class="period">.</span></span><span class="space"> </span>A central force.</figcaption></figure> <ol class="lower-alpha">
-<li id="li-461"><div class="para logical" id="p-1249">
+<li id="li-460"><div class="para logical" id="p-1248">
 <div class="para">If an object of mass <span class="process-math">\(m\)</span> is moving under a central force, the angular momentum vector is defined to be <span class="process-math">\(\vL=m\vr\times\vv\text{.}\)</span> Assuming the mass is constant, show that the angular momentum is constant by showing that</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1290,16 +1313,16 @@ x=10\cos t,\quad y = 10 \sin t, \quad z = 100 - 5 t.
 \end{equation*}
 </div>
 </div></li>
-<li id="li-462"><div class="para" id="p-1250">Explain why <span class="process-math">\(\vL\cdot\vr = 0\text{.}\)</span>
+<li id="li-461"><div class="para" id="p-1249">Explain why <span class="process-math">\(\vL\cdot\vr = 0\text{.}\)</span>
 </div></li>
-<li id="li-463"><div class="para" id="p-1251">Explain why we may conclude that the object is constrained to lie in the plane passing through the origin and perpendicular to <span class="process-math">\(\vL\text{.}\)</span>
+<li id="li-462"><div class="para" id="p-1250">Explain why we may conclude that the object is constrained to lie in the plane passing through the origin and perpendicular to <span class="process-math">\(\vL\text{.}\)</span>
 </div></li>
 </ol></article></section></section></div>
 <div class="ptx-content-footer">
 <a class="previous-button button" href="S-9-6-Vector-Valued-Functions.html" title="Previous"><span class="icon">&lt;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon">^</span><span class="name">Top</span></a><a class="next-button button" href="S-9-8-Arc-Length-Curvature.html" title="Next"><span class="name">Next</span><span class="icon">&gt;</span></a>
 </div></main>
 </div>
-<div id="ptx-page-footer">
+<div id="ptx-page-footer" class="ptx-page-footer">
 <a class="pretext-link" href="https://pretextbook.org" title="PreTeXt"><div class="logo"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="338 3000 8772 6866"><g style="stroke-width:.025in; stroke:black; fill:none"><polyline points="472,3590 472,9732 " style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round; "></polyline><path style="stroke:#000000;stroke-width:126;stroke-linecap:butt;" d="M 4724,9448 A 4660 4660  0  0  1  8598  9259"></path><path style="stroke:#000000;stroke-width:174;stroke-linecap:butt;" d="M 4488,9685 A 4228 4228  0  0  0   472  9732"></path><path style="stroke:#000000;stroke-width:126;stroke-linecap:butt;" d="M 4724,3590 A 4241 4241  0  0  1  8598  3496"></path><path style="stroke:#000000;stroke-width:126;stroke-linecap:round;" d="M 850,3496  A 4241 4241  0  0  1  4724  3590"></path><path style="stroke:#000000;stroke-width:126;stroke-linecap:round;" d="M 850,9259  A 4507 4507  0  0  1  4724  9448"></path><polyline points="5385,4299 4062,8125" style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="8598,3496 8598,9259" style="stroke:#000000;stroke-width:126; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="850,3496 850,9259" style="stroke:#000000;stroke-width:126; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="4960,9685 4488,9685" style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="3070,4582 1889,6141 3070,7700" style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="6418,4582 7600,6141 6418,7700" style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="8976,3590 8976,9732" style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round;"></polyline><path style="stroke:#000000;stroke-width:174;stroke-linecap:butt;" d="M 4960,9685 A 4228 4228  0  0  1  8976  9732"></path></g></svg></div></a><a class="runestone-link" href="https://runestone.academy" title="Runestone Academy"><img class="logo" src="https://runestone.academy/runestone/static/images/RAIcon_cropped.png"></a><a class="mathjax-link" href="https://www.mathjax.org" title="MathJax"><img class="logo" src="https://www.mathjax.org/badge/badge-square-2.png"></a>
 </div>
 <!--Start: Google Global Site Tag code--><!--*** DO NOT COPY ANOTHER PROJECT'S MAGIC NUMBERS/ID ***--><!--***           GET YOUR OWN FROM GOOGLE             ***-->

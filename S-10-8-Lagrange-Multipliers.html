@@ -5,7 +5,7 @@
 <!--*         https://pretextbook.org          *-->
 <!--*                                          *-->
 <!--********************************************-->
-<html lang="en-US">
+<html lang="en-US" dir="ltr">
 <head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Constrained Optimization: Lagrange Multipliers</title>
@@ -16,20 +16,38 @@
 <meta property="book:author" content="Steve Schlicker">
 <meta property="book:author" content="Mitchel T. Keller">
 <meta property="book:author" content="Nicholas Long">
-<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
+<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>
+var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
 window.MathJax = {
-  tex: {
-    inlineMath: [['\\(','\\)']],
-    tags: "none",
-    tagSide: "right",
-    tagIndent: ".8em",
-    packages: {'[+]': ['base', 'extpfeil', 'ams', 'amscd', 'color', 'newcommand', 'knowl']}
+  "tex": {
+    "inlineMath": [
+      [
+        "\\(",
+        "\\)"
+      ]
+    ],
+    "tags": "none",
+    "tagSide": "right",
+    "tagIndent": ".8em",
+    "packages": {
+      "[+]": [
+        "base",
+        "extpfeil",
+        "ams",
+        "amscd",
+        "color",
+        "newcommand",
+        "knowl"
+      ]
+    }
   },
-  options: {
-    ignoreHtmlClass: "tex2jax_ignore|ignore-math",
-    processHtmlClass: "process-math",
-    renderActions: {
-        findScript: [10, function (doc) {
+  "options": {
+    "ignoreHtmlClass": "tex2jax_ignore|ignore-math",
+    "processHtmlClass": "process-math",
+    "renderActions": {
+      "findScript": [
+        10,
+        function (doc) {
             document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
                 var display = !!node.type.match(/; *mode=display/);
                 var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
@@ -39,65 +57,70 @@ window.MathJax = {
                 math.end = {node: text, delim: '', n: 0};
                 doc.math.push(math);
             });
-        }, '']
-    },
+        },
+        ""
+      ]
+    }
   },
-  chtml: {
-    scale: 0.98,
-    mtextInheritFont: true
+  "chtml": {
+    "scale": 0.98,
+    "mtextInheritFont": true
   },
-  loader: {
-    load: ['input/asciimath', '[tex]/extpfeil', '[tex]/amscd', '[tex]/color', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
-    paths: {pretext: "https://pretextbook.org/js/lib"},
+  "loader": {
+    "load": [
+      "input/asciimath",
+      "[tex]/extpfeil",
+      "[tex]/amscd",
+      "[tex]/color",
+      "[tex]/newcommand",
+      "[pretext]/mathjaxknowl3.js"
+    ],
+    "paths": {
+      "pretext": "https://pretextbook.org/js/lib"
+    }
   },
-  startup: {
+  "startup": {
     pageReady() {
       return MathJax.startup.defaultPageReady().then(function () {
       console.log("in ready function");
       rsMathReady();
       }
     )}
-  },
+  }
 };
 </script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><link href="https://webwork-ptx.aimath.org/webwork2_files/js/apps/MathView/mathview.css" rel="stylesheet">
-<script src="https://pretextbook.org/js/0.2/pretext-webwork/2.17/pretext-webwork.js"></script><script src="https://webwork-ptx.aimath.org/webwork2_files/node_modules/iframe-resizer/js/iframeResizer.min.js"></script><script async="" src="https://cse.google.com/cse.js?cx=015103900096539427448:ngwuia10qci"></script><script src="https://unpkg.com/lunr/lunr.js"></script><script src="lunr-pretext-search-index.js" async=""></script><script src="https://pretextbook.org/js/0.2/pretext_search.js"></script><link href="https://pretextbook.org/css/0.6/pretext_search.css" rel="stylesheet" type="text/css">
-<script>js_version = 0.2</script><script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.2/pretext.js"></script><script>miniversion=0.1</script><script src="https://pretextbook.org/js/0.2/pretext_add_on.js?x=1"></script><script src="https://pretextbook.org/js/0.2/user_preferences.js"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
+<script src="https://pretextbook.org/js/0.3/pretext-webwork/2.17/pretext-webwork.js"></script><script src="https://webwork-ptx.aimath.org/webwork2_files/node_modules/iframe-resizer/js/iframeResizer.min.js"></script><script async="" src="https://cse.google.com/cse.js?cx=015103900096539427448:ngwuia10qci"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js" integrity="sha512-4xUl/d6D6THrAnXAwGajXkoWaeMNwEKK4iNfq5DotEbLPAfk6FSxSP3ydNxqDgCw1c/0Z1Jg6L8h2j+++9BZmg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="lunr-pretext-search-index.js" async=""></script><script src="https://pretextbook.org/js/0.3/pretext_search.js"></script><link href="https://pretextbook.org/css/0.7/pretext_search.css" rel="stylesheet" type="text/css">
+<script>js_version = 0.3</script><script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.3/pretext.js"></script><script>miniversion=0.1</script><script src="https://pretextbook.org/js/0.3/pretext_add_on.js?x=1"></script><script src="https://pretextbook.org/js/0.3/user_preferences.js"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
 </script><link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700&amp;family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&amp;family=Tinos:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" rel="stylesheet">
 <link href="https://fonts.cdnfonts.com/css/dejavu-serif" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:opsz,wdth,wght@8..144,50..150,100..900&amp;display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wdth,wght@75..100,300..800&amp;display=swap" rel="stylesheet">
-<link href="https://pretextbook.org/css/0.6/pretext.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.6/pretext_add_on.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.6/shell_default.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.6/banner_default.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.6/navbar_default.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.6/toc_default.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.6/knowls_default.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.6/style_default.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.6/colors_blue_grey.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.6/setcolors.css" rel="stylesheet" type="text/css">
-<!--Start: Google Global Site Tag code--><!--*** DO NOT COPY ANOTHER PROJECT'S MAGIC NUMBERS/ID ***--><!--***           GET YOUR OWN FROM GOOGLE             ***-->
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-QJKN634F7R"></script><script>  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-QJKN634F7R');
-</script><!--End: Google Global Site Tag code-->
+<link href="https://pretextbook.org/css/0.7/pretext.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/pretext_add_on.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/shell_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/banner_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/navbar_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/toc_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/knowls_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/style_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/colors_blue_grey.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.7/setcolors.css" rel="stylesheet" type="text/css">
 </head>
 <body id="acmulti" class="pretext book ignore-math">
-<a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead"><div class="ptx-banner">
-<a id="logo-link" href=""></a><div class="title-container">
+<a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead"><div class="ptx-banner">
+<a id="logo-link" class="logo-link" href=""></a><div class="title-container">
 <h1 class="heading"><a href="book-1.html"><span class="title">Active Calculus - Multivariable + Vector</span></a></h1>
 <p class="byline">Steve Schlicker, Mitchel T. Keller, Nicholas Long</p>
 </div>
-<div id="searchresultsplaceholder" style="display: none">
-<button id="closesearchresults" onclick="document.getElementById('searchresultsplaceholder').style.display = 'none'; return false;">x</button><h2>Search Results: <span id="searchterms"></span>
+<div id="searchresultsplaceholder" class="searchresultsplaceholder" style="display: none">
+<button id="closesearchresults" class="closesearchresults" onclick="document.getElementById('searchresultsplaceholder').style.display = 'none'; return false;">x</button><h2>Search Results: <span id="searchterms" class="searchterms"></span>
 </h2>
-<div id="searchempty"><span>No results.</span></div>
-<ol id="searchresults"></ol>
+<div id="searchempty" class="searchempty"><span>No results.</span></div>
+<ol id="searchresults" class="searchresults"></ol>
 </div>
-</div></header><nav id="ptx-navbar" class="navbar"><button class="toc-toggle button" aria-label="Show or hide table of contents"><span class="icon">☰</span><span class="name">Contents</span></button><a class="index-button button" href="index-1.html" title="Index"><span class="name">Index</span></a><button id="user-preferences-button" class="user-preferences-button button" title="Modify user preferences"><span id="theavatarbutton" class="name">You!</span><div id="preferences_menu_holder" class="hidden"><ol id="preferences_menu" style="font-family: 'Roboto Serif', serif;">
+</div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><button class="toc-toggle button" aria-label="Show or hide table of contents"><span class="icon">☰</span><span class="name">Contents</span></button><a class="index-button button" href="index-1.html" title="Index"><span class="name">Index</span></a><button id="user-preferences-button" class="user-preferences-button button" title="Modify user preferences"><span id="avatarbutton" class="avatarbutton name">You!</span><div id="preferences_menu_holder" class="preferences_menu_holder hidden"><ol id="preferences_menu" class="preferences_menu" style="font-family: 'Roboto Serif', serif;">
 <li data-env="avatar" tabindex="-1">Choose avatar<div class="wrap_to_submenu"><span class="to_submenu">▻</span></div>
 <ol class="hidden avatar">
 <li data-val="You!" tabindex="-1">
@@ -201,7 +224,7 @@ window.MathJax = {
 </li>
 </ol></div></button><span class="treebuttons"><a class="previous-button button" href="S-10-7-Optimization.html" title="Previous"><span class="icon">&lt;</span><span class="name">Prev</span></a><a class="up-button button" href="C-10.html" title="Up"><span class="icon">^</span><span class="name">Up</span></a><a class="next-button button" href="C-11.html" title="Next"><span class="name">Next</span><span class="icon">&gt;</span></a></span><div class="searchwrapper" role="search"><div class="gcse-search"></div></div>
 <div class="searchbox"><div class="searchwidget">
-<input id="ptxsearch" type="text" name="terms" placeholder="Search" onchange="doSearch()"><button id="searchbutton" type="button" onclick="doSearch()">🔍</button>
+<input id="ptxsearch" class="ptxsearch" type="text" name="terms" placeholder="Search" onchange="doSearch()"><button id="searchbutton" class="searchbutton" type="button" onclick="doSearch()">🔍</button>
 </div></div></nav><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\newcommand{\R}{\mathbb{R}}
 \newcommand{\va}{\mathbf{a}}
 \newcommand{\vb}{\mathbf{b}}
@@ -246,7 +269,7 @@ window.MathJax = {
 \newcommand{\fillinmath}[1]{\mathchoice{\colorbox{fillinmathshade}{$\displaystyle     \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\textstyle        \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptstyle      \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptscriptstyle\phantom{\,#1\,}$}}}
 \)</span></div>
 <div class="ptx-page">
-<div id="ptx-sidebar"><nav id="ptx-toc" class="depth2"><ul class="structural">
+<div id="ptx-sidebar" class="ptx-sidebar"><nav id="ptx-toc" class="ptx-toc depth2"><ul class="structural">
 <li>
 <div class="toc-item"><a href="frontmatter.html" class="internal"><span class="title">Front Matter</span></a></div>
 <ul class="structural">
@@ -574,14 +597,14 @@ window.MathJax = {
 </ul>
 </li>
 <li>
-<div class="toc-item"><a href="S_ScalarLineIntegral.html" class="internal"><span class="codenumber">12.5</span> <span class="title">Line Integrals of Scalar Functions</span></a></div>
+<div class="toc-item"><a href="S_Vector_ScalarLineIntegral.html" class="internal"><span class="codenumber">12.5</span> <span class="title">Line Integrals of Scalar Functions</span></a></div>
 <ul class="structural">
-<li><div class="toc-item"><a href="S_ScalarLineIntegral.html#subsection-124" class="internal"><span class="codenumber">12.5.1</span> <span class="title">Defining line integrals of scalar functions</span></a></div></li>
-<li><div class="toc-item"><a href="S_ScalarLineIntegral.html#subsection-125" class="internal"><span class="codenumber">12.5.2</span> <span class="title">Using Parameterizations to Calculate Scalar Line Integrals</span></a></div></li>
-<li><div class="toc-item"><a href="S_ScalarLineIntegral.html#subsection-126" class="internal"><span class="codenumber">12.5.3</span> <span class="title">Properties of Scalar Line Integrals</span></a></div></li>
-<li><div class="toc-item"><a href="S_ScalarLineIntegral.html#subsection-127" class="internal"><span class="codenumber">12.5.4</span> <span class="title">Visualizations of Scalar Line Integrals as Area Under a Curve</span></a></div></li>
-<li><div class="toc-item"><a href="S_ScalarLineIntegral.html#subsection-128" class="internal"><span class="codenumber">12.5.5</span> <span class="title">Summary</span></a></div></li>
-<li><div class="toc-item"><a href="S_ScalarLineIntegral.html#exercises-30" class="internal"><span class="codenumber">12.5.6</span> <span class="title">Exercises</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_ScalarLineIntegral.html#subsection-124" class="internal"><span class="codenumber">12.5.1</span> <span class="title">Defining line integrals of scalar functions</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_ScalarLineIntegral.html#subsection-125" class="internal"><span class="codenumber">12.5.2</span> <span class="title">Using Parameterizations to Calculate Scalar Line Integrals</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_ScalarLineIntegral.html#subsection-126" class="internal"><span class="codenumber">12.5.3</span> <span class="title">Properties of Scalar Line Integrals</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_ScalarLineIntegral.html#subsection-127" class="internal"><span class="codenumber">12.5.4</span> <span class="title">Visualizations of Scalar Line Integrals as Area Under a Curve</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_ScalarLineIntegral.html#subsection-128" class="internal"><span class="codenumber">12.5.5</span> <span class="title">Summary</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_ScalarLineIntegral.html#exercises-30" class="internal"><span class="codenumber">12.5.6</span> <span class="title">Exercises</span></a></div></li>
 </ul>
 </li>
 <li>
@@ -607,10 +630,10 @@ window.MathJax = {
 </ul>
 </li>
 <li>
-<div class="toc-item"><a href="S_Vector_GreensTheorem.html" class="internal"><span class="codenumber">12.8</span> <span class="title">Green's Theorem</span></a></div>
+<div class="toc-item"><a href="S_Vector_GreensTheorem.html" class="internal"><span class="codenumber">12.8</span> <span class="title">Green’s Theorem</span></a></div>
 <ul class="structural">
 <li><div class="toc-item"><a href="S_Vector_GreensTheorem.html#SS_Vector_GreensTheorem_Circulation" class="internal"><span class="codenumber">12.8.1</span> <span class="title">Circulation</span></a></div></li>
-<li><div class="toc-item"><a href="S_Vector_GreensTheorem.html#subsection-140" class="internal"><span class="codenumber">12.8.2</span> <span class="title">Green's Theorem</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_GreensTheorem.html#subsection-140" class="internal"><span class="codenumber">12.8.2</span> <span class="title">Green’s Theorem</span></a></div></li>
 <li><div class="toc-item"><a href="S_Vector_GreensTheorem.html#subsection-141" class="internal"><span class="codenumber">12.8.3</span> <span class="title">What happens when vector fields are not smooth?</span></a></div></li>
 <li><div class="toc-item"><a href="S_Vector_GreensTheorem.html#subsection-142" class="internal"><span class="codenumber">12.8.4</span> <span class="title">Summary</span></a></div></li>
 <li><div class="toc-item"><a href="S_Vector_GreensTheorem.html#exercises-33" class="internal"><span class="codenumber">12.8.5</span> <span class="title">Exercises</span></a></div></li>
@@ -620,27 +643,27 @@ window.MathJax = {
 <div class="toc-item"><a href="S_Vector_FluxInt.html" class="internal"><span class="codenumber">12.9</span> <span class="title">Flux Integrals</span></a></div>
 <ul class="structural">
 <li><div class="toc-item"><a href="S_Vector_FluxInt.html#SS_Vector_FluxInt_Idea" class="internal"><span class="codenumber">12.9.1</span> <span class="title">The Idea of the Flux of a Vector Field through a Surface</span></a></div></li>
-<li><div class="toc-item"><a href="S_Vector_FluxInt.html#subsection-144" class="internal"><span class="codenumber">12.9.2</span> <span class="title">Measuring the Flux of a Vector Field through a Surface</span></a></div></li>
-<li><div class="toc-item"><a href="S_Vector_FluxInt.html#SS_Vector_FluxInt_Calculate" class="internal"><span class="codenumber">12.9.3</span> <span class="title">Efficiently Calculating Flux Integrals</span></a></div></li>
-<li><div class="toc-item"><a href="S_Vector_FluxInt.html#subsection-146" class="internal"><span class="codenumber">12.9.4</span> <span class="title">Summary</span></a></div></li>
-<li><div class="toc-item"><a href="S_Vector_FluxInt.html#exercises-34" class="internal"><span class="codenumber">12.9.5</span> <span class="title">Exercises</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_FluxInt.html#subsection-144" class="internal"><span class="codenumber">12.9.2</span> <span class="title">The Details of Measuring the Flux of a Vector Field through a Surface</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_FluxInt.html#subsection-145" class="internal"><span class="codenumber">12.9.3</span> <span class="title">Summary</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_FluxInt.html#exercises-34" class="internal"><span class="codenumber">12.9.4</span> <span class="title">Exercises</span></a></div></li>
 </ul>
 </li>
 <li>
 <div class="toc-item"><a href="S_Vector_ScalarSurfaceIntegral.html" class="internal"><span class="codenumber">12.10</span> <span class="title">Surface Integrals of Scalar Valued Functions</span></a></div>
 <ul class="structural">
-<li><div class="toc-item"><a href="S_Vector_ScalarSurfaceIntegral.html#subsection-147" class="internal"><span class="codenumber">12.10.1</span> <span class="title">Defining surface integrals of scalar functions</span></a></div></li>
-<li><div class="toc-item"><a href="S_Vector_ScalarSurfaceIntegral.html#subsection-148" class="internal"><span class="codenumber">12.10.2</span> <span class="title">Properties of Scalar Surface Integrals</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_ScalarSurfaceIntegral.html#subsection-146" class="internal"><span class="codenumber">12.10.1</span> <span class="title">Defining surface integrals of scalar functions</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_ScalarSurfaceIntegral.html#subsection-147" class="internal"><span class="codenumber">12.10.2</span> <span class="title">Properties of Scalar Surface Integrals</span></a></div></li>
 <li><div class="toc-item"><a href="S_Vector_ScalarSurfaceIntegral.html#exercises-35" class="internal"><span class="codenumber">12.10.3</span> <span class="title">Exercises</span></a></div></li>
 </ul>
 </li>
 <li>
-<div class="toc-item"><a href="S_Vector_StokesThm.html" class="internal"><span class="codenumber">12.11</span> <span class="title">Stokes' Theorem</span></a></div>
+<div class="toc-item"><a href="S_Vector_StokesThm.html" class="internal"><span class="codenumber">12.11</span> <span class="title">Stokes’ Theorem</span></a></div>
 <ul class="structural">
-<li><div class="toc-item"><a href="S_Vector_StokesThm.html#SS_Vector_StokesThm_Development" class="internal"><span class="codenumber">12.11.1</span> <span class="title">Circulation in three dimensions and Stokes' Theorem</span></a></div></li>
-<li><div class="toc-item"><a href="S_Vector_StokesThm.html#SS_Vector_StokesThm_Verify" class="internal"><span class="codenumber">12.11.2</span> <span class="title">Verifying and Applying Stokes' Theorem</span></a></div></li>
-<li><div class="toc-item"><a href="S_Vector_StokesThm.html#subsection-151" class="internal"><span class="codenumber">12.11.3</span> <span class="title">Summary</span></a></div></li>
-<li><div class="toc-item"><a href="S_Vector_StokesThm.html#exercises-36" class="internal"><span class="codenumber">12.11.4</span> <span class="title">Exercises</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_StokesThm.html#SS_Vector_StokesThm_Development" class="internal"><span class="codenumber">12.11.1</span> <span class="title">Circulation in three dimensions and Stokes’ Theorem</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_StokesThm.html#SS_Vector_StokesThm_Verify" class="internal"><span class="codenumber">12.11.2</span> <span class="title">Verifying and Applying Stokes’ Theorem</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_StokesThm.html#surfaceboundaries" class="internal"><span class="codenumber">12.11.3</span> <span class="title">Practice with Surfaces and thier Boundaries</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_StokesThm.html#subsection-151" class="internal"><span class="codenumber">12.11.4</span> <span class="title">Summary</span></a></div></li>
+<li><div class="toc-item"><a href="S_Vector_StokesThm.html#exercises-36" class="internal"><span class="codenumber">12.11.5</span> <span class="title">Exercises</span></a></div></li>
 </ul>
 </li>
 <li>
@@ -664,13 +687,13 @@ window.MathJax = {
 </h2>
 <article class="objectives goal-like" id="objectives-16"><h3 class="heading"><span class="type">Motivating Questions</span></h3>
 <ul class="disc">
-<li id="li-1050"><div class="para" id="p-2769">What geometric condition enables us to optimize a function <span class="process-math">\(f=f(x,y)\)</span> subject to a constraint given by <span class="process-math">\(g(x,y) = k\text{,}\)</span> where <span class="process-math">\(k\)</span> is a constant?</div></li>
-<li id="li-1051"><div class="para" id="p-2770">How can we exploit this geometric condition to find the extreme values of a function subject to a constraint?</div></li>
-</ul></article><section class="introduction" id="introduction-16"><div class="para" id="p-2771">We previously considered how to find the extreme values of functions on both unrestricted domains and on closed, bounded domains. Other types of optimization problems involve maximizing or minimizing a quantity subject to an external constraint. In these cases the extreme values frequently won't occur at the points where the gradient is zero, but rather at other points that satisfy an important geometric condition. These problems are often called <em class="emphasis">constrained optimization</em> problems and can be solved with the method of Lagrange Multipliers, which we study in this section.</div> <article class="exploration project-like" id="PA_10_8"><h3 class="heading">
+<li id="li-1024"><div class="para" id="p-2743">What geometric condition enables us to optimize a function <span class="process-math">\(f=f(x,y)\)</span> subject to a constraint given by <span class="process-math">\(g(x,y) = k\text{,}\)</span> where <span class="process-math">\(k\)</span> is a constant?</div></li>
+<li id="li-1025"><div class="para" id="p-2744">How can we exploit this geometric condition to find the extreme values of a function subject to a constraint?</div></li>
+</ul></article><section class="introduction" id="introduction-16"><div class="para" id="p-2745">We previously considered how to find the extreme values of functions on both unrestricted domains and on closed, bounded domains. Other types of optimization problems involve maximizing or minimizing a quantity subject to an external constraint. In these cases the extreme values frequently won’t occur at the points where the gradient is zero, but rather at other points that satisfy an important geometric condition. These problems are often called <em class="emphasis">constrained optimization</em> problems and can be solved with the method of Lagrange Multipliers, which we study in this section.</div> <article class="exploration project-like" id="PA_10_8"><h3 class="heading">
 <span class="type">Preview Activity</span><span class="space"> </span><span class="codenumber">10.8.1</span><span class="period">.</span>
 </h3>
-<div class="para" id="p-2772">According to U.S. postal regulations, the girth plus the length of a parcel sent by mail may not exceed 108 inches, where by “girth” we mean the perimeter of the smallest end. Our goal is to find the largest possible volume of a rectangular parcel with a square end that can be sent by mail. (We solved this applied optimization problem in single variable <em class="emphasis">Active Calculus</em>, so it may look familiar. We take a different approach in this section, and this approach allows us to view most applied optimization problems from single variable calculus as constrained optimization problems, as well as provide us tools to solve a greater variety of optimization problems.) If we let <span class="process-math">\(x\)</span> be the length of the side of one square end of the package and <span class="process-math">\(y\)</span> the length of the package, then we want to maximize the volume <span class="process-math">\(f(x,y) = x^2y\)</span> of the box subject to the constraint that the girth (<span class="process-math">\(4x\)</span>) plus the length (<span class="process-math">\(y\)</span>) is as large as possible, or <span class="process-math">\(4x+y = 108\text{.}\)</span> The equation <span class="process-math">\(4x + y = 108\)</span> is thus an external constraint on the variables.</div> <ol class="lower-alpha">
-<li id="li-1052"><div class="para logical" id="p-2773">
+<div class="para" id="p-2746">According to U.S. postal regulations, the girth plus the length of a parcel sent by mail may not exceed 108 inches, where by “girth” we mean the perimeter of the smallest end. Our goal is to find the largest possible volume of a rectangular parcel with a square end that can be sent by mail. (We solved this applied optimization problem in single variable <em class="emphasis">Active Calculus</em>, so it may look familiar. We take a different approach in this section, and this approach allows us to view most applied optimization problems from single variable calculus as constrained optimization problems, as well as provide us tools to solve a greater variety of optimization problems.) If we let <span class="process-math">\(x\)</span> be the length of the side of one square end of the package and <span class="process-math">\(y\)</span> the length of the package, then we want to maximize the volume <span class="process-math">\(f(x,y) = x^2y\)</span> of the box subject to the constraint that the girth (<span class="process-math">\(4x\)</span>) plus the length (<span class="process-math">\(y\)</span>) is as large as possible, or <span class="process-math">\(4x+y = 108\text{.}\)</span> The equation <span class="process-math">\(4x + y = 108\)</span> is thus an external constraint on the variables.</div> <ol class="lower-alpha">
+<li id="li-1026"><div class="para logical" id="p-2747">
 <div class="para">The constraint equation involves the function <span class="process-math">\(g\)</span> that is given by</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -681,22 +704,22 @@ g(x,y) = 4x+y.
 <figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">10.8.1<span class="period">.</span></span><span class="space"> </span>Contours of <span class="process-math">\(f\)</span> and the constraint equation <span class="process-math">\(g(x,y) = 108\text{.}\)</span></figcaption></figure>
 </div>
 </div></li>
-<li id="li-1053">
-<div class="para" id="p-2774">
+<li id="li-1027">
+<div class="para" id="p-2748">
 <a href="" class="xref" data-knowl="./knowl/F_10_8_preview.html" title="Figure 10.8.1">Figure 10.8.1</a> shows the graph of the constraint equation <span class="process-math">\(g(x,y) = 108\)</span> along with a few contours of the volume function <span class="process-math">\(f\text{.}\)</span>  Since our goal is to find the maximum value of <span class="process-math">\(f\)</span> subject to the constraint <span class="process-math">\(g(x,y) = 108\text{,}\)</span> we want to find the point on our constraint curve that intersects the contours of <span class="process-math">\(f\)</span> at which <span class="process-math">\(f\)</span> has its largest value.</div>
 <ol class="lower-roman">
-<li id="li-1054"><div class="para" id="p-2775">Points <span class="process-math">\(A\)</span> and <span class="process-math">\(B\)</span> in <a href="" class="xref" data-knowl="./knowl/F_10_8_preview.html" title="Figure 10.8.1">Figure 10.8.1</a> lie on a contour of <span class="process-math">\(f\)</span> and on the constraint equation <span class="process-math">\(g(x,y) = 108\text{.}\)</span> Explain why neither <span class="process-math">\(A\)</span> nor <span class="process-math">\(B\)</span> provides a maximum value of <span class="process-math">\(f\)</span> that satisfies the constraint.</div></li>
-<li id="li-1055"><div class="para" id="p-2776">Points <span class="process-math">\(C\)</span> and <span class="process-math">\(D\)</span> in <a href="" class="xref" data-knowl="./knowl/F_10_8_preview.html" title="Figure 10.8.1">Figure 10.8.1</a> lie on a contour of <span class="process-math">\(f\)</span> and on the constraint equation <span class="process-math">\(g(x,y) = 108\text{.}\)</span> Explain why neither <span class="process-math">\(C\)</span> nor <span class="process-math">\(D\)</span> provides a maximum value of <span class="process-math">\(f\)</span> that satisfies the constraint.</div></li>
-<li id="li-1056"><div class="para" id="p-2777">Based on your responses to parts i. and ii., draw the contour of <span class="process-math">\(f\)</span> on which you believe <span class="process-math">\(f\)</span> will achieve a maximum value subject to the constraint <span class="process-math">\(g(x,y) = 108\text{.}\)</span> Explain why you drew the contour you did.</div></li>
+<li id="li-1028"><div class="para" id="p-2749">Points <span class="process-math">\(A\)</span> and <span class="process-math">\(B\)</span> in <a href="" class="xref" data-knowl="./knowl/F_10_8_preview.html" title="Figure 10.8.1">Figure 10.8.1</a> lie on a contour of <span class="process-math">\(f\)</span> and on the constraint equation <span class="process-math">\(g(x,y) = 108\text{.}\)</span> Explain why neither <span class="process-math">\(A\)</span> nor <span class="process-math">\(B\)</span> provides a maximum value of <span class="process-math">\(f\)</span> that satisfies the constraint.</div></li>
+<li id="li-1029"><div class="para" id="p-2750">Points <span class="process-math">\(C\)</span> and <span class="process-math">\(D\)</span> in <a href="" class="xref" data-knowl="./knowl/F_10_8_preview.html" title="Figure 10.8.1">Figure 10.8.1</a> lie on a contour of <span class="process-math">\(f\)</span> and on the constraint equation <span class="process-math">\(g(x,y) = 108\text{.}\)</span> Explain why neither <span class="process-math">\(C\)</span> nor <span class="process-math">\(D\)</span> provides a maximum value of <span class="process-math">\(f\)</span> that satisfies the constraint.</div></li>
+<li id="li-1030"><div class="para" id="p-2751">Based on your responses to parts i. and ii., draw the contour of <span class="process-math">\(f\)</span> on which you believe <span class="process-math">\(f\)</span> will achieve a maximum value subject to the constraint <span class="process-math">\(g(x,y) = 108\text{.}\)</span> Explain why you drew the contour you did.</div></li>
 </ol>
 </li>
-<li id="li-1057"><div class="para" id="p-2778">Recall that <span class="process-math">\(g(x,y) = 108\)</span> is a contour of the function <span class="process-math">\(g\text{,}\)</span> and that the gradient of a function is always orthogonal to its contours. With this in mind, how should <span class="process-math">\(\nabla f\)</span> and <span class="process-math">\(\nabla g\)</span> be related at the optimal point? Explain.</div></li>
+<li id="li-1031"><div class="para" id="p-2752">Recall that <span class="process-math">\(g(x,y) = 108\)</span> is a contour of the function <span class="process-math">\(g\text{,}\)</span> and that the gradient of a function is always orthogonal to its contours. With this in mind, how should <span class="process-math">\(\nabla f\)</span> and <span class="process-math">\(\nabla g\)</span> be related at the optimal point? Explain.</div></li>
 </ol></article></section><section class="subsection" id="subsection-71"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">10.8.1</span> <span class="title">Constrained Optimization and Lagrange Multipliers</span>
 </h3>
-<div class="para" id="p-2779">In <a href="" class="xref" data-knowl="./knowl/PA_10_8.html" title="Preview Activity 10.8.1">Preview Activity 10.8.1</a>, we considered an optimization problem where there is an external constraint on the variables, namely that the girth plus the length of the package cannot exceed 108 inches. We saw that we can create a function <span class="process-math">\(g\)</span> from the constraint, specifically <span class="process-math">\(g(x,y) = 4x+y\text{.}\)</span> The constraint equation is then just a contour of <span class="process-math">\(g\text{,}\)</span> <span class="process-math">\(g(x, y) = c\text{,}\)</span> where <span class="process-math">\(c\)</span> is a constant (in our case 108). <a href="" class="xref" data-knowl="./knowl/F_10_8_Lagrange1.html" title="Figure 10.8.2">Figure 10.8.2</a> illustrates that the volume function <span class="process-math">\(f\)</span> is maximized, subject to the constraint <span class="process-math">\(g(x, y) = c\text{,}\)</span> when the graph of <span class="process-math">\(g(x, y) = c\)</span> is tangent to a contour of <span class="process-math">\(f\text{.}\)</span> Moreover, the value of <span class="process-math">\(f\)</span> on this contour is the sought maximum value.</div>
+<div class="para" id="p-2753">In <a href="" class="xref" data-knowl="./knowl/PA_10_8.html" title="Preview Activity 10.8.1">Preview Activity 10.8.1</a>, we considered an optimization problem where there is an external constraint on the variables, namely that the girth plus the length of the package cannot exceed 108 inches. We saw that we can create a function <span class="process-math">\(g\)</span> from the constraint, specifically <span class="process-math">\(g(x,y) = 4x+y\text{.}\)</span> The constraint equation is then just a contour of <span class="process-math">\(g\text{,}\)</span> <span class="process-math">\(g(x, y) = c\text{,}\)</span> where <span class="process-math">\(c\)</span> is a constant (in our case 108). <a href="" class="xref" data-knowl="./knowl/F_10_8_Lagrange1.html" title="Figure 10.8.2">Figure 10.8.2</a> illustrates that the volume function <span class="process-math">\(f\)</span> is maximized, subject to the constraint <span class="process-math">\(g(x, y) = c\text{,}\)</span> when the graph of <span class="process-math">\(g(x, y) = c\)</span> is tangent to a contour of <span class="process-math">\(f\text{.}\)</span> Moreover, the value of <span class="process-math">\(f\)</span> on this contour is the sought maximum value.</div>
 <figure class="figure figure-like" id="F_10_8_Lagrange1"><div class="image-box" style="width: 50%; margin-left: 25%; margin-right: 25%;"><img src="external/images/fig_10_8_postal_solution.svg" role="img" class="contained"></div>
-<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">10.8.2<span class="period">.</span></span><span class="space"> </span>Contours of <span class="process-math">\(f\)</span> and the constraint contour.</figcaption></figure><div class="para logical" id="p-2780">
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">10.8.2<span class="period">.</span></span><span class="space"> </span>Contours of <span class="process-math">\(f\)</span> and the constraint contour.</figcaption></figure><div class="para logical" id="p-2754">
 <div class="para">To find this point where the graph of the constraint is tangent to a contour of <span class="process-math">\(f\text{,}\)</span> recall that <span class="process-math">\(\nabla f\)</span> is perpendicular to the contours of <span class="process-math">\(f\)</span> and <span class="process-math">\(\nabla g\)</span> is perpendicular to the contour of <span class="process-math">\(g\text{.}\)</span> At such a point, the vectors <span class="process-math">\(\nabla g\)</span> and <span class="process-math">\(\nabla f\)</span> are parallel, and thus we need to determine the points where this occurs. Recall that two vectors are parallel if one is a nonzero scalar multiple of the other, so we therefore look for values of a parameter <span class="process-math">\(\lambda\)</span> that make</div>
 <div class="displaymath process-math" id="eq_10_8_Lagrange_ex1">
 \begin{equation}
@@ -704,8 +727,8 @@ g(x,y) = 4x+y.
 \end{equation}
 </div>
 </div>
-<div class="para" id="p-2781">The constant <span class="process-math">\(\lambda\)</span> is called a <em class="emphasis">Lagrange multiplier</em>.</div>
-<div class="para logical" id="p-2782">
+<div class="para" id="p-2755">The constant <span class="process-math">\(\lambda\)</span> is called a <em class="emphasis">Lagrange multiplier</em>.</div>
+<div class="para logical" id="p-2756">
 <div class="para">To find the values of <span class="process-math">\(\lambda\)</span> that satisfy <a href="" class="xref" data-knowl="./knowl/eq_10_8_Lagrange_ex1.html" title="Equation 10.8.1">(10.8.1)</a> for the volume function in <a href="" class="xref" data-knowl="./knowl/PA_10_8.html" title="Preview Activity 10.8.1">Preview Activity 10.8.1</a>, we calculate both <span class="process-math">\(\nabla f\)</span> and <span class="process-math">\(\nabla g\text{.}\)</span> Observe that</div>
 <div class="displaymath process-math" data-contains-math-knowls="./knowl/eq_10_8_Lagrange_ex1.html ./knowl/PA_10_8.html">
 \begin{equation*}
@@ -719,7 +742,7 @@ g(x,y) = 4x+y.
 \end{equation*}
 </div>
 </div>
-<div class="para logical" id="p-2783">
+<div class="para logical" id="p-2757">
 <div class="para">Equating components in the most recent equation and incorporating the original constraint, we have three equations</div>
 <div class="displaymath process-math" data-contains-math-knowls="./knowl/eq_10_8_lag_ex2.html ./knowl/eq_10_8_lag_ex3.html ./knowl/eq_10_8_lag_ex2.html ./knowl/eq_10_8_lag_ex1.html ./knowl/eq_10_8_lag_ex2.html" id="mdn-2">
 \begin{align}
@@ -736,7 +759,7 @@ y \amp = 2x.
 \end{align*}
 </div>
 </div>
-<div class="para logical" id="p-2784">
+<div class="para logical" id="p-2758">
 <div class="para">Substituting into Equation <a href="" class="xref" data-knowl="./knowl/eq_10_8_lag_ex3.html" title="Equation 10.8.4">(10.8.4)</a> gives us</div>
 <div class="displaymath process-math" data-contains-math-knowls="./knowl/eq_10_8_lag_ex3.html">
 \begin{equation*}
@@ -750,30 +773,30 @@ x = 18.
 \end{equation*}
 </div>
 </div>
-<div class="para" id="p-2785">Thus we have <span class="process-math">\(y = 2x = 36\)</span> and <span class="process-math">\(\lambda = x^2 = 324\)</span> as another point to consider. So the points at which the gradients of <span class="process-math">\(f\)</span> and <span class="process-math">\(g\)</span> are parallel, and thus at which <span class="process-math">\(f\)</span> may have a maximum or minimum subject to the constraint, are <span class="process-math">\((0,108)\)</span> and <span class="process-math">\((18,36)\text{.}\)</span> By evaluating the function <span class="process-math">\(f\)</span> at these points, we see that we maximize the volume when the length of the square end of the box is 18 inches and the length is 36 inches, for a maximum volume of <span class="process-math">\(f(18,36) = 11664\)</span> cubic inches. Since <span class="process-math">\(f(0,108) = 0\text{,}\)</span> we obtain a minimum value at this point.</div>
-<div class="para" id="p-2786">We summarize the process of Lagrange multipliers as follows.</div>
+<div class="para" id="p-2759">Thus we have <span class="process-math">\(y = 2x = 36\)</span> and <span class="process-math">\(\lambda = x^2 = 324\)</span> as another point to consider. So the points at which the gradients of <span class="process-math">\(f\)</span> and <span class="process-math">\(g\)</span> are parallel, and thus at which <span class="process-math">\(f\)</span> may have a maximum or minimum subject to the constraint, are <span class="process-math">\((0,108)\)</span> and <span class="process-math">\((18,36)\text{.}\)</span> By evaluating the function <span class="process-math">\(f\)</span> at these points, we see that we maximize the volume when the length of the square end of the box is 18 inches and the length is 36 inches, for a maximum volume of <span class="process-math">\(f(18,36) = 11664\)</span> cubic inches. Since <span class="process-math">\(f(0,108) = 0\text{,}\)</span> we obtain a minimum value at this point.</div>
+<div class="para" id="p-2760">We summarize the process of Lagrange multipliers as follows.</div>
 <article class="assemblage assemblage-like" id="Lagrange-multipliers"><h4 class="heading"><span class="title">The method of Lagrange multipliers.</span></h4>
-<div class="para" id="p-2787">The general technique for optimizing a function <span class="process-math">\(f = f(x,y)\)</span> subject to a constraint <span class="process-math">\(g(x,y)=c\)</span> is to solve the system <span class="process-math">\(\nabla f = \lambda \nabla g\)</span> and <span class="process-math">\(g(x,y)=c\)</span> for <span class="process-math">\(x\text{,}\)</span> <span class="process-math">\(y\text{,}\)</span> and <span class="process-math">\(\lambda\text{.}\)</span> We then evaluate the function <span class="process-math">\(f\)</span> at each point <span class="process-math">\((x,y)\)</span> that results from a solution to the system in order to find the optimum values of <span class="process-math">\(f\)</span> subject to the constraint.</div></article><article class="activity project-like" id="A_10_8_1"><h4 class="heading">
+<div class="para" id="p-2761">The general technique for optimizing a function <span class="process-math">\(f = f(x,y)\)</span> subject to a constraint <span class="process-math">\(g(x,y)=c\)</span> is to solve the system <span class="process-math">\(\nabla f = \lambda \nabla g\)</span> and <span class="process-math">\(g(x,y)=c\)</span> for <span class="process-math">\(x\text{,}\)</span> <span class="process-math">\(y\text{,}\)</span> and <span class="process-math">\(\lambda\text{.}\)</span> We then evaluate the function <span class="process-math">\(f\)</span> at each point <span class="process-math">\((x,y)\)</span> that results from a solution to the system in order to find the optimum values of <span class="process-math">\(f\)</span> subject to the constraint.</div></article><article class="activity project-like" id="A_10_8_1"><h4 class="heading">
 <span class="type">Activity</span><span class="space"> </span><span class="codenumber">10.8.2</span><span class="period">.</span>
 </h4>
-<div class="para logical" id="p-2788">
+<div class="para logical" id="p-2762">
 <div class="para">A cylindrical soda can holds about 355 cc of liquid. In this activity, we want to find the dimensions of such a can that will minimize the surface area. For the sake of simplicity, assume the can is a perfect cylinder.</div>
 <ol class="lower-alpha">
-<li id="li-1058"><div class="para" id="p-2789">What are the variables in this problem? Based on the context, what restriction(s), if any, are there on these variables?</div></li>
-<li id="li-1059"><div class="para" id="p-2790">What quantity do we want to optimize in this problem? What equation describes the constraint? (You need to decide which of these functions plays the role of <span class="process-math">\(f\)</span> and which plays the role of <span class="process-math">\(g\)</span> in our discussion of Lagrange multipliers.)</div></li>
-<li id="li-1060"><div class="para" id="p-2791">Find <span class="process-math">\(\lambda\)</span> and the values of your variables that satisfy Equation <a href="" class="xref" data-knowl="./knowl/eq_10_8_Lagrange_ex1.html" title="Equation 10.8.1">(10.8.1)</a> in the context of this problem.</div></li>
-<li id="li-1061"><div class="para" id="p-2792">Determine the dimensions of the pop can that give the desired solution to this constrained optimization problem.</div></li>
+<li id="li-1032"><div class="para" id="p-2763">What are the variables in this problem? Based on the context, what restriction(s), if any, are there on these variables?</div></li>
+<li id="li-1033"><div class="para" id="p-2764">What quantity do we want to optimize in this problem? What equation describes the constraint? (You need to decide which of these functions plays the role of <span class="process-math">\(f\)</span> and which plays the role of <span class="process-math">\(g\)</span> in our discussion of Lagrange multipliers.)</div></li>
+<li id="li-1034"><div class="para" id="p-2765">Find <span class="process-math">\(\lambda\)</span> and the values of your variables that satisfy Equation <a href="" class="xref" data-knowl="./knowl/eq_10_8_Lagrange_ex1.html" title="Equation 10.8.1">(10.8.1)</a> in the context of this problem.</div></li>
+<li id="li-1035"><div class="para" id="p-2766">Determine the dimensions of the pop can that give the desired solution to this constrained optimization problem.</div></li>
 </ol>
-</div></article><div class="para" id="p-2793">The method of Lagrange multipliers also works for functions of more than two variables.</div>
+</div></article><div class="para" id="p-2767">The method of Lagrange multipliers also works for functions of more than two variables.</div>
 <article class="activity project-like" id="A_10_8_2"><h4 class="heading">
 <span class="type">Activity</span><span class="space"> </span><span class="codenumber">10.8.3</span><span class="period">.</span>
 </h4>
-<div class="para" id="p-2794">Use the method of Lagrange multipliers to find the dimensions of the least expensive packing crate with a volume of 240 cubic feet when the material for the top costs $2 per square foot, the bottom is $3 per square foot and the sides are $1.50 per square foot.</div></article><div class="para" id="p-2795">The method of Lagrange multipliers also works for functions of three variables. That is, if we have a function <span class="process-math">\(f = f(x,y,z)\)</span> that we want to optimize subject to a constraint <span class="process-math">\(g(x,y,z) = k\text{,}\)</span> the optimal point <span class="process-math">\((x,y,z)\)</span> lies on the level surface <span class="process-math">\(S\)</span> defined by the constraint <span class="process-math">\(g(x,y,z) = k\text{.}\)</span> As we did in <a href="" class="xref" data-knowl="./knowl/PA_10_8.html" title="Preview Activity 10.8.1">Preview Activity 10.8.1</a>, we can argue that the optimal value occurs at the level surface <span class="process-math">\(f(x,y,z) = c\)</span> that is tangent to <span class="process-math">\(S\text{.}\)</span> Thus, the gradients of <span class="process-math">\(f\)</span> and <span class="process-math">\(g\)</span> are parallel at this optimal point. So, just as in the two variable case, we can optimize <span class="process-math">\(f = f(x,y,z)\)</span> subject to the constraint <span class="process-math">\(g(x,y,z) = k\)</span> by finding all points <span class="process-math">\((x,y,z)\)</span> that satisfy <span class="process-math">\(\nabla f = \lambda \nabla g\)</span> and <span class="process-math">\(g(x,y,z) = k\text{.}\)</span>
+<div class="para" id="p-2768">Use the method of Lagrange multipliers to find the dimensions of the least expensive packing crate with a volume of 240 cubic feet when the material for the top costs $2 per square foot, the bottom is $3 per square foot and the sides are $1.50 per square foot.</div></article><div class="para" id="p-2769">The method of Lagrange multipliers also works for functions of three variables. That is, if we have a function <span class="process-math">\(f = f(x,y,z)\)</span> that we want to optimize subject to a constraint <span class="process-math">\(g(x,y,z) = k\text{,}\)</span> the optimal point <span class="process-math">\((x,y,z)\)</span> lies on the level surface <span class="process-math">\(S\)</span> defined by the constraint <span class="process-math">\(g(x,y,z) = k\text{.}\)</span> As we did in <a href="" class="xref" data-knowl="./knowl/PA_10_8.html" title="Preview Activity 10.8.1">Preview Activity 10.8.1</a>, we can argue that the optimal value occurs at the level surface <span class="process-math">\(f(x,y,z) = c\)</span> that is tangent to <span class="process-math">\(S\text{.}\)</span> Thus, the gradients of <span class="process-math">\(f\)</span> and <span class="process-math">\(g\)</span> are parallel at this optimal point. So, just as in the two variable case, we can optimize <span class="process-math">\(f = f(x,y,z)\)</span> subject to the constraint <span class="process-math">\(g(x,y,z) = k\)</span> by finding all points <span class="process-math">\((x,y,z)\)</span> that satisfy <span class="process-math">\(\nabla f = \lambda \nabla g\)</span> and <span class="process-math">\(g(x,y,z) = k\text{.}\)</span>
 </div></section><section class="subsection" id="subsection-72"><h3 class="heading hide-type">
 <span class="type">Subsection</span> <span class="codenumber">10.8.2</span> <span class="title">Summary</span>
 </h3>
 <ul class="disc">
-<li id="li-1062"><div class="para logical" id="p-2796">
+<li id="li-1036"><div class="para logical" id="p-2770">
 <div class="para">The extrema of a function <span class="process-math">\(f=f(x,y)\)</span> subject to a constraint <span class="process-math">\(g(x,y) = c\)</span> occur at points for which the contour of <span class="process-math">\(f\)</span> is tangent to the curve that represents the constraint equation. This occurs when</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -781,7 +804,7 @@ x = 18.
 \end{equation*}
 </div>
 </div></li>
-<li id="li-1063"><div class="para" id="p-2797">We use the condition  <span class="process-math">\(\nabla f = \lambda \nabla g\)</span> to generate a system of equations, together with the constraint <span class="process-math">\(g(x,y) = c\text{,}\)</span> that may be solved for <span class="process-math">\(x\text{,}\)</span> <span class="process-math">\(y\text{,}\)</span> and <span class="process-math">\(\lambda\text{.}\)</span>  Once we have all the solutions, we evaluate <span class="process-math">\(f\)</span> at each of the <span class="process-math">\((x,y)\)</span> points to determine the extrema.</div></li>
+<li id="li-1037"><div class="para" id="p-2771">We use the condition  <span class="process-math">\(\nabla f = \lambda \nabla g\)</span> to generate a system of equations, together with the constraint <span class="process-math">\(g(x,y) = c\text{,}\)</span> that may be solved for <span class="process-math">\(x\text{,}\)</span> <span class="process-math">\(y\text{,}\)</span> and <span class="process-math">\(\lambda\text{.}\)</span>  Once we have all the solutions, we evaluate <span class="process-math">\(f\)</span> at each of the <span class="process-math">\((x,y)\)</span> points to determine the extrema.</div></li>
 </ul></section><section class="exercises" id="exercises-16"><h3 class="heading hide-type">
 <span class="type">Exercises</span> <span class="codenumber">10.8.3</span> <span class="title">Exercises</span>
 </h3>
@@ -789,9 +812,9 @@ x = 18.
 <div id="webwork-170" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="170" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Michigan/Chap15Sec3/Q05.pg" data-courseID="mitchkeller-dev" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-170')">Activate</button></div>
 <div class="problem-contents">
-<div class="para" id="p-2798">Use Lagrange multipliers to find the maximum and minimum values of <span class="process-math">\(f(x,y) = 4 x -  y\)</span> subject to the constraint <span class="process-math">\(x^2 + 2 y^2 = 66\text{,}\)</span> if such values exist.</div> <div class="para" id="p-2799">maximum = <span class="fillin underline" role="img" aria-label="35-character blank" style="width: 15.9090909090909em;"></span>
-</div> <div class="para" id="p-2800">minimum = <span class="fillin underline" role="img" aria-label="35-character blank" style="width: 15.9090909090909em;"></span>
-</div> <div class="para" id="p-2801"><em class="emphasis">(For either value, enter <em class="alert">DNE</em> if there is no such value.)</em></div>
+<div class="para" id="p-2772">Use Lagrange multipliers to find the maximum and minimum values of <span class="process-math">\(f(x,y) = 4 x -  y\)</span> subject to the constraint <span class="process-math">\(x^2 + 2 y^2 = 66\text{,}\)</span> if such values exist.</div> <div class="para" id="p-2773">maximum = <span class="fillin underline" role="img" aria-label="35-character blank" style="width: 15.9090909090909em;"></span>
+</div> <div class="para" id="p-2774">minimum = <span class="fillin underline" role="img" aria-label="35-character blank" style="width: 15.9090909090909em;"></span>
+</div> <div class="para" id="p-2775"><em class="emphasis">(For either value, enter <em class="alert">DNE</em> if there is no such value.)</em></div>
 <div class="solutions">
 <a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-49" id="solution-49"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-49"><div class="solution solution-like">
 <span class="process-math">\(f(x,y)= 4 x -  y\)</span> and our equation of constraint is <span class="process-math">\(g(x,y) = x^2 + 2 y^2 = 66\text{.}\)</span>  To optimize <span class="process-math">\(f(x,y)\)</span> with Lagrange multipliers we solve the following system of equations<div class="displaymath process-math">
@@ -835,10 +858,10 @@ x^2 + 2 y^2 = 66,
 <div id="webwork-171" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="171" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Michigan/Chap15Sec3/Q17.pg" data-courseID="mitchkeller-dev" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-171')">Activate</button></div>
 <div class="problem-contents">
-<div class="para" id="p-2804">Use Lagrange multipliers to find the maximum and minimum values of <span class="process-math">\(f(x,y) = x^2 y + 6 y^2 - y\text{,}\)</span> subject to the constraint <span class="process-math">\(x^2 + y^2 \leq 54.3333333333333\)</span>
-</div> <div class="para" id="p-2805">maximum = <span class="fillin underline" role="img" aria-label="35-character blank" style="width: 15.9090909090909em;"></span>
-</div> <div class="para" id="p-2806">minimum = <span class="fillin underline" role="img" aria-label="35-character blank" style="width: 15.9090909090909em;"></span>
-</div> <div class="para" id="p-2807"><em class="emphasis">(For either value, enter <em class="alert">DNE</em> if there is no such value.)</em></div>
+<div class="para" id="p-2778">Use Lagrange multipliers to find the maximum and minimum values of <span class="process-math">\(f(x,y) = x^2 y + 6 y^2 - y\text{,}\)</span> subject to the constraint <span class="process-math">\(x^2 + y^2 \leq 54.3333333333333\)</span>
+</div> <div class="para" id="p-2779">maximum = <span class="fillin underline" role="img" aria-label="35-character blank" style="width: 15.9090909090909em;"></span>
+</div> <div class="para" id="p-2780">minimum = <span class="fillin underline" role="img" aria-label="35-character blank" style="width: 15.9090909090909em;"></span>
+</div> <div class="para" id="p-2781"><em class="emphasis">(For either value, enter <em class="alert">DNE</em> if there is no such value.)</em></div>
 <div class="solutions">
 <a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-50" id="solution-50"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-50"><div class="solution solution-like">
 <span class="process-math">\(f\text{:}\)</span><div class="displaymath process-math">
@@ -876,29 +899,29 @@ x^2 + 12 y - 1 = 2y^2.
 <div id="webwork-172" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="172" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Dartmouth/setStewartCh15S8/problem_2.pg" data-courseID="mitchkeller-dev" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-172')">Activate</button></div>
 <div class="problem-contents">
-<div class="para" id="p-2810">Find the absolute maximum and minimum of the function <span class="process-math">\(f(x,y) = x^2 + y^2\)</span> subject to the constraint <span class="process-math">\(x^4 + y^4 = 1\text{.}\)</span>
-</div> <div class="para" id="p-2811">As usual, ignore unneeded answer blanks, and list points in lexicographic order.</div> <div class="para" id="p-2812">Absolute minimum value: <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>
-</div> <div class="para" id="p-2813">attained at (<span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>, <span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>), (<span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>, <span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>),</div> <div class="para" id="p-2814">(<span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>, <span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>), (<span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>, <span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>).</div> <div class="para" id="p-2815">Absolute maximum value: <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>
-</div> <div class="para" id="p-2816">attained at (<span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>, <span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>), (<span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>, <span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>),</div> <div class="para" id="p-2817">(<span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>, <span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>), (<span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>, <span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>).</div>
+<div class="para" id="p-2784">Find the absolute maximum and minimum of the function <span class="process-math">\(f(x,y) = x^2 + y^2\)</span> subject to the constraint <span class="process-math">\(x^4 + y^4 = 1\text{.}\)</span>
+</div> <div class="para" id="p-2785">As usual, ignore unneeded answer blanks, and list points in lexicographic order.</div> <div class="para" id="p-2786">Absolute minimum value: <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>
+</div> <div class="para" id="p-2787">attained at (<span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>, <span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>), (<span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>, <span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>),</div> <div class="para" id="p-2788">(<span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>, <span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>), (<span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>, <span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>).</div> <div class="para" id="p-2789">Absolute maximum value: <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>
+</div> <div class="para" id="p-2790">attained at (<span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>, <span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>), (<span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>, <span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>),</div> <div class="para" id="p-2791">(<span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>, <span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>), (<span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>, <span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>).</div>
 <div class="solutions"></div>
 </div>
 </div></article><article class="exercise exercise-like" id="Library__Dartmouth__setStewartCh15S8__problem_1.pg"><h4 class="heading"><span class="codenumber">4<span class="period">.</span></span></h4>
 <div id="webwork-173" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="173" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Dartmouth/setStewartCh15S8/problem_1.pg" data-courseID="mitchkeller-dev" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-173')">Activate</button></div>
 <div class="problem-contents">
-<div class="para" id="p-2836">Find the absolute maximum and minimum of the function <span class="process-math">\(f(x,y) = x^2 - y^2\)</span> subject to the constraint <span class="process-math">\(x^2 + y^2 = 16\text{.}\)</span>
-</div> <div class="para" id="p-2837">As usual, ignore unneeded answer blanks, and list points in lexicographic order.</div> <div class="para" id="p-2838">Absolute minimum value: <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>
-</div> <div class="para" id="p-2839">attained at (<span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>, <span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>) and  (<span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>, <span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>).</div> <div class="para" id="p-2840">Absolute maximum value: <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>
-</div> <div class="para" id="p-2841">attained at (<span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>, <span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>) and  (<span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>, <span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>).</div>
+<div class="para" id="p-2810">Find the absolute maximum and minimum of the function <span class="process-math">\(f(x,y) = x^2 - y^2\)</span> subject to the constraint <span class="process-math">\(x^2 + y^2 = 16\text{.}\)</span>
+</div> <div class="para" id="p-2811">As usual, ignore unneeded answer blanks, and list points in lexicographic order.</div> <div class="para" id="p-2812">Absolute minimum value: <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>
+</div> <div class="para" id="p-2813">attained at (<span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>, <span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>) and  (<span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>, <span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>).</div> <div class="para" id="p-2814">Absolute maximum value: <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>
+</div> <div class="para" id="p-2815">attained at (<span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>, <span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>) and  (<span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>, <span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>).</div>
 <div class="solutions"></div>
 </div>
 </div></article><article class="exercise exercise-like" id="Library__Michigan__Chap15Sec3__Q40.pg"><h4 class="heading"><span class="codenumber">5<span class="period">.</span></span></h4>
 <div id="webwork-174" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="174" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Michigan/Chap15Sec3/Q40.pg" data-courseID="mitchkeller-dev" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-174')">Activate</button></div>
 <div class="problem-contents">
-<div class="para" id="p-2852">Find the minimum distance from the point <span class="process-math">\((1,2,13)\)</span> to the paraboloid given by the equation <span class="process-math">\(z=x^2+y^2\text{.}\)</span>
-</div> <div class="para" id="p-2853">Minimum distance = <span class="fillin underline" role="img" aria-label="35-character blank" style="width: 15.9090909090909em;"></span>
-</div> <div class="para" id="p-2854">
+<div class="para" id="p-2826">Find the minimum distance from the point <span class="process-math">\((1,2,13)\)</span> to the paraboloid given by the equation <span class="process-math">\(z=x^2+y^2\text{.}\)</span>
+</div> <div class="para" id="p-2827">Minimum distance = <span class="fillin underline" role="img" aria-label="35-character blank" style="width: 15.9090909090909em;"></span>
+</div> <div class="para" id="p-2828">
 <em class="alert">Note:</em> If you need to find roots of a polynomial of degree <span class="process-math">\(\geq 3\text{,}\)</span> you may want to use a calculator of computer to do so numerically. Also be sure that you can give a geometric justification for your answer.</div>
 <div class="solutions">
 <a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-51" id="solution-51"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-51"><div class="solution solution-like">
@@ -994,21 +1017,21 @@ d_3 = d(x_3,y_3,z_3) = 1.83984563344885,
 <div id="webwork-175" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="175" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Michigan/Chap15Sec3/Q43.pg" data-courseID="mitchkeller-dev" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-175')">Activate</button></div>
 <div class="problem-contents">
-<div class="para" id="p-2856">For each value of <span class="process-math">\(\lambda\)</span> the function <span class="process-math">\(h(x,y) = x^2 + y^2 - \lambda(4 x + 6 y - 19)\)</span> has a minimum value <span class="process-math">\(m(\lambda)\text{.}\)</span>
-</div> <div class="para" id="p-2857">
+<div class="para" id="p-2830">For each value of <span class="process-math">\(\lambda\)</span> the function <span class="process-math">\(h(x,y) = x^2 + y^2 - \lambda(4 x + 6 y - 19)\)</span> has a minimum value <span class="process-math">\(m(\lambda)\text{.}\)</span>
+</div> <div class="para" id="p-2831">
 <em class="alert">(a)</em> Find <span class="process-math">\(m(\lambda)\)</span>
-</div> <div class="para" id="p-2858">
+</div> <div class="para" id="p-2832">
 <span class="process-math">\(m(\lambda) =\)</span> <span class="fillin underline" role="img" aria-label="45-character blank" style="width: 20.4545454545455em;"></span>
-</div> <div class="para" id="p-2859"><em class="emphasis">(Use the letter <em class="alert">L</em> for <span class="process-math">\(\lambda\)</span> in your expression.)</em></div> <div class="para" id="p-2860">
-<em class="alert">(b)</em> For which value of <span class="process-math">\(\lambda\)</span> is <span class="process-math">\(m(\lambda)\)</span> the largest, and what is that maximum value?</div> <div class="para" id="p-2861">
+</div> <div class="para" id="p-2833"><em class="emphasis">(Use the letter <em class="alert">L</em> for <span class="process-math">\(\lambda\)</span> in your expression.)</em></div> <div class="para" id="p-2834">
+<em class="alert">(b)</em> For which value of <span class="process-math">\(\lambda\)</span> is <span class="process-math">\(m(\lambda)\)</span> the largest, and what is that maximum value?</div> <div class="para" id="p-2835">
 <span class="process-math">\(\lambda =\)</span> <span class="fillin underline" role="img" aria-label="25-character blank" style="width: 11.3636363636364em;"></span>
-</div> <div class="para" id="p-2862">maximum <span class="process-math">\(m(\lambda) =\)</span> <span class="fillin underline" role="img" aria-label="25-character blank" style="width: 11.3636363636364em;"></span>
-</div> <div class="para" id="p-2863">
+</div> <div class="para" id="p-2836">maximum <span class="process-math">\(m(\lambda) =\)</span> <span class="fillin underline" role="img" aria-label="25-character blank" style="width: 11.3636363636364em;"></span>
+</div> <div class="para" id="p-2837">
 <em class="alert">(c)</em> Find the minimum value of  <span class="process-math">\(f(x,y)=x^2+y^2\)</span> subject to the constraint <span class="process-math">\(4 x + 6 y = 19\)</span> using the method of Lagrange multipliers and evaluate <span class="process-math">\(\lambda\text{.}\)</span>
-</div> <div class="para" id="p-2864">minimum <span class="process-math">\(f\)</span> = <span class="fillin underline" role="img" aria-label="25-character blank" style="width: 11.3636363636364em;"></span>
-</div> <div class="para" id="p-2865">
+</div> <div class="para" id="p-2838">minimum <span class="process-math">\(f\)</span> = <span class="fillin underline" role="img" aria-label="25-character blank" style="width: 11.3636363636364em;"></span>
+</div> <div class="para" id="p-2839">
 <span class="process-math">\(\lambda =\)</span> <span class="fillin underline" role="img" aria-label="25-character blank" style="width: 11.3636363636364em;"></span>
-</div> <div class="para" id="p-2866"><em class="emphasis">(How are these results related to your result in part (b)?)</em></div>
+</div> <div class="para" id="p-2840"><em class="emphasis">(How are these results related to your result in part (b)?)</em></div>
 <div class="solutions">
 <a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-52" id="solution-52"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-52"><div class="solution solution-like">
 <em class="alert">(a)</em> The critical points of <span class="process-math">\(h(x,y)\)</span> occur where<div class="displaymath process-math">
@@ -1054,44 +1077,44 @@ m(\lambda) = -13 \lambda^2 + 19 \lambda.
 <div id="webwork-176" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="176" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/272/setStewart14_8/problem_10.pg" data-courseID="mitchkeller-dev" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-176')">Activate</button></div>
 <div class="problem-contents">
-<div class="para" id="p-2872">The plane <span class="process-math">\(x + y + 2z = 10\)</span> intersects the paraboloid <span class="process-math">\(z = x^2 +
-y^2\)</span> in an ellipse.  Find the points on this ellipse that are nearest to and farthest from the origin.</div> <div class="para" id="p-2873">Point farthest away occurs at</div> <div class="para" id="p-2874">(<span class="fillin underline" role="img" aria-label="25-character blank" style="width: 11.3636363636364em;"></span>, <span class="fillin underline" role="img" aria-label="25-character blank" style="width: 11.3636363636364em;"></span>,<span class="fillin underline" role="img" aria-label="25-character blank" style="width: 11.3636363636364em;"></span>).</div> <div class="para" id="p-2875">Point nearest occurs at</div> <div class="para" id="p-2876">(<span class="fillin underline" role="img" aria-label="25-character blank" style="width: 11.3636363636364em;"></span>, <span class="fillin underline" role="img" aria-label="25-character blank" style="width: 11.3636363636364em;"></span>,<span class="fillin underline" role="img" aria-label="25-character blank" style="width: 11.3636363636364em;"></span>).</div>
+<div class="para" id="p-2846">The plane <span class="process-math">\(x + y + 2z = 10\)</span> intersects the paraboloid <span class="process-math">\(z = x^2 +
+y^2\)</span> in an ellipse.  Find the points on this ellipse that are nearest to and farthest from the origin.</div> <div class="para" id="p-2847">Point farthest away occurs at</div> <div class="para" id="p-2848">(<span class="fillin underline" role="img" aria-label="25-character blank" style="width: 11.3636363636364em;"></span>, <span class="fillin underline" role="img" aria-label="25-character blank" style="width: 11.3636363636364em;"></span>,<span class="fillin underline" role="img" aria-label="25-character blank" style="width: 11.3636363636364em;"></span>).</div> <div class="para" id="p-2849">Point nearest occurs at</div> <div class="para" id="p-2850">(<span class="fillin underline" role="img" aria-label="25-character blank" style="width: 11.3636363636364em;"></span>, <span class="fillin underline" role="img" aria-label="25-character blank" style="width: 11.3636363636364em;"></span>,<span class="fillin underline" role="img" aria-label="25-character blank" style="width: 11.3636363636364em;"></span>).</div>
 <div class="solutions"></div>
 </div>
 </div></article><article class="exercise exercise-like" id="Library__Dartmouth__setStewartCh15S8__problem_3.pg"><h4 class="heading"><span class="codenumber">8<span class="period">.</span></span></h4>
 <div id="webwork-177" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="177" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Dartmouth/setStewartCh15S8/problem_3.pg" data-courseID="mitchkeller-dev" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-177')">Activate</button></div>
 <div class="problem-contents">
-<div class="para" id="p-2883">Find the maximum and minimum values of the function <span class="process-math">\(f(x,y,z) = x^2 y^2 z^2\)</span> subject to the constraint <span class="process-math">\(x^2 + y^2 + z^2 = 144\text{.}\)</span>
-</div> <div class="para" id="p-2884">Maximum value is <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>, occuring at <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span> points (positive integer or "infinitely many").</div> <div class="para" id="p-2885">Minimum value is <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>, occuring at <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span> points (positive integer or "infinitely many").</div>
+<div class="para" id="p-2857">Find the maximum and minimum values of the function <span class="process-math">\(f(x,y,z) = x^2 y^2 z^2\)</span> subject to the constraint <span class="process-math">\(x^2 + y^2 + z^2 = 144\text{.}\)</span>
+</div> <div class="para" id="p-2858">Maximum value is <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>, occuring at <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span> points (positive integer or "infinitely many").</div> <div class="para" id="p-2859">Minimum value is <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>, occuring at <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span> points (positive integer or "infinitely many").</div>
 <div class="solutions"></div>
 </div>
 </div></article><article class="exercise exercise-like" id="Library__Dartmouth__setStewartCh15S8__problem_4.pg"><h4 class="heading"><span class="codenumber">9<span class="period">.</span></span></h4>
 <div id="webwork-178" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="178" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Dartmouth/setStewartCh15S8/problem_4.pg" data-courseID="mitchkeller-dev" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-178')">Activate</button></div>
 <div class="problem-contents">
-<div class="para" id="p-2890">Find the maximum and minimum values of the function <span class="process-math">\(f(x,y,z,t) = x+y+z+t\)</span> subject to the constraint <span class="process-math">\(x^2 + y^2 + z^2 + t^2 = 225\text{.}\)</span>
-</div> <div class="para" id="p-2891">Maximum value is <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>, occuring at <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span> points (positive integer or "infinitely many").</div> <div class="para" id="p-2892">Minimum value is <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>, occuring at <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span> points (positive integer or "infinitely many").</div>
+<div class="para" id="p-2864">Find the maximum and minimum values of the function <span class="process-math">\(f(x,y,z,t) = x+y+z+t\)</span> subject to the constraint <span class="process-math">\(x^2 + y^2 + z^2 + t^2 = 225\text{.}\)</span>
+</div> <div class="para" id="p-2865">Maximum value is <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>, occuring at <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span> points (positive integer or "infinitely many").</div> <div class="para" id="p-2866">Minimum value is <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>, occuring at <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span> points (positive integer or "infinitely many").</div>
 <div class="solutions"></div>
 </div>
 </div></article><article class="exercise exercise-like" id="Library__Dartmouth__setStewartCh15S8__problem_9.pg"><h4 class="heading"><span class="codenumber">10<span class="period">.</span></span></h4>
 <div id="webwork-179" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="179" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Dartmouth/setStewartCh15S8/problem_9.pg" data-courseID="mitchkeller-dev" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-179')">Activate</button></div>
 <div class="problem-contents">
-<div class="para" id="p-2897">Find the maximum and minimum volumes of a rectangular box whose surface area equals 9000 square cm and whose edge length (sum of lengths of all edges) is 520 cm.</div> <div class="para" id="p-2898">Hint: It can be deduced that the box is not a cube, so if x, y, and z are the lengths of the sides, you may want to let x represent a side with <span class="process-math">\(x \ne y\)</span> and <span class="process-math">\(x \ne z\text{.}\)</span>
-</div> <div class="para" id="p-2899">Maximum value is <span class="fillin underline" role="img" aria-label="60-character blank" style="width: 27.2727272727273em;"></span>,</div> <div class="para" id="p-2900">occuring at (<span class="fillin underline" role="img" aria-label="25-character blank" style="width: 11.3636363636364em;"></span>, <span class="fillin underline" role="img" aria-label="25-character blank" style="width: 11.3636363636364em;"></span>,<span class="fillin underline" role="img" aria-label="25-character blank" style="width: 11.3636363636364em;"></span>).</div> <div class="para" id="p-2901">Minimum value is <span class="fillin underline" role="img" aria-label="60-character blank" style="width: 27.2727272727273em;"></span>,</div> <div class="para" id="p-2902">occuring at (<span class="fillin underline" role="img" aria-label="25-character blank" style="width: 11.3636363636364em;"></span>, <span class="fillin underline" role="img" aria-label="25-character blank" style="width: 11.3636363636364em;"></span>,<span class="fillin underline" role="img" aria-label="25-character blank" style="width: 11.3636363636364em;"></span>).</div>
+<div class="para" id="p-2871">Find the maximum and minimum volumes of a rectangular box whose surface area equals 9000 square cm and whose edge length (sum of lengths of all edges) is 520 cm.</div> <div class="para" id="p-2872">Hint: It can be deduced that the box is not a cube, so if x, y, and z are the lengths of the sides, you may want to let x represent a side with <span class="process-math">\(x \ne y\)</span> and <span class="process-math">\(x \ne z\text{.}\)</span>
+</div> <div class="para" id="p-2873">Maximum value is <span class="fillin underline" role="img" aria-label="60-character blank" style="width: 27.2727272727273em;"></span>,</div> <div class="para" id="p-2874">occuring at (<span class="fillin underline" role="img" aria-label="25-character blank" style="width: 11.3636363636364em;"></span>, <span class="fillin underline" role="img" aria-label="25-character blank" style="width: 11.3636363636364em;"></span>,<span class="fillin underline" role="img" aria-label="25-character blank" style="width: 11.3636363636364em;"></span>).</div> <div class="para" id="p-2875">Minimum value is <span class="fillin underline" role="img" aria-label="60-character blank" style="width: 27.2727272727273em;"></span>,</div> <div class="para" id="p-2876">occuring at (<span class="fillin underline" role="img" aria-label="25-character blank" style="width: 11.3636363636364em;"></span>, <span class="fillin underline" role="img" aria-label="25-character blank" style="width: 11.3636363636364em;"></span>,<span class="fillin underline" role="img" aria-label="25-character blank" style="width: 11.3636363636364em;"></span>).</div>
 <div class="solutions"></div>
 </div>
 </div></article><article class="exercise exercise-like" id="Library__Michigan__Chap15Sec3__Q38.pg"><h4 class="heading"><span class="codenumber">11<span class="period">.</span></span></h4>
 <div id="webwork-180" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="180" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-sourceFilePath="Library/Michigan/Chap15Sec3/Q38.pg" data-courseID="mitchkeller-dev" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-180')">Activate</button></div>
 <div class="problem-contents">
-<div class="para" id="p-2911">
-<em class="alert">(a)</em> If <span class="process-math">\(\sum_{i=1}^3 x_i = 5\text{,}\)</span> find the values of <span class="process-math">\(x_1, x_2, x_3\)</span> making <span class="process-math">\(\sum_{i=1}^3 {x_i}^2\)</span> minimum.</div> <div class="para" id="p-2912">
+<div class="para" id="p-2885">
+<em class="alert">(a)</em> If <span class="process-math">\(\sum_{i=1}^3 x_i = 5\text{,}\)</span> find the values of <span class="process-math">\(x_1, x_2, x_3\)</span> making <span class="process-math">\(\sum_{i=1}^3 {x_i}^2\)</span> minimum.</div> <div class="para" id="p-2886">
 <span class="process-math">\(x_1, x_2, x_3 =\)</span> <span class="fillin underline" role="img" aria-label="45-character blank" style="width: 20.4545454545455em;"></span>
-</div> <div class="para" id="p-2913"><em class="emphasis">(Give your values as a comma separated list.)</em></div> <div class="para" id="p-2914">
+</div> <div class="para" id="p-2887"><em class="emphasis">(Give your values as a comma separated list.)</em></div> <div class="para" id="p-2888">
 <em class="alert">(b)</em> Generalize the result of part (a) to find the minimum value of <span class="process-math">\(\sum_{i=1}^n{x_i}^2\)</span> subject to <span class="process-math">\(\sum_{i=1}^n x_i=5\text{.}\)</span>
-</div> <div class="para" id="p-2915">minimum value = <span class="fillin underline" role="img" aria-label="45-character blank" style="width: 20.4545454545455em;"></span>
+</div> <div class="para" id="p-2889">minimum value = <span class="fillin underline" role="img" aria-label="45-character blank" style="width: 20.4545454545455em;"></span>
 </div>
 <div class="solutions">
 <a href="" data-knowl="" class="id-ref solution-knowl original" data-refid="hk-solution-53" id="solution-53"><span class="type">Solution</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-solution-53"><div class="solution solution-like">
@@ -1121,7 +1144,7 @@ n\cdot \left(\frac{5}{n}\right)^2 = \frac{25}{n}.
 </div>
 </div>
 </div></article><article class="exercise exercise-like" id="exercise-258"><h4 class="heading"><span class="codenumber">12<span class="period">.</span></span></h4>
-<div class="para logical" id="p-2918">
+<div class="para logical" id="p-2892">
 <div class="para">The Cobb-Douglas production function is used in economics to model production levels based on labor and equipment. Suppose we have a specific Cobb-Douglas function of the form</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1130,31 +1153,31 @@ f(x, y) = 50 x^{0.4}y^{0.6},
 </div>
 <div class="para">where <span class="process-math">\(x\)</span> is the dollar amount spent on labor and <span class="process-math">\(y\)</span> the dollar amount spent on equipment. Use the method of Lagrange multipliers to determine how much should be spent on labor and how much on equipment to maximize productivity if we have a total of 1.5 million dollars to invest in labor and equipment.</div>
 </div></article><article class="exercise exercise-like" id="exercise-259"><h4 class="heading"><span class="codenumber">13<span class="period">.</span></span></h4>
-<div class="para logical" id="p-2919">
+<div class="para logical" id="p-2893">
 <div class="para">Use the method of Lagrange multipliers to find the point on the line <span class="process-math">\(x-2y=5\)</span> that is closest to the point <span class="process-math">\((1,3)\text{.}\)</span> To do so, respond to the following prompts.</div>
 <ol class="lower-alpha">
-<li id="li-1064"><div class="para" id="p-2920">Write the function <span class="process-math">\(f=f(x,y)\)</span> that measures the <em class="emphasis">square</em> of the distance from <span class="process-math">\((x,y)\)</span> to <span class="process-math">\((1,3)\text{.}\)</span>  (The extrema of this function are the same as the extrema of the distance function, but <span class="process-math">\(f(x,y)\)</span> is simpler to work with.)</div></li>
-<li id="li-1065"><div class="para" id="p-2921">What is the constraint <span class="process-math">\(g(x,y) = c\text{?}\)</span>
+<li id="li-1038"><div class="para" id="p-2894">Write the function <span class="process-math">\(f=f(x,y)\)</span> that measures the <em class="emphasis">square</em> of the distance from <span class="process-math">\((x,y)\)</span> to <span class="process-math">\((1,3)\text{.}\)</span>  (The extrema of this function are the same as the extrema of the distance function, but <span class="process-math">\(f(x,y)\)</span> is simpler to work with.)</div></li>
+<li id="li-1039"><div class="para" id="p-2895">What is the constraint <span class="process-math">\(g(x,y) = c\text{?}\)</span>
 </div></li>
-<li id="li-1066"><div class="para" id="p-2922">Write the equations resulting from <span class="process-math">\(\nabla f = \lambda \nabla
+<li id="li-1040"><div class="para" id="p-2896">Write the equations resulting from <span class="process-math">\(\nabla f = \lambda \nabla
 g\)</span> and the constraint.  Find all the points <span class="process-math">\((x,y)\)</span> satisfying these equations.</div></li>
-<li id="li-1067"><div class="para" id="p-2923">Test all the points you found to determine the extrema.</div></li>
+<li id="li-1041"><div class="para" id="p-2897">Test all the points you found to determine the extrema.</div></li>
 </ol>
 </div></article><article class="exercise exercise-like" id="exercise-260"><h4 class="heading"><span class="codenumber">14<span class="period">.</span></span></h4>
-<div class="para logical" id="p-2924">
+<div class="para logical" id="p-2898">
 <div class="para">Apply the Method of Lagrange Multipliers solve each of the following constrained optimization problems.</div>
 <ol class="lower-alpha">
-<li id="li-1068"><div class="para" id="p-2925">Determine the absolute maximum and absolute minimum values of <span class="process-math">\(f(x,y) = (x-1)^2 + (y-2)^2\)</span> subject to the constraint that <span class="process-math">\(x^2 + y^2 = 16\text{.}\)</span>
+<li id="li-1042"><div class="para" id="p-2899">Determine the absolute maximum and absolute minimum values of <span class="process-math">\(f(x,y) = (x-1)^2 + (y-2)^2\)</span> subject to the constraint that <span class="process-math">\(x^2 + y^2 = 16\text{.}\)</span>
 </div></li>
-<li id="li-1069"><div class="para" id="p-2926">Determine the points on the sphere <span class="process-math">\(x^2 + y^2 + z^2 = 4\)</span> that are closest to and farthest from the point <span class="process-math">\((3,1,-1)\text{.}\)</span>  (As in the preceding exercise, you may find it simpler to work with the square of the distance formula, rather than the distance formula itself.)</div></li>
-<li id="li-1070"><div class="para" id="p-2927">Find the absolute maximum and minimum of <span class="process-math">\(f(x,y,z) = x^2 + y^2 + z^2\)</span> subject to the constraint that <span class="process-math">\((x-3)^2 + (y+2)^2 + (z-5)^2 \le 16\text{.}\)</span>  (Hint: here the constraint is a closed, bounded region.  Use the boundary of that region for applying Lagrange Multipliers, but don't forget to also test any critical values of the function that lie in the interior of the region.)</div></li>
+<li id="li-1043"><div class="para" id="p-2900">Determine the points on the sphere <span class="process-math">\(x^2 + y^2 + z^2 = 4\)</span> that are closest to and farthest from the point <span class="process-math">\((3,1,-1)\text{.}\)</span>  (As in the preceding exercise, you may find it simpler to work with the square of the distance formula, rather than the distance formula itself.)</div></li>
+<li id="li-1044"><div class="para" id="p-2901">Find the absolute maximum and minimum of <span class="process-math">\(f(x,y,z) = x^2 + y^2 + z^2\)</span> subject to the constraint that <span class="process-math">\((x-3)^2 + (y+2)^2 + (z-5)^2 \le 16\text{.}\)</span>  (Hint: here the constraint is a closed, bounded region.  Use the boundary of that region for applying Lagrange Multipliers, but don’t forget to also test any critical values of the function that lie in the interior of the region.)</div></li>
 </ol>
 </div></article><article class="exercise exercise-like" id="exercise-261"><h4 class="heading"><span class="codenumber">15<span class="period">.</span></span></h4>
-<div class="para logical" id="p-2928">
+<div class="para logical" id="p-2902">
 <div class="para">In this exercise we consider how to apply the Method of Lagrange Multipliers to optimize functions of three variable subject to two constraints. Suppose we want to optimize <span class="process-math">\(f = f(x,y,z)\)</span> subject to the constraints <span class="process-math">\(g(x,y,z) = c\)</span> and <span class="process-math">\(h(x,y,z) = k\text{.}\)</span> Also suppose that the two level surfaces <span class="process-math">\(g(x,y,z) = c\)</span> and <span class="process-math">\(h(x,y,z) = k\)</span> intersect at a curve <span class="process-math">\(C\text{.}\)</span> The optimum point <span class="process-math">\(P = (x_0,y_0,z_0)\)</span> will then lie on <span class="process-math">\(C\text{.}\)</span>
 </div>
 <ol class="lower-alpha">
-<li id="li-1071"><div class="para logical" id="p-2929">
+<li id="li-1045"><div class="para logical" id="p-2903">
 <div class="para">Assume that <span class="process-math">\(C\)</span> can be represented parametrically by a vector-valued function <span class="process-math">\(\vr = \vr(t)\text{.}\)</span> Let <span class="process-math">\(\overrightarrow{OP} = \vr(t_0)\text{.}\)</span> Use the Chain Rule applied to <span class="process-math">\(f(\vr(t))\text{,}\)</span> <span class="process-math">\(g(\vr(t))\text{,}\)</span> and <span class="process-math">\(h(\vr(t))\text{,}\)</span> to explain why</div>
 <div class="displaymath process-math" id="md-31">
 \begin{align*}
@@ -1165,10 +1188,10 @@ g\)</span> and the constraint.  Find all the points <span class="process-math">\
 </div>
 <div class="para">Explain how this shows that <span class="process-math">\(\nabla f(x_0,y_0,z_0)\text{,}\)</span> <span class="process-math">\(\nabla g(x_0,y_0,z_0)\text{,}\)</span> and <span class="process-math">\(\nabla h(x_0,y_0,z_0)\)</span> are all orthogonal to <span class="process-math">\(C\)</span> at <span class="process-math">\(P\text{.}\)</span> This shows that <span class="process-math">\(\nabla f(x_0,y_0,z_0)\text{,}\)</span> <span class="process-math">\(\nabla g(x_0,y_0,z_0)\text{,}\)</span> and <span class="process-math">\(\nabla h(x_0,y_0,z_0)\)</span> all lie in the same plane.</div>
 </div></li>
-<li id="li-1072"><div class="para" id="p-2930">Assuming that <span class="process-math">\(\nabla g(x_0,y_0,z_0)\)</span> and <span class="process-math">\(\nabla h(x_0,y_0,z_0)\)</span> are nonzero and not parallel, explain why every point in the plane determined by <span class="process-math">\(\nabla g(x_0,y_0,z_0)\)</span> and <span class="process-math">\(\nabla h(x_0,y_0,z_0)\)</span> has the form <span class="process-math">\(s\nabla g(x_0,y_0,z_0)+t\nabla h(x_0,y_0,z_0)\)</span> for some scalars <span class="process-math">\(s\)</span> and <span class="process-math">\(t\text{.}\)</span>
+<li id="li-1046"><div class="para" id="p-2904">Assuming that <span class="process-math">\(\nabla g(x_0,y_0,z_0)\)</span> and <span class="process-math">\(\nabla h(x_0,y_0,z_0)\)</span> are nonzero and not parallel, explain why every point in the plane determined by <span class="process-math">\(\nabla g(x_0,y_0,z_0)\)</span> and <span class="process-math">\(\nabla h(x_0,y_0,z_0)\)</span> has the form <span class="process-math">\(s\nabla g(x_0,y_0,z_0)+t\nabla h(x_0,y_0,z_0)\)</span> for some scalars <span class="process-math">\(s\)</span> and <span class="process-math">\(t\text{.}\)</span>
 </div></li>
-<li id="li-1073">
-<div class="para logical" id="p-2931">
+<li id="li-1047">
+<div class="para logical" id="p-2905">
 <div class="para">Parts (a.) and (b.) show that there must exist scalars <span class="process-math">\(\lambda\)</span> and <span class="process-math">\(\mu\)</span> such that</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1186,12 +1209,12 @@ h(x,y,z) \amp = k.
 <div class="para">for <span class="process-math">\(x\text{,}\)</span> <span class="process-math">\(y\text{,}\)</span> <span class="process-math">\(z\text{,}\)</span> <span class="process-math">\(\lambda\text{,}\)</span> and <span class="process-math">\(\mu\text{.}\)</span>
 </div>
 </div>
-<div class="para" id="p-2932">Use this idea to find the maximum and minium values of <span class="process-math">\(f(x,y,z) = x+2y\)</span> subject to the constraints <span class="process-math">\(y^2+z^2=8\)</span> and <span class="process-math">\(x+y+z = 10\text{.}\)</span>
+<div class="para" id="p-2906">Use this idea to find the maximum and minium values of <span class="process-math">\(f(x,y,z) = x+2y\)</span> subject to the constraints <span class="process-math">\(y^2+z^2=8\)</span> and <span class="process-math">\(x+y+z = 10\text{.}\)</span>
 </div>
 </li>
 </ol>
 </div></article><article class="exercise exercise-like" id="ex-10-8-multiplier"><h4 class="heading"><span class="codenumber">16<span class="period">.</span></span></h4>
-<div class="para logical" id="p-2933">
+<div class="para logical" id="p-2907">
 <div class="para">There is a useful interpretation of the Lagrange multiplier <span class="process-math">\(\lambda\text{.}\)</span> Assume that we want to optimize a function <span class="process-math">\(f\)</span> with constraint <span class="process-math">\(g(x,y)=c\text{.}\)</span> Recall that an optimal solution occurs at a point <span class="process-math">\((x_0, y_0)\)</span> where <span class="process-math">\(\nabla f = \lambda \nabla g\text{.}\)</span> As the constraint changes, so does the point at which the optimal solution occurs. So we can think of the optimal point as a function of the parameter <span class="process-math">\(c\text{,}\)</span> that is <span class="process-math">\(x_0 = x_0(c)\)</span> and <span class="process-math">\(y_0=y_0(c)\text{.}\)</span> The optimal value of <span class="process-math">\(f\)</span> subject to the constraint can then be considered as a function of <span class="process-math">\(c\)</span> defined by <span class="process-math">\(f(x_0(c), y_0(c))\text{.}\)</span> The Chain Rule shows that</div>
 <div class="displaymath process-math" data-contains-math-knowls="./knowl/PA_10_8.html">
 \begin{equation*}
@@ -1199,7 +1222,7 @@ h(x,y,z) \amp = k.
 \end{equation*}
 </div>
 <ol class="lower-alpha">
-<li id="li-1074"><div class="para logical" id="p-2934">
+<li id="li-1048"><div class="para logical" id="p-2908">
 <div class="para">Use the fact that <span class="process-math">\(\nabla f = \lambda \nabla g\)</span> at <span class="process-math">\((x_0,y_0)\)</span> to explain why</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1207,7 +1230,7 @@ h(x,y,z) \amp = k.
 \end{equation*}
 </div>
 </div></li>
-<li id="li-1075"><div class="para logical" id="p-2935">
+<li id="li-1049"><div class="para logical" id="p-2909">
 <div class="para">Use the fact that <span class="process-math">\(g(x,y) = c\)</span> to show that</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -1216,8 +1239,8 @@ h(x,y,z) \amp = k.
 </div>
 <div class="para">Conclude that <span class="process-math">\(\lambda\)</span> tells us the rate of change of the function <span class="process-math">\(f\)</span> as the parameter <span class="process-math">\(c\)</span> increases (or by approximately how much the optimal value of the function <span class="process-math">\(f\)</span> will change if we increase the value of <span class="process-math">\(c\)</span> by 1 unit).</div>
 </div></li>
-<li id="li-1076"><div class="para" id="p-2936">Suppose that <span class="process-math">\(\lambda = 324\)</span> at the point where the package described in <a href="" class="xref" data-knowl="./knowl/PA_10_8.html" title="Preview Activity 10.8.1">Preview Activity 10.8.1</a> has its maximum volume. Explain in context what the value <span class="process-math">\(324\)</span> tells us about the package.</div></li>
-<li id="li-1077"><div class="para" id="p-2937">Suppose that the maximum value of a function <span class="process-math">\(f = f(x,y)\)</span> subject to a constraint <span class="process-math">\(g(x,y) = 100\)</span> is <span class="process-math">\(236\text{.}\)</span> When using the method of Lagrange multipliers and solving <span class="process-math">\(\nabla f = \lambda \nabla g\text{,}\)</span>  we obtain a value of <span class="process-math">\(\lambda = 15\)</span> at this maximum. Find an approximation to the maximum value of <span class="process-math">\(f\)</span> subject to the constraint <span class="process-math">\(g(x,y) = 98\text{.}\)</span>
+<li id="li-1050"><div class="para" id="p-2910">Suppose that <span class="process-math">\(\lambda = 324\)</span> at the point where the package described in <a href="" class="xref" data-knowl="./knowl/PA_10_8.html" title="Preview Activity 10.8.1">Preview Activity 10.8.1</a> has its maximum volume. Explain in context what the value <span class="process-math">\(324\)</span> tells us about the package.</div></li>
+<li id="li-1051"><div class="para" id="p-2911">Suppose that the maximum value of a function <span class="process-math">\(f = f(x,y)\)</span> subject to a constraint <span class="process-math">\(g(x,y) = 100\)</span> is <span class="process-math">\(236\text{.}\)</span> When using the method of Lagrange multipliers and solving <span class="process-math">\(\nabla f = \lambda \nabla g\text{,}\)</span>  we obtain a value of <span class="process-math">\(\lambda = 15\)</span> at this maximum. Find an approximation to the maximum value of <span class="process-math">\(f\)</span> subject to the constraint <span class="process-math">\(g(x,y) = 98\text{.}\)</span>
 </div></li>
 </ol>
 </div></article></section></section></div>
@@ -1225,7 +1248,7 @@ h(x,y,z) \amp = k.
 <a class="previous-button button" href="S-10-7-Optimization.html" title="Previous"><span class="icon">&lt;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon">^</span><span class="name">Top</span></a><a class="next-button button" href="C-11.html" title="Next"><span class="name">Next</span><span class="icon">&gt;</span></a>
 </div></main>
 </div>
-<div id="ptx-page-footer">
+<div id="ptx-page-footer" class="ptx-page-footer">
 <a class="pretext-link" href="https://pretextbook.org" title="PreTeXt"><div class="logo"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="338 3000 8772 6866"><g style="stroke-width:.025in; stroke:black; fill:none"><polyline points="472,3590 472,9732 " style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round; "></polyline><path style="stroke:#000000;stroke-width:126;stroke-linecap:butt;" d="M 4724,9448 A 4660 4660  0  0  1  8598  9259"></path><path style="stroke:#000000;stroke-width:174;stroke-linecap:butt;" d="M 4488,9685 A 4228 4228  0  0  0   472  9732"></path><path style="stroke:#000000;stroke-width:126;stroke-linecap:butt;" d="M 4724,3590 A 4241 4241  0  0  1  8598  3496"></path><path style="stroke:#000000;stroke-width:126;stroke-linecap:round;" d="M 850,3496  A 4241 4241  0  0  1  4724  3590"></path><path style="stroke:#000000;stroke-width:126;stroke-linecap:round;" d="M 850,9259  A 4507 4507  0  0  1  4724  9448"></path><polyline points="5385,4299 4062,8125" style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="8598,3496 8598,9259" style="stroke:#000000;stroke-width:126; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="850,3496 850,9259" style="stroke:#000000;stroke-width:126; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="4960,9685 4488,9685" style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="3070,4582 1889,6141 3070,7700" style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="6418,4582 7600,6141 6418,7700" style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="8976,3590 8976,9732" style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round;"></polyline><path style="stroke:#000000;stroke-width:174;stroke-linecap:butt;" d="M 4960,9685 A 4228 4228  0  0  1  8976  9732"></path></g></svg></div></a><a class="runestone-link" href="https://runestone.academy" title="Runestone Academy"><img class="logo" src="https://runestone.academy/runestone/static/images/RAIcon_cropped.png"></a><a class="mathjax-link" href="https://www.mathjax.org" title="MathJax"><img class="logo" src="https://www.mathjax.org/badge/badge-square-2.png"></a>
 </div>
 <!--Start: Google Global Site Tag code--><!--*** DO NOT COPY ANOTHER PROJECT'S MAGIC NUMBERS/ID ***--><!--***           GET YOUR OWN FROM GOOGLE             ***-->

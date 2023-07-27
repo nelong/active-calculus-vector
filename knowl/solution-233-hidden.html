@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="en-US" dir="ltr">
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
 <!--*                                          *-->
@@ -10,25 +10,58 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="robots" content="noindex, nofollow">
 </head>
-<body class="ignore-math"><div class="solution solution-like"><div class="para logical"><ol class="lower-alpha">
-<li><div class="para">For <span class="process-math">\(\overline{x}\text{,}\)</span> we need <span class="process-math">\(\partial
-F_2/\partial x - \partial F_1/\partial y = x/A\text{.}\)</span> It works nicely to let <span class="process-math">\(F_1 = 0\text{,}\)</span> in which case taking <span class="process-math">\(\vF = \frac{1}{2A}x^2\vj\)</span> gives what we need. For <span class="process-math">\(\overline{y}\text{,}\)</span> we need <span class="process-math">\(\partial
-F_2/\partial x - \partial F_1/\partial y = y/A\text{.}\)</span> It works nicely to let <span class="process-math">\(F_2 = 0\text{,}\)</span> in which case taking <span class="process-math">\(\vG = -\frac{1}{2A}y^2\vi\)</span> gives what we need.</div></li>
-<li><div class="para logical">
-<div class="para">Using the vector fields from above, note that the line integrals along the legs of the triangle are <span class="process-math">\(0\)</span> for both <span class="process-math">\(\vF\)</span> and <span class="process-math">\(\vG\text{.}\)</span> Thus, we parametrize the hypotenuse as <span class="process-math">\(\vr(t) = \langle
-a(1-t),bt\rangle\)</span> with <span class="process-math">\(0\leq t\leq 1\text{.}\)</span> The area of the triangle is <span class="process-math">\(ab/2\text{,}\)</span> so we find</div>
-<div class="displaymath process-math">
-\begin{gather*}
-\overline{x} = \frac{1}{ab}\int_0^1
-a^2b(1-t)^2\, dt =
-\frac{a^2b}{ab}\left[-\frac{(1-t)^3}{3}\right]_0^1 =
-\frac{a}{3} \\
-\overline{y} = \frac{1}{ab}\int_0^1
-ab^2t^2\, dt =
-\frac{ab^2}{ab}\left[\frac{t^3}{3}\right]_0^1 =
-\frac{b}{3} \text{.}
-\end{gather*}
+<body class="ignore-math"><div class="solution solution-like">
+<span class="process-math">\(S\)</span> is parameterized by<div class="displaymath process-math">
+\begin{equation*}
+\vec r(r,\theta)=r\cos \theta\vec i+r\sin \theta\vec j+r\vec k,
+\end{equation*}
+</div>with <span class="process-math">\(0\le r\le R\)</span> and <span class="process-math">\(0\le\theta\le 2\pi\text{.}\)</span> We have<div class="displaymath process-math">
+\begin{equation*}
+\frac{\partial \vec r}{\partial r}\times \frac{\partial \vec r}{\partial \theta} =
+\left|\begin{array}{ccc}
+\vec i \amp  \vec j \amp  \vec  k\\
+\cos{\theta} \amp  \sin{\theta} \amp  1 \\
+-r\sin{\theta} \amp  r\cos{\theta} \amp  0 \end{array}\right| =
+- r \cos\theta \vec i - r \sin \theta \vec j + r \vec k.
+\end{equation*}
+</div>Since the vector <span class="process-math">\(\partial \vec r / \partial r \times \partial \vec r
+/ \partial \theta\)</span> points upward, in the direction opposite to the specified orientation, we use<div class="displaymath process-math">
+\begin{equation*}
+d\vec A= -\left(\partial\vec r/\partial
+r\times\partial\vec r/\partial\theta\right) \,dr\,d\theta
+= (r\cos\theta\vec i + r\sin\theta\vec j - r\vec k)\, dr\,d\theta\,.
+\end{equation*}
+</div>Hence<div class="displaymath process-math">
+\begin{equation*}
+\int_S\vec F\cdot d\vec A = \int_0^{2\pi}\!\int_0^R 9 (r^5
+\cos^2\theta\sin^2\theta\vec k)\cdot (r \cos\theta \vec i + r \sin
+\theta \vec j - r \vec k)\,dr\,d\theta
+\end{equation*}
 </div>
-</div></li>
-</ol></div></div></body>
+<div class="displaymath process-math">
+\begin{equation*}
+=
+\int_0^{2\pi}\int_0^{R} -9 r^6\cos^2{\theta}\sin^2{\theta}\,dr\,d\theta
+\end{equation*}
+</div>
+<div class="displaymath process-math">
+\begin{equation*}
+= -\frac{9 R^7}{7}\int_0^{2\pi} \sin^2{\theta}\cos^2{\theta}\, d\theta
+\end{equation*}
+</div>
+<div class="displaymath process-math">
+\begin{equation*}
+= -\frac{9 R^7}{7}\int_0^{2\pi} \sin^2{\theta}(1-\sin^2{\theta})\, d\theta
+\end{equation*}
+</div>
+<div class="displaymath process-math">
+\begin{equation*}
+= -\frac{ 9 R^7}{7}\int_0^{2\pi} (\sin^2{\theta}-\sin^4{\theta})\, d\theta
+\end{equation*}
+</div>
+<div class="displaymath process-math">
+\begin{equation*}
+= -\left(\frac{9 R^7}{7}\right)\left(\frac{\pi}{4}\right)= -\frac{9}{28} \pi R^7.
+\end{equation*}
+</div>The cone is not differentiable at the point <span class="process-math">\((0,0)\text{.}\)</span> However the flux integral, which is improper, converges.</div></body>
 </html>
