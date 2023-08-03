@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="example example-like"><h4 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">12.10.5</span><span class="period">.</span>
+</h4>
+<div class="introduction"><div class="para">For this example, we will consider the surface <span class="process-math">\(S_1\)</span> given by <span class="process-math">\(x^2+y^2=z^2\)</span> such that <span class="process-math">\(1\leq z \leq 3\text{.}\)</span> This is the same part of the cone used in <a href="" class="xref" data-knowl="./knowl/flux_int_example1.html" title="Example 12.9.8">Example 12.9.8</a>. We also let <span class="process-math">\(f(x,y,z)=x\text{.}\)</span>
+</div></div>
+<article class="task exercise-like"><h5 class="heading"><span class="codenumber">(a)</span></h5>
+<div class="para logical">
+<div class="para">For our first part of our example, we use symmetry to reason about <span class="process-math">\(\iint_{S_1} f\, dS\text{.}\)</span> Without using any calculations or parameterizations, we can reason that this scalar surface integral will be zero. In a scalar surface integral, we are calculating the accumulation of the scalar output over a surface area in space. In <a href="" class="xref" data-knowl="./knowl/fig_Scalar_Surface_Int_Example1.html" title="Figure 12.10.6">Figure 12.10.6</a>, you can see that we can symmetrically break our surface <span class="process-math">\(S_1\)</span> into two regions that have exactly the same surface area properties <em class="alert">and</em> symmetric output values for our scalar function, <span class="process-math">\(f\text{.}\)</span> Here we denote by <span class="process-math">\(S_2\)</span> the portion of <span class="process-math">\(S_1\)</span> with <span class="process-math">\(x\geq 0\)</span> (colored green), while <span class="process-math">\(S_3\)</span> is the magenta portion of the surface, which has <span class="process-math">\(x \lt 0\text{.}\)</span> The only difference between the green and magenta portions  of <a href="" class="xref" data-knowl="./knowl/fig_Scalar_Surface_Int_Example1.html" title="Figure 12.10.6">Figure 12.10.6</a> that is relevant to our surface integral is that the values of <span class="process-math">\(f\)</span> will be positive on the green surface <span class="process-math">\(S_2\)</span> and negative on the magenta surface <span class="process-math">\(S_3\)</span> No matter how we break up the Riemann sum or the corresponding scalar surface integral for the green side of our surface, applying the same pattern to the magenta side will give the same result but with an opposite sign. In other words,</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/fig_Scalar_Surface_Int_Example1.html ./knowl/fig_Scalar_Surface_Int_Example1.html">
+\begin{equation*}
+\int_{S_2} f \, dS = - \int_{S_3} f \, dS\text{.}
+\end{equation*}
+</div>
+</div> <figure class="figure figure-like"><iframe id="interactive-31" width="600" height="600" src="interactive-31-if.html"></iframe><figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">12.10.6<span class="period">.</span></span><span class="space"> </span>The surface <span class="process-math">\(S_1\)</span> divided into regions <span class="process-math">\(S_2\)</span> with positive <span class="process-math">\(x\)</span>-coordinate in green and <span class="process-math">\(S_3\)</span> with negative <span class="process-math">\(x\)</span>-coordinate in red</figcaption></figure> <div class="para logical">
+<div class="para">Therefore,</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\int_{S_1} f \, dS = \int_{S_2} f \, dS + \int_{S_3} f \, dS = \int_{S_2} f \, dS - \int_{S_2} f \, dS =0\text{.}
+\end{equation*}
+</div>
+</div></article><article class="task exercise-like"><h5 class="heading"><span class="codenumber">(b)</span></h5>
+<div class="para logical">
+<div class="para">From a calculation standpoint, we can  verify this result using our parameterization from <a href="" class="xref" data-knowl="./knowl/flux_int_example1.html" title="Example 12.9.8">Example 12.9.8</a> in <a href="" class="xref" data-knowl="./knowl/ScalarSurfaceIntDef.html" title="Theorem 12.10.4">Theorem 12.10.4</a>. Specifically, we will use the parameterization of <span class="process-math">\(S_1\)</span> given by <span class="process-math">\(\vr(s,t)=\langle s \cos(t), s \sin(t), s \rangle \)</span> with bounds <span class="process-math">\(1\leq s \leq 3\)</span> and <span class="process-math">\(0 \leq t \lt 2 \pi\text{.}\)</span> We also know from <a href="" class="xref" data-knowl="./knowl/flux_int_example1.html" title="Example 12.9.8">Example 12.9.8</a> that</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/flux_int_example1.html ./knowl/ScalarSurfaceIntDef.html ./knowl/flux_int_example1.html ./knowl/ScalarSurfaceIntDef.html">
+\begin{equation*}
+\vw= \vr_s \times \vr_t = \langle-s \cos(t), -s \sin(t), s \rangle \text{.}
+\end{equation*}
+</div>
+<div class="para">Hence, we have <span class="process-math">\(\vecmag{\vw}=\sqrt{s^2(\cos(t)^2+\sin(t)^2) +s^2}=2s\text{.}\)</span> Thus, <a href="" class="xref" data-knowl="./knowl/ScalarSurfaceIntDef.html" title="Theorem 12.10.4">Theorem 12.10.4</a> gives</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/flux_int_example1.html ./knowl/ScalarSurfaceIntDef.html ./knowl/flux_int_example1.html ./knowl/ScalarSurfaceIntDef.html">
+\begin{equation*}
+\int_{S_1} f \, dS = \int_1^3 \int_0^{2\pi} (s \cos(t)) \, 2s\, dt\, ds =0\text{.}
+\end{equation*}
+</div>
+<div class="para">Notice that we can evaluate this integral quickly because the inside integral is <span class="process-math">\(\int_0^{2\pi} \cos(t)\, dt = 0\text{.}\)</span>
+</div>
+</div></article><article class="task exercise-like"><h5 class="heading"><span class="codenumber">(c)</span></h5>
+<div class="para logical">
+<div class="para">If we want to calculate the integral of <span class="process-math">\(f(x,y,z) = x\)</span> over <span class="process-math">\(S_2\text{,}\)</span> then we have very little extra work to do. Only the bounds on the integral will change since we are using the same parameterization and function from the previous part. We can use the parameterization given by <span class="process-math">\(\vr(s,t)=\langle s \cos(t), s \sin(t), s \rangle \)</span> with <span class="process-math">\(1\leq s \leq 3\)</span> and <span class="process-math">\(-\frac{\pi}{2} \leq t \lt \frac{\pi}{2} \text{.}\)</span> As before, <span class="process-math">\(\vecmag{\vw} =\sqrt{s^2(\cos(t)^2+\sin(t)^2) +s^2}=2s\text{.}\)</span> Thus, <a href="" class="xref" data-knowl="./knowl/ScalarSurfaceIntDef.html" title="Theorem 12.10.4">Theorem 12.10.4</a> gives</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/ScalarSurfaceIntDef.html">
+\begin{align*}
+\int_{S_2} f \, dS \amp =  \int_1^3 \int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} (s \cos(t)) \, 2s\, dt\, ds\\
+\amp = \int_1^3 2s^2 [\sin(t)]_{|_{t=-\frac{\pi}{2}}^{\frac{\pi}{2}}}   \,  ds\\
+\amp = \int_1^3 4s^2   \,  ds\\
+\amp = \int_1^3 4s^2  \,  ds = 104/3\text{.}
+\end{align*}
+</div>
+</div> <div class="para">It makes sense that the result of <span class="process-math">\(\int_{S_2} f \, dS\)</span> is positive because the output of our function is non-negative for all points on <span class="process-math">\(S_2\text{.}\)</span> Remember that the Riemann sum used in calculating surface integrals of scalar functions is the product of the function’s value on each piece times the estimate of the surface area. Thus, if the function’s value is positive for all points on the surface, then the scalar surface integral will also be positive.</div></article></article><span class="incontext"><a href="S_Vector_ScalarSurfaceIntegral.html#ex_Vector_ScalarSurfaceIntegral_cone_part" class="internal">in-context</a></span>
+</body>
+</html>

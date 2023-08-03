@@ -105,12 +105,12 @@ window.MathJax = {
 f=-x^2/2-3*y^3/3+0.5
 @interact
 def _():
-  f(x,y)=(550-y+x)*.002+cos((x^2/700+sin(y*(250-x)))/50)
+  f(x,y)=(550-y+x)*.002+cos((x^2/700+sin(y*(250-x)))/50)+0.5
   plot8=polygon3d([[212.5,425,0],[512.5,525,0],[300,100,0],[0,0,0]],color='grey',opacity=.5)
-  plot11=parametric_plot3d((t,2*t,0),(t,0,212.5),color='red')+parametric_plot3d((t,2*t,f(t,2*t)),(t,0,212.5),color='green')+parametric_plot3d((t,2*t,s*f(t,2*t)),(t,0,212.5),(s,0,1),color='yellow')
-  plot11+=parametric_plot3d((212.5+3*t,425+t,0),(t,0,100),color='red')+parametric_plot3d((212.5+3*t,425+t,f(212.5+3*t,425+t)),(t,0,100),color='green')+parametric_plot3d((212.5+3*t,425+t,s*f(212.5+3*t,425+t)),(t,0,100),(s,0,1),color='yellow')
-  plot11+=parametric_plot3d((300+t,100+2*t,0),(t,0,212.5),color='red')+parametric_plot3d((300+t,100+2*t,f(300+t,100+2*t)),(t,0,212.5),color='green')+parametric_plot3d((300+t,100+2*t,s*f(300+t,100+2*t)),(t,0,212.5),(s,0,1),color='yellow')
-  plot11+=parametric_plot3d((3*t,t,0),(t,0,100),color='red')+parametric_plot3d((3*t,t,f(3*t,t)),(t,0,100),color='green')+parametric_plot3d((3*t,t,s*f(3*t,t)),(t,0,100),(s,0,1),color='yellow')
+  plot11=parametric_plot3d((t,2*t,0),(t,0,212.5),color='#D81B60',thickness=4)+parametric_plot3d((t,2*t,f(t,2*t)),(t,0,212.5),color='#004D40',thickness=4)+parametric_plot3d((t,2*t,s*f(t,2*t)),(t,0,212.5),(s,0,1),color='#FFC107',thickness=4)
+  plot11+=parametric_plot3d((212.5+3*t,425+t,0),(t,0,100),color='#D81B60',thickness=4)+parametric_plot3d((212.5+3*t,425+t,f(212.5+3*t,425+t)),(t,0,100),color='#004D40',thickness=4)+parametric_plot3d((212.5+3*t,425+t,s*f(212.5+3*t,425+t)),(t,0,100),(s,0,1),color='#FFC107',thickness=4)
+  plot11+=parametric_plot3d((300+t,100+2*t,0),(t,0,212.5),color='#D81B60',thickness=4)+parametric_plot3d((300+t,100+2*t,f(300+t,100+2*t)),(t,0,212.5),color='#004D40',thickness=4)+parametric_plot3d((300+t,100+2*t,s*f(300+t,100+2*t)),(t,0,212.5),(s,0,1),color='#FFC107',thickness=4)
+  plot11+=parametric_plot3d((3*t,t,0),(t,0,100),color='#D81B60',thickness=4)+parametric_plot3d((3*t,t,f(3*t,t)),(t,0,100),color='#004D40',thickness=4)+parametric_plot3d((3*t,t,s*f(3*t,t)),(t,0,100),(s,0,1),color='#FFC107',thickness=4)
   show(plot11+plot8,aspect_ratio=(1,1,40))
 </script></pre></div></body>
 </html>

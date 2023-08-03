@@ -11,9 +11,22 @@
 <meta name="robots" content="noindex, nofollow">
 </head>
 <body class="ignore-math">
-<h5 class="heading"><span class="type">Paragraph</span></h5>
-<div class="para">
-<em class="alert">(a)</em> Find the line integral for <span class="process-math">\(a=1\text{.}\)</span>
+<h4 class="heading"><span class="type">Paragraph</span></h4>
+<div class="para logical">
+<div class="para">In our earlier explanation, we saw how the calculation of circulation around a nice closed curve will be the sum of the circulation over pieces that enclose the same area, regardless of the size or number of the pieces used. In other words,</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\oint_C \vF \cdot d\vr = \sum_{R_i} \oint_{C_i} \vF\cdot d\vr
+\end{equation*}
+</div>
+<div class="para">where <span class="process-math">\(C_i\)</span> is a bounding curve for one of the subregions <span class="process-math">\(R_i\text{.}\)</span> We defined our circulation density as the ratio of circulation to area, so we can also subsititute the circulation around a region for the circulation density times the area of that region. Additionally, we can take the limit as our regions get smaller (because size and the number of regions does not affect the sum!) to get the following</div>
+<div class="displaymath process-math">
+\begin{align*}
+\oint_C \vF \cdot d\vr \amp = \lim_{\Delta R_i \rightarrow 0} \sum_{R_i} \oint_{C_i} \vF\cdot d\vr \\
+\amp = \lim_{\Delta R_i \rightarrow 0} \sum_{R_i} \frac{\partial F_2}{\partial x}-\frac{\partial F_1}{\partial y} \Delta R_i
+\end{align*}
+</div>
+<div class="para">where <span class="process-math">\(\Delta R_i\)</span> is the area of the region <span class="process-math">\(R_i\)</span> with boundary curve <span class="process-math">\(C_i\text{.}\)</span> Hopefully the above expression looks familiar to you as the Reimann sum definition for the double integral of <span class="process-math">\(\frac{\partial F_2}{\partial x}-\frac{\partial F_1}{\partial y}\)</span> over the region <span class="process-math">\(R\text{.}\)</span> For “nice” closed curves we can equate the circulation around the boundary (computed as a line integral) with a double integral of the circulation density over the region enclosed (computed with a double integral).</div>
 </div>
 <span class="incontext"><a href="S_Vector_GreensTheorem.html#p-5322" class="internal">in-context</a></span>
 </body>

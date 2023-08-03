@@ -13,43 +13,29 @@
 <body class="ignore-math">
 <div class="solution solution-like">
 <h4 class="heading">
-<span class="type">Solution</span><span class="space"> </span><span class="codenumber">12.8.5.3.1</span><span class="period">.</span>
+<span class="type">Solution</span><span class="space"> </span><span class="codenumber">12.8.5.8.1</span><span class="period">.</span>
 </h4>
-<em class="alert">(a)</em> We see that <span class="process-math">\(\vec F,\vec G,\vec H\)</span> are all gradient vector fields, since<div class="displaymath process-math">
-\begin{equation*}
-\nabla (3xy) = \vec F\quad\mbox{for all }x,y,
-\end{equation*}
-</div>
+<div class="para logical"><ol class="lower-alpha">
+<li><div class="para">For <span class="process-math">\(\overline{x}\text{,}\)</span> we need <span class="process-math">\(\partial
+F_2/\partial x - \partial F_1/\partial y = x/A\text{.}\)</span> It works nicely to let <span class="process-math">\(F_1 = 0\text{,}\)</span> in which case taking <span class="process-math">\(\vF = \frac{1}{2A}x^2\vj\)</span> gives what we need. For <span class="process-math">\(\overline{y}\text{,}\)</span> we need <span class="process-math">\(\partial
+F_2/\partial x - \partial F_1/\partial y = y/A\text{.}\)</span> It works nicely to let <span class="process-math">\(F_2 = 0\text{,}\)</span> in which case taking <span class="process-math">\(\vG = -\frac{1}{2A}y^2\vi\)</span> gives what we need.</div></li>
+<li><div class="para logical">
+<div class="para">Using the vector fields from above, note that the line integrals along the legs of the triangle are <span class="process-math">\(0\)</span> for both <span class="process-math">\(\vF\)</span> and <span class="process-math">\(\vG\text{.}\)</span> Thus, we parametrize the hypotenuse as <span class="process-math">\(\vr(t) = \langle
+a(1-t),bt\rangle\)</span> with <span class="process-math">\(0\leq t\leq 1\text{.}\)</span> The area of the triangle is <span class="process-math">\(ab/2\text{,}\)</span> so we find</div>
 <div class="displaymath process-math">
-\begin{equation*}
-\nabla (\tan^{-1}\!\left(\frac{x}{y}\right)) = \vec G\quad\mbox{except where }y=0,
-\end{equation*}
-</div>and<div class="displaymath process-math">
-\begin{equation*}
-\nabla (4\sqrt{x^{2}+y^{2}}) = \vec H\quad\mbox{except at }(0,0).
-\end{equation*}
-</div>Other answers are possible. <em class="alert">(b)</em> Parameterizing the unit circle, <span class="process-math">\(C\text{,}\)</span> by <span class="process-math">\(x=\cos t\text{,}\)</span> <span class="process-math">\(y=\sin t\text{,}\)</span> <span class="process-math">\(0\le t\le 2\pi\text{,}\)</span> we have <span class="process-math">\(\vec r'(t) =-\sin t\,\vec i+ \cos t\,\vec j\text{,}\)</span> so<div class="displaymath process-math">
-\begin{equation*}
-\int_C\vec F\cdot d\vec r = 3\int_0^{2\pi}((\sin t)\vec i+(\cos t)\vec
-j)\cdot ((-\sin t)\vec i+(\cos t)\vec j)\,dt = 3\int_0^{2\pi}\cos (2t)\,dt
-= 0.
-\end{equation*}
-</div>The vector field <span class="process-math">\(\vec G\)</span> is tangent to the circle, pointing in the opposite direction to the parameterization, and of length 1 everywhere.  Thus<div class="displaymath process-math">
-\begin{equation*}
-\int_C\vec G\cdot d\vec r= -1\cdot\hbox{ Length of circle }=-2\pi.
-\end{equation*}
-</div>The vector field <span class="process-math">\(\vec H\)</span> points radially outward, so it is perpendicular to the circle everywhere.  Thus<div class="displaymath process-math">
-\begin{equation*}
-\int_C\vec H\cdot d\vec r = 0.
-\end{equation*}
+\begin{gather*}
+\overline{x} = \frac{1}{ab}\int_0^1
+a^2b(1-t)^2\, dt =
+\frac{a^2b}{ab}\left[-\frac{(1-t)^3}{3}\right]_0^1 =
+\frac{a}{3} \\
+\overline{y} = \frac{1}{ab}\int_0^1
+ab^2t^2\, dt =
+\frac{ab^2}{ab}\left[\frac{t^3}{3}\right]_0^1 =
+\frac{b}{3} \text{.}
+\end{gather*}
 </div>
-<em class="alert">(c)</em> Green’s Theorem does not apply to the computation of the line integrals for <span class="process-math">\(\vec G\)</span> and <span class="process-math">\(\vec H\)</span> because their domains do not include the origin, which is in the interior, <span class="process-math">\(R\text{,}\)</span> of the circle. Green’s Theorem does apply to <span class="process-math">\(\vec F=3y\vec i+3x\vec j\text{.}\)</span><div class="displaymath process-math">
-\begin{equation*}
-\int_C\vec F\cdot d\vec r =
-\int_R\left(\frac{\partial}{\partial x} F_2 -
-\frac{\partial}{\partial y} F_1\right)\,dx\,dy = \int 0\,dx\,dy=0.
-\end{equation*}
-</div>
+</div></li>
+</ol></div>
 </div>
 <span class="incontext"><a href="S_Vector_GreensTheorem.html#solution-229" class="internal">in-context</a></span>
 </body>

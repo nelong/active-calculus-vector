@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="example example-like"><h4 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">12.10.7</span><span class="period">.</span>
+</h4>
+<div class="para logical">
+<div class="para">For this example, we will consider the same surface <span class="process-math">\(S_1\)</span> as in <a href="" class="xref" data-knowl="./knowl/ex_Vector_ScalarSurfaceIntegral_cone_part.html" title="Example 12.10.5">Example 12.10.5</a>, but we will change the scalar function we are integrating to something more complicated. Our goal is to calculate</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/ex_Vector_ScalarSurfaceIntegral_cone_part.html">
+\begin{equation*}
+\int_{S_1} z-x^2 \, dS \text{.}
+\end{equation*}
+</div>
+<div class="para">We can reuse the parameterization and calculations from above for <span class="process-math">\(S_1\)</span> here and move directly to setting up the iterated integral. We will take a moment here to note that converting our scalar function <span class="process-math">\(g(x,y,z)= z-x^2\)</span> to a function of <span class="process-math">\(s\)</span> and <span class="process-math">\(t\)</span> will give <span class="process-math">\(g(s,t)=s-s^2 \cos(t)^2\text{.}\)</span> Therefore, we have the following iterated integral, which we evaluate:</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/ex_Vector_ScalarSurfaceIntegral_cone_part.html">
+\begin{align*}
+\int_{S_1} z-x^2 \, dS \amp =  \int_1^3 \int_{0}^{2 \pi} (s-s^2 \cos(t)^2) \cdot 2s\, dt\, ds\\
+\amp = \int_1^3 2s^2 \left[t-s\left(\frac{2t+\sin(2t)}{4}\right)\right]_{t=0}^{2 \pi} \,  ds\\
+\amp = \int_1^3 2s^2 (-\pi (s-2)) \,  ds = -\frac{16\pi}{3}
+\end{align*}
+</div>
+</div> <div class="para">This result is a bit more difficult to to make sense of as being negative. In <a href="" class="xref" data-knowl="./knowl/fig_Scalar_Surface_Int_Example2.html" title="Figure 12.10.8">Figure 12.10.8</a>, we have a plot of the surface <span class="process-math">\(S_1\)</span> in blue and the parabolic cylinder surface given by <span class="process-math">\(z-x^2=0\)</span> is plotted in yellow. The points on the yellow surface correspond to where our scalar function (<span class="process-math">\(g(x,y,z)= z-x^2\)</span>) gives an output of zero. The points inside the parabolic cylinder have a <span class="process-math">\(z\)</span>-coordinate greater than <span class="process-math">\(x^2\text{,}\)</span> which means that <span class="process-math">\(g\)</span> will have a positive output for these points. The points outside of the parabolic cylinder have a <span class="process-math">\(z\)</span>-coordinate less than <span class="process-math">\(x^2\text{,}\)</span> which means that <span class="process-math">\(g\)</span> will have a negative output for these points. In order to make an argument about whether <span class="process-math">\(\int_{S_1} z-x^2 \, dS\)</span> is positive, negative, or zero, we will need to assess whether there is more surface area where <span class="process-math">\(g\)</span> takes on positive values, more with negative values, or an equal amount of positive-negative values. Actually, our problem is even harder than this! Beacuse the Riemann sum is the product of the output for each piece of our surface times the surface area estimate, we will need to think about which points/pieces have larger or smaller outputs for <span class="process-math">\(g\text{.}\)</span> This is <em class="emphasis">very</em> difficult in general, because we need a systematic way of estimating both the output of <span class="process-math">\(g\)</span> and the surface area of different pieces of the surface.</div> <figure class="figure figure-like"><iframe id="interactive-32" width="600" height="600" src="interactive-32-if.html"></iframe><figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">12.10.8<span class="period">.</span></span><span class="space"> </span>The surface <span class="process-math">\(S_1\)</span> is plotted with the surface given by <span class="process-math">\(z-x^2=0\)</span></figcaption></figure> <div class="para">In our case, there is more surface area of <span class="process-math">\(S_1\)</span> inside the parabolic cylinder than outside. For points that are far away from the yellow surface, the magnitude of the value of <span class="process-math">\(g\)</span> for that point will be large. For points that are close to the yellow surface, the <span class="process-math">\(z\)</span>-coordinates are close to <span class="process-math">\(x^2\text{,}\)</span> and thus values of <span class="process-math">\(g\)</span> are close to zero. This means that in order to properly estimate the scalar surface integral, we must assess whether there is a greater weighted surface area inside the parabolic cylinder than outside, where the weight of each surface area piece is given by how far the piece is from the yellow parabolic cylinder. This is not an easy argument to make, and is not easy to verify visually for this example. For some examples, you may be able to make a nice geometric arguement about the size of scalar surface integrals, but the algebraic calculation given by <a href="" class="xref" data-knowl="./knowl/ScalarSurfaceIntDef.html" title="Theorem 12.10.4">Theorem 12.10.4</a> gives an exact value.</div></article><span class="incontext"><a href="S_Vector_ScalarSurfaceIntegral.html#example-28" class="internal">in-context</a></span>
+</body>
+</html>

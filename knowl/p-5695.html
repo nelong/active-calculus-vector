@@ -12,7 +12,22 @@
 </head>
 <body class="ignore-math">
 <h6 class="heading"><span class="type">Paragraph</span></h6>
-<div class="para">In this part, we will consider the unit ball shown in <a href="" class="xref" data-knowl="./knowl/fig_Vector_DivThm_Poisongas1.html" title="Figure 12.12.4">Figure 12.12.4</a>, with boundary and normal vectors as shown in the plot. If the flux integral of a poisonous gas through <span class="process-math">\(S_{\text{top}}\)</span> is <span class="process-math">\(15\)</span> and the flux integral of the poison gas through <span class="process-math">\(S_{\text{bottom}}\)</span> is <span class="process-math">\(-3\text{,}\)</span> is the interior of the sphere emitting or absorbing poisonous gas? Explain your reasoning.</div>
-<span class="incontext"><a href="S_Vector_DivThm.html#p-5695" class="internal">in-context</a></span>
+<div class="para logical">
+<div class="para">The next step in setting up the flux integral on the right side of Stokes’ Theorem is calculating the curl of <span class="process-math">\(\vF\text{.}\)</span> Since <span class="process-math">\(\vF=\langle z-x, y+z, xy \rangle \text{,}\)</span> <span class="process-math">\(\curl(\vF)=\langle x-1,1-y,0 \rangle \)</span> and converting to <span class="process-math">\(s\)</span> and <span class="process-math">\(t\)</span> gives <span class="process-math">\(\curl(\vF) (s,t)=\langle s\cos(t)-1,1-s\sin(t),0 \rangle \text{.}\)</span> Now we are able to apply <a href="" class="xref" data-knowl="./knowl/thm_flux_int_calc.html" title="Theorem 12.9.7">Theorem 12.9.7</a>, which give the following iterated integral:</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/thm_flux_int_calc.html">
+\begin{equation*}
+\int_0^1 \int_0^{2\pi} \langle s\cos(t)-1,1-s\sin(t),0 \rangle \cdot \langle 0,4s\sin(t), 1 \rangle s \enspace dt ds
+\end{equation*}
+</div>
+<div class="para">Evaluating this dot product, then computing each integral gives</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/thm_flux_int_calc.html">
+\begin{equation*}
+\int_0^1 \int_0^{2\pi} -4s^3 \sin(t)^2 + 4s^2 \sin(t) \enspace dt ds = -\pi
+\end{equation*}
+</div>
+<div class="para">which matches our result for the calculation of the circulation around <span class="process-math">\(C\text{.}\)</span>
+</div>
+</div>
+<span class="incontext"><a href="S_Vector_StokesThm.html#p-5695" class="internal">in-context</a></span>
 </body>
 </html>

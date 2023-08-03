@@ -10,21 +10,43 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="robots" content="noindex, nofollow">
 </head>
-<body class="ignore-math"><div class="solution solution-like"><div class="para logical">
-<div class="para">Let <span class="process-math">\(\vr_1(t) = \langle t,t,t \rangle\)</span> where<span class="process-math">\(0 \leq t \leq 1\)</span> and <span class="process-math">\(\vr_2(t) = \langle 1-t,1-t,1+t \rangle\)</span> where<span class="process-math">\(0 \leq t \leq 1\text{.}\)</span> Our line integral can be computed with</div>
+<body class="ignore-math"><div class="solution solution-like">
 <div class="displaymath process-math">
 \begin{equation*}
-\int_{C_1} \vF \cdot d\vr = \int_0^1 \langle 3t^2+e^t,t^2,4t+te^t\rangle \cdot \langle 1,1,1\rangle \enspace dt= e+\frac{10}{3}
+\mathbf{F}(\mathbf{r}(t)) = \left\lt  5 \sin ( t^3), -5 \cos (-2 t^2), -3 t^4 \right&gt;
 \end{equation*}
 </div>
 <div class="displaymath process-math">
 \begin{equation*}
-\int_{C_2} \vF \cdot d\vr =  \\
-\int_0^1 \langle 3(1-t)^2+e^{1-t},(1-t)^2,4(1+t)+(1-t)e^{1+t} \rangle \cdot \langle -1,-1,1\rangle \enspace dt \\
-= 2e^2-3e+\frac{14}{3} 
+\mathbf{r} '(t) = \left\lt  3 t^2, -4 t, -3 \right &gt;
 \end{equation*}
 </div>
-<div class="para">Thus the line integral over <span class="process-math">\(C_1\)</span> then <span class="process-math">\(C_2\)</span> is <span class="process-math">\(2e^2-2e+8\)</span>
+<div class="displaymath process-math">
+\begin{equation*}
+\mathbf{F}(\mathbf{r}(t)) \cdot \mathbf{r} '(t)
+= \left\lt  5 \sin ( t^3), -5 \cos (-2 t^2), -3 t^4 \right&gt; \cdot \left\lt  3 t^2, -4 t, -3 \right &gt;
+\end{equation*}
 </div>
-</div></div></body>
+<div class="displaymath process-math">
+\begin{equation*}
+=15 t^2 \sin ( t^3) + 20 t \cos (-2 t^2) + 9 t^4
+\end{equation*}
+</div>The line integral is then:<div class="displaymath process-math">
+\begin{equation*}
+\int_{\mathcal{C}} \mathbf{F} \cdot \,d\ \mathbf{r}
+= \int^1_0 \mathbf{F}(\mathbf{r}(t)) \cdot \mathbf{r} '(t) \ dt
+= \int^1_0 15 t^2 \sin ( t^3) + 20 t \cos (-2 t^2) + 9 t^4\ dt
+\end{equation*}
+</div>
+<div class="displaymath process-math">
+\begin{equation*}
+= \left [ -5 \cos ( t^3)  - 5 \sin (-2 t^2) + \frac{9}{5} t^5 \right ]^1_0
+\end{equation*}
+</div>
+<div class="displaymath process-math">
+\begin{equation*}
+= -5 \cos (1)  - 5 \sin (-2) + \frac{34}{5}
+\end{equation*}
+</div>
+</div></body>
 </html>

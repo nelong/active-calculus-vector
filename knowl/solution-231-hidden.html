@@ -10,48 +10,58 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="robots" content="noindex, nofollow">
 </head>
-<body class="ignore-math"><div class="solution solution-like"><div class="para logical"><ol class="lower-alpha">
-<li><div class="para">A simple closed curve lying in the region <span class="process-math">\(R\)</span> that encloses the curve <span class="process-math">\(C_2\)</span> cannot be contracted to a point while remaining in the region <span class="process-math">\(R\text{,}\)</span> so this region is not simply connected.</div></li>
-<li><div class="para logical">
-<div class="para">Assume that <span class="process-math">\(C_3\)</span> and <span class="process-math">\(C_4\)</span> are oriented from bottom to top. Then</div>
-<div class="displaymath process-math" data-contains-math-knowls="./knowl/eqn_ez_Vector_GreensTheorem_region_hole_add.html ./knowl/thm_Green.html">
-\begin{equation}
-C = C_1 + C_2 = (C_{1,2}-C_4+C_{2,2}-C_3) +
-(C_{1,1} + C_3 + C_{2,1} + C_4)\text{.}\tag{12.8.1}
-\end{equation}
-</div>
-<div class="para">The curve in the first set of parentheses in <a href="" class="xref" data-knowl="./knowl/eqn_ez_Vector_GreensTheorem_region_hole_add.html" title="Equation 12.8.1">(12.8.1)</a> bounds the region <span class="process-math">\(R_1\text{,}\)</span> and the curve in the second set of parentheses bounds the region <span class="process-math">\(R_2\text{.}\)</span> Since <span class="process-math">\(\vF = \langle F_1,F_2\rangle\)</span> is smooth on <span class="process-math">\(R\)</span> and <span class="process-math">\(C\text{,}\)</span> <a href="" class="xref" data-knowl="./knowl/thm_Green.html" title="Theorem 12.8.3: Green’s Theorem">Green’s Theorem</a> applies and we have</div>
-<div class="displaymath process-math" data-contains-math-knowls="./knowl/eqn_ez_Vector_GreensTheorem_region_hole_add.html ./knowl/thm_Green.html">
-\begin{align*}
-\oint_C\vF\cdot d\vr &amp;= \iint_{R_1}
-\left(\frac{\partial F_2}{\partial x}
-- \frac{\partial F_1}{\partial y}\right)\, dA +
-\iint_{R_2}
-\left(\frac{\partial F_2}{\partial x}
-- \frac{\partial F_1}{\partial y}\right)\, dA\\
-&amp;= \iint_{R} \left(\frac{\partial
-F_2}{\partial x} - \frac{\partial F_1}{\partial
-y}\right)\, dA\text{.}
-\end{align*}
-</div>
-</div></li>
-<li><div class="para logical">
-<div class="para">Let <span class="process-math">\(C_2\)</span> be the circle of radius <span class="process-math">\(a&gt;0\text{,}\)</span> centered at the origin and oriented <em class="emphasis">clockwise</em>, with <span class="process-math">\(a\)</span> chosen to be small enough that <span class="process-math">\(C_2\)</span> lies entirely within <span class="process-math">\(C\text{.}\)</span> Then <span class="process-math">\(C+C_2\)</span> is exactly the type of curve considered in the previous part, as <span class="process-math">\(\vF\)</span> is smooth on the curves and the region they bound. Here <span class="process-math">\(\frac{\partial F_2}{\partial x}
-- \frac{\partial F_1}{\partial y} = 0\)</span> for all points in <span class="process-math">\(R_1\)</span> and <span class="process-math">\(R_2\text{,}\)</span> so the double integrals from <a href="" class="xref" data-knowl="./knowl/thm_Green.html" title="Theorem 12.8.3: Green’s Theorem">Green’s Theorem</a> are <span class="process-math">\(0\text{.}\)</span> Thus, we have that</div>
-<div class="displaymath process-math" data-contains-math-knowls="./knowl/thm_Green.html">
+<body class="ignore-math"><div class="solution solution-like">
+<span class="process-math">\(S\)</span> is parameterized by<div class="displaymath process-math">
 \begin{equation*}
-\oint_C\vF\cdot d\vr + \oint_{C_2}\vF\cdot d\vr =
-0\Leftrightarrow \oint_C\vF\cdot d\vr =
-\oint_{-C_2}\vF\cdot d\vr\text{.}
+\vec r(r,\theta)=r\cos \theta\vec i+r\sin \theta\vec j+r\vec k,
+\end{equation*}
+</div>with <span class="process-math">\(0\le r\le R\)</span> and <span class="process-math">\(0\le\theta\le 2\pi\text{.}\)</span> We have<div class="displaymath process-math">
+\begin{equation*}
+\frac{\partial \vec r}{\partial r}\times \frac{\partial \vec r}{\partial \theta} =
+\left|\begin{array}{ccc}
+\vec i \amp  \vec j \amp  \vec  k\\
+\cos{\theta} \amp  \sin{\theta} \amp  1 \\
+-r\sin{\theta} \amp  r\cos{\theta} \amp  0 \end{array}\right| =
+- r \cos\theta \vec i - r \sin \theta \vec j + r \vec k.
+\end{equation*}
+</div>Since the vector <span class="process-math">\(\partial \vec r / \partial r \times \partial \vec r
+/ \partial \theta\)</span> points upward, in the direction opposite to the specified orientation, we use<div class="displaymath process-math">
+\begin{equation*}
+d\vec A= -\left(\partial\vec r/\partial
+r\times\partial\vec r/\partial\theta\right) \,dr\,d\theta
+= (r\cos\theta\vec i + r\sin\theta\vec j - r\vec k)\, dr\,d\theta\,.
+\end{equation*}
+</div>Hence<div class="displaymath process-math">
+\begin{equation*}
+\int_S\vec F\cdot d\vec A = \int_0^{2\pi}\!\int_0^R 8 (r^5
+\cos^2\theta\sin^2\theta\vec k)\cdot (r \cos\theta \vec i + r \sin
+\theta \vec j - r \vec k)\,dr\,d\theta
 \end{equation*}
 </div>
-<div class="para">Since <span class="process-math">\(\vF\)</span> is tangent to <span class="process-math">\(-C_2\)</span> everywhere, we know that</div>
-<div class="displaymath process-math" data-contains-math-knowls="./knowl/thm_Green.html">
+<div class="displaymath process-math">
 \begin{equation*}
-\oint_{-C_2}\vF\cdot d\vr = \vecmag{\vF}\cdot
-(\text{Length of }-C_2) = \frac{1}{a} (2\pi a) = 2\pi\text{.}
+=
+\int_0^{2\pi}\int_0^{R} -8 r^6\cos^2{\theta}\sin^2{\theta}\,dr\,d\theta
 \end{equation*}
 </div>
-</div></li>
-</ol></div></div></body>
+<div class="displaymath process-math">
+\begin{equation*}
+= -\frac{8 R^7}{7}\int_0^{2\pi} \sin^2{\theta}\cos^2{\theta}\, d\theta
+\end{equation*}
+</div>
+<div class="displaymath process-math">
+\begin{equation*}
+= -\frac{8 R^7}{7}\int_0^{2\pi} \sin^2{\theta}(1-\sin^2{\theta})\, d\theta
+\end{equation*}
+</div>
+<div class="displaymath process-math">
+\begin{equation*}
+= -\frac{ 8 R^7}{7}\int_0^{2\pi} (\sin^2{\theta}-\sin^4{\theta})\, d\theta
+\end{equation*}
+</div>
+<div class="displaymath process-math">
+\begin{equation*}
+= -\left(\frac{8 R^7}{7}\right)\left(\frac{\pi}{4}\right)= -\frac{2}{7} \pi R^7.
+\end{equation*}
+</div>The cone is not differentiable at the point <span class="process-math">\((0,0)\text{.}\)</span> However the flux integral, which is improper, converges.</div></body>
 </html>
