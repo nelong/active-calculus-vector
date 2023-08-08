@@ -11,10 +11,26 @@
 <meta name="robots" content="noindex, nofollow">
 </head>
 <body class="ignore-math">
-<article class="task exercise-like"><h6 class="heading">
-<span class="type">Task</span><span class="space"> </span><span class="codenumber">12.11.2.b.ii</span><span class="period">.</span>
-</h6>
-<div class="para">The vertices of <span class="process-math">\(C_2\)</span> lie in a plane. Let <span class="process-math">\(S_2\)</span> be the portion of this plane lying in the first octant, i.e., the portion with <span class="process-math">\(x,y,z\geq 0\text{.}\)</span> Find the flux of <span class="process-math">\(\curl(\vG)\)</span> through <span class="process-math">\(S_2\text{.}\)</span>
-</div></article><span class="incontext"><a href="S_Vector_StokesThm.html#task-266" class="internal">in-context</a></span>
+<article class="task exercise-like"><h5 class="heading">
+<span class="type">part</span><span class="space"> </span><span class="codenumber">12.12.8.b</span><span class="period">.</span>
+</h5>
+<div class="para logical">
+<div class="para">Next, we calculate the triple integral on the right side of the Divergence Theorem for our example. Since <span class="process-math">\(\vF=\langle xy-z, yz+e^x,z(x-y) \rangle \text{,}\)</span> we can calculate</div>
+<div class="displaymath process-math">
+\begin{align*}
+\divg(\vF) \amp = \dfrac{\partial}{\partial x}(xy-z)+\dfrac{\partial}{\partial y}(yz-e^x)+\dfrac{\partial}{\partial z}(z(x-y)) \\
+\amp = y+z+(x-y) =z+x 
+\end{align*}
+</div>
+<div class="para">The region <span class="process-math">\(Q\)</span> can be described by the bounds <span class="process-math">\(0\leq x\leq 1\text{,}\)</span> <span class="process-math">\(0\leq y\leq 1-x\text{,}\)</span> and <span class="process-math">\(0\leq z\leq 1-x-y\text{.}\)</span> Thus, our triple integral <span class="process-math">\(I\)</span> will be set up and evaluated as</div>
+<div class="displaymath process-math">
+\begin{align*}
+I \amp = \int_0^1 \int_0^{1-x} \int_0^{1-x-y} z+x \, dz \, dy \, dx \\
+\amp = \int_0^1 \int_0^{1-x} 1/2(1-x-y)+x(1-x-y)  \, dy \, dx \\
+\amp =\int_0^1 \frac{1}{12} (\frac{x^3}{3}) \, dx 
+\end{align*}
+</div>
+<div class="para">This evaluates to <span class="process-math">\(\frac{1}{12}\text{,}\)</span> which matches with the flux calculations we did in the previous step to verify the Divergence Theorem for our example.</div>
+</div></article><span class="incontext"><a href="S_Vector_DivThm.html#task-266" class="internal">in-context</a></span>
 </body>
 </html>

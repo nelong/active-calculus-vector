@@ -102,6 +102,8 @@ window.MathJax = {
 </script><link rel="stylesheet" type="text/css" href="https://sagecell.sagemath.org/static/sagecell_embed.css">
 </head>
 <body class="ptx-content ignore-math" id="acmulti"><div style="width:522px; height:548px; display: block; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;"><pre class="ptx-sagecell sage-interact"><script type="text/x-sage">var('t,s,u,v,z,y,z')
+a=1
+b=1/2
 f=-x^2/5-3*y^3/8
 Fx=x^2
 Fy=y
@@ -110,7 +112,16 @@ plot1=plot3d(f,(x,-1,1),(y,-1,1),frame=False,opacity=.3,aspect_ratio=1)
 for i in range(0,5):
   plot1+=parametric_plot3d((s,-1+i/2,f(x=s,y=-1+i/2)),(s,-1,1),color="gray")
   plot1+=parametric_plot3d((-1+i/2,s,f(y=s,x=-1+i/2)),(s,-1,1),color="gray")
-plot1+=plot_vector_field3d((Fx,Fy,Fz),(x,-1,1),(y,-1,1),(z,-1,1))
+f_val=f(x=a,y=b)
+pos=(a,b,f_val)
+fx=diff(f,x)(x=a,y=b)
+fy=diff(f,y)(x=a,y=b)
+vt=(1/2+a,b,1/2*fx+f_val)
+vs=(a,b+1/2,1/2*fy+f_val)
+cr=(a-fx/2,b-fy/2,1/2+f_val)
+for i in range(0,5):
+  for j in range (0,5):
+    plot1+=arrow3d((-1+i/2,-1+j/2,f(x=-1+i/2,y=-1+j/2)),(-1+i/2+Fx(x=-1+i/2,y=-1+j/2), -1+j/2+Fy(x=-1+i/2,y=-1+j/2),f(x=-1+i/2,y=-1+j/2)+Fz(x=-1+i/2,y=-1+j/2,z=f(x=-1+i/2,y=-1+j/2))),color="blue")
 show(plot1)
 </script></pre></div></body>
 </html>

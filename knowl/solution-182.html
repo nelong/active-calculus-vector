@@ -12,28 +12,45 @@
 </head>
 <body class="ignore-math">
 <div class="solution solution-like">
-<h5 class="heading">
-<span class="type">Solution</span><span class="space"> </span><span class="codenumber">12.4.7.f.1</span><span class="period">.</span>
-</h5>
-<div class="image-box" style="width: 40%; margin-left: 30%; margin-right: 30%;"><img src="generated/sageplot/img_12_4_paths_potential_rev2.svg" role="img" class="contained" alt="An oriented curve from \((x_0,y_0)\) to \((x,y)\text{.}\) It begins with a curved arc from \((x_0,y_0)\) to \((a,b)\text{.}\) It then proceeds horizontally from \((a,b)\) to \((x,b)\) and then vertically to \((x,y)\text{.}\)"></div> <div class="para logical">
-<div class="para">Proceeding as above, we find that</div>
-<div class="displaymath process-math">
-\begin{align*}
-f(x,y) \amp= f(x_0,y_0) + \int_{C_1}\vF\cdot d\vr +
-\int_{L_x} \vF\cdot d\vr + \int_{L_y}\vF\cdot d\vr\\
-\amp = f(x_0,y_0) + \int_{C_1}\vF\cdot d\vr + \int_a^x
-F_1(t,b)\, dt + \int_b^y F_2(x,t)\, dt\text{.}
-\end{align*}
-</div>
-<div class="para">Only the last term of this expression depends on <span class="process-math">\(y\text{,}\)</span> so the first three terms vanish when calculating <span class="process-math">\(f_y(x,y)\text{.}\)</span> By the Second Fundamental Theorem of Calculus,</div>
+<h4 class="heading">
+<span class="type">Solution</span><span class="space"> </span><span class="codenumber">12.4.5.1.1</span><span class="period">.</span>
+</h4>
 <div class="displaymath process-math">
 \begin{equation*}
-\frac{\partial}{\partial y}\int_b^y F_2(x,t)\,
-dt = F_2(x,y)\text{.}
+\mathbf{F}(\mathbf{r}(t)) = \left\lt  5 \sin ( t^3), -5 \cos (-2 t^2), -3 t^4 \right&gt;
 \end{equation*}
 </div>
-<div class="para">Therefore, <span class="process-math">\(f_y(x,y) = F_2(x,y)\text{.}\)</span>
+<div class="displaymath process-math">
+\begin{equation*}
+\mathbf{r} '(t) = \left\lt  3 t^2, -4 t, -3 \right &gt;
+\end{equation*}
 </div>
+<div class="displaymath process-math">
+\begin{equation*}
+\mathbf{F}(\mathbf{r}(t)) \cdot \mathbf{r} '(t)
+= \left\lt  5 \sin ( t^3), -5 \cos (-2 t^2), -3 t^4 \right&gt; \cdot \left\lt  3 t^2, -4 t, -3 \right &gt;
+\end{equation*}
+</div>
+<div class="displaymath process-math">
+\begin{equation*}
+=15 t^2 \sin ( t^3) + 20 t \cos (-2 t^2) + 9 t^4
+\end{equation*}
+</div>The line integral is then:<div class="displaymath process-math">
+\begin{equation*}
+\int_{\mathcal{C}} \mathbf{F} \cdot \,d\ \mathbf{r}
+= \int^1_0 \mathbf{F}(\mathbf{r}(t)) \cdot \mathbf{r} '(t) \ dt
+= \int^1_0 15 t^2 \sin ( t^3) + 20 t \cos (-2 t^2) + 9 t^4\ dt
+\end{equation*}
+</div>
+<div class="displaymath process-math">
+\begin{equation*}
+= \left [ -5 \cos ( t^3)  - 5 \sin (-2 t^2) + \frac{9}{5} t^5 \right ]^1_0
+\end{equation*}
+</div>
+<div class="displaymath process-math">
+\begin{equation*}
+= -5 \cos (1)  - 5 \sin (-2) + \frac{34}{5}
+\end{equation*}
 </div>
 </div>
 <span class="incontext"><a href="S_Vector_FTCLI.html#solution-182" class="internal">in-context</a></span>

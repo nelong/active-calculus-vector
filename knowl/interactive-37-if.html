@@ -101,15 +101,17 @@ window.MathJax = {
 });
 </script><link rel="stylesheet" type="text/css" href="https://sagecell.sagemath.org/static/sagecell_embed.css">
 </head>
-<body class="ptx-content ignore-math" id="acmulti"><div style="width:522px; height:1044px; display: block; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;"><pre class="ptx-sagecell sage-interact"><script type="text/x-sage">var('t,s')
-plot6=parametric_plot3d((2*sin(s)*cos(t),2*sin(s)*sin(t),2*cos(s)),(s,0,pi),(t,0,2*pi),frame=False,color='red',opacity=.5)
+<body class="ptx-content ignore-math" id="acmulti"><div style="width:522px; height:1054px; display: block; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;"><pre class="ptx-sagecell sage-interact"><script type="text/x-sage">var('t,s')
+r=2*cos(s^2/2)+s*e^(-(t/2/pi-1/2)^2)
+plot6=parametric_plot3d((r*sin(s)*cos(t),r*sin(s)*sin(t),r*cos(s)),(s,0,pi/2),(t,0,2*pi),frame=False,color='#1E88E5',opacity=.75)
+plot6+=parametric_plot3d((r(s=pi/2)*sin(pi/2)*cos(t),r(s=pi/2)*sin(pi/2)*sin(t),r(s=pi/2)*cos(pi/2)),(t,0,2*pi),color='#D81B60',thickness=3)
 plot6+=parametric_plot3d((t,0,0),(t,-2.5,2.5),color="black")+parametric_plot3d((0,t,0),(t,-2.5,2.5),color="black")+parametric_plot3d((0,0,t),(t,-2.5,2.5),color="black")
 plot6+=text3d("x",(2.75,0,0),fontweight='bold')+text3d("y",(0,2.75,0),fontweight='bold')+text3d("z",(0,0,2.75),fontweight='bold')
 show(plot6)
-plot5=parametric_plot3d((2*cos(t),2*sin(t),s),(s,0,2),(t,0,2*pi),frame=False,color='yellow',opacity=.5)
-plot5+=parametric_plot3d((s*cos(t),s*sin(t),0),(s,0,2),(t,0,2*pi),frame=False,color='green',opacity=.5)
-plot5+=parametric_plot3d((s*cos(t),s*sin(t),2),(s,0,2),(t,0,2*pi),frame=False,color='gray',opacity=.5)
+plot5=parametric_plot3d((2*cos(t),2*sin(t),s),(s,0,2),(t,0,2*pi),frame=False,color='#FFC107',opacity=.6)
 plot5+=parametric_plot3d((t,0,0),(t,-2.5,2.5),color="black")+parametric_plot3d((0,t,0),(t,-2.5,2.5),color="black")+parametric_plot3d((0,0,t),(t,-2.5,2.5),color="black")
+plot5+=parametric_plot3d((2*cos(t),2*sin(t),0),(t,0,2*pi),color='#D81B60',thickness=3)
+plot5+=parametric_plot3d((2*cos(t),2*sin(t),2),(t,0,2*pi),color='#D81B60',thickness=3)
 plot5+=text3d("x",(2.75,0,0),fontweight='bold')+text3d("y",(0,2.75,0),fontweight='bold')+text3d("z",(0,0,2.75),fontweight='bold')
 show(plot5)
 </script></pre></div></body>

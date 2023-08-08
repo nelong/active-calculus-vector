@@ -101,33 +101,22 @@ window.MathJax = {
 });
 </script><link rel="stylesheet" type="text/css" href="https://sagecell.sagemath.org/static/sagecell_embed.css">
 </head>
-<body class="ptx-content ignore-math" id="acmulti"><div style="width:600px; height:690px; display: block; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;"><pre class="ptx-sagecell sage-interact"><script type="text/x-sage">var('t,s,u,v,z,y,z')
-Fx=y
-Fy=z
-Fz=2+sin(x)
-@interact
-def _(n=slider(8,20,2,10,label="Angular Partitions="),m=slider(4,8,1,5,label="Height Partitions=")):
-    plot1=parametric_plot3d((2*cos(t),2*sin(t),s),(t,0,2*pi),(s,0,3),opacity=.3,color="gray",frame=False,aspect_ratio=1)
-    for i in range(0,m):
-        plot1+=parametric_plot3d((2*cos(t),2*sin(t),i*3/m),(t,0,2*pi),color="black",frame=False,aspect_ratio=1)
-    for i in range(0,n):
-        plot1+=parametric_plot3d((2*cos(2*pi*i/n),2*sin(2*pi*i/n),s),(s,0,3),color="black",frame=False,aspect_ratio=1)
-    for i in range(0,n):
-        posx=2*cos(2*pi*i/n)
-        posy=2*sin(2*pi*i/n)
-        for j in range (0,m):
-            posz=j*3/m
-            F1=Fx(x=posx,y=posy,z=posz)
-            F2=Fy(x=posx,y=posy,z=posz)
-            F3=Fz(x=posx,y=posy,z=posz)
-            plot1+=arrow3d((posx,posy,posz),(posx+F1,posy+F2, posz+F3),color="blue")
-            N=(-posx,-posy,0)
-            Nfrac=(F1*N[0]+F2*N[1]+F3*N[2])/(N[0]^2+N[1]^2+N[2]^2)
-            FNx=Nfrac*N[0]
-            FNy=Nfrac*N[1]
-            FNz=Nfrac*N[2]
-            plot1+=arrow3d((posx,posy,posz),(posx+FNx,posy+FNy,posz+FNz),color="green")
-            plot1+=arrow3d((posx+FNx,posy+FNy,posz+FNz),(posx+F1,posy+F2,posz+F3),color="purple")
-    show(plot1)
+<body class="ptx-content ignore-math" id="acmulti"><div style="width:600px; height:600px; display: block; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;"><pre class="ptx-sagecell sage-interact"><script type="text/x-sage">@interact
+def abcd():
+  a=100000
+  b=75000
+  var('s,t,x,y,z')
+  g(x,y)=200*exp(-1/a*(x-250)^2-1/b*(y-300)^2)
+  plot10=parametric_plot3d((s,t,g(s,t)),(s,0,550),(t,0,550),color='blue',opacity=.5)
+  xylist=[[0,0],[212.5,425],[512.5,525],[300,100],[0,0]]
+  xstart=0
+  ystart=0
+  for c in xylist:
+    m=c[0]-xstart
+    n=c[1]-ystart
+    plot10+=parametric_plot3d([xstart+t*m,ystart+t*n,g(xstart+t*m,ystart+t*n)],(t,0,1),color='red',thickness=5)
+    xstart=c[0]
+    ystart=c[1]
+  show(plot10,aspect_ratio=1)
 </script></pre></div></body>
 </html>

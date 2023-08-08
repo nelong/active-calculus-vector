@@ -15,32 +15,35 @@
 <span class="type">Example</span><span class="space"> </span><span class="codenumber">12.8.5</span><span class="period">.</span>
 </h4>
 <div class="para">We will verify Green’s Theorem by computing both sides of the equation separately when <span class="process-math">\(\vF =\langle x^2-xy,y^2-2x \rangle \)</span> and <span class="process-math">\(C\)</span> is the bounding curve given in <a href="" class="xref" data-knowl="./knowl/fig_Vector_GreensTheorem_Rectangle.html" title="Figure 12.8.4">Figure 12.8.4</a>.</div> <div class="para logical">
-<div class="para">First we will calculate the double integral (the right hand side of the equation in Green’s Theorem). The circulation density of <span class="process-math">\(\vF = \langle x^2-xy,y^2-2x \rangle \)</span> will be <span class="process-math">\(-2-x\text{,}\)</span> which is continuous everywhere in the region <span class="process-math">\(R\text{.}\)</span> Our iterated itegral becomes</div>
+<div class="para">First, we calculate the double integral (the right hand side of the equation in Green’s Theorem). The circulation density of <span class="process-math">\(\vF = \langle x^2-xy,y^2-2x \rangle \)</span> will be <span class="process-math">\(-2+x\text{,}\)</span> which is continuous everywhere in the region <span class="process-math">\(R\text{.}\)</span> Our iterated itegral becomes</div>
 <div class="displaymath process-math">
 \begin{align*}
-\iint_R \left(\frac{\partial F_2}{\partial x} -	\frac{\partial F_1}{\partial y}\right)\, dA \amp = \\
-\amp = \int_2^4 \int_1^4 (-2+x) \enspace dx \enspace dy \\
-\amp = \int_2^4    (-2x+x^2/2)_{|_{x=1}^{x=4}} \enspace dy \\
-\amp = \int_2^4 \frac{3}{2} \enspace dy \\
+\iint_R \left(\frac{\partial F_2}{\partial x} -	\frac{\partial F_1}{\partial y}\right)\, dA \amp = \int_2^4 \int_1^4 (-2+x) \, dx \, dy \\
+\amp = \int_2^4    \left[-2x+x^2/2\right]_{x=1}^{x=4} \, dy \\
+\amp = \int_2^4 \frac{3}{2} \, dy \\
 \amp = 3 
 \end{align*}
 </div>
 <div class="para">Note how easy it is to set up and evaluate this double integral.</div>
 </div> <div class="para logical">
 <div class="para">We will need to compute the line integral of <span class="process-math">\(\vF\)</span> over the four segements of the bounding rectangle. We will use the following parameterizations:</div>
-<ul class="disc">
-<li><div class="para"><span class="process-math">\(\displaystyle \vr_{bottom}(t) = \langle 1+3t,2 \rangle \)</span></div></li>
-<li><div class="para"><span class="process-math">\(\displaystyle \vr_{right}(t) = \langle 4,2+2t \rangle \)</span></div></li>
-<li><div class="para"><span class="process-math">\(\displaystyle \vr_{top}(t) = \langle 4-3t,4 \rangle \)</span></div></li>
-<li><div class="para"><span class="process-math">\(\displaystyle \vr_{left}(t) = \langle 1,4-2t \rangle \)</span></div></li>
-</ul>
+<div class="displaymath process-math">
+\begin{align*}
+\vr_{\text{bottom}}(t) \amp = \langle 1+3t,2 \rangle \\
+\vr_{\text{right}}(t) \amp = \langle 4,2+2t \rangle \\
+\vr_{\text{top}}(t) \amp = \langle 4-3t,4 \rangle \\
+\vr_{\text{left}}(t) \amp = \langle 1,4-2t \rangle 
+\end{align*}
+</div>
 <div class="para">where each paramterization uses <span class="process-math">\(0\leq t\leq 1\text{.}\)</span> These parameterizations will yeild the following line integrals:</div>
-<ul class="disc">
-<li><div class="para"><span class="process-math">\(\displaystyle \int_{bottom} \vF \cdot d\vr = \int_0^1 ( (1+3t)^2 -(1+3t)(2) ) 3 \enspace dt = 6 \)</span></div></li>
-<li><div class="para"><span class="process-math">\(\displaystyle \int_{right} \vF \cdot d\vr = \int_0^1 ( (2+2t)^2 -(2)(4) ) 2 \enspace dt = 8/3  \)</span></div></li>
-<li><div class="para"><span class="process-math">\(\displaystyle \int_{top} \vF \cdot d\vr = \int_0^1 ( (4-3t)^2 -(4-3t)(4) ) (-3) \enspace dt = 9 \)</span></div></li>
-<li><div class="para"><span class="process-math">\(\displaystyle \int_{left} \vF \cdot d\vr = \int_0^1 ( (4-2t)^2 -(2)(1) ) (-2) \enspace dt = -44/3  \)</span></div></li>
-</ul>
+<div class="displaymath process-math">
+\begin{align*}
+\int_{\text{bottom}} \vF \cdot d\vr \amp = \int_0^1 ( (1+3t)^2 -(1+3t)(2) ) 3 \, dt = 6 \\
+\int_{\text{right}} \vF \cdot d\vr \amp = \int_0^1 ( (2+2t)^2 -(2)(4) ) 2 \, dt = 8/3  \\
+\int_{\text{top}} \vF \cdot d\vr \amp = \int_0^1 ( (4-3t)^2 -(4-3t)(4) ) (-3) \, dt = 9 \\
+\int_{\text{left}} \vF \cdot d\vr \amp = \int_0^1 ( (4-2t)^2 -(2)(1) ) (-2) \, dt = -44/3  
+\end{align*}
+</div>
 <div class="para">Note that the sum of these line integrals is 3, and thus Green’s Theorem is verified for our case since</div>
 <div class="displaymath process-math">
 \begin{equation*}

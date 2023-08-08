@@ -11,57 +11,44 @@
 <meta name="robots" content="noindex, nofollow">
 </head>
 <body class="ignore-math"><div class="solution solution-like">
-<span class="process-math">\(S\)</span> is parameterized by<div class="displaymath process-math">
+<span class="process-math">\(\partial \vec r / \partial s \times \partial \vec r
+/ \partial t\)</span> is given by<div class="displaymath process-math">
 \begin{equation*}
-\vec r(r,\theta)=r\cos \theta\vec i+r\sin \theta\vec j+r\vec k,
-\end{equation*}
-</div>with <span class="process-math">\(0\le r\le R\)</span> and <span class="process-math">\(0\le\theta\le 2\pi\text{.}\)</span> We have<div class="displaymath process-math">
-\begin{equation*}
-\frac{\partial \vec r}{\partial r}\times \frac{\partial \vec r}{\partial \theta} =
+\frac{\partial \vec r}{\partial s}\times\frac{\partial \vec
+r}{\partial t}=
 \left|\begin{array}{ccc}
-\vec i \amp  \vec j \amp  \vec  k\\
-\cos{\theta} \amp  \sin{\theta} \amp  1 \\
--r\sin{\theta} \amp  r\cos{\theta} \amp  0 \end{array}\right| =
-- r \cos\theta \vec i - r \sin \theta \vec j + r \vec k.
+\quad\vec i\quad\amp \quad\vec j\quad\amp \quad\vec k\quad\\
+2s \amp  2 \amp  0 \\
+0 \amp  2t \amp  7
+\end{array}
+\right| = 14\vec i- 14 s\vec j+4st\vec k.
 \end{equation*}
-</div>Since the vector <span class="process-math">\(\partial \vec r / \partial r \times \partial \vec r
-/ \partial \theta\)</span> points upward, in the direction opposite to the specified orientation, we use<div class="displaymath process-math">
+</div>Since the <span class="process-math">\(z\)</span>-component, <span class="process-math">\(4st\text{,}\)</span> of the vector <span class="process-math">\(\partial \vec r /
+\partial s \times \partial \vec r / \partial t\)</span> is positive for <span class="process-math">\(0 \lt  s
+\leq 1, 2 \leq t \leq 3\text{,}\)</span> we see that <span class="process-math">\(\partial \vec r/\partial s
+\times \partial \vec r / \partial t\)</span> points upward, in the direction of the orientation of <span class="process-math">\(S\)</span> we were given. Thus, we use<div class="displaymath process-math">
 \begin{equation*}
-d\vec A= -\left(\partial\vec r/\partial
-r\times\partial\vec r/\partial\theta\right) \,dr\,d\theta
-= (r\cos\theta\vec i + r\sin\theta\vec j - r\vec k)\, dr\,d\theta\,.
+d\vec A = \left(\frac{\partial \vec r}{\partial s} \times
+\frac{\partial \vec r}{\partial t}\right)\,ds\,dt,
 \end{equation*}
-</div>Hence<div class="displaymath process-math">
+</div>and so we have<div class="displaymath process-math">
 \begin{equation*}
-\int_S\vec F\cdot d\vec A = \int_0^{2\pi}\!\int_0^R 8 (r^5
-\cos^2\theta\sin^2\theta\vec k)\cdot (r \cos\theta \vec i + r \sin
-\theta \vec j - r \vec k)\,dr\,d\theta
+\int_S\vec F\cdot d\vec A =
+\int_0^{1}\int_{2}^{3} (7 t\vec i + 8 s^2\vec j)\cdot
+(14\vec i- 14 s\vec j+4st\vec k)\,dt\,ds
 \end{equation*}
 </div>
 <div class="displaymath process-math">
 \begin{equation*}
-=
-\int_0^{2\pi}\int_0^{R} -8 r^6\cos^2{\theta}\sin^2{\theta}\,dr\,d\theta
+=\int_0^{1}\int_{2}^{3} (98 t - 112 s^3)\,dt\,ds =
+\int_0^{1}(49 t^2 - 112 s^3 t)\bigg|_{t=2}^{t=3}\,ds
 \end{equation*}
 </div>
 <div class="displaymath process-math">
 \begin{equation*}
-= -\frac{8 R^7}{7}\int_0^{2\pi} \sin^2{\theta}\cos^2{\theta}\, d\theta
+=\int_0^{1}(245 - 112 s^3)\,ds=(245s - 28 s^4)\bigg|_0^{1}
+=217.
 \end{equation*}
 </div>
-<div class="displaymath process-math">
-\begin{equation*}
-= -\frac{8 R^7}{7}\int_0^{2\pi} \sin^2{\theta}(1-\sin^2{\theta})\, d\theta
-\end{equation*}
-</div>
-<div class="displaymath process-math">
-\begin{equation*}
-= -\frac{ 8 R^7}{7}\int_0^{2\pi} (\sin^2{\theta}-\sin^4{\theta})\, d\theta
-\end{equation*}
-</div>
-<div class="displaymath process-math">
-\begin{equation*}
-= -\left(\frac{8 R^7}{7}\right)\left(\frac{\pi}{4}\right)= -\frac{2}{7} \pi R^7.
-\end{equation*}
-</div>The cone is not differentiable at the point <span class="process-math">\((0,0)\text{.}\)</span> However the flux integral, which is improper, converges.</div></body>
+</div></body>
 </html>

@@ -101,9 +101,33 @@ window.MathJax = {
 });
 </script><link rel="stylesheet" type="text/css" href="https://sagecell.sagemath.org/static/sagecell_embed.css">
 </head>
-<body class="ptx-content ignore-math" id="acmulti"><div style="width:522px; height:548px; display: block; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;"><pre class="ptx-sagecell sage-interact"><script type="text/x-sage">var('s,t,x,y,z')
-plot1=parametric_plot3d((2*cos(t),2*sin(t),s),(t,0,2*pi),(s,0,3),opacity=.3,color="gray",frame=False,aspect_ratio=1)
-plot1+=plot_vector_field3d((y,z,2+sin(z)),(x,-3,3),(y,-3,3),(z,-1,4),plot_points=7)
-show(plot1)
+<body class="ptx-content ignore-math" id="acmulti"><div style="width:600px; height:690px; display: block; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;"><pre class="ptx-sagecell sage-interact"><script type="text/x-sage">var('t,s,u,v,z,y,z')
+Fx=y
+Fy=z
+Fz=2+sin(x)
+@interact
+def _(n=slider(8,20,2,10,label="Angular Partitions="),m=slider(4,8,1,5,label="Height Partitions=")):
+    plot1=parametric_plot3d((2*cos(t),2*sin(t),s),(t,0,2*pi),(s,0,3),opacity=.3,color="gray",frame=False,aspect_ratio=1)
+    for i in range(0,m):
+        plot1+=parametric_plot3d((2*cos(t),2*sin(t),i*3/m),(t,0,2*pi),color="black",frame=False,aspect_ratio=1)
+    for i in range(0,n):
+        plot1+=parametric_plot3d((2*cos(2*pi*i/n),2*sin(2*pi*i/n),s),(s,0,3),color="black",frame=False,aspect_ratio=1)
+    for i in range(0,n):
+        posx=2*cos(2*pi*i/n)
+        posy=2*sin(2*pi*i/n)
+        for j in range (0,m):
+            posz=j*3/m
+            F1=Fx(x=posx,y=posy,z=posz)
+            F2=Fy(x=posx,y=posy,z=posz)
+            F3=Fz(x=posx,y=posy,z=posz)
+            plot1+=arrow3d((posx,posy,posz),(posx+F1,posy+F2, posz+F3),color="#1E88E5")
+            N=(-posx,-posy,0)
+            Nfrac=(F1*N[0]+F2*N[1]+F3*N[2])/(N[0]^2+N[1]^2+N[2]^2)
+            FNx=Nfrac*N[0]
+            FNy=Nfrac*N[1]
+            FNz=Nfrac*N[2]
+            plot1+=arrow3d((posx,posy,posz),(posx+FNx,posy+FNy,posz+FNz),color="#004D40")
+            plot1+=arrow3d((posx+FNx,posy+FNy,posz+FNz),(posx+F1,posy+F2,posz+F3),color="#D81B60")
+    show(plot1)
 </script></pre></div></body>
 </html>

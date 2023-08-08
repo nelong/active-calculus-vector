@@ -11,21 +11,24 @@
 <meta name="robots" content="noindex, nofollow">
 </head>
 <body class="ignore-math"><div class="solution solution-like">
-<div class="para">SOLUTION</div> <div class="para">Let <span class="process-math">\(D\)</span> be the region enclosed by the curve <span class="process-math">\(C\text{.}\)</span>
-</div> <div class="para logical">
-<div class="para">First note that the curve has a positive orientation. We will use Green’s Theorem. We have <span class="process-math">\(P = 4 x - 3 y, \; Q = 5 x\text{,}\)</span> therefore</div>
-<div class="displaymath process-math">
+<em class="alert">(a)</em> We use Green’s Theorem. Let <span class="process-math">\(R\)</span> be the region enclosed by the circle <span class="process-math">\(C\text{.}\)</span> Then<div class="displaymath process-math">
 \begin{equation*}
-\frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y} =5+ 3 = 8 .
+\int_C \vec F\cdot d\vec r =
+\int_R\left( \frac{\partial}{\partial x}(7 e^{y^2} + 27 x) -
+\frac{\partial}{\partial y}(3 x^2 y +  y^3 + 3 e^x)\right)\,dA =
 \end{equation*}
 </div>
-<div class="para">Hence, Green’s Theorem implies</div>
-</div> <div class="para"><span class="process-math">\(\begin{array}{lcl} \int_{C} \vec{F} \cdot  d\vec{r}\amp  = \amp  
-\iint_D \left( \frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y} \right) dA
-\\ \amp =\amp  \iint_D 8 dA  
-\\ \amp  = \amp  8 \int_0^{\pi/3} \int_0^{2} r \, dr \, d\theta \quad \text{[Using polar coordinates]}
-\\\amp  = \amp  8 \left(\frac{\pi}{3}\right) \left(\frac{ 2^2}{2}\right)
-\\\amp =\amp  {\frac{16}{3}} \pi
-\end{array}\)</span></div>
+<div class="displaymath process-math">
+\begin{equation*}
+\int_R 27 - 3(x^2 + y^2)\, dA.
+\end{equation*}
+</div>Converting to polar coordinates, we have<div class="displaymath process-math">
+\begin{equation*}
+\int_C \vec F\cdot d\vec r =
+\int_0^{2\pi}\int_0^1 (27 - 3 r^2)r\,dr\,d\theta =
+2\pi\left(\frac{27}{2} r^2 - \frac{3}{4} r^4\right)\bigg|_0^1 = \frac{51}{2}\pi.
+\end{equation*}
+</div>
+<em class="alert">(b)</em> The integrand of the integral over the disk <span class="process-math">\(R\)</span> is <span class="process-math">\(27 - 3(x^2+y^2)\text{.}\)</span> Since the integrand is positive for <span class="process-math">\(x^2 + y^2 \lt  \frac{27}{3} = 9\)</span> and negative for <span class="process-math">\(x^2 + y^2 &gt; 9\text{,}\)</span> the integrand is positive inside the circle of radius 3 and negative outside that circle. Thus, the integral over <span class="process-math">\(R\)</span> increases with <span class="process-math">\(a\)</span> until <span class="process-math">\(a=3\)</span> and then decreases. The maximum value of the line integral occurs when <span class="process-math">\(a = 3\text{.}\)</span>
 </div></body>
 </html>

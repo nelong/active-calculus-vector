@@ -11,55 +11,15 @@
 <meta name="robots" content="noindex, nofollow">
 </head>
 <body class="ignore-math">
-<h4 class="heading"><span class="type">Paragraph</span></h4>
+<h5 class="heading"><span class="type">Paragraph</span></h5>
 <div class="para logical">
-<div class="para">At the moment, there are two ways we can interpret the value of the double integral.</div>
-<ul class="disc">
-<li><div class="para logical">
-<div class="para">Suppose that <span class="process-math">\(f(x,y)\)</span> assumes both positive and negatives values on the rectangle <span class="process-math">\(R\text{,}\)</span> as shown on the left of <a href="" class="xref" data-knowl="./knowl/F_11_1_signed.html" title="Figure 11.1.7">Figure 11.1.7</a>.  When constructing a Riemann sum, for each <span class="process-math">\(i\)</span> and <span class="process-math">\(j\text{,}\)</span> the product <span class="process-math">\(f(x_{ij}^*, y_{ij}^*) \cdot \Delta A\)</span> can be interpreted as a “signed” volume of a box with base area <span class="process-math">\(\Delta A\)</span> and “signed” height <span class="process-math">\(f(x_{ij}^*, y_{ij}^*)\text{.}\)</span> Since <span class="process-math">\(f\)</span> can have negative values, this “height” could be negative. The sum</div>
-<div class="displaymath process-math" data-contains-math-knowls="./knowl/F_11_1_signed.html ./knowl/F_11_1_signed.html">
+<div class="para">Calculate the Riemann sum</div>
+<div class="displaymath process-math">
 \begin{equation*}
 \sum_{j=1}^n \sum_{i=1}^m f(x_{ij}^*, y_{ij}^*) \cdot \Delta A
 \end{equation*}
 </div>
-<div class="para">can then be interpreted as a sum of “signed” volumes of boxes, with a negative sign attached to those boxes whose heights are below the <span class="process-math">\(xy\)</span>-plane. <figure class="figure figure-like"><div class="sidebyside"><div class="sbsrow" style="margin-left:0%;margin-right:0%;">
-<div class="sbspanel top" style="width:50%;"><img src="external/images/fig_11_1_signed_graph.svg" role="img" class="contained"></div>
-<div class="sbspanel top" style="width:50%;"><img src="external/images/fig_11_1_signed_volume.svg" role="img" class="contained"></div>
-</div></div>
-<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">11.1.7<span class="period">.</span></span><span class="space"> </span>The integral measures signed volume.</figcaption></figure> We can then realize the double integral <span class="process-math">\(\iint_R
-f(x,y) \, dA\)</span> as a difference in volumes: <span class="process-math">\(\iint_R f(x,y) \, dA\)</span> tells us the volume of the solids the graph of <span class="process-math">\(f\)</span> bounds above the <span class="process-math">\(xy\)</span>-plane over the rectangle <span class="process-math">\(R\)</span> minus the volume of the solids the graph of <span class="process-math">\(f\)</span> bounds below the <span class="process-math">\(xy\)</span>-plane under the rectangle <span class="process-math">\(R\text{.}\)</span>  This is shown on the right of <a href="" class="xref" data-knowl="./knowl/F_11_1_signed.html" title="Figure 11.1.7">Figure 11.1.7</a>.</div>
-</div></li>
-<li><div class="para logical">
-<div class="para">The average of the finitely many <span class="process-math">\(mn\)</span> values <span class="process-math">\(f(x_{ij}^*, y_{ij}^*)\)</span> that we take in a double Riemann sum is given by</div>
-<div class="displaymath process-math">
-\begin{equation*}
-\mbox{Avg} _{mn} = \frac{1}{mn} \sum_{j=1}^n \sum_{i=1}^m f(x_{ij}^*, y_{ij}^*).
-\end{equation*}
-</div>
-<div class="para">If we take the limit as <span class="process-math">\(m\)</span> and <span class="process-math">\(n\)</span> go to infinity, we obtain what we define as the average value of <span class="process-math">\(f\)</span> over the region <span class="process-math">\(R\text{,}\)</span> which is connected to the value of the double integral. First, to view <span class="process-math">\(\text{ Avg } _{mn}\)</span> as a double Riemann sum, note that</div>
-<div class="displaymath process-math">
-\begin{equation*}
-\Delta x = \frac{b-a}{m} \ \ \ \ \ \text{ and }  \ \ \ \ \ \Delta y = \frac{d-c}{n}.
-\end{equation*}
-</div>
-<div class="para">Thus,</div>
-<div class="displaymath process-math">
-\begin{equation*}
-\frac{1}{mn} = \frac{\Delta x \cdot \Delta y}{(b-a)(d-c)} = \frac{\Delta A}{A(R)},
-\end{equation*}
-</div>
-<div class="para">where <span class="process-math">\(A(R)\)</span> denotes the area of the rectangle <span class="process-math">\(R\text{.}\)</span> Then, the average value of the function <span class="process-math">\(f\)</span> over <span class="process-math">\(R\text{,}\)</span> <span class="process-math">\(f_{\operatorname{AVG}(R)}\text{,}\)</span> is given by</div>
-<div class="displaymath process-math">
-\begin{align*}
-f_{\operatorname{AVG}(R)} \amp  = \lim_{m,n \to \infty} \frac{1}{mn} \sum_{j=1}^n \sum_{i=1}^m f(x_{ij}^*, y_{ij}^*)\\
-\amp  = \lim_{m,n \to \infty} \frac{1}{A(R)} \sum_{j=1}^n \sum_{i=1}^m f(x_{ij}^*, y_{ij}^*) \cdot \Delta A\\
-\amp  = \frac{1}{A(R)} \iint_R f(x,y) \, dA.
-\end{align*}
-</div>
-<div class="para">Therefore, the double integral of <span class="process-math">\(f\)</span> over <span class="process-math">\(R\)</span> divided by the area of <span class="process-math">\(R\)</span> gives us the average value of the function <span class="process-math">\(f\)</span> on <span class="process-math">\(R\text{.}\)</span> Finally, if <span class="process-math">\(f(x, y) \geq  0\)</span> on <span class="process-math">\(R\text{,}\)</span> we can interpret this average value of <span class="process-math">\(f\)</span> on <span class="process-math">\(R\)</span> as the height of the box with base <span class="process-math">\(R\)</span> that has the same volume as the volume of the surface defined by <span class="process-math">\(f\)</span> over <span class="process-math">\(R\text{.}\)</span>
-</div>
-</div></li>
-</ul>
+<div class="para">using the partitions we have described. If we let <span class="process-math">\((x_{ij}^*, y_{ij}^*)\)</span> be the midpoint of the rectangle <span class="process-math">\(R_{ij}\)</span> for each <span class="process-math">\(i\)</span> and <span class="process-math">\(j\text{,}\)</span> then the resulting Riemann sum is called a <em class="emphasis">midpoint sum</em>.</div>
 </div>
 <span class="incontext"><a href="S-11-1-Double-Integrals-Rectangles.html#p-2949" class="internal">in-context</a></span>
 </body>

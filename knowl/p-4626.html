@@ -11,19 +11,22 @@
 <meta name="robots" content="noindex, nofollow">
 </head>
 <body class="ignore-math">
-<h4 class="heading"><span class="type">Paragraph</span></h4>
+<h6 class="heading"><span class="type">Paragraph</span></h6>
 <div class="para logical">
-<div class="para">In contexts where the fact that the quantity we are measuring via a line integral is best measured via a dot product (such as calculating work), the notation we have used thus far for line integrals is fairly common. However, sometimes the vector field is such that the units on <span class="process-math">\(x\text{,}\)</span> <span class="process-math">\(y\text{,}\)</span> and <span class="process-math">\(z\)</span> are not distances. In this case, a dot product may not have quite the same physical meaning, and an alternative notation using differentials can be common. Specifically, if <span class="process-math">\(\vF(x,y,z) = F_1(x,y,z)\vi + F_2(x,y,z)\vj + F_3(x,y,z)\vk\text{,}\)</span> then</div>
+<div class="para">Let <span class="process-math">\(\vr_1(t) = \langle t,t,t \rangle\)</span> where<span class="process-math">\(0 \leq t \leq 1\)</span> and <span class="process-math">\(\vr_2(t) = \langle 1-t,1-t,1+t \rangle\)</span> where<span class="process-math">\(0 \leq t \leq 1\text{.}\)</span> Our line integral can be computed with</div>
 <div class="displaymath process-math">
 \begin{equation*}
-\int_C\vF\cdot d\vr = \int_C \langle F_1, F_2, F_3 \rangle \cdot \langle dx, dy, dz \rangle= \int_C F_1\, dx + F_2\, dy + F_3\, dz\text{.}
+\int_{C_1} \vF \cdot d\vr = \int_0^1 \langle 3t^2+e^t,t^2,4t+te^t\rangle \cdot \langle 1,1,1\rangle \enspace dt= e+\frac{10}{3}
 \end{equation*}
 </div>
-<div class="para">A line integral in the form of <span class="process-math">\(\int_C F_1\, dx + F_2\, dy + F_3\, dz\)</span> is called the <dfn class="terminology">differential form of a line integral</dfn>. (If <span class="process-math">\(\vF\)</span> is a vector field in <span class="process-math">\(\R^2\text{,}\)</span> the <span class="process-math">\(F_3\, dz\)</span> term is omitted.) For example, if <span class="process-math">\(\vF(x,y,z) = \langle x^2y,z^3,x\cos(z)\rangle\)</span> and <span class="process-math">\(C\)</span> is some oriented curve in <span class="process-math">\(\R^3\text{,}\)</span> then</div>
 <div class="displaymath process-math">
 \begin{equation*}
-\int_C\vF\cdot d\vr = \int_C x^2y\, dx + z^3\, dy + x\cos(z)\,dz 
+\int_{C_2} \vF \cdot d\vr =  \\
+\int_0^1 \langle 3(1-t)^2+e^{1-t},(1-t)^2,4(1+t)+(1-t)e^{1+t} \rangle \cdot \langle -1,-1,1\rangle \enspace dt \\
+= 2e^2-3e+\frac{14}{3} 
 \end{equation*}
+</div>
+<div class="para">Thus the line integral over <span class="process-math">\(C_1\)</span> then <span class="process-math">\(C_2\)</span> is <span class="process-math">\(2e^2-2e+8\)</span>
 </div>
 </div>
 <span class="incontext"><a href="S_Vector_ParamLineIntegrals.html#p-4626" class="internal">in-context</a></span>

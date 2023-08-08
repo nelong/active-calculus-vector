@@ -12,7 +12,24 @@
 </head>
 <body class="ignore-math">
 <h4 class="heading"><span class="type">Paragraph</span></h4>
-<div class="para">We will start by measuring the circulation of a vector field on a path around the point <span class="process-math">\((a,b)\)</span> and use this measurement to define circulation density. Specifically, we will measure the circulation of a vector field as we move around a square centered at <span class="process-math">\((a,b)\text{.}\)</span> Using this measurement, we will calculate the circulation density by dividing our measurement by the area enclosed. This will allow us to compare our measurement across regions of different sizes. By taking the limit of this circulation density as the square’s side length goes to zero, we will have the circulation density at the point <span class="process-math">\((a,b)\text{.}\)</span> Just as in our discussion of <a href="S_Vector_Div.html#SS_Vector_Div_Development" class="internal" title="Subsection 12.6.2: Measuring the Change in Strength of a Vector Field">Subsection 12.6.2</a>, we will look at a two dimensional setting first, then examine how our argument can be generalized to higher dimensions.</div>
+<div class="para logical">
+<div class="para">In order to measure the circulation around the square, we want to know how much of the vector field <span class="process-math">\(\vF = \langle F_1,F_2\rangle\)</span> is parallel to the direction of travel. Thus, along each of the sides of the box, we only need to look at one of the components of the vector field. The only contribution to the circulation on the top and bottom comes from the horizontal component <span class="process-math">\(F_1\text{.}\)</span> Similarly, the vertical component, <span class="process-math">\(F_2\text{,}\)</span> is all that contributes to the circulation on the right and left sides. This means that we can simplify our line integrals considerably once we apply <a href="" class="xref" data-knowl="./knowl/thm_LineIntParam.html" title="Theorem 12.3.6">Theorem 12.3.6</a>. For instance, the circulation on the top can be written as</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/thm_LineIntParam.html ./knowl/SS_Vector_Curl_Development3D.html">
+\begin{equation*}
+\int_{\text{top}} \vF \cdot d\vr=\int_{-h}^h \langle F_1,F_2\rangle \cdot \langle -1,0\rangle \, dt = \int_{-h}^h -F_1( a-t,b+h) \, dt
+\end{equation*}
+</div>
+<div class="para">Similarly, we can simplify the appropriate line integrals on the other sides (ordered below as top, left, bottom, right) to get the total circulation around the square to be</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/thm_LineIntParam.html ./knowl/SS_Vector_Curl_Development3D.html">
+\begin{align*}
+\text{Total Circulation} =\amp \int_{\text{Square}} \vF \cdot d\vr \\
+=\amp \int_{-h}^h -F_1(a-t,b+h) \, dt +  \int_{-h}^h -F_2(a-h,b-t) \, dt\\
+\amp + \int_{-h}^h F_1(a+t,b-h) \, dt + \int_{-h}^h
+F_2(a+h,b+t) \, dt
+\end{align*}
+</div>
+<div class="para">Note that on the top and the left sides, we must switch the sign because the direction of travel on these sides is in the negative coordinate direction. It is important to note that by convention, we talk about “positive” rotation being counterclockwise and “negative” rotation being clockwise when looking at these planar graphs. This will be discussed more fully in <a href="S_Vector_Curl.html#SS_Vector_Curl_Development3D" class="internal" title="Subsection 12.7.2: Measuring Rotation in Three Dimensions">Subsection 12.7.2</a>.</div>
+</div>
 <span class="incontext"><a href="S_Vector_Curl.html#p-5123" class="internal">in-context</a></span>
 </body>
 </html>

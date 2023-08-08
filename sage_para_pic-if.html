@@ -107,8 +107,8 @@ f=-x^2/2-3*y^3/3
 def _(a=slider(-1,1,.5,0,label="s value"),b=slider(-1,1,.5,.5,label="t value")):
   plot1=plot3d(f,(x,-1,1),(y,-1,1),frame=False,opacity=.3)+sphere((a,b,f(x=a,y=b)),size=.05,color="black")
   for i in range(0,5):
-    plot1+=parametric_plot3d((s,-1+i/2,f(x=s,y=-1+i/2)),(s,-1,1),color="red")
-    plot1+=parametric_plot3d((-1+i/2,s,f(y=s,x=-1+i/2)),(s,-1,1),color="yellow")
+    plot1+=parametric_plot3d((s,-1+i/2,f(x=s,y=-1+i/2)),(s,-1,1),color="#D81B60")
+    plot1+=parametric_plot3d((-1+i/2,s,f(y=s,x=-1+i/2)),(s,-1,1),color="#FFC107")
   f_val=f(x=a,y=b)
   pos=(a,b,f_val)
   fx=diff(f,x)(x=a,y=b)
@@ -116,11 +116,11 @@ def _(a=slider(-1,1,.5,0,label="s value"),b=slider(-1,1,.5,.5,label="t value")):
   vt=(1/2+a,b,1/2*fx+f_val)
   vs=(a,b+1/2,1/2*fy+f_val)
   cr=(a-fx/2,b-fy/2,1/2+f_val)
-  vectt=arrow3d(pos,vt,color="red")
-  vects=arrow3d(pos,vs,color="yellow")
+  vectt=arrow3d(pos,vt,color="#D81B60")
+  vects=arrow3d(pos,vs,color="#FFC107")
   plot1+=vectt+vects
   plot1+=parametric_plot3d((a+t/2,b+s/2,f_val+t/2*fx+s/2*fy),(t,0,1),(s,0,1),color="orange",opacity=.6)
-  plot1+=arrow3d(pos,cr,color="green")
+  plot1+=arrow3d(pos,cr,color="#004D40")
   show(plot1)
 </script></pre></div></body>
 </html>

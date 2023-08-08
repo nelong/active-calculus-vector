@@ -11,5 +11,42 @@
 <meta name="robots" content="noindex, nofollow">
 </head>
 <body class="ignore-math"><div class="solution solution-like">
-<em class="alert">(a)</em> Since <span class="process-math">\(\mbox{div }\vec F = 0\text{,}\)</span> we know that <span class="process-math">\(\vec F\)</span> has a vector potential.  One such is the vector field <span class="process-math">\(\vec H = \left(-2xy+14yz\right)\,\mathit{\vec i}+\left(8xy+xz^{2}\right)\,\mathit{\vec k}\text{,}\)</span> but there are many others. <em class="alert">(b)</em> Since <span class="process-math">\(\mbox{div }\vec F = 28\text{,}\)</span> we know that <span class="process-math">\(\vec F\)</span> does not have a vector potential.</div></body>
+<em class="alert">(a)</em> The parameterization is <span class="process-math">\(\vec r(t) = (x(t),y(t)) = \langle t, \pi\,t/2\rangle\text{.}\)</span>  Then <span class="process-math">\(\vec r\,'(t) = \langle 1, \pi/2\rangle\text{,}\)</span> so that<div class="displaymath process-math">
+\begin{equation*}
+\int_C\nabla f\cdot d\vec r =
+\int_0^1 \langle -2xe^{-x^{2}}\sin\!\left(y\right), e^{-x^{2}}\cos\!\left(y\right)\rangle\cdot \langle 1,\pi/2\rangle\,dt =
+\end{equation*}
+</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\int_0^1 \left(\frac{\pi }{2}e^{-t^{2}}\cos\!\left(\frac{\pi t}{2}\right)-2te^{-t^{2}}\sin\!\left(\frac{\pi t}{2}\right)\right)\,dt.
+\end{equation*}
+</div>As noted, it’s simpler to integrate on the pair of line segments <span class="process-math">\(C_1\)</span> from <span class="process-math">\((0,0)\)</span> to <span class="process-math">\((1,0)\)</span> and <span class="process-math">\(C_2\)</span> from <span class="process-math">\((1,0)\)</span> to <span class="process-math">\((1,\pi/2)\text{.}\)</span>  Parameterizing these in a manner similar to our parameterization of <span class="process-math">\(C\text{,}\)</span> on <span class="process-math">\(C_1\)</span> we have <span class="process-math">\(\vec r = \langle t, 0\rangle\)</span> and on <span class="process-math">\(C_2\)</span> <span class="process-math">\(\vec r = \langle 1, \pi t/2\rangle\text{.}\)</span>  Then<div class="displaymath process-math">
+\begin{equation*}
+\int_{C_1}\nabla f\cdot d\vec r =
+\int_0^1 0\,dt = 0,
+\end{equation*}
+</div>and<div class="displaymath process-math">
+\begin{equation*}
+\int_{C_2}\nabla f\cdot d\vec r =
+\int_0^1 \frac{\pi}{2}\,1\,e^{-1}\,\cos(1\frac{\pi}{2}\,t)\,dt = 1 e^{-1},
+\end{equation*}
+</div>so that the change in <span class="process-math">\(f\)</span> is <span class="process-math">\((1 e^{-1}) + (0) = 1 e^{-1}\text{.}\)</span> <em class="alert">(b)</em> The other way to find the change in <span class="process-math">\(f\)</span> between these two points is to first find <span class="process-math">\(f\text{.}\)</span> To do this, observe that<div class="displaymath process-math">
+\begin{equation*}
+-2xe^{-x^{2}}\sin\!\left(y\right)\,\vec i + e^{-x^{2}}\cos\!\left(y\right)\,\vec j =
+\frac{\partial}{\partial x}\left(e^{-x^{2}}\sin\!\left(y\right) \right) \vec i +
+\frac{\partial}{\partial y}\left(e^{-x^{2}}\sin\!\left(y\right) \right) \vec j =
+\end{equation*}
+</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\nabla \left(e^{-x^{2}}\sin\!\left(y\right)\right).
+\end{equation*}
+</div>So one possibility for <span class="process-math">\(f\)</span> is <span class="process-math">\(f(x,y)=e^{x^2}\sin y\text{.}\)</span> Thus,<div class="displaymath process-math">
+\begin{equation*}
+\mbox{Change in } f\bigg|_{(0,0)}^{(1,\pi/2)} = e^{-x^{2}}\sin\!\left(y\right)
+\bigg|_{(0,0)}^{(1,\pi/2)}= 1 e^{-1} - 0 = 1 e^{-1}.
+\end{equation*}
+</div>
+</div></body>
 </html>

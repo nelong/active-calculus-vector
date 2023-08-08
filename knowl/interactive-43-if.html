@@ -101,11 +101,11 @@ window.MathJax = {
 });
 </script><link rel="stylesheet" type="text/css" href="https://sagecell.sagemath.org/static/sagecell_embed.css">
 </head>
-<body class="ptx-content ignore-math" id="acmulti"><div style="width:522px; height:574px; display: block; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;"><pre class="ptx-sagecell sage-interact"><script type="text/x-sage">var('t,s,x,y,z')
-plot2=parametric_plot3d((cos(t)*sin(s),sin(t)*sin(s),cos(s)),(t,0,2*pi),(s,pi/2,pi),color="#FFB000",opacity=.5)
-plot2+=arrow((0,0,-.8),(0,0,-1.5),color="#FFB000")
-plot3=parametric_plot3d((s*cos(t),s*sin(t),0),(t,0,2*pi),(s,0,1),color="#648FFF",opacity=.6)
-plot4=plot3+arrow((0,0,-.25),(0,0,.25),color="#648FFF")
-show(plot2+plot4)
+<body class="ptx-content ignore-math" id="acmulti"><div style="width:522px; height:548px; display: block; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;"><pre class="ptx-sagecell sage-interact"><script type="text/x-sage">var('s,t,x,y,z')
+plot6=parametric_plot3d((s,t*(1-s),0),(t,0,1),(s,0,1),color='#1E88E5',opacity=0.8)
+plot6+=parametric_plot3d((0,s,t*(1-s)),(t,0,1),(s,0,1),color='#D81B60',opacity=0.8)
+plot6+=parametric_plot3d((s,0,t*(1-s)),(t,0,1),(s,0,1),color='#FFC107',opacity=0.8)
+plot6+=parametric_plot3d((s,t*(1-s),1-t*(1-s)-s),(t,0,1),(s,0,1),color='#004D40',opacity=0.8)
+show(plot6,aspect_ratio=1)
 </script></pre></div></body>
 </html>
