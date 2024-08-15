@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<html lang="en-US" dir="ltr">
+<head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Common Graphs in Two and Three Dimensions</title>
+<meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:type" content="book">
+<meta property="book:title" content="Active Calculus - Multivariable">
+<meta property="book:author" content="Steve Schlicker">
+<meta property="book:author" content="Mitchel T. Keller">
+<meta property="book:author" content="Nicholas Long">
+<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>
+var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
+window.MathJax = {
+  "tex": {
+    "inlineMath": [
+      [
+        "\\(",
+        "\\)"
+      ]
+    ],
+    "tags": "none",
+    "tagSide": "right",
+    "tagIndent": ".8em",
+    "packages": {
+      "[+]": [
+        "base",
+        "extpfeil",
+        "ams",
+        "amscd",
+        "color",
+        "newcommand",
+        "knowl"
+      ]
+    }
+  },
+  "options": {
+    "ignoreHtmlClass": "tex2jax_ignore|ignore-math",
+    "processHtmlClass": "process-math",
+    "renderActions": {
+      "findScript": [
+        10,
+        function (doc) {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
+                var display = !!node.type.match(/; *mode=display/);
+                var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                var text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = {node: text, delim: '', n: 0};
+                math.end = {node: text, delim: '', n: 0};
+                doc.math.push(math);
+            });
+        },
+        ""
+      ]
+    }
+  },
+  "chtml": {
+    "scale": 0.98,
+    "mtextInheritFont": true
+  },
+  "loader": {
+    "load": [
+      "input/asciimath",
+      "[tex]/extpfeil",
+      "[tex]/amscd",
+      "[tex]/color",
+      "[tex]/newcommand",
+      "[pretext]/mathjaxknowl3.js"
+    ],
+    "paths": {
+      "pretext": "https://pretextbook.org/js/lib"
+    }
+  },
+  "startup": {
+    pageReady() {
+      return MathJax.startup.defaultPageReady().then(function () {
+      console.log("in ready function");
+      rsMathReady();
+      }
+    )}
+  }
+};
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><link href="https://webwork-ptx.aimath.org/webwork2_files/js/apps/MathView/mathview.css" rel="stylesheet">
+<script src="https://pretextbook.org/js/0.33/pretext-webwork/2.17/pretext-webwork.js"></script><script src="https://webwork-ptx.aimath.org/webwork2_files/node_modules/iframe-resizer/js/iframeResizer.min.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/themes/prism.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/components/prism-core.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/line-numbers/prism-line-numbers.min.js" integrity="sha512-dubtf8xMHSQlExGRQ5R7toxHLgSDZ0K7AunqPWHXmJQ8XyVIG19S1T95gBxlAeGOK02P4Da2RTnQz0Za0H0ebQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/line-numbers/prism-line-numbers.min.css" integrity="sha512-cbQXwDFK7lj2Fqfkuxbo5iD1dSbLlJGXGpfTDqbggqjHJeyzx88I3rfwjS38WJag/ihH7lzuGlGHpDBymLirZQ==" crossorigin="anonymous" referrerpolicy="no-referrer">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/line-highlight/prism-line-highlight.min.css" integrity="sha512-nXlJLUeqPMp1Q3+Bd8Qds8tXeRVQscMscwysJm821C++9w6WtsFbJjPenZ8cQVMXyqSAismveQJc0C1splFDCA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/line-highlight/prism-line-highlight.min.js" integrity="sha512-93uCmm0q+qO5Lb1huDqr7tywS8A2TFA+1/WHvyiWaK6/pvsFl6USnILagntBx8JnVbQH5s3n0vQZY6xNthNfKA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js" integrity="sha512-4xUl/d6D6THrAnXAwGajXkoWaeMNwEKK4iNfq5DotEbLPAfk6FSxSP3ydNxqDgCw1c/0Z1Jg6L8h2j+++9BZmg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="lunr-pretext-search-index.js" async=""></script><script src="https://pretextbook.org/js/0.33/pretext_search.js"></script><link href="https://pretextbook.org/css/0.83/pretext_search.css" rel="stylesheet" type="text/css">
+<script>js_version = 0.33</script><script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.33/pretext.js"></script><script>miniversion=0.1</script><script src="https://pretextbook.org/js/0.33/pretext_add_on.js?x=1"></script><script src="https://pretextbook.org/js/0.33/user_preferences.js"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
+</script><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700&amp;family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&amp;family=Tinos:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.cdnfonts.com/css/dejavu-serif" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:opsz,wdth,wght@8..144,50..150,100..900&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wdth,wght@75..100,300..800&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+<link href="https://pretextbook.org/css/0.83/pretext.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.83/pretext_add_on.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.83/shell_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.83/banner_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.83/navbar_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.83/toc_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.83/knowls_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.83/style_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.83/colors_blue_grey.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.83/setcolors.css" rel="stylesheet" type="text/css">
+</head>
+<body id="acmulti" class="pretext book ignore-math">
+<a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead"><div class="ptx-banner">
+<a id="logo-link" class="logo-link" target="_blank" href=""></a><div class="title-container">
+<h1 class="heading"><a href="root--1-2.html"><span class="title">Active Calculus - Multivariable</span></a></h1>
+<p class="byline">Steve Schlicker, Mitchel T. Keller, Nicholas Long</p>
+</div>
+</div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><button class="toc-toggle button" title="Contents"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5d2;</span><span class="name">Contents</span></button><a class="index-button button" href="root--1-2-8-1.html" title="Index"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span><span class="name">Index</span></a><div class="searchbox">
+<div class="searchwidget"><button id="searchbutton" class="searchbutton button" type="button" title="Search book"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe8b6;</span><span class="name">Search Book</span></button></div>
+<div id="searchresultsplaceholder" class="searchresultsplaceholder" style="display: none">
+<div class="search-results-controls">
+<input aria-label="Search term" id="ptxsearch" class="ptxsearch" type="text" name="terms" placeholder="Search term"><button title="Close search" id="closesearchresults" class="closesearchresults"><span class="material-symbols-outlined">close</span></button>
+</div>
+<h2 class="search-results-heading">Search Results: </h2>
+<div id="searchempty" class="searchempty"><span>No results.</span></div>
+<ol id="searchresults" class="searchresults"></ol>
+</div>
+</div>
+<span class="nav-other-controls"></span><span class="treebuttons"><a class="previous-button button" href="S-Precalc-LinesPlanes.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="up-button button" href="C_MVPrecalc.html" title="Up"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Up</span></a><a class="next-button button" href="S-Precalc-OtherCoordSystems.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a></span></nav><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\newcommand{\R}{\mathbb{R}}
+\newcommand{\va}{\mathbf{a}}
+\newcommand{\vb}{\mathbf{b}}
+\newcommand{\vc}{\mathbf{c}}
+\newcommand{\vC}{\mathbf{C}}
+\newcommand{\vd}{\mathbf{d}}
+\newcommand{\ve}{\mathbf{e}}
+\newcommand{\vi}{\mathbf{i}}
+\newcommand{\vj}{\mathbf{j}}
+\newcommand{\vk}{\mathbf{k}}
+\newcommand{\vn}{\mathbf{n}}
+\newcommand{\vm}{\mathbf{m}}
+\newcommand{\vr}{\mathbf{r}}
+\newcommand{\vs}{\mathbf{s}}
+\newcommand{\vu}{\mathbf{u}}
+\newcommand{\vv}{\mathbf{v}}
+\newcommand{\vw}{\mathbf{w}}
+\newcommand{\vx}{\mathbf{x}}
+\newcommand{\vy}{\mathbf{y}}
+\newcommand{\vz}{\mathbf{z}}
+\newcommand{\vzero}{\mathbf{0}}
+\newcommand{\vF}{\mathbf{F}}
+\newcommand{\vG}{\mathbf{G}}
+\newcommand{\vH}{\mathbf{H}}
+\newcommand{\vR}{\mathbf{R}}
+\newcommand{\vT}{\mathbf{T}}
+\newcommand{\vN}{\mathbf{N}}
+\newcommand{\vL}{\mathbf{L}}
+\newcommand{\vB}{\mathbf{B}}
+\newcommand{\vS}{\mathbf{S}}
+\newcommand{\proj}{\text{proj}}
+\newcommand{\comp}{\text{comp}}
+\newcommand{\nin}{}
+\newcommand{\vecmag}[1]{|#1|}
+\newcommand{\grad}{\nabla}
+\DeclareMathOperator{\curl}{curl}
+\DeclareMathOperator{\divg}{div}
+\newcommand{\lt}{&lt;}
+\newcommand{\gt}{&gt;}
+\newcommand{\amp}{&amp;}
+\definecolor{fillinmathshade}{gray}{0.9}
+\newcommand{\fillinmath}[1]{\mathchoice{\colorbox{fillinmathshade}{$\displaystyle     \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\textstyle        \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptstyle      \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptscriptstyle\phantom{\,#1\,}$}}}
+\)</span></div>
+<div class="ptx-page">
+<div id="ptx-sidebar" class="ptx-sidebar"><nav id="ptx-toc" class="ptx-toc depth2"><ul class="structural contains-active toc-item-list">
+<li class="toc-item toc-frontmatter">
+<div class="toc-title-box"><a href="frontmatter.html" class="internal"><span class="title">Front Matter</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-colophon"><div class="toc-title-box"><a href="frontmatter-2.html" class="internal"><span class="title">Colophon</span></a></div></li>
+<li class="toc-item toc-preface"><div class="toc-title-box"><a href="frontmatter-3.html" class="internal"><span class="title">Features of the Text</span></a></div></li>
+<li class="toc-item toc-preface"><div class="toc-title-box"><a href="frontmatter-4.html" class="internal"><span class="title">Vector Calculus Preface</span></a></div></li>
+<li class="toc-item toc-preface"><div class="toc-title-box"><a href="frontmatter-5.html" class="internal"><span class="title">Acknowledgments</span></a></div></li>
+<li class="toc-item toc-preface"><div class="toc-title-box"><a href="frontmatter-6.html" class="internal"><span class="title">Active Calculus - Multivariable: our goals</span></a></div></li>
+<li class="toc-item toc-preface"><div class="toc-title-box"><a href="frontmatter-7.html" class="internal"><span class="title">How to Use this Text</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter contains-active">
+<div class="toc-title-box"><a href="C_MVPrecalc.html" class="internal"><span class="codenumber">9</span> <span class="title">Precalculus of Multivariable Functions</span></a></div>
+<ul class="structural toc-item-list contains-active">
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="S-Precalc_Ideas.html" class="internal"><span class="codenumber">9.1</span> <span class="title">Why Multivariable?</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S-Precalc-3Dcoord.html" class="internal"><span class="codenumber">9.2</span> <span class="title">Three Dimensional Space</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-3Dcoord.html#S-Precalc-3Dcoord-4" class="internal"><span class="codenumber">9.2.1</span> <span class="title">Three Dimensional Space and Coordinates</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-3Dcoord.html#S-Precalc-3Dcoord-5" class="internal"><span class="codenumber">9.2.2</span> <span class="title">Fundamental Planes</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-3Dcoord.html#subsec-distanceformula" class="internal"><span class="codenumber">9.2.3</span> <span class="title">Distance Formula in 3D</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-3Dcoord.html#S-Precalc-3Dcoord-7" class="internal"><span class="codenumber">9.2.4</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-Precalc-3Dcoord.html#S-Precalc-3Dcoord-8" class="internal"><span class="codenumber">9.2.5</span> <span class="title">Exercises</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-3Dcoord.html#S-Precalc-3Dcoord-9" class="internal"><span class="codenumber">9.2.6</span> <span class="title">Notes to the Instructor</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S-9-2-Vectors.html" class="internal"><span class="codenumber">9.3</span> <span class="title">Vectors</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-9-2-Vectors.html#S-9-2-Vectors-4" class="internal"><span class="codenumber">9.3.1</span> <span class="title">Representations of Vectors</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-9-2-Vectors.html#S-9-2-Vectors-5" class="internal"><span class="codenumber">9.3.2</span> <span class="title">Equality of Vectors</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-9-2-Vectors.html#S-9-2-Vectors-6" class="internal"><span class="codenumber">9.3.3</span> <span class="title">Operations on Vectors</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-9-2-Vectors.html#S-9-2-Vectors-7" class="internal"><span class="codenumber">9.3.4</span> <span class="title">Properties of Vector Operations</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-9-2-Vectors.html#S-9-2-Vectors-8" class="internal"><span class="codenumber">9.3.5</span> <span class="title">Geometric Interpretation of Vector Operations</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-9-2-Vectors.html#S-9-2-Vectors-9" class="internal"><span class="codenumber">9.3.6</span> <span class="title">The Magnitude of a Vector</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-9-2-Vectors.html#S-9-2-Vectors-10" class="internal"><span class="codenumber">9.3.7</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-9-2-Vectors.html#S-9-2-Vectors-11" class="internal"><span class="codenumber">9.3.8</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S-Precalc-DotProduct.html" class="internal"><span class="codenumber">9.4</span> <span class="title">The Dot Product</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-DotProduct.html#S-Precalc-DotProduct-4" class="internal"><span class="codenumber">9.4.1</span> <span class="title">The Dot Product</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-DotProduct.html#S-Precalc-DotProduct-5" class="internal"><span class="codenumber">9.4.2</span> <span class="title">The angle between vectors</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-DotProduct.html#S-Precalc-DotProduct-6" class="internal"><span class="codenumber">9.4.3</span> <span class="title">The Dot Product and Orthogonality</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-DotProduct.html#S-Precalc-DotProduct-7" class="internal"><span class="codenumber">9.4.4</span> <span class="title">Work, Force, and Displacement</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-DotProduct.html#S-Precalc-DotProduct-8" class="internal"><span class="codenumber">9.4.5</span> <span class="title">Projections</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-DotProduct.html#S-Precalc-DotProduct-9" class="internal"><span class="codenumber">9.4.6</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-Precalc-DotProduct.html#S-Precalc-DotProduct-10" class="internal"><span class="codenumber">9.4.7</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S-Precalc-CrossProduct.html" class="internal"><span class="codenumber">9.5</span> <span class="title">The Cross Product</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-CrossProduct.html#S-Precalc-CrossProduct-4" class="internal"><span class="codenumber">9.5.1</span> <span class="title">Computing the cross product</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-CrossProduct.html#S-Precalc-CrossProduct-5" class="internal"><span class="codenumber">9.5.2</span> <span class="title">The Length of <span class="process-math">\(\vu\times\vv\)</span></span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-CrossProduct.html#S-Precalc-CrossProduct-6" class="internal"><span class="codenumber">9.5.3</span> <span class="title">The Direction of <span class="process-math">\(\vu\times\vv\)</span></span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-CrossProduct.html#S-Precalc-CrossProduct-7" class="internal"><span class="codenumber">9.5.4</span> <span class="title">Torque is measured by a cross product</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-CrossProduct.html#S-Precalc-CrossProduct-8" class="internal"><span class="codenumber">9.5.5</span> <span class="title">Comparing the dot and cross products</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-CrossProduct.html#S-Precalc-CrossProduct-9" class="internal"><span class="codenumber">9.5.6</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-Precalc-CrossProduct.html#S-Precalc-CrossProduct-10" class="internal"><span class="codenumber">9.5.7</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S-Precalc-LinesPlanes.html" class="internal"><span class="codenumber">9.6</span> <span class="title">Lines and Planes in Space</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-LinesPlanes.html#S-Precalc-LinesPlanes-4" class="internal"><span class="codenumber">9.6.1</span> <span class="title">Lines in Space</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-LinesPlanes.html#S-Precalc-LinesPlanes-5" class="internal"><span class="codenumber">9.6.2</span> <span class="title">The Parametric Equations of a Line</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-LinesPlanes.html#S-Precalc-LinesPlanes-6" class="internal"><span class="codenumber">9.6.3</span> <span class="title">Planes in Space</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-LinesPlanes.html#S-Precalc-LinesPlanes-7" class="internal"><span class="codenumber">9.6.4</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-Precalc-LinesPlanes.html#S-Precalc-LinesPlanes-8" class="internal"><span class="codenumber">9.6.5</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section active">
+<div class="toc-title-box"><a href="S-Precalc-ComoonGraphs.html" class="internal"><span class="codenumber">9.7</span> <span class="title">Common Graphs in Two and Three Dimensions</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-ComoonGraphs.html#S-Precalc-ComoonGraphs-4" class="internal"><span class="codenumber">9.7.1</span> <span class="title">Conic Sections</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-ComoonGraphs.html#subsec-cylsurf" class="internal"><span class="codenumber">9.7.2</span> <span class="title">Cylinder Surfaces</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-ComoonGraphs.html#quadric-surfaces" class="internal"><span class="codenumber">9.7.3</span> <span class="title">Quadric Surfaces</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-ComoonGraphs.html#S-Precalc-ComoonGraphs-7" class="internal"><span class="codenumber">9.7.4</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-Precalc-ComoonGraphs.html#S-Precalc-ComoonGraphs-8" class="internal"><span class="codenumber">9.7.5</span> <span class="title">Exercises</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-ComoonGraphs.html#S-Precalc-ComoonGraphs-9" class="internal"><span class="codenumber">9.7.6</span> <span class="title">Notes to Instructors and Dependencies</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S-Precalc-OtherCoordSystems.html" class="internal"><span class="codenumber">9.8</span> <span class="title">Polar, Cylindrical, and Spherical Coordinates</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-OtherCoordSystems.html#subsec-polar" class="internal"><span class="codenumber">9.8.1</span> <span class="title">Polar Coordinates</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-OtherCoordSystems.html#subsec-cylindrical" class="internal"><span class="codenumber">9.8.2</span> <span class="title">Cylindrical Coordinates</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-OtherCoordSystems.html#subsec-SphCoord" class="internal"><span class="codenumber">9.8.3</span> <span class="title">Spherical Coordinates</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-OtherCoordSystems.html#S-Precalc-OtherCoordSystems-7" class="internal"><span class="codenumber">9.8.4</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-Precalc-OtherCoordSystems.html#S-Precalc-OtherCoordSystems-8" class="internal"><span class="codenumber">9.8.5</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="C_VVF.html" class="internal"><span class="codenumber">10</span> <span class="title">Vector Valued Functions of One Variable</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S-VVF-Plotting.html" class="internal"><span class="codenumber">10.1</span> <span class="title">Vector-Valued Functions of One Variable</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-VVF-Plotting.html#S-VVF-Plotting-4" class="internal"><span class="codenumber">10.1.1</span> <span class="title">Vector-Valued Functions</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-VVF-Plotting.html#S-VVF-Plotting-5" class="internal"><span class="codenumber">10.1.2</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-VVF-Plotting.html#S-VVF-Plotting-6" class="internal"><span class="codenumber">10.1.3</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S-VVF-Calculus.html" class="internal"><span class="codenumber">10.2</span> <span class="title">Calculus of Vector-Valued Functions of One Variable</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-VVF-Calculus.html#S-VVF-Calculus-4" class="internal"><span class="codenumber">10.2.1</span> <span class="title">The Derivative</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-VVF-Calculus.html#S-VVF-Calculus-5" class="internal"><span class="codenumber">10.2.2</span> <span class="title">Computing Derivatives</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-VVF-Calculus.html#S-VVF-Calculus-6" class="internal"><span class="codenumber">10.2.3</span> <span class="title">Tangent Lines</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-VVF-Calculus.html#S-VVF-Calculus-7" class="internal"><span class="codenumber">10.2.4</span> <span class="title">Integrating a Vector-Valued Function</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-VVF-Calculus.html#S-VVF-Calculus-8" class="internal"><span class="codenumber">10.2.5</span> <span class="title">Projectile Motion</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-VVF-Calculus.html#S-VVF-Calculus-9" class="internal"><span class="codenumber">10.2.6</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-VVF-Calculus.html#S-VVF-Calculus-10" class="internal"><span class="codenumber">10.2.7</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S-VVF-ArcLength.html" class="internal"><span class="codenumber">10.3</span> <span class="title">Arc Length</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-VVF-ArcLength.html#S-VVF-ArcLength-4" class="internal"><span class="codenumber">10.3.1</span> <span class="title">Arc Length</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-VVF-ArcLength.html#S-VVF-ArcLength-5" class="internal"><span class="codenumber">10.3.2</span> <span class="title">Parameterizing With Respect To Arc Length</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-VVF-ArcLength.html#S-VVF-ArcLength-6" class="internal"><span class="codenumber">10.3.3</span> <span class="title">Curvature</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-VVF-ArcLength.html#S-VVF-ArcLength-7" class="internal"><span class="codenumber">10.3.4</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-VVF-ArcLength.html#S-VVF-ArcLength-8" class="internal"><span class="codenumber">10.3.5</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S-VVF-TNB.html" class="internal"><span class="codenumber">10.4</span> <span class="title">The TNB Frame</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-VVF-TNB.html#S-VVF-TNB-4" class="internal"><span class="codenumber">10.4.1</span> <span class="title">Direction of travel</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-VVF-TNB.html#subsec-B" class="internal"><span class="codenumber">10.4.2</span> <span class="title">The Binormal Vector</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-VVF-TNB.html#subsec-driverroadTNB" class="internal"><span class="codenumber">10.4.3</span> <span class="title">The Driver or the Road: TNB Frame</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-VVF-TNB.html#subsec-rva" class="internal"><span class="codenumber">10.4.4</span> <span class="title">Velocity and Acceleration</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-VVF-TNB.html#S-VVF-TNB-8" class="internal"><span class="codenumber">10.4.5</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-VVF-TNB.html#S-VVF-TNB-9" class="internal"><span class="codenumber">10.4.6</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S-VVF-Spliting-Acceleration.html" class="internal"><span class="codenumber">10.5</span> <span class="title">Splitting the Acceleration Vector</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-VVF-Spliting-Acceleration.html#S-VVF-Spliting-Acceleration-4" class="internal"><span class="codenumber">10.5.1</span> <span class="title">Splitting Acceleration</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-VVF-Spliting-Acceleration.html#S-VVF-Spliting-Acceleration-5" class="internal"><span class="codenumber">10.5.2</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-VVF-Spliting-Acceleration.html#S-VVF-Spliting-Acceleration-6" class="internal"><span class="codenumber">10.5.3</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S-VVF-Curvature.html" class="internal"><span class="codenumber">10.6</span> <span class="title">Curvature</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-VVF-Curvature.html#S-VVF-Curvature-4" class="internal"><span class="codenumber">10.6.1</span> <span class="title">Arc Length</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-VVF-Curvature.html#S-VVF-Curvature-5" class="internal"><span class="codenumber">10.6.2</span> <span class="title">Parameterizing With Respect To Arc Length</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-VVF-Curvature.html#S-VVF-Curvature-6" class="internal"><span class="codenumber">10.6.3</span> <span class="title">Curvature</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-VVF-Curvature.html#S-VVF-Curvature-7" class="internal"><span class="codenumber">10.6.4</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-VVF-Curvature.html#S-VVF-Curvature-8" class="internal"><span class="codenumber">10.6.5</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="C_MVF.html" class="internal"><span class="codenumber">11</span> <span class="title">Derivatives of Multivariable Functions</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S-MV-Functions.html" class="internal"><span class="codenumber">11.1</span> <span class="title">Functions of Several Variables</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-MV-Functions.html#S-MV-Functions-4" class="internal"><span class="codenumber">11.1.1</span> <span class="title">Functions of Several Variables</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-MV-Functions.html#S-MV-Functions-5" class="internal"><span class="codenumber">11.1.2</span> <span class="title">Representing Functions of Two Variables</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-MV-Functions.html#S-MV-Functions-6" class="internal"><span class="codenumber">11.1.3</span> <span class="title">Some Standard Equations in Three-Space</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-MV-Functions.html#S-MV-Functions-7" class="internal"><span class="codenumber">11.1.4</span> <span class="title">Traces</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-MV-Functions.html#S-MV-Functions-8" class="internal"><span class="codenumber">11.1.5</span> <span class="title">Contour Maps and Level Curves</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-MV-Functions.html#S-MV-Functions-9" class="internal"><span class="codenumber">11.1.6</span> <span class="title">A gallery of functions</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-MV-Functions.html#S-MV-Functions-10" class="internal"><span class="codenumber">11.1.7</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-MV-Functions.html#S-MV-Functions-11" class="internal"><span class="codenumber">11.1.8</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S-10-1-Limits.html" class="internal"><span class="codenumber">11.2</span> <span class="title">Limits</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-1-Limits.html#S-10-1-Limits-4" class="internal"><span class="codenumber">11.2.1</span> <span class="title">Limits of Functions of Two Variables</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-1-Limits.html#S-10-1-Limits-5" class="internal"><span class="codenumber">11.2.2</span> <span class="title">Continuity</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-1-Limits.html#S-10-1-Limits-6" class="internal"><span class="codenumber">11.2.3</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-10-1-Limits.html#S-10-1-Limits-7" class="internal"><span class="codenumber">11.2.4</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S-10-2-First-Order-Partial-Derivatives.html" class="internal"><span class="codenumber">11.3</span> <span class="title">First-Order Partial Derivatives</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-2-First-Order-Partial-Derivatives.html#S-10-2-First-Order-Partial-Derivatives-4" class="internal"><span class="codenumber">11.3.1</span> <span class="title">First-Order Partial Derivatives</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-2-First-Order-Partial-Derivatives.html#S-10-2-First-Order-Partial-Derivatives-5" class="internal"><span class="codenumber">11.3.2</span> <span class="title">Interpretations of First-Order Partial Derivatives</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-2-First-Order-Partial-Derivatives.html#S-10-2-First-Order-Partial-Derivatives-6" class="internal"><span class="codenumber">11.3.3</span> <span class="title">Using tables and contours to estimate partial derivatives</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-2-First-Order-Partial-Derivatives.html#S-10-2-First-Order-Partial-Derivatives-7" class="internal"><span class="codenumber">11.3.4</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-10-2-First-Order-Partial-Derivatives.html#S-10-2-First-Order-Partial-Derivatives-8" class="internal"><span class="codenumber">11.3.5</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S-10-3-Second-Order-Partial-Derivatives.html" class="internal"><span class="codenumber">11.4</span> <span class="title">Second-Order Partial Derivatives</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-3-Second-Order-Partial-Derivatives.html#S-10-3-Second-Order-Partial-Derivatives-4" class="internal"><span class="codenumber">11.4.1</span> <span class="title">Second-Order Partial Derivatives</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-3-Second-Order-Partial-Derivatives.html#S-10-3-Second-Order-Partial-Derivatives-5" class="internal"><span class="codenumber">11.4.2</span> <span class="title">Interpreting the Second-Order Partial Derivatives</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-3-Second-Order-Partial-Derivatives.html#S-10-3-Second-Order-Partial-Derivatives-6" class="internal"><span class="codenumber">11.4.3</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-10-3-Second-Order-Partial-Derivatives.html#S-10-3-Second-Order-Partial-Derivatives-7" class="internal"><span class="codenumber">11.4.4</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S-10-4-Linearization.html" class="internal"><span class="codenumber">11.5</span> <span class="title">Linearization: Tangent Planes and Differentials</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-4-Linearization.html#S-10-4-Linearization-4" class="internal"><span class="codenumber">11.5.1</span> <span class="title">The Tangent Plane</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-4-Linearization.html#S-10-4-Linearization-5" class="internal"><span class="codenumber">11.5.2</span> <span class="title">Linearization</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-4-Linearization.html#S-10-4-Linearization-6" class="internal"><span class="codenumber">11.5.3</span> <span class="title">Differentials</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-4-Linearization.html#S-10-4-Linearization-7" class="internal"><span class="codenumber">11.5.4</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-10-4-Linearization.html#S-10-4-Linearization-8" class="internal"><span class="codenumber">11.5.5</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S-10-5-Chain-Rule.html" class="internal"><span class="codenumber">11.6</span> <span class="title">The Chain Rule</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-5-Chain-Rule.html#S-10-5-Chain-Rule-4" class="internal"><span class="codenumber">11.6.1</span> <span class="title">The Chain Rule</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-5-Chain-Rule.html#S-10-5-Chain-Rule-5" class="internal"><span class="codenumber">11.6.2</span> <span class="title">Tree Diagrams</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-5-Chain-Rule.html#S-10-5-Chain-Rule-6" class="internal"><span class="codenumber">11.6.3</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-10-5-Chain-Rule.html#S-10-5-Chain-Rule-7" class="internal"><span class="codenumber">11.6.4</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S-10-6-Directional-Derivative.html" class="internal"><span class="codenumber">11.7</span> <span class="title">Directional Derivatives and the Gradient</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-6-Directional-Derivative.html#S-10-6-Directional-Derivative-4" class="internal"><span class="codenumber">11.7.1</span> <span class="title">Directional Derivatives</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-6-Directional-Derivative.html#S-10-6-Directional-Derivative-5" class="internal"><span class="codenumber">11.7.2</span> <span class="title">Computing the Directional Derivative</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-6-Directional-Derivative.html#gradient_ss" class="internal"><span class="codenumber">11.7.3</span> <span class="title">The Gradient</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-6-Directional-Derivative.html#S-10-6-Directional-Derivative-7" class="internal"><span class="codenumber">11.7.4</span> <span class="title">The Direction of the Gradient</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-6-Directional-Derivative.html#S-10-6-Directional-Derivative-8" class="internal"><span class="codenumber">11.7.5</span> <span class="title">The Length of the Gradient</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-6-Directional-Derivative.html#S-10-6-Directional-Derivative-9" class="internal"><span class="codenumber">11.7.6</span> <span class="title">Applications</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-6-Directional-Derivative.html#S-10-6-Directional-Derivative-10" class="internal"><span class="codenumber">11.7.7</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-10-6-Directional-Derivative.html#S-10-6-Directional-Derivative-11" class="internal"><span class="codenumber">11.7.8</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S-10-7-Optimization.html" class="internal"><span class="codenumber">11.8</span> <span class="title">Optimization</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-7-Optimization.html#S-10-7-Optimization-4" class="internal"><span class="codenumber">11.8.1</span> <span class="title">Extrema and Critical Points</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-7-Optimization.html#S-10-7-Optimization-5" class="internal"><span class="codenumber">11.8.2</span> <span class="title">Classifying Critical Points: The Second Derivative Test</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-7-Optimization.html#S-10-7-Optimization-6" class="internal"><span class="codenumber">11.8.3</span> <span class="title">Optimization on a Restricted Domain</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-7-Optimization.html#S-10-7-Optimization-7" class="internal"><span class="codenumber">11.8.4</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-10-7-Optimization.html#S-10-7-Optimization-8" class="internal"><span class="codenumber">11.8.5</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S-10-8-Lagrange-Multipliers.html" class="internal"><span class="codenumber">11.9</span> <span class="title">Constrained Optimization: Lagrange Multipliers</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-8-Lagrange-Multipliers.html#S-10-8-Lagrange-Multipliers-4" class="internal"><span class="codenumber">11.9.1</span> <span class="title">Constrained Optimization and Lagrange Multipliers</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-8-Lagrange-Multipliers.html#S-10-8-Lagrange-Multipliers-5" class="internal"><span class="codenumber">11.9.2</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-10-8-Lagrange-Multipliers.html#S-10-8-Lagrange-Multipliers-6" class="internal"><span class="codenumber">11.9.3</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="C_MI.html" class="internal"><span class="codenumber">12</span> <span class="title">Multiple Integrals</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S-11-1-Double-Integrals-Rectangles.html" class="internal"><span class="codenumber">12.1</span> <span class="title">Double Riemann Sums and Double Integrals over Rectangles</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-1-Double-Integrals-Rectangles.html#S-11-1-Double-Integrals-Rectangles-4" class="internal"><span class="codenumber">12.1.1</span> <span class="title">Double Riemann Sums over Rectangles</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-1-Double-Integrals-Rectangles.html#S-11-1-Double-Integrals-Rectangles-5" class="internal"><span class="codenumber">12.1.2</span> <span class="title">Double Riemann Sums and Double Integrals</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-1-Double-Integrals-Rectangles.html#S-11-1-Double-Integrals-Rectangles-6" class="internal"><span class="codenumber">12.1.3</span> <span class="title">Interpretation of Double Riemann Sums and Double integrals.</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-1-Double-Integrals-Rectangles.html#S-11-1-Double-Integrals-Rectangles-7" class="internal"><span class="codenumber">12.1.4</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-11-1-Double-Integrals-Rectangles.html#S-11-1-Double-Integrals-Rectangles-8" class="internal"><span class="codenumber">12.1.5</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S-11-2-Iterated-Integrals.html" class="internal"><span class="codenumber">12.2</span> <span class="title">Iterated Integrals</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-2-Iterated-Integrals.html#S-11-2-Iterated-Integrals-4" class="internal"><span class="codenumber">12.2.1</span> <span class="title">Iterated Integrals</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-2-Iterated-Integrals.html#S-11-2-Iterated-Integrals-5" class="internal"><span class="codenumber">12.2.2</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-11-2-Iterated-Integrals.html#S-11-2-Iterated-Integrals-6" class="internal"><span class="codenumber">12.2.3</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S-11-3-Double-Integrals-General.html" class="internal"><span class="codenumber">12.3</span> <span class="title">Double Integrals over General Regions</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-3-Double-Integrals-General.html#S-11-3-Double-Integrals-General-4" class="internal"><span class="codenumber">12.3.1</span> <span class="title">Double Integrals over General Regions</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-3-Double-Integrals-General.html#S-11-3-Double-Integrals-General-5" class="internal"><span class="codenumber">12.3.2</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-11-3-Double-Integrals-General.html#S-11-3-Double-Integrals-General-6" class="internal"><span class="codenumber">12.3.3</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S-11-4-Double-Integrals-Applications.html" class="internal"><span class="codenumber">12.4</span> <span class="title">Applications of Double Integrals</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-4-Double-Integrals-Applications.html#S-11-4-Double-Integrals-Applications-4" class="internal"><span class="codenumber">12.4.1</span> <span class="title">Mass</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-4-Double-Integrals-Applications.html#S-11-4-Double-Integrals-Applications-5" class="internal"><span class="codenumber">12.4.2</span> <span class="title">Area</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-4-Double-Integrals-Applications.html#S-11-4-Double-Integrals-Applications-6" class="internal"><span class="codenumber">12.4.3</span> <span class="title">Center of Mass</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-4-Double-Integrals-Applications.html#S-11-4-Double-Integrals-Applications-7" class="internal"><span class="codenumber">12.4.4</span> <span class="title">Probability</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-4-Double-Integrals-Applications.html#S-11-4-Double-Integrals-Applications-8" class="internal"><span class="codenumber">12.4.5</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-11-4-Double-Integrals-Applications.html#S-11-4-Double-Integrals-Applications-9" class="internal"><span class="codenumber">12.4.6</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S-11-5-Double-Integrals-Polar.html" class="internal"><span class="codenumber">12.5</span> <span class="title">Double Integrals in Polar Coordinates</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-5-Double-Integrals-Polar.html#S-11-5-Double-Integrals-Polar-4" class="internal"><span class="codenumber">12.5.1</span> <span class="title">Polar Coordinates</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-5-Double-Integrals-Polar.html#S-11-5-Double-Integrals-Polar-5" class="internal"><span class="codenumber">12.5.2</span> <span class="title">Integrating in Polar Coordinates</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-5-Double-Integrals-Polar.html#S-11-5-Double-Integrals-Polar-6" class="internal"><span class="codenumber">12.5.3</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-11-5-Double-Integrals-Polar.html#S-11-5-Double-Integrals-Polar-7" class="internal"><span class="codenumber">12.5.4</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S-11-6-Parametric-Surfaces-Surface-Area.html" class="internal"><span class="codenumber">12.6</span> <span class="title">Surfaces Defined Parametrically and Surface Area</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-6-Parametric-Surfaces-Surface-Area.html#S-11-6-Parametric-Surfaces-Surface-Area-4" class="internal"><span class="codenumber">12.6.1</span> <span class="title">Parametric Surfaces</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-6-Parametric-Surfaces-Surface-Area.html#SS-11-6-2-Surface-Area-Parametrically-Defined-Surfaces" class="internal"><span class="codenumber">12.6.2</span> <span class="title">The Surface Area of Parametrically Defined Surfaces</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-6-Parametric-Surfaces-Surface-Area.html#S-11-6-Parametric-Surfaces-Surface-Area-6" class="internal"><span class="codenumber">12.6.3</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-11-6-Parametric-Surfaces-Surface-Area.html#S-11-6-Parametric-Surfaces-Surface-Area-7" class="internal"><span class="codenumber">12.6.4</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S-11-7-Triple-Integrals.html" class="internal"><span class="codenumber">12.7</span> <span class="title">Triple Integrals</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-7-Triple-Integrals.html#S-11-7-Triple-Integrals-4" class="internal"><span class="codenumber">12.7.1</span> <span class="title">Triple Riemann Sums and Triple Integrals</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-7-Triple-Integrals.html#S-11-7-Triple-Integrals-5" class="internal"><span class="codenumber">12.7.2</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-11-7-Triple-Integrals.html#S-11-7-Triple-Integrals-6" class="internal"><span class="codenumber">12.7.3</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S-11-8-Triple-Integrals-Cylindrical-Spherical.html" class="internal"><span class="codenumber">12.8</span> <span class="title">Triple Integrals in Cylindrical and Spherical Coordinates</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-8-Triple-Integrals-Cylindrical-Spherical.html#S-11-8-Triple-Integrals-Cylindrical-Spherical-4" class="internal"><span class="codenumber">12.8.1</span> <span class="title">Cylindrical Coordinates</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-8-Triple-Integrals-Cylindrical-Spherical.html#S-11-8-Triple-Integrals-Cylindrical-Spherical-5" class="internal"><span class="codenumber">12.8.2</span> <span class="title">Triple Integrals in Cylindrical Coordinates</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-8-Triple-Integrals-Cylindrical-Spherical.html#S-11-8-Triple-Integrals-Cylindrical-Spherical-6" class="internal"><span class="codenumber">12.8.3</span> <span class="title">Spherical Coordinates</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-8-Triple-Integrals-Cylindrical-Spherical.html#S-11-8-Triple-Integrals-Cylindrical-Spherical-7" class="internal"><span class="codenumber">12.8.4</span> <span class="title">Triple Integrals in Spherical Coordinates</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-8-Triple-Integrals-Cylindrical-Spherical.html#S-11-8-Triple-Integrals-Cylindrical-Spherical-8" class="internal"><span class="codenumber">12.8.5</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-11-8-Triple-Integrals-Cylindrical-Spherical.html#S-11-8-Triple-Integrals-Cylindrical-Spherical-9" class="internal"><span class="codenumber">12.8.6</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S-11-9-Change-of-Variable.html" class="internal"><span class="codenumber">12.9</span> <span class="title">Change of Variables</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-9-Change-of-Variable.html#S-11-9-Change-of-Variable-4" class="internal"><span class="codenumber">12.9.1</span> <span class="title">Change of Variables in Polar Coordinates</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-9-Change-of-Variable.html#S-11-9-Change-of-Variable-5" class="internal"><span class="codenumber">12.9.2</span> <span class="title">General Change of Coordinates</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-9-Change-of-Variable.html#S-11-9-Change-of-Variable-6" class="internal"><span class="codenumber">12.9.3</span> <span class="title">Change of Variables in a Triple Integral</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-9-Change-of-Variable.html#S-11-9-Change-of-Variable-7" class="internal"><span class="codenumber">12.9.4</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-11-9-Change-of-Variable.html#S-11-9-Change-of-Variable-8" class="internal"><span class="codenumber">12.9.5</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="C_Vector.html" class="internal"><span class="codenumber">13</span> <span class="title">Vector Calculus</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S_Vector_VectorFields.html" class="internal"><span class="codenumber">13.1</span> <span class="title">Vector Fields</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_VectorFields.html#SS_Vector_VectorFields_Examples" class="internal"><span class="codenumber">13.1.1</span> <span class="title">Examples of Vector Fields</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_VectorFields.html#SS_Vector_VectorFields_Mathematical" class="internal"><span class="codenumber">13.1.2</span> <span class="title">Mathematical Vector Fields</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_VectorFields.html#SS_Vector_VectorFields_Plotting" class="internal"><span class="codenumber">13.1.3</span> <span class="title">Plotting Vector Fields</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_VectorFields.html#SS_Vector_VectorFields_Gradient" class="internal"><span class="codenumber">13.1.4</span> <span class="title">Gradient Vector Fields</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_VectorFields.html#S_Vector_VectorFields-8" class="internal"><span class="codenumber">13.1.5</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S_Vector_VectorFields.html#S_Vector_VectorFields-9" class="internal"><span class="codenumber">13.1.6</span> <span class="title">Exercises</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_VectorFields.html#S_Vector_VectorFields-10" class="internal"><span class="codenumber">13.1.7</span> <span class="title">Notes to the Instructor</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S_Vector_IdeaLineIntegral.html" class="internal"><span class="codenumber">13.2</span> <span class="title">The Idea of a Line Integral</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_IdeaLineIntegral.html#SS_Vector_IdeaLineIntegral_OrientCurve" class="internal"><span class="codenumber">13.2.1</span> <span class="title">Orientations of Curves</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_IdeaLineIntegral.html#SS_Vector_IdeaLineIntegral_LineIntegrals" class="internal"><span class="codenumber">13.2.2</span> <span class="title">Line Integrals</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_IdeaLineIntegral.html#SS_Vector_IdeaLineIntegral_Properties" class="internal"><span class="codenumber">13.2.3</span> <span class="title">Properties of Line Integrals</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_IdeaLineIntegral.html#SS_Vector_IdeaLineIntegral_Circulation" class="internal"><span class="codenumber">13.2.4</span> <span class="title">The Circulation of a Vector Field</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_IdeaLineIntegral.html#S_Vector_IdeaLineIntegral-8" class="internal"><span class="codenumber">13.2.5</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S_Vector_IdeaLineIntegral.html#S_Vector_IdeaLineIntegral-9" class="internal"><span class="codenumber">13.2.6</span> <span class="title">Exercises</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_IdeaLineIntegral.html#S_Vector_IdeaLineIntegral-10" class="internal"><span class="codenumber">13.2.7</span> <span class="title">Notes to Instructors and Dependencies</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S_Vector_ParamLineIntegrals.html" class="internal"><span class="codenumber">13.3</span> <span class="title">Using Parametrizations to Calculate Line Integrals</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_ParamLineIntegrals.html#SS_Vector_ParamLineIntegrals_Evaluation" class="internal"><span class="codenumber">13.3.1</span> <span class="title">Parametrizations in the Definition of <span class="process-math">\(\int_C\vF\cdot d\vr\)</span></span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_ParamLineIntegrals.html#alt_li_notation" class="internal"><span class="codenumber">13.3.2</span> <span class="title">Alternative Notation for Line Integrals</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_ParamLineIntegrals.html#S_Vector_ParamLineIntegrals-6" class="internal"><span class="codenumber">13.3.3</span> <span class="title">Independence of Parametrization for a Fixed Curve</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_ParamLineIntegrals.html#S_Vector_ParamLineIntegrals-7" class="internal"><span class="codenumber">13.3.4</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S_Vector_ParamLineIntegrals.html#S_Vector_ParamLineIntegrals-8" class="internal"><span class="codenumber">13.3.5</span> <span class="title">Exercises</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_ParamLineIntegrals.html#S_Vector_ParamLineIntegrals-9" class="internal"><span class="codenumber">13.3.6</span> <span class="title">Notes to Instructors and Dependencies</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S_Vector_FTCLI.html" class="internal"><span class="codenumber">13.4</span> <span class="title">Path-Independent Vector Fields and the Fundamental Theorem of Calculus for Line Integrals</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_FTCLI.html#S_Vector_FTCLI-4" class="internal"><span class="codenumber">13.4.1</span> <span class="title">Path-Independent Vector Fields</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_FTCLI.html#S_Vector_FTCLI-5" class="internal"><span class="codenumber">13.4.2</span> <span class="title">Line Integrals Along Closed Curves</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_FTCLI.html#SS_Vector_FTCLI_Other" class="internal"><span class="codenumber">13.4.3</span> <span class="title">What other vector fields are path-independent?</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_FTCLI.html#S_Vector_FTCLI-7" class="internal"><span class="codenumber">13.4.4</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S_Vector_FTCLI.html#S_Vector_FTCLI-8" class="internal"><span class="codenumber">13.4.5</span> <span class="title">Exercises</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_FTCLI.html#S_Vector_FTCLI-9" class="internal"><span class="codenumber">13.4.6</span> <span class="title">Notes to Instructors and Dependencies</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S_Vector_ScalarLineIntegral.html" class="internal"><span class="codenumber">13.5</span> <span class="title">Line Integrals of Scalar Functions</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_ScalarLineIntegral.html#S_Vector_ScalarLineIntegral-4" class="internal"><span class="codenumber">13.5.1</span> <span class="title">Defining line integrals of scalar functions</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_ScalarLineIntegral.html#S_Vector_ScalarLineIntegral-5" class="internal"><span class="codenumber">13.5.2</span> <span class="title">Using Parameterizations to Calculate Scalar Line Integrals</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_ScalarLineIntegral.html#S_Vector_ScalarLineIntegral-6" class="internal"><span class="codenumber">13.5.3</span> <span class="title">Properties of Scalar Line Integrals</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_ScalarLineIntegral.html#SS_Vector_ScalarLineIntegral_Visualizations" class="internal"><span class="codenumber">13.5.4</span> <span class="title">Visualizations of Scalar Line Integrals as Area Under a Curve</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_ScalarLineIntegral.html#S_Vector_ScalarLineIntegral-8" class="internal"><span class="codenumber">13.5.5</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S_Vector_ScalarLineIntegral.html#ez_Vector_ScalarLineIntegral" class="internal"><span class="codenumber">13.5.6</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S_Vector_Div.html" class="internal"><span class="codenumber">13.6</span> <span class="title">The Divergence of a Vector Field</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_Div.html#SS_Vector_Div_Defn" class="internal"><span class="codenumber">13.6.1</span> <span class="title">Definition of the Divergence of a Vector Field</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_Div.html#SS_Vector_Div_Development" class="internal"><span class="codenumber">13.6.2</span> <span class="title">Measuring the Change in Strength of a Vector Field</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_Div.html#S_Vector_Div-6" class="internal"><span class="codenumber">13.6.3</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S_Vector_Div.html#S_Vector_Div-7" class="internal"><span class="codenumber">13.6.4</span> <span class="title">Exercises</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_Div.html#S_Vector_Div-8" class="internal"><span class="codenumber">13.6.5</span> <span class="title">Notes to Instructors and Dependencies</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S_Vector_Curl.html" class="internal"><span class="codenumber">13.7</span> <span class="title">The Curl of a Vector Field</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_Curl.html#SS_Vector_Curl_Development" class="internal"><span class="codenumber">13.7.1</span> <span class="title">Measuring the Circulation Density of Vector Field in <span class="process-math">\(\R^2\)</span></span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_Curl.html#SS_Vector_Curl_Development3D" class="internal"><span class="codenumber">13.7.2</span> <span class="title">Measuring Rotation in Three Dimensions</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_Curl.html#S_Vector_Curl-6" class="internal"><span class="codenumber">13.7.3</span> <span class="title">Circulation Density in Three Dimensions</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_Curl.html#SS_Vector_Curl_Interpretation" class="internal"><span class="codenumber">13.7.4</span> <span class="title">Interpretation and Usage of Curl</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_Curl.html#S_Vector_Curl-8" class="internal"><span class="codenumber">13.7.5</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S_Vector_Curl.html#S_Vector_Curl-9" class="internal"><span class="codenumber">13.7.6</span> <span class="title">Exercises</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_Curl.html#S_Vector_Curl-10" class="internal"><span class="codenumber">13.7.7</span> <span class="title">Notes to Instructors and Dependencies</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S_Vector_GreensTheorem.html" class="internal"><span class="codenumber">13.8</span> <span class="title">Green’s Theorem</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_GreensTheorem.html#SS_Vector_GreensTheorem_Circulation" class="internal"><span class="codenumber">13.8.1</span> <span class="title">Circulation</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_GreensTheorem.html#S_Vector_GreensTheorem-5" class="internal"><span class="codenumber">13.8.2</span> <span class="title">Green’s Theorem</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_GreensTheorem.html#S_Vector_GreensTheorem-6" class="internal"><span class="codenumber">13.8.3</span> <span class="title">What happens when vector fields are not smooth?</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_GreensTheorem.html#S_Vector_GreensTheorem-7" class="internal"><span class="codenumber">13.8.4</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S_Vector_GreensTheorem.html#S_Vector_GreensTheorem-8" class="internal"><span class="codenumber">13.8.5</span> <span class="title">Exercises</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_GreensTheorem.html#S_Vector_GreensTheorem-9" class="internal"><span class="codenumber">13.8.6</span> <span class="title">Notes to Instructors and Dependencies</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S_Vector_FluxInt.html" class="internal"><span class="codenumber">13.9</span> <span class="title">Flux Integrals</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_FluxInt.html#SS_Vector_FluxInt_Idea" class="internal"><span class="codenumber">13.9.1</span> <span class="title">The Idea of the Flux of a Vector Field through a Surface</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_FluxInt.html#S_Vector_FluxInt-5" class="internal"><span class="codenumber">13.9.2</span> <span class="title">The Details of Measuring the Flux of a Vector Field through a Surface</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_FluxInt.html#S_Vector_FluxInt-6" class="internal"><span class="codenumber">13.9.3</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S_Vector_FluxInt.html#S_Vector_FluxInt-7" class="internal"><span class="codenumber">13.9.4</span> <span class="title">Exercises</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_FluxInt.html#S_Vector_FluxInt-8" class="internal"><span class="codenumber">13.9.5</span> <span class="title">Notes to Instructors and Dependencies</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S_Vector_ScalarSurfaceIntegral.html" class="internal"><span class="codenumber">13.10</span> <span class="title">Surface Integrals of Scalar Valued Functions</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_ScalarSurfaceIntegral.html#S_Vector_ScalarSurfaceIntegral-4" class="internal"><span class="codenumber">13.10.1</span> <span class="title">Defining surface integrals of scalar functions</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_ScalarSurfaceIntegral.html#S_Vector_ScalarSurfaceIntegral-5" class="internal"><span class="codenumber">13.10.2</span> <span class="title">Properties of Scalar Surface Integrals</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_ScalarSurfaceIntegral.html#S_Vector_ScalarSurfaceIntegral-6" class="internal"><span class="codenumber">13.10.3</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S_Vector_ScalarSurfaceIntegral.html#S_Vector_ScalarSurfaceIntegral-7" class="internal"><span class="codenumber">13.10.4</span> <span class="title">Exercises</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_ScalarSurfaceIntegral.html#S_Vector_ScalarSurfaceIntegral-8" class="internal"><span class="codenumber">13.10.5</span> <span class="title">Notes to Instructors and Dependencies</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S_Vector_StokesThm.html" class="internal"><span class="codenumber">13.11</span> <span class="title">Stokes’ Theorem</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_StokesThm.html#SS_Vector_StokesThm_Development" class="internal"><span class="codenumber">13.11.1</span> <span class="title">Circulation in three dimensions and Stokes’ Theorem</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_StokesThm.html#SS_Vector_StokesThm_Verify" class="internal"><span class="codenumber">13.11.2</span> <span class="title">Verifying and Applying Stokes’ Theorem</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_StokesThm.html#surfaceboundaries" class="internal"><span class="codenumber">13.11.3</span> <span class="title">Practice with Surfaces and their Boundaries</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_StokesThm.html#S_Vector_StokesThm-7" class="internal"><span class="codenumber">13.11.4</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S_Vector_StokesThm.html#S_Vector_StokesThm-8" class="internal"><span class="codenumber">13.11.5</span> <span class="title">Exercises</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_StokesThm.html#S_Vector_StokesThm-9" class="internal"><span class="codenumber">13.11.6</span> <span class="title">Notes to Instructors and Dependencies</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S_Vector_DivThm.html" class="internal"><span class="codenumber">13.12</span> <span class="title">The Divergence Theorem</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_DivThm.html#SS_Vector_DivThm_Verify" class="internal"><span class="codenumber">13.12.1</span> <span class="title">The Divergence Theorem</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_DivThm.html#S_Vector_DivThm-5" class="internal"><span class="codenumber">13.12.2</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S_Vector_DivThm.html#S_Vector_DivThm-6" class="internal"><span class="codenumber">13.12.3</span> <span class="title">Exercises</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_DivThm.html#S_Vector_DivThm-7" class="internal"><span class="codenumber">13.12.4</span> <span class="title">Notes to Instructors and Dependencies</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-backmatter">
+<div class="toc-title-box"><a href="root--1-2-8.html" class="internal"><span class="title">Back Matter</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-index"><div class="toc-title-box"><a href="root--1-2-8-1.html" class="internal"><span class="title">Index</span></a></div></li></ul>
+</li>
+</ul></nav></div>
+<main class="ptx-main"><div id="ptx-content" class="ptx-content"><section class="section" id="S-Precalc-ComoonGraphs"><h2 class="heading hide-type">
+<span class="type">Section</span><span class="space"> </span><span class="codenumber">9.7</span><span class="space"> </span><span class="title">Common Graphs in Two and Three Dimensions</span>
+</h2>
+<article class="objectives goal-like" id="S-Precalc-ComoonGraphs-2"><h3 class="heading"><span class="type">Motivating Questions</span></h3>
+<ul class="disc"><li id="S-Precalc-ComoonGraphs-2-1-1"><div class="para" id="S-Precalc-ComoonGraphs-2-1-1-1">What are some sample graphs in two and three dimensions that can be used throughout our study of multivariable ideas?</div></li></ul></article><section class="introduction" id="S-Precalc-ComoonGraphs-3"><article class="exploration project-like" id="PA-Precalc-CG"><h3 class="heading">
+<span class="type">Preview Activity</span><span class="space"> </span><span class="codenumber">9.7.1</span><span class="period">.</span>
+</h3>
+<div class="introduction" id="PA-Precalc-CG-1"><div class="para logical" id="PA-Precalc-CG-1-1">
+<div class="para">For each of the following equations, you should:</div>
+<ol class="decimal">
+<li id="PA-Precalc-CG-1-1-1-1"><div class="para" id="PA-Precalc-CG-1-1-1-1-1">Find all <span class="process-math">\(x\)</span>-intercepts</div></li>
+<li id="PA-Precalc-CG-1-1-1-2"><div class="para" id="PA-Precalc-CG-1-1-1-2-1">Find all <span class="process-math">\(y\)</span>-intercepts</div></li>
+<li id="PA-Precalc-CG-1-1-1-3"><div class="para" id="PA-Precalc-CG-1-1-1-3-1">Identify the shape of the graph (if you know it)</div></li>
+<li id="PA-Precalc-CG-1-1-1-4"><div class="para" id="PA-Precalc-CG-1-1-1-4-1">Identify all points where the graph will intersect with the vertical line <span class="process-math">\(x=2\)</span>
+</div></li>
+<li id="PA-Precalc-CG-1-1-1-5"><div class="para" id="PA-Precalc-CG-1-1-1-5-1">Identify all points where the graph will intersect with the horizontal line <span class="process-math">\(y=-4\)</span>
+</div></li>
+</ol>
+</div></div>
+<article class="task exercise-like" id="PA-Precalc-CG-2"><h4 class="heading"><span class="codenumber">(a)</span></h4>
+<div class="para" id="PA-Precalc-CG-2-1-1"><span class="process-math">\(\frac{x^2}{9}+\frac{y^2}{25}=1\)</span></div>
+<div class="solutions"><details id="PA-Precalc-CG-2-3" class="solution solution-like born-hidden-knowl"><summary><span class="type">Solution</span><span class="period">.</span></summary><div class="solution solution-like"><div class="para" id="PA-Precalc-CG-2-3-1"></div></div></details></div></article><article class="task exercise-like" id="PA-Precalc-CG-3"><h4 class="heading"><span class="codenumber">(b)</span></h4>
+<div class="para" id="PA-Precalc-CG-3-1-1"><span class="process-math">\(\frac{y^2}{4}-\frac{x^2}{1}=1\)</span></div>
+<div class="solutions"><details id="PA-Precalc-CG-3-3" class="solution solution-like born-hidden-knowl"><summary><span class="type">Solution</span><span class="period">.</span></summary><div class="solution solution-like"><div class="para" id="PA-Precalc-CG-3-3-1"></div></div></details></div></article><article class="task exercise-like" id="PA-Precalc-CG-4"><h4 class="heading"><span class="codenumber">(c)</span></h4>
+<div class="para" id="PA-Precalc-CG-4-1-1"><span class="process-math">\(x=2y^2\)</span></div>
+<div class="solutions"><details id="PA-Precalc-CG-4-3" class="solution solution-like born-hidden-knowl"><summary><span class="type">Solution</span><span class="period">.</span></summary><div class="solution solution-like"><div class="para" id="PA-Precalc-CG-4-3-1"></div></div></details></div></article><article class="task exercise-like" id="PA-Precalc-CG-5"><h4 class="heading"><span class="codenumber">(d)</span></h4>
+<div class="para" id="PA-Precalc-CG-5-1-1"><span class="process-math">\(\frac{y^2}{9}-\frac{x^2}{25}=0\)</span></div>
+<div class="solutions"><details id="PA-Precalc-CG-5-3" class="solution solution-like born-hidden-knowl"><summary><span class="type">Solution</span><span class="period">.</span></summary><div class="solution solution-like"><div class="para" id="PA-Precalc-CG-5-3-1"></div></div></details></div></article></article> <div class="para" id="S-Precalc-ComoonGraphs-3-2">We have seen how the distance formula leads to the equation of a sphere and how the idea of flat one and two dimensional graphs gave rise to lines and planes. In this section, we will introduce some other curves and surfaces that will be used throughout the rest of this text as examples. These objects will allow us to have graphs with a variety of geometric features while still being algebraically simple. The next activity will go over a couple of basic coordinate transformation ideas that will be helpful in generalizing our common graphs.</div> <article class="activity project-like" id="coord-transform"><h3 class="heading">
+<span class="type">Activity</span><span class="space"> </span><span class="codenumber">9.7.2</span><span class="period">.</span>
+</h3>
+<article class="task exercise-like" id="coord-transform-p1"><h4 class="heading"><span class="codenumber">(a)</span></h4>
+<div class="para logical" id="coord-transform-p1-1-1">
+<div class="para">Suppose we wanted to have the point at <span class="process-math">\((a,b)\)</span> be the new center of a graph. We want to pick a new coordinate system, which we will call <span class="process-math">\((x^*,y^*)\text{,}\)</span> to have its origin at the point with <span class="process-math">\((x,y)=(a,b)\text{.}\)</span> With this definition of our new <span class="process-math">\((x^*,y^*)\)</span>-coordinates, give the <span class="process-math">\((x^*,y^*)\)</span>-coordinates for each of the following points:</div>
+<ol class="decimal">
+<li id="coord-transform-p1-1-1-6-1"><div class="para" id="p-derived-coord-transform-p1-1-1-6-1"><span class="process-math">\(\displaystyle (x,y)=(a,b)\)</span></div></li>
+<li id="coord-transform-p1-1-1-6-2"><div class="para" id="p-derived-coord-transform-p1-1-1-6-2"><span class="process-math">\(\displaystyle (x,y)=(0,0)\)</span></div></li>
+<li id="coord-transform-p1-1-1-6-3"><div class="para" id="p-derived-coord-transform-p1-1-1-6-3"><span class="process-math">\(\displaystyle (x,y)=(3,-2)\)</span></div></li>
+</ol>
+</div></article><article class="task exercise-like" id="coord-transform-p2"><h4 class="heading"><span class="codenumber">(b)</span></h4>
+<div class="para logical" id="coord-transform-p2-1-1">
+<div class="para">Generalize your work for <a href="" class="xref" data-knowl="./knowl/xref/coord-transform-p1.html" title="part 9.7.2.a">part 9.7.2.a</a> and write <span class="process-math">\(x^*\)</span> and <span class="process-math">\(y^*\)</span> in terms of <span class="process-math">\(x, y, a, \text{and} b\text{.}\)</span>
+</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/coord-transform-p1.html">
+\begin{equation*}
+x^*=\underline{\hspace{4cm}} \hspace{4cm}  y^*=\underline{\hspace{4cm}} 
+\end{equation*}
+</div>
+</div></article><article class="task exercise-like" id="coord-transform-p3"><h4 class="heading"><span class="codenumber">(c)</span></h4>
+<div class="para logical" id="coord-transform-p3-1-1">
+<div class="para">Using the same coordinate systems as in <a href="" class="xref" data-knowl="./knowl/xref/coord-transform-p1.html" title="part 9.7.2.a">part 9.7.2.a</a>, give the <span class="process-math">\((x,y)\)</span>-coordinates of the following points:</div>
+<ol class="decimal">
+<li id="coord-transform-p3-1-1-3-1"><div class="para" id="p-derived-coord-transform-p3-1-1-3-1"><span class="process-math">\(\displaystyle (x^*,y^*)=(0,0)\)</span></div></li>
+<li id="coord-transform-p3-1-1-3-2"><div class="para" id="p-derived-coord-transform-p3-1-1-3-2"><span class="process-math">\(\displaystyle (x^*,y^*)=(a,b)\)</span></div></li>
+<li id="coord-transform-p3-1-1-3-3"><div class="para" id="p-derived-coord-transform-p3-1-1-3-3"><span class="process-math">\(\displaystyle (x^*,y^*)=(-5,7)\)</span></div></li>
+</ol>
+</div></article><article class="task exercise-like" id="coord-transform-p4"><h4 class="heading"><span class="codenumber">(d)</span></h4>
+<div class="para logical" id="coord-transform-p4-1-1">
+<div class="para">Generalize your work for <a href="" class="xref" data-knowl="./knowl/xref/coord-transform-p3.html" title="part 9.7.2.c">part 9.7.2.c</a> and write <span class="process-math">\(x\)</span> and <span class="process-math">\(y\)</span> in terms of <span class="process-math">\(x^*, y^*, a, \text{and} b\text{.}\)</span>
+</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/coord-transform-p3.html">
+\begin{equation*}
+x=\underline{\hspace{4cm}} \hspace{4cm}  y=\underline{\hspace{4cm}} 
+\end{equation*}
+</div>
+</div></article><article class="task exercise-like" id="coord-transform-p5"><h4 class="heading"><span class="codenumber">(e)</span></h4>
+<div class="para" id="coord-transform-p5-1-1">Draw a plot that includes the axes for both coordinate systems and label each point in the tasks above. Write a couple of sentences to explain your conversion equations in <a href="" class="xref" data-knowl="./knowl/xref/coord-transform-p2.html" title="part 9.7.2.b">part 9.7.2.b</a> and <a href="" class="xref" data-knowl="./knowl/xref/coord-transform-p4.html" title="part 9.7.2.d">part 9.7.2.d</a>. Remember that points should not change location but have different  <span class="process-math">\((x,y)\)</span> and <span class="process-math">\((x^*,y^*)\)</span> coordinates.</div></article><article class="task exercise-like" id="coord-transform-p6"><h4 class="heading"><span class="codenumber">(f)</span></h4>
+<div class="para logical" id="coord-transform-p6-1-1">
+<div class="para">We want to stretch the <span class="process-math">\((x,y)\)</span>-coordinate system horizontally by a factor of two. We will call this new coordinate system <span class="process-math">\((x',y')\text{.}\)</span> If we look at the point with <span class="process-math">\((x,y)\)</span> coordinates <span class="process-math">\((4,2)\text{,}\)</span> then the <span class="process-math">\((x',y')\)</span> coordinates of that same point are <span class="process-math">\((2,2)\text{.}\)</span> Give the <span class="process-math">\((x',y')\)</span> coordinates of the following points:</div>
+<ol class="decimal">
+<li id="coord-transform-p6-1-1-8-1"><div class="para" id="p-derived-coord-transform-p6-1-1-8-1"><span class="process-math">\(\displaystyle (x,y)=(0,5)\)</span></div></li>
+<li id="coord-transform-p6-1-1-8-2"><div class="para" id="p-derived-coord-transform-p6-1-1-8-2"><span class="process-math">\(\displaystyle (x,y)=(-3,1)\)</span></div></li>
+</ol>
+</div></article><article class="task exercise-like" id="coord-transform-p7"><h4 class="heading"><span class="codenumber">(g)</span></h4>
+<div class="para logical" id="coord-transform-p7-1-1">
+<div class="para">Give the <span class="process-math">\((x,y)\)</span> coordinates of the following points:</div>
+<ol class="decimal">
+<li id="coord-transform-p7-1-1-2-1"><div class="para" id="p-derived-coord-transform-p7-1-1-2-1"><span class="process-math">\(\displaystyle (x',y')=(1,1)\)</span></div></li>
+<li id="coord-transform-p7-1-1-2-2"><div class="para" id="p-derived-coord-transform-p7-1-1-2-2"><span class="process-math">\(\displaystyle (x',y')=(\sqrt{5},-\pi)\)</span></div></li>
+</ol>
+</div></article><article class="task exercise-like" id="coord-transform-p8"><h4 class="heading"><span class="codenumber">(h)</span></h4>
+<div class="para logical" id="coord-transform-p8-1-1">
+<div class="para">Draw a plot that includes the axes for both coordinate systems (<span class="process-math">\((x,y)\)</span> and <span class="process-math">\((x',y')\)</span>) and label each point in the tasks above. Use your plot and the work from previous tasks to write <span class="process-math">\(x'\)</span> and <span class="process-math">\(y'\)</span> in terms of <span class="process-math">\(x\)</span> and <span class="process-math">\(y\text{.}\)</span>
+</div>
+<div class="displaymath process-math">
+\begin{equation*}
+x'=\underline{\hspace{4cm}} \hspace{4cm}  y'=\underline{\hspace{4cm}} 
+\end{equation*}
+</div>
+</div></article></article></section><section class="subsection" id="S-Precalc-ComoonGraphs-4"><h3 class="heading hide-type">
+<span class="type">Subsection</span><span class="space"> </span><span class="codenumber">9.7.1</span><span class="space"> </span><span class="title">Conic Sections</span>
+</h3>
+<div class="para" id="S-Precalc-ComoonGraphs-4-2">You may have seen the ideas of coordinate transformation that were central to <a href="" class="xref" data-knowl="./knowl/xref/coord-transform.html" title="Activity 9.7.2">Activity 9.7.2</a>, but hopefully you see precisely where the algebraic transformations come from and how they correspond to simple geometric transformations. For our basic shapes in 2D, we will give a very brief definition for the shape, but the focus of this presentation will be about applying transformations to a basic shape in order to generalize the possible usage of these shapes.</div>
+<div class="para logical" id="S-Precalc-ComoonGraphs-4-3">
+<div class="para">A <dfn class="terminology">circle</dfn> is the set of points that are a fixed distance (called the radius) away from a specific point (called the center). Most often, circles are introduced with the origin as the center and the radius given by a constant <span class="process-math">\(R\text{.}\)</span> This means that a point <span class="process-math">\((x,y)\)</span> that is on the circle will satisfy</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\sqrt{(x-0)^2+(y-0)^2}=R
+\end{equation*}
+</div>
+<div class="para">which can be expressed as the equivalent equation</div>
+<div class="displaymath process-math">
+\begin{equation*}
+x^2+y^2=R^2
+\end{equation*}
+</div>
+<div class="para">Applying the same idea to a circle with center <span class="process-math">\((h,k)\)</span> means you will get an equation like</div>
+<div class="displaymath process-math">
+\begin{equation*}
+(x-h)^2+(y-k)^2=R^2
+\end{equation*}
+</div>
+<div class="para">, which is often called the standard form of the circle. The standard form is convenient to use because the information needed to graph the circle can be read from this form without needing more algebra. For instance, the circle given by</div>
+<div class="displaymath process-math">
+\begin{equation*}
+(x-2)^2+(y+3)^2=6
+\end{equation*}
+</div>
+<div class="para">would have center <span class="process-math">\((2,-3)\)</span> and radius <span class="process-math">\(\sqrt{6}\text{.}\)</span>
+</div>
+</div>
+<article class="definition definition-like" id="def-ellipse"><h4 class="heading">
+<span class="type">Definition</span><span class="space"> </span><span class="codenumber">9.7.1</span><span class="period">.</span>
+</h4>
+<div class="para" id="def-ellipse-1-1">An <dfn class="terminology">ellipse</dfn> is the set of all points such that the sum of the distances from the point <span class="process-math">\((x,y)\)</span> to a pair of distinct points (called foci) is a fixed constant.</div> <figure class="figure figure-like" id="base-ellipse"><iframe id="interactive-base-ellipse" width="600" height="600" src="interactive-base-ellipse-if.html"></iframe><figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">9.7.2<span class="period">.</span></span><span class="space"> </span>A plot of an ellipse with foci in green</figcaption></figure> <div class="para" id="def-ellipse-1-3">In the interact above, you can see how as you move around the ellipse, the sum of the lengths of the blue and red segments remains constant.</div></article><div class="para" id="S-Precalc-ComoonGraphs-4-5">While the definition of the ellipse given above has some great applications in engineering, orbital mechanics, and optics, we will focus on the ellipse as a transformation of a circle. While this is not obvious and the details take a little while to prove, any ellipse in the plane can be obtained by transforming a circle (through translation, horizontal/vertical stretches that are not the same as each other, and rotations of the coordinate systems).</div>
+<article class="activity project-like" id="S-Precalc-ComoonGraphs-4-6"><h4 class="heading">
+<span class="type">Activity</span><span class="space"> </span><span class="codenumber">9.7.3</span><span class="period">.</span>
+</h4>
+<article class="task exercise-like" id="S-Precalc-ComoonGraphs-4-6-1"><h5 class="heading"><span class="codenumber">(a)</span></h5>
+<div class="para" id="S-Precalc-ComoonGraphs-4-6-1-1-1">What transformation is done to convert between the circle given by <span class="process-math">\(x^2+y^2=1\)</span> and the graph of <span class="process-math">\(\frac{x^2}{4}+y^2=1\text{?}\)</span> You should be specific about how the graph of <span class="process-math">\(\frac{x^2}{4}+y^2=1\)</span> is different than the graph of <span class="process-math">\(x^2+y^2=1\text{.}\)</span>
+</div>
+<div class="solutions"><details id="S-Precalc-ComoonGraphs-4-6-1-2" class="hint solution-like born-hidden-knowl"><summary><span class="type">Hint</span><span class="period">.</span></summary><div class="hint solution-like"><div class="para" id="S-Precalc-ComoonGraphs-4-6-1-2-1">Look at the <span class="process-math">\(x\)</span>-intercepts of each equation</div></div></details></div></article><article class="task exercise-like" id="S-Precalc-ComoonGraphs-4-6-2"><h5 class="heading"><span class="codenumber">(b)</span></h5>
+<div class="para" id="S-Precalc-ComoonGraphs-4-6-2-1-1">What transformations are done to convert between the circle given by <span class="process-math">\(x^2+y^2=1\)</span> and the graph of <span class="process-math">\(\frac{x^2}{4}+\frac{y^2}{9}=1\text{?}\)</span> You should be specific about how the graph of <span class="process-math">\(\frac{x^2}{4}+\frac{y^2}{9}=1\)</span> is different than the graph of <span class="process-math">\(x^2+y^2=1\)</span> and specify if the transformations need to be done in a particular order.</div></article><article class="task exercise-like" id="S-Precalc-ComoonGraphs-4-6-3"><h5 class="heading"><span class="codenumber">(c)</span></h5>
+<div class="para" id="S-Precalc-ComoonGraphs-4-6-3-1-1">What transformations are done to convert between the circle given by <span class="process-math">\(x^2+y^2=1\)</span> and the graph of <span class="process-math">\(\frac{(x+2)^2}{4}+\frac{(y-3)^2}{9}=1\text{?}\)</span> You should be specific about how the graph of <span class="process-math">\(\frac{(x+2)^2}{4}+\frac{(y-3)^2}{9}=1\)</span> is different than the graph of <span class="process-math">\(x^2+y^2=1\)</span> and specify if the transformations need to be done in a particular order.</div></article><article class="task exercise-like" id="S-Precalc-ComoonGraphs-4-6-4"><h5 class="heading"><span class="codenumber">(d)</span></h5>
+<div class="para" id="S-Precalc-ComoonGraphs-4-6-4-1-1">Draw a plot of <span class="process-math">\(\frac{(x+2)^2}{4}+\frac{(y-3)^2}{9}=1\)</span> and label the center of your plot and the points that demonstrate how far the ellipse is stretched in the vertical/horizontal directions.</div></article><article class="task exercise-like" id="S-Precalc-ComoonGraphs-4-6-5"><h5 class="heading"><span class="codenumber">(e)</span></h5>
+<div class="para" id="S-Precalc-ComoonGraphs-4-6-5-1-1">The graph of the equation <span class="process-math">\(9x^2+16y^2=400\)</span> is an ellipse. Convert this equation to the form <span class="process-math">\(\frac{(x-h)^2}{a^2}+\frac{(y-k)^2}{b^2}=1\)</span> and use the idea of transformations from above to graph this ellipse and label all extreme points on your plot.</div></article><article class="task exercise-like" id="S-Precalc-ComoonGraphs-4-6-6"><h5 class="heading"><span class="codenumber">(f)</span></h5>
+<div class="para" id="S-Precalc-ComoonGraphs-4-6-6-1-1">The graph of the equation <span class="process-math">\(4x^2+y^2+24x-2y+21=0\)</span> is an ellipse. Convert this equation to the form <span class="process-math">\(\frac{(x-h)^2}{a^2}+\frac{(y-k)^2}{b^2}=1\)</span> and use the idea of transformations from above to graph this ellipse and label all extreme points on your plot.</div></article><article class="task exercise-like" id="S-Precalc-ComoonGraphs-4-6-7"><h5 class="heading"><span class="codenumber">(g)</span></h5>
+<div class="para" id="S-Precalc-ComoonGraphs-4-6-7-1-1">Give the equation of the ellipse shown in <a href="" class="xref" data-knowl="./knowl/xref/ellipse-ex1.html" title="Figure 9.7.3">Figure 9.7.3</a>
+</div> <figure class="figure figure-like" id="ellipse-ex1"><div class="image-box" style="width: 75%; margin-left: 12.5%; margin-right: 12.5%;"><img src="generated/sageplot/img-ellipse-ex1.svg" role="img" class="contained" alt=""></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">9.7.3<span class="period">.</span></span><span class="space"> </span>A plot of an ellipse</figcaption></figure></article></article><article class="definition definition-like" id="def-hyperbola"><h4 class="heading">
+<span class="type">Definition</span><span class="space"> </span><span class="codenumber">9.7.4</span><span class="period">.</span>
+</h4>
+<div class="para" id="def-hyperbola-1-1">A <dfn class="terminology">hyperbola</dfn> is the set of all points such that the difference of the distances from the point <span class="process-math">\((x,y)\)</span> to a pair of distinct points (called foci) is a fixed constant.</div> <figure class="figure figure-like" id="base-hyperbola"><iframe id="interactive-base-hyperbola" width="600" height="600" src="interactive-base-hyperbola-if.html"></iframe><figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">9.7.5<span class="period">.</span></span><span class="space"> </span>A plot of an hyperbola with foci in green</figcaption></figure> <div class="para" id="def-hyperbola-1-3">In the interact above, you can see how as you move around the hyperbola, the difference of the lengths of the blue and red segments remains constant (shown in green). Additionally, you can see that a hyperbola has asymptotic behavior in that as you approach the edges of the plot, the hyperbola will get very close to the asymptote lines (shown with a dashed line).</div></article><article class="activity project-like" id="S-Precalc-ComoonGraphs-4-8"><h4 class="heading">
+<span class="type">Activity</span><span class="space"> </span><span class="codenumber">9.7.4</span><span class="period">.</span>
+</h4>
+<article class="task exercise-like" id="S-Precalc-ComoonGraphs-4-8-1"><h5 class="heading"><span class="codenumber">(a)</span></h5>
+<div class="para" id="S-Precalc-ComoonGraphs-4-8-1-1-1">Make a plot of the hyperbola given by <span class="process-math">\(x^2-y^2=1\text{.}\)</span> You should draw and label the asymptotes (<span class="process-math">\(y=\pm x\)</span>) and the vertices (the points on the hyperbola that are closest to the center).</div></article><article class="task exercise-like" id="S-Precalc-ComoonGraphs-4-8-2"><h5 class="heading"><span class="codenumber">(b)</span></h5>
+<div class="para" id="S-Precalc-ComoonGraphs-4-8-2-1-1">What transformation is done to convert between the hyperbolas given by <span class="process-math">\(x^2-y^2=1\)</span> and the graph of <span class="process-math">\(\frac{x^2}{4}-y^2=1\text{?}\)</span> You should be specific about how the graph of <span class="process-math">\(\frac{x^2}{4}-y^2=1\)</span> is different than the graph of <span class="process-math">\(x^2-y^2=1\text{.}\)</span>
+</div>
+<div class="solutions"><details id="S-Precalc-ComoonGraphs-4-8-2-2" class="hint solution-like born-hidden-knowl"><summary><span class="type">Hint</span><span class="period">.</span></summary><div class="hint solution-like"><div class="para" id="S-Precalc-ComoonGraphs-4-8-2-2-1">Look at the <span class="process-math">\(x\)</span>-intercepts of each equation</div></div></details></div></article><article class="task exercise-like" id="S-Precalc-ComoonGraphs-4-8-3"><h5 class="heading"><span class="codenumber">(c)</span></h5>
+<div class="para" id="S-Precalc-ComoonGraphs-4-8-3-1-1">What transformation is done to convert between the hyperbolas given by <span class="process-math">\(x^2-y^2=1\)</span> and the graph of <span class="process-math">\(y^2-x^2=1\text{?}\)</span> You should be specific about how the graph of <span class="process-math">\(y^2-x^2=1\)</span> is different than the graph of <span class="process-math">\(x^2-y^2=1\text{.}\)</span>
+</div>
+<div class="solutions"><details id="S-Precalc-ComoonGraphs-4-8-3-2" class="hint solution-like born-hidden-knowl"><summary><span class="type">Hint</span><span class="period">.</span></summary><div class="hint solution-like"><div class="para" id="S-Precalc-ComoonGraphs-4-8-3-2-1">Look at the <span class="process-math">\(x\)</span>-intercepts of each equation</div></div></details></div></article><article class="task exercise-like" id="S-Precalc-ComoonGraphs-4-8-4"><h5 class="heading"><span class="codenumber">(d)</span></h5>
+<div class="para" id="S-Precalc-ComoonGraphs-4-8-4-1-1">What transformations are done to convert between  <span class="process-math">\(x^2-y^2=1\)</span> and the graph of <span class="process-math">\(\frac{x^2}{4}-\frac{y^2}{9}=1\text{?}\)</span> You should be specific about how the graph of <span class="process-math">\(\frac{x^2}{4}-\frac{y^2}{9}=1\)</span> is different than the graph of <span class="process-math">\(x^2-y^2=1\)</span> and specify if the transformations need to be done in a particular order.</div></article><article class="task exercise-like" id="S-Precalc-ComoonGraphs-4-8-5"><h5 class="heading"><span class="codenumber">(e)</span></h5>
+<div class="para" id="S-Precalc-ComoonGraphs-4-8-5-1-1">Draw a plot of <span class="process-math">\(\frac{(x+2)^2}{4}-\frac{(y-3)^2}{9}=1\)</span> and label the center, the vertices of the hyperbola, and the asymptote lines.</div></article><article class="task exercise-like" id="S-Precalc-ComoonGraphs-4-8-6"><h5 class="heading"><span class="codenumber">(f)</span></h5>
+<div class="para" id="S-Precalc-ComoonGraphs-4-8-6-1-1">The graph of the equation <span class="process-math">\(9x^2-16y^2=400\)</span> is an hyperbola. Convert this equation to the form <span class="process-math">\(\frac{(x-h)^2}{a^2}-\frac{(y-k)^2}{b^2}=1\)</span> and use the idea of transformations from above to graph this hyperbola and label the center, the vertices of the hyperbola, and the asymptote lines.</div></article><article class="task exercise-like" id="S-Precalc-ComoonGraphs-4-8-7"><h5 class="heading"><span class="codenumber">(g)</span></h5>
+<div class="para" id="S-Precalc-ComoonGraphs-4-8-7-1-1">The graph of the equation <span class="process-math">\(4x^2+y^2+24x-2y+21=0\)</span> is an ellipse. Convert this equation to the form <span class="process-math">\(\frac{(x-h)^2}{a^2}+\frac{(y-k)^2}{b^2}=1\)</span> and use the idea of transformations from above to graph this ellipse and label all extreme points on your plot.</div></article><article class="task exercise-like" id="S-Precalc-ComoonGraphs-4-8-8"><h5 class="heading"><span class="codenumber">(h)</span></h5>
+<div class="para" id="S-Precalc-ComoonGraphs-4-8-8-1-1">Give the equation of the hyperbola shown in <a href="" class="xref" data-knowl="./knowl/xref/hyperbola-ex1.html" title="Figure 9.7.6">Figure 9.7.6</a>
+</div> <figure class="figure figure-like" id="hyperbola-ex1"><div class="image-box" style="width: 75%; margin-left: 12.5%; margin-right: 12.5%;"><img src="generated/sageplot/img-hyperbola-ex1.svg" role="img" class="contained" alt=""></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">9.7.6<span class="period">.</span></span><span class="space"> </span>A plot of an ellipse</figcaption></figure></article></article><article class="definition definition-like" id="def-parabola"><h4 class="heading">
+<span class="type">Definition</span><span class="space"> </span><span class="codenumber">9.7.7</span><span class="period">.</span>
+</h4>
+<div class="para" id="def-parabola-1-1">A <dfn class="terminology">parabola</dfn> is the set of all points that are the same distance from a point (called the focus) and a line (called the directrix).</div> <figure class="figure figure-like" id="base-parabola"><iframe id="interactive-base-parabola" width="600" height="600" src="interactive-base-parabola-if.html"></iframe><figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">9.7.8<span class="period">.</span></span><span class="space"> </span>A plot of an parabola with the focus in green and the directrix shown as a dashed line</figcaption></figure> <div class="para" id="def-parabola-1-3">In the interact above, you can see how as you move around the parabola, the lengths of the blue and red segments remains the same as each other. The point that is half way between the focus and the directrix is referred to as the center and the vertex of the parabola.</div></article><article class="activity project-like" id="S-Precalc-ComoonGraphs-4-10"><h4 class="heading">
+<span class="type">Activity</span><span class="space"> </span><span class="codenumber">9.7.5</span><span class="period">.</span>
+</h4>
+<article class="task exercise-like" id="S-Precalc-ComoonGraphs-4-10-1"><h5 class="heading"><span class="codenumber">(a)</span></h5>
+<div class="para" id="S-Precalc-ComoonGraphs-4-10-1-1-1">Make a plot of the hyperbola given by <span class="process-math">\(x=y^2\text{.}\)</span> You should draw and label the vertex and four other points on the hyperbola.</div></article><article class="task exercise-like" id="S-Precalc-ComoonGraphs-4-10-2"><h5 class="heading"><span class="codenumber">(b)</span></h5>
+<div class="para" id="S-Precalc-ComoonGraphs-4-10-2-1-1">Draw a plot of the graph for <span class="process-math">\(2x=y^2\)</span> and label the vertex and four other points on the hyperbola. What transformation is done to convert between the parabola given by <span class="process-math">\(x=y^2\)</span> and the graph of <span class="process-math">\(2x=y^2\text{?}\)</span> You should be specific about how the graph of <span class="process-math">\(2x=y^2\)</span> is different than the graph of <span class="process-math">\(x=y^2\text{.}\)</span>
+</div></article><article class="task exercise-like" id="S-Precalc-ComoonGraphs-4-10-3"><h5 class="heading"><span class="codenumber">(c)</span></h5>
+<div class="para" id="S-Precalc-ComoonGraphs-4-10-3-1-1">Draw a plot of the graph for <span class="process-math">\(y=x^2\)</span> and label the vertex and four other points on the hyperbola. What transformation is done to convert between the hyperbolas given by <span class="process-math">\(y=x^2\)</span> and the graph of <span class="process-math">\(x=y^2\text{?}\)</span> You should be specific about how the graph of <span class="process-math">\(x=y^2\)</span> is different than the graph of <span class="process-math">\(y=x^2\text{.}\)</span>
+</div></article><article class="task exercise-like" id="S-Precalc-ComoonGraphs-4-10-4"><h5 class="heading"><span class="codenumber">(d)</span></h5>
+<div class="para" id="S-Precalc-ComoonGraphs-4-10-4-1-1">What transformations are done to convert between  <span class="process-math">\(x=y^2\)</span> and the graph of <span class="process-math">\(\frac{x-1}{2}=\left(\frac{(y+2)}{3}\right)^2\text{?}\)</span> You should be specific about how the graph of <span class="process-math">\(\frac{x-1}{2}=\left(\frac{(y+2)}{3}\right)^2\)</span> is different than the graph of <span class="process-math">\(x=y^2\)</span> and specify if the transformations need to be done in a particular order.</div></article><article class="task exercise-like" id="S-Precalc-ComoonGraphs-4-10-5"><h5 class="heading"><span class="codenumber">(e)</span></h5>
+<div class="para" id="S-Precalc-ComoonGraphs-4-10-5-1-1">Draw a plot of <span class="process-math">\(\frac{x-1}{2}=\left(\frac{(y+2)}{3}\right)^2\)</span> and label the vertex and four other points on the hyperbola.</div></article><article class="task exercise-like" id="S-Precalc-ComoonGraphs-4-10-6"><h5 class="heading"><span class="codenumber">(f)</span></h5>
+<div class="para" id="S-Precalc-ComoonGraphs-4-10-6-1-1">The graph of the equation <span class="process-math">\(x^2-8x-8y+8=0\)</span> is an parabola. Convert this equation to the form <span class="process-math">\(\left(\frac{(x-h)}{a}\right)^2=\frac{(y-k)}{b}\)</span> and use the idea of transformations from above to graph this hyperbola and label the center, the vertices of the hyperbola, and the asymptote lines.</div></article><article class="task exercise-like" id="S-Precalc-ComoonGraphs-4-10-7"><h5 class="heading"><span class="codenumber">(g)</span></h5>
+<div class="para" id="S-Precalc-ComoonGraphs-4-10-7-1-1">Give the equation of the parabola shown in <a href="" class="xref" data-knowl="./knowl/xref/parabola-ex1.html" title="Figure 9.7.9">Figure 9.7.9</a>
+</div> <figure class="figure figure-like" id="parabola-ex1"><div class="image-box" style="width: 75%; margin-left: 12.5%; margin-right: 12.5%;"><img src="generated/sageplot/img-parabola-ex1.svg" role="img" class="contained" alt=""></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">9.7.9<span class="period">.</span></span><span class="space"> </span>A plot of an parabola</figcaption></figure></article></article></section><section class="subsection" id="subsec-cylsurf"><h3 class="heading hide-type">
+<span class="type">Subsection</span><span class="space"> </span><span class="codenumber">9.7.2</span><span class="space"> </span><span class="title">Cylinder Surfaces</span>
+</h3>
+<div class="para" id="subsec-cylsurf-2">Our previous examples in this section show how to create a variety of interesting curves on the <span class="process-math">\(xy\)</span>-plane. What happens if we consider these same equations in three dimensions? Let’s look at an example like <span class="process-math">\((y+2)=\frac{t^2-1}{2}\text{.}\)</span> If we consider the graph of  <span class="process-math">\((y+2)=\frac{t^2-1}{2}\)</span> in 2D, then we get a parabola centered at <span class="process-math">\((1,-2)\text{.}\)</span>
+</div>
+<figure class="figure figure-like" id="para-ex2"><div class="image-box" style="width: 75%; margin-left: 12.5%; margin-right: 12.5%;"><img src="generated/sageplot/img-para-ex2.svg" role="img" class="contained" alt=""></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">9.7.10<span class="period">.</span></span><span class="space"> </span>A plot of <span class="process-math">\((y+2)=\frac{t^2-1}{2}\)</span> in the <span class="process-math">\(xy\)</span>-plane with five points highlighted</figcaption></figure><div class="para" id="subsec-cylsurf-4">If we want to look at the graph of <span class="process-math">\((y+2)=\frac{t^2-1}{2}\)</span> in 3D, we are considering all of the <span class="process-math">\((x,y,z)\)</span> points that will satisfy this equation. So if we pick <span class="process-math">\(x\)</span> and <span class="process-math">\(y\)</span> values that satisfy <span class="process-math">\((y+2)=\frac{t^2-1}{2}\text{,}\)</span> then ANY choice of <span class="process-math">\(z\)</span> will satisfy the given question. So for the each of the highlighted points on <a href="" class="xref" data-knowl="./knowl/xref/para-ex2.html" title="Figure 9.7.10">Figure 9.7.10</a>, we can extend the graph of <span class="process-math">\((y+2)=\frac{t^2-1}{2}\)</span> parallel to the <span class="process-math">\(z\)</span>-axis. <a href="" class="xref" data-knowl="./knowl/xref/cylsurfex1.html" title="Figure 9.7.11">Figure 9.7.11</a> shows how the points on the parabola (in black) can be extended to include any <span class="process-math">\(z\)</span> coordinate.</div>
+<figure class="figure figure-like" id="cylsurfex1"><iframe id="interactive-cylsurfex1" width="600" height="600" src="interactive-cylsurfex1-if.html"></iframe><figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">9.7.11<span class="period">.</span></span><span class="space"> </span>A plot of <span class="process-math">\((y+2)=\frac{t^2-1}{2}\)</span> generating curve and several rulings</figcaption></figure><div class="para" id="subsec-cylsurf-6">Extending all points from the circle <span class="process-math">\((y+2)=\frac{t^2-1}{2}\)</span> in the <span class="process-math">\(xy\)</span>-plane parallel to the <span class="process-math">\(z\)</span>-axis will give a surface. This kind of surface is called a <dfn class="terminology">cylinder surface</dfn>, the two dimensional curve you use to make the surface is called the <dfn class="terminology">generating curve</dfn>, and the lines that extend in the direction of the missing variable are called <dfn class="terminology">rulings</dfn>. In <a href="" class="xref" data-knowl="./knowl/xref/cylsurfex2.html" title="Figure 9.7.12">Figure 9.7.12</a>, the surface is plotted in blue, the generating curve in black, and the rulings in green. This surface is called a parabolic cylinder surface because the generating curve is a parabola.</div>
+<figure class="figure figure-like" id="cylsurfex2"><iframe id="interactive-cylsurfex2" width="600" height="600" src="interactive-cylsurfex2-if.html"></iframe><figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">9.7.12<span class="period">.</span></span><span class="space"> </span>A plot of the cylinder surface <span class="process-math">\((y+2)=\frac{t^2-1}{2}\)</span> with generating curve and several rulings</figcaption></figure><article class="activity project-like" id="subsec-cylsurf-8"><h4 class="heading">
+<span class="type">Activity</span><span class="space"> </span><span class="codenumber">9.7.6</span><span class="period">.</span>
+</h4>
+<article class="task exercise-like" id="subsec-cylsurf-8-1"><h5 class="heading"><span class="codenumber">(a)</span></h5>
+<div class="para" id="subsec-cylsurf-8-1-1-1">Draw the graph of <span class="process-math">\(2x-y+1=0\)</span> on the <span class="process-math">\(xy\)</span>-plane.</div></article><article class="task exercise-like" id="subsec-cylsurf-8-2"><h5 class="heading"><span class="codenumber">(b)</span></h5>
+<div class="para" id="subsec-cylsurf-8-2-1-1">Draw the graph of <span class="process-math">\(2x-y+1=0\)</span> in <span class="process-math">\(xyz\)</span>-space. This is called a linear cylinder surface.</div></article><article class="task exercise-like" id="subsec-cylsurf-8-3"><h5 class="heading"><span class="codenumber">(c)</span></h5>
+<div class="para" id="subsec-cylsurf-8-3-1-1">Draw the graph of <span class="process-math">\((x-1)^2+(y+2)^2=4\)</span> in <span class="process-math">\(xyz\)</span>-space. This is called a right-circular cylinder surface.</div>
+<div class="solutions"><details id="subsec-cylsurf-8-3-3" class="solution solution-like born-hidden-knowl"><summary><span class="type">Solution</span><span class="period">.</span></summary><div class="solution solution-like"><div class="para" id="subsec-cylsurf-8-3-3-1"><figure class="figure figure-like" id="cylsurfex3"><iframe id="interactive-cylsurfex3" width="600" height="600" src="interactive-cylsurfex3-if.html"></iframe><figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">9.7.13<span class="period">.</span></span><span class="space"> </span>A plot of the cylinder surface <span class="process-math">\((x-1)^2+(y+2)^2=4\)</span> with generating curve and several rulings</figcaption></figure></div></div></details></div></article><article class="task exercise-like" id="subsec-cylsurf-8-4"><h5 class="heading"><span class="codenumber">(d)</span></h5>
+<div class="para" id="subsec-cylsurf-8-4-1-1">Draw the graph of <span class="process-math">\(\frac{x^2}{9}+\frac{z^2}{4}=1\)</span> in <span class="process-math">\(xyz\)</span>-space. This is called an elliptic cylinder surface.</div></article></article></section><section class="subsection" id="quadric-surfaces"><h3 class="heading hide-type">
+<span class="type">Subsection</span><span class="space"> </span><span class="codenumber">9.7.3</span><span class="space"> </span><span class="title">Quadric Surfaces</span>
+</h3>
+<div class="para" id="quadric-surfaces-2">In this section, we will look at a set of surfaces with algebraic equations that are quadratic in <span class="process-math">\(x\text{,}\)</span> <span class="process-math">\(y\text{,}\)</span> and <span class="process-math">\(z\text{.}\)</span> This will give us a category of example surfaces that algebraically simple but exhibit a variety of interesting characteristics.</div>
+<article class="activity project-like" id="quadric-surfaces-3"><h4 class="heading">
+<span class="type">Activity</span><span class="space"> </span><span class="codenumber">9.7.7</span><span class="period">.</span>
+</h4>
+<div class="introduction" id="quadric-surfaces-3-1"><div class="para" id="quadric-surfaces-3-1-1">For this activity, we will be looking at a variety properties that will help us draw a graph of the surface described by <span class="process-math">\(\frac{x^2}{4}+\frac{y^2}{9}-\frac{z^2}{1}=1\text{.}\)</span>
+</div></div>
+<article class="task exercise-like" id="quadric-surfaces-3-2"><h5 class="heading"><span class="codenumber">(a)</span></h5>
+<div class="para" id="quadric-surfaces-3-2-1-1">Find all <span class="process-math">\(x\)</span>-, <span class="process-math">\(y\)</span>-, and <span class="process-math">\(z\)</span>-intercepts.</div>
+<div class="solutions"><details id="quadric-surfaces-3-2-2" class="hint solution-like born-hidden-knowl"><summary><span class="type">Hint</span><span class="period">.</span></summary><div class="hint solution-like"><div class="para" id="quadric-surfaces-3-2-2-1">The <span class="process-math">\(x\)</span>-intercepts are where <span class="process-math">\(y=0\)</span> and <span class="process-math">\(z=0\text{.}\)</span>
+</div></div></details></div></article><article class="task exercise-like" id="quadric-surfaces-3-3"><h5 class="heading"><span class="codenumber">(b)</span></h5>
+<div class="para" id="quadric-surfaces-3-3-1-1">Find an equation for the curve given by the intersection of <span class="process-math">\(\frac{x^2}{4}+\frac{y^2}{9}-\frac{z^2}{1}=1\)</span> with the <span class="process-math">\(xy\)</span>-plane. Draw a plot of your equation on the <span class="process-math">\(xy\)</span>-plane.</div></article><article class="task exercise-like" id="quadric-surfaces-3-4"><h5 class="heading"><span class="codenumber">(c)</span></h5>
+<div class="para" id="quadric-surfaces-3-4-1-1">Find an equation for the curve given by the intersection of <span class="process-math">\(\frac{x^2}{4}+\frac{y^2}{9}-\frac{z^2}{1}=1\)</span> with the <span class="process-math">\(yz\)</span>-plane. Draw a plot of your equation on the <span class="process-math">\(yz\)</span>-plane.</div></article><article class="task exercise-like" id="quadric-surfaces-3-5"><h5 class="heading"><span class="codenumber">(d)</span></h5>
+<div class="para" id="quadric-surfaces-3-5-1-1">Find an equation for the curve given by the intersection of <span class="process-math">\(\frac{x^2}{4}+\frac{y^2}{9}-\frac{z^2}{1}=1\)</span> with the <span class="process-math">\(xz\)</span>-plane. Draw a plot of your equation on the <span class="process-math">\(xz\)</span>-plane.</div></article><article class="task exercise-like" id="quadric-surfaces-3-6"><h5 class="heading"><span class="codenumber">(e)</span></h5>
+<div class="para logical" id="quadric-surfaces-3-6-1-1">
+<div class="para">Find equations for the curve given by the intersection of <span class="process-math">\(\frac{x^2}{4}+\frac{y^2}{9}-\frac{z^2}{1}=1\)</span> with the each of the following fundamental planes. You should state the shape and any other characteristics (like center or direction) for each of these intersections.</div>
+<ol class="decimal">
+<li id="quadric-surfaces-3-6-1-1-2-1"><div class="para" id="p-derived-quadric-surfaces-3-6-1-1-2-1"><span class="process-math">\(\displaystyle z=1\)</span></div></li>
+<li id="quadric-surfaces-3-6-1-1-2-2"><div class="para" id="p-derived-quadric-surfaces-3-6-1-1-2-2"><span class="process-math">\(\displaystyle z=-2\)</span></div></li>
+<li id="quadric-surfaces-3-6-1-1-2-3"><div class="para" id="p-derived-quadric-surfaces-3-6-1-1-2-3"><span class="process-math">\(\displaystyle z=\sqrt{3}\)</span></div></li>
+<li id="quadric-surfaces-3-6-1-1-2-4"><div class="para" id="p-derived-quadric-surfaces-3-6-1-1-2-4"><span class="process-math">\(\displaystyle x=3\)</span></div></li>
+<li id="quadric-surfaces-3-6-1-1-2-5"><div class="para" id="p-derived-quadric-surfaces-3-6-1-1-2-5"><span class="process-math">\(\displaystyle x=-1\)</span></div></li>
+</ol>
+</div></article><article class="task exercise-like" id="quadric-surfaces-3-7"><h5 class="heading"><span class="codenumber">(f)</span></h5>
+<div class="para" id="quadric-surfaces-3-7-1-1">Draw each of these intersections on the proper fundamental planes in 3D.</div></article><article class="task exercise-like" id="quadric-surfaces-3-8"><h5 class="heading"><span class="codenumber">(g)</span></h5>
+<div class="para" id="quadric-surfaces-3-8-1-1">Which of the following surface plots will correspond to <span class="process-math">\(\frac{x^2}{4}+\frac{y^2}{9}-\frac{z^2}{1}=1\text{?}\)</span> You can determine this by comparing the features on your previous part to these options.</div> <figure class="figure figure-like" id="quadsurfex2"><iframe id="interactive-quadsurfex2" width="600" height="600" src="interactive-quadsurfex2-if.html"></iframe><figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">9.7.14<span class="period">.</span></span><span class="space"> </span>A plot surfaces to select from</figcaption></figure></article></article><article class="activity project-like" id="quadric-surfaces-4"><h4 class="heading">
+<span class="type">Activity</span><span class="space"> </span><span class="codenumber">9.7.8</span><span class="period">.</span>
+</h4>
+<article class="task exercise-like" id="quadric-surfaces-4-1"><h5 class="heading"><span class="codenumber">(a)</span></h5>
+<div class="para logical" id="quadric-surfaces-4-1-1-1">
+<div class="para">Find equations for the curve given by the intersection of <span class="process-math">\(\frac{x^2}{4}-\frac{y^2}{9}-\frac{z^2}{1}=1\)</span> with the each of the following fundamental planes. You should state the shape and any other characteristics (like center or direction) for each of these intersections.</div>
+<ol class="decimal">
+<li id="quadric-surfaces-4-1-1-1-2-1"><div class="para" id="p-derived-quadric-surfaces-4-1-1-1-2-1"><span class="process-math">\(\displaystyle z=0\)</span></div></li>
+<li id="quadric-surfaces-4-1-1-1-2-2"><div class="para" id="p-derived-quadric-surfaces-4-1-1-1-2-2"><span class="process-math">\(\displaystyle y=0\)</span></div></li>
+<li id="quadric-surfaces-4-1-1-1-2-3"><div class="para" id="p-derived-quadric-surfaces-4-1-1-1-2-3"><span class="process-math">\(\displaystyle x=0\)</span></div></li>
+<li id="quadric-surfaces-4-1-1-1-2-4"><div class="para" id="p-derived-quadric-surfaces-4-1-1-1-2-4"><span class="process-math">\(\displaystyle z=1\)</span></div></li>
+<li id="quadric-surfaces-4-1-1-1-2-5"><div class="para" id="p-derived-quadric-surfaces-4-1-1-1-2-5"><span class="process-math">\(\displaystyle y=-2\)</span></div></li>
+<li id="quadric-surfaces-4-1-1-1-2-6"><div class="para" id="p-derived-quadric-surfaces-4-1-1-1-2-6"><span class="process-math">\(\displaystyle z=\sqrt{3}\)</span></div></li>
+<li id="quadric-surfaces-4-1-1-1-2-7"><div class="para" id="p-derived-quadric-surfaces-4-1-1-1-2-7"><span class="process-math">\(\displaystyle x=3\)</span></div></li>
+<li id="quadric-surfaces-4-1-1-1-2-8"><div class="para" id="p-derived-quadric-surfaces-4-1-1-1-2-8"><span class="process-math">\(\displaystyle x=-1\)</span></div></li>
+</ol>
+</div></article><article class="task exercise-like" id="quadric-surfaces-4-2"><h5 class="heading"><span class="codenumber">(b)</span></h5>
+<div class="para" id="quadric-surfaces-4-2-1-1">Which of the following surface plots will correspond to <span class="process-math">\(\frac{x^2}{4}-\frac{y^2}{9}-\frac{z^2}{1}=1\text{?}\)</span> You can determine this by comparing the features on your previous part to these options.</div> <figure class="figure figure-like" id="quadsurfex3"><iframe id="interactive-quadsurfex3" width="600" height="600" src="interactive-quadsurfex3-if.html"></iframe><figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">9.7.15<span class="period">.</span></span><span class="space"> </span>A plot surfaces to select from</figcaption></figure></article><article class="task exercise-like" id="quadric-surfaces-4-3"><h5 class="heading"><span class="codenumber">(c)</span></h5>
+<div class="para logical" id="quadric-surfaces-4-3-1-1">
+<div class="para">Find equations for the curve given by the intersection of <span class="process-math">\(\frac{x^2}{4}+\frac{y^2}{9}+\frac{z^2}{1}=1\)</span> with the each of the following fundamental planes. You should state the shape and any other characteristics (like center or direction) for each of these intersections.</div>
+<ol class="decimal">
+<li id="quadric-surfaces-4-3-1-1-2-1"><div class="para" id="p-derived-quadric-surfaces-4-3-1-1-2-1"><span class="process-math">\(\displaystyle z=0\)</span></div></li>
+<li id="quadric-surfaces-4-3-1-1-2-2"><div class="para" id="p-derived-quadric-surfaces-4-3-1-1-2-2"><span class="process-math">\(\displaystyle y=0\)</span></div></li>
+<li id="quadric-surfaces-4-3-1-1-2-3"><div class="para" id="p-derived-quadric-surfaces-4-3-1-1-2-3"><span class="process-math">\(\displaystyle x=0\)</span></div></li>
+<li id="quadric-surfaces-4-3-1-1-2-4"><div class="para" id="p-derived-quadric-surfaces-4-3-1-1-2-4"><span class="process-math">\(\displaystyle z=1\)</span></div></li>
+<li id="quadric-surfaces-4-3-1-1-2-5"><div class="para" id="p-derived-quadric-surfaces-4-3-1-1-2-5"><span class="process-math">\(\displaystyle z=-2\)</span></div></li>
+<li id="quadric-surfaces-4-3-1-1-2-6"><div class="para" id="p-derived-quadric-surfaces-4-3-1-1-2-6"><span class="process-math">\(\displaystyle y=\sqrt{3}\)</span></div></li>
+<li id="quadric-surfaces-4-3-1-1-2-7"><div class="para" id="p-derived-quadric-surfaces-4-3-1-1-2-7"><span class="process-math">\(\displaystyle x=3\)</span></div></li>
+<li id="quadric-surfaces-4-3-1-1-2-8"><div class="para" id="p-derived-quadric-surfaces-4-3-1-1-2-8"><span class="process-math">\(\displaystyle x=-1\)</span></div></li>
+</ol>
+</div></article><article class="task exercise-like" id="quadric-surfaces-4-4"><h5 class="heading"><span class="codenumber">(d)</span></h5>
+<div class="para" id="quadric-surfaces-4-4-1-1">Which of the following surface plots will correspond to <span class="process-math">\(\frac{x^2}{4}+\frac{y^2}{9}+\frac{z^2}{1}=1\text{?}\)</span> You can determine this by comparing the features on your previous part to these options.</div> <figure class="figure figure-like" id="quadsurfex4"><iframe id="interactive-quadsurfex4" width="600" height="600" src="interactive-quadsurfex4-if.html"></iframe><figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">9.7.16<span class="period">.</span></span><span class="space"> </span>A plot surfaces to select from</figcaption></figure></article></article><div class="para" id="quadric-surfaces-5">go over the other quadric surfaces.</div>
+<div class="para" id="quadric-surfaces-6">will go over this more later but only a few of these graphs can be expressed with one coordinate a function of the others. Talk about what this means briefly and then reference the later work.</div></section><section class="subsection" id="S-Precalc-ComoonGraphs-7"><h3 class="heading hide-type">
+<span class="type">Subsection</span><span class="space"> </span><span class="codenumber">9.7.4</span><span class="space"> </span><span class="title">Summary</span>
+</h3>
+<ul class="disc">
+<li id="S-Precalc-ComoonGraphs-7-2-1"><div class="para" id="S-Precalc-ComoonGraphs-7-2-1-1">A function <span class="process-math">\(f\)</span> of several variables is a rule that assigns a unique number to an ordered collection of independent inputs.  The domain of a function of several variables is the set of all inputs for which the function is defined.</div></li>
+<li id="S-Precalc-ComoonGraphs-7-2-2"><div class="para logical" id="S-Precalc-ComoonGraphs-7-2-2-1">
+<div class="para">In <span class="process-math">\(\R^3\text{,}\)</span> the distance between points <span class="process-math">\(P=(x_0, y_0, z_0)\)</span> and <span class="process-math">\(Q=(x_1, y_1, z_1)\)</span> (denoted as <span class="process-math">\(|PQ|\)</span>)  is given by the formula</div>
+<div class="displaymath process-math">
+\begin{equation*}
+|PQ| = \sqrt{(x_1-x_0)^2 + (y_1-y_0)^2 + (z_1-z_0)^2}.
+\end{equation*}
+</div>
+<div class="para">and thus the equation of a sphere with center <span class="process-math">\((x_0,y_0,z_0)\)</span> and radius <span class="process-math">\(r\)</span> is</div>
+<div class="displaymath process-math">
+\begin{equation*}
+(x-x_0)^2 + (y-y_0)^2 + (z-z_0)^2 = r^2.
+\end{equation*}
+</div>
+</div></li>
+<li id="S-Precalc-ComoonGraphs-7-2-3"><div class="para" id="S-Precalc-ComoonGraphs-7-2-3-1">conic sections and thier forms</div></li>
+<li id="S-Precalc-ComoonGraphs-7-2-4"><div class="para" id="S-Precalc-ComoonGraphs-7-2-4-1">cylindrical surfaces</div></li>
+<li id="S-Precalc-ComoonGraphs-7-2-5"><div class="para" id="S-Precalc-ComoonGraphs-7-2-5-1">quadric surfaces</div></li>
+</ul></section><section class="exercises" id="S-Precalc-ComoonGraphs-8"><h3 class="heading hide-type">
+<span class="type">Exercises</span><span class="space"> </span><span class="codenumber">9.7.5</span><span class="space"> </span><span class="title">Exercises</span>
+</h3>
+<article class="exercise exercise-like" id="Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-28-Functions-of-two-variables.pg"><h4 class="heading"><span class="codenumber">1<span class="period">.</span></span></h4>
+<div id="webwork-52" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="52" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-localize-hint="Hint" data-localize-solution="Solution" data-sourceFilePath="Library/FortLewis/Calc3/12-1-Two-variable-functions/HGM4-12-1-28-Functions-of-two-variables.pg" data-courseID="mitchkeller-dev" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-52')">Activate</button></div>
+<div class="problem-contents">
+<div class="para" id="extracted-webwork-52-1-1-1">(a) Describe the set of points whose distance from the z-axis equals the distance from the xy-plane.</div> <div class="para logical" id="extracted-webwork-52-1-1-2"><ul class="circle">
+<li id="extracted-webwork-52-1-1-2-1-1"><div class="para" id="extracted-webwork-52-1-1-2-1-1-1">A cylinder opening along the z-axis</div></li>
+<li id="extracted-webwork-52-1-1-2-1-2"><div class="para" id="extracted-webwork-52-1-1-2-1-2-1">A cylinder opening along the x-axis</div></li>
+<li id="extracted-webwork-52-1-1-2-1-3"><div class="para" id="extracted-webwork-52-1-1-2-1-3-1">A cylinder opening along the y-axis</div></li>
+<li id="extracted-webwork-52-1-1-2-1-4"><div class="para" id="extracted-webwork-52-1-1-2-1-4-1">A cone opening along the x-axis</div></li>
+<li id="extracted-webwork-52-1-1-2-1-5"><div class="para" id="extracted-webwork-52-1-1-2-1-5-1">A cone opening along the y-axis</div></li>
+<li id="extracted-webwork-52-1-1-2-1-6"><div class="para" id="extracted-webwork-52-1-1-2-1-6-1">A cone opening along the z-axis</div></li>
+</ul></div> <div class="para" id="extracted-webwork-52-1-1-3">(b) Find the equation for the set of points whose distance from the z-axis equals the distance from the xy-plane.</div> <div class="para logical" id="extracted-webwork-52-1-1-4"><ul class="circle">
+<li id="extracted-webwork-52-1-1-4-1-1"><div class="para" id="extracted-webwork-52-1-1-4-1-1-1"><span class="process-math">\(\displaystyle x^2 = y^2 + z^2\)</span></div></li>
+<li id="extracted-webwork-52-1-1-4-1-2"><div class="para" id="extracted-webwork-52-1-1-4-1-2-1"><span class="process-math">\(\displaystyle x^2 + y^2 = r^2\)</span></div></li>
+<li id="extracted-webwork-52-1-1-4-1-3"><div class="para" id="extracted-webwork-52-1-1-4-1-3-1"><span class="process-math">\(\displaystyle y^2 = x^2 + z^2\)</span></div></li>
+<li id="extracted-webwork-52-1-1-4-1-4"><div class="para" id="extracted-webwork-52-1-1-4-1-4-1"><span class="process-math">\(\displaystyle z^2 = x^2 + y^2\)</span></div></li>
+<li id="extracted-webwork-52-1-1-4-1-5"><div class="para" id="extracted-webwork-52-1-1-4-1-5-1"><span class="process-math">\(\displaystyle x^2 + z^2 = r^2\)</span></div></li>
+<li id="extracted-webwork-52-1-1-4-1-6"><div class="para" id="extracted-webwork-52-1-1-4-1-6-1"><span class="process-math">\(\displaystyle y^2 + z^2 = r^2\)</span></div></li>
+</ul></div>
+</div>
+</div></article><article class="exercise exercise-like" id="Library__FortLewis__Calc3__12-2-Multivariable-graphs__HGM4-12-2-11-Multivariable-functions-graphs.pg"><h4 class="heading"><span class="codenumber">2<span class="period">.</span></span></h4>
+<div id="webwork-53" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="53" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-localize-hint="Hint" data-localize-solution="Solution" data-sourceFilePath="Library/FortLewis/Calc3/12-2-Multivariable-graphs/HGM4-12-2-11-Multivariable-functions-graphs.pg" data-courseID="mitchkeller-dev" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-53')">Activate</button></div>
+<div class="problem-contents">
+<div class="para" id="extracted-webwork-53-1-1-1">For each surface, decide whether it could be a bowl, a plate, or neither. Consider a plate to be any fairly flat surface and a bowl to be anything that could hold water, assuming the positive z-axis is up.</div> <div class="para logical" id="extracted-webwork-53-1-1-2"><ol class="lower-alpha">
+<li id="extracted-webwork-53-1-1-2-1-1"><div class="para" id="extracted-webwork-53-1-1-2-1-1-1"><span class="process-math">\(\displaystyle z = - \sqrt{ 5 - x^2 - y^2 }\)</span></div></li>
+<li id="extracted-webwork-53-1-1-2-1-2"><div class="para" id="extracted-webwork-53-1-1-2-1-2-1"><span class="process-math">\(\displaystyle x + y + z = 4\)</span></div></li>
+<li id="extracted-webwork-53-1-1-2-1-3"><div class="para" id="extracted-webwork-53-1-1-2-1-3-1"><span class="process-math">\(\displaystyle z = 1 - x^2 - y^2\)</span></div></li>
+<li id="extracted-webwork-53-1-1-2-1-4"><div class="para" id="extracted-webwork-53-1-1-2-1-4-1"><span class="process-math">\(\displaystyle z = x^2 + y^2\)</span></div></li>
+<li id="extracted-webwork-53-1-1-2-1-5"><div class="para" id="extracted-webwork-53-1-1-2-1-5-1"><span class="process-math">\(\displaystyle z = 5\)</span></div></li>
+</ol></div>
+</div>
+</div></article></section><section class="subsection" id="S-Precalc-ComoonGraphs-9"><h3 class="heading hide-type">
+<span class="type">Subsection</span><span class="space"> </span><span class="codenumber">9.7.6</span><span class="space"> </span><span class="title">Notes to Instructors and Dependencies</span>
+</h3>
+<div class="para" id="S-Precalc-ComoonGraphs-9-2">This section includes a lot of basic transformation ideas that students may have a range of experience with. We included these activities as a way to make sure that students have some exposure and they get to practice simpler algebraic procedures that will be used with more complexity later in the text. A more thorough approach to the conic sections can be found at (insert link to IBL materials here).</div></section></section></div>
+<div class="ptx-content-footer">
+<a class="previous-button button" href="S-Precalc-LinesPlanes.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Top</span></a><a class="next-button button" href="S-Precalc-OtherCoordSystems.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a>
+</div></main>
+</div>
+<div id="ptx-page-footer" class="ptx-page-footer">
+<a class="pretext-link" href="https://pretextbook.org" title="PreTeXt"><div class="logo"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="338 3000 8772 6866"><g style="stroke-width:.025in; stroke:black; fill:none"><polyline points="472,3590 472,9732 " style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round; "></polyline><path style="stroke:#000000;stroke-width:126;stroke-linecap:butt;" d="M 4724,9448 A 4660 4660  0  0  1  8598  9259"></path><path style="stroke:#000000;stroke-width:174;stroke-linecap:butt;" d="M 4488,9685 A 4228 4228  0  0  0   472  9732"></path><path style="stroke:#000000;stroke-width:126;stroke-linecap:butt;" d="M 4724,3590 A 4241 4241  0  0  1  8598  3496"></path><path style="stroke:#000000;stroke-width:126;stroke-linecap:round;" d="M 850,3496  A 4241 4241  0  0  1  4724  3590"></path><path style="stroke:#000000;stroke-width:126;stroke-linecap:round;" d="M 850,9259  A 4507 4507  0  0  1  4724  9448"></path><polyline points="5385,4299 4062,8125" style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="8598,3496 8598,9259" style="stroke:#000000;stroke-width:126; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="850,3496 850,9259" style="stroke:#000000;stroke-width:126; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="4960,9685 4488,9685" style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="3070,4582 1889,6141 3070,7700" style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="6418,4582 7600,6141 6418,7700" style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="8976,3590 8976,9732" style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round;"></polyline><path style="stroke:#000000;stroke-width:174;stroke-linecap:butt;" d="M 4960,9685 A 4228 4228  0  0  1  8976  9732"></path></g></svg></div></a><a class="runestone-link" href="https://runestone.academy" title="Runestone Academy"><img class="logo" src="https://runestone.academy/runestone/static/images/RAIcon_cropped.png"></a><a class="mathjax-link" href="https://www.mathjax.org" title="MathJax"><img class="logo" src="https://www.mathjax.org/badge/badge-square-2.png"></a>
+</div>
+<!--Start: Google Global Site Tag code--><!--*** DO NOT COPY ANOTHER PROJECT'S MAGIC NUMBERS/ID ***--><!--***           GET YOUR OWN FROM GOOGLE             ***-->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-QJKN634F7R"></script><script>  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-QJKN634F7R');
+</script><!--End: Google Global Site Tag code-->
+</body>
+</html>
