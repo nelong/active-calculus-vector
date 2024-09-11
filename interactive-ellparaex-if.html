@@ -68,7 +68,7 @@ window.MathJax = {
       "[pretext]/mathjaxknowl3.js"
     ],
     "paths": {
-      "pretext": "https://pretextbook.org/js/lib"
+      "pretext": "_static/pretext/js/lib"
     }
   },
   "startup": {
@@ -80,16 +80,16 @@ window.MathJax = {
     )}
   }
 };
-</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><link href="https://pretextbook.org/css/0.83/pretext.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.83/pretext_add_on.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.83/shell_default.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.83/banner_default.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.83/navbar_default.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.83/toc_default.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.83/knowls_default.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.83/style_default.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.83/colors_blue_grey.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.83/setcolors.css" rel="stylesheet" type="text/css">
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><link href="_static/pretext/css/pretext.css" rel="stylesheet" type="text/css">
+<link href="_static/pretext/css/pretext_add_on.css" rel="stylesheet" type="text/css">
+<link href="_static/pretext/css/shell_default.css" rel="stylesheet" type="text/css">
+<link href="_static/pretext/css/banner_default.css" rel="stylesheet" type="text/css">
+<link href="_static/pretext/css/navbar_default.css" rel="stylesheet" type="text/css">
+<link href="_static/pretext/css/toc_default.css" rel="stylesheet" type="text/css">
+<link href="_static/pretext/css/knowls_default.css" rel="stylesheet" type="text/css">
+<link href="_static/pretext/css/style_default.css" rel="stylesheet" type="text/css">
+<link href="_static/pretext/css/colors_blue_grey.css" rel="stylesheet" type="text/css">
+<link href="_static/pretext/css/setcolors.css" rel="stylesheet" type="text/css">
 <script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>sagecell.makeSagecell({
   "inputLocation": ".sage-interact",
   "autoeval": true,
@@ -101,7 +101,51 @@ window.MathJax = {
 });
 </script><link rel="stylesheet" type="text/css" href="https://sagecell.sagemath.org/static/sagecell_embed.css">
 </head>
-<body class="ptx-content ignore-math" id="acmulti"><div style="width:600px; height:600px; display: block; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;"><pre class="ptx-sagecell sage-interact"><script type="text/x-sage">from sage.plot.plot3d.plot3d import axes
+<body class="ptx-content ignore-math" id="acmulti">
+<div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\newcommand{\R}{\mathbb{R}}
+\newcommand{\va}{\mathbf{a}}
+\newcommand{\vb}{\mathbf{b}}
+\newcommand{\vc}{\mathbf{c}}
+\newcommand{\vC}{\mathbf{C}}
+\newcommand{\vd}{\mathbf{d}}
+\newcommand{\ve}{\mathbf{e}}
+\newcommand{\vi}{\mathbf{i}}
+\newcommand{\vj}{\mathbf{j}}
+\newcommand{\vk}{\mathbf{k}}
+\newcommand{\vn}{\mathbf{n}}
+\newcommand{\vm}{\mathbf{m}}
+\newcommand{\vr}{\mathbf{r}}
+\newcommand{\vs}{\mathbf{s}}
+\newcommand{\vu}{\mathbf{u}}
+\newcommand{\vv}{\mathbf{v}}
+\newcommand{\vw}{\mathbf{w}}
+\newcommand{\vx}{\mathbf{x}}
+\newcommand{\vy}{\mathbf{y}}
+\newcommand{\vz}{\mathbf{z}}
+\newcommand{\vzero}{\mathbf{0}}
+\newcommand{\vF}{\mathbf{F}}
+\newcommand{\vG}{\mathbf{G}}
+\newcommand{\vH}{\mathbf{H}}
+\newcommand{\vR}{\mathbf{R}}
+\newcommand{\vT}{\mathbf{T}}
+\newcommand{\vN}{\mathbf{N}}
+\newcommand{\vL}{\mathbf{L}}
+\newcommand{\vB}{\mathbf{B}}
+\newcommand{\vS}{\mathbf{S}}
+\newcommand{\proj}{\text{proj}}
+\newcommand{\comp}{\text{comp}}
+\newcommand{\nin}{}
+\newcommand{\vecmag}[1]{|#1|}
+\newcommand{\grad}{\nabla}
+\DeclareMathOperator{\curl}{curl}
+\DeclareMathOperator{\divg}{div}
+\newcommand{\lt}{&lt;}
+\newcommand{\gt}{&gt;}
+\newcommand{\amp}{&amp;}
+\definecolor{fillinmathshade}{gray}{0.9}
+\newcommand{\fillinmath}[1]{\mathchoice{\colorbox{fillinmathshade}{$\displaystyle     \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\textstyle        \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptstyle      \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptscriptstyle\phantom{\,#1\,}$}}}
+\)</span></div>
+<div style="width:600px; height:600px; display: block; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;"><pre class="ptx-sagecell sage-interact"><script type="text/x-sage">from sage.plot.plot3d.plot3d import axes
 var('s,t,x,y,z')
 scale=3
 steps=16
@@ -120,5 +164,6 @@ for ys in ylist:
 for zs in zlist:
     plot27+=implicit_plot3d(lhs==rhs,(x,-scale,scale),(y,-scale,scale),(z,zs-d,zs+d),color="green")
 show(plot27,aspect_ratio=1)
-</script></pre></div></body>
+</script></pre></div>
+</body>
 </html>
