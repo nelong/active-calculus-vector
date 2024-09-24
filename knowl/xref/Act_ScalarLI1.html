@@ -37,87 +37,10 @@
 <span class="process-math">\(C_3\)</span> is the part of the helix given by <span class="process-math">\(\vr(t)=\langle \cos(t),\sin(t),\frac{t}{2 \pi}\rangle\)</span> with <span class="process-math">\(t \in [0,\pi]\)</span>
 </div></li>
 </ol>
-</div>
-<div class="solutions"><details class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period">.</span></summary><div class="solution solution-like knowl__content"><div class="para logical"><ol class="lower-roman" id="Act_ScalarLI1_part1-2-1-1">
-<li>
-<iframe id="exercise-testing1" width="600" height="600" src="exercise-testing1-if.html"></iframe> <div class="code-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><pre class="program"><code class="language-none">   var('t')
-plot22 = parametric_plot((t,-t),(t,-2,2),color='black',linestyle="--",axes_labels=["$x$","$y$"])
-plot22 += parametric_plot((cos(t),sin(t)),(t,-pi/4,3*pi/4),color='red')
-plot22 += point((-sqrt(2)/2,sqrt(2)/2),color="black",size=30)
-plot22 += point((sqrt(2)/2,-sqrt(2)/2),color="black",size=30)
-plot22
-</code></pre></div>
-</li>
-<li>
-<iframe id="exercise-testing2" width="600" height="600" src="exercise-testing2-if.html"></iframe> <div class="code-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><pre class="program"><code class="language-none">     var('t,s')
-plot23 = parametric_plot3d((t,s,t),(t,-2,2),(s,-2,2),color='gray',opacity=.3,axes_labels=["$x$","$y$","$z$"],axes_frame=False)
-plot23 += parametric_plot3d((cos(t),sin(t),cos(t)),(t,-pi/4,3*pi/4),color='red')
-plot23 += point3d((-sqrt(2)/2,sqrt(2)/2,-sqrt(2)/2),color="black",size=10)
-plot23 += point3d((sqrt(2)/2,-sqrt(2)/2,sqrt(2)/2),color="black",size=10)
-plot23 += parametric_plot3d((t,0,0),(t,-2,2),color="black")+parametric_plot3d((0,t,0),(t,-2,2),color="black")+parametric_plot3d((0,0,t),(t,-2,2),color="black")
-plot23
-</code></pre></div>
-</li>
-<li>
-<iframe id="exercise-testing3" width="600" height="600" src="exercise-testing3-if.html"></iframe> <div class="code-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><pre class="program"><code class="language-none">     var('s,t')
-plot24=parametric_plot3d((t,0,0),(t,-2,2),color="black")+parametric_plot3d((0,t,0),(t,-2,2),color="black")+parametric_plot3d((0,0,t),(t,-2,2),color="black",axes_labels=["$x$","$y$","$z$"])
-plot24+= parametric_plot3d((cos(t),sin(t),t/(2*pi)),(t,0,pi),color='red')
-plot24 += point3d((1,0,0),color="black",size=10)
-plot24 += point3d((-1,0,1/2),color="black",size=10)
-show(plot24)
-</code></pre></div>
-</li>
-</ol></div></div></details></div></article><article class="task exercise-like"><h5 class="heading"><span class="codenumber">(b)</span></h5>
-<div class="para">For each of the functions <span class="process-math">\(f_1\text{,}\)</span> <span class="process-math">\(f_2\text{,}\)</span> and <span class="process-math">\(f_3\)</span> defined above, state whether <span class="process-math">\(\int_{C_1} f_i \, ds \)</span> is positive, negative, or zero. Be sure to justify your answer in terms of the function being integrated <em class="emphasis">and</em> the particulars of the curve of integration.</div>
-<div class="solutions"><details class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period">.</span></summary><div class="solution solution-like knowl__content">
-<iframe id="exercise-testing4" width="600" height="600" src="exercise-testing4-if.html"></iframe> <div class="code-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><pre class="program"><code class="language-none">     var('x,y,t')
-plot1 = parametric_plot((t,-t),(t,-2,2),color='black',linestyle="--")
-plot1 += parametric_plot((cos(t),sin(t)),(t,-pi/4,0),color='#1E88E5',thickness=2)
-plot1 += parametric_plot((cos(t),sin(t)),(t,0,pi/4),color='#D81B60',thickness=2)
-plot1 += parametric_plot((cos(t),sin(t)),(t,pi/4,3*pi/4),color='#004D40',thickness=2)
-plot1 += point((1,0),color="black",size=30)
-plot1 += point((sqrt(2)/2,sqrt(2)/2),color="black",size=30)
-plot1 += point((-sqrt(2)/2,sqrt(2)/2),color="black",size=30)
-plot1 += point((sqrt(2)/2,-sqrt(2)/2),color="black",size=30)
-plot1
-</code></pre></div> <div class="para">The scalar line integal of <span class="process-math">\(f_1\)</span> on the blue and the magenta paths will cancel each other out exactly since the paths are symmetric and the output of <span class="process-math">\(f_1\)</span> will be opposite in sign on the blue and magenta. This means that <span class="process-math">\(\int_{C_1} f_1 \, ds\)</span> will be the same as the line integral of <span class="process-math">\(f_1(x,y,z)=y\)</span> on the green path. Since the output of <span class="process-math">\(f_1\)</span> is positive on the green path, our result for the scalar line integral should be positive.</div> <div class="para">The line integral <span class="process-math">\(\int_{C_1} f_2 \, ds\)</span> will be zero since the output of <span class="process-math">\(f_2(x,y,z)=z\)</span> will be zero for all points on <span class="process-math">\(C_1\text{.}\)</span>
-</div> <div class="para">The line integral <span class="process-math">\(\int_{C_1} f_3 \, ds\)</span> will be positive since the output of <span class="process-math">\(f_3(x,y,z)=x^2\)</span> will be positive for all points on <span class="process-math">\(C_1\text{.}\)</span>
-</div>
-</div></details></div></article><article class="task exercise-like"><h5 class="heading"><span class="codenumber">(c)</span></h5>
-<div class="para">For each of the functions <span class="process-math">\(f_1\text{,}\)</span> <span class="process-math">\(f_2\text{,}\)</span> and <span class="process-math">\(f_3\text{,}\)</span> defined above, state whether <span class="process-math">\(\int_{C_2} f_i \, ds \)</span> is positive, negative, or zero. Be sure to justify your answer in terms of the function being integrated <em class="emphasis">and</em> the particulars of the curve of integration.</div>
-<div class="solutions"><details class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period">.</span></summary><div class="solution solution-like knowl__content">
-<iframe id="exercise-testing5" width="600" height="600" src="exercise-testing5-if.html"></iframe> <div class="code-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><pre class="program"><code class="language-none">     var('s,t')
-plot1 = parametric_plot3d((t,s,t),(t,-2,2),(s,-2,2),color='gray',opacity=.2)
-plot1 += parametric_plot3d((cos(t),sin(t),cos(t)),(t,-pi/4,0),color='#1E88E5',thickness=2)
-plot1 += parametric_plot3d((cos(t),sin(t),cos(t)),(t,0,pi/4),color='#D81B60',thickness=2)
-plot1 += parametric_plot3d((cos(t),sin(t),cos(t)),(t,pi/4,3*pi/4),color='#004D40',thickness=2)
-plot1 += point3d((1,0,1),color="black",size=10)
-plot1 += point3d((sqrt(2)/2,sqrt(2)/2,sqrt(2)/2),color="black",size=10)
-plot1 += point3d((-sqrt(2)/2,sqrt(2)/2,-sqrt(2)/2),color="black",size=10)
-plot1 += point3d((sqrt(2)/2,-sqrt(2)/2,sqrt(2)/2),color="black",size=10)
-plot1+=parametric_plot3d((t,0,0),(t,-2,2),color="black")+parametric_plot3d((0,t,0),(t,-2,2),color="black")+parametric_plot3d((0,0,t),(t,-2,2),color="black")
-plot1
-</code></pre></div> <div class="para">The scalar line integal of <span class="process-math">\(f_1\)</span> on the blue and the magenta paths will cancel each other out exactly since the paths are symmetric and the output of <span class="process-math">\(f_1\)</span> will be opposite in sign on the blue and magenta. This means that <span class="process-math">\(\int_{C_2} f_1 \, ds\)</span> will be the same as the line integral of <span class="process-math">\(f_1(x,y,z)=y\)</span> on the green path. Since the output of <span class="process-math">\(f_1\)</span> is positive on the green path, our result for the scalar line integral should be positive.</div> <iframe id="exercise-testing6" width="600" height="600" src="exercise-testing6-if.html"></iframe> <div class="code-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><pre class="program"><code class="language-none">     var('s,t')
-plot1 = parametric_plot3d((t,s,t),(t,-2,2),(s,-2,2),color='gray',opacity=.2)
-plot1 += parametric_plot3d((cos(t),sin(t),cos(t)),(t,pi/4,pi/2),color='#1E88E5',thickness=2)
-plot1 += parametric_plot3d((cos(t),sin(t),cos(t)),(t,pi/2,3*pi/4),color='#D81B60',thickness=2)
-plot1 += parametric_plot3d((cos(t),sin(t),cos(t)),(t,-pi/4,pi/4),color='#004D40',thickness=2)
-plot1 += point3d((0,1,0),color="black",size=10)
-plot1 += point3d((sqrt(2)/2,sqrt(2)/2,sqrt(2)/2),color="black",size=10)
-plot1 += point3d((-sqrt(2)/2,sqrt(2)/2,-sqrt(2)/2),color="black",size=10)
-plot1 += point3d((sqrt(2)/2,-sqrt(2)/2,sqrt(2)/2),color="black",size=10)
-plot1 += parametric_plot3d((t,0,0),(t,-2,2),color="black")+parametric_plot3d((0,t,0),(t,-2,2),color="black")+parametric_plot3d((0,0,t),(t,-2,2),color="black")
-plot1
-</code></pre></div> <div class="para">The scalar line integal of <span class="process-math">\(f_2\)</span> on the blue and the magenta paths will cancel each other out exactly since the paths are symmetric and the output of <span class="process-math">\(f_2\)</span> will be opposite in sign on the blue and magenta. This means that <span class="process-math">\(\int_{C_2} f_2 \, ds\)</span> will be the same as the line integral of <span class="process-math">\(f_2(x,y,z)=z\)</span> on the green path. Since the output of <span class="process-math">\(f_2\)</span> is positive on the green path, our result for the scalar line integral should be positive.</div> <div class="para">The line integral <span class="process-math">\(\int_{C_2} f_3 \, ds\)</span> will be positive since the output of <span class="process-math">\(f_3(x,y,z)=x^2\)</span> will be positive for all points on <span class="process-math">\(C_2\text{.}\)</span>
-</div>
-</div></details></div></article><article class="task exercise-like"><h5 class="heading"><span class="codenumber">(d)</span></h5>
-<div class="para">For each of the functions <span class="process-math">\(f_1\text{,}\)</span> <span class="process-math">\(f_2\text{,}\)</span> and <span class="process-math">\(f_3\text{,}\)</span> defined above, state whether <span class="process-math">\(\int_{C_3} f_i \, ds \)</span> is positive, negative, or zero. Be sure to justify your answer in terms of the function being integrated <em class="emphasis">and</em> the particulars of the curve of integration.</div>
-<div class="solutions"><details class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period">.</span></summary><div class="solution solution-like knowl__content">
-<div class="para">The line integral <span class="process-math">\(\int_{C_3} f_1 \, ds\)</span> will be positive since the output of <span class="process-math">\(f_1(x,y,z)=y\)</span> will be positive for all points on <span class="process-math">\(C_3\text{.}\)</span>
-</div> <div class="para">The line integral <span class="process-math">\(\int_{C_3} f_2 \, ds\)</span> will be positive since the output of <span class="process-math">\(f_2(x,y,z)=z\)</span> will be positive for all points on <span class="process-math">\(C_3\text{.}\)</span>
-</div> <div class="para">The line integral <span class="process-math">\(\int_{C_3} f_3 \, ds\)</span> will be positive since the output of <span class="process-math">\(f_3(x,y,z)=x^2\)</span> will be positive for all points on <span class="process-math">\(C_3\text{.}\)</span>
-</div>
-</div></details></div></article><article class="task exercise-like"><h5 class="heading"><span class="codenumber">(e)</span></h5>
+</div></article><article class="task exercise-like"><h5 class="heading"><span class="codenumber">(b)</span></h5>
+<div class="para">For each of the functions <span class="process-math">\(f_1\text{,}\)</span> <span class="process-math">\(f_2\text{,}\)</span> and <span class="process-math">\(f_3\)</span> defined above, state whether <span class="process-math">\(\int_{C_1} f_i \, ds \)</span> is positive, negative, or zero. Be sure to justify your answer in terms of the function being integrated <em class="emphasis">and</em> the particulars of the curve of integration.</div></article><article class="task exercise-like"><h5 class="heading"><span class="codenumber">(c)</span></h5>
+<div class="para">For each of the functions <span class="process-math">\(f_1\text{,}\)</span> <span class="process-math">\(f_2\text{,}\)</span> and <span class="process-math">\(f_3\text{,}\)</span> defined above, state whether <span class="process-math">\(\int_{C_2} f_i \, ds \)</span> is positive, negative, or zero. Be sure to justify your answer in terms of the function being integrated <em class="emphasis">and</em> the particulars of the curve of integration.</div></article><article class="task exercise-like"><h5 class="heading"><span class="codenumber">(d)</span></h5>
+<div class="para">For each of the functions <span class="process-math">\(f_1\text{,}\)</span> <span class="process-math">\(f_2\text{,}\)</span> and <span class="process-math">\(f_3\text{,}\)</span> defined above, state whether <span class="process-math">\(\int_{C_3} f_i \, ds \)</span> is positive, negative, or zero. Be sure to justify your answer in terms of the function being integrated <em class="emphasis">and</em> the particulars of the curve of integration.</div></article><article class="task exercise-like"><h5 class="heading"><span class="codenumber">(e)</span></h5>
 <div class="para logical">
 <div class="para">For the function <span class="process-math">\(f_4\text{,}\)</span> defined above, state each of the following integrals is positive, negative, or zero. Be sure to justify your answer in terms of the function being integrated <em class="emphasis">and</em> the particulars of the curve of integration. You should consider which parts of the curve being integrated will have positive/negative/zero output for the function <span class="process-math">\(f_4\text{.}\)</span>
 </div>
@@ -128,29 +51,6 @@ plot1
 \int_{C_3} f_4 \, ds \text{,}
 \end{gather*}
 </div>
-</div>
-<div class="solutions"><details class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period">.</span></summary><div class="solution solution-like knowl__content">
-<div class="para">An important idea to determining whether these line integrals will be positive/negative/zero, is understanding when the output of <span class="process-math">\(f_4=x-y\)</span> will be positive/negative/zero. In the plot below. The points in red will correspond to the output of <span class="process-math">\(f_4\)</span> being zero, the points in blue will correspond to the output of <span class="process-math">\(f_4\)</span> being positive, and the points in green will correspond to the output of <span class="process-math">\(f_4\)</span> being negative.</div> <div class="image-box" style="width: 80%; margin-left: 10%; margin-right: 10%;"><img src="generated/sageplot/Act_ScalarLI1-6-3-2.svg" role="img" class="contained"></div> <div class="para">Now we will look at the individual line integrals.</div> <div class="image-box" style="width: 80%; margin-left: 10%; margin-right: 10%;"><img src="generated/sageplot/Act_ScalarLI1-6-3-4.svg" role="img" class="contained"></div> <div class="para">The scalar line integal on the blue and the magenta paths will cancel each other out exactly since the paths are symmetric and the output of <span class="process-math">\(f_4\)</span> will be opposite in sign on the blue and magenta. Thus the line integral of <span class="process-math">\(f_4\)</span> over <span class="process-math">\(C_1\)</span> will be zero.</div> <iframe id="exercise-testing7" width="600" height="600" src="exercise-testing7-if.html"></iframe> <div class="code-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><pre class="program"><code class="language-none">     var('t')
-plot2 = parametric_plot3d((t,t,t),(t,0,2),color='orange',linestyle="--",axes_labels=["$x$","$y$","$z$"])
-plot2 += parametric_plot3d((cos(t),sin(t),cos(t)),(t,-pi/4,pi/4),color='#1E88E5')
-plot2 += parametric_plot3d((cos(t),sin(t),cos(t)),(t,pi/4,3*pi/4),color='#D81B60')
-plot2 += point3d((sqrt(2)/2,sqrt(2)/2,sqrt(2)/2),color="black",size=10)
-plot2 += point3d((-sqrt(2)/2,sqrt(2)/2,-sqrt(2)/2),color="black",size=10)
-plot2 += point3d((sqrt(2)/2,-sqrt(2)/2,sqrt(2)/2),color="black",size=10)
-plot2 += parametric_plot3d((t,0,0),(t,-2,2),color="black")+parametric_plot3d((0,t,0),(t,-2,2),color="black")
-plot2 += parametric_plot3d((0,0,t),(t,-2,2),color="black")
-plot2
-</code></pre></div> <div class="para">The scalar line integal on the blue and the magenta paths will cancel each other out exactly since the paths are symmetric and the output of <span class="process-math">\(f_4\)</span> will be opposite in sign on the blue and magenta. Thus the line integral of <span class="process-math">\(f_4\)</span> over <span class="process-math">\(C_2\)</span> will be zero.</div> <iframe id="exercise-testing8" width="600" height="600" src="exercise-testing8-if.html"></iframe> <div class="code-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><pre class="program"><code class="language-none">     var('s,t')
-plot24=parametric_plot3d((t,0,0),(t,-2,2),color="black")+parametric_plot3d((0,t,0),(t,-2,2),color="black")+parametric_plot3d((0,0,t),(t,-2,2),color="black",axes_labels=["$x$","$y$","$z$"])
-plot24+= parametric_plot3d((cos(t),sin(t),t/(2*pi)),(t,0,pi/4),color='#1E88E5',thickness=2)
-plot24 += parametric_plot3d((cos(t),sin(t),t/(2*pi)),(t,pi/4,pi/2),color='#D81B60',thickness=2)
-plot24 += parametric_plot3d((cos(t),sin(t),t/(2*pi)),(t,pi/2,pi),color='#004D40',thickness=2)
-plot24 += point3d((1,0,0),color="black",size=10)
-plot24 += point3d((0,1,1/4),color="black",size=10)
-plot24 += point3d((sqrt(2)/2,sqrt(2)/2,sqrt(2)/(4*pi)),color="black",size=10)
-plot24 += point3d((-1,0,1/2),color="black",size=10)
-show(plot24)
-</code></pre></div> <div class="para">The scalar line integal of <span class="process-math">\(f_4\)</span> on the blue and the magenta paths will cancel each other out exactly since the paths are symmetric and the output of <span class="process-math">\(f_4\)</span> will be opposite in sign on the blue and magenta. This means that <span class="process-math">\(\int_{C_3} f_4 \, ds\)</span> will be the same as the line integral of <span class="process-math">\(f_4(x,y,z)=x-y\)</span> on the green path. Since the output of <span class="process-math">\(f_4\)</span> is positive on the green path, our result for the scalar line integral should be positive.</div>
-</div></details></div></article></article><span class="incontext"><a class="internal" href="S_Vector_ScalarLineIntegral.html#Act_ScalarLI1">in-context</a></span>
+</div></article></article><span class="incontext"><a class="internal" href="S_Vector_ScalarLineIntegral.html#Act_ScalarLI1">in-context</a></span>
 </body>
 </html>

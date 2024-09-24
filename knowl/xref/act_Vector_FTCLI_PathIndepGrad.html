@@ -31,84 +31,15 @@ f(x,y) = f(x_0,y_0) + \int_C\vF\cdot d\vr\text{,}
 <img src="generated/sageplot/img_12_4_paths_potential_rev.svg" role="img" class="contained" alt="described in detail following the image" aria-describedby="img_12_4_paths_potential_rev-description"><details class="image-description" aria-live="polite"><summary title="details"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span></summary><div id="img_12_4_paths_potential_rev-description">An oriented curve from <span class="process-math">\((x_0,y_0)\)</span> to <span class="process-math">\((x,y)\text{.}\)</span> It begins with a curved arc from <span class="process-math">\((x_0,y_0)\)</span> to <span class="process-math">\((a,b)\)</span> and then proceeds vertically from <span class="process-math">\((a,b)\)</span> to <span class="process-math">\((a,y)\)</span> and then horizontally to <span class="process-math">\((x,y)\text{.}\)</span>
 </div></details>
 </div>
-<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">13.4.6<span class="period">.</span></span><span class="space"> </span>A piecewise smooth oriented curve from <span class="process-math">\((x_0,y_0)\)</span> to <span class="process-math">\((x,y)\text{.}\)</span></figcaption></figure><div class="solutions"><details class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period">.</span></summary><div class="solution solution-like knowl__content"><div class="para logical">
-<div class="para">Because <span class="process-math">\(C = C_1 + C_y+C_x\text{,}\)</span> we have that</div>
-<div class="displaymath process-math">
-\begin{align*}
-f(x,y)\amp= f(x_0,y_0) + \int_C\vF\cdot d\vr \\
-\amp = f(x_0,y_0)+\int_{C_1} \vF \cdot d\vr+\int_{C_y} \vF \cdot d\vr+\int_{C_x} \vF \cdot d\vr \text{.}
-\end{align*}
-</div>
-</div></div></details></div></article><article class="task exercise-like"><h5 class="heading"><span class="codenumber">(b)</span></h5>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">13.4.6<span class="period">.</span></span><span class="space"> </span>A piecewise smooth oriented curve from <span class="process-math">\((x_0,y_0)\)</span> to <span class="process-math">\((x,y)\text{.}\)</span></figcaption></figure></article><article class="task exercise-like"><h5 class="heading"><span class="codenumber">(b)</span></h5>
 <div class="para">Notice that we can parametrize <span class="process-math">\(C_y\)</span> by <span class="process-math">\(\langle a,t\rangle\)</span> for <span class="process-math">\(b\leq t\leq y\text{.}\)</span> Find a similar parametrization for <span class="process-math">\(C_x\text{.}\)</span>
-</div>
-<div class="solutions"><details class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period">.</span></summary><div class="solution solution-like knowl__content"><div class="para">The curve <span class="process-math">\(C_x\)</span> can be given by <span class="process-math">\(\vr(t)=\langle t,y\rangle \)</span> for <span class="process-math">\(a \leq t\leq x\text{,}\)</span> since only the <span class="process-math">\(x\)</span>-coordinate of points on <span class="process-math">\(C_x\)</span> varies.</div></div></details></div></article><article class="task exercise-like"><h5 class="heading"><span class="codenumber">(c)</span></h5>
-<div class="para">Use the parametrization from above to write <span class="process-math">\(\int_{C_y}\vF\cdot d\vr\)</span> and <span class="process-math">\(\int_{C_x}\vF\cdot d\vr\)</span> as single variable integrals in the manner of <a href="S_Vector_ParamLineIntegrals.html" class="internal" title="Section 13.3: Using Parametrizations to Calculate Line Integrals">Section 13.3</a>. Use the fact that <span class="process-math">\(\vF(x,y) = \langle F_1(x,y),F_2(x,y)\rangle\)</span> to express your integrals in terms of <span class="process-math">\(F_1\)</span> and <span class="process-math">\(F_2\)</span> without any dot products.</div>
-<div class="solutions"><details class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period">.</span></summary><div class="solution solution-like knowl__content"><div class="para logical">
-<div class="para">Using the parametrization of <span class="process-math">\(C_x\)</span> and <span class="process-math">\(C_y\)</span> from the previous part, we notice that <span class="process-math">\(\frac{d \vr}{dt}(t)\)</span> has only one nonzero component in each case. Thus, we have</div>
-<div class="displaymath process-math">
-\begin{equation*}
-\int_{C_y}\vF\cdot d\vr = \int_b^y 0+ F_2(a,t)\, dt
-\end{equation*}
-</div>
-<div class="para">and</div>
-<div class="displaymath process-math">
-\begin{equation*}
-\int_{C_x}\vF\cdot d\vr= \int_a^x F_1(t,y) +0\, dt\text{.}
-\end{equation*}
-</div>
-</div></div></details></div></article><article class="task exercise-like"><h5 class="heading"><span class="codenumber">(d)</span></h5>
-<div class="para">Rewrite your expression for <span class="process-math">\(f(x,y)\)</span> using a line integral along <span class="process-math">\(C_1\)</span> and the single variable integrals above.</div>
-<div class="solutions"><details class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period">.</span></summary><div class="solution solution-like knowl__content"><div class="para logical">
-<div class="para">Combining the previous parts, we have</div>
-<div class="displaymath process-math">
-\begin{align*}
-f(x,y)\amp= f(x_0,y_0)+\int_{C_1} \vF \cdot d\vr+\int_{C_y} \vF \cdot d\vr+\int_{C_x} \vF \cdot d\vr\\
-\amp= f(x_0,y_0)+\int_{C_1} \vF \cdot d\vr+\int_b^y F_2(a,t)\,dt+ \int_a^x F_1(t,y)\, dt\text{.}
-\end{align*}
-</div>
-</div></div></details></div></article><article class="task exercise-like"><h5 class="heading"><span class="codenumber">(e)</span></h5>
+</div></article><article class="task exercise-like"><h5 class="heading"><span class="codenumber">(c)</span></h5>
+<div class="para">Use the parametrization from above to write <span class="process-math">\(\int_{C_y}\vF\cdot d\vr\)</span> and <span class="process-math">\(\int_{C_x}\vF\cdot d\vr\)</span> as single variable integrals in the manner of <a href="S_Vector_ParamLineIntegrals.html" class="internal" title="Section 13.3: Using Parametrizations to Calculate Line Integrals">Section 13.3</a>. Use the fact that <span class="process-math">\(\vF(x,y) = \langle F_1(x,y),F_2(x,y)\rangle\)</span> to express your integrals in terms of <span class="process-math">\(F_1\)</span> and <span class="process-math">\(F_2\)</span> without any dot products.</div></article><article class="task exercise-like"><h5 class="heading"><span class="codenumber">(d)</span></h5>
+<div class="para">Rewrite your expression for <span class="process-math">\(f(x,y)\)</span> using a line integral along <span class="process-math">\(C_1\)</span> and the single variable integrals above.</div></article><article class="task exercise-like"><h5 class="heading"><span class="codenumber">(e)</span></h5>
 <div class="para">Notice that your expression for <span class="process-math">\(f(x,y)\)</span> from the previous part only depends on <span class="process-math">\(x\)</span> as the upper limit of an single variable integral. Use the Second Fundamental Theorem of Calculus to calculate <span class="process-math">\(f_x(x,y)\text{.}\)</span>
-</div>
-<div class="solutions"><details class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period">.</span></summary><div class="solution solution-like knowl__content"><div class="para logical">
-<div class="para">The first three terms in our expression for <span class="process-math">\(f(x,y)\)</span> do not depend on <span class="process-math">\(x\text{,}\)</span> and thus when taking the partial derivative with respect to <span class="process-math">\(x\text{,}\)</span> they vanish. By the Second Fundamental Theorem of Calculus (treating <span class="process-math">\(a,y\)</span> as constants),</div>
-<div class="displaymath process-math">
-\begin{equation*}
-\frac{\partial}{\partial x}\int_a^x F_1(t,y)\, dt =
-F_1(x,y)\text{.}
-\end{equation*}
-</div>
-<div class="para">Therefore, <span class="process-math">\(f_x(x,y) = F_1(x,y)\text{.}\)</span>
-</div>
-</div></div></details></div></article><article class="task exercise-like"><h5 class="heading"><span class="codenumber">(f)</span></h5>
+</div></article><article class="task exercise-like"><h5 class="heading"><span class="codenumber">(f)</span></h5>
 <div class="para">To calculate <span class="process-math">\(f_y(x,y)\text{,}\)</span> we continue to consider a path <span class="process-math">\(C_1\)</span> from <span class="process-math">\((x_0,y_0)\)</span> to <span class="process-math">\((a,b)\text{,}\)</span> but now let <span class="process-math">\(L_x\)</span> be the line segment from <span class="process-math">\((a,b)\)</span> to <span class="process-math">\((x,b)\)</span> and let <span class="process-math">\(L_y\)</span> be the line segment from <span class="process-math">\((x,b)\)</span> to <span class="process-math">\((y,b)\text{.}\)</span> Modify the process you used to find <span class="process-math">\(f_x(x,y)\)</span> to find <span class="process-math">\(f_y(x,y)\text{.}\)</span>
-</div>
-<div class="solutions"><details class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period">.</span></summary><div class="solution solution-like knowl__content">
-<div class="image-box" style="width: 40%; margin-left: 30%; margin-right: 30%;">
-<img src="generated/sageplot/img_12_4_paths_potential_rev2.svg" role="img" class="contained" alt="described in detail following the image" aria-describedby="img_12_4_paths_potential_rev2-description"><details class="image-description" aria-live="polite"><summary title="details"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span></summary><div id="img_12_4_paths_potential_rev2-description">An oriented curve from <span class="process-math">\((x_0,y_0)\)</span> to <span class="process-math">\((x,y)\text{.}\)</span> It begins with a curved arc from <span class="process-math">\((x_0,y_0)\)</span> to <span class="process-math">\((a,b)\text{.}\)</span> It then proceeds horizontally from <span class="process-math">\((a,b)\)</span> to <span class="process-math">\((x,b)\)</span> and then vertically to <span class="process-math">\((x,y)\text{.}\)</span>
-</div></details>
-</div> <div class="para logical">
-<div class="para">Proceeding as above, we find that</div>
-<div class="displaymath process-math">
-\begin{align*}
-f(x,y) \amp= f(x_0,y_0) + \int_{C_1}\vF\cdot d\vr +
-\int_{L_x} \vF\cdot d\vr + \int_{L_y}\vF\cdot d\vr\\
-\amp = f(x_0,y_0) + \int_{C_1}\vF\cdot d\vr + \int_a^x
-F_1(t,b)\, dt + \int_b^y F_2(x,t)\, dt\text{.}
-\end{align*}
-</div>
-<div class="para">Only the last term of this expression depends on <span class="process-math">\(y\text{,}\)</span> so the first three terms vanish when calculating <span class="process-math">\(f_y(x,y)\text{.}\)</span> By the Second Fundamental Theorem of Calculus,</div>
-<div class="displaymath process-math">
-\begin{equation*}
-\frac{\partial}{\partial y}\int_b^y F_2(x,t)\,
-dt = F_2(x,y)\text{.}
-\end{equation*}
-</div>
-<div class="para">Therefore, <span class="process-math">\(f_y(x,y) = F_2(x,y)\text{.}\)</span>
-</div>
-</div>
-</div></details></div></article><article class="task exercise-like"><h5 class="heading"><span class="codenumber">(g)</span></h5>
-<div class="para">What can you conclude about the relationship between <span class="process-math">\(\grad f\)</span> and <span class="process-math">\(\vF\text{?}\)</span> What does this tell you about <span class="process-math">\(\vF\)</span> beyond that it is path-independent and continuous?</div>
-<div class="solutions"><details class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period">.</span></summary><div class="solution solution-like knowl__content"><div class="para">Since <span class="process-math">\(f_x(x,y) = F_1(x,y)\)</span> and <span class="process-math">\(f_y(x,y) = F_2(x,y)\text{,}\)</span> we can conclude that <span class="process-math">\(\grad f = \vF\text{.}\)</span> Therefore, we know that <span class="process-math">\(\vF\)</span> is a gradient vector field.</div></div></details></div></article></article><span class="incontext"><a class="internal" href="S_Vector_FTCLI.html#act_Vector_FTCLI_PathIndepGrad">in-context</a></span>
+</div></article><article class="task exercise-like"><h5 class="heading"><span class="codenumber">(g)</span></h5>
+<div class="para">What can you conclude about the relationship between <span class="process-math">\(\grad f\)</span> and <span class="process-math">\(\vF\text{?}\)</span> What does this tell you about <span class="process-math">\(\vF\)</span> beyond that it is path-independent and continuous?</div></article></article><span class="incontext"><a class="internal" href="S_Vector_FTCLI.html#act_Vector_FTCLI_PathIndepGrad">in-context</a></span>
 </body>
 </html>

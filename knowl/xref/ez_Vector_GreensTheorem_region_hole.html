@@ -26,52 +26,7 @@
 \frac{x}{{x^2+y^2}}\vj\)</span> and found that the circulation of <span class="process-math">\(\vF\)</span> around the unit circle centered at the origin (oriented counterclockwise) was <span class="process-math">\(2\pi\text{.}\)</span> Show that for every simple closed curve <span class="process-math">\(C\)</span> in the plane that bounds a region containing the origin, <span class="process-math">\(\oint_C\vF\cdot d\vr = 2\pi\text{.}\)</span>
 </div></li>
 </ol>
-<div class="solutions">
-<details class="hint solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Hint</span><span class="period">.</span></summary><div class="hint solution-like knowl__content"><div class="para">For <a href="S_Vector_GreensTheorem.html#ez_Vector_GreensTheorem_hole_winding" class="xref" data-knowl="./knowl/xref/ez_Vector_GreensTheorem_hole_winding.html" data-reveal-label="Reveal" data-close-label="Close" title="Item 13.8.5.7.c">part c</a>, create a region <span class="process-math">\(R\)</span> as in <a href="S_Vector_GreensTheorem.html#fig_Vector_GreensTheorem_region_hole" class="xref" data-knowl="./knowl/xref/fig_Vector_GreensTheorem_region_hole.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 13.8.8">Figure 13.8.8</a> using the curve <span class="process-math">\(C\)</span> in place of <span class="process-math">\(C_1\text{.}\)</span>
-</div></div></details><details class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period">.</span></summary><div class="solution solution-like knowl__content"><div class="para logical"><ol class="lower-alpha" id="ez_Vector_GreensTheorem_region_hole-4-1-1">
-<li><div class="para">A simple closed curve lying in the region <span class="process-math">\(R\)</span> that encloses the curve <span class="process-math">\(C_2\)</span> cannot be contracted to a point while remaining in the region <span class="process-math">\(R\text{,}\)</span> so this region is not simply connected.</div></li>
-<li><div class="para logical">
-<div class="para">Assume that <span class="process-math">\(C_3\)</span> and <span class="process-math">\(C_4\)</span> are oriented from bottom to top. Then</div>
-<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/eqn_ez_Vector_GreensTheorem_region_hole_add.html ./knowl/xref/thm_Green.html">
-\begin{equation}
-C = C_1 + C_2 = (C_{1,2}-C_4+C_{2,2}-C_3) +
-(C_{1,1} + C_3 + C_{2,1} + C_4)\text{.}\tag{13.8.1}
-\end{equation}
-</div>
-<div class="para">The curve in the first set of parentheses in <a href="S_Vector_GreensTheorem.html#eqn_ez_Vector_GreensTheorem_region_hole_add" class="xref" data-knowl="./knowl/xref/eqn_ez_Vector_GreensTheorem_region_hole_add.html" data-reveal-label="Reveal" data-close-label="Close" title="Equation 13.8.1">(13.8.1)</a> bounds the region <span class="process-math">\(R_1\text{,}\)</span> and the curve in the second set of parentheses bounds the region <span class="process-math">\(R_2\text{.}\)</span> Since <span class="process-math">\(\vF = \langle F_1,F_2\rangle\)</span> is smooth on <span class="process-math">\(R\)</span> and <span class="process-math">\(C\text{,}\)</span> <a href="S_Vector_GreensTheorem.html#thm_Green" class="xref" data-knowl="./knowl/xref/thm_Green.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 13.8.3: Green’s Theorem">Green’s Theorem</a> applies and we have</div>
-<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/eqn_ez_Vector_GreensTheorem_region_hole_add.html ./knowl/xref/thm_Green.html">
-\begin{align*}
-\oint_C\vF\cdot d\vr &amp;= \iint_{R_1}
-\left(\frac{\partial F_2}{\partial x}
-- \frac{\partial F_1}{\partial y}\right)\, dA +
-\iint_{R_2}
-\left(\frac{\partial F_2}{\partial x}
-- \frac{\partial F_1}{\partial y}\right)\, dA\\
-&amp;= \iint_{R} \left(\frac{\partial
-F_2}{\partial x} - \frac{\partial F_1}{\partial
-y}\right)\, dA\text{.}
-\end{align*}
-</div>
-</div></li>
-<li><div class="para logical">
-<div class="para">Let <span class="process-math">\(C_2\)</span> be the circle of radius <span class="process-math">\(a&gt;0\text{,}\)</span> centered at the origin and oriented <em class="emphasis">clockwise</em>, with <span class="process-math">\(a\)</span> chosen to be small enough that <span class="process-math">\(C_2\)</span> lies entirely within <span class="process-math">\(C\text{.}\)</span> Then <span class="process-math">\(C+C_2\)</span> is exactly the type of curve considered in the previous part, as <span class="process-math">\(\vF\)</span> is smooth on the curves and the region they bound. Here <span class="process-math">\(\frac{\partial F_2}{\partial x}
-- \frac{\partial F_1}{\partial y} = 0\)</span> for all points in <span class="process-math">\(R_1\)</span> and <span class="process-math">\(R_2\text{,}\)</span> so the double integrals from <a href="S_Vector_GreensTheorem.html#thm_Green" class="xref" data-knowl="./knowl/xref/thm_Green.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 13.8.3: Green’s Theorem">Green’s Theorem</a> are <span class="process-math">\(0\text{.}\)</span> Thus, we have that</div>
-<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/thm_Green.html">
-\begin{equation*}
-\oint_C\vF\cdot d\vr + \oint_{C_2}\vF\cdot d\vr =
-0\Leftrightarrow \oint_C\vF\cdot d\vr =
-\oint_{-C_2}\vF\cdot d\vr\text{.}
-\end{equation*}
-</div>
-<div class="para">Since <span class="process-math">\(\vF\)</span> is tangent to <span class="process-math">\(-C_2\)</span> everywhere, we know that</div>
-<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/thm_Green.html">
-\begin{equation*}
-\oint_{-C_2}\vF\cdot d\vr = \vecmag{\vF}\cdot
-(\text{Length of }-C_2) = \frac{1}{a} (2\pi a) = 2\pi\text{.}
-\end{equation*}
-</div>
-</div></li>
-</ol></div></div></details>
-</div></article><span class="incontext"><a class="internal" href="S_Vector_GreensTheorem.html#ez_Vector_GreensTheorem_region_hole">in-context</a></span>
+<div class="solutions"><details class="hint solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Hint</span><span class="period">.</span></summary><div class="hint solution-like knowl__content"><div class="para">For <a href="S_Vector_GreensTheorem.html#ez_Vector_GreensTheorem_hole_winding" class="xref" data-knowl="./knowl/xref/ez_Vector_GreensTheorem_hole_winding.html" data-reveal-label="Reveal" data-close-label="Close" title="Item 13.8.5.7.c">part c</a>, create a region <span class="process-math">\(R\)</span> as in <a href="S_Vector_GreensTheorem.html#fig_Vector_GreensTheorem_region_hole" class="xref" data-knowl="./knowl/xref/fig_Vector_GreensTheorem_region_hole.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 13.8.8">Figure 13.8.8</a> using the curve <span class="process-math">\(C\)</span> in place of <span class="process-math">\(C_1\text{.}\)</span>
+</div></div></details></div></article><span class="incontext"><a class="internal" href="S_Vector_GreensTheorem.html#ez_Vector_GreensTheorem_region_hole">in-context</a></span>
 </body>
 </html>

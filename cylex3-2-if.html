@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<html lang="en-US" dir="ltr">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script>
+var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
+window.MathJax = {
+  "tex": {
+    "inlineMath": [
+      [
+        "\\(",
+        "\\)"
+      ]
+    ],
+    "tags": "none",
+    "tagSide": "right",
+    "tagIndent": ".8em",
+    "packages": {
+      "[+]": [
+        "base",
+        "extpfeil",
+        "ams",
+        "amscd",
+        "color",
+        "newcommand",
+        "knowl"
+      ]
+    }
+  },
+  "options": {
+    "ignoreHtmlClass": "tex2jax_ignore|ignore-math",
+    "processHtmlClass": "process-math",
+    "renderActions": {
+      "findScript": [
+        10,
+        function (doc) {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
+                var display = !!node.type.match(/; *mode=display/);
+                var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                var text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = {node: text, delim: '', n: 0};
+                math.end = {node: text, delim: '', n: 0};
+                doc.math.push(math);
+            });
+        },
+        ""
+      ]
+    }
+  },
+  "chtml": {
+    "scale": 0.98,
+    "mtextInheritFont": true
+  },
+  "loader": {
+    "load": [
+      "input/asciimath",
+      "[tex]/extpfeil",
+      "[tex]/amscd",
+      "[tex]/color",
+      "[tex]/newcommand",
+      "[pretext]/mathjaxknowl3.js"
+    ],
+    "paths": {
+      "pretext": "_static/pretext/js/lib"
+    }
+  },
+  "startup": {
+    pageReady() {
+      return MathJax.startup.defaultPageReady().then(function () {
+      console.log("in ready function");
+      rsMathReady();
+      }
+    )}
+  }
+};
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><link href="_static/pretext/css/pretext.css" rel="stylesheet" type="text/css">
+<link href="_static/pretext/css/pretext_add_on.css" rel="stylesheet" type="text/css">
+<link href="_static/pretext/css/shell_default.css" rel="stylesheet" type="text/css">
+<link href="_static/pretext/css/banner_default.css" rel="stylesheet" type="text/css">
+<link href="_static/pretext/css/navbar_default.css" rel="stylesheet" type="text/css">
+<link href="_static/pretext/css/toc_default.css" rel="stylesheet" type="text/css">
+<link href="_static/pretext/css/knowls_default.css" rel="stylesheet" type="text/css">
+<link href="_static/pretext/css/style_default.css" rel="stylesheet" type="text/css">
+<link href="_static/pretext/css/colors_blue_grey.css" rel="stylesheet" type="text/css">
+<link href="_static/pretext/css/setcolors.css" rel="stylesheet" type="text/css">
+<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>sagecell.makeSagecell({
+  "inputLocation": ".sage-interact",
+  "autoeval": true,
+  "hide": [
+    "editor",
+    "evalButton",
+    "permalink"
+  ]
+});
+</script><link rel="stylesheet" type="text/css" href="https://sagecell.sagemath.org/static/sagecell_embed.css">
+</head>
+<body class="ptx-content ignore-math" id="acmulti">
+<div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\newcommand{\R}{\mathbb{R}}
+\newcommand{\va}{\overrightarrow{a}}
+\newcommand{\vb}{\overrightarrow{b}}
+\newcommand{\vc}{\overrightarrow{c}}
+\newcommand{\vC}{\overrightarrow{C}}
+\newcommand{\vd}{\overrightarrow{d}}
+\newcommand{\ve}{\overrightarrow{e}}
+\newcommand{\vi}{\hat{i}}
+\newcommand{\vj}{\hat{j}}
+\newcommand{\vk}{\hat{k}}
+\newcommand{\vn}{\overrightarrow{n}}
+\newcommand{\vm}{\overrightarrow{m}}
+\newcommand{\vr}{\overrightarrow{r}}
+\newcommand{\vs}{\overrightarrow{s}}
+\newcommand{\vu}{\overrightarrow{u}}
+\newcommand{\vv}{\overrightarrow{v}}
+\newcommand{\vw}{\overrightarrow{w}}
+\newcommand{\vx}{\overrightarrow{x}}
+\newcommand{\vy}{\overrightarrow{y}}
+\newcommand{\vz}{\overrightarrow{z}}
+\newcommand{\vzero}{\overrightarrow{0}}
+\newcommand{\vF}{\overrightarrow{F}}
+\newcommand{\vG}{\overrightarrow{G}}
+\newcommand{\vH}{\overrightarrow{H}}
+\newcommand{\vR}{\overrightarrow{R}}
+\newcommand{\vT}{\overrightarrow{T}}
+\newcommand{\vN}{\overrightarrow{N}}
+\newcommand{\vL}{\overrightarrow{L}}
+\newcommand{\vB}{\overrightarrow{B}}
+\newcommand{\vS}{\overrightarrow{S}}
+\newcommand{\proj}{\text{proj}}
+\newcommand{\comp}{\text{comp}}
+\newcommand{\nin}{}
+\newcommand{\vecmag}[1]{|#1|}
+\newcommand{\grad}{\nabla}
+\DeclareMathOperator{\curl}{curl}
+\DeclareMathOperator{\divg}{div}
+\newcommand{\lt}{&lt;}
+\newcommand{\gt}{&gt;}
+\newcommand{\amp}{&amp;}
+\definecolor{fillinmathshade}{gray}{0.9}
+\newcommand{\fillinmath}[1]{\mathchoice{\colorbox{fillinmathshade}{$\displaystyle     \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\textstyle        \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptstyle      \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptscriptstyle\phantom{\,#1\,}$}}}
+\)</span></div>
+<div style="width:600px; height:600px; display: block; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;"><pre class="ptx-sagecell sage-interact"><script type="text/x-sage">from sage.plot.plot3d.plot3d import axes
+var('s,t')
+scale=3
+a=pi+2
+plot17=axes(scale,2,color="black",frame=False)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
+plot17+=parametric_plot3d((s,tan(2)*s,t),(t,-scale,scale),(s,-1.5,0),color="blue",opacity=.25,mesh=True,plot_points=3)
+plot17+=parametric_plot3d((s,tan(2)*s,t),(t,-scale,scale),(s,0,1.5),color="green",opacity=.25,mesh=True,plot_points=3)
+plot17+=parametric_plot3d((cos(t),sin(t),0),(t,0,2),color="red",thickness=2)+arrow3d((cos(a-0.1),sin(a-0.1),0),(cos(a),sin(a),0),color="red",arrowsize=100)
+plot17+=arrow3d((0.75*cos(2-0.1),0.75*sin(2-0.1),0),(cos(2),sin(2),0),color="orange",arrowsize=100)
+plot17+=text3d("\u03B8=2",(1,2,0),color="red",fontsize=25)
+plot17+=text3d("\u03B8=2+\u03C0",(-2,-1,0),color="orange",fontsize=25)
+plot17+=parametric_plot3d((0.75*cos(t),0.75*sin(t),0),(t,0,pi+2),color="orange",thickness=2)
+plot17+=text3d("\u03B8 with r\u003C0",(4*cos(pi+2),4*sin(pi+2),4),color="green",fontsize=25)
+plot17+=text3d("\u03B8 with r\u003E0",(4*cos(2),4*sin(2),4),color="blue",fontsize=25)
+show(plot17,aspect_ratio=1,viewpoint=[[-0.0603,-0.5458,-0.8357],169.45],camera_position=[3.7514,13.4219,6.5388])
+</script></pre></div>
+</body>
+</html>
