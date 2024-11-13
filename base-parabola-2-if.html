@@ -102,15 +102,17 @@ window.MathJax = {
 </script><link rel="stylesheet" type="text/css" href="https://sagecell.sagemath.org/static/sagecell_embed.css">
 </head>
 <body class="ptx-content ignore-math" id="acmulti"><div style="width:600px; height:600px; display: block; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;"><pre class="ptx-sagecell sage-interact"><script type="text/x-sage">@interact
-def parabolabase(tval=slider(-4,4,0.1,default=1.6,display_value=False)):
-    var('t')
-    c=1
-    plot4=point((c,0),color="green",size=20,axes=True,axes_labels=["$x$","$y$"],ticks=[[],[]])
-    plot4+=line([(tval^2/4,tval),(-c,tval)],color="red")
-    plot4+=line([(tval^2/4,tval),(c,0)],color="blue")
-    plot4+=point((tval^2/4,tval),color="purple",size=20)
-    plot4+=parametric_plot((t^2/4,t),(t,-4,4),color="black")
-    plot4+=line([(-1,-8),(-1,8)],color="gray",linestyle="--")
-    show(plot4,aspect_ratio=1,xmin=-4,xmax=4,ymin=-4,ymax=4)
+def parabolabase(tval=slider(-4,4,0.1,default=1.6,display_value=False,label="Move Point on Parabola")):
+  var('t')
+  c=1
+  plot4=point((c,0),color="green",size=20,axes=True,axes_labels=["$x$","$y$"],ticks=[[],[]])
+  plot4+=line([(tval^2/4,tval),(-c,tval)],color="red")
+  plot4+=line([(tval^2/4,tval),(c,0)],color="blue")
+  plot4+=point((tval^2/4,tval),color="purple",size=20)
+  plot4+=parametric_plot((t^2/4,t),(t,-4,4),color="black")
+  plot4+=line([(-1,-8),(-1,8)],color="gray",linestyle="--")
+  plot4+=line([(-c,3.9),(tval^2/4,3.9)],color="red")
+  plot4+=line([(-c,3.8),(tval^2/4,3.8)],color="blue")
+  show(plot4,aspect_ratio=1,xmin=-4,xmax=4,ymin=-4,ymax=4)
 </script></pre></div></body>
 </html>

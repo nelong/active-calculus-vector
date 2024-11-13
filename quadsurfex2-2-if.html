@@ -105,23 +105,23 @@ window.MathJax = {
 var('x,y,z')
 @interact
 def quadplotcompare(sb=selector(['Surface 1','Surface 2','Surface 3','Surface 4','Surface 5'],label="Surface Options:")):
-    var('t,s')
-    scale=3.5; d=0.03; op=0.3;
-    plot13=axes(scale,1,color="black",frame=False,aspect_ratio=1)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
-    if sb=='Surface 1':
-        eqr=x^2/4+y^2/9+z^2; eql=1;
-    if sb=='Surface 2':
-        eqr=-x^2/4+y^2/9+z^2; eql=1;
-    if sb=='Surface 3':
-        eqr=x^2/4-y^2/9+z^2; eql=1;
-    if sb=='Surface 4':
-        eqr=x^2/4+y^2/9-z^2; eql=1;
-    if sb=='Surface 5':
-        eqr=x^2/4+y^2/9; eql=z^2;
-    plot13+=implicit_plot3d(eqr==eql,(x,-scale,scale),(y,-scale,scale),(z,-scale,scale),color="blue",opacity=op)
-    plot13+=implicit_plot3d(eqr==eql,(x,-scale,scale),(y,-scale,scale),(z,-d,d),color="red")
-    plot13+=implicit_plot3d(eqr==eql,(x,-scale,scale),(y,-d,d),(z,-scale,scale),color="green")
-    plot13+=implicit_plot3d(eqr==eql,(x,-d,d),(y,-scale,scale),(z,-scale,scale),color="blue")
-    show(plot13,aspect_ratio=1)
+  var('t,s')
+  scale=3.5; d=0.03; op=0.3;
+  plot13=axes(scale,1,color="black",frame=False,aspect_ratio=1)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
+  if sb=='Surface 1':
+    eqr=x^2/4+y^2/9+z^2; eql=1;
+  if sb=='Surface 2':
+    eqr=-x^2/4+y^2/9+z^2; eql=1;
+  if sb=='Surface 3':
+    eqr=x^2/4-y^2/9+z^2; eql=1;
+  if sb=='Surface 4':
+    eqr=x^2/4+y^2/9-z^2; eql=1;
+  if sb=='Surface 5':
+    eqr=x^2/4+y^2/9; eql=z^2;
+  plot13+=implicit_plot3d(eqr==eql,(x,-scale,scale),(y,-scale,scale),(z,-scale,scale),color="blue",opacity=op)
+  plot13+=implicit_plot3d(eqr==eql,(x,-scale,scale),(y,-scale,scale),(z,-d,d),color="red")
+  plot13+=implicit_plot3d(eqr==eql,(x,-scale,scale),(y,-d,d),(z,-scale,scale),color="green")
+  plot13+=implicit_plot3d(eqr==eql,(x,-d,d),(y,-scale,scale),(z,-scale,scale),color="blue")
+  show(plot13,aspect_ratio=1)
 </script></pre></div></body>
 </html>

@@ -11,7 +11,9 @@
 <meta name="robots" content="noindex, nofollow">
 </head>
 <body class="ignore-math">
-<article class="assemblage assemblage-like"><h4 class="heading"><span class="title">The derivative of a vector-valued function.</span></h4>
+<article class="proposition theorem-like"><h4 class="heading">
+<span class="type">Key Idea</span><span class="space"> </span><span class="codenumber">10.2.5</span><span class="period">.</span><span class="space"> </span><span class="title">Efficient calculation of the derivative of a vector-valued function.</span>
+</h4>
 <div class="para logical">
 <div class="para">If <span class="process-math">\(\vr(t) = x(t) \vi + y(t) \vj + z(t) \vk\text{,}\)</span> then</div>
 <div class="displaymath process-math">
@@ -20,6 +22,20 @@
 \end{equation*}
 </div>
 <div class="para">for those values of <span class="process-math">\(t\)</span> at which <span class="process-math">\(x\text{,}\)</span> <span class="process-math">\(y\text{,}\)</span> and <span class="process-math">\(z\)</span> are differentiable.</div>
-</div></article><span class="incontext"><a class="internal" href="S-VVF-Calculus.html#Vector-valued-function-derivative">in-context</a></span>
+</div></article><details class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h4 class="heading"><span class="type">Proof<span class="period">.</span></span></h4></summary><article class="hiddenproof knowl__content"><div class="para logical">
+<div class="para">To see why, recall that the limit of a sum is the sum of the limits, and that we can remove constant factors from limits. Thus, as we observed after <a href="S-VVF-Calculus.html#PA_9_7" class="xref" data-knowl="./knowl/xref/PA_9_7.html" data-reveal-label="Reveal" data-close-label="Close" title="Preview Activity 10.2.1">Preview Activity 10.2.1</a>, if <span class="process-math">\(\vr(t) = x(t) \vi + y(t) \vj + z(t) \vk\text{,}\)</span> it follows that</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/PA_9_7.html">
+\begin{align*}
+\vr'(t) = \mathstrut \amp  \lim_{h \to 0} \frac{\vr(t+h)-\vr(t)}{h}\\
+= \mathstrut \amp \lim_{h \to 0} \frac{[x(t+h)-x(t)] \vi + [y(t+h)-y(t)] \vj +
+[z(t+h)-z(t)] \vk}{h}\\
+= \mathstrut \amp \left(\lim_{h \to 0} \frac{x(t+h)-x(t)}{h}
+\right) \vi + \left( \lim_{h \to 0} \frac{y(t+h)-y(t)}{h} \right) \vj\\
+\mathstrut \amp  + \left( \lim_{h \to 0} \frac{z(t+h)-z(t)}{h} \right)\vk\\
+\mathstrut \amp = x'(t)\vi + y'(t) \vj + z'(t) \vk.
+\end{align*}
+</div>
+<div class="para">Thus, we can calculate the derivative of a vector-valued function by simply differentiating its components.</div>
+</div></article></details><span class="incontext"><a class="internal" href="S-VVF-Calculus.html#Vector-valued-function-derivative">in-context</a></span>
 </body>
 </html>
