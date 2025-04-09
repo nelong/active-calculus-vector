@@ -101,12 +101,24 @@ window.MathJax = {
 });
 </script><link rel="stylesheet" type="text/css" href="https://sagecell.sagemath.org/static/sagecell_embed.css">
 </head>
-<body class="ptx-content ignore-math" id="acmulti"><div style="width:588px; height:706px; display: block; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;"><pre class="ptx-sagecell sage-interact"><script type="text/x-sage">var('t,x,y')
-F=(x^2-y,y^2-x)
-@interact
-def _(a=input_box(default=1.5,label="x-coordinate",width=30),b=input_box(default=-1.5,label="y-coordinate",width=30),r=input_box(default=0.5,label="radius of region",width=30)):
-  plot1=plot_vector_field(F,(x,a-3*r,a+3*r),(y,b-3*r,b+3*r),color='blue')
-  plot1+=point((a,b),color='black',size=30)+parametric_plot((a+r*cos(t),b+r*sin(t)),(t,0,2*pi), color='black',thickness=2)
-  show(plot1)
+<body class="ptx-content ignore-math" id="acmulti"><div style="width:600px; height:600px; display: block; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;"><pre class="ptx-sagecell sage-interact"><script type="text/x-sage">var('x,y,z,t,s')
+f(x,y)=2*x^2+y^2-y
+param(s,t)=(s*cos(t),s*sin(t),f(s*cos(t),s*sin(t)))
+#set up grid      n is number of steps in s    m is number of steps in t  
+#a1 is min s    a2 is max s   b1 is min t    b2 is max t
+n=21;m=21;a1=0;a2=1;b1=0;b2=2*pi; 
+#c1 is surface color     o1 is surface opacity
+#c2 and o2 are for constant t value traces
+#c3 and o3 are for constant s value traces
+c1="gray"; c2="black"; c3="black"; o1=0.5; o2=0.3; o3=0.3;
+plot99=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1)
+for i in range(n+1):
+  sv=a1+i/n*(a2-a1)
+  plot99+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c2,opacity=o2)
+for i in range(m+1):
+  tv=b1+i/m*(b2-b1)
+  plot99+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
+plot99+=parametric_plot3d(param(1,t),(t,0,2*pi),color="mediumturquoise",thickness=3)
+show(plot99,viewpoint=[[-0.0928,-0.691,-0.7169],169],camera_position=[1.3005,4.752,1.1816])
 </script></pre></div></body>
 </html>

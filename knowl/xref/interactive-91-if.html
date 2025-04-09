@@ -101,17 +101,33 @@ window.MathJax = {
 });
 </script><link rel="stylesheet" type="text/css" href="https://sagecell.sagemath.org/static/sagecell_embed.css">
 </head>
-<body class="ptx-content ignore-math" id="acmulti"><div style="width:600px; height:600px; display: block; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;"><pre class="ptx-sagecell sage-interact"><script type="text/x-sage">var('t,s')
-a=4
-b=5
-@interact
-def _():
-  plot1=sphere((1,2,0),size=.15,color="black",frame=False,aspect_ratio=1,ticks=[[],[]])+parametric_plot3d((t,s,0),(t,-a,a),(s,-a,a),color="red",opacity=.2)
-  plot1+=arrow3d((1,2,0),(1,2,2),color="blue",width=3)+parametric_plot3d((t,0,0),(t,-b,b),color="black")
-  plot1+=parametric_plot3d((0,t,0),(t,-b,b),color="black")+parametric_plot3d((0,0,t),(t,-b,b),color="black")
-  plot1+=text3d("x",(5.5,0,0))+text3d("y",(0,5.5,0))+text3d("z",(0,0,5.5))+text3d("(a,b,c)",(1,3,0.25))
-  plot1+=parametric_plot3d((1+cos(t),2+sin(t),1),(t,0,5.5),color="blue",thickness=3)
-  plot1+=arrow3d((1+cos(5.5),2+sin(5.5),1),(1+cos(5.75),2+sin(5.75),1),width=5,color="blue")
-  show(plot1)
+<body class="ptx-content ignore-math" id="acmulti"><div style="width:600px; height:600px; display: block; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;"><pre class="ptx-sagecell sage-interact"><script type="text/x-sage">from sage.plot.plot3d.plot3d import axes
+var('x,y,z,t,s')
+scale=2; a=1/2;b=1/3 ;x0=1;y0=1;
+f(x,y)=2*exp(-(x-1/2)^2/2-y^2/4)
+plot4=axes(scale,1,color="black",frame=False,aspect_ratio=1)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
+param(s,t)=(s,t,f(s,t))
+#set up grid      n is number of steps in s    m is number of steps in t  
+#a1 is min s    a2 is max s   b1 is min t    b2 is max t
+n=6;m=6;a1=0;a2=2;b1=0;b2=2; 
+#c1 is surface color     o1 is surface opacity
+#c2 and o2 are for constant t value traces
+#c3 and o3 are for constant s value traces
+c1="gray"; c2="black"; c3="black"; o1=0.2; o2=0.2; o3=0.2;
+plot99=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1)
+for i in range(n+1):
+  sv=a1+i/n*(a2-a1)
+  plot99+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c2,opacity=o2)
+for i in range(m+1):
+  tv=b1+i/m*(b2-b1)
+  plot99+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
+plot4+=plot99
+#plot3+=plot3d(f(x,y),(x,0,2),(y,0,2),color="gray",plot_points=13,opacity=0.3)
+plot4+=parametric_plot3d((x0+a*t,y0+b*t,f(x0+a*t,y0+b*t)),(t,0,2),color="blue",opacity=0.5,thickness=3)
+plot4+=parametric_plot3d((x0+a*t,y0+b*t,0),(t,0,2),color="red",opacity=0.5,thickness=3)
+plot4+=parametric_plot3d((x0+a*t,y0+b*t,s),(t,0,2),(s,0,2),color="blue",opacity=0.1,mesh=True,plot_points=2)
+plot4+=arrow((x0,y0,0),(x0+a,y0+b,0),color="red",width=1)+text3d("\u27E8u\u2081,u\u2082\u27E9",(a+0.25+x0,b+0.25+y0,-0.2),color="red",fontsize=20)
+plot4+=point((x0,y0,f(x0,y0)),color="blue",size=30)+point((x0,y0,0),color="red",size=20)
+show(plot4,viewpoint=[[-0.6979,-0.4507,-0.5566],98.49],camera_position=[6.4729,-1.1441,2.3749])
 </script></pre></div></body>
 </html>

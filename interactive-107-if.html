@@ -101,14 +101,26 @@ window.MathJax = {
 });
 </script><link rel="stylesheet" type="text/css" href="https://sagecell.sagemath.org/static/sagecell_embed.css">
 </head>
-<body class="ptx-content ignore-math" id="acmulti"><div style="width:600px; height:600px; display: block; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;"><pre class="ptx-sagecell sage-interact"><script type="text/x-sage">var('t,s')
-@interact
-def _():
-  a=2
-  b=1
-  plot5=parametric_plot3d((s,0,t),(s,-a,a),(t,0,b),color='gray',opacity=.75)
-  plot5+=parametric_plot3d((0,s,t),(s,-a,a),(t,0,b),color='gray',opacity=.75)
-  plot5+=parametric_plot3d((0,0,t),(t,-1/4*b,3*b),color='black',thickness=6)
-  show(plot5,aspect_ratio=1,frame=False)
+<body class="ptx-content ignore-math" id="acmulti"><div style="width:600px; height:600px; display: block; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;"><pre class="ptx-sagecell sage-interact"><script type="text/x-sage">var('x,y,z,t,s')
+f(x,y)=x^2-3*y^2-4*x+6*y
+param(s,t)=(t,s*(4-t),f(t,s*(4-t)))
+#set up grid      n is number of steps in s    m is number of steps in t  
+#a1 is min s    a2 is max s   b1 is min t    b2 is max t
+n=21;m=21;a1=0;a2=1;b1=0;b2=4; 
+#c1 is surface color     o1 is surface opacity
+#c2 and o2 are for constant t value traces
+#c3 and o3 are for constant s value traces
+c1="gray"; c2="black"; c3="black"; o1=0.5; o2=0.3; o3=0.3;
+plot99=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1)
+for i in range(n+1):
+  sv=a1+i/n*(a2-a1)
+  plot99+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c2,opacity=o2)
+for i in range(m+1):
+  tv=b1+i/m*(b2-b1)
+  plot99+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
+plot99+=parametric_plot3d(param(1,t),(t,b1,b2),color="mediumturquoise",thickness=3)
+plot99+=parametric_plot3d(param(0,t),(t,b1,b2),color="mediumturquoise",thickness=3)
+plot99+=parametric_plot3d(param(s,0),(s,a1,a2),color="mediumturquoise",thickness=3)
+show(plot99,aspect_ratio=(1,1,5/25),viewpoint=[[-0.0928,-0.691,-0.7169],169],camera_position=[1.3005,4.752,1.1816])
 </script></pre></div></body>
 </html>

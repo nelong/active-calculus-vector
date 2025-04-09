@@ -101,16 +101,14 @@ window.MathJax = {
 });
 </script><link rel="stylesheet" type="text/css" href="https://sagecell.sagemath.org/static/sagecell_embed.css">
 </head>
-<body class="ptx-content ignore-math" id="acmulti"><div style="width:600px; height:600px; display: block; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;"><pre class="ptx-sagecell sage-interact"><script type="text/x-sage">var('t,s,x,y')
-f=-x^2/2-3*y^3/3+0.5
+<body class="ptx-content ignore-math" id="acmulti"><div style="width:600px; height:600px; display: block; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;"><pre class="ptx-sagecell sage-interact"><script type="text/x-sage">var('x,y,z')
+d=0.25
 @interact
-def _():
-  f(x,y)=(550-y+x)*.002+cos((x^2/700+sin(y*(250-x)))/50)+0.5
-  plot8=polygon3d([[212.5,425,0],[512.5,525,0],[300,100,0],[0,0,0]],color='grey',opacity=.5)
-  plot11=parametric_plot3d((t,2*t,0),(t,0,212.5),color='#D81B60',thickness=4)+parametric_plot3d((t,2*t,f(t,2*t)),(t,0,212.5),color='#004D40',thickness=4)+parametric_plot3d((t,2*t,s*f(t,2*t)),(t,0,212.5),(s,0,1),color='#FFC107',thickness=4)
-  plot11+=parametric_plot3d((212.5+3*t,425+t,0),(t,0,100),color='#D81B60',thickness=4)+parametric_plot3d((212.5+3*t,425+t,f(212.5+3*t,425+t)),(t,0,100),color='#004D40',thickness=4)+parametric_plot3d((212.5+3*t,425+t,s*f(212.5+3*t,425+t)),(t,0,100),(s,0,1),color='#FFC107',thickness=4)
-  plot11+=parametric_plot3d((300+t,100+2*t,0),(t,0,212.5),color='#D81B60',thickness=4)+parametric_plot3d((300+t,100+2*t,f(300+t,100+2*t)),(t,0,212.5),color='#004D40',thickness=4)+parametric_plot3d((300+t,100+2*t,s*f(300+t,100+2*t)),(t,0,212.5),(s,0,1),color='#FFC107',thickness=4)
-  plot11+=parametric_plot3d((3*t,t,0),(t,0,100),color='#D81B60',thickness=4)+parametric_plot3d((3*t,t,f(3*t,t)),(t,0,100),color='#004D40',thickness=4)+parametric_plot3d((3*t,t,s*f(3*t,t)),(t,0,100),(s,0,1),color='#FFC107',thickness=4)
-  show(plot11+plot8,aspect_ratio=(1,1,40))
+def critvalcheck(p=input_grid(1,2,default=[[0,0]],label="(a,b)="),func=input_box(default=x-y,label="\\(f(x,y)=\\)"),auto_update=False):
+  a=p[0][0];b=p[0][1];
+  f(x,y)=func
+  plot1=plot3d(f(x,y),(x,a-d,a+d),(y,b-d,b+d),color="blue",opacity=0.6,plot_points=31,mesh=True)
+  plot1+=point((a,b,f(x=a,y=b)),size=10,color="black")
+  show(plot1)
 </script></pre></div></body>
 </html>

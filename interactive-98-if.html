@@ -101,16 +101,34 @@ window.MathJax = {
 });
 </script><link rel="stylesheet" type="text/css" href="https://sagecell.sagemath.org/static/sagecell_embed.css">
 </head>
-<body class="ptx-content ignore-math" id="acmulti"><div style="width:600px; height:650px; display: block; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;"><pre class="ptx-sagecell sage-interact"><script type="text/x-sage">var('t,s,x,y,z,r,theta')
+<body class="ptx-content ignore-math" id="acmulti"><div style="width:600px; height:690px; display: block; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;"><pre class="ptx-sagecell sage-interact"><script type="text/x-sage">from sage.plot.plot3d.plot3d import axes
+var('x,y,z,t,s')
+scale=5;
 @interact
-def _(s=selector(['Surface1', 'Surface2','Surface3'],label="Surface Selection:")):
-  plot1=parametric_plot3d((cos(t),sin(t),cos(2*t)),(t,0,2*pi),color="red",thickness=5)
-  if s=='Surface1':
-    surface=parametric_plot3d((r*cos(t),r*sin(t),r^2*(cos(t)^2-sin(t)^2)),(t,0,2*pi),(r,0,2),color="gray",opacity=.75)
-  if s=='Surface2':
-    surface=parametric_plot3d((r*cos(t),r*sin(t),(-cos(pi*r))*(cos(t)^2-sin(t)^2)),(t,0,2*pi),(r,0,2),color="gray",opacity=.75)
-  if s=='Surface3':
-    surface=parametric_plot3d((r*cos(t),r*sin(t),(r^6)*(cos(t)^2-sin(t)^2)),(t,0,2*pi),(r,0,1.5), color="gray",opacity=.75,aspect_ratio=(1,1,.1))
-  show(plot1+surface)
+def hypconegrad(k=slider(-6,6,1,default=2,label="level surface value, k="),g=checkbox(default=False,label="Show Gradient Vectors")):
+  n=5;m=6;d=4;
+  plot3=axes(scale,1,color="black",aspect_ratio=1)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
+  if(sign(k)==-1):
+    param(s,t)=(s*cos(t),s*sin(t),-sqrt(s^2-k))
+    param2(s,t)=(s*cos(t),s*sin(t),sqrt(s^2-k))
+    grad(s,t)=(2*s*cos(t),2*s*sin(t),2*sqrt(s^2-k))
+    grad2(s,t)=(2*s*cos(t),2*s*sin(t),-2*sqrt(s^2-k))
+    plot3+=parametric_plot3d(param(s,t),(t,0,2*pi),(s,-d,d),color="blue",opacity=0.5,mesh=True)
+    plot3+=parametric_plot3d(param2(s,t),(t,0,2*pi),(s,-d,d),color="blue",opacity=0.5,mesh=True)
+  else:
+    param(s,t)=(sqrt(k+s^2)*cos(t),sqrt(k+s^2)*sin(t),s)
+    grad(s,t)=(2*sqrt(k+s^2)*cos(t),2*sqrt(k+s^2)*sin(t),-2*s)
+    plot3+=parametric_plot3d(param(s,t),(t,0,2*pi),(s,-d,d),color="blue",opacity=0.5,mesh=True)
+  #plot3+=parametric_plot3d(param(s,t),(s,0,pi),(t,0,2*pi),color="blue",mesh=True,opacity=0.4,plot_points=21)
+  if(g):
+    for i in range(n+1):
+      sv=-d+i*2*d/n;
+      for j in range(m):
+        tv=j*2*pi/m;
+        plot3+=arrow(param(sv,tv),param(sv,tv)+grad(sv,tv),color="red",opacity=0.5,width=3)
+        if(sign(k)==-1):
+          tv=j*2*pi/m+pi/m
+          plot3+=arrow(param2(sv,tv),param2(sv,tv)+grad2(sv,tv),color="red",opacity=0.5,width=3)
+  show(plot3,viewpoint=[[-0.2556,-0.5906,-0.7655],143.35],camera_position=[22.801,21.411,8.8665])
 </script></pre></div></body>
 </html>
