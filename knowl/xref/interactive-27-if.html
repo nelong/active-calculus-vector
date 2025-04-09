@@ -101,27 +101,15 @@ window.MathJax = {
 });
 </script><link rel="stylesheet" type="text/css" href="https://sagecell.sagemath.org/static/sagecell_embed.css">
 </head>
-<body class="ptx-content ignore-math" id="acmulti"><div style="width:600px; height:672px; display: block; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;"><pre class="ptx-sagecell sage-interact"><script type="text/x-sage">var('t,s,u,v,z,y,z')
-f=-x^2/2-3*y^3/3
-@interact
-def _(n=slider(3,10,1,4,label="Number of Sections in Grid")):
-  plot1=plot3d(f,(x,-1,1),(y,-1,1),frame=False,opacity=.3)
-  stepsize=2/(n)
-  for i in range(0,n):
-    a=-1+i*stepsize
-    plot1+=parametric_plot3d((s,a,f(x=s,y=a)),(s,-1,1),color="gray")
-    plot1+=parametric_plot3d((a,s,f(y=s,x=a)),(s,-1,1),color="gray")
-    for j in range(0,n):
-      b=-1+j*stepsize
-      f_val=f(x=a,y=b)
-      pos=(a,b,f_val)
-      fx=diff(f,x)(x=a,y=b)
-      fy=diff(f,y)(x=a,y=b)
-      vt=(stepsize+a,b,stepsize*fx+f_val)
-      vs=(a,b+stepsize,stepsize*fy+f_val)
-      cr=(a-fx*stepsize,b-fy*stepsize,stepsize+f_val)
-      plot1+=parametric_plot3d((a+t*stepsize,b+s*stepsize,f_val+t*stepsize*fx+s*stepsize*fy),(t,0,1),(s,0,1),color="orange",opacity=.6)
-      plot1+=arrow3d(pos,cr,color="#004D40")
-  show(plot1)
+<body class="ptx-content ignore-math" id="acmulti"><div style="width:600px; height:600px; display: block; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;"><pre class="ptx-sagecell sage-interact"><script type="text/x-sage">from sage.plot.plot3d.plot3d import axes
+var('t,s')
+scale=5
+plot1=axes(scale,1,color="black",frame=False)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
+plot1+=line3d([(4,0,0),(4,3,0)],color="red",thickness=2)+text3d("3",(4.5,1.5,-.25),color="red",fontsize=20)
+plot1+=line3d([(0,0,0),(4,3,0)],color="blue",thickness=2)+text3d("5",(2.5,1.25,0),color="blue",fontsize=20)
+plot1+=line3d([(3.75,0,0),(3.75,0.25,0),(4,0.25,0)],color="black")
+plot1+=line3d([(4,3,0),(4,3,2)],color="green",thickness=2)+text3d("2",(4,3.2,1.5),color="green",fontsize=20)
+plot1+=point3d((4,3,2),color="black",size=30)+text3d("P",(4,3.2,2.1),color="black",fontsize=20)
+show(plot1,aspect_ratio=1,viewpoint=[[-0.5384,-0.5556,-0.6336],116.91],camera_position=[18.2582,3.6995,4.9808])
 </script></pre></div></body>
 </html>

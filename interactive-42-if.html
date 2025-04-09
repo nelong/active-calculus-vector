@@ -101,16 +101,22 @@ window.MathJax = {
 });
 </script><link rel="stylesheet" type="text/css" href="https://sagecell.sagemath.org/static/sagecell_embed.css">
 </head>
-<body class="ptx-content ignore-math" id="acmulti"><div style="width:522px; height:1054px; display: block; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;"><pre class="ptx-sagecell sage-interact"><script type="text/x-sage">var('t,s')
-plot6=parametric_plot3d((2*sin(s)*cos(t),2*sin(s)*sin(t),2*cos(s)),(s,0,pi),(t,0,2*pi),frame=False,color='#D81B60',opacity=.5)
-plot6+=parametric_plot3d((t,0,0),(t,-2.5,2.5),color="black")+parametric_plot3d((0,t,0),(t,-2.5,2.5),color="black")+parametric_plot3d((0,0,t),(t,-2.5,2.5),color="black")
-plot6+=text3d("x",(2.75,0,0),fontweight='bold')+text3d("y",(0,2.75,0),fontweight='bold')+text3d("z",(0,0,2.75),fontweight='bold')
-show(plot6)
-plot5=parametric_plot3d((2*cos(t),2*sin(t),s),(s,0,2),(t,0,2*pi),frame=False,color='#FFC107',opacity=.5)
-plot5+=parametric_plot3d((s*cos(t),s*sin(t),0),(s,0,2),(t,0,2*pi),frame=False,color='#004D40',opacity=.5)
-plot5+=parametric_plot3d((s*cos(t),s*sin(t),2),(s,0,2),(t,0,2*pi),frame=False,color='gray',opacity=.5)
-plot5+=parametric_plot3d((t,0,0),(t,-2.5,2.5),color="black")+parametric_plot3d((0,t,0),(t,-2.5,2.5),color="black")+parametric_plot3d((0,0,t),(t,-2.5,2.5),color="black")
-plot5+=text3d("x",(2.75,0,0),fontweight='bold')+text3d("y",(0,2.75,0),fontweight='bold')+text3d("z",(0,0,2.75),fontweight='bold')
-show(plot5)
+<body class="ptx-content ignore-math" id="acmulti"><div style="width:600px; height:600px; display: block; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;"><pre class="ptx-sagecell sage-interact"><script type="text/x-sage">from sage.plot.plot3d.shapes import *
+from sage.plot.plot3d.plot3d import axes
+var('s,t')
+scale=3
+nlat=10
+nlong=10
+nrho=4
+plot28=axes(scale,1,color="gray",frame=False)+text3d("x",(scale+0.5,0,0),fontsize=30,color="gray")+text3d("y",(0,scale+0.5,0),fontsize=30,color="gray")+text3d("z",(0,0,scale+0.5),fontsize=30,color="gray")
+for k in range(1,nrho+1):
+  r=2*k/nrho
+  for i in range(nlat):
+    lat=pi*i/nlat
+    plot28+=parametric_plot3d((r*cos(t)*sin(lat),r*sin(t)*sin(lat),r*cos(lat)),(t,0,2*pi),color="red",thickness=1,opacity=0.5)
+  for j in range(nlong):
+    long=2*pi*j/nlong
+    plot28+=parametric_plot3d((r*sin(t)*cos(long),r*sin(t)*sin(long),r*cos(t)),(t,0,pi),color="blue",thickness=1,opacity=0.5)
+show(plot28,viewpoint=[[-0.2733,-0.6455,-0.7132],146.39],camera_position=[8.3747,8.1398,1.8098])
 </script></pre></div></body>
 </html>

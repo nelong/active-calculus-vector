@@ -101,11 +101,22 @@ window.MathJax = {
 });
 </script><link rel="stylesheet" type="text/css" href="https://sagecell.sagemath.org/static/sagecell_embed.css">
 </head>
-<body class="ptx-content ignore-math" id="acmulti"><div style="width:522px; height:548px; display: block; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;"><pre class="ptx-sagecell sage-interact"><script type="text/x-sage">var('t,s,x,y,z')
-plot1=parametric_plot3d((cos(t)*sin(s),sin(t)*sin(s),cos(s)),(t,0,2*pi),(s,0,pi/2),color="#DC267F",opacity=.5)
-plot1+=arrow((0,0,.8),(0,0,1.5),color="#DC267F")
-plot2=parametric_plot3d((cos(t)*sin(s),sin(t)*sin(s),cos(s)),(t,0,2*pi),(s,pi/2,pi),color="#FFB000",opacity=.5)
-plot2+=arrow((0,0,-.8),(0,0,-1.5),color="#FFB000")
-show(plot1+plot2)
+<body class="ptx-content ignore-math" id="acmulti"><div style="width:600px; height:600px; display: block; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;"><pre class="ptx-sagecell sage-interact"><script type="text/x-sage">from sage.plot.plot3d.shapes import *
+from sage.plot.plot3d.plot3d import axes
+var('s,t')
+scale=2
+nlat=10
+nlong=10
+plot27=axes(scale,1,color="gray",frame=False,opacity=0.2)+text3d("x",(scale+0.5,0,0),fontsize=30,color="gray")+text3d("y",(0,scale+0.5,0),fontsize=30,color="gray")+text3d("z",(0,0,scale+0.5),fontsize=30,color="gray")
+for i in range(nlat):
+  lat=pi*i/nlat
+  plot27+=parametric_plot3d((cos(t)*sin(lat),sin(t)*sin(lat),cos(lat)),(t,0,2*pi),color="red",thickness=1.5,opacity=0.5)
+for j in range(nlong):
+  long=2*pi*j/nlong
+  plot27+=parametric_plot3d((sin(t)*cos(long),sin(t)*sin(long),cos(t)),(t,0,pi),color="blue",thickness=1.5,opacity=0.5)
+plot27+=point3d((0,0,1),color="green",size=40)+text3d("North Pole",(0,1,1.25),color="green",fontsize=20)
+plot27+=point3d((0,0,-1),color="purple",size=40)+text3d("South Pole",(1,0,-1.25),color="purple",fontsize=20)
+plot27+=parametric_plot3d((cos(t),sin(t),0),(t,0,2*pi),color="black",thickness=2.5)+text3d("Equator",(0,2,0.25),color="black",fontsize=20)
+show(plot27,viewpoint=[[-0.2987,-0.6349,-0.7125],142.93],camera_position=[6.074,5.1549,1.4245])
 </script></pre></div></body>
 </html>

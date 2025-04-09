@@ -101,22 +101,20 @@ window.MathJax = {
 });
 </script><link rel="stylesheet" type="text/css" href="https://sagecell.sagemath.org/static/sagecell_embed.css">
 </head>
-<body class="ptx-content ignore-math" id="acmulti"><div style="width:600px; height:600px; display: block; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;"><pre class="ptx-sagecell sage-interact"><script type="text/x-sage">@interact
-def abcd():
-  a=100000
-  b=75000
-  var('s,t,x,y,z')
-  g(x,y)=200*exp(-1/a*(x-250)^2-1/b*(y-300)^2)
-  plot10=parametric_plot3d((s,t,g(s,t)),(s,0,550),(t,0,550),color='blue',opacity=.5)
-  xylist=[[0,0],[212.5,425],[512.5,525],[300,100],[0,0]]
-  xstart=0
-  ystart=0
-  for c in xylist:
-    m=c[0]-xstart
-    n=c[1]-ystart
-    plot10+=parametric_plot3d([xstart+t*m,ystart+t*n,g(xstart+t*m,ystart+t*n)],(t,0,1),color='red',thickness=5)
-    xstart=c[0]
-    ystart=c[1]
-  show(plot10,aspect_ratio=1)
+<body class="ptx-content ignore-math" id="acmulti"><div style="width:600px; height:600px; display: block; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;"><pre class="ptx-sagecell sage-interact"><script type="text/x-sage">from sage.plot.plot3d.plot3d import axes
+var('s,t')
+scale=3
+a=pi+2
+plot17=axes(scale,2,color="black",frame=False)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
+plot17+=parametric_plot3d((s,tan(2)*s,t),(t,-scale,scale),(s,-1.5,0),color="blue",opacity=.25,mesh=True,plot_points=3)
+plot17+=parametric_plot3d((s,tan(2)*s,t),(t,-scale,scale),(s,0,1.5),color="green",opacity=.25,mesh=True,plot_points=3)
+plot17+=parametric_plot3d((cos(t),sin(t),0),(t,0,2),color="red",thickness=2)+arrow3d((cos(a-0.1),sin(a-0.1),0),(cos(a),sin(a),0),color="red",arrowsize=100)
+plot17+=arrow3d((0.75*cos(2-0.1),0.75*sin(2-0.1),0),(cos(2),sin(2),0),color="orange",arrowsize=100)
+plot17+=text3d("\u03B8=2",(1,2,0),color="red",fontsize=25)
+plot17+=text3d("\u03B8=2+\u03C0",(-2,-1,0),color="orange",fontsize=25)
+plot17+=parametric_plot3d((0.75*cos(t),0.75*sin(t),0),(t,0,pi+2),color="orange",thickness=2)
+plot17+=text3d("\u03B8 with r\u003C0",(4*cos(pi+2),4*sin(pi+2),4),color="green",fontsize=25)
+plot17+=text3d("\u03B8 with r\u003E0",(4*cos(2),4*sin(2),4),color="blue",fontsize=25)
+show(plot17,aspect_ratio=1,viewpoint=[[-0.0603,-0.5458,-0.8357],169.45],camera_position=[3.7514,13.4219,6.5388])
 </script></pre></div></body>
 </html>

@@ -101,11 +101,16 @@ window.MathJax = {
 });
 </script><link rel="stylesheet" type="text/css" href="https://sagecell.sagemath.org/static/sagecell_embed.css">
 </head>
-<body class="ptx-content ignore-math" id="acmulti"><div style="width:522px; height:548px; display: block; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;"><pre class="ptx-sagecell sage-interact"><script type="text/x-sage">var('t,s,x,y,z')
-plot2=parametric_plot3d((cos(t)*sin(s),sin(t)*sin(s),cos(s)),(t,0,2*pi),(s,pi/2,pi),color="#FFB000",opacity=.5)
-plot2+=arrow((0,0,-.8),(0,0,-1.5),color="#FFB000")
-plot3=parametric_plot3d((s*cos(t),s*sin(t),0),(t,0,2*pi),(s,0,1),color="#648FFF",opacity=.6)
-plot4=plot3+arrow((0,0,-.25),(0,0,.25),color="#648FFF")
-show(plot2+plot4)
+<body class="ptx-content ignore-math" id="acmulti"><div style="width:750px; height:750px; display: block; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;"><pre class="ptx-sagecell sage-interact"><script type="text/x-sage">from sage.plot.plot3d.plot3d import axes
+var('t')
+scale=2;
+@interact
+def basic3dcurveplot(s=slider(0,2*pi,pi/20,default=3*pi/4,label="t=")):
+    plot1=axes(scale,1,color="black",opacity=0.15)+text3d("x",(scale+0.5,0,0),fontsize=30)
+    plot1+=text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30,frame=False)
+    plot1+=parametric_plot3d((cos(t),sin(t),cos(2*t)),(t,0,2*pi),color="red",thickness=2,opacity=0.6)
+    plot1+=arrow((0,0,0),(cos(s),sin(s),cos(2*s)),color="blue",width=1.5)
+    plot1+=point((cos(s),sin(s),cos(2*s)),color="black",size=30)
+    show(plot1)
 </script></pre></div></body>
 </html>

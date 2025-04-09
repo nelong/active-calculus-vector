@@ -101,23 +101,16 @@ window.MathJax = {
 });
 </script><link rel="stylesheet" type="text/css" href="https://sagecell.sagemath.org/static/sagecell_embed.css">
 </head>
-<body class="ptx-content ignore-math" id="acmulti"><div style="width:600px; height:642px; display: block; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;"><pre class="ptx-sagecell sage-interact"><script type="text/x-sage">var('t,s')
-plot1=parametric_plot3d((2*cos(t),2*sin(t),s),(s,0,2),(t,0,2*pi),frame=False,color='#FFC107',opacity=.25)
-plot1+=parametric_plot3d((t,0,0),(t,-2.5,2.5),color="black")+parametric_plot3d((0,t,0),(t,-2.5,2.5),color="black")+parametric_plot3d((0,0,t),(t,-2.5,2.5),color="black")
-plot1+=text3d("x",(2.75,0,0),fontweight='bold')+text3d("y",(0,2.75,0),fontweight='bold')+text3d("z",(0,0,2.75),fontweight='bold')
-plot2=parametric_plot3d((2*cos(t)*sin(s),2*sin(t)*sin(s),2*cos(s)+2),(t,0,2*pi),(s,0,pi/2),color="red",opacity=.7)
-plot2+=parametric_plot3d((2*cos(t)*sin(s),2*sin(t)*sin(s),-2*cos(s)),(t,0,2*pi),(s,0,pi/2),color="red",opacity=.7)
-plot3=parametric_plot3d((s*cos(t),s*sin(t),0),(s,0,2),(t,0,2*pi),frame=False,color='#004D40',opacity=.5)
-plot3+=parametric_plot3d((s*cos(t),s*sin(t),2),(s,0,2),(t,0,2*pi),frame=False,color='gray',opacity=.5)
-plot4=parametric_plot3d((s*cos(t),s*sin(t),(1)*(1-s^2/4)),(t,0,2*pi),(s,0,2),color='#1E88E5',opacity=.5)
-plot4+=parametric_plot3d((s*cos(t),s*sin(t),(3/4)*(1+s^2/4)+1/2),(t,0,2*pi),(s,0,2),color="blue",opacity=.5)
-@interact
-def _(s=selector(['Version 1','Version 2','Version 3'],label="Top and Bottom to Display")):
-    if s =='Version 1':
-        show(plot1+plot2,frame=False)
-    elif s =='Version 2':
-        show(plot1+plot3,frame=False)
-    elif s =='Version 3':
-        show(plot1+plot4,frame=False)
+<body class="ptx-content ignore-math" id="acmulti"><div style="width:600px; height:600px; display: block; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;"><pre class="ptx-sagecell sage-interact"><script type="text/x-sage">from sage.plot.plot3d.shapes import *
+from sage.plot.plot3d.plot3d import axes
+var('s,t')
+scale=3
+plot26=axes(scale,1,color="black",frame=False)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
+plot26+=parametric_plot3d((cos(t)*sin(s),sin(t)*sin(s),cos(s)),(s,pi/4,pi),(t,0,pi),color="gray",opacity=.55)
+plot26+=parametric_plot3d((2*cos(t)*sin(s),2*sin(t)*sin(s),2*cos(s)),(s,pi/4,pi),(t,0,pi),color="yellow",opacity=.35)
+plot26+=parametric_plot3d((s*sin(t),0,s*cos(t)),(s,1,2),(t,pi/4,pi),color="green",opacity=0.4)+text3d("\u03B8=0",(3,-0.5,0),color="green",fontsize=25)
+plot26+=parametric_plot3d((-s*sin(t),0,s*cos(t)),(s,1,2),(t,pi/4,pi),color="red",opacity=0.4)+text3d("\u03B8=\u03C0",(-2,-0.75,0),color="red",fontsize=25)
+plot26+=parametric_plot3d((s*cos(t)*sqrt(2)/2,s*sin(t)*sqrt(2)/2,s*sqrt(2)/2),(s,1,2),(t,0,pi),color="blue",opacity=0.4)+text3d("\u03C6=\u03C0/4",(0,1,2),color="blue",fontsize=25)
+show(plot26,viewpoint=[[-0.8195,-0.3319,-0.4671],81.86],camera_position=[8.3609,-6.4789,4.5585])
 </script></pre></div></body>
 </html>

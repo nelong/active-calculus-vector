@@ -101,11 +101,26 @@ window.MathJax = {
 });
 </script><link rel="stylesheet" type="text/css" href="https://sagecell.sagemath.org/static/sagecell_embed.css">
 </head>
-<body class="ptx-content ignore-math" id="acmulti"><div style="width:600px; height:600px; display: block; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;"><pre class="ptx-sagecell sage-interact"><script type="text/x-sage">@interact
-def asdf():
-  var('s,t')
-  plot2=parametric_plot3d((s*cos(t),s*sin(t),s),(s,1,3),(t,0,2*pi),color='#1E88E5', opacity=.75)
-  plot2+=parametric_plot3d((s,t,s^2),(s,-3,3),(t,-3,3),color='#FFC107', opacity=.50)
-  show(plot2,aspect_ratio=1)
+<body class="ptx-content ignore-math" id="acmulti"><div style="width:600px; height:600px; display: block; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;"><pre class="ptx-sagecell sage-interact"><script type="text/x-sage">from sage.plot.plot3d.plot3d import axes
+var('s,t')
+scale=3
+tval=3*pi/4
+xval=-2
+yval=2
+zval=sqrt(8)
+r=sqrt(xval^2+yval^2)
+rho=sqrt(xval^2+yval^2+zval^2)
+a=arccos(zval/rho)
+plot20=axes(scale,1.5,color="black",frame=False)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
+plot20+=line([(0,0,0),(xval,yval,zval)],color="blue",thickness=2)+text3d("\u03c1",(xval/1.6,yval/1.6,zval/1.6+0.5),color="blue",fontsize=20)
+plot20+=line([(0,0,0),(xval,yval,0)],color="red",thickness=2)+text3d("r",(xval/1.6,yval/1.6,-0.5),color="red",fontsize=20)
+plot20+=line([(xval,yval,zval),(xval,yval,0)],color="gray",linestyle="--")+text3d("z",(xval/0.8,yval/0.8,zval/2),color="gray",fontsize=20)
+plot20+=parametric_plot3d((cos(t),sin(t),0),(t,0,tval),color="green",thickness=2)+arrow3d((cos(tval-0.1),sin(tval-0.1),0),(cos(tval),sin(tval),0),color="green")
+plot20+=text3d("\u03B8",(1,2,0),color="green",fontsize=25)
+plot20+=parametric_plot3d((xval/rho*sin(t),yval/rho*sin(t),r/rho*cos(t)),(t,0,a),color="orange",thickness=2)
+plot20+=arrow3d((sin(a-.01),2*sin(a-.01),sqrt(5)*cos(a-.01)),(sin(a),2*sin(a),sqrt(5)*cos(a)),color="orange")
+plot20+=text3d("\u03c6",(xval/4,yval/4,zval/2),color="orange",fontsize=25)
+plot20+=point3d((xval,yval,zval),size=30,color="black")+text3d("P",(xval,yval,zval+0.5),fontsize=25,color="black")
+show(plot20,aspect_ratio=1,viewpoint=[[-0.0346,-0.6289,-0.7767],175.1],camera_position=[1.7949,11.1905,3.744])
 </script></pre></div></body>
 </html>
