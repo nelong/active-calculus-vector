@@ -9,11 +9,12 @@
 <head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Double Integrals in Polar Coordinates</title>
-<meta name="Keywords" content="Authored in PreTeXt">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta property="og:type" content="book">
-<meta property="book:title" content="Active Calculus - Multivariable">
-<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>
+<link xmlns:xlink="http://www.w3.org/1999/xlink" rel="preconnect" href="https://fonts.googleapis.com">
+<link xmlns:xlink="http://www.w3.org/1999/xlink" rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link xmlns:xlink="http://www.w3.org/1999/xlink" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
+<link href="_static/pretext/css/theme.css" rel="stylesheet" type="text/css">
+<link xmlns:xlink="http://www.w3.org/1999/xlink" href="_static/pretext/css/ol-markers.css" rel="stylesheet" type="text/css">
+<script>
 var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
 window.MathJax = {
   "tex": {
@@ -73,7 +74,7 @@ window.MathJax = {
       "[pretext]/mathjaxknowl3.js"
     ],
     "paths": {
-      "pretext": "https://pretextbook.org/js/lib"
+      "pretext": "_static/pretext/js/lib"
     }
   },
   "startup": {
@@ -85,37 +86,53 @@ window.MathJax = {
     )}
   }
 };
-</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><link href="https://webwork-ptx.aimath.org/webwork2_files/js/apps/MathView/mathview.css" rel="stylesheet">
-<script src="https://pretextbook.org/js/0.33/pretext-webwork/2.17/pretext-webwork.js"></script><script src="https://webwork-ptx.aimath.org/webwork2_files/node_modules/iframe-resizer/js/iframeResizer.min.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/themes/prism.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/components/prism-core.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/line-numbers/prism-line-numbers.min.js" integrity="sha512-dubtf8xMHSQlExGRQ5R7toxHLgSDZ0K7AunqPWHXmJQ8XyVIG19S1T95gBxlAeGOK02P4Da2RTnQz0Za0H0ebQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/line-numbers/prism-line-numbers.min.css" integrity="sha512-cbQXwDFK7lj2Fqfkuxbo5iD1dSbLlJGXGpfTDqbggqjHJeyzx88I3rfwjS38WJag/ihH7lzuGlGHpDBymLirZQ==" crossorigin="anonymous" referrerpolicy="no-referrer">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/line-highlight/prism-line-highlight.min.css" integrity="sha512-nXlJLUeqPMp1Q3+Bd8Qds8tXeRVQscMscwysJm821C++9w6WtsFbJjPenZ8cQVMXyqSAismveQJc0C1splFDCA==" crossorigin="anonymous" referrerpolicy="no-referrer">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/line-highlight/prism-line-highlight.min.js" integrity="sha512-93uCmm0q+qO5Lb1huDqr7tywS8A2TFA+1/WHvyiWaK6/pvsFl6USnILagntBx8JnVbQH5s3n0vQZY6xNthNfKA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js" integrity="sha512-4xUl/d6D6THrAnXAwGajXkoWaeMNwEKK4iNfq5DotEbLPAfk6FSxSP3ydNxqDgCw1c/0Z1Jg6L8h2j+++9BZmg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="lunr-pretext-search-index.js" async=""></script><script src="https://pretextbook.org/js/0.33/pretext_search.js"></script><link href="https://pretextbook.org/css/0.83/pretext_search.css" rel="stylesheet" type="text/css">
-<script>js_version = 0.33</script><script src="https://pretextbook.org/js/lib/jquery.min.js"></script><script src="https://pretextbook.org/js/lib/jquery.sticky.js"></script><script src="https://pretextbook.org/js/lib/jquery.espy.min.js"></script><script src="https://pretextbook.org/js/0.33/pretext.js"></script><script>miniversion=0.1</script><script src="https://pretextbook.org/js/0.33/pretext_add_on.js?x=1"></script><script src="https://pretextbook.org/js/0.33/user_preferences.js"></script><script src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
-</script><link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-<link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700&amp;family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&amp;family=Tinos:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" rel="stylesheet">
-<link href="https://fonts.cdnfonts.com/css/dejavu-serif" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:opsz,wdth,wght@8..144,50..150,100..900&amp;display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wdth,wght@75..100,300..800&amp;display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
-<script src="https://cdn.geogebra.org/apps/deployggb.js"></script><link href="https://pretextbook.org/css/0.83/pretext.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.83/pretext_add_on.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.83/shell_default.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.83/banner_default.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.83/navbar_default.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.83/toc_default.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.83/knowls_default.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.83/style_default.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.83/colors_blue_grey.css" rel="stylesheet" type="text/css">
-<link href="https://pretextbook.org/css/0.83/setcolors.css" rel="stylesheet" type="text/css">
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><meta xmlns:xlink="http://www.w3.org/1999/xlink" name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta xmlns:xlink="http://www.w3.org/1999/xlink" property="og:type" content="book">
+<meta xmlns:xlink="http://www.w3.org/1999/xlink" property="book:title" content="Active Calculus - Multivariable">
+<meta xmlns:xlink="http://www.w3.org/1999/xlink" property="book:author" content="Nicholas Long">
+<meta xmlns:xlink="http://www.w3.org/1999/xlink" property="book:author" content="Mitchel T. Keller">
+<meta xmlns:xlink="http://www.w3.org/1999/xlink" property="book:author" content="Steve Schlicker">
+<script src="_static/pretext/js/lib/jquery.min.js"></script><script src="_static/pretext/js/lib/jquery.sticky.js"></script><script src="_static/pretext/js/lib/jquery.espy.min.js"></script><script src="_static/pretext/js/pretext.js"></script><script src="_static/pretext/js/pretext_add_on.js?x=1"></script><script src="_static/pretext/js/user_preferences.js"></script><!--** eBookCongig is necessary to configure interactive       **-->
+<!--** Runestone components to run locally in reader's browser **-->
+<!--** No external communication:                              **-->
+<!--**     log level is 0, Runestone Services are disabled     **-->
+<script type="text/javascript">
+eBookConfig = {};
+eBookConfig.useRunestoneServices = false;
+eBookConfig.host = 'http://127.0.0.1:8000';
+eBookConfig.course = 'PTX_Course_Title_Here';
+eBookConfig.basecourse = 'PTX_Base_Course';
+eBookConfig.isLoggedIn = false;
+eBookConfig.email = '';
+eBookConfig.isInstructor = false;
+eBookConfig.logLevel = 0;
+eBookConfig.username = '';
+eBookConfig.readings = null;
+eBookConfig.activities = null;
+eBookConfig.downloadsEnabled = false;
+eBookConfig.allow_pairs = false;
+eBookConfig.enableScratchAC = false;
+eBookConfig.build_info = "";
+eBookConfig.python3 = null;
+eBookConfig.runestone_version = '7.5.16';
+eBookConfig.jobehost = '';
+eBookConfig.proxyuri_runs = '';
+eBookConfig.proxyuri_files = '';
+eBookConfig.enable_chatcodes =  false;
+</script>
+<!--*** Runestone Services ***-->
+<script src="_static/prefix-runtime.a0c870bab402ccbf.bundle.js"></script><script src="_static/prefix-723.3e6434f80549315a.bundle.js"></script><script src="_static/prefix-runestone.f6bda0c0ccce4835.bundle.js"></script><link rel="stylesheet" type="text/css" href="_static/prefix-723.3bccd435914aa0ff.css">
+<link rel="stylesheet" type="text/css" href="_static/prefix-runestone.97de40e034b535c5.css">
+<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script src="_static/pretext/js/pretext-webwork/2.17/pretext-webwork.js"></script><script src="https://webwork-ptx.aimath.org/webwork2_files/node_modules/iframe-resizer/js/iframeResizer.min.js"></script><script xmlns:xlink="http://www.w3.org/1999/xlink" src="_static/pretext/js/lti_iframe_resizer.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/components/prism-core.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/line-numbers/prism-line-numbers.min.js" integrity="sha512-dubtf8xMHSQlExGRQ5R7toxHLgSDZ0K7AunqPWHXmJQ8XyVIG19S1T95gBxlAeGOK02P4Da2RTnQz0Za0H0ebQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/line-highlight/prism-line-highlight.min.js" integrity="sha512-93uCmm0q+qO5Lb1huDqr7tywS8A2TFA+1/WHvyiWaK6/pvsFl6USnILagntBx8JnVbQH5s3n0vQZY6xNthNfKA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="https://cdn.geogebra.org/apps/deployggb.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js" integrity="sha512-4xUl/d6D6THrAnXAwGajXkoWaeMNwEKK4iNfq5DotEbLPAfk6FSxSP3ydNxqDgCw1c/0Z1Jg6L8h2j+++9BZmg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="lunr-pretext-search-index.js" async=""></script><script src="_static/pretext/js/pretext_search.js"></script><script src="_static/pretext/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
+</script>
 </head>
 <body id="acmulti" class="pretext book ignore-math">
-<a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead"><div class="ptx-banner">
-<a id="logo-link" class="logo-link" target="_blank" href=""></a><div class="title-container">
-<h1 class="heading"><a href="root--1-2.html"><span class="title">Active Calculus - Multivariable</span></a></h1>
-<p class="byline"></p>
-</div>
-</div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><button class="toc-toggle button" title="Contents"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5d2;</span><span class="name">Contents</span></button><a class="index-button button" href="root--1-2-8-1.html" title="Index"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span><span class="name">Index</span></a><div class="searchbox">
+<a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead"><div class="ptx-banner"><div class="title-container">
+<h1 class="heading"><a href="root-1-2.html"><span class="title">Active Calculus - Multivariable</span></a></h1>
+<p class="byline">Nicholas Long, Mitchel T. Keller, Steve Schlicker</p>
+</div></div></header><nav xmlns:xlink="http://www.w3.org/1999/xlink" id="ptx-navbar" class="ptx-navbar navbar"><div class="ptx-navbar-contents">
+<button class="toc-toggle button" title="Contents"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5d2;</span><span class="name">Contents</span></button><a class="index-button button" href="root-1-2-8-1.html" title="Index"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span><span class="name">Index</span></a><div class="searchbox">
 <div class="searchwidget"><button id="searchbutton" class="searchbutton button" type="button" title="Search book"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe8b6;</span><span class="name">Search Book</span></button></div>
 <div id="searchresultsplaceholder" class="searchresultsplaceholder" style="display: none">
 <div class="search-results-controls">
@@ -140,7 +157,8 @@ var ggbApp = new GGBApplet({"appName": "graphing",
     "autoHeight": true,
     "disableAutoScale": false},
 true);
-</script></span><span class="treebuttons"><a class="previous-button button" href="S-11-4-Double-Integrals-Applications.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="up-button button" href="C_MI.html" title="Up"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Up</span></a><a class="next-button button" href="S-11-6-Parametric-Surfaces-Surface-Area.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a></span></nav><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\newcommand{\R}{\mathbb{R}}
+</script><button id="light-dark-button" class="light-dark-button button" title="Dark Mode"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe51c;</span><span class="name">Dark Mode</span></button></span><span class="treebuttons"><a class="previous-button button" href="S-11-4-Double-Integrals-Applications.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="up-button button" href="C_MI.html" title="Up"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Up</span></a><a class="next-button button" href="S-11-6-Parametric-Surfaces-Surface-Area.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a></span>
+</div></nav><div xmlns:xlink="http://www.w3.org/1999/xlink" id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\newcommand{\R}{\mathbb{R}}
 \newcommand{\va}{\vec{a}}
 \newcommand{\vb}{\vec{b}}
 \newcommand{\vc}{\vec{c}}
@@ -186,7 +204,7 @@ true);
 \newcommand{\fillinmath}[1]{\mathchoice{\colorbox{fillinmathshade}{$\displaystyle     \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\textstyle        \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptstyle      \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptscriptstyle\phantom{\,#1\,}$}}}
 \)</span></div>
 <div class="ptx-page">
-<div id="ptx-sidebar" class="ptx-sidebar"><nav id="ptx-toc" class="ptx-toc depth2"><ul class="structural contains-active toc-item-list">
+<div xmlns:xlink="http://www.w3.org/1999/xlink" id="ptx-sidebar" class="ptx-sidebar"><nav id="ptx-toc" class="ptx-toc depth2 focused" data-preexpanded-levels="0" data-max-levels="2"><ul class="structural toc-item-list contains-active">
 <li class="toc-item toc-frontmatter">
 <div class="toc-title-box"><a href="frontmatter.html" class="internal"><span class="title">Front Matter</span></a></div>
 <ul class="structural toc-item-list">
@@ -229,8 +247,8 @@ true);
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-DotProduct.html#S-Precalc-DotProduct-4" class="internal"><span class="codenumber">9.3.1</span> <span class="title">The Dot Product</span></a></div></li>
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-DotProduct.html#subsec-vecangle" class="internal"><span class="codenumber">9.3.2</span> <span class="title">The Angle between Vectors</span></a></div></li>
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-DotProduct.html#S-Precalc-DotProduct-6" class="internal"><span class="codenumber">9.3.3</span> <span class="title">The Dot Product and Orthogonality</span></a></div></li>
-<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-DotProduct.html#S-Precalc-DotProduct-7" class="internal"><span class="codenumber">9.3.4</span> <span class="title">Work, Force, and Displacement</span></a></div></li>
-<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-DotProduct.html#S-Precalc-DotProduct-8" class="internal"><span class="codenumber">9.3.5</span> <span class="title">Projections</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-DotProduct.html#S-Precalc-DotProduct-7" class="internal"><span class="codenumber">9.3.4</span> <span class="title">Projections</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-DotProduct.html#S-Precalc-DotProduct-8" class="internal"><span class="codenumber">9.3.5</span> <span class="title">Work, Force, and Displacement</span></a></div></li>
 <li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-Precalc-DotProduct.html#ez_Precalc_DotProduct" class="internal"><span class="codenumber">9.3.6</span> <span class="title">Exercises</span></a></div></li>
 </ul>
 </li>
@@ -278,8 +296,7 @@ true);
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-OtherCoordSystems.html#subsec-polar" class="internal"><span class="codenumber">9.8.1</span> <span class="title">Polar Coordinates</span></a></div></li>
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-OtherCoordSystems.html#subsec-cylindrical" class="internal"><span class="codenumber">9.8.2</span> <span class="title">Cylindrical Coordinates</span></a></div></li>
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-OtherCoordSystems.html#subsec-SphCoord" class="internal"><span class="codenumber">9.8.3</span> <span class="title">Spherical Coordinates</span></a></div></li>
-<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-OtherCoordSystems.html#S-Precalc-OtherCoordSystems-7" class="internal"><span class="codenumber">9.8.4</span> <span class="title">Summary</span></a></div></li>
-<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-Precalc-OtherCoordSystems.html#S-Precalc-OtherCoordSystems-8" class="internal"><span class="codenumber">9.8.5</span> <span class="title">Exercises</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-Precalc-OtherCoordSystems.html#S-Precalc-OtherCoordSystems-8" class="internal"><span class="codenumber">9.8.4</span> <span class="title">Exercises</span></a></div></li>
 </ul>
 </li>
 </ul>
@@ -354,7 +371,7 @@ true);
 <div class="toc-title-box"><a href="S-MV-Functions.html" class="internal"><span class="codenumber">11.1</span> <span class="title">Functions of Several Variables</span></a></div>
 <ul class="structural toc-item-list">
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-MV-Functions.html#S-MV-Functions-4" class="internal"><span class="codenumber">11.1.1</span> <span class="title">Functions of Several Variables</span></a></div></li>
-<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-MV-Functions.html#S-MV-Functions-5" class="internal"><span class="codenumber">11.1.2</span> <span class="title">Representing Functions of Two Variables</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-MV-Functions.html#S-MV-Functions-5" class="internal"><span class="codenumber">11.1.2</span> <span class="title">Representations for Functions of Two Variables</span></a></div></li>
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-MV-Functions.html#S-MV-Functions-6" class="internal"><span class="codenumber">11.1.3</span> <span class="title">Traces</span></a></div></li>
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-MV-Functions.html#S-MV-Functions-7" class="internal"><span class="codenumber">11.1.4</span> <span class="title">Contour Maps and Level Curves</span></a></div></li>
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-MV-Functions.html#S-MV-Functions-8" class="internal"><span class="codenumber">11.1.5</span> <span class="title">A gallery of functions</span></a></div></li>
@@ -492,9 +509,9 @@ true);
 <li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-11-4-Double-Integrals-Applications.html#S-11-4-Double-Integrals-Applications-9" class="internal"><span class="codenumber">12.4.6</span> <span class="title">Exercises</span></a></div></li>
 </ul>
 </li>
-<li class="toc-item toc-section active">
+<li class="toc-item toc-section contains-active">
 <div class="toc-title-box"><a href="S-11-5-Double-Integrals-Polar.html" class="internal"><span class="codenumber">12.5</span> <span class="title">Double Integrals in Polar Coordinates</span></a></div>
-<ul class="structural toc-item-list">
+<ul class="structural toc-item-list active">
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-5-Double-Integrals-Polar.html#S-11-5-Double-Integrals-Polar-4" class="internal"><span class="codenumber">12.5.1</span> <span class="title">Polar Coordinates</span></a></div></li>
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-5-Double-Integrals-Polar.html#S-11-5-Double-Integrals-Polar-5" class="internal"><span class="codenumber">12.5.2</span> <span class="title">Integrating in Polar Coordinates</span></a></div></li>
 <li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-5-Double-Integrals-Polar.html#S-11-5-Double-Integrals-Polar-6" class="internal"><span class="codenumber">12.5.3</span> <span class="title">Summary</span></a></div></li>
@@ -676,15 +693,15 @@ true);
 </ul>
 </li>
 <li class="toc-item toc-backmatter">
-<div class="toc-title-box"><a href="root--1-2-8.html" class="internal"><span class="title">Back Matter</span></a></div>
-<ul class="structural toc-item-list"><li class="toc-item toc-index"><div class="toc-title-box"><a href="root--1-2-8-1.html" class="internal"><span class="title">Index</span></a></div></li></ul>
+<div class="toc-title-box"><a href="root-1-2-8.html" class="internal"><span class="title">Back Matter</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-index"><div class="toc-title-box"><a href="root-1-2-8-1.html" class="internal"><span class="title">Index</span></a></div></li></ul>
 </li>
 </ul></nav></div>
-<main class="ptx-main"><div id="ptx-content" class="ptx-content"><section class="section" id="S-11-5-Double-Integrals-Polar"><h2 class="heading hide-type">
+<main class="ptx-main"><div id="ptx-content" class="ptx-content"><section xmlns:xlink="http://www.w3.org/1999/xlink" class="section" id="S-11-5-Double-Integrals-Polar"><h2 class="heading hide-type">
 <span class="type">Section</span><span class="space"> </span><span class="codenumber">12.5</span><span class="space"> </span><span class="title">Double Integrals in Polar Coordinates</span>
 </h2>
 <article class="objectives goal-like" id="S-11-5-Double-Integrals-Polar-2"><h3 class="heading"><span class="type">Motivating Questions</span></h3>
-<ul class="disc">
+<ul class="disc" id="S-11-5-Double-Integrals-Polar-2-1">
 <li id="S-11-5-Double-Integrals-Polar-2-1-1"><div class="para" id="S-11-5-Double-Integrals-Polar-2-1-1-1">What are the polar coordinates of a point in two-space?</div></li>
 <li id="S-11-5-Double-Integrals-Polar-2-1-2"><div class="para" id="S-11-5-Double-Integrals-Polar-2-1-2-1">How do we convert between polar coordinates and rectangular coordinates?</div></li>
 <li id="S-11-5-Double-Integrals-Polar-2-1-3"><div class="para" id="S-11-5-Double-Integrals-Polar-2-1-3-1">What is the area element in polar coordinates?</div></li>
@@ -696,13 +713,16 @@ true);
 \iint_D f(x,y) \, dA = \int_{x = -1}^{x = 1} \int_{y = -\sqrt{1-x^2}}^{y = \sqrt{1-x^2}} e^{-x^2 - y^2} \, dy \, dx.
 \end{equation*}
 </div>
-</div> <div class="para" id="S-11-5-Double-Integrals-Polar-3-2">For this particular integral, regardless of the order of integration, we are unable to find an antiderivative of the integrand; in addition, even if we were able to find an antiderivative, the inner limits of integration involve relatively complicated functions.</div> <div class="para" id="S-11-5-Double-Integrals-Polar-3-3">It is useful, therefore, to be able to translate to other coordinate systems where the limits of integration and evaluation of the involved integrals is simpler. In this section we provide a quick discussion of one such system — polar coordinates — and then introduce and investigate their ramifications for double integrals. The rectangular coordinate system allows us to consider domains and graphs relative to a rectangular grid. The polar coordinate system is an alternate coordinate system that allows us to consider domains less suited to rectangular coordinates, such as circles.</div> <article class="exploration project-like" id="PA_11_5"><h3 class="heading">
+</div>
+<div class="para" id="S-11-5-Double-Integrals-Polar-3-2">For this particular integral, regardless of the order of integration, we are unable to find an antiderivative of the integrand; in addition, even if we were able to find an antiderivative, the inner limits of integration involve relatively complicated functions.</div>
+<div class="para" id="S-11-5-Double-Integrals-Polar-3-3">It is useful, therefore, to be able to translate to other coordinate systems where the limits of integration and evaluation of the involved integrals is simpler. In this section we provide a quick discussion of one such system — polar coordinates — and then introduce and investigate their ramifications for double integrals. The rectangular coordinate system allows us to consider domains and graphs relative to a rectangular grid. The polar coordinate system is an alternate coordinate system that allows us to consider domains less suited to rectangular coordinates, such as circles.</div>
+<article class="exploration project-like" id="PA_11_5"><h3 class="heading">
 <span class="type">Preview Activity</span><span class="space"> </span><span class="codenumber">12.5.1</span><span class="period">.</span>
 </h3>
-<div class="para" id="PA_11_5-1-1">The coordinates of a point determine its location. In particular, the rectangular coordinates of a point <span class="process-math">\(P\)</span> are given by an ordered pair <span class="process-math">\((x,y)\text{,}\)</span> where <span class="process-math">\(x\)</span> is the (signed) distance the point lies from the <span class="process-math">\(y\)</span>-axis to <span class="process-math">\(P\)</span> and <span class="process-math">\(y\)</span> is the (signed) distance the point lies from the <span class="process-math">\(x\)</span>-axis to <span class="process-math">\(P\text{.}\)</span> In polar coordinates, we locate the point by considering the distance the point lies from the origin, <span class="process-math">\(O = (0,0)\text{,}\)</span> and the angle the line segment from the origin to <span class="process-math">\(P\)</span> forms with the positive <span class="process-math">\(x\)</span>-axis.</div> <ol class="lower-alpha">
+<div class="para" id="PA_11_5-1-1">The coordinates of a point determine its location. In particular, the rectangular coordinates of a point <span class="process-math">\(P\)</span> are given by an ordered pair <span class="process-math">\((x,y)\text{,}\)</span> where <span class="process-math">\(x\)</span> is the (signed) distance the point lies from the <span class="process-math">\(y\)</span>-axis to <span class="process-math">\(P\)</span> and <span class="process-math">\(y\)</span> is the (signed) distance the point lies from the <span class="process-math">\(x\)</span>-axis to <span class="process-math">\(P\text{.}\)</span> In polar coordinates, we locate the point by considering the distance the point lies from the origin, <span class="process-math">\(O = (0,0)\text{,}\)</span> and the angle the line segment from the origin to <span class="process-math">\(P\)</span> forms with the positive <span class="process-math">\(x\)</span>-axis.</div> <ol class="lower-alpha ol-marker-2" id="PA_11_5-1-2">
 <li id="PA_11_5-1-2-1">
 <div class="para" id="PA_11_5-1-2-1-1">Determine the rectangular coordinates of the following points:</div>
-<ol class="lower-alpha">
+<ol class="lower-alpha lower-alpha-level-1" id="PA_11_5-1-2-1-2">
 <li id="PA_11_5-1-2-1-2-1"><div class="para" id="PA_11_5-1-2-1-2-1-1">The point <span class="process-math">\(P\)</span> that lies 1 unit from the origin on the positive <span class="process-math">\(x\)</span>-axis.</div></li>
 <li id="PA_11_5-1-2-1-2-2"><div class="para" id="PA_11_5-1-2-1-2-2-1">The point <span class="process-math">\(Q\)</span> that lies 2 units from the origin and such that <span class="process-math">\(\overline{OQ}\)</span> makes an angle of <span class="process-math">\(\frac{\pi}{2}\)</span> with the positive <span class="process-math">\(x\)</span>-axis.</div></li>
 <li id="PA_11_5-1-2-1-2-3"><div class="para" id="PA_11_5-1-2-1-2-3-1">The point <span class="process-math">\(R\)</span> that lies 3 units from the origin such that <span class="process-math">\(\overline{OR}\)</span> makes an angle of <span class="process-math">\(\frac{2\pi}{3}\)</span> with the positive <span class="process-math">\(x\)</span>-axis.</div></li>
@@ -710,27 +730,27 @@ true);
 </li>
 <li id="PA_11_5-1-2-2"><div class="para logical" id="PA_11_5-1-2-2-1">
 <div class="para">Part (a) indicates that the two pieces of information completely determine the location of a point:  either the traditional <span class="process-math">\((x,y)\)</span> coordinates, or alternately, the distance <span class="process-math">\(r\)</span> from the point to the origin along with the angle <span class="process-math">\(\theta\)</span> that the line through the origin and the point makes with the positive <span class="process-math">\(x\)</span>-axis. We write “<span class="process-math">\((r, \theta)\)</span>” to denote the point’s location in its polar coordinate representation. Find polar coordinates for the points with the given rectangular coordinates.</div>
-<ol class="lower-roman"><li id="PA_11_5-1-2-2-1-6-1"><div class="para" id="PA_11_5-1-2-2-1-6-1-1">
+<ol class="lower-roman ol-marker-5" id="PA_11_5-1-2-2-1-6"><li id="PA_11_5-1-2-2-1-6-1"><div class="para" id="PA_11_5-1-2-2-1-6-1-1">
 <span class="process-math">\((0,-1)\)</span>   ii.  <span class="process-math">\((-2,0)\)</span>   iii.  <span class="process-math">\((-1,1)\)</span>
 </div></li></ol>
 </div></li>
 <li id="PA_11_5-1-2-3"><div class="para logical" id="PA_11_5-1-2-3-1">
 <div class="para">For each of the following points whose coordinates are given in polar form, determine the rectangular coordinates of the point.</div>
-<ol class="lower-roman"><li id="PA_11_5-1-2-3-1-1-1"><div class="para" id="PA_11_5-1-2-3-1-1-1-1">
+<ol class="lower-roman ol-marker-5" id="PA_11_5-1-2-3-1-1"><li id="PA_11_5-1-2-3-1-1-1"><div class="para" id="PA_11_5-1-2-3-1-1-1-1">
 <span class="process-math">\((5, \frac{\pi}{4})\)</span>          ii. <span class="process-math">\((2, \frac{5\pi}{6})\)</span>    iii. <span class="process-math">\((\sqrt{3}, \frac{5\pi}{3})\)</span>
 </div></li></ol>
 </div></li>
 </ol></article></section><section class="subsection" id="S-11-5-Double-Integrals-Polar-4"><h3 class="heading hide-type">
 <span class="type">Subsection</span><span class="space"> </span><span class="codenumber">12.5.1</span><span class="space"> </span><span class="title">Polar Coordinates</span>
 </h3>
-<div class="para" id="S-11-5-Double-Integrals-Polar-4-2">The rectangular coordinate system is best suited for graphs and regions that are naturally considered over a rectangular grid. The polar coordinate system is an alternative that offers good options for functions and domains that have more circular characteristics. A point <span class="process-math">\(P\)</span> in rectangular coordinates that is described by an ordered pair <span class="process-math">\((x,y)\text{,}\)</span> where <span class="process-math">\(x\)</span> is the displacement from <span class="process-math">\(P\)</span> to the <span class="process-math">\(y\)</span>-axis and <span class="process-math">\(y\)</span> is the displacement from <span class="process-math">\(P\)</span> to the <span class="process-math">\(x\)</span>-axis, as seen in <a href="" class="xref" data-knowl="./knowl/xref/PA_11_5.html" title="Preview Activity 12.5.1">Preview Activity 12.5.1</a>, can also be described with polar coordinates <span class="process-math">\((r,\theta)\text{,}\)</span> where <span class="process-math">\(r\)</span> is the distance from <span class="process-math">\(P\)</span> to the origin and <span class="process-math">\(\theta\)</span> is the angle formed by the line segment <span class="process-math">\(\overline{OP}\)</span> and the positive <span class="process-math">\(x\)</span>-axis, as shown at left in <a href="" class="xref" data-knowl="./knowl/xref/F_11_5_Polar_coords.html" title="Figure 12.5.1">Figure 12.5.1</a>.</div>
+<div class="para" id="S-11-5-Double-Integrals-Polar-4-2">The rectangular coordinate system is best suited for graphs and regions that are naturally considered over a rectangular grid. The polar coordinate system is an alternative that offers good options for functions and domains that have more circular characteristics. A point <span class="process-math">\(P\)</span> in rectangular coordinates that is described by an ordered pair <span class="process-math">\((x,y)\text{,}\)</span> where <span class="process-math">\(x\)</span> is the displacement from <span class="process-math">\(P\)</span> to the <span class="process-math">\(y\)</span>-axis and <span class="process-math">\(y\)</span> is the displacement from <span class="process-math">\(P\)</span> to the <span class="process-math">\(x\)</span>-axis, as seen in <a href="S-11-5-Double-Integrals-Polar.html#PA_11_5" class="xref" data-knowl="./knowl/xref/PA_11_5.html" data-reveal-label="Reveal" data-close-label="Close" title="Preview Activity 12.5.1">Preview Activity 12.5.1</a>, can also be described with polar coordinates <span class="process-math">\((r,\theta)\text{,}\)</span> where <span class="process-math">\(r\)</span> is the distance from <span class="process-math">\(P\)</span> to the origin and <span class="process-math">\(\theta\)</span> is the angle formed by the line segment <span class="process-math">\(\overline{OP}\)</span> and the positive <span class="process-math">\(x\)</span>-axis, as shown at left in <a href="S-11-5-Double-Integrals-Polar.html#F_11_5_Polar_coords" class="xref" data-knowl="./knowl/xref/F_11_5_Polar_coords.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 12.5.1">Figure 12.5.1</a>.</div>
 <figure class="figure figure-like" id="F_11_5_Polar_coords"><div class="sidebyside"><div class="sbsrow" style="margin-left:0%;margin-right:0%;">
 <div class="sbspanel top" style="width:50%;"><img src="external/images/fig_11_5_polar_def.svg" role="img" class="contained"></div>
 <div class="sbspanel top" style="width:50%;"><img src="external/images/fig_11_5_polar_grid.svg" role="img" class="contained"></div>
 </div></div>
 <figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">12.5.1<span class="period">.</span></span><span class="space"> </span>The polar coordinates of a point and the polar coordinate grid.</figcaption></figure><div class="para" id="S-11-5-Double-Integrals-Polar-4-4">Trigonometry and the Pythagorean Theorem allow for straightforward conversion from rectangular to polar, and vice versa.</div>
 <article class="assemblage assemblage-like" id="Polar-coordinates"><h4 class="heading"><span class="title">Converting between rectangular and polar coordinates.</span></h4>
-<div class="para logical" id="Polar-coordinates-2"><ul class="disc">
+<div class="para logical" id="Polar-coordinates-2"><ul class="disc" id="Polar-coordinates-2-1">
 <li id="Polar-coordinates-2-1-1">
 <span class="heading"><span class="title">Converting from rectangular to polar..</span></span><div class="para logical" id="Polar-coordinates-2-1-1-2">
 <div class="para">If we are given the rectangular coordinates <span class="process-math">\((x,y)\)</span> of a point <span class="process-math">\(P\text{,}\)</span> then the polar coordinates <span class="process-math">\((r,\theta)\)</span> of <span class="process-math">\(P\)</span> satisfy</div>
@@ -753,13 +773,13 @@ x = r\cos(\theta)  \ \ \ \ \ \text{ and }  \ \ \ \ \ y = r\sin(\theta).
 </li>
 </ul></div></article><div class="para" id="S-11-5-Double-Integrals-Polar-4-6">
 <em class="emphasis">Note:</em> The angle <span class="process-math">\(\theta\)</span> in the polar coordinates of a point is not unique. We could replace <span class="process-math">\(\theta\)</span> with <span class="process-math">\(\theta  + 2 \pi\)</span> and still be at the same terminal point. In addition, the sign of <span class="process-math">\(\tan(\theta)\)</span> does not uniquely determine the quadrant in which <span class="process-math">\(\theta\)</span> lies, so we have to determine the value of <span class="process-math">\(\theta\)</span> from the location of the point. In other words, more care has to be paid when using polar coordinates than rectangular coordinates.</div>
-<div class="para" id="S-11-5-Double-Integrals-Polar-4-7">We can draw graphs of curves in polar coordinates in a similar way to how we do in rectangular coordinates. However, when plotting in polar coordinates, we use a grid that considers changes in angles and changes in distance from the origin. In particular, the angles <span class="process-math">\(\theta\)</span> and distances <span class="process-math">\(r\)</span> partition the plane into small wedges as shown at right in <a href="" class="xref" data-knowl="./knowl/xref/F_11_5_Polar_coords.html" title="Figure 12.5.1">Figure 12.5.1</a>.</div>
+<div class="para" id="S-11-5-Double-Integrals-Polar-4-7">We can draw graphs of curves in polar coordinates in a similar way to how we do in rectangular coordinates. However, when plotting in polar coordinates, we use a grid that considers changes in angles and changes in distance from the origin. In particular, the angles <span class="process-math">\(\theta\)</span> and distances <span class="process-math">\(r\)</span> partition the plane into small wedges as shown at right in <a href="S-11-5-Double-Integrals-Polar.html#F_11_5_Polar_coords" class="xref" data-knowl="./knowl/xref/F_11_5_Polar_coords.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 12.5.1">Figure 12.5.1</a>.</div>
 <article class="activity project-like" id="A_11_5_2"><h4 class="heading">
 <span class="type">Activity</span><span class="space"> </span><span class="codenumber">12.5.2</span><span class="period">.</span>
 </h4>
 <div class="para logical" id="A_11_5_2-1-1">
 <div class="para">Most polar graphing devices can plot curves in polar coordinates of the form <span class="process-math">\(r = f(\theta)\text{.}\)</span> Use such a device to complete this activity.</div>
-<ol class="lower-alpha">
+<ol class="lower-alpha ol-marker-2" id="A_11_5_2-1-1-2">
 <li id="A_11_5_2-1-1-2-1"><div class="para" id="A_11_5_2-1-1-2-1-1">Before plotting the polar curve <span class="process-math">\(r=1\)</span> (where <span class="process-math">\(\theta\)</span> can have any value), think about what shape it should have, in light of how <span class="process-math">\(r\)</span> is connected to <span class="process-math">\(x\)</span> and <span class="process-math">\(y\text{.}\)</span> Then use appropriate technology to draw the graph and test your intuition.</div></li>
 <li id="A_11_5_2-1-1-2-2"><div class="para" id="A_11_5_2-1-1-2-2-1">The equation <span class="process-math">\(\theta = 1\)</span> does not define <span class="process-math">\(r\)</span> as a function of <span class="process-math">\(\theta\text{,}\)</span> so we can’t graph this equation on many polar plotters. What do you think the graph of the polar curve <span class="process-math">\(\theta = 1\)</span> looks like? Why?</div></li>
 <li id="A_11_5_2-1-1-2-3"><div class="para" id="A_11_5_2-1-1-2-3-1">Before plotting the polar curve <span class="process-math">\(r = \theta\text{,}\)</span> what do you think the graph looks like? Why? Use technology to plot the curve and compare your intuition.</div></li>
@@ -795,13 +815,13 @@ x = r\cos(\theta)  \ \ \ \ \ \text{ and }  \ \ \ \ \ y = r\sin(\theta).
 <figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">12.5.2<span class="period">.</span></span><span class="space"> </span>Left: A polar rectangle. Right: An annulus.</figcaption></figure><article class="activity project-like" id="A_11_5_3"><h4 class="heading">
 <span class="type">Activity</span><span class="space"> </span><span class="codenumber">12.5.3</span><span class="period">.</span>
 </h4>
-<div class="para" id="A_11_5_3-1-1">Consider a polar rectangle <span class="process-math">\(R\text{,}\)</span> with <span class="process-math">\(r\)</span> between <span class="process-math">\(r_i\)</span> and <span class="process-math">\(r_{i+1}\)</span> and <span class="process-math">\(\theta\)</span> between <span class="process-math">\(\theta_j\)</span> and <span class="process-math">\(\theta_{j+1}\)</span> as shown at left in <a href="" class="xref" data-knowl="./knowl/xref/F_11_5_Polar_area_a.html" title="Figure 12.5.2">Figure 12.5.2</a>. Let <span class="process-math">\(\Delta r = r_{i+1}-r_i\)</span> and <span class="process-math">\(\Delta \theta = \theta_{j+1}-\theta_j\text{.}\)</span> Let <span class="process-math">\(\Delta A\)</span> be the area of this region.</div> <ol class="lower-alpha">
+<div class="para" id="A_11_5_3-1-1">Consider a polar rectangle <span class="process-math">\(R\text{,}\)</span> with <span class="process-math">\(r\)</span> between <span class="process-math">\(r_i\)</span> and <span class="process-math">\(r_{i+1}\)</span> and <span class="process-math">\(\theta\)</span> between <span class="process-math">\(\theta_j\)</span> and <span class="process-math">\(\theta_{j+1}\)</span> as shown at left in <a href="S-11-5-Double-Integrals-Polar.html#F_11_5_Polar_area_a" class="xref" data-knowl="./knowl/xref/F_11_5_Polar_area_a.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 12.5.2">Figure 12.5.2</a>. Let <span class="process-math">\(\Delta r = r_{i+1}-r_i\)</span> and <span class="process-math">\(\Delta \theta = \theta_{j+1}-\theta_j\text{.}\)</span> Let <span class="process-math">\(\Delta A\)</span> be the area of this region.</div> <ol class="lower-alpha ol-marker-2" id="A_11_5_3-1-2">
 <li id="A_11_5_3-1-2-1"><div class="para" id="A_11_5_3-1-2-1-1">Explain why the area <span class="process-math">\(\Delta A\)</span> in polar coordinates is not <span class="process-math">\(\Delta r \, \Delta \theta\text{.}\)</span>
 </div></li>
 <li id="A_11_5_3-1-2-2">
 <div class="para" id="A_11_5_3-1-2-2-1">Now find <span class="process-math">\(\Delta A\)</span> by the following steps:</div>
-<ol class="lower-roman">
-<li id="A_11_5_3-1-2-2-2-1"><div class="para" id="A_11_5_3-1-2-2-2-1-1">Find the area of the annulus (the washer-like region) between <span class="process-math">\(r_i\)</span> and <span class="process-math">\(r_{i+1}\text{,}\)</span> as shown at right in <a href="" class="xref" data-knowl="./knowl/xref/F_11_5_Polar_area_a.html" title="Figure 12.5.2">Figure 12.5.2</a>. This area will be in terms of <span class="process-math">\(r_i\)</span> and <span class="process-math">\(r_{i+1}\text{.}\)</span>
+<ol class="lower-roman ol-marker-5" id="A_11_5_3-1-2-2-2">
+<li id="A_11_5_3-1-2-2-2-1"><div class="para" id="A_11_5_3-1-2-2-2-1-1">Find the area of the annulus (the washer-like region) between <span class="process-math">\(r_i\)</span> and <span class="process-math">\(r_{i+1}\text{,}\)</span> as shown at right in <a href="S-11-5-Double-Integrals-Polar.html#F_11_5_Polar_area_a" class="xref" data-knowl="./knowl/xref/F_11_5_Polar_area_a.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 12.5.2">Figure 12.5.2</a>. This area will be in terms of <span class="process-math">\(r_i\)</span> and <span class="process-math">\(r_{i+1}\text{.}\)</span>
 </div></li>
 <li id="A_11_5_3-1-2-2-2-2"><div class="para logical" id="A_11_5_3-1-2-2-2-2-1">
 <div class="para">Observe that the region <span class="process-math">\(R\)</span> is only a portion of the annulus, so the area <span class="process-math">\(\Delta A\)</span> of <span class="process-math">\(R\)</span> is only a fraction of the area of the annulus.  For instance, if <span class="process-math">\(\theta_{i+1} - \theta_i\)</span> were <span class="process-math">\(\frac{\pi}{4}\text{,}\)</span> then the resulting wedge would be</div>
@@ -820,7 +840,7 @@ x = r\cos(\theta)  \ \ \ \ \ \text{ and }  \ \ \ \ \ y = r\sin(\theta).
 </li>
 <li id="A_11_5_3-1-2-3"><div class="para" id="A_11_5_3-1-2-3-1">As we take the limit as <span class="process-math">\(\Delta r\)</span> and <span class="process-math">\(\Delta \theta\)</span> go to 0, <span class="process-math">\(\Delta r\)</span> becomes <span class="process-math">\(dr\text{,}\)</span> <span class="process-math">\(\Delta \theta\)</span> becomes <span class="process-math">\(d \theta\text{,}\)</span> and <span class="process-math">\(\Delta A\)</span> becomes <span class="process-math">\(dA\text{,}\)</span> the area element. Using your work in (iv), write <span class="process-math">\(dA\)</span> in terms of <span class="process-math">\(r\text{,}\)</span> <span class="process-math">\(dr\text{,}\)</span> and <span class="process-math">\(d \theta\text{.}\)</span>
 </div></li>
-</ol></article><div class="para" id="S-11-5-Double-Integrals-Polar-5-6">From the result of <a href="" class="xref" data-knowl="./knowl/xref/A_11_5_3.html" title="Activity 12.5.3">Activity 12.5.3</a>, we see when we convert an integral from rectangular coordinates to polar coordinates, we must not only convert <span class="process-math">\(x\)</span> and <span class="process-math">\(y\)</span> to being in terms of <span class="process-math">\(r\)</span> and <span class="process-math">\(\theta\text{,}\)</span> but we also have to change the area element to <span class="process-math">\(dA = r \, dr \, d\theta\)</span> in polar coordinates. As we saw in <a href="" class="xref" data-knowl="./knowl/xref/A_11_5_3.html" title="Activity 12.5.3">Activity 12.5.3</a>, the reason the additional factor of <span class="process-math">\(r\)</span> in the polar area element is due to the fact that in polar coordinates, the cross sectional area element increases as <span class="process-math">\(r\)</span> increases, while the cross sectional area element in rectangular coordinates is constant. So, given a double integral <span class="process-math">\(\iint_D f(x,y) \, dA\)</span> in rectangular coordinates, to write a corresponding iterated integral in polar coordinates, we replace <span class="process-math">\(x\)</span> with <span class="process-math">\(r \cos(\theta)\text{,}\)</span> <span class="process-math">\(y\)</span> with <span class="process-math">\(r \sin(\theta)\)</span> and <span class="process-math">\(dA\)</span> with <span class="process-math">\(r \, dr \, d\theta\text{.}\)</span> Of course, we need to describe the region <span class="process-math">\(D\)</span> in polar coordinates as well. To summarize:</div>
+</ol></article><div class="para" id="S-11-5-Double-Integrals-Polar-5-6">From the result of <a href="S-11-5-Double-Integrals-Polar.html#A_11_5_3" class="xref" data-knowl="./knowl/xref/A_11_5_3.html" data-reveal-label="Reveal" data-close-label="Close" title="Activity 12.5.3">Activity 12.5.3</a>, we see when we convert an integral from rectangular coordinates to polar coordinates, we must not only convert <span class="process-math">\(x\)</span> and <span class="process-math">\(y\)</span> to being in terms of <span class="process-math">\(r\)</span> and <span class="process-math">\(\theta\text{,}\)</span> but we also have to change the area element to <span class="process-math">\(dA = r \, dr \, d\theta\)</span> in polar coordinates. As we saw in <a href="S-11-5-Double-Integrals-Polar.html#A_11_5_3" class="xref" data-knowl="./knowl/xref/A_11_5_3.html" data-reveal-label="Reveal" data-close-label="Close" title="Activity 12.5.3">Activity 12.5.3</a>, the reason the additional factor of <span class="process-math">\(r\)</span> in the polar area element is due to the fact that in polar coordinates, the cross sectional area element increases as <span class="process-math">\(r\)</span> increases, while the cross sectional area element in rectangular coordinates is constant. So, given a double integral <span class="process-math">\(\iint_D f(x,y) \, dA\)</span> in rectangular coordinates, to write a corresponding iterated integral in polar coordinates, we replace <span class="process-math">\(x\)</span> with <span class="process-math">\(r \cos(\theta)\text{,}\)</span> <span class="process-math">\(y\)</span> with <span class="process-math">\(r \sin(\theta)\)</span> and <span class="process-math">\(dA\)</span> with <span class="process-math">\(r \, dr \, d\theta\text{.}\)</span> Of course, we need to describe the region <span class="process-math">\(D\)</span> in polar coordinates as well. To summarize:</div>
 <article class="assemblage assemblage-like" id="Double-integral-polar"><h4 class="heading"><span class="title">Double integrals in polar coordinates.</span></h4>
 <div class="para" id="Double-integral-polar-2">The double integral <span class="process-math">\(\iint_D f(x,y) \, dA\)</span> in rectangular coordinates can be converted to a double integral in polar coordinates as <span class="process-math">\(\iint_D f(r\cos(\theta), r\sin(\theta)) \, r \, dr \, d\theta\text{.}\)</span>
 </div></article><article class="example example-like" id="S-11-5-Double-Integrals-Polar-5-8"><h4 class="heading">
@@ -867,7 +887,7 @@ x = r\cos(\theta)  \ \ \ \ \ \text{ and }  \ \ \ \ \ y = r\sin(\theta).
 <div class="para logical" id="A_11_5_4-1-1">
 <div class="para">Let <span class="process-math">\(f(x,y) = x+y\)</span> and <span class="process-math">\(D = \{(x,y) : x^2 + y^2 \leq 4\}\text{.}\)</span>
 </div>
-<ol class="lower-alpha">
+<ol class="lower-alpha ol-marker-2" id="A_11_5_4-1-1-3">
 <li id="A_11_5_4-1-1-3-1"><div class="para" id="A_11_5_4-1-1-3-1-1">Sketch the region <span class="process-math">\(D\)</span> and then write the double integral of <span class="process-math">\(f\)</span> over <span class="process-math">\(D\)</span> as an iterated integral in rectangular coordinates.</div></li>
 <li id="A_11_5_4-1-1-3-2"><div class="para" id="A_11_5_4-1-1-3-2-1">Write the double integral of <span class="process-math">\(f\)</span> over <span class="process-math">\(D\)</span> as an iterated integral in polar coordinates.</div></li>
 <li id="A_11_5_4-1-1-3-3"><div class="para" id="A_11_5_4-1-1-3-3-1">Evaluate one of the iterated integrals. Why is the final value you found not surprising?</div></li>
@@ -876,20 +896,20 @@ x = r\cos(\theta)  \ \ \ \ \ \text{ and }  \ \ \ \ \ y = r\sin(\theta).
 <span class="type">Activity</span><span class="space"> </span><span class="codenumber">12.5.5</span><span class="period">.</span>
 </h4>
 <div class="para logical" id="A_11_5_5-1-1">
-<div class="para">Consider the circle given by <span class="process-math">\(x^2 + (y-1)^2 = 1\)</span> as shown in <a href="" class="xref" data-knowl="./knowl/xref/F_11_5_Polar_exercise.html" title="Figure 12.5.4">Figure 12.5.4</a>. <figure class="figure figure-like" id="F_11_5_Polar_exercise"><div class="image-box" style="width: 40%; margin-left: 30%; margin-right: 30%;"><img src="external/images/fig_11_5_polar_region.svg" role="img" class="contained"></div>
-<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">12.5.4<span class="period">.</span></span><span class="space"> </span>The graphs of <span class="process-math">\(y=x\)</span> and <span class="process-math">\(x^2 + (y-1)^2 = 1\text{,}\)</span> for use in <a href="" class="xref" data-knowl="./knowl/xref/A_11_5_5.html" title="Activity 12.5.5">Activity 12.5.5</a>.</figcaption></figure>
+<div class="para">Consider the circle given by <span class="process-math">\(x^2 + (y-1)^2 = 1\)</span> as shown in <a href="S-11-5-Double-Integrals-Polar.html#F_11_5_Polar_exercise" class="xref" data-knowl="./knowl/xref/F_11_5_Polar_exercise.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 12.5.4">Figure 12.5.4</a>. <figure class="figure figure-like" id="F_11_5_Polar_exercise"><div class="image-box" style="width: 40%; margin-left: 30%; margin-right: 30%;"><img src="external/images/fig_11_5_polar_region.svg" role="img" class="contained"></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">12.5.4<span class="period">.</span></span><span class="space"> </span>The graphs of <span class="process-math">\(y=x\)</span> and <span class="process-math">\(x^2 + (y-1)^2 = 1\text{,}\)</span> for use in <a href="S-11-5-Double-Integrals-Polar.html#A_11_5_5" class="xref" data-knowl="./knowl/xref/A_11_5_5.html" data-reveal-label="Reveal" data-close-label="Close" title="Activity 12.5.5">Activity 12.5.5</a>.</figcaption></figure>
 </div>
-<ol class="lower-alpha">
+<ol class="lower-alpha ol-marker-2" id="A_11_5_5-1-1-4">
 <li id="A_11_5_5-1-1-4-1"><div class="para" id="A_11_5_5-1-1-4-1-1">Determine a polar curve in the form <span class="process-math">\(r = f(\theta)\)</span> that traces out the circle <span class="process-math">\(x^2 + (y-1)^2 = 1\text{.}\)</span> (Hint: Recall that a circle centered at the origin of radius <span class="process-math">\(r\)</span> can be described by the equations <span class="process-math">\(x = r \cos(\theta)\)</span> and <span class="process-math">\(y = r \sin(\theta)\text{.}\)</span>)</div></li>
 <li id="A_11_5_5-1-1-4-2"><div class="para" id="A_11_5_5-1-1-4-2-1">Find the exact average value of <span class="process-math">\(g(x,y) = \sqrt{x^2 + y^2}\)</span> over the interior of the circle <span class="process-math">\(x^2 + (y-1)^2 = 1\text{.}\)</span>
 </div></li>
-<li id="A_11_5_5-1-1-4-3"><div class="para" id="A_11_5_5-1-1-4-3-1">Find the volume under the surface <span class="process-math">\(h(x,y) = x\)</span> over the region <span class="process-math">\(D\text{,}\)</span> where <span class="process-math">\(D\)</span> is the region bounded above by the line <span class="process-math">\(y=x\)</span> and below by the circle (this is the shaded region in <a href="" class="xref" data-knowl="./knowl/xref/F_11_5_Polar_exercise.html" title="Figure 12.5.4">Figure 12.5.4</a>).</div></li>
+<li id="A_11_5_5-1-1-4-3"><div class="para" id="A_11_5_5-1-1-4-3-1">Find the volume under the surface <span class="process-math">\(h(x,y) = x\)</span> over the region <span class="process-math">\(D\text{,}\)</span> where <span class="process-math">\(D\)</span> is the region bounded above by the line <span class="process-math">\(y=x\)</span> and below by the circle (this is the shaded region in <a href="S-11-5-Double-Integrals-Polar.html#F_11_5_Polar_exercise" class="xref" data-knowl="./knowl/xref/F_11_5_Polar_exercise.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 12.5.4">Figure 12.5.4</a>).</div></li>
 <li id="A_11_5_5-1-1-4-4"><div class="para" id="A_11_5_5-1-1-4-4-1">Explain why in both (b) and (c) it is advantageous to use polar coordinates.</div></li>
 </ol>
 </div></article></section><section class="subsection" id="S-11-5-Double-Integrals-Polar-6"><h3 class="heading hide-type">
 <span class="type">Subsection</span><span class="space"> </span><span class="codenumber">12.5.3</span><span class="space"> </span><span class="title">Summary</span>
 </h3>
-<ul class="disc">
+<ul class="disc" id="S-11-5-Double-Integrals-Polar-6-2">
 <li id="S-11-5-Double-Integrals-Polar-6-2-1"><div class="para" id="S-11-5-Double-Integrals-Polar-6-2-1-1">The polar representation of a point <span class="process-math">\(P\)</span> is the ordered pair <span class="process-math">\((r,\theta)\)</span> where <span class="process-math">\(r\)</span> is the distance from the origin to <span class="process-math">\(P\)</span> and <span class="process-math">\(\theta\)</span> is the angle the ray through the origin and <span class="process-math">\(P\)</span> makes with the positive <span class="process-math">\(x\)</span>-axis.</div></li>
 <li id="S-11-5-Double-Integrals-Polar-6-2-2"><div class="para logical" id="S-11-5-Double-Integrals-Polar-6-2-2-1">
 <div class="para">The polar coordinates <span class="process-math">\(r\)</span> and <span class="process-math">\(\theta\)</span> of a point <span class="process-math">\((x,y)\)</span> in rectangular coordinates satisfy</div>
@@ -1115,7 +1135,7 @@ r=\frac{5 }{7 \sin \theta+50 \cos \theta}
 <div id="webwork-240" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="240" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-localize-hint="Hint" data-localize-solution="Solution" data-sourceFilePath="Library/FortLewis/Calc3/16-4-Polar-integrals/HGM5-16-4-14-Double-integrals-polar.pg" data-courseID="mitchkeller-dev" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
 <div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-240')">Activate</button></div>
 <div class="problem-contents">
-<div class="para" id="extracted-webwork-240-1-1-1">Sketch the region of integration for the following integral.</div> <div class="para" id="extracted-webwork-240-1-1-2"><span class="process-math">\(\displaystyle \int_{0}^{\pi/4} \int_{0}^{5 / \cos(\theta)} f(r,\theta) \, r \, dr \, d\theta\)</span></div> <div class="para" id="extracted-webwork-240-1-1-3">The region of integration is bounded by</div> <div class="para logical" id="extracted-webwork-240-1-1-4"><ul class="circle">
+<div class="para" id="extracted-webwork-240-1-1-1">Sketch the region of integration for the following integral.</div> <div class="para" id="extracted-webwork-240-1-1-2"><span class="process-math">\(\displaystyle \int_{0}^{\pi/4} \int_{0}^{5 / \cos(\theta)} f(r,\theta) \, r \, dr \, d\theta\)</span></div> <div class="para" id="extracted-webwork-240-1-1-3">The region of integration is bounded by</div> <div class="para logical" id="extracted-webwork-240-1-1-4"><ul class="circle" id="extracted-webwork-240-1-1-4-1">
 <li id="extracted-webwork-240-1-1-4-1-1"><div class="para" id="extracted-webwork-240-1-1-4-1-1-1"><span class="process-math">\(\displaystyle y = 0, y = \sqrt{25 - x^2}, \mbox{ and } x = 5\)</span></div></li>
 <li id="extracted-webwork-240-1-1-4-1-2"><div class="para" id="extracted-webwork-240-1-1-4-1-2-1"><span class="process-math">\(\displaystyle y = 0, y = x, \mbox{ and } y = 5\)</span></div></li>
 <li id="extracted-webwork-240-1-1-4-1-3"><div class="para" id="extracted-webwork-240-1-1-4-1-3-1"><span class="process-math">\(\displaystyle y = 0, y = x, \mbox{ and } x = 5\)</span></div></li>
@@ -1150,7 +1170,7 @@ r=\frac{5 }{7 \sin \theta+50 \cos \theta}
 <div class="para logical" id="S-11-5-Double-Integrals-Polar-7-17-1-1">
 <div class="para">Consider the iterated integral <span class="process-math">\(I = \int_{-3}^{0} \int_{-\sqrt{9-y^2}}^{0} \frac{y}{x^2 + y^2+1} \, dx \, dy.\)</span>
 </div>
-<ol class="lower-alpha">
+<ol class="lower-alpha ol-marker-2" id="S-11-5-Double-Integrals-Polar-7-17-1-1-2">
 <li id="S-11-5-Double-Integrals-Polar-7-17-1-1-2-1"><div class="para" id="S-11-5-Double-Integrals-Polar-7-17-1-1-2-1-1">Sketch (and label) the region of integration.</div></li>
 <li id="S-11-5-Double-Integrals-Polar-7-17-1-1-2-2"><div class="para" id="S-11-5-Double-Integrals-Polar-7-17-1-1-2-2-1">Convert the given iterated integral to one in polar coordinates.</div></li>
 <li id="S-11-5-Double-Integrals-Polar-7-17-1-1-2-3"><div class="para" id="S-11-5-Double-Integrals-Polar-7-17-1-1-2-3-1">Evaluate the iterated integral in (b).</div></li>
@@ -1159,7 +1179,7 @@ r=\frac{5 }{7 \sin \theta+50 \cos \theta}
 </div></article><article class="exercise exercise-like" id="S-11-5-Double-Integrals-Polar-7-18"><h4 class="heading"><span class="codenumber">18<span class="period">.</span></span></h4>
 <div class="para logical" id="S-11-5-Double-Integrals-Polar-7-18-1-1">
 <div class="para">Let <span class="process-math">\(D\)</span> be the region that lies inside the unit circle in the plane.</div>
-<ol class="lower-alpha">
+<ol class="lower-alpha ol-marker-2" id="S-11-5-Double-Integrals-Polar-7-18-1-1-2">
 <li id="S-11-5-Double-Integrals-Polar-7-18-1-1-2-1"><div class="para" id="S-11-5-Double-Integrals-Polar-7-18-1-1-2-1-1">Set up and evaluate an iterated integral in polar coordinates whose value is the area of <span class="process-math">\(D\text{.}\)</span>
 </div></li>
 <li id="S-11-5-Double-Integrals-Polar-7-18-1-1-2-2"><div class="para" id="S-11-5-Double-Integrals-Polar-7-18-1-1-2-2-1">Determine the exact average value of <span class="process-math">\(f(x,y) = y\)</span> over the upper half of <span class="process-math">\(D\text{.}\)</span>
@@ -1171,12 +1191,12 @@ r=\frac{5 }{7 \sin \theta+50 \cos \theta}
 </div></article><article class="exercise exercise-like" id="S-11-5-Double-Integrals-Polar-7-19"><h4 class="heading"><span class="codenumber">19<span class="period">.</span></span></h4>
 <div class="para logical" id="S-11-5-Double-Integrals-Polar-7-19-1-1">
 <div class="para">For each of the following iterated integrals,</div>
-<ul class="disc">
+<ul class="disc" id="S-11-5-Double-Integrals-Polar-7-19-1-1-1">
 <li id="S-11-5-Double-Integrals-Polar-7-19-1-1-1-1"><div class="para" id="S-11-5-Double-Integrals-Polar-7-19-1-1-1-1-1">sketch and label the region of integration,</div></li>
 <li id="S-11-5-Double-Integrals-Polar-7-19-1-1-1-2"><div class="para" id="S-11-5-Double-Integrals-Polar-7-19-1-1-1-2-1">convert the integral to the other coordinate system (if given in polar, to rectangular; if given in rectangular, to polar), and</div></li>
 <li id="S-11-5-Double-Integrals-Polar-7-19-1-1-1-3"><div class="para" id="S-11-5-Double-Integrals-Polar-7-19-1-1-1-3-1">choose one of the two iterated integrals to evaluate exactly.</div></li>
 </ul>
-<ol class="lower-alpha">
+<ol class="lower-alpha ol-marker-2" id="S-11-5-Double-Integrals-Polar-7-19-1-1-2">
 <li id="S-11-5-Double-Integrals-Polar-7-19-1-1-2-1"><div class="para" id="S-11-5-Double-Integrals-Polar-7-19-1-1-2-1-1"><span class="process-math">\(\displaystyle \int_{\pi}^{3\pi/2} \int_{0}^{3}  r^3 \, dr \, d\theta\)</span></div></li>
 <li id="S-11-5-Double-Integrals-Polar-7-19-1-1-2-2"><div class="para" id="S-11-5-Double-Integrals-Polar-7-19-1-1-2-2-1"><span class="process-math">\(\displaystyle \int_{0}^{2} \int_{-\sqrt{1-(x-1)^2}}^{\sqrt{1-(x-1)^2}} \sqrt{x^2 + y^2} \, dy \, dx\)</span></div></li>
 <li id="S-11-5-Double-Integrals-Polar-7-19-1-1-2-3"><div class="para" id="S-11-5-Double-Integrals-Polar-7-19-1-1-2-3-1"><span class="process-math">\(\displaystyle \int_0^{\pi/2} \int_0^{\sin(\theta)} r \sqrt{1-r^2} \, dr \, d\theta.\)</span></div></li>
@@ -1184,11 +1204,11 @@ r=\frac{5 }{7 \sin \theta+50 \cos \theta}
 </ol>
 </div></article></section></section></div>
 <div class="ptx-content-footer">
-<a class="previous-button button" href="S-11-4-Double-Integrals-Applications.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Top</span></a><a class="next-button button" href="S-11-6-Parametric-Surfaces-Surface-Area.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a>
+<a class="previous-button button" href="S-11-4-Double-Integrals-Applications.html" title="Previous"><span xmlns:xlink="http://www.w3.org/1999/xlink" class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span xmlns:xlink="http://www.w3.org/1999/xlink" class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Top</span></a><a class="next-button button" href="S-11-6-Parametric-Surfaces-Surface-Area.html" title="Next"><span class="name">Next</span><span xmlns:xlink="http://www.w3.org/1999/xlink" class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a>
 </div></main>
 </div>
 <div id="ptx-page-footer" class="ptx-page-footer">
-<a class="pretext-link" href="https://pretextbook.org" title="PreTeXt"><div class="logo"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="338 3000 8772 6866"><g style="stroke-width:.025in; stroke:black; fill:none"><polyline points="472,3590 472,9732 " style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round; "></polyline><path style="stroke:#000000;stroke-width:126;stroke-linecap:butt;" d="M 4724,9448 A 4660 4660  0  0  1  8598  9259"></path><path style="stroke:#000000;stroke-width:174;stroke-linecap:butt;" d="M 4488,9685 A 4228 4228  0  0  0   472  9732"></path><path style="stroke:#000000;stroke-width:126;stroke-linecap:butt;" d="M 4724,3590 A 4241 4241  0  0  1  8598  3496"></path><path style="stroke:#000000;stroke-width:126;stroke-linecap:round;" d="M 850,3496  A 4241 4241  0  0  1  4724  3590"></path><path style="stroke:#000000;stroke-width:126;stroke-linecap:round;" d="M 850,9259  A 4507 4507  0  0  1  4724  9448"></path><polyline points="5385,4299 4062,8125" style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="8598,3496 8598,9259" style="stroke:#000000;stroke-width:126; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="850,3496 850,9259" style="stroke:#000000;stroke-width:126; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="4960,9685 4488,9685" style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="3070,4582 1889,6141 3070,7700" style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="6418,4582 7600,6141 6418,7700" style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="8976,3590 8976,9732" style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round;"></polyline><path style="stroke:#000000;stroke-width:174;stroke-linecap:butt;" d="M 4960,9685 A 4228 4228  0  0  1  8976  9732"></path></g></svg></div></a><a class="runestone-link" href="https://runestone.academy" title="Runestone Academy"><img class="logo" src="https://runestone.academy/runestone/static/images/RAIcon_cropped.png"></a><a class="mathjax-link" href="https://www.mathjax.org" title="MathJax"><img class="logo" src="https://www.mathjax.org/badge/badge-square-2.png"></a>
+<a xmlns:xlink="http://www.w3.org/1999/xlink" class="pretext-link" href="https://pretextbook.org" title="PreTeXt"><div class="logo"><svg xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="338 3000 8772 6866" role="img"><title>PreTeXt logo</title><g style="stroke-width:.025in; stroke:currentColor; fill:none"><polyline points="472,3590 472,9732 " style="stroke-width:174; stroke-linejoin:miter; stroke-linecap:round; "></polyline><path style="stroke-width:126;stroke-linecap:butt;" d="M 4724,9448 A 4660 4660  0  0  1  8598  9259"></path><path style="stroke-width:174;stroke-linecap:butt;" d="M 4488,9685 A 4228 4228  0  0  0   472  9732"></path><path style="stroke-width:126;stroke-linecap:butt;" d="M 4724,3590 A 4241 4241  0  0  1  8598  3496"></path><path style="stroke-width:126;stroke-linecap:round;" d="M 850,3496  A 4241 4241  0  0  1  4724  3590"></path><path style="stroke-width:126;stroke-linecap:round;" d="M 850,9259  A 4507 4507  0  0  1  4724  9448"></path><polyline points="5385,4299 4062,8125" style="stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="8598,3496 8598,9259" style="stroke-width:126; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="850,3496 850,9259" style="stroke-width:126; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="4960,9685 4488,9685" style="stroke-width:174; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="3070,4582 1889,6141 3070,7700" style="stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="6418,4582 7600,6141 6418,7700" style="stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="8976,3590 8976,9732" style="stroke-width:174; stroke-linejoin:miter; stroke-linecap:round;"></polyline><path style="stroke-width:174;stroke-linecap:butt;" d="M 4960,9685 A 4228 4228  0  0  1  8976  9732"></path></g></svg></div></a><a xmlns:xlink="http://www.w3.org/1999/xlink" class="runestone-link" href="https://runestone.academy" title="Runestone Academy"><img class="logo" src="https://runestone.academy/runestone/static/images/RAIcon_cropped.png" alt="Runstone Academy logo"></a><a xmlns:xlink="http://www.w3.org/1999/xlink" class="mathjax-link" href="https://www.mathjax.org" title="MathJax"><img class="logo" src="https://www.mathjax.org/badge/badge-square-2.png" alt="MathJax logo"></a>
 </div>
 <!--Start: Google Global Site Tag code--><!--*** DO NOT COPY ANOTHER PROJECT'S MAGIC NUMBERS/ID ***--><!--***           GET YOUR OWN FROM GOOGLE             ***-->
 <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-QJKN634F7R"></script><script>  window.dataLayer = window.dataLayer || [];
