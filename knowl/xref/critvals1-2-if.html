@@ -146,16 +146,16 @@ window.MathJax = {
 f(x,y)=4*x^4+y^2-16*x*y
 @interact(layout={'top': [['sb','auto_update']]})
 def critvals1(sb=selector(['Critical Point 1','Critical Point 2','Critical Point 3'],default='Critical Point 3',label="Critical Point Options:")):
-  if(sb=='Critical Point 1'):
-    a=0;b=0;fv=f(x=a,y=b);
-  if(sb=='Critical Point 2'):
-    a=sqrt(8);b=8*sqrt(8);fv=f(x=a,y=b);
-  if(sb=='Critical Point 3'):
-    a=-sqrt(8);b=-8*sqrt(8);fv=f(x=a,y=b);
-  d=0.25
-  plot1=implicit_plot3d(f(x,y)==z,(x,a-d,a+d),(y,b-d,b+d),(z,fv-d,fv+d),plot_points=51,color="blue",opacity=0.6)
-  plot1+=point((a,b,fv),color="black",size=5)
-  show(plot1)
+    if(sb=='Critical Point 1'):
+        a=0;b=0;fv=f(x=a,y=b);
+    if(sb=='Critical Point 2'):
+        a=sqrt(8);b=8*sqrt(8);fv=f(x=a,y=b);
+    if(sb=='Critical Point 3'):
+        a=-sqrt(8);b=-8*sqrt(8);fv=f(x=a,y=b);
+    d=0.25;q=5
+    plot1=implicit_plot3d(f(x,y)==z,(x,a-d/q,a+d/q),(y,b-d,b+d),(z,fv-d,fv+d),plot_points=21,color="gray",opacity=0.6)
+    plot1+=point((a,b,fv),color="black",size=5)
+    show(plot1,aspect_ratio=(q,1,1))
 </script></pre></div>
 </body>
 </html>

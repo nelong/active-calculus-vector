@@ -142,7 +142,7 @@ window.MathJax = {
 \definecolor{fillinmathshade}{gray}{0.9}
 \newcommand{\fillinmath}[1]{\mathchoice{\colorbox{fillinmathshade}{$\displaystyle     \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\textstyle        \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptstyle      \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptscriptstyle\phantom{\,#1\,}$}}}
 \)</span></div>
-<div style="width:600px; height:600px; display: block; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;"><pre xmlns:xlink="http://www.w3.org/1999/xlink" class="ptx-sagecell sage-interact"><script type="text/x-sage">from sage.plot.plot3d.plot3d import axes
+<div style="width:600px; height:600px; display: block; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;"><pre xmlns:xlink="http://www.w3.org/1999/xlink" class="ptx-sagecell sage-interact"><script type="text/x-sage">          from sage.plot.plot3d.plot3d import axes
 var('t,s,x,y')
 a1=2/3; a2=9/3; b1=2/2; b2=5/2; c1=2.5
 f(x,y)=2.5-5*(x/10)^2-7*(y/7)^2
@@ -170,6 +170,10 @@ plot5+=text3d("df",(a2+0.2,b2+0.2,(L(a2,b2)+f(a1,b1))/2),color="red",fontsize=25
 plot5+=line([(a1,b2,0),(a1,b2,f(a1,b1))],color="black")
 plot5+=line([(a2,b1,0),(a2,b1,f(a1,b1))],color="black")
 plot5+=polygon([(a2,b1,f(a1,b1)),(a2,b2,f(a1,b1)),(a1,b2,f(a1,b1)),(a1,b1,f(a1,b1))],color="gray",opacity=0.2,mesh=True,plot_points=3)
+plot5+=point((a1,b1,0),color="black",size=25)
+plot5+=text3d("(x\u2080,y\u2080)",(a1-0.35,b1-0.35,0),color="black",fontsize=20)
+plot5+=point((a2,b2,0),color="black",size=25)
+plot5+=text3d("(x,y)",(a2+0.25,b2+0.25,0),color="black",fontsize=20)
 show(plot5,viewpoint=[[-0.6212,-0.4439,-0.6459],95.78],camera_position=[7.005,-0.3801,2.98])
 </script></pre></div>
 </body>

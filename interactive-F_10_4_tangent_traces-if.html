@@ -148,11 +148,11 @@ param(s,t)=(s,t,f(s,t))
 param2(s,t)=(s,t,4.5-(s-1)-2*(t-1))
 #set up grid      n is number of steps in s    m is number of steps in t  
 #a1 is min s    a2 is max s   b1 is min t    b2 is max t
-n=6;m=6;a1=1/2;a2=1.5;b1=1/2;b2=1.5; 
+n=5;m=5;a1=1/2;a2=1.5;b1=1/2;b2=1.5; 
 #c1 is surface color     o1 is surface opacity
 #c2 and o2 are for constant t value traces
 #c3 and o3 are for constant s value traces
-c1="blue"; c2="black"; c3="black"; o1=0.3; o2=0.8; o3=0.8;
+c1="blue"; c2="black"; c3="black"; o1=0.3; o2=0.4; o3=0.4;
 plot6=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1)
 plot6+=parametric_plot3d(param2,(s,a1,a2),(t,b1,b2),color="red",opacity=o1)
 for i in range(n+1):
@@ -164,10 +164,10 @@ for i in range(m+1):
   plot6+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
   plot6+=parametric_plot3d(param2(s,tv),(s,a1,a2),color=c3,opacity=o3)
 plot6+=point((1,1,4.5),color="black",size=10)
-sv=1; plot6+=parametric_plot3d(param(sv,t),(t,b1,b2),color="blue",opacity=1,thickness=3)
-tv=1; plot6+=parametric_plot3d(param(s,tv),(s,a1,a2),color="blue",opacity=1,thickness=3)
-sv=1; plot6+=parametric_plot3d(param2(sv,t),(t,b1,b2),color="red",opacity=1,thickness=3)
-tv=1; plot6+=parametric_plot3d(param2(s,tv),(s,a1,a2),color="red",opacity=1,thickness=3)
+sv=1; plot6+=parametric_plot3d(param(sv,t),(t,b1,b2),color="blue",thickness=3)
+tv=1; plot6+=parametric_plot3d(param(s,tv),(s,a1,a2),color="blue",thickness=3)
+sv=1; plot6+=parametric_plot3d(param2(sv,t),(t,b1,b2),color="red",thickness=3)
+tv=1; plot6+=parametric_plot3d(param2(s,tv),(s,a1,a2),color="red",thickness=3)
 show(plot6,aspect_ratio=(1,1,0.35),viewpoint=[[-0.396,-0.6577,-0.6407],137.81],camera_position=[3.2568,2.1949,1.6581])
 </script></pre></div>
 </body>

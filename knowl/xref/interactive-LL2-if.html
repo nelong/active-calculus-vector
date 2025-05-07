@@ -144,17 +144,21 @@ window.MathJax = {
 \)</span></div>
 <div style="width:600px; height:600px; display: block; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;"><pre xmlns:xlink="http://www.w3.org/1999/xlink" class="ptx-sagecell sage-interact"><script type="text/x-sage">@interact
 def LL2D(zoom=slider(0,8,1,default=0,label="Zoom")):
-  var('x')
-  val=1
-  s=0.8
-  f(x)=x*cos(pi*x)
-  df(x)=diff(f,x)
-  fv=f(val)
-  dfv=df(val)
-  plot1=plot(f(x),(x,-4,4),color="black",gridlines=True,thickness=2)
-  plot1+=line([(1-s,fv-dfv*s),(1+s,fv+s*dfv)],color="red",thickness=2)
-  plot1+=point((val,fv),color="black",size=40,xmin=val-2^(-zoom+1),xmax=val+2^(-zoom+1),ymin=fv-2^(-zoom+1),ymax=fv+2^(-zoom+1))
-  show(plot1)
+    var('x')
+    val=1
+    s=0.8
+    f(x)=x*cos(pi*x)
+    df(x)=diff(f,x)
+    fv=f(val)
+    dfv=df(val)
+    if(zoom==0):
+      xtop=4;xbottom=-4;
+    else:
+      xbottom=val-2^(-zoom+1);xtop=val+2^(-zoom+1);
+    plot1=plot(f(x),(x,xbottom,xtop),color="black",gridlines=True,thickness=2)
+    plot1+=point((val,fv),color="black",size=40)
+    plot1+=line([(xbottom,fv-dfv*(1-xbottom)),(xtop,fv+(xtop-1)*dfv)],color="red",thickness=2)
+    show(plot1)
 </script></pre></div>
 </body>
 </html>
