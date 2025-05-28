@@ -115,15 +115,15 @@ eBookConfig.allow_pairs = false;
 eBookConfig.enableScratchAC = false;
 eBookConfig.build_info = "";
 eBookConfig.python3 = null;
-eBookConfig.runestone_version = '7.6.2';
+eBookConfig.runestone_version = '7.7.0';
 eBookConfig.jobehost = '';
 eBookConfig.proxyuri_runs = '';
 eBookConfig.proxyuri_files = '';
 eBookConfig.enable_chatcodes =  false;
 </script>
 <!--*** Runestone Services ***-->
-<script src="_static/prefix-runtime.11f2df1b38a61a3f.bundle.js"></script><script src="_static/prefix-723.3e6434f80549315a.bundle.js"></script><script src="_static/prefix-runestone.f7a03b209751032d.bundle.js"></script><link rel="stylesheet" type="text/css" href="_static/prefix-723.3bccd435914aa0ff.css">
-<link rel="stylesheet" type="text/css" href="_static/prefix-runestone.541c9106f2c605b9.css">
+<script src="_static/prefix-runtime.5eb70769dc5e56d7.bundle.js"></script><script src="_static/prefix-723.3e6434f80549315a.bundle.js"></script><script src="_static/prefix-runestone.253ff4af1e53e55f.bundle.js"></script><link rel="stylesheet" type="text/css" href="_static/prefix-723.3bccd435914aa0ff.css">
+<link rel="stylesheet" type="text/css" href="_static/prefix-runestone.5bdeacdba067a0e3.css">
 <script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script src="_static/pretext/js/pretext-webwork/2.17/pretext-webwork.js"></script><script src="https://webwork-ptx.aimath.org/webwork2_files/node_modules/iframe-resizer/js/iframeResizer.min.js"></script><script xmlns:xlink="http://www.w3.org/1999/xlink" src="_static/pretext/js/lti_iframe_resizer.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/components/prism-core.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/line-numbers/prism-line-numbers.min.js" integrity="sha512-dubtf8xMHSQlExGRQ5R7toxHLgSDZ0K7AunqPWHXmJQ8XyVIG19S1T95gBxlAeGOK02P4Da2RTnQz0Za0H0ebQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/line-highlight/prism-line-highlight.min.js" integrity="sha512-93uCmm0q+qO5Lb1huDqr7tywS8A2TFA+1/WHvyiWaK6/pvsFl6USnILagntBx8JnVbQH5s3n0vQZY6xNthNfKA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="https://cdn.geogebra.org/apps/deployggb.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js" integrity="sha512-4xUl/d6D6THrAnXAwGajXkoWaeMNwEKK4iNfq5DotEbLPAfk6FSxSP3ydNxqDgCw1c/0Z1Jg6L8h2j+++9BZmg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="lunr-pretext-search-index.js" async=""></script><script src="_static/pretext/js/pretext_search.js"></script><script src="_static/pretext/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
 </script>
 </head>
@@ -704,307 +704,441 @@ true);
 <article class="objectives goal-like" id="S-11-3-Double-Integrals-General-2"><h3 class="heading"><span class="type">Motivating Questions</span></h3>
 <ul class="disc" id="S-11-3-Double-Integrals-General-2-1">
 <li id="S-11-3-Double-Integrals-General-2-1-1"><div class="para" id="S-11-3-Double-Integrals-General-2-1-1-1">How do we define a double integral over a non-rectangular region?</div></li>
-<li id="S-11-3-Double-Integrals-General-2-1-2"><div class="para" id="S-11-3-Double-Integrals-General-2-1-2-1">What general form does an iterated integral over a non-rectangular region have?</div></li>
+<li id="S-11-3-Double-Integrals-General-2-1-2"><div class="para" id="S-11-3-Double-Integrals-General-2-1-2-1">What general forms do iterated integrals over a non-rectangular region have?</div></li>
 </ul></article><section class="introduction" id="S-11-3-Double-Integrals-General-3"><div class="para logical" id="S-11-3-Double-Integrals-General-3-1">
-<div class="para">Recall that we defined the double integral of a continuous function <span class="process-math">\(f = f(x,y)\)</span> over a rectangle <span class="process-math">\(R = [a,b] \times [c,d]\)</span> as</div>
+<div class="para">Recall in <a href="S-11-1-Double-Integrals-Rectangles.html" class="internal" title="Section 12.1: Double Riemann Sums and Double Integrals over Rectangles">Section 12.1</a> that we defined the double integral of a continuous function <span class="process-math">\(f = f(x,y)\)</span> over a rectangle <span class="process-math">\(R = [a,b] \times [c,d]\)</span> as</div>
 <div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/S-11-1-Double-Integrals-Rectangles.html">
 \begin{equation*}
-\iint_R f(x,y) \, dA = \lim_{m,n \to \infty} \sum_{j=1}^n \sum_{i=1}^m f(x_{ij}^*, y_{ij}^*) \cdot \Delta A,
+\iint_R f(x,y) \, dA = \lim_{m,n \to \infty} \sum_{j=1}^n \sum_{i=1}^m f(x_{ij}^*, y_{ij}^*) \cdot \Delta A.
 \end{equation*}
 </div>
-<div class="para">where the notation is as described in <a href="S-11-1-Double-Integrals-Rectangles.html" class="internal" title="Section 12.1: Double Riemann Sums and Double Integrals over Rectangles">Section 12.1</a>. Furthermore, we have seen that we can evaluate a double integral <span class="process-math">\(\iint_R f(x,y) \, dA\)</span> over <span class="process-math">\(R\)</span> as an iterated integral of either of the forms</div>
+<div class="para">Furthermore, we have seen that we can evaluate a double integral <span class="process-math">\(\iint_R f(x,y) \, dA\)</span> over <span class="process-math">\(R\)</span> as an iterated integral of either of the forms</div>
 <div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/S-11-1-Double-Integrals-Rectangles.html">
 \begin{equation*}
-\int_a^b \int_c^d f(x,y) \, dy \, dx \ \ \ \ \ \text{ or }  \ \ \ \ \ \int_c^d \int_a^b f(x,y) \, dx \, dy.
+\int_a^b \int_c^d f(x,y) \, dy \, dx \quad \quad \text{ or }  \quad \quad \int_c^d \int_a^b f(x,y) \, dx \, dy.
 \end{equation*}
 </div>
 </div>
-<div class="para" id="S-11-3-Double-Integrals-General-3-2">It is natural to wonder how we might define and evaluate a double integral over a non-rectangular region; we explore one such example in the following preview activity.</div>
+<div class="para" id="S-11-3-Double-Integrals-General-3-2">It is very rare to have applied or theoretical problems that apply to a rectangular region, so we would like to extend the idea of using iterated integrals to evaluate non-rectangular regions; we explore one such example in the following preview activity.</div>
 <article class="exploration project-like" id="PA_11_3"><h3 class="heading">
 <span class="type">Preview Activity</span><span class="space"> </span><span class="codenumber">12.3.1</span><span class="period">.</span>
 </h3>
+<div class="introduction" id="PA_11_3-1">
 <div class="para logical" id="PA_11_3-1-1">
-<div class="para">A tetrahedron is a three-dimensional figure with four faces, each of which is a triangle. A picture of the tetrahedron <span class="process-math">\(T\)</span> with vertices <span class="process-math">\((0,0,0)\text{,}\)</span> <span class="process-math">\((1,0,0)\text{,}\)</span> <span class="process-math">\((0,1,0)\text{,}\)</span> and <span class="process-math">\((0,0,1)\)</span> is shown at left in <a href="S-11-3-Double-Integrals-General.html#F_11_3_Tetrahedron_PA" class="xref" data-knowl="./knowl/xref/F_11_3_Tetrahedron_PA.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 12.3.1">Figure 12.3.1</a>. If we place one vertex at the origin and let vectors <span class="process-math">\(\va\text{,}\)</span> <span class="process-math">\(\vb\text{,}\)</span> and <span class="process-math">\(\vc\)</span> be determined by the edges of the tetrahedron that have one end at the origin, then a formula that tells us the volume <span class="process-math">\(V\)</span> of the tetrahedron is</div>
+<div class="para">A tetrahedron is a three-dimensional figure with four faces, each of which is a triangle. A picture of the tetrahedron <span class="process-math">\(T\)</span> with vertices <span class="process-math">\((0,0,0)\text{,}\)</span> <span class="process-math">\((1,0,0)\text{,}\)</span> <span class="process-math">\((0,1,0)\text{,}\)</span> and <span class="process-math">\((0,0,1)\)</span> is shown at in <a href="S-11-3-Double-Integrals-General.html#F_11_3_Tetrahedron_PA" class="xref" data-knowl="./knowl/xref/F_11_3_Tetrahedron_PA.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 12.3.1">Figure 12.3.1</a>. If we place one vertex at the origin and let vectors <span class="process-math">\(\va\text{,}\)</span> <span class="process-math">\(\vb\text{,}\)</span> and <span class="process-math">\(\vc\)</span> be determined by the edges of the tetrahedron that have one end at the origin, then a formula that tells us the volume <span class="process-math">\(V\)</span> of the tetrahedron is</div>
 <div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/F_11_3_Tetrahedron_PA.html" id="eq_11_3_tetrahedron_volume">
 \begin{equation}
 V = \frac{1}{6} \lvert \va \cdot (\vb \times \vc) \rvert.\tag{12.3.1}
 \end{equation}
 </div>
-</div> <figure class="figure figure-like" id="F_11_3_Tetrahedron_PA"><div class="sidebyside"><div class="sbsrow" style="margin-left:0%;margin-right:0%;">
-<div class="sbspanel top" style="width:50%;"><img src="external/images/fig_11_3_tetrahedron.svg" role="img" class="contained"></div>
-<div class="sbspanel top" style="width:50%;"><img src="external/images/fig_11_3_tetra_project.svg" role="img" class="contained"></div>
-</div></div>
-<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">12.3.1<span class="period">.</span></span><span class="space"> </span>Left: The tetrahedron <span class="process-math">\(T\text{.}\)</span> Right: Projecting <span class="process-math">\(T\)</span> onto the <span class="process-math">\(xy\)</span>-plane.</figcaption></figure> <ol class="lower-alpha ol-marker-2" id="PA_11_3-1-3">
-<li id="PA_11_3-1-3-1"><div class="para" id="PA_11_3-1-3-1-1">Use the formula <a href="S-11-3-Double-Integrals-General.html#eq_11_3_tetrahedron_volume" class="xref" data-knowl="./knowl/xref/eq_11_3_tetrahedron_volume.html" data-reveal-label="Reveal" data-close-label="Close" title="Equation 12.3.1">(12.3.1)</a> to find the volume of the tetrahedron <span class="process-math">\(T\text{.}\)</span>
-</div></li>
-<li id="PA_11_3-1-3-2"><div class="para logical" id="PA_11_3-1-3-2-1">
+</div>
+<figure class="figure figure-like" id="F_11_3_Tetrahedron_PA"><iframe id="F_11_3_Tetrahedron_PA-2" width="600" height="600" src="F_11_3_Tetrahedron_PA-2-if.html"></iframe><figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">12.3.1<span class="period">.</span></span><span class="space"> </span></figcaption></figure>
+</div>
+<article class="task exercise-like" id="PA_11_3-2"><h4 class="heading"><span class="codenumber">(a)</span></h4>
+<div class="para" id="PA_11_3-2-1-1">State the vectors <span class="process-math">\(\va\text{,}\)</span> <span class="process-math">\(\vb\text{,}\)</span> and <span class="process-math">\(\vc\)</span> used for our tetrahedron <span class="process-math">\(T\text{.}\)</span> Use these vectors in formula <a href="S-11-3-Double-Integrals-General.html#eq_11_3_tetrahedron_volume" class="xref" data-knowl="./knowl/xref/eq_11_3_tetrahedron_volume.html" data-reveal-label="Reveal" data-close-label="Close" title="Equation 12.3.1">(12.3.1)</a> to find the volume of the tetrahedron <span class="process-math">\(T\text{.}\)</span>
+</div></article><article class="task exercise-like" id="PA_11_3-3"><h4 class="heading"><span class="codenumber">(b)</span></h4>
+<div class="para logical" id="PA_11_3-3-1-1">
 <div class="para">Instead of memorizing or looking up the formula for the volume of a tetrahedron, we can use a double integral to calculate the volume of the tetrahedron <span class="process-math">\(T\text{.}\)</span> To see how, notice that the top face of the tetrahedron <span class="process-math">\(T\)</span> is the plane whose equation is</div>
-<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/F_11_3_Tetrahedron_PA.html ./knowl/xref/F_11_3_Tetrahedron_PA.html">
+<div class="displaymath process-math">
 \begin{equation*}
 z = 1-(x+y).
 \end{equation*}
 </div>
-<div class="para">Provided that we can use an iterated integral on a non-rectangular region, the volume of the tetrahedron will be given by an iterated integral of the form</div>
-<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/F_11_3_Tetrahedron_PA.html ./knowl/xref/F_11_3_Tetrahedron_PA.html">
+<div class="para">We will want to evaluate a pair of iterated integrals on on a non-rectangular region to calculate the volume of the region below this plane and in the first octant region. Reminder: the first octant is the part of <span class="process-math">\(\mathbb{R}^3\)</span> that has positive <span class="process-math">\(x\)</span>-, <span class="process-math">\(y\)</span>-, and <span class="process-math">\(z\)</span>-coordinates.</div>
+</div> <figure class="figure figure-like" id="tetrahedron_base"><div class="image-box" style="width: 80%; margin-left: 10%; margin-right: 10%;"><img src="generated/sageplot/img-tetrahedron_base.svg" role="img" class="contained"></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">12.3.2<span class="period">.</span></span><span class="space"> </span></figcaption></figure> <div class="para logical" id="PA_11_3-3-1-3">
+<div class="para">The volume of the tetrahedron will be given by double integral</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/tetrahedron_base.html ./knowl/xref/S-11-2-Iterated-Integrals.html">
+\begin{equation*}
+\iint_R 1-(x+y) dA
+\end{equation*}
+</div>
+<div class="para">where the region of integration will the triangle at the base of our tetrahedron (in the <span class="process-math">\(xy\)</span>-plane) as shown in <a href="S-11-3-Double-Integrals-General.html#tetrahedron_base" class="xref" data-knowl="./knowl/xref/tetrahedron_base.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 12.3.2">Figure 12.3.2</a>. We will need to understand how to express this double integral as an iterated integral using our cross sectional ideas from <a href="S-11-2-Iterated-Integrals.html" class="internal" title="Section 12.2: Iterated Integrals">Section 12.2</a>.</div>
+</div> <div class="para logical" id="PA_11_3-3-1-4">
+<div class="para">We will look at a cross sectional idea along a constant value of <span class="process-math">\(x=a\)</span> which will give an iterated integral of the form</div>
+<div class="displaymath process-math">
 \begin{equation*}
 \int_{x=?}^{x=?} \int_{y=?}^{y=?} 1-(x+y) \, dy \, dx.
 \end{equation*}
 </div>
-<div class="para">The issue that is new here is how we find the limits on the integrals; note that the outer integral’s limits are in <span class="process-math">\(x\text{,}\)</span> while the inner ones are in <span class="process-math">\(y\text{,}\)</span> since we have chosen <span class="process-math">\(dA = dy \, dx\text{.}\)</span> To see the domain over which we need to integrate, think of standing way above the tetrahedron looking straight down on it, which means we are projecting the entire tetrahedron onto the <span class="process-math">\(xy\)</span>-plane. The resulting domain is the triangular region shown at right in <a href="S-11-3-Double-Integrals-General.html#F_11_3_Tetrahedron_PA" class="xref" data-knowl="./knowl/xref/F_11_3_Tetrahedron_PA.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 12.3.1">Figure 12.3.1</a>. Explain why we can represent the triangular region with the inequalities</div>
-<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/F_11_3_Tetrahedron_PA.html ./knowl/xref/F_11_3_Tetrahedron_PA.html">
-\begin{equation*}
-0 \leq y \leq 1-x \ \ \ \text{ and }  \ \ \ 0 \leq x \leq 1.
-\end{equation*}
-</div>
-<div class="para">(Hint: Consider the cross sectional slice shown at right in <a href="S-11-3-Double-Integrals-General.html#F_11_3_Tetrahedron_PA" class="xref" data-knowl="./knowl/xref/F_11_3_Tetrahedron_PA.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 12.3.1">Figure 12.3.1</a>.)</div>
-</div></li>
-<li id="PA_11_3-1-3-3"><div class="para logical" id="PA_11_3-1-3-3-1">
-<div class="para">Explain why it makes sense to now write the volume integral in the form</div>
+<div class="para">So, we need to know if we look at <span class="process-math">\(R\)</span> along the trace <span class="process-math">\(x=a\text{,}\)</span> what will be the upper and lower bounds on the corresponding <span class="process-math">\(y\)</span> coordinates?</div>
 <div class="displaymath process-math">
 \begin{equation*}
-\int_{x=?}^{x=?} \int_{y=?}^{y=?} 1-(x+y) \, dy \, dx = \int_{x=0}^{x=1} \int_{y=0}^{y=1-x} 1-(x+y) \, dy \, dx.
+\text{If }x=a\text{,then } \underline{\hspace{1.0in}} \leq y \leq \underline{\hspace{1.0in}}
 \end{equation*}
 </div>
-</div></li>
-<li id="PA_11_3-1-3-4"><div class="para logical" id="PA_11_3-1-3-4-1">
-<div class="para">Use the Fundamental Theorem of Calculus to evaluate the iterated integral</div>
+<div class="para">The lower bound will not depend on the value of <span class="process-math">\(a\)</span> used but the upper bound will, so the expression for the upper bound will be written in terms of <span class="process-math">\(a\text{.}\)</span> You should write a couple of sentences to describe how you gave your upper and lower bounds.</div>
+</div></article><article class="task exercise-like" id="PA_11_3-4"><h4 class="heading"><span class="codenumber">(c)</span></h4>
+<div class="para logical" id="PA_11_3-4-1-1">
+<div class="para">Explain which part of the iterated integral</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/PAcross_section.html">
+\begin{equation*}
+\int_{x=0}^{x=1} \int_{y=0}^{y=1-x} 1-(x+y) \, dy \, dx
+\end{equation*}
+</div>
+<div class="para">will correspond to the blue cross section in <a href="S-11-3-Double-Integrals-General.html#PAcross_section" class="xref" data-knowl="./knowl/xref/PAcross_section.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 12.3.3">Figure 12.3.3</a>.</div>
+</div> <figure class="figure figure-like" id="PAcross_section"><iframe id="PAcross_section-2" width="600" height="600" src="PAcross_section-2-if.html"></iframe><figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">12.3.3<span class="period">.</span></span><span class="space"> </span></figcaption></figure></article><article class="task exercise-like" id="PA_11_3-5"><h4 class="heading"><span class="codenumber">(d)</span></h4>
+<div class="para logical" id="PA_11_3-5-1-1">
+<div class="para">Use the Fundamental Theorem of Calculus (twice!) to evaluate the iterated integral</div>
 <div class="displaymath process-math">
 \begin{equation*}
 \int_{x=0}^{x=1} \int_{y=0}^{y=1-x} 1-(x+y) \, dy \, dx
 \end{equation*}
 </div>
 <div class="para">and compare to your result from part (a).  (As with iterated integrals over rectangular regions, start with the inner integral.)</div>
-</div></li>
-</ol></article></section><section class="subsection" id="S-11-3-Double-Integrals-General-4"><h3 class="heading hide-type">
+</div></article></article></section><section class="subsection" id="S-11-3-Double-Integrals-General-4"><h3 class="heading hide-type">
 <span class="type">Subsection</span><span class="space"> </span><span class="codenumber">12.3.1</span><span class="space"> </span><span class="title">Double Integrals over General Regions</span>
 </h3>
 <div class="para logical" id="S-11-3-Double-Integrals-General-4-2">
-<div class="para">So far, we have learned that a double integral over a rectangular region may be interpreted in one of two ways:</div>
+<div class="para">So far, we have learned that a double integral over a rectangular region may be interpreted in one of three ways:</div>
 <ul class="disc" id="S-11-3-Double-Integrals-General-4-2-1">
 <li id="S-11-3-Double-Integrals-General-4-2-1-1"><div class="para" id="S-11-3-Double-Integrals-General-4-2-1-1-1">
-<span class="process-math">\(\iint_R f(x,y) \, dA\)</span> tells us the volume of the solids the graph of <span class="process-math">\(f\)</span> bounds above the <span class="process-math">\(xy\)</span>-plane over the rectangle <span class="process-math">\(R\)</span> minus the volume of the solids the graph of <span class="process-math">\(f\)</span> bounds below the <span class="process-math">\(xy\)</span>-plane under the rectangle <span class="process-math">\(R\text{;}\)</span>
+<span class="process-math">\(\iint_R f(x,y) \, dA\)</span> tells us the volume of the solid bounded by the graph of <span class="process-math">\(f\)</span> above and the <span class="process-math">\(xy\)</span>-plane below and over the rectangle <span class="process-math">\(R\)</span> minus the volume of the solids the graph of <span class="process-math">\(f\)</span> bounds below the <span class="process-math">\(xy\)</span>-plane under the rectangle <span class="process-math">\(R\text{;}\)</span>
 </div></li>
 <li id="S-11-3-Double-Integrals-General-4-2-1-2"><div class="para" id="S-11-3-Double-Integrals-General-4-2-1-2-1">
 <span class="process-math">\(\frac{1}{A(R)} \iint_R f(x,y) \, dA\text{,}\)</span> where <span class="process-math">\(A(R)\)</span> is the area of <span class="process-math">\(R\)</span> tells us the average value of the function <span class="process-math">\(f\)</span> on <span class="process-math">\(R\text{.}\)</span> If <span class="process-math">\(f(x, y) \geq  0\)</span> on <span class="process-math">\(R\text{,}\)</span> we can interpret this average value of <span class="process-math">\(f\)</span> on <span class="process-math">\(R\)</span> as the height of the box with base <span class="process-math">\(R\)</span> that has the same volume as the volume of the surface defined by <span class="process-math">\(f\)</span> over <span class="process-math">\(R\text{.}\)</span>
 </div></li>
+<li id="S-11-3-Double-Integrals-General-4-2-1-3"><div class="para" id="S-11-3-Double-Integrals-General-4-2-1-3-1">If <span class="process-math">\(f(x,y)\)</span> measure the density (in amount per unit area) of a material in the region <span class="process-math">\(R\text{,}\)</span> then <span class="process-math">\(\iint_R f(x,y) \, dA\)</span> will give the total amount of material in <span class="process-math">\(R\text{.}\)</span>
+</div></li>
 </ul>
 </div>
-<div class="para" id="S-11-3-Double-Integrals-General-4-3">As we saw in <a href="S-11-1-Double-Integrals-Rectangles.html#PA_11_1" class="xref" data-knowl="./knowl/xref/PA_11_1.html" data-reveal-label="Reveal" data-close-label="Close" title="Preview Activity 12.1.1">Preview Activity 12.1.1</a>, a function <span class="process-math">\(f = f(x,y)\)</span> may be considered over regions other than rectangular ones, and thus we want to understand how to set up and evaluate double integrals over non-rectangular regions. Note that if we can, then the two interpretations of the double integral noted above will naturally extend to solid regions with non-rectangular bases.</div>
-<div class="para" id="S-11-3-Double-Integrals-General-4-4">So, suppose <span class="process-math">\(f\)</span> is a continuous function on a closed, bounded domain <span class="process-math">\(D\text{.}\)</span> For example, consider <span class="process-math">\(D\)</span> as the circular domain shown at left in <a href="S-11-3-Double-Integrals-General.html#F_11_3_nonrect_domain_1" class="xref" data-knowl="./knowl/xref/F_11_3_nonrect_domain_1.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 12.3.2">Figure 12.3.2</a>.</div>
-<figure class="figure figure-like" id="F_11_3_nonrect_domain_1"><div class="sidebyside"><div class="sbsrow" style="margin-left:0%;margin-right:0%;">
-<div class="sbspanel top" style="width:50%;"><img src="external/images/fig_11_3_circular.svg" role="img" class="contained"></div>
-<div class="sbspanel top" style="width:50%;"><img src="external/images/fig_11_3_circular_rect.svg" role="img" class="contained"></div>
-</div></div>
-<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">12.3.2<span class="period">.</span></span><span class="space"> </span>Left: A non-rectangular domain. Right: Enclosing this domain in a rectangle.</figcaption></figure><div class="para logical" id="S-11-3-Double-Integrals-General-4-6">
-<div class="para">We can enclose <span class="process-math">\(D\)</span> in a rectangular domain <span class="process-math">\(R\)</span> as shown at right in <a href="S-11-3-Double-Integrals-General.html#F_11_3_nonrect_domain_1" class="xref" data-knowl="./knowl/xref/F_11_3_nonrect_domain_1.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 12.3.2">Figure 12.3.2</a> and extend the function <span class="process-math">\(f\)</span> to be defined over <span class="process-math">\(R\)</span> in order to be able to use the definition of the double integral over a rectangle. We extend <span class="process-math">\(f\)</span> in such a way that its values at the points in <span class="process-math">\(R\)</span> that are not in <span class="process-math">\(D\)</span> contribute 0 to the value of the integral. In other words, define a function <span class="process-math">\(F = F(x, y)\)</span> on <span class="process-math">\(R\)</span> as</div>
-<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/F_11_3_nonrect_domain_1.html">
+<div class="para" id="S-11-3-Double-Integrals-General-4-3">As we saw in <a href="S-11-1-Double-Integrals-Rectangles.html#PA_11_1" class="xref" data-knowl="./knowl/xref/PA_11_1.html" data-reveal-label="Reveal" data-close-label="Close" title="Preview Activity 12.1.1">Preview Activity 12.1.1</a>, a function <span class="process-math">\(f = f(x,y)\)</span> may be considered over regions other than rectangular ones, and thus we want to understand how to set up double integrals as iterated integrals over non-rectangular regions. Note that if we can, then the three interpretations of the double integral noted above will naturally extend to solid regions with non-rectangular bases.</div>
+<div class="para" id="S-11-3-Double-Integrals-General-4-4">The key idea to writing double integrals as iterated integrals (as shown in <a href="S-11-2-Iterated-Integrals.html" class="internal" title="Section 12.2: Iterated Integrals">Section 12.2</a> and <a href="S-11-3-Double-Integrals-General.html#PA_11_3" class="xref" data-knowl="./knowl/xref/PA_11_3.html" data-reveal-label="Reveal" data-close-label="Close" title="Preview Activity 12.3.1">Preview Activity 12.3.1</a>) is to slice the region of integration along a trace (with one of the coordinates held constant) and express the range of the other coordinate in terms of an inequality. In <a href="S-11-3-Double-Integrals-General.html#PA_11_3" class="xref" data-knowl="./knowl/xref/PA_11_3.html" data-reveal-label="Reveal" data-close-label="Close" title="Preview Activity 12.3.1">Preview Activity 12.3.1</a>, we saw how the region given in <a href="S-11-3-Double-Integrals-General.html#tetrahedron_base" class="xref" data-knowl="./knowl/xref/tetrahedron_base.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 12.3.2">Figure 12.3.2</a> can be described by the inequalities <span class="process-math">\(0 \leq x \leq 1\)</span> and <span class="process-math">\(0 \leq y \leq 1-x\text{.}\)</span> Notice how for different values of <span class="process-math">\(x\)</span> there is a different range of values for <span class="process-math">\(y\text{,}\)</span> which means our region is NOT rectangular. Compare this to the rectangular regions of integration from <a href="S-11-2-Iterated-Integrals.html" class="internal" title="Section 12.2: Iterated Integrals">Section 12.2</a> which were all of the form <span class="process-math">\(a \leq x \leq b\)</span> and <span class="process-math">\(c \leq y \leq d\)</span> (with <span class="process-math">\(a,b,c,d\)</span> constants).</div>
+<div class="para" id="S-11-3-Double-Integrals-General-4-5">Both of these forms for the inequalities leads to a nice way to write the corresponding double integral as an iterated integral by considering the inner integral to evaluate the cross section area while the outer integral sums up the corresponding cross section volumes as the width of the slices goes to zero (demonstrated in  <a href="S-11-2-Iterated-Integrals.html#F_11_2_Cross_section_y_slab_sum" class="xref" data-knowl="./knowl/xref/F_11_2_Cross_section_y_slab_sum.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 12.2.4">Figure 12.2.4</a>).</div>
+<div class="para" id="S-11-3-Double-Integrals-General-4-6">What kind of 2D regions can we express using this slicing/inequality idea? The key here is that we need the same upper and lower bound expressions for each slice.</div>
+<article class="proposition theorem-like" id="prop-verticallysimple"><h4 class="heading">
+<span class="type">Key Idea</span><span class="space"> </span><span class="codenumber">12.3.4</span><span class="period">.</span>
+</h4>
+<div class="para logical" id="prop-verticallysimple-1-1">
+<div class="para">A region is called vertically simple if it can be described by a set of inequalities of the form</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/vertsimple.html" id="prop-verticallysimple-1-1-1">
+\begin{gather*}
+a \leq x \leq b\\
+g_1(x) \leq  y \leq g_2(x)
+\end{gather*}
+</div>
+<div class="para">which corresponds geometrically to the region in <a href="S-11-3-Double-Integrals-General.html#vertsimple" class="xref" data-knowl="./knowl/xref/vertsimple.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 12.3.5">Figure 12.3.5</a>
+</div>
+</div> <figure class="figure figure-like" id="vertsimple"><div class="image-box" style="width: 60%; margin-left: 20%; margin-right: 20%;"><img src="generated/sageplot/img-vertsimple.svg" role="img" class="contained"></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">12.3.5<span class="period">.</span></span><span class="space"> </span></figcaption></figure> <div class="para logical" id="prop-verticallysimple-1-3">
+<div class="para">A region is called vertically simple if it can be described by a set of inequalities of the form</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/horzsimple.html" id="prop-verticallysimple-1-3-1">
+\begin{gather*}
+c \leq y \leq d\\
+h_1(y) \leq  x \leq h_2(y)
+\end{gather*}
+</div>
+<div class="para">which corresponds geometrically to the region in <a href="S-11-3-Double-Integrals-General.html#horzsimple" class="xref" data-knowl="./knowl/xref/horzsimple.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 12.3.6">Figure 12.3.6</a>
+</div>
+</div> <figure class="figure figure-like" id="horzsimple"><div class="image-box" style="width: 60%; margin-left: 20%; margin-right: 20%;"><img src="generated/sageplot/img-horzsimple.svg" role="img" class="contained"></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">12.3.6<span class="period">.</span></span><span class="space"> </span></figcaption></figure></article><div class="para" id="S-11-3-Double-Integrals-General-4-8">A vertically simple region is one that can be split into vertical slices (of the form <span class="process-math">\(x=constant\)</span> for <span class="process-math">\(x\)</span> in the range <span class="process-math">\([a,b]\)</span>) where every vertical slice has the same upper and lower bound( <span class="process-math">\(g_1(x) \leq y \leq g_2(x)\)</span>). A horizontally simple region is one that can be split into horizontal slices (of the form <span class="process-math">\(y=constant\)</span> for <span class="process-math">\(x\)</span> in the range <span class="process-math">\([c,d]\)</span>) where every horizontal slice has the same upper and lower bound (<span class="process-math">\(h_1(x) \leq y \leq h_2(x)\)</span>).</div>
+<article class="example example-like" id="S-11-3-Double-Integrals-General-4-9"><h4 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">12.3.7</span><span class="period">.</span>
+</h4>
+<div class="introduction" id="S-11-3-Double-Integrals-General-4-9-1">
+<div class="para" id="S-11-3-Double-Integrals-General-4-9-1-1">Let <span class="process-math">\(D\)</span> be the triangular region in the <span class="process-math">\(xy\)</span>-plane with vertices <span class="process-math">\((0,0)\text{,}\)</span> <span class="process-math">\((2,0)\text{,}\)</span> and <span class="process-math">\((2,3)\text{,}\)</span> shown in <a href="S-11-3-Double-Integrals-General.html#triang-region" class="xref" data-knowl="./knowl/xref/triang-region.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 12.3.8">Figure 12.3.8</a>. We want to decide if <span class="process-math">\(D\)</span> is horizontally simple, then we will consider if <span class="process-math">\(D\)</span> is vertically simple. For simplicity, we will refer to the three sides as the horizontal side (from <span class="process-math">\((0,0)\)</span> to <span class="process-math">\((2,0)\)</span>), the vertical side (from <span class="process-math">\((2,0)\)</span> to <span class="process-math">\((2,3)\)</span>), and the diagonal side (from <span class="process-math">\((0,0)\)</span> to <span class="process-math">\((2,3)\)</span>).</div>
+<figure class="figure figure-like" id="triang-region"><div class="image-box" style="width: 80%; margin-left: 10%; margin-right: 10%;"><img src="generated/sageplot/img-triang-region.svg" role="img" class="contained"></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">12.3.8<span class="period">.</span></span><span class="space"> </span></figcaption></figure>
+</div>
+<article class="task exercise-like" id="S-11-3-Double-Integrals-General-4-9-2"><h5 class="heading"><span class="codenumber">(a)</span></h5>
+<div class="para logical" id="S-11-3-Double-Integrals-General-4-9-2-1">
+<div class="para">Remember that a vertical line will correspond algebraically to <span class="process-math">\(x=constant\text{.}\)</span> We want to know if every vertical slice in the region <span class="process-math">\(D\)</span> will have the same upper and lower bounds (which may depend on the value of <span class="process-math">\(x\)</span>). Several vertical slices in the region <span class="process-math">\(D\)</span> are shown in <a href="S-11-3-Double-Integrals-General.html#vertsimple-tri" class="xref" data-knowl="./knowl/xref/vertsimple-tri.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 12.3.9">Figure 12.3.9</a> where you can see that the lower bound (of the <span class="process-math">\(y\)</span>-variable) for every vertical slice is given by <span class="process-math">\(y=0\text{.}\)</span> The upper bound (of the <span class="process-math">\(y\)</span>-variable) for every vertical slice is given by <span class="process-math">\(y=\frac{3}{2} x\text{.}\)</span> Algebraically, if you take any constant value, <span class="process-math">\(k\text{,}\)</span> in the interval <span class="process-math">\([0,2]\text{,}\)</span> then the following statement describes the vertical strips of the region <span class="process-math">\(D\text{:}\)</span>
+</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/vertsimple-tri.html">
 \begin{equation*}
-F(x,y) = \begin{cases}f(x,y), \amp \text{ if }  (x,y) \in D, \\ 0, \amp \text{ if }  (x,y) \not\in D
-\end{cases} .
+\text{Along }x=k\text{ the }y\text{-coordinates go from }0\text{ to }\frac{3}{2}k
 \end{equation*}
 </div>
-</div>
-<div class="para logical" id="S-11-3-Double-Integrals-General-4-7">
-<div class="para">We then say that the double integral of <span class="process-math">\(f\)</span> over <span class="process-math">\(D\)</span> is the same as the double integral of <span class="process-math">\(F\)</span> over <span class="process-math">\(R\text{,}\)</span> and thus</div>
-<div class="displaymath process-math">
+<div class="para">which corresponds to the inequalities</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/vertsimple-tri.html">
 \begin{equation*}
-\iint_D f(x,y) \, dA = \iint_R F(x,y) \, dA.
+0\leq x \leq 2 \quad \quad 0 \leq y \leq \frac{3}{2} x
 \end{equation*}
 </div>
+<div class="para">as a descriptions for <span class="process-math">\(D\text{.}\)</span> Thus, the region <span class="process-math">\(D\)</span> is vertically simple.</div>
 </div>
-<div class="para" id="S-11-3-Double-Integrals-General-4-8">In practice, we just ignore everything that is in <span class="process-math">\(R\)</span> but not in <span class="process-math">\(D\text{,}\)</span> since these regions contribute 0 to the value of the integral.</div>
-<div class="para logical" id="S-11-3-Double-Integrals-General-4-9">
-<div class="para">Just as with double integrals over rectangles, a double integral over a domain <span class="process-math">\(D\)</span> can be evaluated as an iterated integral. If the region <span class="process-math">\(D\)</span> can be described by the inequalities <span class="process-math">\(g_1(x) \leq y \leq g_2(x)\)</span> and <span class="process-math">\(a \leq x \leq b\text{,}\)</span> where <span class="process-math">\(g_1=g_1(x)\)</span> and <span class="process-math">\(g_2=g_2(x)\)</span> are functions of only <span class="process-math">\(x\text{,}\)</span> then</div>
+<figure class="figure figure-like" id="vertsimple-tri"><div class="image-box" style="width: 60%; margin-left: 20%; margin-right: 20%;"><img src="generated/sageplot/img-vertsimple-tri.svg" role="img" class="contained"></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">12.3.9<span class="period">.</span></span><span class="space"> </span></figcaption></figure></article><article class="task exercise-like" id="S-11-3-Double-Integrals-General-4-9-3"><h5 class="heading"><span class="codenumber">(b)</span></h5>
+<div class="para logical" id="S-11-3-Double-Integrals-General-4-9-3-1-1">
+<div class="para">Remember that a horizontal line will correspond algebraically to <span class="process-math">\(y=constant\text{.}\)</span> We want to know if every horizontal slice in the region <span class="process-math">\(D\)</span> will have the same upper and lower bounds (which may depend on the value of <span class="process-math">\(y\)</span>). Several horizontal slices in the region <span class="process-math">\(D\)</span> are shown in <a href="S-11-3-Double-Integrals-General.html#horzsimple-tri" class="xref" data-knowl="./knowl/xref/horzsimple-tri.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 12.3.10">Figure 12.3.10</a> where you can see that the lower bound (of the <span class="process-math">\(x\)</span>-variable) for every horizontal slice is given by <span class="process-math">\(x=\frac{2}{3} y\text{.}\)</span> The upper bound (of the <span class="process-math">\(x\)</span>-variable) for every horizontal slice is given by <span class="process-math">\(x=2\text{.}\)</span> Algebraically, if you take any constant value, <span class="process-math">\(k\text{,}\)</span> in the interval <span class="process-math">\([0,3]\text{,}\)</span> then the following statement describes the horizontal strips of the region <span class="process-math">\(D\text{:}\)</span>
+</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/horzsimple-tri.html">
+\begin{equation*}
+\text{Along }y=k\text{ the }x\text{-coordinates go from }\frac{2}{3} k\text{ to }2
+\end{equation*}
+</div>
+<div class="para">which corresponds to the inequalities</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/horzsimple-tri.html">
+\begin{equation*}
+0\leq y \leq 3 \quad \quad \frac{2}{3} \leq y \leq 2 x
+\end{equation*}
+</div>
+<div class="para">as a descriptions for <span class="process-math">\(D\text{.}\)</span> Thus, the region <span class="process-math">\(D\)</span> is horizontally simple.</div>
+</div> <figure class="figure figure-like" id="horzsimple-tri"><div class="image-box" style="width: 60%; margin-left: 20%; margin-right: 20%;"><img src="generated/sageplot/img-horzsimple-tri.svg" role="img" class="contained"></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">12.3.10<span class="period">.</span></span><span class="space"> </span></figcaption></figure> <div class="para logical" id="S-11-3-Double-Integrals-General-4-9-3-1-3">
+<div class="para">This example shows that just because a region is vertically simple does not mean that it is <em class="emphasis">not</em> horizontally simple as well. In general, a 2D region is</div>
+<ul class="disc" id="S-11-3-Double-Integrals-General-4-9-3-1-3-2">
+<li id="S-11-3-Double-Integrals-General-4-9-3-1-3-2-1"><div class="para" id="p-derived-S-11-3-Double-Integrals-General-4-9-3-1-3-2-1">horizontally simple (but not vertically simple)</div></li>
+<li id="S-11-3-Double-Integrals-General-4-9-3-1-3-2-2"><div class="para" id="p-derived-S-11-3-Double-Integrals-General-4-9-3-1-3-2-2">vertically simple (but not horizontally simple)</div></li>
+<li id="S-11-3-Double-Integrals-General-4-9-3-1-3-2-3"><div class="para" id="p-derived-S-11-3-Double-Integrals-General-4-9-3-1-3-2-3">both horizontally simple and vertically simple</div></li>
+<li id="S-11-3-Double-Integrals-General-4-9-3-1-3-2-4"><div class="para" id="p-derived-S-11-3-Double-Integrals-General-4-9-3-1-3-2-4">neither horizontally simple or vertically simple</div></li>
+</ul>
+<div class="para">and as you will see later, you may want to switch the description of your region to make the algebra of evaluating an integral easier.</div>
+</div></article></article><article class="example example-like" id="S-11-3-Double-Integrals-General-4-10"><h4 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">12.3.11</span><span class="period">.</span>
+</h4>
+<div class="introduction" id="S-11-3-Double-Integrals-General-4-10-1">
+<div class="para" id="S-11-3-Double-Integrals-General-4-10-1-1">In this example, we will look at region that is neither horizontally or vertically simple. Let <span class="process-math">\(D\)</span> be the parallelogram with vertices <span class="process-math">\((0,0)\text{,}\)</span> <span class="process-math">\((2,1)\text{,}\)</span> <span class="process-math">\((4,3)\text{,}\)</span> and <span class="process-math">\((2,2)\)</span> as shown in <a href="S-11-3-Double-Integrals-General.html#notsimple" class="xref" data-knowl="./knowl/xref/notsimple.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 12.3.12">Figure 12.3.12</a>. You should take a moment to verify each of the equations for the lines that bound <span class="process-math">\(D\text{.}\)</span>
+</div>
+<figure class="figure figure-like" id="notsimple"><div class="image-box" style="width: 60%; margin-left: 20%; margin-right: 20%;"><img src="generated/sageplot/img-notsimple.svg" role="img" class="contained"></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">12.3.12<span class="period">.</span></span><span class="space"> </span></figcaption></figure>
+</div>
+<article class="task exercise-like" id="S-11-3-Double-Integrals-General-4-10-2"><h5 class="heading"><span class="codenumber">(a)</span></h5>
+<div class="para" id="S-11-3-Double-Integrals-General-4-10-2-1">If we try to look at <span class="process-math">\(D\)</span> along vertical slices (of the form <span class="process-math">\(x=k\)</span>), different values of <span class="process-math">\(k\)</span> will have different upper and lower bounds. For instance, the default <span class="process-math">\(k\)</span> value of 0.5 shown in <a href="S-11-3-Double-Integrals-General.html#notvsimple" class="xref" data-knowl="./knowl/xref/notvsimple.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 12.3.13">Figure 12.3.13</a> is a vertical segment with lower bound of <span class="process-math">\(\left(k,\frac{k}{2}\right)\)</span> and upper bound of <span class="process-math">\(\left(k,k\right)\text{.}\)</span> You can use the slider at the top of <a href="S-11-3-Double-Integrals-General.html#notvsimple" class="xref" data-knowl="./knowl/xref/notvsimple.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 12.3.13">Figure 12.3.13</a> to change the value of <span class="process-math">\(k\)</span> to something greater than 2. For values of <span class="process-math">\(k\)</span> greater than 2, the vertical slice of <span class="process-math">\(D\)</span> along <span class="process-math">\(x=k\)</span> will have lower bound of <span class="process-math">\(\left(k,k-1\right)\)</span> and upper bound of <span class="process-math">\(\left(k,\frac{k}{2}+1\right)\text{.}\)</span> Because there is not the same upper or lower bounds functions for <em class="emphasis">all</em> vertical slices of <span class="process-math">\(D\text{,}\)</span> <span class="process-math">\(D\)</span> is not vertically simple.</div>
+<figure class="figure figure-like" id="notvsimple"><iframe id="notvsimple-2" width="600" height="480" src="notvsimple-2-if.html"></iframe><figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">12.3.13<span class="period">.</span></span><span class="space"> </span></figcaption></figure></article><article class="task exercise-like" id="S-11-3-Double-Integrals-General-4-10-3"><h5 class="heading"><span class="codenumber">(b)</span></h5>
+<div class="para" id="S-11-3-Double-Integrals-General-4-10-3-1-1">If we try to look at <span class="process-math">\(D\)</span> along horizontal slices (of the form <span class="process-math">\(y=k\)</span>), different values of <span class="process-math">\(k\)</span> will have different upper and lower bounds. For instance, the default <span class="process-math">\(k\)</span> value of 0.5 shown in <a href="S-11-3-Double-Integrals-General.html#nothsimple" class="xref" data-knowl="./knowl/xref/nothsimple.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 12.3.14">Figure 12.3.14</a> is a vertical segment with lower bound of <span class="process-math">\(\left(k,k\right)\)</span> and upper bound of <span class="process-math">\(\left(2k,k\right)\text{.}\)</span> You can use the slider at the top of <a href="S-11-3-Double-Integrals-General.html#nothsimple" class="xref" data-knowl="./knowl/xref/nothsimple.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 12.3.14">Figure 12.3.14</a> to change the value of <span class="process-math">\(k\)</span> to something greater than 1. You can see that for <span class="process-math">\(k\)</span> values between 1 and 2, the upper bound on the horizontal segment becomes <span class="process-math">\(\left(k-1,k\right)\)</span> and for <span class="process-math">\(k\)</span> values above 2, the lower bound will also change to <span class="process-math">\(\left(\frac{k}{2}+1,k\right)\text{.}\)</span> Because there is not the same upper or lower bounds functions for <em class="emphasis">all</em> vertical slices of <span class="process-math">\(D\text{,}\)</span> <span class="process-math">\(D\)</span> is not vertically simple.</div> <figure class="figure figure-like" id="nothsimple"><iframe id="nothsimple-2" width="600" height="480" src="nothsimple-2-if.html"></iframe><figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">12.3.14<span class="period">.</span></span><span class="space"> </span></figcaption></figure></article></article><article class="activity project-like" id="trianglesimple"><h4 class="heading">
+<span class="type">Activity</span><span class="space"> </span><span class="codenumber">12.3.2</span><span class="period">.</span>
+</h4>
+<div class="introduction" id="trianglesimple-1"><div class="para" id="trianglesimple-1-1">In this activity, we will be breaking the region <span class="process-math">\(D\)</span> from the previous example into parts which are horizontally or vertically simple.</div></div>
+<article class="task exercise-like" id="trianglesimple-2"><h5 class="heading"><span class="codenumber">(a)</span></h5>
+<div class="para" id="trianglesimple-2-1-1">In <a href="S-11-3-Double-Integrals-General.html#vsimple2" class="xref" data-knowl="./knowl/xref/vsimple2.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 12.3.15">Figure 12.3.15</a>, we have broken our region <span class="process-math">\(D\)</span> into two regions <span class="process-math">\(V_1\)</span> and <span class="process-math">\(V_2\text{.}\)</span> Give inequalities for each of <span class="process-math">\(V_1\)</span> and <span class="process-math">\(V_2\)</span> that shows that they are individually vertically simple.</div> <figure class="figure figure-like" id="vsimple2"><div class="image-box" style="width: 60%; margin-left: 20%; margin-right: 20%;"><img src="generated/sageplot/img-vsimple2.svg" role="img" class="contained"></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">12.3.15<span class="period">.</span></span><span class="space"> </span></figcaption></figure></article><article class="task exercise-like" id="trianglesimple-3"><h5 class="heading"><span class="codenumber">(b)</span></h5>
+<div class="para" id="trianglesimple-3-1-1">In <a href="S-11-3-Double-Integrals-General.html#hsimple3" class="xref" data-knowl="./knowl/xref/hsimple3.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 12.3.16">Figure 12.3.16</a>, we have broken our region <span class="process-math">\(D\)</span> into three regions <span class="process-math">\(H_1\text{,}\)</span> <span class="process-math">\(H_2\text{,}\)</span> and <span class="process-math">\(H_3\text{.}\)</span> Give inequalities for each of <span class="process-math">\(H_1\text{,}\)</span> <span class="process-math">\(H_2\text{,}\)</span> and <span class="process-math">\(H_3\)</span> that shows that they are individually horizontally simple.</div> <figure class="figure figure-like" id="hsimple3"><div class="image-box" style="width: 60%; margin-left: 20%; margin-right: 20%;"><img src="generated/sageplot/img-hsimple3.svg" role="img" class="contained"></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">12.3.16<span class="period">.</span></span><span class="space"> </span></figcaption></figure></article></article><div class="para logical" id="S-11-3-Double-Integrals-General-4-12">
+<div class="para">In single variable calculus, we were able to split integrals into multiple parts. The integral of <span class="process-math">\(f(x)\)</span> over <span class="process-math">\([a,b]\)</span> could be split to subintervals separately:</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/hsimple3.html">
+\begin{equation*}
+\int^b_a f(x) \, dx = \int_a^c f(x) \, dx + \int_c^b f(x) \, dx
+\end{equation*}
+</div>
+<div class="para">Similarly, we can split a region of integration for a double integral into subregions. If a region <span class="process-math">\(R\)</span> can be split into two sets <span class="process-math">\(R_1\)</span> and <span class="process-math">\(R_2\)</span> (where <span class="process-math">\(R_1\)</span> and <span class="process-math">\(R_2\)</span> do not overlap), then</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/hsimple3.html">
+\begin{equation*}
+\iint_R f(x,y) \, dA = \iint_{R_1} f(x,y) \, dA+\iint_{R_2} f(x,y) \, dA
+\end{equation*}
+</div>
+<div class="para">This property is especially useful for a region like <a href="S-11-3-Double-Integrals-General.html#hsimple3" class="xref" data-knowl="./knowl/xref/hsimple3.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 12.3.16">Figure 12.3.16</a> where <span class="process-math">\(D\)</span> is split into parts <span class="process-math">\(H_1\text{,}\)</span> <span class="process-math">\(H_2\text{,}\)</span> and <span class="process-math">\(H_3\)</span> because</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/hsimple3.html">
+\begin{equation*}
+\iint_D f(x,y) \, dA = \iint_{H_1} f(x,y) \, dA+\iint_{H_2} f(x,y) \, dA+\iint_{H_3} f(x,y) \, dA
+\end{equation*}
+</div>
+<div class="para">where each of the double integrals on the right can be written as an iterated integral using a horizontally simple description.</div>
+</div>
+<article class="activity project-like" id="S-11-3-Double-Integrals-General-4-13"><h4 class="heading">
+<span class="type">Activity</span><span class="space"> </span><span class="codenumber">12.3.3</span><span class="period">.</span>
+</h4>
+<article class="task exercise-like" id="S-11-3-Double-Integrals-General-4-13-1"><h5 class="heading"><span class="codenumber">(a)</span></h5>
+<div class="para" id="S-11-3-Double-Integrals-General-4-13-1-1-1">For each region, state whether the region is vertically simple, horizontally simple, both, or neither. State the appropriate inequalities to justify when each region is vertically simple or horizontally simple.</div> <figure class="figure figure-like" id="S-11-3-Double-Integrals-General-4-13-1-1-2"><div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="external/./images/regions.png" class="contained"></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">12.3.17<span class="period">.</span></span><span class="space"> </span>Four Regions of the <span class="process-math">\(xy\)</span>-plane</figcaption></figure></article><article class="task exercise-like" id="S-11-3-Double-Integrals-General-4-13-2"><h5 class="heading"><span class="codenumber">(b)</span></h5>
+<div class="para logical" id="S-11-3-Double-Integrals-General-4-13-2-1-1">
+<div class="para">Which of the following expressions do not make sense as an iterated integral used to compute a double integral? If the iterated integral does not make sense, explain your reasoning in a couple of sentences. If the iterated integral does make sense, draw a plot of the region of integration.</div>
+<ol class="decimal" id="S-11-3-Double-Integrals-General-4-13-2-1-1-1">
+<li id="S-11-3-Double-Integrals-General-4-13-2-1-1-1-1"><div class="para" id="p-derived-S-11-3-Double-Integrals-General-4-13-2-1-1-1-1"><div class="displaymath process-math">
+\begin{equation*}
+\int_0^1 \int_1^x f(x,y) \; dy \; dx 
+\end{equation*}
+</div></div></li>
+<li id="S-11-3-Double-Integrals-General-4-13-2-1-1-1-2"><div class="para" id="p-derived-S-11-3-Double-Integrals-General-4-13-2-1-1-1-2"><div class="displaymath process-math">
+\begin{equation*}
+\int_0^1 \int_1^y f(x,y) \; dy \; dx 
+\end{equation*}
+</div></div></li>
+<li id="S-11-3-Double-Integrals-General-4-13-2-1-1-1-3"><div class="para" id="p-derived-S-11-3-Double-Integrals-General-4-13-2-1-1-1-3"><div class="displaymath process-math">
+\begin{equation*}
+\int_0^1 \int_x^y f(x,y) \; dy \; dx 
+\end{equation*}
+</div></div></li>
+<li id="S-11-3-Double-Integrals-General-4-13-2-1-1-1-4"><div class="para" id="p-derived-S-11-3-Double-Integrals-General-4-13-2-1-1-1-4"><div class="displaymath process-math">
+\begin{equation*}
+\int_0^1 \int_x^1 f(x,y) \; dy \; dx 
+\end{equation*}
+</div></div></li>
+</ol>
+</div></article></article><div class="para logical" id="S-11-3-Double-Integrals-General-4-14">
+<div class="para">The process for describing a 2D region as either horizontally or vertically simple is exactly the procedure needed to set up iterated integral that will allow us to evaluate a double integral. If the region <span class="process-math">\(D\)</span> can be described by the inequalities <span class="process-math">\(a \leq x \leq b\)</span> and <span class="process-math">\(g_1(x) \leq y \leq g_2(x)\)</span> (vertically simple), where <span class="process-math">\(g_1=g_1(x)\)</span> and <span class="process-math">\(g_2=g_2(x)\)</span> are functions of only <span class="process-math">\(x\text{,}\)</span> then</div>
 <div class="displaymath process-math">
 \begin{equation*}
 \iint_D f(x,y) \, dA = \int_{x=a}^{x=b} \int_{y=g_1(x)}^{y=g_2(x)} f(x,y) \, dy \, dx.
 \end{equation*}
 </div>
 </div>
-<div class="para logical" id="S-11-3-Double-Integrals-General-4-10">
-<div class="para">Alternatively, if the region <span class="process-math">\(D\)</span> is described by the inequalities <span class="process-math">\(h_1(y) \leq x \leq h_2(y)\)</span> and <span class="process-math">\(c \leq y \leq d\text{,}\)</span> where <span class="process-math">\(h_1=h_1(y)\)</span> and <span class="process-math">\(h_2=h_2(y)\)</span> are functions of only <span class="process-math">\(y\text{,}\)</span> we have</div>
+<div class="para logical" id="S-11-3-Double-Integrals-General-4-15">
+<div class="para">Alternatively, if the region <span class="process-math">\(D\)</span> is described by the inequalities <span class="process-math">\(c \leq y \leq d\)</span> and <span class="process-math">\(h_1(y) \leq x \leq h_2(y)\)</span> (horizontally simple), where <span class="process-math">\(h_1=h_1(y)\)</span> and <span class="process-math">\(h_2=h_2(y)\)</span> are functions of only <span class="process-math">\(y\text{,}\)</span> we have</div>
 <div class="displaymath process-math">
 \begin{equation*}
 \iint_D f(x,y) \, dA = \int_{y=c}^{y=d} \int_{x=h_1(y)}^{x=h_2(y)} f(x,y) \, dx \, dy.
 \end{equation*}
 </div>
 </div>
-<div class="para" id="S-11-3-Double-Integrals-General-4-11">The structure of an iterated integral is of particular note:</div>
-<div class="para logical" id="S-11-3-Double-Integrals-General-4-12">
-<div class="para">In an iterated double integral:</div>
-<ul class="disc" id="S-11-3-Double-Integrals-General-4-12-1">
-<li id="S-11-3-Double-Integrals-General-4-12-1-1"><div class="para" id="S-11-3-Double-Integrals-General-4-12-1-1-1">the limits on the outer integral must be constants;</div></li>
-<li id="S-11-3-Double-Integrals-General-4-12-1-2"><div class="para" id="S-11-3-Double-Integrals-General-4-12-1-2-1">the limits on the inner integral must be constants or in terms of only the remaining variable — that is, if the inner integral is with respect to <span class="process-math">\(y\text{,}\)</span> then its limits may only involve <span class="process-math">\(x\)</span> and constants, and vice versa.</div></li>
+<div class="para logical" id="S-11-3-Double-Integrals-General-4-16">
+<div class="para">The structure of an iterated integral that will be used to evaluate a double integral should satisfy the following:</div>
+<ul class="disc" id="S-11-3-Double-Integrals-General-4-16-1">
+<li id="S-11-3-Double-Integrals-General-4-16-1-1"><div class="para" id="S-11-3-Double-Integrals-General-4-16-1-1-1">the limits on the inner integral must be constants or in terms of outer variable — that is, if the inner integral is with respect to <span class="process-math">\(y\text{,}\)</span> then its limits may only involve <span class="process-math">\(x\)</span> and constants, and vice versa.</div></li>
+<li id="S-11-3-Double-Integrals-General-4-16-1-2"><div class="para" id="S-11-3-Double-Integrals-General-4-16-1-2-1">the limits on the outer integral must be constants</div></li>
 </ul>
 </div>
-<div class="para" id="S-11-3-Double-Integrals-General-4-13">We next consider a detailed example.</div>
-<article class="example example-like" id="S-11-3-Double-Integrals-General-4-14"><h4 class="heading">
-<span class="type">Example</span><span class="space"> </span><span class="codenumber">12.3.3</span><span class="period">.</span>
+<article class="example example-like" id="S-11-3-Double-Integrals-General-4-17"><h4 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">12.3.18</span><span class="period">.</span>
 </h4>
-<div class="para" id="S-11-3-Double-Integrals-General-4-14-1-1">Let <span class="process-math">\(f(x,y) = x^2y\)</span> be defined on the triangle <span class="process-math">\(D\)</span> with vertices <span class="process-math">\((0,0)\text{,}\)</span> <span class="process-math">\((2,0)\text{,}\)</span> and <span class="process-math">\((2,3)\)</span> as shown at left in <a href="S-11-3-Double-Integrals-General.html#F_11_3_DI_1" class="xref" data-knowl="./knowl/xref/F_11_3_DI_1.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 12.3.4">Figure 12.3.4</a>.</div> <figure class="figure figure-like" id="F_11_3_DI_1"><div class="sidebyside"><div class="sbsrow" style="margin-left:0.166666666666667%;margin-right:0.166666666666667%;">
-<div class="sbspanel top" style="width:33.1103678929766%;"><img src="external/images/fig_11_3_triangular.svg" role="img" class="contained"></div>
-<div class="sbspanel top" style="width:33.1103678929766%;"><img src="external/images/fig_11_3_triangular_v.svg" role="img" class="contained"></div>
-<div class="sbspanel top" style="width:33.1103678929766%;"><img src="external/images/fig_11_3_triangular_h.svg" role="img" class="contained"></div>
-</div></div>
-<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">12.3.4<span class="period">.</span></span><span class="space"> </span>A triangular domain and slices in the <span class="process-math">\(y\)</span> and <span class="process-math">\(x\)</span> directions.</figcaption></figure> <div class="para logical" id="S-11-3-Double-Integrals-General-4-14-1-3">
-<div class="para">To evaluate <span class="process-math">\(\iint_D f(x,y) \, dA\text{,}\)</span> we must first describe the region <span class="process-math">\(D\)</span> in terms of the variables <span class="process-math">\(x\)</span> and <span class="process-math">\(y\text{.}\)</span> We take two approaches.</div>
-<dl class="description-list">
-<dt id="S-11-3-Double-Integrals-General-4-14-1-3-5-1">Approach 1: Integrate first with respect to <span class="process-math">\(y\text{.}\)</span>
-</dt>
-<dd><div class="para logical" id="S-11-3-Double-Integrals-General-4-14-1-3-5-1-2">
-<div class="para">In this case we choose to evaluate the double integral as an iterated integral in the form</div>
-<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/F_11_3_DI_1.html">
+<div class="introduction" id="S-11-3-Double-Integrals-General-4-17-1">
+<div class="para" id="S-11-3-Double-Integrals-General-4-17-1-1">Let <span class="process-math">\(f(x,y) = x^2y\)</span> be defined on the triangle <span class="process-math">\(D\)</span> with vertices <span class="process-math">\((0,0)\text{,}\)</span> <span class="process-math">\((2,0)\text{,}\)</span> and <span class="process-math">\((2,3)\)</span> as shown at left in <a href="S-11-3-Double-Integrals-General.html#F_11_3_DI_1" class="xref" data-knowl="./knowl/xref/F_11_3_DI_1.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 12.3.19">Figure 12.3.19</a>. This is the same region we described in <a href="S-11-3-Double-Integrals-General.html#trianglesimple" class="xref" data-knowl="./knowl/xref/trianglesimple.html" data-reveal-label="Reveal" data-close-label="Close" title="Activity 12.3.2">Activity 12.3.2</a> and we will use the inequalities from that example to set up our iterated integrals.</div>
+<figure class="figure figure-like" id="F_11_3_DI_1"><div class="image-box" style="width: 80%; margin-left: 10%; margin-right: 10%;"><img src="generated/sageplot/img-F_11_3_DI_1.svg" role="img" class="contained"></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">12.3.19<span class="period">.</span></span><span class="space"> </span></figcaption></figure>
+</div>
+<article class="task exercise-like" id="S-11-3-Double-Integrals-General-4-17-2"><h5 class="heading"><span class="codenumber">(a)</span></h5>
+<div class="para logical" id="S-11-3-Double-Integrals-General-4-17-2-1">
+<div class="para">To evaluate <span class="process-math">\(\iint_D f(x,y) \, dA\text{,}\)</span> we must first describe the region <span class="process-math">\(D\)</span> in terms of the variables <span class="process-math">\(x\)</span> and <span class="process-math">\(y\text{.}\)</span> We take two approaches corresponding to a vertically simple description, then a horizontally simple description. We will use the inequalities from <a href="S-11-3-Double-Integrals-General.html#trianglesimple" class="xref" data-knowl="./knowl/xref/trianglesimple.html" data-reveal-label="Reveal" data-close-label="Close" title="Activity 12.3.2">Activity 12.3.2</a> that correspond to our vertically simple description:</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/trianglesimple.html">
 \begin{equation*}
-\iint_D x^2y \, dA = \int_{x=a}^{x=b} \int_{y=g_1(x)}^{y=g_2(x)} x^2y \, dy \, dx,
+\text{Along }x=k\text{, the }y\text{-coordinates go from }0\text{ to }\frac{3}{2}k
 \end{equation*}
 </div>
-<div class="para">and therefore we need to describe <span class="process-math">\(D\)</span> in terms of inequalities</div>
-<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/F_11_3_DI_1.html">
+<div class="para">which corresponds to the inequalities</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/trianglesimple.html">
 \begin{equation*}
-g_1(x) \leq y \leq g_2(x) \ \ \ \ \ \text{ and }  \ \ \ \ \ a \leq x \leq b.
+0\leq x \leq 2 \quad \quad 0 \leq y \leq \frac{3}{2} x
 \end{equation*}
 </div>
-<div class="para">Since we are integrating with respect to <span class="process-math">\(y\)</span> first, the iterated integral has the form</div>
-<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/F_11_3_DI_1.html">
-\begin{equation*}
-\iint_D x^2y \, dA =\int_{x=a}^{x=b} A(x) \, dx,
-\end{equation*}
+<div class="para">Using these inequalities corresponds to integrating with respect to <span class="process-math">\(y\)</span> first (the inner integral).</div>
 </div>
-<div class="para">where <span class="process-math">\(A(x)\)</span> is a cross sectional area in the <span class="process-math">\(y\)</span> direction. So we are slicing the domain perpendicular to the <span class="process-math">\(x\)</span>-axis and want to understand what a cross sectional area of the overall solid will look like. Several slices of the domain are shown in the middle image in <a href="S-11-3-Double-Integrals-General.html#F_11_3_DI_1" class="xref" data-knowl="./knowl/xref/F_11_3_DI_1.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 12.3.4">Figure 12.3.4</a>. On a slice with fixed <span class="process-math">\(x\)</span> value, the <span class="process-math">\(y\)</span> values are bounded below by 0 and above by the <span class="process-math">\(y\)</span> coordinate on the hypotenuse of the right triangle. Thus, <span class="process-math">\(g_1(x) = 0\text{;}\)</span>  to find <span class="process-math">\(y = g_2(x)\text{,}\)</span> we need to write the hypotenuse as a function of <span class="process-math">\(x\text{.}\)</span> The hypotenuse connects the points (0,0) and (2,3) and hence has equation <span class="process-math">\(y = \frac{3}{2}x\text{.}\)</span> This gives the upper bound on <span class="process-math">\(y\)</span> as <span class="process-math">\(g_2(x) = \frac{3}{2}x\text{.}\)</span> The leftmost vertical cross section is at <span class="process-math">\(x=0\)</span> and the rightmost one is at <span class="process-math">\(x=2\text{,}\)</span> so we have <span class="process-math">\(a=0\)</span> and <span class="process-math">\(b=2\text{.}\)</span> Therefore,</div>
-<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/F_11_3_DI_1.html">
+<div class="para logical" id="S-11-3-Double-Integrals-General-4-17-2-2">
+<div class="para">Therefore,</div>
+<div class="displaymath process-math">
 \begin{equation*}
 \iint_D x^2y \, dA = \int_{x=0}^{x=2} \int_{y=0}^{y = \frac32 x} x^2y \, dy \, dx.
 \end{equation*}
 </div>
 <div class="para">We evaluate the iterated integral by applying the Fundamental Theorem of Calculus first to the inner integral, and then to the outer one, and find that</div>
-<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/F_11_3_DI_1.html" id="S-11-3-Double-Integrals-General-4-14-1-3-5-1-2-24">
+<div class="displaymath process-math" id="S-11-3-Double-Integrals-General-4-17-2-2-2">
 \begin{align*}
 \int_{x=0}^{x=2} \int_{y=0}^{y=\frac32 x} x^2y \, dy \, dx \amp = \int_{x=0}^{x=2} \left[x^2 \cdot \frac{y^2}{2}\right]\restrict{y=0}^{y=\frac32 x} \, dx\\
 \amp = \int_{x=0}^{x=2} \frac{9}{8}x^4\, dx\\
 \amp = \frac{9}{8}\frac{x^5}{5}\restrict{x=0}^{x=2}\\
 \amp = \left(\frac{9}{8}\right) \left(\frac{32}{5}\right)\\
-\amp = \frac{36}{5}.
+\amp = \frac{36}{5}
 \end{align*}
 </div>
-</div></dd>
-<dt id="S-11-3-Double-Integrals-General-4-14-1-3-5-2">Approach 2: Integrate first with respect to <span class="process-math">\(x\text{.}\)</span>
-</dt>
-<dd><div class="para logical" id="S-11-3-Double-Integrals-General-4-14-1-3-5-2-2">
-<div class="para">In this case, we choose to evaluate the double integral as an iterated integral in the form</div>
-<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/F_11_3_DI_1.html">
+</div>
+<div class="para" id="S-11-3-Double-Integrals-General-4-17-2-3">We can visualize both the double integral and the iterated integral in <a href="S-11-3-Double-Integrals-General.html#dblintproj" class="xref" data-knowl="./knowl/xref/dblintproj.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 12.3.20">Figure 12.3.20</a>. The double integral of <span class="process-math">\(f(x,y)=x^2y\)</span> over our region <span class="process-math">\(D\)</span> can be seen as the volume of the region below the surface <span class="process-math">\(z=f(x,y)\)</span> and above the <span class="process-math">\(xy\)</span>-plane on the region <span class="process-math">\(D\text{,}\)</span> shown as the pink volume in <a href="S-11-3-Double-Integrals-General.html#dblintproj" class="xref" data-knowl="./knowl/xref/dblintproj.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 12.3.20">Figure 12.3.20</a>.</div>
+<figure class="figure figure-like" id="dblintproj"><iframe id="dblintproj-2" width="600" height="600" src="dblintproj-2-if.html"></iframe><figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">12.3.20<span class="period">.</span></span><span class="space"> </span></figcaption></figure><div class="para" id="S-11-3-Double-Integrals-General-4-17-2-5">We can also use each of the iterated integrals to visualize our result. The inner integral corresponds to the area of a cross section along a slice with a fixed <span class="process-math">\(x\)</span>-value, as shown by the blue cross section in <a href="S-11-3-Double-Integrals-General.html#dblintproj" class="xref" data-knowl="./knowl/xref/dblintproj.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 12.3.20">Figure 12.3.20</a>. The result of the inner integral changes depending on which <span class="process-math">\(x\)</span>-value is used. Algebraically, we see this from our work above that gave <span class="process-math">\(\frac{9}{8}x^4\)</span> as the result of the inner integral.</div>
+<div class="para" id="S-11-3-Double-Integrals-General-4-17-2-6">To understand this result geometrically, you should use the slider at the top of <a href="S-11-3-Double-Integrals-General.html#dblintproj" class="xref" data-knowl="./knowl/xref/dblintproj.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 12.3.20">Figure 12.3.20</a> to change the <span class="process-math">\(x\)</span>-value at which the slice of our region is taken and observe that the area of the cross section increases with <span class="process-math">\(x\text{.}\)</span> The graph of <span class="process-math">\(\frac{9}{8}x^4\)</span> is projected on a plane and you should notice that as you used the slider to change the <span class="process-math">\(x\)</span>-value of the slice, the highlighted point on the 2D graph shows the area of slice. The red 2D graph is a plot of the result of the inner integral, which measures the area of cross section at that particular <span class="process-math">\(x\)</span>-value, which is why the red graph goes higher than the surface <span class="process-math">\(z\)</span>-values. In fact the peak of the red graph occurs at <span class="process-math">\(\frac{128}{9}\)</span> where as the highest surface value is <span class="process-math">\(12\text{.}\)</span> The scale of <a href="S-11-3-Double-Integrals-General.html#dblintproj" class="xref" data-knowl="./knowl/xref/dblintproj.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 12.3.20">Figure 12.3.20</a> has been adjusted to make these features easier to see.</div>
+<div class="para" id="S-11-3-Double-Integrals-General-4-17-2-7">The result of the inner iterated integral is shown by the red graph, so the outer integral will evaluate to be the area under the red graph, which is shown in orange on the 2D graph portion of <a href="S-11-3-Double-Integrals-General.html#dblintproj" class="xref" data-knowl="./knowl/xref/dblintproj.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 12.3.20">Figure 12.3.20</a>. Again, remember that the outer integral evaluates the Riemann sum corresponding to the cross sectional volumes (like in <a href="S-11-2-Iterated-Integrals.html#F_11_2_Cross_section_y_slab_sum" class="xref" data-knowl="./knowl/xref/F_11_2_Cross_section_y_slab_sum.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 12.2.4">Figure 12.2.4</a>).</div></article><article class="task exercise-like" id="S-11-3-Double-Integrals-General-4-17-3"><h5 class="heading"><span class="codenumber">(b)</span></h5>
+<div class="para" id="S-11-3-Double-Integrals-General-4-17-3-1">In the previous task, we use a vertically simple description for the region of integration <span class="process-math">\(D\text{,}\)</span> which allowed use an iterated integral where we integrated with respect to <span class="process-math">\(y\)</span> first (while treating <span class="process-math">\(x\)</span> as a constant) and then integrating across the interval of relevent <span class="process-math">\(x\)</span>-values. In this task, we will use a horizontally simple description for our region of integration and as a consequence the order in which we integrate our variables will be switched.</div>
+<div class="para logical" id="S-11-3-Double-Integrals-General-4-17-3-2">
+<div class="para">We will use the inequalities from <a href="S-11-3-Double-Integrals-General.html#trianglesimple" class="xref" data-knowl="./knowl/xref/trianglesimple.html" data-reveal-label="Reveal" data-close-label="Close" title="Activity 12.3.2">Activity 12.3.2</a> that correspond to our horizontally simple description:</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/trianglesimple.html">
 \begin{equation*}
-\iint_D x^2y \, dA = \int_{y=c}^{y=d} \int_{x=h_1(y)}^{x=h_2(y)} x^2y \, dx \, dy
+\text{Along }y=k\text{, the }x\text{-coordinates go from }\frac{2}{3}k\text{ to }2
 \end{equation*}
 </div>
-<div class="para">and thus need to describe <span class="process-math">\(D\)</span> in terms of inequalities</div>
-<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/F_11_3_DI_1.html">
+<div class="para">which corresponds to the inequalities</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/trianglesimple.html">
 \begin{equation*}
-h_1(y) \leq x \leq h_2(y) \ \ \ \ \ \text{ and }   \ \ \ \ \  c \leq y \leq d.
+0\leq y \leq 3 \quad \quad \frac{2}{3}y \leq x \leq 2
 \end{equation*}
 </div>
-<div class="para">Since we are integrating with respect to <span class="process-math">\(x\)</span> first, the iterated integral has the form</div>
-<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/F_11_3_DI_1.html">
-\begin{equation*}
-\iint_D x^2y \, dA = \int_c^d A(y) \, dy,
-\end{equation*}
+<div class="para">Using these inequalities corresponds to integrating with respect to <span class="process-math">\(x\)</span> first (the inner integral).</div>
 </div>
-<div class="para">where <span class="process-math">\(A(y)\)</span> is a cross sectional area of the solid in the <span class="process-math">\(x\)</span> direction.  Several slices of the domain — perpendicular to the <span class="process-math">\(y\)</span>-axis — are shown at right in <a href="S-11-3-Double-Integrals-General.html#F_11_3_DI_1" class="xref" data-knowl="./knowl/xref/F_11_3_DI_1.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 12.3.4">Figure 12.3.4</a>. On a slice with fixed <span class="process-math">\(y\)</span> value, the <span class="process-math">\(x\)</span> values are bounded below by the <span class="process-math">\(x\)</span> coordinate on the hypotenuse of the right triangle and above by 2. So <span class="process-math">\(h_2(y) = 2\text{;}\)</span> to find <span class="process-math">\(h_1(y)\text{,}\)</span> we need to write the hypotenuse as a function of <span class="process-math">\(y\text{.}\)</span> Solving the earlier equation we have for the hypotenuse (<span class="process-math">\(y = \frac32 x\)</span>) for <span class="process-math">\(x\)</span> gives us <span class="process-math">\(x = \frac{2}{3}y\text{.}\)</span> This makes <span class="process-math">\(h_1(y) = \frac{2}{3}y\text{.}\)</span> The lowest horizontal cross section is at <span class="process-math">\(y=0\)</span> and the uppermost one is at <span class="process-math">\(y=3\text{,}\)</span> so we have <span class="process-math">\(c=0\)</span> and <span class="process-math">\(d=3\text{.}\)</span> Therefore,</div>
-<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/F_11_3_DI_1.html">
+<div class="para logical" id="S-11-3-Double-Integrals-General-4-17-3-3">
+<div class="para">Therefore,</div>
+<div class="displaymath process-math">
 \begin{equation*}
 \iint_D x^2y \, dA = \int_{y=0}^{y=3} \int_{x=(2/3)y}^{x=2} x^2y \, dx \, dy.
 \end{equation*}
 </div>
 <div class="para">We evaluate the resulting iterated integral as before by twice applying the Fundamental Theorem of Calculus, and find that</div>
-<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/F_11_3_DI_1.html" id="S-11-3-Double-Integrals-General-4-14-1-3-5-2-2-27">
+<div class="displaymath process-math" id="S-11-3-Double-Integrals-General-4-17-3-3-2">
 \begin{align*}
 \int_{y=0}^{y=3} \int_{x=\frac{2}{3}y}^{2} x^2y \, dx \, dy \amp = \int_{y=0}^{y=3} \left[\frac{x^3}{3}\right]\restrict{x=\frac{2}{3}y}^{x=2}y \, dx\\
 \amp = \int_{y=0}^{y=3} \left[\frac{8}{3}y - \frac{8}{81}y^4 \right] \, dy\\
 \amp = \left[\frac{8}{3}\frac{y^2}{2} - \frac{8}{81}\frac{y^5}{5}\right]\restrict{y=0}^{y=3}\\
 \amp = \left(\frac{8}{3}\right) \left(\frac{9}{2}\right) - \left(\frac{8}{81}\right) \left(\frac{243}{5}\right)\\
 \amp = 12 - \frac{24}{5}\\
-\amp = \frac{36}{5}.
+\amp = \frac{36}{5}
 \end{align*}
 </div>
-</div></dd>
-</dl>
-</div> <div class="para" id="S-11-3-Double-Integrals-General-4-14-1-4">We see, of course, that in the situation where <span class="process-math">\(D\)</span> can be described in two different ways, the order in which we choose to set up and evaluate the double integral doesn’t matter, and the same value results in either case.</div></article><div class="para logical" id="S-11-3-Double-Integrals-General-4-15">
+</div>
+<div class="para" id="S-11-3-Double-Integrals-General-4-17-3-4">Similar to our visualization description for the vertically simple case, we can look at our double integral from a different perspective to understand the different parts of our iterated integral. In <a href="S-11-3-Double-Integrals-General.html#dblintproj2" class="xref" data-knowl="./knowl/xref/dblintproj2.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 12.3.21">Figure 12.3.21</a>, you can see the same volume as before in pink which corresponds to the volume computed by the double integral. In this task, we used a horizontally simple description which means our slices correspond to constant values of <span class="process-math">\(y\text{.}\)</span> The cross sectional area of this slice along a constant <span class="process-math">\(y\)</span>-value is shown in blue on both the slice of our volume and on the 2D graph that shows the values of the inner integral (as a function of <span class="process-math">\(y\)</span>). You can use the slider at the top of <a href="S-11-3-Double-Integrals-General.html#dblintproj2" class="xref" data-knowl="./knowl/xref/dblintproj2.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 12.3.21">Figure 12.3.21</a> to see how the area of cross section changes with respect to different values of <span class="process-math">\(y\text{.}\)</span>
+</div>
+<figure class="figure figure-like" id="dblintproj2"><iframe id="dblintproj2-2" width="600" height="600" src="dblintproj2-2-if.html"></iframe><figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">12.3.21<span class="period">.</span></span><span class="space"> </span></figcaption></figure><div class="para" id="S-11-3-Double-Integrals-General-4-17-3-6">You can see that as <span class="process-math">\(y\)</span> increases from 0, the value of cross sectional area increases for a while, then decreases. While the height of our surface is increasing with respect to <span class="process-math">\(y\)</span> over <span class="process-math">\([0,3]\text{,}\)</span> the length of the slice is getting smaller as <span class="process-math">\(y\)</span> increases. This is captured algebraically by our inner integral in that the function we are integrating (<span class="process-math">\(x^2y\)</span>) is increasing but the length of the interval we are integrating over (<span class="process-math">\(\frac{2}{3}y\leq x\leq2\)</span>) is decreasing as we increase <span class="process-math">\(y\text{.}\)</span> This is why our 2D graph in ends up having a concave down shape.</div>
+<div class="para" id="S-11-3-Double-Integrals-General-4-17-3-7">Again, we can visualize the cross section areas as the height of red graph, which will allow us to consider the value the double integral to be the area under the red curve (in our 2D plot). While the orange area in <a href="S-11-3-Double-Integrals-General.html#dblintproj2" class="xref" data-knowl="./knowl/xref/dblintproj2.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 12.3.21">Figure 12.3.21</a> may look less than the orange area in <a href="S-11-3-Double-Integrals-General.html#dblintproj" class="xref" data-knowl="./knowl/xref/dblintproj.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 12.3.20">Figure 12.3.20</a>, they are in fact the same. The width of the orange area in <a href="S-11-3-Double-Integrals-General.html#dblintproj2" class="xref" data-knowl="./knowl/xref/dblintproj2.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 12.3.21">Figure 12.3.21</a> is 3, whereas the width of the orange area in <a href="S-11-3-Double-Integrals-General.html#dblintproj" class="xref" data-knowl="./knowl/xref/dblintproj.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 12.3.20">Figure 12.3.20</a> is two.</div>
+<div class="para" id="S-11-3-Double-Integrals-General-4-17-3-8">We see that in the situation where <span class="process-math">\(D\)</span> can be described as horizontally simple or vertically simple, the order in which we choose to set up and evaluate the iterated integrals doesn’t matter; the same value results in either case.</div></article></article><div class="para" id="S-11-3-Double-Integrals-General-4-18">The process of switching between a vertically simple description and a horizontally simple description for the region of integration is often called <dfn class="terminology">switching the order of integation</dfn> because the corresponding iterated integrals used to calculate a double integral will have the order in which you integrate these variables switched.</div>
+<div class="para logical" id="S-11-3-Double-Integrals-General-4-19">
 <div class="para">The meaning of a double integral over a non-rectangular region, <span class="process-math">\(D\text{,}\)</span> parallels the meaning over a rectangular region. In particular,</div>
-<ul class="disc" id="S-11-3-Double-Integrals-General-4-15-2">
-<li id="S-11-3-Double-Integrals-General-4-15-2-1"><div class="para" id="S-11-3-Double-Integrals-General-4-15-2-1-1">
-<span class="process-math">\(\iint_D f(x,y) \, dA\)</span> tells us the volume of the solids the graph of <span class="process-math">\(f\)</span> bounds above the <span class="process-math">\(xy\)</span>-plane over the closed, bounded region <span class="process-math">\(D\)</span> minus the volume of the solids the graph of <span class="process-math">\(f\)</span> bounds below the <span class="process-math">\(xy\)</span>-plane under the region <span class="process-math">\(D\text{;}\)</span>
+<ul class="disc" id="S-11-3-Double-Integrals-General-4-19-2">
+<li id="S-11-3-Double-Integrals-General-4-19-2-1"><div class="para" id="S-11-3-Double-Integrals-General-4-19-2-1-1">
+<span class="process-math">\(\displaystyle{\iint_D f(x,y) \, dA}\)</span> tells us the volume of the solids the graph of <span class="process-math">\(f\)</span> bounds above the <span class="process-math">\(xy\)</span>-plane over the closed, bounded region <span class="process-math">\(D\)</span> minus the volume of the solids the graph of <span class="process-math">\(f\)</span> bounds below the <span class="process-math">\(xy\)</span>-plane under the region <span class="process-math">\(D\text{;}\)</span>
 </div></li>
-<li id="S-11-3-Double-Integrals-General-4-15-2-2"><div class="para" id="S-11-3-Double-Integrals-General-4-15-2-2-1">
-<span class="process-math">\(\frac{1}{A(D)} \iint_R f(x,y) \, dA\text{,}\)</span> where <span class="process-math">\(A(D)\)</span> is the area of <span class="process-math">\(D\)</span> tells us the average value of the function <span class="process-math">\(f\)</span> on <span class="process-math">\(D\text{.}\)</span> If <span class="process-math">\(f(x, y) \geq  0\)</span> on <span class="process-math">\(D\text{,}\)</span> we can interpret this average value of <span class="process-math">\(f\)</span> on <span class="process-math">\(D\)</span> as the height of the solid with base <span class="process-math">\(D\)</span> and constant cross-sectional area <span class="process-math">\(D\)</span> that has the same volume as the volume of the surface defined by <span class="process-math">\(f\)</span> over <span class="process-math">\(D\text{.}\)</span>
+<li id="S-11-3-Double-Integrals-General-4-19-2-2"><div class="para" id="S-11-3-Double-Integrals-General-4-19-2-2-1">
+<span class="process-math">\(\displaystyle{\frac{1}{A(D)} \iint_R f(x,y) \, dA}\text{,}\)</span> where <span class="process-math">\(A(D)\)</span> is the area of <span class="process-math">\(D\)</span> tells us the average value of the function <span class="process-math">\(f\)</span> on <span class="process-math">\(D\text{.}\)</span> If <span class="process-math">\(f(x, y) \geq  0\)</span> on <span class="process-math">\(D\text{,}\)</span> we can interpret this average value of <span class="process-math">\(f\)</span> on <span class="process-math">\(D\)</span> as the height of the solid with base <span class="process-math">\(D\)</span> and constant cross-sectional area <span class="process-math">\(D\)</span> that has the same volume as the volume of the surface defined by <span class="process-math">\(f\)</span> over <span class="process-math">\(D\text{.}\)</span>
+</div></li>
+<li id="S-11-3-Double-Integrals-General-4-19-2-3"><div class="para" id="S-11-3-Double-Integrals-General-4-19-2-3-1">If <span class="process-math">\(f(x,y)\)</span> measure the density (in amount per unit area) of a material in the region <span class="process-math">\(D\text{,}\)</span> then <span class="process-math">\(\iint_D f(x,y) \, dA\)</span> will give the total amount of material in <span class="process-math">\(D\text{.}\)</span>
 </div></li>
 </ul>
 </div>
+<div class="para" id="S-11-3-Double-Integrals-General-4-20">In the next activity, we will practice the process of understanding a region of integration, using horizontally simple and vertically simple descriptions of the region, setting up and evaluating the corresponding iterated integrals.</div>
 <article class="activity project-like" id="A_11_3_1"><h4 class="heading">
-<span class="type">Activity</span><span class="space"> </span><span class="codenumber">12.3.2</span><span class="period">.</span>
+<span class="type">Activity</span><span class="space"> </span><span class="codenumber">12.3.4</span><span class="period">.</span>
 </h4>
-<div class="para logical" id="A_11_3_1-1-1">
-<div class="para">Consider the double integral <span class="process-math">\(\iint_D (4-x-2y) \, dA\text{,}\)</span> where <span class="process-math">\(D\)</span> is the triangular region with vertices (0,0), (4,0), and (0,2).</div>
-<ol class="lower-alpha ol-marker-2" id="A_11_3_1-1-1-3">
-<li id="A_11_3_1-1-1-3-1"><div class="para" id="A_11_3_1-1-1-3-1-1">Write the given integral as an iterated integral of the form <span class="process-math">\(\iint_D (4-x-2y) \, dy \, dx\text{.}\)</span> Draw a labeled picture of <span class="process-math">\(D\)</span> with relevant cross sections.</div></li>
-<li id="A_11_3_1-1-1-3-2"><div class="para" id="A_11_3_1-1-1-3-2-1">Write the given integral as an iterated integral of the form <span class="process-math">\(\iint_D (4-x-2y) \, dx \, dy\text{.}\)</span> Draw a labeled picture of <span class="process-math">\(D\)</span> with relevant cross sections.</div></li>
-<li id="A_11_3_1-1-1-3-3"><div class="para" id="A_11_3_1-1-1-3-3-1">Evaluate the two iterated integrals from (a) and (b), and verify that they produce the same value. Give at least one interpretation of the meaning of your result.</div></li>
-</ol>
-</div></article><article class="activity project-like" id="A_11_3_2"><h4 class="heading">
-<span class="type">Activity</span><span class="space"> </span><span class="codenumber">12.3.3</span><span class="period">.</span>
+<div class="introduction" id="A_11_3_1-1"><div class="para" id="A_11_3_1-1-1">Consider the double integral <span class="process-math">\(\displaystyle{\iint_D (4-x-2y) \, dA}\text{,}\)</span> where <span class="process-math">\(D\)</span> is the triangular region with vertices (0,0), (4,0), and (0,2).</div></div>
+<article class="task exercise-like" id="A_11_3_1-2"><h5 class="heading"><span class="codenumber">(a)</span></h5>
+<div class="para" id="A_11_3_1-2-1-1">Draw and label a plot of <span class="process-math">\(D\)</span> with relevent cross sections for a vertically simple description. Give the inequalities that show <span class="process-math">\(D\)</span> as vertically simple.</div></article><article class="task exercise-like" id="A_11_3_1-3"><h5 class="heading"><span class="codenumber">(b)</span></h5>
+<div class="para" id="A_11_3_1-3-1-1">Draw and label a plot of <span class="process-math">\(D\)</span> with relevent cross sections for a horizontally simple description. Give the inequalities that show <span class="process-math">\(D\)</span> as horizontally simple.</div></article><article class="task exercise-like" id="A_11_3_1-4"><h5 class="heading"><span class="codenumber">(c)</span></h5>
+<div class="para" id="A_11_3_1-4-1-1">Write the double integral as an iterated integral of the form <span class="process-math">\(\iint_D (4-x-2y) \, dy \, dx\)</span> and include bounds on both of your iterated integrals.</div></article><article class="task exercise-like" id="A_11_3_1-5"><h5 class="heading"><span class="codenumber">(d)</span></h5>
+<div class="para" id="A_11_3_1-5-1-1">Write the double integral as an iterated integral of the form <span class="process-math">\(\iint_D (4-x-2y) \, dx \, dy\)</span> and include bounds on both of your iterated integrals.</div></article><article class="task exercise-like" id="A_11_3_1-6"><h5 class="heading"><span class="codenumber">(e)</span></h5>
+<div class="para" id="A_11_3_1-6-1-1">Evaluate the two iterated integrals from the previous two parts, and verify that they produce the same value. Give at least one interpretation of the meaning of your result.</div></article></article><div class="para" id="S-11-3-Double-Integrals-General-4-22">In the next activity, we will explore to understand a region of integration, with some non-linear sides, given as bounds in an iterated integral, then we will switch the order of integration, evaluate which ever order is most convinient and finally interpret the result using the average value approach.</div>
+<article class="activity project-like" id="A_11_3_2"><h4 class="heading">
+<span class="type">Activity</span><span class="space"> </span><span class="codenumber">12.3.5</span><span class="period">.</span>
 </h4>
-<div class="para logical" id="A_11_3_2-1-1">
-<div class="para">Consider the iterated integral <span class="process-math">\(\int_{x=0}^{x=1} \int_{y=x}^{y=\sqrt{x}} (4x+10y) \, dy \, dx\text{.}\)</span>
-</div>
-<ol class="lower-alpha ol-marker-2" id="A_11_3_2-1-1-2">
-<li id="A_11_3_2-1-1-2-1"><div class="para logical" id="A_11_3_2-1-1-2-1-1">
+<div class="introduction" id="A_11_3_2-1"><div class="para" id="A_11_3_2-1-1">Consider the iterated integral <span class="process-math">\(\int_{x=0}^{x=1} \int_{y=x}^{y=\sqrt{x}} (4x+10y) \, dy \, dx\text{.}\)</span>
+</div></div>
+<article class="task exercise-like" id="A_11_3_2-2"><h5 class="heading"><span class="codenumber">(a)</span></h5>
+<div class="para logical" id="A_11_3_2-2-1-1">
 <div class="para">Sketch the region of integration, <span class="process-math">\(D\text{,}\)</span> for which</div>
 <div class="displaymath process-math">
 \begin{equation*}
 \iint_D (4x + 10y) \, dA = \int_{x=0}^{x=1} \int_{y=x}^{y=\sqrt{x}} (4x+10y) \, dy \, dx.
 \end{equation*}
 </div>
-</div></li>
-<li id="A_11_3_2-1-1-2-2"><div class="para logical" id="A_11_3_2-1-1-2-2-1">
+</div></article><article class="task exercise-like" id="A_11_3_2-3"><h5 class="heading"><span class="codenumber">(b)</span></h5>
+<div class="para logical" id="A_11_3_2-3-1-1">
 <div class="para">Determine the equivalent iterated integral that results from integrating in the opposite order (<span class="process-math">\(dx \, dy\text{,}\)</span> instead of <span class="process-math">\(dy \, dx\)</span>).  That is, determine the limits of integration for which</div>
 <div class="displaymath process-math">
 \begin{equation*}
 \iint_D (4x + 10y) \, dA = \int_{y=?}^{y=?}  \int_{x=?}^{x=?} (4x+10y) \, dx \, dy.
 \end{equation*}
 </div>
-</div></li>
-<li id="A_11_3_2-1-1-2-3"><div class="para" id="A_11_3_2-1-1-2-3-1">Evaluate one of the two iterated integrals above. Explain what the value you obtained tells you.</div></li>
-<li id="A_11_3_2-1-1-2-4"><div class="para" id="A_11_3_2-1-1-2-4-1">Set up and evaluate a single definite integral to determine the exact area of <span class="process-math">\(D\text{,}\)</span> <span class="process-math">\(A(D)\text{.}\)</span>
-</div></li>
-<li id="A_11_3_2-1-1-2-5"><div class="para" id="A_11_3_2-1-1-2-5-1">Determine the exact average value of <span class="process-math">\(f(x,y) = 4x  + 10y\)</span> over <span class="process-math">\(D\text{.}\)</span>
-</div></li>
-</ol>
-</div></article><article class="activity project-like" id="A_11_3_3"><h4 class="heading">
-<span class="type">Activity</span><span class="space"> </span><span class="codenumber">12.3.4</span><span class="period">.</span>
+</div></article><article class="task exercise-like" id="A_11_3_2-4"><h5 class="heading"><span class="codenumber">(c)</span></h5>
+<div class="para" id="A_11_3_2-4-1-1">Evaluate which ever one of the two iterated integrals above you think will be easiest to compute. Explain what the value you obtained tells you.</div></article><article class="task exercise-like" id="A_11_3_2-5"><h5 class="heading"><span class="codenumber">(d)</span></h5>
+<div class="para" id="A_11_3_2-5-1-1">Set up and evaluate a single definite integral to determine the exact area of <span class="process-math">\(D\text{,}\)</span> <span class="process-math">\(A(D)\text{.}\)</span>
+</div></article><article class="task exercise-like" id="A_11_3_2-6"><h5 class="heading"><span class="codenumber">(e)</span></h5>
+<div class="para" id="A_11_3_2-6-1-1">Determine the exact average value of <span class="process-math">\(f(x,y) = 4x  + 10y\)</span> over <span class="process-math">\(D\text{.}\)</span>
+</div></article></article><div class="para" id="S-11-3-Double-Integrals-General-4-24">In the following activity, we will explore how switching the order of integration can sometimes yield a much easier set of iterated integral to evaluate algebraically.</div>
+<article class="activity project-like" id="A_11_3_3"><h4 class="heading">
+<span class="type">Activity</span><span class="space"> </span><span class="codenumber">12.3.6</span><span class="period">.</span>
 </h4>
-<div class="para logical" id="A_11_3_3-1-1">
-<div class="para">Consider the iterated integral <span class="process-math">\(\int_{x=0}^{x=4} \int_{y=x/2}^{y=2} e^{y^2} \, dy \, dx\text{.}\)</span>
-</div>
-<ol class="lower-alpha ol-marker-2" id="A_11_3_3-1-1-2">
-<li id="A_11_3_3-1-1-2-1"><div class="para" id="A_11_3_3-1-1-2-1-1">Explain why we cannot find a simple antiderivative for <span class="process-math">\(e^{y^2}\)</span> with respect to <span class="process-math">\(y\text{,}\)</span> and thus are unable to evaluate <span class="process-math">\(\int_{x=0}^{x=4} \int_{y=x/2}^{y=2} e^{y^2} \, dy \, dx\)</span> in the indicated order using the Fundamental Theorem of Calculus.</div></li>
-<li id="A_11_3_3-1-1-2-2"><div class="para" id="A_11_3_3-1-1-2-2-1">Given that <span class="process-math">\(\iint_D e^{y^2} \, dA = \int_{x=0}^{x=4} \int_{y=x/2}^{y=2} e^{y^2} \, dy \, dx\text{,}\)</span> sketch the region of integration, <span class="process-math">\(D\text{.}\)</span>
-</div></li>
-<li id="A_11_3_3-1-1-2-3"><div class="para" id="A_11_3_3-1-1-2-3-1">Rewrite the given iterated integral in the opposite order, using <span class="process-math">\(dA = dx \, dy\text{.}\)</span> (Hint: You may need more than one integral.)</div></li>
-<li id="A_11_3_3-1-1-2-4"><div class="para" id="A_11_3_3-1-1-2-4-1">Use the Fundamental Theorem of Calculus to evaluate the iterated integral you developed in (c).  Write one sentence to explain the meaning of the value you found.</div></li>
-<li id="A_11_3_3-1-1-2-5"><div class="para" id="A_11_3_3-1-1-2-5-1">What is the important lesson this activity offers regarding the order in which we set up an iterated integral?</div></li>
-</ol>
-</div></article></section><section class="subsection" id="S-11-3-Double-Integrals-General-5"><h3 class="heading hide-type">
+<div class="introduction" id="A_11_3_3-1"><div class="para" id="A_11_3_3-1-1">Consider the iterated integral <span class="process-math">\(\int_{x=0}^{x=4} \int_{y=x/2}^{y=2} e^{y^2} \, dy \, dx\text{.}\)</span>
+</div></div>
+<article class="task exercise-like" id="A_11_3_3-2"><h5 class="heading"><span class="codenumber">(a)</span></h5>
+<div class="para" id="A_11_3_3-2-1-1">Explain why we cannot find a simple antiderivative for <span class="process-math">\(e^{y^2}\)</span> with respect to <span class="process-math">\(y\text{,}\)</span> and thus are unable to evaluate <span class="process-math">\(\int_{x=0}^{x=4} \int_{y=x/2}^{y=2} e^{y^2} \, dy \, dx\)</span> in the indicated order using the Fundamental Theorem of Calculus.</div></article><article class="task exercise-like" id="A_11_3_3-3"><h5 class="heading"><span class="codenumber">(b)</span></h5>
+<div class="para" id="A_11_3_3-3-1-1">Given that <span class="process-math">\(\iint_D e^{y^2} \, dA = \int_{x=0}^{x=4} \int_{y=x/2}^{y=2} e^{y^2} \, dy \, dx\text{,}\)</span> sketch the region of integration, <span class="process-math">\(D\text{.}\)</span>
+</div></article><article class="task exercise-like" id="A_11_3_3-4"><h5 class="heading"><span class="codenumber">(c)</span></h5>
+<div class="para" id="A_11_3_3-4-1-1">Rewrite the given iterated integral in the opposite order, using <span class="process-math">\(dA = dx \, dy\text{.}\)</span> (Hint: You may need more than one integral.)</div></article><article class="task exercise-like" id="A_11_3_3-5"><h5 class="heading"><span class="codenumber">(d)</span></h5>
+<div class="para" id="A_11_3_3-5-1-1">Use the Fundamental Theorem of Calculus to evaluate the iterated integral you developed in (c).  Write one sentence to explain the meaning of the value you found.</div></article><article class="task exercise-like" id="A_11_3_3-6"><h5 class="heading"><span class="codenumber">(e)</span></h5>
+<div class="para" id="A_11_3_3-6-1-1">What is the important lesson this activity offers regarding the order in which we set up an iterated integral?</div></article></article></section><section class="subsection" id="S-11-3-Double-Integrals-General-5"><h3 class="heading hide-type">
 <span class="type">Subsection</span><span class="space"> </span><span class="codenumber">12.3.2</span><span class="space"> </span><span class="title">Summary</span>
 </h3>
 <ul class="disc" id="S-11-3-Double-Integrals-General-5-2">
-<li id="S-11-3-Double-Integrals-General-5-2-1"><div class="para" id="S-11-3-Double-Integrals-General-5-2-1-1">For a double integral <span class="process-math">\(\iint_D f(x,y) \, dA\)</span> over a non-rectangular region <span class="process-math">\(D\text{,}\)</span> we enclose <span class="process-math">\(D\)</span> in a rectangle <span class="process-math">\(R\)</span> and then extend integrand <span class="process-math">\(f\)</span> to a function <span class="process-math">\(F\)</span> so that <span class="process-math">\(F(x,y) = 0\)</span> at all points in <span class="process-math">\(R\)</span> outside of <span class="process-math">\(D\)</span> and <span class="process-math">\(F(x,y) = f(x,y)\)</span> for all points in <span class="process-math">\(D\text{.}\)</span> We then define <span class="process-math">\(\iint_D f(x,y) \, dA\)</span> to be equal to <span class="process-math">\(\iint_R F(x,y) \, dA\text{.}\)</span>
-</div></li>
+<li id="S-11-3-Double-Integrals-General-5-2-1"><div class="para" id="S-11-3-Double-Integrals-General-5-2-1-1">For a double integral <span class="process-math">\(\displaystyle{\iint_D f(x,y) \, dA}\text{,}\)</span> we can write appropriate iterated integrals if the region <span class="process-math">\(D\)</span> is either horizontally or vertically simple. A horizontally simple region is described by the inequalities <span class="process-math">\(c \leq y \leq d\)</span> and <span class="process-math">\(h_1(y) \leq x \leq h_2(y)\)</span> . A vertically simple region is described by <span class="process-math">\(a \leq x \leq b\)</span> and <span class="process-math">\(g_1(x) \leq y \leq g_2(x)\text{.}\)</span> </div></li>
 <li id="S-11-3-Double-Integrals-General-5-2-2"><div class="para logical" id="S-11-3-Double-Integrals-General-5-2-2-1">
-<div class="para">In an iterated double integral, the limits on the outer integral must be constants while the limits on the inner integral must be constants or in terms of only the remaining variable. In other words, an iterated double integral has one of the following forms (which result in the same value):</div>
+<div class="para">In an iterated double integral, the limits on the outer integral must be constants while the limits on the inner integral must be constants or in terms of only the remaining variable. In other words, an iterated integral corresponding to a double integral has one of the following forms (which result in the same value):</div>
 <div class="displaymath process-math">
 \begin{equation*}
 \int_{x=a}^{x=b} \int_{y=g_1(x)}^{y=g_2(x)} f(x,y) \, dy \, dx,
 \end{equation*}
 </div>
-<div class="para">where <span class="process-math">\(g_1=g_1(x)\)</span> and <span class="process-math">\(g_2=g_2(x)\)</span> are functions of <span class="process-math">\(x\)</span> only and the region <span class="process-math">\(D\)</span> is described by the inequalities <span class="process-math">\(g_1(x) \leq y \leq g_2(x)\)</span> and <span class="process-math">\(a \leq x \leq b\)</span> or</div>
+<div class="para">where <span class="process-math">\(g_1=g_1(x)\)</span> and <span class="process-math">\(g_2=g_2(x)\)</span> are functions of <span class="process-math">\(x\)</span> only and the region <span class="process-math">\(D\)</span> is described by the inequalities &gt; or</div>
 <div class="displaymath process-math">
 \begin{equation*}
 \int_{y=c}^{y=d} \int_{x=h_1(y)}^{x=h_2(y)} f(x,y) \, dx \, dy,

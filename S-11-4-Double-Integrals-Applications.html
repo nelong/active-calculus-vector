@@ -115,15 +115,15 @@ eBookConfig.allow_pairs = false;
 eBookConfig.enableScratchAC = false;
 eBookConfig.build_info = "";
 eBookConfig.python3 = null;
-eBookConfig.runestone_version = '7.6.2';
+eBookConfig.runestone_version = '7.7.0';
 eBookConfig.jobehost = '';
 eBookConfig.proxyuri_runs = '';
 eBookConfig.proxyuri_files = '';
 eBookConfig.enable_chatcodes =  false;
 </script>
 <!--*** Runestone Services ***-->
-<script src="_static/prefix-runtime.11f2df1b38a61a3f.bundle.js"></script><script src="_static/prefix-723.3e6434f80549315a.bundle.js"></script><script src="_static/prefix-runestone.f7a03b209751032d.bundle.js"></script><link rel="stylesheet" type="text/css" href="_static/prefix-723.3bccd435914aa0ff.css">
-<link rel="stylesheet" type="text/css" href="_static/prefix-runestone.541c9106f2c605b9.css">
+<script src="_static/prefix-runtime.5eb70769dc5e56d7.bundle.js"></script><script src="_static/prefix-723.3e6434f80549315a.bundle.js"></script><script src="_static/prefix-runestone.253ff4af1e53e55f.bundle.js"></script><link rel="stylesheet" type="text/css" href="_static/prefix-723.3bccd435914aa0ff.css">
+<link rel="stylesheet" type="text/css" href="_static/prefix-runestone.5bdeacdba067a0e3.css">
 <script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script src="_static/pretext/js/pretext-webwork/2.17/pretext-webwork.js"></script><script src="https://webwork-ptx.aimath.org/webwork2_files/node_modules/iframe-resizer/js/iframeResizer.min.js"></script><script xmlns:xlink="http://www.w3.org/1999/xlink" src="_static/pretext/js/lti_iframe_resizer.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/components/prism-core.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/line-numbers/prism-line-numbers.min.js" integrity="sha512-dubtf8xMHSQlExGRQ5R7toxHLgSDZ0K7AunqPWHXmJQ8XyVIG19S1T95gBxlAeGOK02P4Da2RTnQz0Za0H0ebQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/line-highlight/prism-line-highlight.min.js" integrity="sha512-93uCmm0q+qO5Lb1huDqr7tywS8A2TFA+1/WHvyiWaK6/pvsFl6USnILagntBx8JnVbQH5s3n0vQZY6xNthNfKA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="https://cdn.geogebra.org/apps/deployggb.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js" integrity="sha512-4xUl/d6D6THrAnXAwGajXkoWaeMNwEKK4iNfq5DotEbLPAfk6FSxSP3ydNxqDgCw1c/0Z1Jg6L8h2j+++9BZmg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="lunr-pretext-search-index.js" async=""></script><script src="_static/pretext/js/pretext_search.js"></script><script src="_static/pretext/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
 </script>
 </head>
@@ -704,26 +704,27 @@ true);
 <article class="objectives goal-like" id="S-11-4-Double-Integrals-Applications-2"><h3 class="heading"><span class="type">Motivating Questions</span></h3>
 <ul class="disc" id="S-11-4-Double-Integrals-Applications-2-1">
 <li id="S-11-4-Double-Integrals-Applications-2-1-1"><div class="para" id="S-11-4-Double-Integrals-Applications-2-1-1-1">If we have a mass density function for a lamina (thin plate), how does a double integral determine the mass of the lamina?</div></li>
-<li id="S-11-4-Double-Integrals-Applications-2-1-2"><div class="para" id="S-11-4-Double-Integrals-Applications-2-1-2-1">How may a double integral be used to find the area between two curves?</div></li>
+<li id="S-11-4-Double-Integrals-Applications-2-1-2"><div class="para" id="S-11-4-Double-Integrals-Applications-2-1-2-1">How can a double integral be used to find the area between two curves?</div></li>
 <li id="S-11-4-Double-Integrals-Applications-2-1-3"><div class="para" id="S-11-4-Double-Integrals-Applications-2-1-3-1">Given a mass density function on a lamina, how can we find the lamina’s center of mass?</div></li>
 <li id="S-11-4-Double-Integrals-Applications-2-1-4"><div class="para" id="S-11-4-Double-Integrals-Applications-2-1-4-1">What is a joint probability density function? How do we determine the probability of an event if we know a probability density function?</div></li>
-</ul></article><section class="introduction" id="S-11-4-Double-Integrals-Applications-3"><div class="para" id="S-11-4-Double-Integrals-Applications-3-1">So far, we have interpreted the double integral of a function <span class="process-math">\(f\)</span> over a domain <span class="process-math">\(D\)</span> in two different ways. First, <span class="process-math">\(\iint_D f(x,y) \, dA\)</span> tells us a difference of volumes — the volume the surface defined by <span class="process-math">\(f\)</span> bounds above the <span class="process-math">\(xy\)</span>-plane on <span class="process-math">\(D\)</span> minus the volume the surface bounds below the <span class="process-math">\(xy\)</span>-plane on <span class="process-math">\(D\text{.}\)</span> In addition, <span class="process-math">\(\frac{1}{A(D)} \iint_D f(x,y) \, dA\)</span> determines the average value of <span class="process-math">\(f\)</span> on <span class="process-math">\(D\text{.}\)</span> In this section, we investigate several other applications of double integrals, using the integration process as seen in <a href="S-11-4-Double-Integrals-Applications.html#PA_11_4" class="xref" data-knowl="./knowl/xref/PA_11_4.html" data-reveal-label="Reveal" data-close-label="Close" title="Preview Activity 12.4.1">Preview Activity 12.4.1</a>: we partition into small regions, approximate the desired quantity on each small region, then use the integral to sum these values exactly in the limit.</div>
-<div class="para" id="S-11-4-Double-Integrals-Applications-3-2">The following preview activity explores how a double integral can be used to determine the density of a thin plate with a mass density distribution. Recall that in single-variable calculus, we considered a similar problem and computed the mass of a one-dimensional rod with a mass-density distribution. There, as here, the key idea is that if density is constant, mass is the product of density and volume.</div>
+</ul></article><section class="introduction" id="S-11-4-Double-Integrals-Applications-3"><div class="para" id="S-11-4-Double-Integrals-Applications-3-1">So far, we have interpreted the double integral of a function <span class="process-math">\(f\)</span> over a domain <span class="process-math">\(D\)</span> in several ways. First, <span class="process-math">\(\iint_D f(x,y) \, dA\)</span> tells us a difference of volumes — the volume the surface defined by <span class="process-math">\(f\)</span> bounds above the <span class="process-math">\(xy\)</span>-plane on <span class="process-math">\(D\)</span> minus the volume the surface bounds below the <span class="process-math">\(xy\)</span>-plane on <span class="process-math">\(D\text{.}\)</span> In addition, <span class="process-math">\(\frac{1}{A(D)} \iint_D f(x,y) \, dA\)</span> determines the average value of <span class="process-math">\(f\)</span> on <span class="process-math">\(D\text{.}\)</span> In this section, we investigate several other applications of double integrals, using the integration process as seen in <a href="S-11-4-Double-Integrals-Applications.html#PA_11_4" class="xref" data-knowl="./knowl/xref/PA_11_4.html" data-reveal-label="Reveal" data-close-label="Close" title="Preview Activity 12.4.1">Preview Activity 12.4.1</a>: we partition into small regions, approximate the desired quantity on each small region, then use the integral to sum these values exactly in the limit.</div>
+<div class="para" id="S-11-4-Double-Integrals-Applications-3-2">The following preview activity explores another interpretation: a double integral can be used to determine the density of a thin plate with a mass density distribution. Recall that in single-variable calculus, we considered a similar problem and computed the mass of a one-dimensional rod with a mass-density distribution. There, as here, the key idea is that if density is constant, mass is the product of density and volume.</div>
 <article class="exploration project-like" id="PA_11_4"><h3 class="heading">
 <span class="type">Preview Activity</span><span class="space"> </span><span class="codenumber">12.4.1</span><span class="period">.</span>
 </h3>
-<div class="para logical" id="PA_11_4-1-1">
+<div class="introduction" id="PA_11_4-1"><div class="para logical" id="PA_11_4-1-1">
 <div class="para">Suppose that we have a flat, thin object (called a <dfn class="terminology">lamina</dfn>) whose density varies across the object. We can think of the density on a lamina as a measure of mass per unit area. As an example, consider a circular plate <span class="process-math">\(D\)</span> of radius 1 cm centered at the origin whose density <span class="process-math">\(\delta\)</span> varies depending on the distance from its center so that the density in grams per square centimeter at point <span class="process-math">\((x, y)\)</span> is</div>
-<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/S-11-5-Double-Integrals-Polar.html">
+<div class="displaymath process-math">
 \begin{equation*}
 \delta(x,y) = 10-2(x^2+y^2).
 \end{equation*}
 </div>
-<ol class="lower-alpha ol-marker-2" id="PA_11_4-1-1-6">
-<li id="PA_11_4-1-1-6-1"><div class="para" id="PA_11_4-1-1-6-1-1">Suppose that we partition the plate into subrectangles <span class="process-math">\(R_{ij}\text{,}\)</span> where <span class="process-math">\(1 \leq i \leq m\)</span> and <span class="process-math">\(1 \leq j \leq n\text{,}\)</span> of equal area <span class="process-math">\(\Delta A\text{,}\)</span> and select a point <span class="process-math">\((x_{ij}^*,y_{ij}^*)\)</span> in <span class="process-math">\(R_{ij}\)</span> for each <span class="process-math">\(i\)</span> and <span class="process-math">\(j\text{.}\)</span> What is the meaning of the quantity <span class="process-math">\(\delta(x_{ij}^*,y_{ij}^*) \Delta A\text{?}\)</span>
-</div></li>
-<li id="PA_11_4-1-1-6-2"><div class="para" id="PA_11_4-1-1-6-2-1">State a double Riemann sum that provides an approximation of the mass of the plate.</div></li>
-<li id="PA_11_4-1-1-6-3"><div class="para logical" id="PA_11_4-1-1-6-3-1">
+</div></div>
+<article class="task exercise-like" id="PA_11_4-2"><h4 class="heading"><span class="codenumber">(a)</span></h4>
+<div class="para" id="PA_11_4-2-1-1">Suppose that we partition the plate into subrectangles <span class="process-math">\(R_{ij}\text{,}\)</span> where <span class="process-math">\(1 \leq i \leq m\)</span> and <span class="process-math">\(1 \leq j \leq n\text{,}\)</span> of equal area <span class="process-math">\(\Delta A\text{,}\)</span> and select a point <span class="process-math">\((x_{ij}^*,y_{ij}^*)\)</span> in <span class="process-math">\(R_{ij}\)</span> for each <span class="process-math">\(i\)</span> and <span class="process-math">\(j\text{.}\)</span> Write a couple of sentences to explain the meaning of the quantity <span class="process-math">\(\delta(x_{ij}^*,y_{ij}^*) \Delta A\text{.}\)</span>
+</div></article><article class="task exercise-like" id="PA_11_4-3"><h4 class="heading"><span class="codenumber">(b)</span></h4>
+<div class="para" id="PA_11_4-3-1-1">State a double Riemann sum that computes an approximation of the mass of the plate.</div></article><article class="task exercise-like" id="PA_11_4-4"><h4 class="heading"><span class="codenumber">(c)</span></h4>
+<div class="para logical" id="PA_11_4-4-1-1">
 <div class="para">Explain why the double integral</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -731,20 +732,18 @@ true);
 \end{equation*}
 </div>
 <div class="para">tells us the exact mass of the plate.</div>
-</div></li>
-<li id="PA_11_4-1-1-6-4"><div class="para" id="PA_11_4-1-1-6-4-1">Determine an iterated integral which, if evaluated, would give the exact mass of the plate.  Do not actually evaluate the integral. (This integral is considerably easier to evaluate in polar coordinates, which we will learn more about in <a href="S-11-5-Double-Integrals-Polar.html" class="internal" title="Section 12.5: Double Integrals in Polar Coordinates">Section 12.5</a>.)</div></li>
-</ol>
-</div></article></section><section class="subsection" id="S-11-4-Double-Integrals-Applications-4"><h3 class="heading hide-type">
+</div></article><article class="task exercise-like" id="PA_11_4-5"><h4 class="heading"><span class="codenumber">(d)</span></h4>
+<div class="para" id="PA_11_4-5-1-1">State an iterated integral which, if evaluated, would give the exact mass of the plate.  Do not actually evaluate the integral. (This integral is considerably easier to evaluate in polar coordinates, which we will learn more about in <a href="S-11-5-Double-Integrals-Polar.html" class="internal" title="Section 12.5: Double Integrals in Polar Coordinates">Section 12.5</a>.)</div></article></article></section><section class="subsection" id="S-11-4-Double-Integrals-Applications-4"><h3 class="heading hide-type">
 <span class="type">Subsection</span><span class="space"> </span><span class="codenumber">12.4.1</span><span class="space"> </span><span class="title">Mass</span>
 </h3>
 <div class="para" id="S-11-4-Double-Integrals-Applications-4-2">Density is a measure of some quantity per unit area or volume. For example, we can measure the human population density of some region as the number of humans in that region divided by the area of that region. In physics, the mass density of an object is the mass of the object per unit area or volume. As suggested by <a href="S-11-4-Double-Integrals-Applications.html#PA_11_4" class="xref" data-knowl="./knowl/xref/PA_11_4.html" data-reveal-label="Reveal" data-close-label="Close" title="Preview Activity 12.4.1">Preview Activity 12.4.1</a>, the following holds in general.</div>
-<article class="assemblage assemblage-like" id="Lamina-mass"><h4 class="heading"><span class="title">The mass of a lamina.</span></h4>
+<article class="assemblage assemblage-like" id="Lamina-mass"><h4 class="heading"><span class="title">The Mass of a Lamina.</span></h4>
 <div class="para" id="Lamina-mass-2">If <span class="process-math">\(\delta(x, y)\)</span> describes the density of a lamina defined by a planar region <span class="process-math">\(D\text{,}\)</span> then the <em class="emphasis">mass</em> of <span class="process-math">\(D\)</span> is given by the double integral <span class="process-math">\(\iint_D \delta(x,y) \, dA\text{.}\)</span>
 </div></article><article class="activity project-like" id="A_11_4_3"><h4 class="heading">
 <span class="type">Activity</span><span class="space"> </span><span class="codenumber">12.4.2</span><span class="period">.</span>
 </h4>
-<div class="para" id="A_11_4_3-1-1">Let <span class="process-math">\(D\)</span> be a half-disk lamina of radius 3 in quadrants IV and I, centered at the origin as shown in <a href="S-11-4-Double-Integrals-Applications.html#F_11_4_Mass_exercise" class="xref" data-knowl="./knowl/xref/F_11_4_Mass_exercise.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 12.4.1">Figure 12.4.1</a>. Assume the density at point <span class="process-math">\((x,y)\)</span> is given by <span class="process-math">\(\delta(x,y) = x\text{.}\)</span> Find the exact mass of the lamina.</div> <figure class="figure figure-like" id="F_11_4_Mass_exercise"><div class="image-box" style="width: 50%; margin-left: 25%; margin-right: 25%;"><img src="external/images/fig_11_4_half_circle.svg" role="img" class="contained"></div>
-<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">12.4.1<span class="period">.</span></span><span class="space"> </span>A half disk lamina.</figcaption></figure></article></section><section class="subsection" id="S-11-4-Double-Integrals-Applications-5"><h3 class="heading hide-type">
+<div class="para" id="A_11_4_3-1-1">Let <span class="process-math">\(D\)</span> be a half-disk lamina of radius 3 in quadrants IV and I, centered at the origin as shown in <a href="S-11-4-Double-Integrals-Applications.html#F_11_4_Mass_exercise" class="xref" data-knowl="./knowl/xref/F_11_4_Mass_exercise.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 12.4.1">Figure 12.4.1</a>. Assume the density at point <span class="process-math">\((x,y)\)</span> is given by <span class="process-math">\(\delta(x,y) = x\text{.}\)</span> Find the exact mass of the lamina.</div> <figure class="figure figure-like" id="F_11_4_Mass_exercise"><div class="image-box" style="width: 60%; margin-left: 20%; margin-right: 20%;"><img src="generated/sageplot/img-F_11_4_Mass_exercise.svg" role="img" class="contained"></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">12.4.1<span class="period">.</span></span><span class="space"> </span>A half disk lamina</figcaption></figure> </article></section><section class="subsection" id="S-11-4-Double-Integrals-Applications-5"><h3 class="heading hide-type">
 <span class="type">Subsection</span><span class="space"> </span><span class="codenumber">12.4.2</span><span class="space"> </span><span class="title">Area</span>
 </h3>
 <div class="para" id="S-11-4-Double-Integrals-Applications-5-2">If we consider the situation where the mass-density distribution is constant, we can also see how a double integral may be used to determine the area of a region. Assuming that <span class="process-math">\(\delta(x,y) = 1\)</span> over a closed bounded region <span class="process-math">\(D\text{,}\)</span> where the units of <span class="process-math">\(\delta\)</span> are “mass per unit of area,” it follows that <span class="process-math">\(\iint_D 1 \, dA\)</span> is the mass of the lamina. But since the density is constant, the numerical value of the integral is simply the area.</div>
@@ -752,23 +751,25 @@ true);
 <article class="activity project-like" id="A_11_4_1"><h4 class="heading">
 <span class="type">Activity</span><span class="space"> </span><span class="codenumber">12.4.3</span><span class="period">.</span>
 </h4>
+<div class="introduction" id="A_11_4_1-1">
 <div class="para logical" id="A_11_4_1-1-1">
 <div class="para">Suppose we want to find the area of the bounded region <span class="process-math">\(D\)</span> between the curves</div>
-<div class="displaymath process-math">
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/F_11_4_Area_ex_1.html">
 \begin{equation*}
-y = 1-x^2 \ \ \ \ \ \text{ and }  \ \ \ \ \ y=x-1.
+y = 1-x^2 \quad \quad \text{ and }  \quad \quad y=x-1
 \end{equation*}
 </div>
-</div> <div class="para logical" id="A_11_4_1-1-2">
 <div class="para">A picture of this region is shown in <a href="S-11-4-Double-Integrals-Applications.html#F_11_4_Area_ex_1" class="xref" data-knowl="./knowl/xref/F_11_4_Area_ex_1.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 12.4.2">Figure 12.4.2</a>.</div>
-<ol class="lower-alpha ol-marker-2" id="A_11_4_1-1-2-2">
-<li id="A_11_4_1-1-2-2-1"><div class="para" id="A_11_4_1-1-2-2-1-1">The volume of a solid with constant height is given by the area of the base times the height.  Hence, we may interpret the area of the region <span class="process-math">\(D\)</span> as the volume of a solid with base <span class="process-math">\(D\)</span> and of uniform height 1. That is, the area of <span class="process-math">\(D\)</span> is given by <span class="process-math">\(\iint_D 1 \, dA\text{.}\)</span> Write an iterated integral whose value is <span class="process-math">\(\iint_D 1 \, dA\text{.}\)</span> (Hint: Which order of integration might be more efficient? Why?) <figure class="figure figure-like" id="F_11_4_Area_ex_1"><div class="image-box" style="width: 50%; margin-left: 25%; margin-right: 25%;"><img src="external/images/fig_11_4_area.svg" role="img" class="contained"></div>
-<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">12.4.2<span class="period">.</span></span><span class="space"> </span>The graphs of <span class="process-math">\(y = 1-x^2\)</span> and <span class="process-math">\(y=x-1\text{.}\)</span></figcaption></figure>
-</div></li>
-<li id="A_11_4_1-1-2-2-2"><div class="para" id="A_11_4_1-1-2-2-2-1">Evaluate the iterated integral from (a). What does the result tell you?</div></li>
-</ol>
-</div></article><div class="para" id="S-11-4-Double-Integrals-Applications-5-5">We now formally state the conclusion from our earlier discussion and <a href="S-11-4-Double-Integrals-Applications.html#A_11_4_1" class="xref" data-knowl="./knowl/xref/A_11_4_1.html" data-reveal-label="Reveal" data-close-label="Close" title="Activity 12.4.3">Activity 12.4.3</a>.</div>
-<article class="assemblage assemblage-like" id="Double-integral-area"><h4 class="heading"><span class="title">The double integral and area.</span></h4>
+</div>
+<figure class="figure figure-like" id="F_11_4_Area_ex_1"><div class="image-box" style="width: 60%; margin-left: 20%; margin-right: 20%;"><img src="generated/sageplot/img-F_11_4_Area_ex_1.svg" role="img" class="contained"></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">12.4.2<span class="period">.</span></span><span class="space"> </span>The graphs of <span class="process-math">\(y = 1-x^2\)</span> and <span class="process-math">\(y=x-1\)</span></figcaption></figure>
+</div>
+<article class="task exercise-like" id="A_11_4_1-2"><h5 class="heading"><span class="codenumber">(a)</span></h5>
+<div class="para" id="A_11_4_1-2-1-1">The volume of a solid with constant height is given by the area of the base times the height.  Hence, we may interpret the area of the region <span class="process-math">\(D\)</span> as the volume of a solid with base <span class="process-math">\(D\)</span> and of uniform height 1. That is, the area of <span class="process-math">\(D\)</span> is given by <span class="process-math">\(\iint_D 1 \, dA\text{.}\)</span> Write an iterated integral whose value is <span class="process-math">\(\iint_D 1 \, dA\text{.}\)</span>
+</div>
+<div class="solutions"><details id="A_11_4_1-2-2" class="hint solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Hint</span><span class="period">.</span></summary><div class="hint solution-like knowl__content"><div class="para" id="A_11_4_1-2-2-1">Which order of integration might be more efficient? Why?</div></div></details></div></article><article class="task exercise-like" id="A_11_4_1-3"><h5 class="heading"><span class="codenumber">(b)</span></h5>
+<div class="para" id="A_11_4_1-3-1-1">Evaluate the iterated integral from (a). What does the result tell you?</div></article></article><div class="para" id="S-11-4-Double-Integrals-Applications-5-5">We now formally state the conclusion from our earlier discussion and <a href="S-11-4-Double-Integrals-Applications.html#A_11_4_1" class="xref" data-knowl="./knowl/xref/A_11_4_1.html" data-reveal-label="Reveal" data-close-label="Close" title="Activity 12.4.3">Activity 12.4.3</a>.</div>
+<article class="assemblage assemblage-like" id="Double-integral-area"><h4 class="heading"><span class="title">The Double Integral and Area.</span></h4>
 <div class="para logical" id="Double-integral-area-2">
 <div class="para">Given a closed, bounded region <span class="process-math">\(D\)</span> in the plane, the area of <span class="process-math">\(D\text{,}\)</span> denoted <span class="process-math">\(A(D)\text{,}\)</span> is given by the double integral</div>
 <div class="displaymath process-math">
@@ -891,11 +892,14 @@ M_x = \iint_D y\delta(x,y) \, dA.
 <article class="activity project-like" id="A_11_4_4"><h4 class="heading">
 <span class="type">Activity</span><span class="space"> </span><span class="codenumber">12.4.4</span><span class="period">.</span>
 </h4>
-<div class="para" id="A_11_4_4-1-1">In this activity we determine integrals that represent the center of mass of a lamina <span class="process-math">\(D\)</span> described by the triangular region bounded by the <span class="process-math">\(x\)</span>-axis and the lines <span class="process-math">\(x = 1\)</span> and <span class="process-math">\(y = 2x\)</span> in the first quadrant if the density at point <span class="process-math">\((x, y)\)</span> is <span class="process-math">\(\delta(x, y) = 6x + 6y + 6\text{.}\)</span> A picture of the lamina is shown in <a href="S-11-4-Double-Integrals-Applications.html#F_11_4_COM_ex_1" class="xref" data-knowl="./knowl/xref/F_11_4_COM_ex_1.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 12.4.4">Figure 12.4.4</a>.</div> <figure class="figure figure-like" id="F_11_4_COM_ex_1"><div class="image-box" style="width: 50%; margin-left: 25%; margin-right: 25%;"><img src="external/images/fig_11_4_triangle.svg" role="img" class="contained"></div>
-<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">12.4.4<span class="period">.</span></span><span class="space"> </span>The lamina bounded by the <span class="process-math">\(x\)</span>-axis and the lines <span class="process-math">\(x = 1\)</span> and <span class="process-math">\(y = 2x\)</span> in the first quadrant.</figcaption></figure> <ol class="lower-alpha ol-marker-2" id="A_11_4_4-1-3">
-<li id="A_11_4_4-1-3-1"><div class="para" id="A_11_4_4-1-3-1-1">Set up an iterated integral that represents the mass of the lamina.</div></li>
-<li id="A_11_4_4-1-3-2"><div class="para" id="A_11_4_4-1-3-2-1">Assume the mass of the lamina is 14. Set up two iterated integrals that represent the coordinates of the center of mass of the lamina.</div></li>
-</ol></article></section><section class="subsection" id="S-11-4-Double-Integrals-Applications-7"><h3 class="heading hide-type">
+<div class="introduction" id="A_11_4_4-1">
+<div class="para" id="A_11_4_4-1-1">In this activity we determine integrals that represent the center of mass of a lamina <span class="process-math">\(D\)</span> described by the triangular region bounded by the <span class="process-math">\(x\)</span>-axis and the lines <span class="process-math">\(x = 1\)</span> and <span class="process-math">\(y = 2x\)</span> in the first quadrant if the density at point <span class="process-math">\((x, y)\)</span> is <span class="process-math">\(\delta(x, y) = 6x + 6y + 6\text{.}\)</span> A picture of the lamina is shown in <a href="S-11-4-Double-Integrals-Applications.html#F_11_4_COM_ex_1" class="xref" data-knowl="./knowl/xref/F_11_4_COM_ex_1.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 12.4.4">Figure 12.4.4</a>.</div>
+<figure class="figure figure-like" id="F_11_4_COM_ex_1"><div class="image-box" style="width: 50%; margin-left: 25%; margin-right: 25%;"><img src="external/images/fig_11_4_triangle.svg" role="img" class="contained"></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">12.4.4<span class="period">.</span></span><span class="space"> </span>The lamina bounded by the <span class="process-math">\(x\)</span>-axis and the lines <span class="process-math">\(x = 1\)</span> and <span class="process-math">\(y = 2x\)</span> in the first quadrant.</figcaption></figure>
+</div>
+<article class="task exercise-like" id="A_11_4_4-2"><h5 class="heading"><span class="codenumber">(a)</span></h5>
+<div class="para" id="A_11_4_4-2-1-1">Set up an iterated integral that computes the total mass of the lamina.</div></article><article class="task exercise-like" id="A_11_4_4-3"><h5 class="heading"><span class="codenumber">(b)</span></h5>
+<div class="para" id="A_11_4_4-3-1-1">Assume the total mass of the lamina is 14. Set up two iterated integrals that represent the coordinates of the center of mass of the lamina.</div></article></article></section><section class="subsection" id="S-11-4-Double-Integrals-Applications-7"><h3 class="heading hide-type">
 <span class="type">Subsection</span><span class="space"> </span><span class="codenumber">12.4.4</span><span class="space"> </span><span class="title">Probability</span>
 </h3>
 <div class="para logical" id="S-11-4-Double-Integrals-Applications-7-2">
@@ -913,7 +917,7 @@ M_x = \iint_D y\delta(x,y) \, dA.
 f(x,y) = K e^{-(x^2+y^2)}
 \end{equation*}
 </div>
-<div class="para">for some constant positive <span class="process-math">\(K\text{.}\)</span> If we assume that the player is consistent enough so that the dart always strikes the board, then the probability that the dart strikes the board somewhere is 1, and the distribution function <span class="process-math">\(f\)</span> will have to satisfy<details class="ptx-footnote" aria-live="polite" id="S-11-4-Double-Integrals-Applications-7-3-8"><summary class="ptx-footnote__number" title="Footnote 12.4.1"><sup> 1 </sup></summary><div class="ptx-footnote__contents" id="S-11-4-Double-Integrals-Applications-7-3-8">This makes <span class="process-math">\(K = \frac{1}{\pi\left(1-e^{-100}\right)}\text{,}\)</span> which you can check.</div></details>
+<div class="para">for some constant positive <span class="process-math">\(K\text{.}\)</span> If we assume that the player is consistent enough so that the dart always strikes the board, then the total probability that the dart strikes the board somewhere is 1, and the distribution function <span class="process-math">\(f\)</span> will have to satisfy<details class="ptx-footnote" aria-live="polite" id="S-11-4-Double-Integrals-Applications-7-3-8"><summary class="ptx-footnote__number" title="Footnote 12.4.1"><sup> 1 </sup></summary><div class="ptx-footnote__contents" id="S-11-4-Double-Integrals-Applications-7-3-8">This makes <span class="process-math">\(K = \frac{1}{\pi\left(1-e^{-100}\right)}\text{,}\)</span> which you can check.</div></details>
 </div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -972,15 +976,16 @@ P((x,y)\in R) = \iint_R f(x,y) \, dA.
 <article class="activity project-like" id="A_11_4_6"><h4 class="heading">
 <span class="type">Activity</span><span class="space"> </span><span class="codenumber">12.4.5</span><span class="period">.</span>
 </h4>
-<div class="para logical" id="A_11_4_6-1-1">
+<div class="introduction" id="A_11_4_6-1"><div class="para logical" id="A_11_4_6-1-1">
 <div class="para">A firm manufactures smoke detectors. Two components for the detectors come from different suppliers — one in Michigan and one in Ohio. The company studies these components for their reliability and their data suggests that if <span class="process-math">\(x\)</span> is the life span (in years) of a randomly chosen component from the Michigan supplier and <span class="process-math">\(y\)</span> the life span (in years) of a randomly chosen component from the Ohio supplier, then the joint probability density function <span class="process-math">\(f\)</span> might be given by</div>
 <div class="displaymath process-math">
 \begin{equation*}
 f(x,y) = e^{-x} e^{-y}.
 \end{equation*}
 </div>
-<ol class="lower-alpha ol-marker-2" id="A_11_4_6-1-1-6">
-<li id="A_11_4_6-1-1-6-1"><div class="para logical" id="A_11_4_6-1-1-6-1-1">
+</div></div>
+<article class="task exercise-like" id="A_11_4_6-2"><h5 class="heading"><span class="codenumber">(a)</span></h5>
+<div class="para logical" id="A_11_4_6-2-1-1">
 <div class="para">Theoretically, the components might last forever, so the domain <span class="process-math">\(D\)</span> of the function <span class="process-math">\(f\)</span> is the set <span class="process-math">\(D\)</span> of all <span class="process-math">\((x,y)\)</span> such that <span class="process-math">\(x \ge 0\)</span> and <span class="process-math">\(y \ge 0\text{.}\)</span> To show that <span class="process-math">\(f\)</span> is a probability density function on <span class="process-math">\(D\)</span> we need to demonstrate that</div>
 <div class="displaymath process-math">
 \begin{equation*}
@@ -994,13 +999,11 @@ f(x,y) = e^{-x} e^{-y}.
 \end{equation*}
 </div>
 <div class="para">Use your knowledge of improper integrals to verify that <span class="process-math">\(f\)</span> is indeed a probability density function.</div>
-</div></li>
-<li id="A_11_4_6-1-1-6-2"><div class="para" id="A_11_4_6-1-1-6-2-1">Assume that the smoke detector fails only if both of the supplied components fail. To determine the probability that a randomly selected detector will fail within one year, we will need to determine the probability that the life span of each component is between 0 and 1 years. Set up an appropriate iterated integral, and evaluate the integral to determine the probability.</div></li>
-<li id="A_11_4_6-1-1-6-3"><div class="para" id="A_11_4_6-1-1-6-3-1">What is the probability that a randomly chosen smoke detector will fail between years 3 and 7?</div></li>
-<li id="A_11_4_6-1-1-6-4"><div class="para" id="A_11_4_6-1-1-6-4-1">Suppose that the manufacturer determines that one of the components is more likely to fail than the other, and hence conjectures that the probability density function is instead <span class="process-math">\(f(x,y) = K e^{-x} e^{-2y}.\)</span>  What is the value of <span class="process-math">\(K\text{?}\)</span>
-</div></li>
-</ol>
-</div></article></section><section class="subsection" id="S-11-4-Double-Integrals-Applications-8"><h3 class="heading hide-type">
+</div></article><article class="task exercise-like" id="A_11_4_6-3"><h5 class="heading"><span class="codenumber">(b)</span></h5>
+<div class="para" id="A_11_4_6-3-1-1">Assume that the smoke detector fails only if both of the supplied components fail. To determine the probability that a randomly selected detector will fail within one year, we will need to determine the probability that the life span of each component is between 0 and 1 years. Set up an appropriate iterated integral, and evaluate the integral to determine the probability.</div></article><article class="task exercise-like" id="A_11_4_6-4"><h5 class="heading"><span class="codenumber">(c)</span></h5>
+<div class="para" id="A_11_4_6-4-1-1">What is the probability that a randomly chosen smoke detector will fail between years 3 and 7?</div></article><article class="task exercise-like" id="A_11_4_6-5"><h5 class="heading"><span class="codenumber">(d)</span></h5>
+<div class="para" id="A_11_4_6-5-1-1">Suppose that the manufacturer determines that one of the components is more likely to fail than the other, and hence conjectures that the probability density function is instead <span class="process-math">\(f(x,y) = K e^{-x} e^{-2y}.\)</span>  What is the value of <span class="process-math">\(K\text{?}\)</span>
+</div></article></article></section><section class="subsection" id="S-11-4-Double-Integrals-Applications-8"><h3 class="heading hide-type">
 <span class="type">Subsection</span><span class="space"> </span><span class="codenumber">12.4.5</span><span class="space"> </span><span class="title">Summary</span>
 </h3>
 <ul class="disc" id="S-11-4-Double-Integrals-Applications-8-2">
