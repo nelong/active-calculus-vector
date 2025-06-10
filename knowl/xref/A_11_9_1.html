@@ -12,25 +12,35 @@
 </head>
 <body class="ignore-math">
 <article class="activity project-like"><h4 class="heading">
-<span class="type">Activity</span><span xmlns:xlink="http://www.w3.org/1999/xlink" class="space"> </span><span class="codenumber">12.9.2</span><span xmlns:xlink="http://www.w3.org/1999/xlink" class="period">.</span>
+<span class="type">Activity</span><span xmlns:xlink="http://www.w3.org/1999/xlink" class="space"> </span><span class="codenumber">12.8.2</span><span xmlns:xlink="http://www.w3.org/1999/xlink" class="period">.</span>
 </h4>
+<div class="introduction">
 <div xmlns:xlink="http://www.w3.org/1999/xlink" class="para logical">
-<div class="para">Consider the change of variables</div>
-<div class="displaymath process-math">
+<div class="para">In this activity, we will be looking at what happens to the region <span class="process-math">\(D\text{,}\)</span> as shown in <a href="S-11-9-Change-of-Variable.html#irreg-region" class="xref" data-knowl="./knowl/xref/irreg-region.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 12.8.5">Figure 12.8.5</a>, under the change of coordinates given by</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/irreg-region.html">
 \begin{equation*}
-x = s + 2 t \ \ \ \ \ \text{ and }  \ \ \ \ \ y = 2 s + \sqrt{t}.
+x=\sqrt{st} \quad \text{ and } \quad y =\sqrt{\frac{s}{t}}
 \end{equation*}
 </div>
-</div> <div xmlns:xlink="http://www.w3.org/1999/xlink" class="para logical">
-<div class="para">Let’s see what happens to the rectangle <span class="process-math">\(T = [0,1] \times [1,4]\)</span> in the <span class="process-math">\(st\)</span>-plane under this change of variable.</div>
-<ol class="lower-alpha ol-marker-2" id="A_11_9_1-1-2-3">
-<li><div class="para">Draw a labeled picture of <span class="process-math">\(T\)</span> in the <span class="process-math">\(st\)</span>-plane.</div></li>
-<li><div class="para">Find the image of the <span class="process-math">\(st\)</span>-vertex <span class="process-math">\((0,1)\)</span> in the <span class="process-math">\(xy\)</span>-plane.  Likewise, find the respective images of the other three vertices of the rectangle <span class="process-math">\(T\text{:}\)</span> <span class="process-math">\((0,4)\text{,}\)</span> <span class="process-math">\((1,1)\text{,}\)</span> and <span class="process-math">\((1,4)\text{.}\)</span>
-</div></li>
-<li><div class="para">In the <span class="process-math">\(xy\)</span>-plane, draw a labeled picture of the image, <span class="process-math">\(T'\text{,}\)</span> of the original <span class="process-math">\(st\)</span>-rectangle <span class="process-math">\(T\text{.}\)</span> What appears to be the shape of the image, <span class="process-math">\(T'\text{?}\)</span>
-</div></li>
-<li><div class="para">To transform an integral with a change of variables,  we need to determine the area element <span class="process-math">\(dA\)</span> for image of the  transformed rectangle. Note that <span class="process-math">\(T'\)</span> is not exactly a parallelogram since the equations that define the transformation are not linear. But we can approximate the area of <span class="process-math">\(T'\)</span> with the area of a parallelogram. How would we find the area of a parallelogram that approximates the area of the <span class="process-math">\(xy\)</span>-figure <span class="process-math">\(T'\text{?}\)</span> (Hint: Remember what the cross product of two vectors tells us.)</div></li>
-</ol>
-</div></article><span class="incontext"><a class="internal" href="S-11-9-Change-of-Variable.html#A_11_9_1">in-context</a></span>
+</div>
+<figure class="figure figure-like"><div xmlns:xlink="http://www.w3.org/1999/xlink" class="image-box" style="width: 60%; margin-left: 20%; margin-right: 20%;"><img src="generated/sageplot/img-irreg-region.svg" role="img" class="contained"></div>
+<figcaption xmlns:xlink="http://www.w3.org/1999/xlink"><span class="type">Figure</span><span class="space"> </span><span class="codenumber">12.8.5<span class="period">.</span></span><span class="space"> </span></figcaption></figure>
+</div>
+<article class="task exercise-like"><h5 class="heading"><span class="codenumber">(a)</span></h5>
+<div xmlns:xlink="http://www.w3.org/1999/xlink" class="para">Find the coordinates of the four corner points of the region <span class="process-math">\(D\text{.}\)</span>
+</div></article><article class="task exercise-like"><h5 class="heading"><span class="codenumber">(b)</span></h5>
+<div xmlns:xlink="http://www.w3.org/1999/xlink" class="para logical">
+<div class="para">Given the form of the change of variable equations above, it is not obvious how to change <span class="process-math">\((x,y)\)</span> points into <span class="process-math">\((s,t)\)</span> points. Show that the following equations are satisfied by our change of variable equations:</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/st-plane1.html">
+\begin{equation*}
+yx=s \quad \text{and} \quad \frac{y}{x}=\frac{1}{t}
+\end{equation*}
+</div>
+<div class="para">Use these new relationships between our coordinates to convert each of these four corner points from <span class="process-math">\(xy\)</span>-coordinates to <span class="process-math">\(st\)</span>-coordinates and draw these points on <a href="S-11-9-Change-of-Variable.html#st-plane1" class="xref" data-knowl="./knowl/xref/st-plane1.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 12.8.6">Figure 12.8.6</a>.</div>
+</div> <figure class="figure figure-like"><div xmlns:xlink="http://www.w3.org/1999/xlink" class="image-box" style="width: 60%; margin-left: 20%; margin-right: 20%;"><img src="generated/sageplot/img-st-plane1.svg" role="img" class="contained"></div>
+<figcaption xmlns:xlink="http://www.w3.org/1999/xlink"><span class="type">Figure</span><span class="space"> </span><span class="codenumber">12.8.6<span class="period">.</span></span><span class="space"> </span></figcaption></figure></article><article class="task exercise-like"><h5 class="heading"><span class="codenumber">(c)</span></h5>
+<div xmlns:xlink="http://www.w3.org/1999/xlink" class="para">We hope that the curved boundaries of the region <span class="process-math">\(D\)</span> get transformed to horizontal and vertical lines in the <span class="process-math">\(st\)</span>-plane, as is suggested by the result of the previous task. Let’s look at how each of the boundary curves gets transformed by our change of variables formula.</div> <div xmlns:xlink="http://www.w3.org/1999/xlink" class="para">Use the change of variables equations to write <span class="process-math">\(y=2x\)</span> in terms of <span class="process-math">\(s\)</span> and <span class="process-math">\(t\)</span> coordinates and solve for either <span class="process-math">\(s\)</span> or <span class="process-math">\(t\)</span> (as would make sense). Plot the resulting line on <a href="S-11-9-Change-of-Variable.html#st-plane1" class="xref" data-knowl="./knowl/xref/st-plane1.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 12.8.6">Figure 12.8.6</a>.</div></article><article class="task exercise-like"><h5 class="heading"><span class="codenumber">(d)</span></h5>
+<div xmlns:xlink="http://www.w3.org/1999/xlink" class="para">Write each of the other boundary curves of <span class="process-math">\(D\)</span> (<span class="process-math">\(y=\frac{2}{x}, y=\frac{1}{2x}, y=\frac{x}{2}\)</span>) in terms of <span class="process-math">\(s\)</span> and <span class="process-math">\(t\)</span> coordinates, solve for either <span class="process-math">\(s\)</span> or <span class="process-math">\(t\)</span> (as would make sense), and plot the resulting lines on <a href="S-11-9-Change-of-Variable.html#st-plane1" class="xref" data-knowl="./knowl/xref/st-plane1.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 12.8.6">Figure 12.8.6</a>.</div></article><article class="task exercise-like"><h5 class="heading"><span class="codenumber">(e)</span></h5>
+<div xmlns:xlink="http://www.w3.org/1999/xlink" class="para">We have now confirmed that our irregular region <span class="process-math">\(D\)</span> gets mapped to a rectangle in the <span class="process-math">\(st\)</span>-plane by the change of variables formula given. Some areas of the region <span class="process-math">\(D\)</span> needed to be stretched more than others in order to straighten out our sides into the nice rectangle you have drawn on <a href="S-11-9-Change-of-Variable.html#st-plane1" class="xref" data-knowl="./knowl/xref/st-plane1.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 12.8.6">Figure 12.8.6</a>. Write a few sentences to describe what part of <span class="process-math">\(D\)</span> you think is stretched the most in the transformation from <span class="process-math">\(xy\)</span>-coordinates to <span class="process-math">\(st\)</span>-coordinates.</div></article></article><span class="incontext"><a class="internal" href="S-11-9-Change-of-Variable.html#A_11_9_1">in-context</a></span>
 </body>
 </html>

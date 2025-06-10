@@ -152,7 +152,7 @@ n=7;m=7;a1=x1;a2=x2;b1=y1;b2=y2;
 #c1 is surface color     o1 is surface opacity
 #c2 and o2 are for constant t value traces
 #c3 and o3 are for constant s value traces
-c1="lightblue"; c2="black"; c3="black"; o1=0.2; o2=0.3; o3=0.3;
+c1="lightblue"; c2="black"; c3="black"; o1=0.5; o2=0.3; o3=0.3;
 plot1=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1)
 for i in range(n+1):
   sv=a1+i/n*(a2-a1)
@@ -162,7 +162,8 @@ for i in range(m+1):
   plot1+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
 a=0.75;
 plot1+=parametric_plot3d((a,t,s*f(a,t)),(t,b1,b2),(s,0,1),color="blue",opacity=0.6)
-show(plot1,viewpoint=[[-0.2251,-0.5901,-0.7753],147.05],camera_position=[7.5902,13.4964,5.4958],aspect_ratio=(1,1,.2))
+plot1+=text3d("x=a",(a,y1,20),color="blue",fontsize=25)
+show(plot1,viewpoint=[[-0.2151,-0.5915,-0.7771],148.44],camera_position=[9.0426,10.7901,6.3889],aspect_ratio=(1,1,.2))
 </script></pre></div>
 </body>
 </html>

@@ -144,22 +144,32 @@ window.MathJax = {
 \)</span></div>
 <div style="width:600px; height:600px; display: block; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;"><pre xmlns:xlink="http://www.w3.org/1999/xlink" class="ptx-sagecell sage-interact"><script type="text/x-sage">var('t,s,x,y,z')
 from sage.plot.plot3d.plot3d import axes
-scale=3
+scale=3.5
 plot2=axes(scale,2,color="black",frame=False,aspect_ratio=1,opacity=0.2)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
-f(x,y)=(3-(-1.5+x)^2/2-(1-y)^2/1.5)*(3+sin(1.6*x*y))/4
-x1=1.5;x2=2.5; y1=0.75;y2=2;
+f(x,y)=(3-(-1.5+x)^2/2+(1-y)^2/1.5)-x*y/2
+x1=0.5;x2=2.5; y1=0.75;y2=2;
 plot2+=polygon([(x1,y1,0),(x2,y1,0),(x2,y2,0),(x1,y2,0)],thickness=3,color="red",opacity=0.5)
-plot2+=line([(x1,y2,0),(x1,0,0)],color="black",thickness=2)+text3d("x=x\u2080",(x1,-0.5,0),color="black",fontsize=20)
-plot2+=line([(x2,y2,0),(x2,0,0)],color="black",thickness=2)+text3d("x=x\u2081",(x2,-0.5,0),color="black",fontsize=20)
-plot2+=line([(x2,y1,0),(0,y1,0)],color="black",thickness=2)+text3d("y=y\u2080",(-0.5,y1,0),color="black",fontsize=20)
-plot2+=line([(x2,y2,0),(0,y2,0)],color="black",thickness=2)+text3d("y=y\u2080",(-0.5,y2,0),color="black",fontsize=20)
-plot2+=parametric_plot3d((x1+t*(x2-x1),y1,s*f(x1+t*(x2-x1),y1)),(t,0,1),(s,0,1),color="gray",opacity=0.3)
-plot2+=parametric_plot3d((x1+t*(x2-x1),y2,s*f(x1+t*(x2-x1),y2)),(t,0,1),(s,0,1),color="gray",opacity=0.3)
-plot2+=parametric_plot3d((x1,y1+t*(y2-y1),s*f(x1,y1+t*(y2-y1))),(t,0,1),(s,0,1),color="gray",opacity=0.3)
-plot2+=parametric_plot3d((x2,y1+t*(y2-y1),s*f(x2,y1+t*(y2-y1))),(t,0,1),(s,0,1),color="gray",opacity=0.3)
+plot2+=line([(x1,y2,0),(x1,0,0)],color="black",thickness=2)+text3d("x=a",(x1,-0.5,0),color="black",fontsize=20)
+plot2+=line([(x2,y2,0),(x2,0,0)],color="black",thickness=2)+text3d("x=b",(x2,-0.5,0),color="black",fontsize=20)
+plot2+=line([(x2,y1,0),(0,y1,0)],color="black",thickness=2)+text3d("y=c",(-0.5,y1,0),color="black",fontsize=20)
+plot2+=line([(x2,y2,0),(0,y2,0)],color="black",thickness=2)+text3d("y=d",(-0.5,y2,0),color="black",fontsize=20)
+plot2+=parametric_plot3d((x1+t*(x2-x1),y1,s*f(x1+t*(x2-x1),y1)),(t,0,1),(s,0,1),color="gray",opacity=0.4)
+plot2+=parametric_plot3d((x1+t*(x2-x1),y2,s*f(x1+t*(x2-x1),y2)),(t,0,1),(s,0,1),color="gray",opacity=0.4)
+plot2+=parametric_plot3d((x1,y1+t*(y2-y1),s*f(x1,y1+t*(y2-y1))),(t,0,1),(s,0,1),color="gray",opacity=0.4)
+plot2+=parametric_plot3d((x2,y1+t*(y2-y1),s*f(x2,y1+t*(y2-y1))),(t,0,1),(s,0,1),color="gray",opacity=0.4)
+#plot1+=parametric_plot3d((x1(t)+x0,y1(t)+y0,f(x1(t),y1(t))*s) ,(t,0,2*pi),(s,0,1),color="gray",opacity=0.6)
+#plot1+=parametric_plot3d((s*x1(t)+x0,s*y1(t)+y0,f(s*x1(t),s*y1(t))),(t,0,2*pi),(s,0,1),color="blue",opacity=0.7)
+#plot1+=parametric_plot3d((s*x1(t)+x0,s*y1(t)+y0,0),(t,0,2*pi),(s,0,1),color="red",opacity=0.5)
+#step=1
+#plot1+=plot3d(f(x-x0,y-y0),(x,x0-step,x0+step),(y,y0-step,y0+step),color="blue",opacity=0.15,mesh=True,plot_points=13)
 param(s,t)=(s,t,f(s,t))
-n=7;m=7;a1=x1;a2=x2;b1=y1;b2=y2
-c1="blue"; c2="black"; c3="black"; o1=0.3; o2=0.5; o3=0.5;
+#set up grid      n is number of steps in s    m is number of steps in t  
+#a1 is min s    a2 is max s   b1 is min t    b2 is max t
+n=7;m=7;a1=x1;a2=x2;b1=y1;b2=y2; 
+#c1 is surface color     o1 is surface opacity
+#c2 and o2 are for constant t value traces
+#c3 and o3 are for constant s value traces
+c1="lightblue"; c2="black"; c3="black"; o1=0.4; o2=0.5; o3=0.5;
 plot99=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1)
 for i in range(n+1):
   sv=a1+i/n*(a2-a1)
@@ -168,7 +178,7 @@ for i in range(m+1):
   tv=b1+i/m*(b2-b1)
   plot99+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
 plot2+=plot99
-show(plot2,viewpoint=[[-0.9793,-0.1081,-0.1713],65.59],camera_position=[3.6055,-6.2764,4.3523])
+show(plot2,viewpoint=[[-0.2464,-0.5374,-0.8065],139.41],camera_position=[7.6361,6.785,5.0686])
 </script></pre></div>
 </body>
 </html>
