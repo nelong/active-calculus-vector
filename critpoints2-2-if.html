@@ -142,18 +142,18 @@ window.MathJax = {
 \definecolor{fillinmathshade}{gray}{0.9}
 \newcommand{\fillinmath}[1]{\mathchoice{\colorbox{fillinmathshade}{$\displaystyle     \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\textstyle        \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptstyle      \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptscriptstyle\phantom{\,#1\,}$}}}
 \)</span></div>
-<div style="width:600px; height:600px; display: block; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;"><pre class="ptx-sagecell sage-interact"><script type="text/x-sage">from sage.plot.plot3d.plot3d import axes
+<div style="width:600px; height:750px; display: block; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;"><pre class="ptx-sagecell sage-interact"><script type="text/x-sage">from sage.plot.plot3d.plot3d import axes
 var('x,y,z,t,s')
 scale=2
 @interact
 def maxmin(sb=selector(['Local Maximum','Local Minimum','Saddle Point'],label="Surface Options:"),d=slider(0,6.2,0.1,default=0.8,display_value=False,label="direction")):
-  plot20=axes(scale,2,color="black",frame=False,aspect_ratio=1)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
+  plot20=axes(scale,1,color="black",frame=False,aspect_ratio=1)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
   if(sb=='Local Maximum'):
     param(s,t)=(s*cos(t),s*sin(t),s^2+0.5); h=0.5;
   if(sb=='Local Minimum'):
-    param(s,t)=(s*cos(t),s*sin(t),2.25-s^2); h=2.25;
+    param(s,t)=(s*cos(t),s*sin(t),1.25-s^2); h =1.25;
   if(sb=='Saddle Point'):
-    param(s,t)=(s*cos(t),s*sin(t),s^2*cos(2*t)); h=0;
+    param(s,t)=(s*cos(t),s*sin(t),s^2*cos(2*t)); h =0;
   #param(s,t)=(s,t,f(s,t))
   #set up grid      n is number of steps in s    m is number of steps in t  
   #a1 is min s    a2 is max s   b1 is min t    b2 is max t
@@ -161,7 +161,7 @@ def maxmin(sb=selector(['Local Maximum','Local Minimum','Saddle Point'],label="S
   #c1 is surface color     o1 is surface opacity
   #c2 and o2 are for constant t value traces
   #c3 and o3 are for constant s value traces
-  c1="gray"; c2="black"; c3="black"; o1=0.6; o2=0.5; o3=0.5;
+  c1="gray"; c2="gray"; c3="gray"; o1=0.4; o2=0.5; o3=0.5;
   plot99=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1)
   for i in range(n+1):
     sv=a1+i/n*(a2-a1)

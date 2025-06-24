@@ -144,11 +144,10 @@ window.MathJax = {
 \)</span></div>
 <div style="width:600px; height:600px; display: block; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;"><pre class="ptx-sagecell sage-interact"><script type="text/x-sage">var('t,s,x,y,z')
 from sage.plot.plot3d.plot3d import axes
-scale=1.5
+scale=2
 plot7=axes(scale,1,color="black",frame=False,aspect_ratio=1,opacity=0.35)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
 f(x,y)=(x-0.5)*(y-0.5)
 x1=-1;x2=1; y1=-1;y2=1;
-tc="black";sc="orange";bc="red"
 param(s,t)=(s,t,f(s,t))
 #set up grid      n is number of steps in s    m is number of steps in t  
 #a1 is min s    a2 is max s   b1 is min t    b2 is max t
@@ -156,20 +155,21 @@ n=7;m=7;a1=x1;a2=x2;b1=y1;b2=y2;
 #c1 is surface color     o1 is surface opacity
 #c2 and o2 are for constant t value traces
 #c3 and o3 are for constant s value traces
-c1="blue"; c2="black"; c3="black"; o1=0.5; o2=0.5; o3=0.5;
+c1="lightblue"; c2="black"; c3="black"; o1=1; o2=0.7; o3=0.7;
+plot7+=line([(x1,y1,0),(x2,y1,0),(x2,y2,0),(x1,y2,0),(x1,y1,0)],thickness=3,color="black",opacity=0.75)+text3d("R",(1.25,1.25,0),color="black",fontsize=25)
 plot7+=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1)
 for i in range(n+1):
-  sv=a1+i/n*(a2-a1)
-  plot7+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c2,opacity=o2)
+    sv=a1+i/n*(a2-a1)
+    plot7+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c2,opacity=o2)
 for i in range(m+1):
-  tv=b1+i/m*(b2-b1)
-  plot7+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
+    tv=b1+i/m*(b2-b1)
+    plot7+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
 for i in range(-4,5):
-  val=i*3/8;
-  plot7+=parametric_plot3d((s,val,0),(s,-1.5,1.5),color="gray",opacity=.6)
-  plot7+=parametric_plot3d((val,s,0),(s,-1.5,1.5),color="gray",opacity=.6)
-plot7+=parametric_plot3d((s,t,0),(s,-1.5,1.5),(t,-1.5,1.5),color="gray",opacity=0.2)
-show(plot7,viewpoint=[[-0.4427,-0.4917,-0.7498],111.96],camera_position=[6.088,1.5166,2.6543])
+    val=i*3/8;
+    plot7+=parametric_plot3d((s,val,0),(s,-1.5,1.5),color="gray",opacity=.6)
+    plot7+=parametric_plot3d((val,s,0),(s,-1.5,1.5),color="gray",opacity=.6)
+plot7+=parametric_plot3d((s,t,0),(s,-1.5,1.5),(t,-1.5,1.5),color="gray",opacity=0.1)
+show(plot7,viewpoint=[[-0.4104,-0.5179,-0.7505],118.51],camera_position=[7.1519,2.061,3.4685])
 </script></pre></div>
 </body>
 </html>

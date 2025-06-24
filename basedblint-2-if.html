@@ -145,14 +145,14 @@ window.MathJax = {
 <div style="width:600px; height:600px; display: block; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;"><pre class="ptx-sagecell sage-interact"><script type="text/x-sage">var('t,s,x,y,z')
 from sage.plot.plot3d.plot3d import axes
 scale=3
-plot1=axes(scale,2,color="black",frame=False,aspect_ratio=1)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
+plot1=axes(scale,1,color="black",frame=False,aspect_ratio=1)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
 f(x,y)=3-(0.5+x)^2/2-(1-y)^2/1.5
 x0=1.75;y0=2;
 x1(t)=(cos(t)^3+1)*sin(t)/1.5
 y1(t)=(sin(t)+1.5)*cos(t)/2
 plot1+=parametric_plot3d((x1(t)+x0,y1(t)+y0,0),(t,0,2*pi),thickness=3,color="red")
 plot1+=parametric_plot3d((x1(t)+x0,y1(t)+y0,f(x1(t),y1(t))*s) ,(t,0,2*pi),(s,0,1),color="gray",opacity=0.6)
-plot1+=parametric_plot3d((s*x1(t)+x0,s*y1(t)+y0,f(s*x1(t),s*y1(t))),(t,0,2*pi),(s,0,1),color="lightblue",opacity=0.8)
+plot1+=parametric_plot3d((s*x1(t)+x0,s*y1(t)+y0,f(s*x1(t),s*y1(t))),(t,0,2*pi),(s,0,1),color="lightblue",opacity=0.9)
 plot1+=parametric_plot3d((s*x1(t)+x0,s*y1(t)+y0,0),(t,0,2*pi),(s,0,1),color="red",opacity=0.8)
 step=1
 #plot1+=plot3d(f(x-x0,y-y0),(x,x0-step,x0+step),(y,y0-step,y0+step),color="blue",opacity=0.15,mesh=True,plot_points=13)
@@ -163,7 +163,7 @@ n=7;m=7;a1=x0-step;a2=x0+step;b1=y0-step;b2=y0+step;
 #c1 is surface color     o1 is surface opacity
 #c2 and o2 are for constant t value traces
 #c3 and o3 are for constant s value traces
-c1="blue"; c2="gray"; c3="gray"; o1=0.25; o2=0.6; o3=0.6;
+c1="gray"; c2="gray"; c3="gray"; o1=0.4; o2=0.6; o3=0.6;
 plot99=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1)
 for i in range(n+1):
   sv=a1+i/n*(a2-a1)
@@ -172,7 +172,7 @@ for i in range(m+1):
   tv=b1+i/m*(b2-b1)
   plot99+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
 plot1+=plot99
-show(plot1,viewpoint=[[-0.9857,-0.0853,-0.1452],61.62],camera_position=[3.0032,-5.8196,5.5968])
+show(plot1,viewpoint=[[-0.9428,-0.1952,-0.2702],74.93],camera_position=[4.9761,-5.7972,4.0654])
 </script></pre></div>
 </body>
 </html>

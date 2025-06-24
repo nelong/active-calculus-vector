@@ -148,7 +148,22 @@ var('x,y,z')
 d1=100
 d2=1
 g(x,y)=x^2*sin(2*y)/9.8
-plot11+=plot3d(g,(x,0,200),(y,0,pi/2),color="gray",plot_points=21,opacity=0.8,mesh=True,frame=False)
+#plot11=plot3d(g,(x,0,200),(y,0,pi/2),color="gray",plot_points=21,opacity=0.6,mesh=True,frame=False)
+param(s,t)=(s,t,g(s,t));s1=0;s2=200;t1=0;t2=pi/2;
+#set up grid      n is number of steps in s    m is number of steps in t  
+#a1 is min s    a2 is max s   b1 is min t    b2 is max t
+n=9;m=11;a1=s1;a2=s2;b1=t1;b2=t2; 
+#c1 is surface color     o1 is surface opacity
+#c2 and o2 are for constant t value traces
+#c3 and o3 are for constant s value traces
+c1="gray"; c2="gray"; c3="gray"; o1=0.4; o2=0.8; o3=0.8;
+plot11+=parametric_plot3d(param,(s,s1,s2),(t,t1,t2),color=c1,opacity=o1)
+for i in range(n+1):
+    sv=a1+i/n*(a2-a1)
+    plot11+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c2,opacity=o2)
+for i in range(m+1):
+    tv=b1+i/m*(b2-b1)
+    plot11+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
 plot11+=parametric_plot3d((x,0.6,g(x,0.6)),(x,0,200),color="red",thickness=3)
 plot11+=parametric_plot3d((150,y,g(150,y)),(y,0,pi/2),color="blue",thickness=3)
 plot11+=parametric_plot3d((x,pi/2+d2,g(x,0.6)),(x,0,200),color="red",thickness=3)
@@ -158,7 +173,7 @@ plot11+=parametric_plot3d((200+d1,y,z),(y,0,pi/2),(z,0,4100),color="gray",plot_p
 plot11+=text3d("x",(100,pi/2+d2,-300),fontsize=50)
 plot11+=text3d("z",(200+d1,pi/2+d2,4100),fontsize=50)
 plot11+=text3d("y",(200+d1,0.75,-300),fontsize=50)
-show(plot11,aspect_ratio=[1,100,0.05],viewpoint=[[-0.8958,0.2603,0.3602],77.78],camera_position=[-150.5634,-345.094,280.5231])
+show(plot11,aspect_ratio=[1,100,0.05],viewpoint=[[-0.8958,0.2603,0.3602],77.78],camera_position=[-150.5634,-345.094,280.5231],frame=False)
 </script></pre></div>
 </body>
 </html>

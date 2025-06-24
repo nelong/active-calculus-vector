@@ -142,28 +142,31 @@ window.MathJax = {
 \definecolor{fillinmathshade}{gray}{0.9}
 \newcommand{\fillinmath}[1]{\mathchoice{\colorbox{fillinmathshade}{$\displaystyle     \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\textstyle        \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptstyle      \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptscriptstyle\phantom{\,#1\,}$}}}
 \)</span></div>
-<div style="width:600px; height:1050px; display: block; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;"><pre class="ptx-sagecell sage-interact"><script type="text/x-sage">var('x,y,z,t,s')
-from sage.plot.plot3d.plot3d import axes
-scale=2
-plot6=axes(scale,2,color="black",frame=False,aspect_ratio=1)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
-plot6+=parametric_plot3d((s,t,0),(s,-2,2),(t,-2,2),color="gray",opacity=0.05,mesh=True,plot_points=5)
+<div style="width:600px; height:1050px; display: block; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;"><pre class="ptx-sagecell sage-interact"><script type="text/x-sage">from sage.plot.plot3d.plot3d import axes
+var('x,y,z,t,s')
+xscale=2;yscale=2;zscale=4;
 f(x,y)=x^2-y^2
-param(s,t)=(s,t,f(s,t))
-#set up grid      n is number of steps in s    m is number of steps in t  
-#a1 is min s    a2 is max s   b1 is min t    b2 is max t
-n=7;m=7;a1=-2;a2=2;b1=-2;b2=2; 
+param(s,t)=(s,t,s^2-t^2)
+#plot6=axes(scale,2,color="black",frame=False,aspect_ratio=1)+
+plot6=arrow((0,0,0),(xscale,0,0),color="black",width=2)+arrow((0,0,0),(0,yscale,0),color="black",width=2)+arrow((0,0,0),(0,0,zscale),color="black",width=2)
+plot6+=text3d("x",(xscale+0.5,0,0),fontsize=30)+text3d("y",(0,yscale+0.5,0),fontsize=30)+text3d("z",(0,0,zscale+0.5),fontsize=30)
+#plot6+=parametric_plot3d(param(s,t),(s,-2,2),(t,-2,2),color="blue",opacity=0.5,mesh=True,plot_points=21)
+n=8;m=8;a1=-2;a2=2;b1=-2;b2=2; 
 #c1 is surface color     o1 is surface opacity
 #c2 and o2 are for constant t value traces
 #c3 and o3 are for constant s value traces
-c1="blue"; c2="black"; c3="black"; o1=0.6; o2=0.5; o3=0.5;
-plot99=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1)
+c1="lightblue"; c2="gray"; c3="gray"; o1=0.9; o2=0.9; o3=0.9;
+plot6+=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1)
 for i in range(n+1):
   sv=a1+i/n*(a2-a1)
-  plot99+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c2,opacity=o2)
+  plot6+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c3,opacity=o3)
 for i in range(m+1):
   tv=b1+i/m*(b2-b1)
-  plot99+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
-show(plot6+plot99,aspect_ratio=(1,1,0.6),viewpoint=[[-0.1958,-0.5867,-0.7858],150.62],camera_position=[6.2458,8.2356,2.958])
+  plot6+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
+#plot6+=parametric_plot3d((s,t,0),(s,-2,2),(t,-2,2),color="gray",opacity=0.05,mesh=True,plot_points=5)
+for i in range(-2,3):
+  plot6+=line([(-2,i,0),(2,i,0)],color="gray",opacity=0.8)+line([(i,-2,0),(i,2,0)],color="black",opacity=0.4)
+show(plot6,aspect_ratio=(1,1,0.5),viewpoint=[[-0.2888,-0.5668,-0.7716],137.08],camera_position=[10.2151,7.49,5.5501])
 plot7=contour_plot(f(x,y),(x,-2,2),(y,-2,2),fill=False,plot_points=201,gridlines=True,labels=True,label_fmt="%1.0f",label_inline=True,linewidths=1.5)
 show(plot7)
 </script></pre></div>

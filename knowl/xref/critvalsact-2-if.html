@@ -145,11 +145,24 @@ window.MathJax = {
 <div style="width:600px; height:600px; display: block; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;"><pre class="ptx-sagecell sage-interact"><script type="text/x-sage">var('x,y,z')
 d=0.25
 @interact
-def critvalcheck(p=input_grid(1,2,default=[[0,0]],label="(a,b)="),func=input_box(default=3*x-y^2,label="\\(f(x,y)=\\)"),auto_update=False):
+def critvalcheck(p=input_grid(1,2,default=[[0,0]],label="\\( (a,b)= \\)"),func=input_box(default=x-y,label="\(f(x,y)=\)"),auto_update=False):
   a=p[0][0];b=p[0][1];
   f(x,y)=func
-  plot1=plot3d(f(x,y),(x,a-d,a+d),(y,b-d,b+d),color="blue",opacity=0.6,plot_points=31,mesh=True)
-  plot1+=point((a,b,f(x=a,y=b)),size=10,color="black")
+  #plot1=plot3d(f(x,y),(x,a-d,a+d),(y,b-d,b+d),color="blue",opacity=0.6,plot_points=31,mesh=True)
+  param(s,t)=(s,t,f(s,t))
+  n=9;m=9;a1=a-d;a2=a+d;b1=b-d;b2=b+d; 
+  #c1 is surface color     o1 is surface opacity
+  #c2 and o2 are for constant t value traces
+  #c3 and o3 are for constant s value traces
+  c1="lightblue"; c2="gray"; c3="gray"; o1=0.6; o2=0.6; o3=0.6;
+  plot1=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1)
+  for i in range(n+1):
+    sv=a1+i/n*(a2-a1)
+    plot1+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c3,opacity=o3)
+  for i in range(m+1):
+    tv=b1+i/m*(b2-b1)
+    plot1+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
+  plot1+=point3d((a,b,f(x=a,y=b)),size=10,color="black")
   show(plot1)
 </script></pre></div>
 </body>

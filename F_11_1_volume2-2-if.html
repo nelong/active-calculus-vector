@@ -146,14 +146,14 @@ window.MathJax = {
 from sage.plot.plot3d.plot3d import axes
 from sage.plot.plot3d.shapes import Box
 from sage.plot.plot3d.shapes import ColorCube
-scale=2
+scale=2.5
 @interact
 def dblRS(nx=slider(2,15,1,default=3,label="m="),ny=slider(2,15,1,default=2,label="n=")):
-  plot3=axes(scale,2,color="black",frame=False,aspect_ratio=1,opacity=0.2)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
-  f(x,y)=1-x/3+y^2/9
+  plot3=axes(scale,1,color="black",frame=False,aspect_ratio=1,opacity=0.8)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
+  f(x,y)=2-x/1.5+y^2/4
   x1=0.5;x2=2; y1=0.5;y2=2;
   dx=(x2-x1)/nx; dy=(y2-y1)/ny;
-  tc="black";sc="orange";bc="red"
+  tc="black";sc="lightblue";bc="red"
   for i in range(nx):
     xa=x1+i*dx; xb=x1+(i+1)*dx;
     for j in range(ny):
@@ -167,7 +167,7 @@ def dblRS(nx=slider(2,15,1,default=3,label="m="),ny=slider(2,15,1,default=2,labe
   #c1 is surface color     o1 is surface opacity
   #c2 and o2 are for constant t value traces
   #c3 and o3 are for constant s value traces
-  c1="pink"; c2="black"; c3="black"; o1=0.5; o2=0.2; o3=0.2;
+  c1="gray"; c2="black"; c3="black"; o1=0.3; o2=0.2; o3=0.2;
   plot3+=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1)
   for i in range(n+1):
     sv=a1+i/n*(a2-a1)
@@ -175,7 +175,7 @@ def dblRS(nx=slider(2,15,1,default=3,label="m="),ny=slider(2,15,1,default=2,labe
   for i in range(m+1):
     tv=b1+i/m*(b2-b1)
     plot3+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
-  show(plot3,viewpoint=[[-0.4427,-0.4917,-0.7498],111.96],camera_position=[6.088,1.5166,2.6543])
+  show(plot3,viewpoint=[[-0.423,-0.5604,-0.712],123.49],camera_position=[7.0129,3.055,2.8624])
 </script></pre></div>
 </body>
 </html>

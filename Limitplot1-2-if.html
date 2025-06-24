@@ -146,14 +146,17 @@ window.MathJax = {
 @interact
 def limitplot(s1=checkbox(True,label="Show Surface")):
   var('t')
+  xscale=.75;yscale=.75;zscale=4
+  plot2=arrow((0,0,0),(xscale,0,0),color="black",opacity=0.5,width=0.5)+text3d("x",(1.2*xscale,0,0),fontsize=30)+text3d("y",(0,1.2*yscale,0),fontsize=30)+text3d("z",(0,0,1.2*zscale),fontsize=30)
+  plot2+=arrow((0,0,0),(0,yscale,0),color="black",opacity=0.5,width=0.5)+arrow((0,0,0),(0,0,zscale),color="black",opacity=0.5,width=0.5)
   scale=0.5
-  plot2=axes(scale,0.5,color="black",aspect_ratio=[1,1,0.25])
-  plot2+=text3d("x",(scale+0.1,0,0),fontsize=30)+text3d("y",(0,scale+0.1,0),fontsize=30)+text3d("z",(0,0,scale+0.25),fontsize=30)
+  #plot2=axes(scale,0.5,color="black",aspect_ratio=[1,1,0.25])
+  #plot2+=text3d("x",(scale+0.1,0,0),fontsize=30)+text3d("y",(0,scale+0.1,0),fontsize=30)+text3d("z",(0,0,scale+0.25),fontsize=30)
   var('x,y')
   f(x,y)=3-x-2*y
   if(s1):
     plot2+=plot3d(f,(x,-.5,0.5),(y,-0.5,0.5),color="gray",mesh=True,opacity=0.25,plot_points=5)
-  plot2+=point((0,0,3),size=15,color="black")+text3d("(0,0,3)",(0.3,-0.1,3.5),color="black",fontsize=25,zorder=10)
+  plot2+=point3d((0,0,3),size=15,color="black")+text3d("(0,0,3)",(0.3,-0.1,3.5),color="black",fontsize=25,zorder=10,frame=False)
   paths=[(t,0),(0,t+0),(0,0-t),(0-t,0),(0-t,0+t),(0+t,0+2*t^2),(0-t,0-t-0.1*sin(20*t))]
   for p in paths:
     r1(t)=(p[0],p[1],0)
@@ -162,7 +165,7 @@ def limitplot(s1=checkbox(True,label="Show Surface")):
     plot2+=arrow(r1(t=0.25),r1(t=0.2),color="blue",arrowsize=3,zorder=5)
     plot2+=parametric_plot3d(r2,(t,0,0.5),color="red",thickness=2)
     plot2+=arrow(r2(t=0.25),r2(t=0.2),color="red",arrowsize=2)
-  show(plot2,viewpoint=[[-0.124,-0.7108,-0.6924],166.22],camera_position=[1.0437,2.363,0.5013])
+  show(plot2,viewpoint=[[-0.124,-0.7108,-0.6924],166.22],camera_position=[1.0437,2.363,0.5013],aspect_ratio=[1,1,0.25])
 </script></pre></div>
 </body>
 </html>

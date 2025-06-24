@@ -144,13 +144,13 @@ window.MathJax = {
 \)</span></div>
 <div style="width:600px; height:600px; display: block; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;"><pre class="ptx-sagecell sage-interact"><script type="text/x-sage">var('t,s,x,y,z')
 from sage.plot.plot3d.plot3d import axes
+scale=2.5
+plot2=axes(scale,1,color="black",frame=False,aspect_ratio=1,opacity=0.7)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
 scale=2
-plot2=axes(scale,2,color="black",frame=False,aspect_ratio=1,opacity=0.4)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
-scale=2
-f(x,y)=1-x/3+y^2/9
+f(x,y)=1.5-x/3+y^2/9
 x1=0.5;x2=2; y1=0.5;y2=2;
-tc="black";sc="orange";bc="red"
-plot2+=polygon([(x1,y1,0),(x2,y1,0),(x2,y2,0),(x1,y2,0)],thickness=3,color=bc,opacity=0.5)
+tc="black";sc="gray";bc="red"
+plot2+=polygon([(x1,y1,0),(x2,y1,0),(x2,y2,0),(x1,y2,0)],thickness=3,color=bc,opacity=0.8)
 plot2+=parametric_plot3d((x1+t*(x2-x1),y1,s*f(x1+t*(x2-x1),y1)),(t,0,1),(s,0,1),color=sc,opacity=0.4)
 plot2+=parametric_plot3d((x1+t*(x2-x1),y2,s*f(x1+t*(x2-x1),y2)),(t,0,1),(s,0,1),color=sc,opacity=0.4)
 plot2+=parametric_plot3d((x1,y1+t*(y2-y1),s*f(x1,y1+t*(y2-y1))),(t,0,1),(s,0,1),color=sc,opacity=0.4)
@@ -162,7 +162,7 @@ n=7;m=7;a1=x1;a2=x2;b1=y1;b2=y2;
 #c1 is surface color     o1 is surface opacity
 #c2 and o2 are for constant t value traces
 #c3 and o3 are for constant s value traces
-c1="pink"; c2="gray"; c3="gray"; o1=0.3; o2=0.5; o3=0.5;
+c1="lightblue"; c2="gray"; c3="gray"; o1=0.9; o2=0.9; o3=0.9;
 plot99=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1)
 for i in range(n+1):
   sv=a1+i/n*(a2-a1)
@@ -171,7 +171,7 @@ for i in range(m+1):
   tv=b1+i/m*(b2-b1)
   plot99+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
 plot2+=plot99
-show(plot2,viewpoint=[[-0.4427,-0.4917,-0.7498],111.96],camera_position=[6.088,1.5166,2.6543])
+show(plot2,viewpoint=[[-0.3037,-0.5594,-0.7712],134.56],camera_position=[5.9608,4.3919,3.2182])
 </script></pre></div>
 </body>
 </html>
