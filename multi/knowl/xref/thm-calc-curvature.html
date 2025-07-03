@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+<!--******************************************-->
+<!--*  Authored with PreTeXt                 *-->
+<!--*  pretextbook.org                       *-->
+<!--*  Theme: default-modern                 *-->
+<!--*  Palette:                              *-->
+<!--******************************************-->
+
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="theorem theorem-like"><h4 class="heading">
+<span class="type">Theorem</span><span class="space"> </span><span class="codenumber">10.5.6</span><span class="period">.</span>
+</h4>
+<div class="para logical">
+<div class="para">If <span class="process-math">\(\vr\)</span> is a parameterization of a curve <span class="process-math">\(C\text{,}\)</span> and if <span class="process-math">\(\vr'(t)\neq \vzero\)</span> and <span class="process-math">\(\vr''(t)\)</span> exists, then the curvature <span class="process-math">\(\kappa\)</span> of <span class="process-math">\(C\)</span> can be calculated by</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\kappa(t) = \frac{\left\Vert \vT'(t) \right\Vert}{ \left\Vert \vr'(t) \right\Vert}
+\end{equation*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#thm-calc-curvature-1-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="para logical">
+<div class="para">Further, we can efficiently calculate curvature in terms of the velocity and acceleration functions by</div>
+<div class="displaymath process-math">
+\begin{equation}
+\kappa = \frac{\Vert \vr'(t) \times \vr''(t) \Vert}{\Vert \vr'(t) \Vert^3}= \frac{\Vert \vv(t) \times \va(t) \Vert}{\Vert \vv(t) \Vert^3}\tag{10.5.1}
+\end{equation}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#thm-calc-curvature-1-2" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Theorem 10.5.6"><a href="#thm-calc-curvature" title="Copy heading and permalink for Theorem 10.5.6">🔗</a></div></article><details class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h4 class="heading"><span class="type">Proof<span class="period">.</span></span></h4></summary><article class="hiddenproof knowl__content"><div class="para">We will give the outline of a proof of the first result here in order to emphasize that this result comes from a chain rule argument related to <a href="S-VVF-ArcLength.html#coordchangetounitspeed" class="xref" data-knowl="./knowl/xref/coordchangetounitspeed.html" data-reveal-label="Reveal" data-close-label="Close" title="Paragraph">the change of parameters going to a unit speed parameterization</a>.<div class="autopermalink" data-description="Paragraph"><a href="#thm-calc-curvature-2-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para">Let <span class="process-math">\(\vr(t)\)</span> be some parameterization of our curve <span class="process-math">\(C\text{.}\)</span> Remember that in order to calculate the curvature, <span class="process-math">\(\vT\)</span> will need to have an input corresponding to the parameter of the unit speed parameterization, which means the input of the <span class="process-math">\(\vT\)</span> will need to measure the arclength of <span class="process-math">\(C\)</span> to the point of interest. We will use a function <span class="process-math">\(s(t)\)</span> with input being the parameter of <span class="process-math">\(\vr(t)\)</span> and the output of <span class="process-math">\(s(t)\)</span> will be the arclength on <span class="process-math">\(C\)</span> to the point <span class="process-math">\(\vr(t)\text{.}\)</span> Note that <span class="process-math">\(s(t)\)</span> is computed using <a href="S-VVF-ArcLength.html#Length-of-a-curve" class="xref" data-knowl="./knowl/xref/Length-of-a-curve.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 10.3.5: The length of a curve">Theorem 10.3.5</a> and that the derivative <span class="process-math">\(\frac{ds}{dt}\)</span> will be <span class="process-math">\(\Vert\vr'(t)\Vert\text{.}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#thm-calc-curvature-2-2" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical">
+<div class="para">We can write <span class="process-math">\(\vT\)</span> as a function of the parameter <span class="process-math">\(t\)</span> by the composition <span class="process-math">\(\vT(t)=\vT(s(t))\text{.}\)</span> Taking the derivative of this composition with respect to <span class="process-math">\(t\)</span> will utilize a chain rule argument.</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\frac{d\vT}{dt}=\frac{d}{dt}\left(\vT(s(t))\right)=\frac{d\vT}{ds} \frac{ds}{dt}
+\end{equation*}
+</div>
+<div class="para">Note here that <span class="process-math">\(\frac{d\vT}{dt}=\vT'\)</span> is the same derivative of <span class="process-math">\(\vT\)</span> we have seen a few times.</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#thm-calc-curvature-2-3" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical">
+<div class="para">Because <span class="process-math">\(\frac{ds}{dt}\)</span> is a scalar valued function we can divide both sides of the equation by it to get</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/Length-of-a-curve.html">
+\begin{equation*}
+\frac{\vT'}{\frac{ds}{dt}}=\frac{d\vT}{ds}
+\end{equation*}
+</div>
+<div class="para">Using our idea above from <a href="S-VVF-ArcLength.html#Length-of-a-curve" class="xref" data-knowl="./knowl/xref/Length-of-a-curve.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 10.3.5: The length of a curve">Theorem 10.3.5</a>, we can substitute <span class="process-math">\(\frac{ds}{dt}= \Vert\vr'(t)\Vert\)</span> and take the magnitude of each side to get the following</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/Length-of-a-curve.html">
+\begin{equation}
+\left\Vert \frac{\vT'}{\Vert\vr'(t)\Vert} \right\Vert = \left\Vert\frac{d\vT}{ds} \right\Vert =\kappa\tag{10.5.2}
+\end{equation}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#thm-calc-curvature-2-4" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para">If this chain rule argument seems a little technical to you, there is a nice conceptual interpretation of the equation above. Specifically, if we want to convert a measurement like curvature or the derivative of <span class="process-math">\(\vT\)</span> between the unit speed parameterization and any other parameterization, we literally need to adjust by the speed. Equation <a href="S-VVF-Curvature.html#eqn-curv" class="xref" data-knowl="./knowl/xref/eqn-curv.html" data-reveal-label="Reveal" data-close-label="Close" title="Equation 10.5.2">(10.5.2)</a> shows that the adjustment between the derivative of <span class="process-math">\(\vT\)</span> with respect to the unit speed parameter and another parameter is to divide by the variable speed.<div class="autopermalink" data-description="Paragraph"><a href="#thm-calc-curvature-2-5" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para">We omit the proof of <a href="S-VVF-Curvature.html#ec-curv" class="xref" data-knowl="./knowl/xref/ec-curv.html" data-reveal-label="Reveal" data-close-label="Close" title="Equation 10.5.1">(10.5.1)</a> because the argument involves a lot of technical algebraic ideas that do not offer a lot of insight into what is measured by curvature. <a href="S-VVF-Curvature.html#Ez_9_8_5" class="xref" data-knowl="./knowl/xref/Ez_9_8_5.html" data-reveal-label="Reveal" data-close-label="Close" title="Exercise 10.5.4.6">Exercise 10.5.4.6</a> will guide you through this calculation if you are interested in these steps.<div class="autopermalink" data-description="Paragraph"><a href="#thm-calc-curvature-2-6" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Proof 10.5.6.1"><a href="#thm-calc-curvature-2" title="Copy heading and permalink for Proof 10.5.6.1">🔗</a></div></article></details><span class="incontext"><a class="internal" href="S-VVF-Curvature.html#thm-calc-curvature">in-context</a></span>
+</body>
+</html>

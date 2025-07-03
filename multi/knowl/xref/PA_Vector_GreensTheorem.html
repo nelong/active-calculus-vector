@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+<!--******************************************-->
+<!--*  Authored with PreTeXt                 *-->
+<!--*  pretextbook.org                       *-->
+<!--*  Theme: default-modern                 *-->
+<!--*  Palette:                              *-->
+<!--******************************************-->
+
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<script>// Make *any* div with class 'sagecell-sage' an executable Sage cell
+// Their results will be linked, only within language type
+sagecell.makeSagecell({
+  "inputLocation": "div.sagecell-sage",
+  "linked": true,
+  "linkKey": "linked-sage",
+  "autoeval": false,
+  "languages": [
+    "sage"
+  ],
+  "evalButtonText": "Evaluate (Sage)"
+});
+</script>
+</head>
+<body class="ignore-math">
+<article class="exploration project-like"><h4 class="heading">
+<span class="type">Preview Activity</span><span class="space"> </span><span class="codenumber">13.8.1</span><span class="period">.</span>
+</h4>
+<div class="introduction"><div class="para">We will consider the vector field <span class="process-math">\(\vF = \langle 2y,3x^2 y\rangle\text{,}\)</span> which is defined on the entire <span class="process-math">\(xy\)</span>-plane. Suppose that we want to calculate the circulation of <span class="process-math">\(\vF\)</span> around the circle <span class="process-math">\(C\)</span> of radius <span class="process-math">\(2\text{,}\)</span> centered at <span class="process-math">\((0,0)\text{,}\)</span> and oriented counterclockwise.<div class="autopermalink" data-description="Paragraph"><a href="#PA_Vector_GreensTheorem-1-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></div>
+<article class="task exercise-like"><h5 class="heading"><span class="codenumber">(a)</span></h5>
+<div class="para">Verify that <span class="process-math">\(\vF\)</span> is not path-independent by calculating the circulation of <span class="process-math">\(\vF\)</span> around the circle <span class="process-math">\(C\text{.}\)</span> The SageMath cell below is set up to assist you with this, but you will need to supply a parametrization of <span class="process-math">\(C\)</span> on line 4.<div class="autopermalink" data-description="Paragraph"><a href="#task_PA_Vector_GreensTheorem_Circ-1-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div id="task_PA_Vector_GreensTheorem_Circ-1-2" class="ptx-sagecell sagecell-sage"><script type="text/x-sage">var('r,t,x,y')
+F = vector([2*y,3*x^2*y])
+#Supply a parametrization of C on the next line inside the [ ]
+C = vector([ , ])
+integral(F(x=C[0],y=C[1]).dot_product(derivative(C,t)),t,0,2*pi)
+</script></div>
+<div class="autopermalink" data-description="part 13.8.1.a"><a href="#task_PA_Vector_GreensTheorem_Circ" title="Copy heading and permalink for part 13.8.1.a">🔗</a></div></article><article class="task exercise-like"><h5 class="heading"><span class="codenumber">(b)</span></h5>
+<div class="para logical">
+<div class="para">Recall from <a href="S_Vector_Curl.html" class="internal" title="Section 13.7: The Curl of a Vector Field">Section 13.7</a> that if <span class="process-math">\(\vF = \langle F_1(x,y),F_2(x,y)\rangle\)</span> is a vector field, then the circulation density (in 2D) is given by</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/S_Vector_Curl.html">
+\begin{equation*}
+\text{Circulation Density at the point }(a,b)= \frac{\partial F_2}{\partial x} (a,b)-\frac{\partial F_1}{\partial y} (a,b)
+\end{equation*}
+</div>
+<div class="para">What is the circulation density of <span class="process-math">\(\vF = \langle 2y,3x^2 y\rangle\text{?}\)</span> </div>
+<div class="autopermalink" data-description="Paragraph"><a href="#task_PA_Vector_GreensTheorem_Integrand-1-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="part 13.8.1.b"><a href="#task_PA_Vector_GreensTheorem_Integrand" title="Copy heading and permalink for part 13.8.1.b">🔗</a></div></article><article class="task exercise-like"><h5 class="heading"><span class="codenumber">(c)</span></h5>
+<div class="para">Sketch the curve <span class="process-math">\(C\)</span> and shade the region it bounds. Describe the region bounded by <span class="process-math">\(C\)</span> in both rectangular and polar coordinates.<div class="autopermalink" data-description="Paragraph"><a href="#task_PA_Vector_GreensTheorem_Region-1-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="part 13.8.1.c"><a href="#task_PA_Vector_GreensTheorem_Region" title="Copy heading and permalink for part 13.8.1.c">🔗</a></div></article><article class="task exercise-like"><h5 class="heading"><span class="codenumber">(d)</span></h5>
+<div class="para">Calculate the double integral of <span class="process-math">\(\displaystyle \frac{\partial F_2}{\partial x} - \frac{\partial F_1}{\partial y}\)</span> over the region inside the circle <span class="process-math">\(C\text{.}\)</span> This integral is not the most fun to do by hand, so a SageMath cell has been provided to assist you.<div class="autopermalink" data-description="Paragraph"><a href="#task_PA_Vector_GreensTheorem_Double-1-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div id="task_PA_Vector_GreensTheorem_Double-1-2" class="ptx-sagecell sagecell-sage"><script type="text/x-sage">integral(integral( FUNCTION HERE , var1, start, stop), var2, start, stop)
+</script></div>
+<div class="solutions"><details class="hint solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Hint</span><span class="period">.</span></summary><div class="hint solution-like knowl__content">
+<div class="para">If you choose polar coordinates, use <span class="process-math">\(\theta\)</span> for the first variable and <span class="process-math">\(r\)</span> for the second variable.<div class="autopermalink" data-description="Paragraph"><a href="#task_PA_Vector_GreensTheorem_Double-2-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Hint 13.8.1.d.1"><a href="#task_PA_Vector_GreensTheorem_Double-2" title="Copy heading and permalink for Hint 13.8.1.d.1">🔗</a></div>
+</div></details></div>
+<div class="autopermalink" data-description="part 13.8.1.d"><a href="#task_PA_Vector_GreensTheorem_Double" title="Copy heading and permalink for part 13.8.1.d">🔗</a></div></article><article class="task exercise-like"><h5 class="heading"><span class="codenumber">(e)</span></h5>
+<div class="para">What do you notice about your results to parts (a) and (d)? Do you think this will happen in general? Write a sentence or two about what you think is happening here.<div class="autopermalink" data-description="Paragraph"><a href="#PA_Vector_GreensTheorem-6-1-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="part 13.8.1.e"><a href="#PA_Vector_GreensTheorem-6" title="Copy heading and permalink for part 13.8.1.e">🔗</a></div></article><div class="autopermalink" data-description="Preview Activity 13.8.1"><a href="#PA_Vector_GreensTheorem" title="Copy heading and permalink for Preview Activity 13.8.1">🔗</a></div></article><span class="incontext"><a class="internal" href="S_Vector_GreensTheorem.html#PA_Vector_GreensTheorem">in-context</a></span>
+</body>
+</html>

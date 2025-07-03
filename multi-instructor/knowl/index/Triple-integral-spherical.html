@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+<!--******************************************-->
+<!--*  Authored with PreTeXt                 *-->
+<!--*  pretextbook.org                       *-->
+<!--*  Theme: default-modern                 *-->
+<!--*  Palette:                              *-->
+<!--******************************************-->
+
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="proposition theorem-like"><h4 class="heading">
+<span class="type">Key Idea</span><span class="space"> </span><span class="codenumber">12.7.5</span><span class="period">.</span><span class="space"> </span><span class="title">Triple integrals in spherical coordinates.</span>
+</h4>
+<div class="para logical">
+<div class="para">Given a continuous function <span class="process-math">\(f = f(x,y,z)\)</span> over a region <span class="process-math">\(S\)</span> in <span class="process-math">\(\R^3\text{,}\)</span> the triple integral <span class="process-math">\(\iiint_S f(x,y,z) \, dV\)</span> is converted to the integral</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\iiint_S f(\rho\sin(\phi)\cos(\theta), \rho \sin(\phi) \sin(\theta), \rho \cos(\phi)) \, \rho^2 \sin(\phi) \, d\rho \, d\theta \, d\phi 
+\end{equation*}
+</div>
+<div class="para">in spherical coordinates.</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#Triple-integral-spherical-2-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="para">The latter expression is an <em class="emphasis">iterated integral in spherical coordinates</em>. Note that the volume element for spherical coordinates is <span class="process-math">\(dV= \rho^2 \sin(\phi) \, d\rho \, d\theta \, d\phi\)</span><div class="autopermalink" data-description="Paragraph"><a href="#Triple-integral-spherical-2-2" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Key Idea 12.7.5: Triple integrals in spherical coordinates"><a href="#Triple-integral-spherical" title="Copy heading and permalink for Key Idea 12.7.5: Triple integrals in spherical coordinates">🔗</a></div></article><details class="hiddenproof born-hidden-knowl"><summary class="knowl__link"><h4 class="heading"><span class="type">Proof<span class="period">.</span></span></h4></summary><article class="hiddenproof knowl__content"><div class="para">The conversion of the function being integrated is straightforward because <span class="process-math">\(x= \rho\sin(\phi)\cos(\theta), y=\rho \sin(\phi) \sin(\theta), z=\rho \cos(\phi) \)</span> does not require interpretation based on the coordinates used.<div class="autopermalink" data-description="Paragraph"><a href="#Triple-integral-spherical-3-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para">To find the volume element <span class="process-math">\(dV\)</span> in spherical coordinates, we need to understand how to determine the volume of a spherical box of the form <span class="process-math">\(\rho_1 \leq \rho \leq \rho_2\)</span> (with <span class="process-math">\(\Delta \rho = \rho_2-\rho_1)\text{,}\)</span> <span class="process-math">\(\phi_1 \leq \phi \leq \phi_2\)</span> (with <span class="process-math">\(\Delta \phi = \phi_2-\phi_1\)</span>), and <span class="process-math">\(\theta_1 \leq \theta \leq \theta_2\)</span> (with <span class="process-math">\(\Delta \theta = \theta_2-\theta_1\)</span>). An illustration of such a box is given in <a href="S-11-8-Triple-Integrals-Cylindrical-Spherical.html#F_11_8_Spherical_Vol_Element" class="xref" data-knowl="./knowl/xref/F_11_8_Spherical_Vol_Element.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 12.7.4">Figure 12.7.4</a>. This spherical box is a bit more complicated than the cylindrical box we encountered earlier. In this situation, it is easier to approximate the volume <span class="process-math">\(\Delta V\)</span> than to compute it directly. Here we can approximate the volume <span class="process-math">\(\Delta V\)</span> of this spherical box with the volume of a Cartesian box whose sides have the lengths of the sides of this spherical box. We have highlighted the three sides we will use in red, blue, and green.<div class="autopermalink" data-description="Paragraph"><a href="#Triple-integral-spherical-3-2" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para">Along the red side, both <span class="process-math">\(\theta\)</span> and <span class="process-math">\(\phi\)</span> are constant and <span class="process-math">\(\rho\)</span> is changing. In fact, the length of the red side is simply the change in <span class="process-math">\(\rho\text{.}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#Triple-integral-spherical-3-3" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para">Along the green side, both <span class="process-math">\(\theta\)</span> and <span class="process-math">\(\rho\)</span> are constant and <span class="process-math">\(\phi\)</span> is changing. We can simplify our plot by looking along the plane <span class="process-math">\(\theta=\theta_0\)</span> which will give us the following plot<div class="autopermalink" data-description="Paragraph"><a href="#Triple-integral-spherical-3-4" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<figure class="figure figure-like"><div class="image-box" style="width: 60%; margin-left: 20%; margin-right: 20%;"><img src="generated/sageplot/img-t0face.svg" role="img" class="contained"></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">12.7.6<span class="period">.</span></span><span class="space"> </span>A plot of the face of our volume element with <span class="process-math">\(\theta=\theta_0\)</span><div class="autopermalink" data-description="Figure 12.7.6"><a href="#t0face" title="Copy heading and permalink for Figure 12.7.6">🔗</a></div></figcaption></figure><div class="para logical">
+<div class="para">Hopefully you recognize this as the same kind of picture as we used when looking at the area element in polar coordinates. The length of the green curve will be <span class="process-math">\(\rho_1 \Delta\phi\)</span> by the same kind of argument.</div>
+<div class="displaymath process-math">
+\begin{equation*}
+(\text{fraction of circle})(\text{circumference of circle})=\left(\frac{\Delta\phi}{2\pi}\right)\left(2\pi \rho_1 \right)= \rho_1 \Delta\phi
+\end{equation*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#Triple-integral-spherical-3-6" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para">The blue curve occurs at a constant value of <span class="process-math">\(\rho\)</span> and <span class="process-math">\(\phi\text{,}\)</span> with <span class="process-math">\(\theta\)</span> changing. In other words, the blue curve consists of <span class="process-math">\(x=\rho_1 \sin(\phi_0) \cos(\theta), y= \rho_1 \sin(\phi_0), z=\rho_1 \cos(\phi_0)\)</span> which corresponds to a circle of radius <span class="process-math">\(\rho_1 \sin(\phi_0)\)</span> at a height <span class="process-math">\(z=\rho_1 \cos(\phi_0)\text{.}\)</span> We can use the same type of argument as above that the arc length of a curve corresponding to an angular change of <span class="process-math">\(\Delta \theta\)</span> along a circle of radius <span class="process-math">\(\rho_1 \sin(\phi_0)\)</span> will be <span class="process-math">\(\rho_1 \sin(\phi_0) \Delta \theta\text{.}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#Triple-integral-spherical-3-7" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical">
+<div class="para">Remember that as we look at smaller and smaller changes in the coordinates, the difference between the values of the coordinates used will also shrink and <span class="process-math">\(\rho=0 \approx \rho_1 \approx \rho\text{,}\)</span> for example. So we can get an idea of how large this volume will be by multiplying the lengths of the red, blue, and green segments to get</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\Delta V \approx \left(\Delta\rho\right) \left(\rho \,  \Delta\phi \right)\left(\rho \sin(\phi) \, \Delta\theta \right) = \rho^2 \sin(\phi) \Delta\phi \, \Delta\theta \, \Delta\rho
+\end{equation*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#Triple-integral-spherical-3-8" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Proof 12.7.5.1"><a href="#Triple-integral-spherical-3" title="Copy heading and permalink for Proof 12.7.5.1">🔗</a></div></article></details><span class="incontext"><a class="internal" href="S-11-8-Triple-Integrals-Cylindrical-Spherical.html#Triple-integral-spherical">in-context</a></span>
+</body>
+</html>

@@ -1,0 +1,1290 @@
+<!DOCTYPE html>
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<html lang="en-US" dir="ltr">
+<!--******************************************-->
+<!--*  Authored with PreTeXt                 *-->
+<!--*  pretextbook.org                       *-->
+<!--*  Theme: default-modern                 *-->
+<!--*  Palette:                              *-->
+<!--******************************************-->
+<head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Arc Length</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
+<link href="_static/pretext/css/theme.css" rel="stylesheet" type="text/css">
+<link href="_static/pretext/css/ol-markers.css" rel="stylesheet" type="text/css">
+<script>
+var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
+window.MathJax = {
+  "tex": {
+    "inlineMath": [
+      [
+        "\\(",
+        "\\)"
+      ]
+    ],
+    "tags": "none",
+    "tagSide": "right",
+    "tagIndent": ".8em",
+    "packages": {
+      "[+]": [
+        "base",
+        "extpfeil",
+        "ams",
+        "amscd",
+        "color",
+        "newcommand",
+        "knowl"
+      ]
+    }
+  },
+  "options": {
+    "ignoreHtmlClass": "tex2jax_ignore|ignore-math",
+    "processHtmlClass": "process-math",
+    "renderActions": {
+      "findScript": [
+        10,
+        function (doc) {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
+                var display = !!node.type.match(/; *mode=display/);
+                var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                var text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = {node: text, delim: '', n: 0};
+                math.end = {node: text, delim: '', n: 0};
+                doc.math.push(math);
+            });
+        },
+        ""
+      ]
+    }
+  },
+  "chtml": {
+    "scale": 0.98,
+    "mtextInheritFont": true
+  },
+  "loader": {
+    "load": [
+      "input/asciimath",
+      "[tex]/extpfeil",
+      "[tex]/amscd",
+      "[tex]/color",
+      "[tex]/newcommand",
+      "[pretext]/mathjaxknowl3.js"
+    ],
+    "paths": {
+      "pretext": "_static/pretext/js/lib"
+    }
+  },
+  "startup": {
+    pageReady() {
+      return MathJax.startup.defaultPageReady().then(function () {
+      console.log("in ready function");
+      rsMathReady();
+      }
+    )}
+  }
+};
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:type" content="book">
+<meta property="book:title" content="Active Calculus - Multivariable">
+<meta property="book:author" content="Nicholas Long">
+<meta property="book:author" content="Mitchel T. Keller">
+<meta property="book:author" content="Steve Schlicker">
+<script src="_static/pretext/js/lib/jquery.min.js"></script><script src="_static/pretext/js/lib/jquery.sticky.js"></script><script src="_static/pretext/js/lib/jquery.espy.min.js"></script><script src="_static/pretext/js/pretext.js"></script><script src="_static/pretext/js/pretext_add_on.js?x=1"></script><script src="_static/pretext/js/user_preferences.js"></script><!--** eBookCongig is necessary to configure interactive       **-->
+<!--** Runestone components to run locally in reader's browser **-->
+<!--** No external communication:                              **-->
+<!--**     log level is 0, Runestone Services are disabled     **-->
+<script type="text/javascript">
+eBookConfig = {};
+eBookConfig.useRunestoneServices = false;
+eBookConfig.host = 'http://127.0.0.1:8000';
+eBookConfig.course = 'PTX_Course_Title_Here';
+eBookConfig.basecourse = 'PTX_Base_Course';
+eBookConfig.isLoggedIn = false;
+eBookConfig.email = '';
+eBookConfig.isInstructor = false;
+eBookConfig.logLevel = 0;
+eBookConfig.username = '';
+eBookConfig.readings = null;
+eBookConfig.activities = null;
+eBookConfig.downloadsEnabled = false;
+eBookConfig.allow_pairs = false;
+eBookConfig.enableScratchAC = false;
+eBookConfig.build_info = "";
+eBookConfig.python3 = null;
+eBookConfig.runestone_version = '7.8.4';
+eBookConfig.jobehost = '';
+eBookConfig.proxyuri_runs = '';
+eBookConfig.proxyuri_files = '';
+eBookConfig.enable_chatcodes =  false;
+</script>
+<!--*** Runestone Services ***-->
+<script src="_static/prefix-runtime.962d00926ef9460e.bundle.js"></script><script src="_static/prefix-723.3e6434f80549315a.bundle.js"></script><script src="_static/prefix-runestone.2e7f40e86ae7d163.bundle.js"></script><link rel="stylesheet" type="text/css" href="_static/prefix-723.3bccd435914aa0ff.css">
+<link rel="stylesheet" type="text/css" href="_static/prefix-runestone.5bdeacdba067a0e3.css">
+<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script src="_static/pretext/js/pretext-webwork/2.17/pretext-webwork.js"></script><script src="https://webwork-ptx.aimath.org/webwork2_files/node_modules/iframe-resizer/js/iframeResizer.min.js"></script><script src="_static/pretext/js/lti_iframe_resizer.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/components/prism-core.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/line-numbers/prism-line-numbers.min.js" integrity="sha512-dubtf8xMHSQlExGRQ5R7toxHLgSDZ0K7AunqPWHXmJQ8XyVIG19S1T95gBxlAeGOK02P4Da2RTnQz0Za0H0ebQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/line-highlight/prism-line-highlight.min.js" integrity="sha512-93uCmm0q+qO5Lb1huDqr7tywS8A2TFA+1/WHvyiWaK6/pvsFl6USnILagntBx8JnVbQH5s3n0vQZY6xNthNfKA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="https://cdn.geogebra.org/apps/deployggb.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js" integrity="sha512-4xUl/d6D6THrAnXAwGajXkoWaeMNwEKK4iNfq5DotEbLPAfk6FSxSP3ydNxqDgCw1c/0Z1Jg6L8h2j+++9BZmg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="lunr-pretext-search-index.js" async=""></script><script src="_static/pretext/js/pretext_search.js"></script><script src="_static/pretext/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
+</script>
+</head>
+<body id="acmulti" class="pretext book ignore-math">
+<a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead"><div class="ptx-banner"><div class="title-container">
+<h1 class="heading"><a href="root-1-2.html"><span class="title">Active Calculus - Multivariable</span></a></h1>
+<p class="byline">Nicholas Long, Mitchel T. Keller, Steve Schlicker</p>
+</div></div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><div class="ptx-navbar-contents">
+<button class="toc-toggle button" title="Contents"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5d2;</span><span class="name">Contents</span></button><a class="index-button button" href="root-1-2-8-2.html" title="Index"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span><span class="name">Index</span></a><div class="searchbox">
+<div class="searchwidget"><button id="searchbutton" class="searchbutton button" type="button" title="Search book"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe8b6;</span><span class="name">Search Book</span></button></div>
+<div id="searchresultsplaceholder" class="searchresultsplaceholder" style="display: none">
+<div class="search-results-controls">
+<input aria-label="Search term" id="ptxsearch" class="ptxsearch" type="text" name="terms" placeholder="Search term"><button title="Close search" id="closesearchresults" class="closesearchresults"><span class="material-symbols-outlined">close</span></button>
+</div>
+<h2 class="search-results-heading">Search Results: </h2>
+<div id="searchempty" class="searchempty"><span>No results.</span></div>
+<ol id="searchresults" class="searchresults"></ol>
+</div>
+</div>
+<span class="nav-other-controls"><button id="calculator-toggle" class="calculator-toggle button" title="Show calculator" aria-expanded="false" aria-controls="calculator-container"><span class="icon material-symbols-outlined" aria-hidden="true">&#xea5f;</span><span class="name">Calc</span></button><div id="calculator-container" class="calculator-container" style="display: none; z-index:100;"><div id="geogebra-calculator"></div></div>
+<script>
+var ggbApp = new GGBApplet({"appName": "graphing",
+    "width": 330,
+    "height": 600,
+    "showToolBar": true,
+    "showAlgebraInput": true,
+    "perspective": "G/A",
+    "algebraInputPosition": "bottom",
+    "scaleContainerClass": "calculator-container",
+    "allowUpscale": true,
+    "autoHeight": true,
+    "disableAutoScale": false},
+true);
+</script><button id="light-dark-button" class="light-dark-button button" title="Dark Mode"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe51c;</span><span class="name">Dark Mode</span></button></span><span class="treebuttons"><a class="previous-button button" href="S-VVF-Calculus.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="up-button button" href="C_VVF.html" title="Up"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Up</span></a><a class="next-button button" href="S-VVF-TNB.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a></span>
+</div></nav><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\newcommand{\R}{\mathbb{R}}
+\newcommand{\va}{\vec{a}}
+\newcommand{\vb}{\vec{b}}
+\newcommand{\vc}{\vec{c}}
+\newcommand{\vC}{\vec{C}}
+\newcommand{\vd}{\vec{d}}
+\newcommand{\ve}{\vec{e}}
+\newcommand{\cursedihat}{\hat{\dot{i}}}
+\newcommand{\vi}{\hat{\imath}}
+\newcommand{\vj}{\hat{\jmath}}
+\newcommand{\vk}{\hat{k}}
+\newcommand{\vn}{\vec{n}}
+\newcommand{\vm}{\vec{m}}
+\newcommand{\vr}{\vec{r}}
+\newcommand{\vs}{\vec{s}}
+\newcommand{\vu}{\vec{u}}
+\newcommand{\vv}{\vec{v}}
+\newcommand{\vw}{\vec{w}}
+\newcommand{\vx}{\vec{x}}
+\newcommand{\vy}{\vec{y}}
+\newcommand{\vz}{\vec{z}}
+\newcommand{\vzero}{\vec{0}}
+\newcommand{\vF}{\vec{F}}
+\newcommand{\vG}{\vec{G}}
+\newcommand{\vH}{\vec{H}}
+\newcommand{\vR}{\vec{R}}
+\newcommand{\vT}{\vec{T}}
+\newcommand{\vN}{\vec{N}}
+\newcommand{\vL}{\vec{L}}
+\newcommand{\vB}{\vec{B}}
+\newcommand{\vS}{\vec{S}}
+\newcommand{\proj}{\text{proj}}
+\newcommand{\comp}{\text{comp}}
+\newcommand{\nin}{}
+\newcommand{\vecmag}[1]{\left\lVert #1\right\rVert}
+\newcommand{\grad}{\nabla}
+\newcommand\restrict[1]{\raise-.5ex\hbox{$\Big|$}_{#1}}
+\DeclareMathOperator{\curl}{curl}
+\DeclareMathOperator{\divg}{div}
+\newcommand{\lt}{&lt;}
+\newcommand{\gt}{&gt;}
+\newcommand{\amp}{&amp;}
+\definecolor{fillinmathshade}{gray}{0.9}
+\newcommand{\fillinmath}[1]{\mathchoice{\colorbox{fillinmathshade}{$\displaystyle     \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\textstyle        \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptstyle      \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptscriptstyle\phantom{\,#1\,}$}}}
+\)</span></div>
+<div class="ptx-page">
+<div id="ptx-sidebar" class="ptx-sidebar"><nav id="ptx-toc" class="ptx-toc depth2 focused" data-preexpanded-levels="0" data-max-levels="2"><ul class="structural toc-item-list contains-active">
+<li class="toc-item toc-frontmatter">
+<div class="toc-title-box"><a href="frontmatter.html" class="internal"><span class="title">Front Matter</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-colophon"><div class="toc-title-box"><a href="frontmatter-3.html" class="internal"><span class="title">Colophon</span></a></div></li>
+<li class="toc-item toc-preface"><div class="toc-title-box"><a href="frontmatter-4.html" class="internal"><span class="title">Features of the Text</span></a></div></li>
+<li class="toc-item toc-preface"><div class="toc-title-box"><a href="frontmatter-5.html" class="internal"><span class="title">Vector Calculus Preface</span></a></div></li>
+<li class="toc-item toc-preface"><div class="toc-title-box"><a href="frontmatter-6.html" class="internal"><span class="title">Acknowledgments</span></a></div></li>
+<li class="toc-item toc-preface"><div class="toc-title-box"><a href="frontmatter-7.html" class="internal"><span class="title">Active Calculus - Multivariable: our goals</span></a></div></li>
+<li class="toc-item toc-preface"><div class="toc-title-box"><a href="frontmatter-8.html" class="internal"><span class="title">How to Use this Text</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="C_MVPrecalc.html" class="internal"><span class="codenumber">9</span> <span class="title">Precalculus of Multivariable Functions</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S-Precalc-3Dcoord.html" class="internal"><span class="codenumber">9.1</span> <span class="title">Three Dimensional Space</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-3Dcoord.html#S-Precalc-3Dcoord-3" class="internal"><span class="codenumber">9.1.1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-3Dcoord.html#S-Precalc-3Dcoord-4" class="internal"><span class="codenumber">9.1.2</span> <span class="title">Three Dimensional Space and Coordinates</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-3Dcoord.html#S-Precalc-3Dcoord-5" class="internal"><span class="codenumber">9.1.3</span> <span class="title">Fundamental Planes</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-3Dcoord.html#subsec-distanceformula" class="internal"><span class="codenumber">9.1.4</span> <span class="title">Distance in Three Dimensions</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-Precalc-3Dcoord.html#S-Precalc-3Dcoord-8" class="internal"><span class="codenumber">9.1.5</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S-Precalc-Vectors.html" class="internal"><span class="codenumber">9.2</span> <span class="title">Vectors</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-Vectors.html#S-Precalc-Vectors-3" class="internal"><span class="codenumber">9.2.1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-Vectors.html#S-Precalc-Vectors-4" class="internal"><span class="codenumber">9.2.2</span> <span class="title">Representations of Vectors</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-Vectors.html#S-Precalc-Vectors-5" class="internal"><span class="codenumber">9.2.3</span> <span class="title">Equality of Vectors</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-Vectors.html#S-Precalc-Vectors-6" class="internal"><span class="codenumber">9.2.4</span> <span class="title">Operations on Vectors</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-Vectors.html#S-Precalc-Vectors-7" class="internal"><span class="codenumber">9.2.5</span> <span class="title">Properties of Vector Operations</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-Vectors.html#SS_Precalc_Vectors_Geometric" class="internal"><span class="codenumber">9.2.6</span> <span class="title">Geometric Interpretation of Vector Operations</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-Vectors.html#S-Precalc-Vectors-9" class="internal"><span class="codenumber">9.2.7</span> <span class="title">The Magnitude of a Vector</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-Precalc-Vectors.html#ez_Precalc_Vectors" class="internal"><span class="codenumber">9.2.8</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S-Precalc-DotProduct.html" class="internal"><span class="codenumber">9.3</span> <span class="title">The Dot Product</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-DotProduct.html#S-Precalc-DotProduct-3" class="internal"><span class="codenumber">9.3.1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-DotProduct.html#S-Precalc-DotProduct-4" class="internal"><span class="codenumber">9.3.2</span> <span class="title">The Dot Product</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-DotProduct.html#subsec-vecangle" class="internal"><span class="codenumber">9.3.3</span> <span class="title">The Angle between Vectors</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-DotProduct.html#S-Precalc-DotProduct-6" class="internal"><span class="codenumber">9.3.4</span> <span class="title">Projections</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-DotProduct.html#S-Precalc-DotProduct-7" class="internal"><span class="codenumber">9.3.5</span> <span class="title">Work, Force, and Displacement</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-Precalc-DotProduct.html#ez_Precalc_DotProduct" class="internal"><span class="codenumber">9.3.6</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S-Precalc-CrossProduct.html" class="internal"><span class="codenumber">9.4</span> <span class="title">The Cross Product</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-CrossProduct.html#S-Precalc-CrossProduct-3" class="internal"><span class="codenumber">9.4.1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-CrossProduct.html#S-Precalc-CrossProduct-4" class="internal"><span class="codenumber">9.4.2</span> <span class="title">Computing the cross product</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-CrossProduct.html#geocross" class="internal"><span class="codenumber">9.4.3</span> <span class="title">The Vector Nature of the Cross Product</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-CrossProduct.html#subsec-crossapp" class="internal"><span class="codenumber">9.4.4</span> <span class="title">Applications of the Cross Product</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-CrossProduct.html#S-Precalc-CrossProduct-7" class="internal"><span class="codenumber">9.4.5</span> <span class="title">Comparing the dot and cross products</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-CrossProduct.html#vecnotation" class="internal"><span class="codenumber">9.4.6</span> <span class="title">Object Types and Vector Notation</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-Precalc-CrossProduct.html#ez_Precalc_CrossProduct" class="internal"><span class="codenumber">9.4.7</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S-Precalc-Lines.html" class="internal"><span class="codenumber">9.5</span> <span class="title">Lines in Space</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-Lines.html#S-Precalc-Lines-3" class="internal"><span class="codenumber">9.5.1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-Lines.html#S-Precalc-Lines-4" class="internal"><span class="codenumber">9.5.2</span> <span class="title">Lines in Space</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-Lines.html#S-Precalc-Lines-5" class="internal"><span class="codenumber">9.5.3</span> <span class="title">The Parametric Equations of a Line</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-Precalc-Lines.html#S-Precalc-Lines-7" class="internal"><span class="codenumber">9.5.4</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S-Precalc-Planes.html" class="internal"><span class="codenumber">9.6</span> <span class="title">Planes in Space</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-Planes.html#S-Precalc-Planes-3" class="internal"><span class="codenumber">9.6.1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-Planes.html#S-Precalc-Planes-4" class="internal"><span class="codenumber">9.6.2</span> <span class="title">Planes in Space</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-Precalc-Planes.html#S-Precalc-Planes-6" class="internal"><span class="codenumber">9.6.3</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S-Precalc-CommonGraphs.html" class="internal"><span class="codenumber">9.7</span> <span class="title">Common Graphs in Three Dimensions</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-CommonGraphs.html#S-Precalc-CommonGraphs-3" class="internal"><span class="codenumber">9.7.1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-CommonGraphs.html#subsec-cylsurf" class="internal"><span class="codenumber">9.7.2</span> <span class="title">Cylinder Surfaces</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-CommonGraphs.html#quadric-surfaces" class="internal"><span class="codenumber">9.7.3</span> <span class="title">Quadric Surfaces</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-Precalc-CommonGraphs.html#S-Precalc-CommonGraphs-7" class="internal"><span class="codenumber">9.7.4</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S-Precalc-OtherCoordSystems.html" class="internal"><span class="codenumber">9.8</span> <span class="title">Polar, Cylindrical, and Spherical Coordinates</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-OtherCoordSystems.html#S-Precalc-OtherCoordSystems-3" class="internal"><span class="codenumber">9.8.1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-OtherCoordSystems.html#subsec-polar" class="internal"><span class="codenumber">9.8.2</span> <span class="title">Polar Coordinates</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-OtherCoordSystems.html#subsec-cylindrical" class="internal"><span class="codenumber">9.8.3</span> <span class="title">Cylindrical Coordinates</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-OtherCoordSystems.html#subsec-SphCoord" class="internal"><span class="codenumber">9.8.4</span> <span class="title">Spherical Coordinates</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-Precalc-OtherCoordSystems.html#S-Precalc-OtherCoordSystems-8" class="internal"><span class="codenumber">9.8.5</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-chapter contains-active">
+<div class="toc-title-box"><a href="C_VVF.html" class="internal"><span class="codenumber">10</span> <span class="title">Vector Valued Functions of One Variable</span></a></div>
+<ul class="structural toc-item-list contains-active">
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S-VVF-Plotting.html" class="internal"><span class="codenumber">10.1</span> <span class="title">Vector-Valued Functions of One Variable</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-VVF-Plotting.html#S-VVF-Plotting-3" class="internal"><span class="codenumber">10.1.1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-VVF-Plotting.html#S-VVF-Plotting-4" class="internal"><span class="codenumber">10.1.2</span> <span class="title">Vector-Valued Functions</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-VVF-Plotting.html#subsec-parameterizingcurves" class="internal"><span class="codenumber">10.1.3</span> <span class="title">Parameterizing Curves</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-VVF-Plotting.html#S-VVF-Plotting-7" class="internal"><span class="codenumber">10.1.4</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S-VVF-Calculus.html" class="internal"><span class="codenumber">10.2</span> <span class="title">Calculus of Vector-Valued Functions of One Variable</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-VVF-Calculus.html#S-VVF-Calculus-3" class="internal"><span class="codenumber">10.2.1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-VVF-Calculus.html#vvf-derivative" class="internal"><span class="codenumber">10.2.2</span> <span class="title">The Derivative</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-VVF-Calculus.html#S-VVF-Calculus-5" class="internal"><span class="codenumber">10.2.3</span> <span class="title">Computing Derivatives</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-VVF-Calculus.html#tangentlines" class="internal"><span class="codenumber">10.2.4</span> <span class="title">Tangent Lines</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-VVF-Calculus.html#S-VVF-Calculus-7" class="internal"><span class="codenumber">10.2.5</span> <span class="title">Integrating a Vector-Valued Function</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-VVF-Calculus.html#S-VVF-Calculus-9" class="internal"><span class="codenumber">10.2.6</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section contains-active">
+<div class="toc-title-box"><a href="S-VVF-ArcLength.html" class="internal"><span class="codenumber">10.3</span> <span class="title">Arc Length</span></a></div>
+<ul class="structural toc-item-list active">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-VVF-ArcLength.html#S-VVF-ArcLength-3" class="internal"><span class="codenumber">10.3.1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-VVF-ArcLength.html#S-VVF-ArcLength-4" class="internal"><span class="codenumber">10.3.2</span> <span class="title">Arc Length</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-VVF-ArcLength.html#S-VVF-ArcLength-5" class="internal"><span class="codenumber">10.3.3</span> <span class="title">Moving with Unit Speed</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-VVF-ArcLength.html#driverroad" class="internal"><span class="codenumber">10.3.4</span> <span class="title">The Driver or The Road?</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-VVF-ArcLength.html#S-VVF-ArcLength-7" class="internal"><span class="codenumber">10.3.5</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-VVF-ArcLength.html#S-VVF-ArcLength-8" class="internal"><span class="codenumber">10.3.6</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S-VVF-TNB.html" class="internal"><span class="codenumber">10.4</span> <span class="title">The TNB Frame</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-VVF-TNB.html#S-VVF-TNB-3" class="internal"><span class="codenumber">10.4.1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-VVF-TNB.html#subsec-T" class="internal"><span class="codenumber">10.4.2</span> <span class="title">Direction of travel</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-VVF-TNB.html#subsec-N" class="internal"><span class="codenumber">10.4.3</span> <span class="title">The Direction of Turning</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-VVF-TNB.html#subsec-B" class="internal"><span class="codenumber">10.4.4</span> <span class="title">The Binormal Vector</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-VVF-TNB.html#subsec-driverroadTNB" class="internal"><span class="codenumber">10.4.5</span> <span class="title">The Driver or the Road: TNB Frame</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-VVF-TNB.html#S-VVF-TNB-8" class="internal"><span class="codenumber">10.4.6</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-VVF-TNB.html#S-VVF-TNB-9" class="internal"><span class="codenumber">10.4.7</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S-VVF-Curvature.html" class="internal"><span class="codenumber">10.5</span> <span class="title">Curvature</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-VVF-Curvature.html#S-VVF-Curvature-3" class="internal"><span class="codenumber">10.5.1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-VVF-Curvature.html#S-VVF-Curvature-4" class="internal"><span class="codenumber">10.5.2</span> <span class="title">Curvature</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-VVF-Curvature.html#S-VVF-Curvature-5" class="internal"><span class="codenumber">10.5.3</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-VVF-Curvature.html#S-VVF-Curvature-6" class="internal"><span class="codenumber">10.5.4</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S-VVF-Spliting-Acceleration.html" class="internal"><span class="codenumber">10.6</span> <span class="title">Splitting the Acceleration Vector</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-VVF-Spliting-Acceleration.html#S-VVF-Spliting-Acceleration-3" class="internal"><span class="codenumber">10.6.1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-VVF-Spliting-Acceleration.html#S-VVF-Spliting-Acceleration-4" class="internal"><span class="codenumber">10.6.2</span> <span class="title">Splitting Acceleration</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-VVF-Spliting-Acceleration.html#subsec-DR-splita" class="internal"><span class="codenumber">10.6.3</span> <span class="title">The Driver or the Road?</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-VVF-Spliting-Acceleration.html#S-VVF-Spliting-Acceleration-6" class="internal"><span class="codenumber">10.6.4</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-VVF-Spliting-Acceleration.html#S-VVF-Spliting-Acceleration-7" class="internal"><span class="codenumber">10.6.5</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="C_MVF.html" class="internal"><span class="codenumber">11</span> <span class="title">Derivatives of Multivariable Functions</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S-MV-Functions.html" class="internal"><span class="codenumber">11.1</span> <span class="title">Functions of Several Variables</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-MV-Functions.html#S-MV-Functions-3" class="internal"><span class="codenumber">11.1.1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-MV-Functions.html#S-MV-Functions-4" class="internal"><span class="codenumber">11.1.2</span> <span class="title">Functions of Several Variables</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-MV-Functions.html#S-MV-Functions-5" class="internal"><span class="codenumber">11.1.3</span> <span class="title">Representations for Functions of Two Variables</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-MV-Functions.html#S-MV-Functions-6" class="internal"><span class="codenumber">11.1.4</span> <span class="title">Traces</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-MV-Functions.html#S-MV-Functions-7" class="internal"><span class="codenumber">11.1.5</span> <span class="title">Contour Maps and Level Curves</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-MV-Functions.html#S-MV-Functions-8" class="internal"><span class="codenumber">11.1.6</span> <span class="title">A gallery of functions</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-MV-Functions.html#S-MV-Functions-9" class="internal"><span class="codenumber">11.1.7</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-MV-Functions.html#S-MV-Functions-10" class="internal"><span class="codenumber">11.1.8</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S-10-1-Limits.html" class="internal"><span class="codenumber">11.2</span> <span class="title">Limits</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-1-Limits.html#S-10-1-Limits-3" class="internal"><span class="codenumber">11.2.1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-1-Limits.html#S-10-1-Limits-4" class="internal"><span class="codenumber">11.2.2</span> <span class="title">Limits of Functions of Two Variables</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-1-Limits.html#subsec-polarlimit" class="internal"><span class="codenumber">11.2.3</span> <span class="title">Using Polar Coordinates in Limits</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-1-Limits.html#S-10-1-Limits-6" class="internal"><span class="codenumber">11.2.4</span> <span class="title">Continuity</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-1-Limits.html#S-10-1-Limits-7" class="internal"><span class="codenumber">11.2.5</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-10-1-Limits.html#S-10-1-Limits-8" class="internal"><span class="codenumber">11.2.6</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S-10-2-First-Order-Partial-Derivatives.html" class="internal"><span class="codenumber">11.3</span> <span class="title">First-Order Partial Derivatives</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-2-First-Order-Partial-Derivatives.html#S-10-2-First-Order-Partial-Derivatives-3" class="internal"><span class="codenumber">11.3.1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-2-First-Order-Partial-Derivatives.html#S-10-2-First-Order-Partial-Derivatives-4" class="internal"><span class="codenumber">11.3.2</span> <span class="title">First-Order Partial Derivatives</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-2-First-Order-Partial-Derivatives.html#S-10-2-First-Order-Partial-Derivatives-5" class="internal"><span class="codenumber">11.3.3</span> <span class="title">Interpretations of First-Order Partial Derivatives</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-2-First-Order-Partial-Derivatives.html#S-10-2-First-Order-Partial-Derivatives-6" class="internal"><span class="codenumber">11.3.4</span> <span class="title">Using Tables and Contour Plots to Estimate Partial Derivatives</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-2-First-Order-Partial-Derivatives.html#S-10-2-First-Order-Partial-Derivatives-7" class="internal"><span class="codenumber">11.3.5</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-10-2-First-Order-Partial-Derivatives.html#S-10-2-First-Order-Partial-Derivatives-8" class="internal"><span class="codenumber">11.3.6</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S-10-3-Second-Order-Partial-Derivatives.html" class="internal"><span class="codenumber">11.4</span> <span class="title">Second-Order Partial Derivatives</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-3-Second-Order-Partial-Derivatives.html#S-10-3-Second-Order-Partial-Derivatives-3" class="internal"><span class="codenumber">11.4.1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-3-Second-Order-Partial-Derivatives.html#S-10-3-Second-Order-Partial-Derivatives-4" class="internal"><span class="codenumber">11.4.2</span> <span class="title">Second-Order Partial Derivatives</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-3-Second-Order-Partial-Derivatives.html#S-10-3-Second-Order-Partial-Derivatives-5" class="internal"><span class="codenumber">11.4.3</span> <span class="title">Interpreting the Second-Order Partial Derivatives</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-3-Second-Order-Partial-Derivatives.html#S-10-3-Second-Order-Partial-Derivatives-6" class="internal"><span class="codenumber">11.4.4</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-10-3-Second-Order-Partial-Derivatives.html#S-10-3-Second-Order-Partial-Derivatives-7" class="internal"><span class="codenumber">11.4.5</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S-10-4-Linearization.html" class="internal"><span class="codenumber">11.5</span> <span class="title">Linearization: Tangent Planes and Differentials</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-4-Linearization.html#S-10-4-Linearization-3" class="internal"><span class="codenumber">11.5.1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-4-Linearization.html#S-10-4-Linearization-4" class="internal"><span class="codenumber">11.5.2</span> <span class="title">Differentiability and Local Linearity</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-4-Linearization.html#subsec-tangentplane" class="internal"><span class="codenumber">11.5.3</span> <span class="title">The Tangent Plane</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-4-Linearization.html#S-10-4-Linearization-6" class="internal"><span class="codenumber">11.5.4</span> <span class="title">Linearization</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-4-Linearization.html#S-10-4-Linearization-7" class="internal"><span class="codenumber">11.5.5</span> <span class="title">Differentials</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-4-Linearization.html#S-10-4-Linearization-8" class="internal"><span class="codenumber">11.5.6</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-10-4-Linearization.html#S-10-4-Linearization-9" class="internal"><span class="codenumber">11.5.7</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S-10-5-Chain-Rule.html" class="internal"><span class="codenumber">11.6</span> <span class="title">The Multivariable Chain Rule</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-5-Chain-Rule.html#S-10-5-Chain-Rule-3" class="internal"><span class="codenumber">11.6.1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-5-Chain-Rule.html#S-10-5-Chain-Rule-4" class="internal"><span class="codenumber">11.6.2</span> <span class="title">The Chain Rule</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-5-Chain-Rule.html#S-10-5-Chain-Rule-5" class="internal"><span class="codenumber">11.6.3</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-10-5-Chain-Rule.html#S-10-5-Chain-Rule-6" class="internal"><span class="codenumber">11.6.4</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S-10-6-Directional-Derivative.html" class="internal"><span class="codenumber">11.7</span> <span class="title">Directional Derivatives and the Gradient</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-6-Directional-Derivative.html#S-10-6-Directional-Derivative-3" class="internal"><span class="codenumber">11.7.1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-6-Directional-Derivative.html#S-10-6-Directional-Derivative-4" class="internal"><span class="codenumber">11.7.2</span> <span class="title">Directional Derivatives</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-6-Directional-Derivative.html#S-10-6-Directional-Derivative-5" class="internal"><span class="codenumber">11.7.3</span> <span class="title">Efficiently Computing the Directional Derivative</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-6-Directional-Derivative.html#gradient_ss" class="internal"><span class="codenumber">11.7.4</span> <span class="title">The Gradient</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-6-Directional-Derivative.html#vec-grad" class="internal"><span class="codenumber">11.7.5</span> <span class="title">Vector Properties of the Gradient</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-6-Directional-Derivative.html#S-10-6-Directional-Derivative-8" class="internal"><span class="codenumber">11.7.6</span> <span class="title">Applications</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-6-Directional-Derivative.html#S-10-6-Directional-Derivative-9" class="internal"><span class="codenumber">11.7.7</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-10-6-Directional-Derivative.html#S-10-6-Directional-Derivative-10" class="internal"><span class="codenumber">11.7.8</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S-MV-HD.html" class="internal"><span class="codenumber">11.8</span> <span class="title">Higher Dimensions</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-MV-HD.html#S-MV-HD-3" class="internal"><span class="codenumber">11.8.1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-MV-HD.html#S-MV-HD-4" class="internal"><span class="codenumber">11.8.2</span> <span class="title">Inputs and Outputs with Functions of Three or More Variables</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-MV-HD.html#S-MV-HD-5" class="internal"><span class="codenumber">11.8.3</span> <span class="title">Attempting to Graph Functions of Three or More Variables</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-MV-HD.html#subsec-3plusdiff" class="internal"><span class="codenumber">11.8.4</span> <span class="title">Measuring Change with Functions of Three or More Variables</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-MV-HD.html#HD-gradient" class="internal"><span class="codenumber">11.8.5</span> <span class="title">Directional Derivatives and Gradients</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-MV-HD.html#S-MV-HD-8" class="internal"><span class="codenumber">11.8.6</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-MV-HD.html#S-MV-HD-9" class="internal"><span class="codenumber">11.8.7</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S-10-7-Optimization.html" class="internal"><span class="codenumber">11.9</span> <span class="title">Optimization</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-7-Optimization.html#S-10-7-Optimization-3" class="internal"><span class="codenumber">11.9.1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-7-Optimization.html#S-10-7-Optimization-4" class="internal"><span class="codenumber">11.9.2</span> <span class="title">Extrema and Critical Points</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-7-Optimization.html#S-10-7-Optimization-5" class="internal"><span class="codenumber">11.9.3</span> <span class="title">Classifying Critical Points: The Second Derivative Test</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-7-Optimization.html#S-10-7-Optimization-6" class="internal"><span class="codenumber">11.9.4</span> <span class="title">Optimization on a Restricted Domain</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-7-Optimization.html#S-10-7-Optimization-7" class="internal"><span class="codenumber">11.9.5</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-10-7-Optimization.html#S-10-7-Optimization-8" class="internal"><span class="codenumber">11.9.6</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S-10-8-Lagrange-Multipliers.html" class="internal"><span class="codenumber">11.10</span> <span class="title">Constrained Optimization: Lagrange Multipliers</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-8-Lagrange-Multipliers.html#S-10-8-Lagrange-Multipliers-3" class="internal"><span class="codenumber">11.10.1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-8-Lagrange-Multipliers.html#S-10-8-Lagrange-Multipliers-4" class="internal"><span class="codenumber">11.10.2</span> <span class="title">Constrained Optimization and Lagrange Multipliers</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-8-Lagrange-Multipliers.html#S-10-8-Lagrange-Multipliers-5" class="internal"><span class="codenumber">11.10.3</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-10-8-Lagrange-Multipliers.html#S-10-8-Lagrange-Multipliers-6" class="internal"><span class="codenumber">11.10.4</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="C_MI.html" class="internal"><span class="codenumber">12</span> <span class="title">Multiple Integrals</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S-11-1-Double-Integrals-Rectangles.html" class="internal"><span class="codenumber">12.1</span> <span class="title">Double Riemann Sums and Double Integrals over Rectangles</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-1-Double-Integrals-Rectangles.html#S-11-1-Double-Integrals-Rectangles-3" class="internal"><span class="codenumber">12.1.1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-1-Double-Integrals-Rectangles.html#S-11-1-Double-Integrals-Rectangles-4" class="internal"><span class="codenumber">12.1.2</span> <span class="title">Double Riemann Sums over Rectangles</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-1-Double-Integrals-Rectangles.html#S-11-1-Double-Integrals-Rectangles-5" class="internal"><span class="codenumber">12.1.3</span> <span class="title">Double Riemann Sums and Double Integrals</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-1-Double-Integrals-Rectangles.html#interpret-dblint" class="internal"><span class="codenumber">12.1.4</span> <span class="title">Interpretation of Double Riemann Sums and Double integrals</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-1-Double-Integrals-Rectangles.html#S-11-1-Double-Integrals-Rectangles-7" class="internal"><span class="codenumber">12.1.5</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-11-1-Double-Integrals-Rectangles.html#S-11-1-Double-Integrals-Rectangles-8" class="internal"><span class="codenumber">12.1.6</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S-11-2-Iterated-Integrals.html" class="internal"><span class="codenumber">12.2</span> <span class="title">Iterated Integrals</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-2-Iterated-Integrals.html#S-11-2-Iterated-Integrals-3" class="internal"><span class="codenumber">12.2.1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-2-Iterated-Integrals.html#S-11-2-Iterated-Integrals-4" class="internal"><span class="codenumber">12.2.2</span> <span class="title">Iterated Integrals</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-2-Iterated-Integrals.html#S-11-2-Iterated-Integrals-5" class="internal"><span class="codenumber">12.2.3</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-11-2-Iterated-Integrals.html#S-11-2-Iterated-Integrals-6" class="internal"><span class="codenumber">12.2.4</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S-11-3-Double-Integrals-General.html" class="internal"><span class="codenumber">12.3</span> <span class="title">Double Integrals over General Regions</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-3-Double-Integrals-General.html#S-11-3-Double-Integrals-General-3" class="internal"><span class="codenumber">12.3.1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-3-Double-Integrals-General.html#S-11-3-Double-Integrals-General-4" class="internal"><span class="codenumber">12.3.2</span> <span class="title">Double Integrals over General Regions</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-3-Double-Integrals-General.html#S-11-3-Double-Integrals-General-5" class="internal"><span class="codenumber">12.3.3</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-11-3-Double-Integrals-General.html#S-11-3-Double-Integrals-General-6" class="internal"><span class="codenumber">12.3.4</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S-11-4-Double-Integrals-Applications.html" class="internal"><span class="codenumber">12.4</span> <span class="title">Applications of Double Integrals</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-4-Double-Integrals-Applications.html#S-11-4-Double-Integrals-Applications-3" class="internal"><span class="codenumber">12.4.1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-4-Double-Integrals-Applications.html#S-11-4-Double-Integrals-Applications-4" class="internal"><span class="codenumber">12.4.2</span> <span class="title">Mass</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-4-Double-Integrals-Applications.html#S-11-4-Double-Integrals-Applications-5" class="internal"><span class="codenumber">12.4.3</span> <span class="title">Area</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-4-Double-Integrals-Applications.html#S-11-4-Double-Integrals-Applications-6" class="internal"><span class="codenumber">12.4.4</span> <span class="title">Center of Mass</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-4-Double-Integrals-Applications.html#S-11-4-Double-Integrals-Applications-7" class="internal"><span class="codenumber">12.4.5</span> <span class="title">Probability</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-4-Double-Integrals-Applications.html#S-11-4-Double-Integrals-Applications-8" class="internal"><span class="codenumber">12.4.6</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-11-4-Double-Integrals-Applications.html#S-11-4-Double-Integrals-Applications-9" class="internal"><span class="codenumber">12.4.7</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S-11-5-Double-Integrals-Polar.html" class="internal"><span class="codenumber">12.5</span> <span class="title">Double Integrals in Polar Coordinates</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-5-Double-Integrals-Polar.html#S-11-5-Double-Integrals-Polar-3" class="internal"><span class="codenumber">12.5.1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-5-Double-Integrals-Polar.html#S-11-5-Double-Integrals-Polar-4" class="internal"><span class="codenumber">12.5.2</span> <span class="title">Integrating in Polar Coordinates</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-5-Double-Integrals-Polar.html#S-11-5-Double-Integrals-Polar-5" class="internal"><span class="codenumber">12.5.3</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-11-5-Double-Integrals-Polar.html#S-11-5-Double-Integrals-Polar-6" class="internal"><span class="codenumber">12.5.4</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S-11-7-Triple-Integrals.html" class="internal"><span class="codenumber">12.6</span> <span class="title">Triple Integrals</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-7-Triple-Integrals.html#S-11-7-Triple-Integrals-3" class="internal"><span class="codenumber">12.6.1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-7-Triple-Integrals.html#S-11-7-Triple-Integrals-4" class="internal"><span class="codenumber">12.6.2</span> <span class="title">Triple Riemann Sums and Triple Integrals</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-7-Triple-Integrals.html#S-11-7-Triple-Integrals-5" class="internal"><span class="codenumber">12.6.3</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-11-7-Triple-Integrals.html#S-11-7-Triple-Integrals-6" class="internal"><span class="codenumber">12.6.4</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S-11-8-Triple-Integrals-Cylindrical-Spherical.html" class="internal"><span class="codenumber">12.7</span> <span class="title">Triple Integrals in Cylindrical and Spherical Coordinates</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-8-Triple-Integrals-Cylindrical-Spherical.html#S-11-8-Triple-Integrals-Cylindrical-Spherical-3" class="internal"><span class="codenumber">12.7.1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-8-Triple-Integrals-Cylindrical-Spherical.html#S-11-8-Triple-Integrals-Cylindrical-Spherical-4" class="internal"><span class="codenumber">12.7.2</span> <span class="title">Triple Integrals in Cylindrical Coordinates</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-8-Triple-Integrals-Cylindrical-Spherical.html#S-11-8-Triple-Integrals-Cylindrical-Spherical-5" class="internal"><span class="codenumber">12.7.3</span> <span class="title">Triple Integrals in Spherical Coordinates</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-8-Triple-Integrals-Cylindrical-Spherical.html#S-11-8-Triple-Integrals-Cylindrical-Spherical-6" class="internal"><span class="codenumber">12.7.4</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-11-8-Triple-Integrals-Cylindrical-Spherical.html#S-11-8-Triple-Integrals-Cylindrical-Spherical-7" class="internal"><span class="codenumber">12.7.5</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S-11-9-Change-of-Variable.html" class="internal"><span class="codenumber">12.8</span> <span class="title">Change of Variables</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-9-Change-of-Variable.html#S-11-9-Change-of-Variable-3" class="internal"><span class="codenumber">12.8.1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-9-Change-of-Variable.html#S-11-9-Change-of-Variable-4" class="internal"><span class="codenumber">12.8.2</span> <span class="title">Change of Variables in Polar Coordinates</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-9-Change-of-Variable.html#S-11-9-Change-of-Variable-5" class="internal"><span class="codenumber">12.8.3</span> <span class="title">General Change of Coordinates</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-9-Change-of-Variable.html#S-11-9-Change-of-Variable-6" class="internal"><span class="codenumber">12.8.4</span> <span class="title">Change of Variables in a Triple Integral</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-9-Change-of-Variable.html#S-11-9-Change-of-Variable-7" class="internal"><span class="codenumber">12.8.5</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-11-9-Change-of-Variable.html#S-11-9-Change-of-Variable-8" class="internal"><span class="codenumber">12.8.6</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="C_Vector.html" class="internal"><span class="codenumber">13</span> <span class="title">Vector Calculus</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S_Vector_VectorFields.html" class="internal"><span class="codenumber">13.1</span> <span class="title">Vector Fields</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_VectorFields.html#S_Vector_VectorFields-3" class="internal"><span class="codenumber">13.1.1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_VectorFields.html#SS_Vector_VectorFields_Examples" class="internal"><span class="codenumber">13.1.2</span> <span class="title">Examples of Vector Fields</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_VectorFields.html#SS_Vector_VectorFields_Mathematical" class="internal"><span class="codenumber">13.1.3</span> <span class="title">Mathematical Vector Fields</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_VectorFields.html#SS_Vector_VectorFields_Plotting" class="internal"><span class="codenumber">13.1.4</span> <span class="title">Plotting Vector Fields</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_VectorFields.html#SS_Vector_VectorFields_Gradient" class="internal"><span class="codenumber">13.1.5</span> <span class="title">Gradient Vector Fields</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_VectorFields.html#S_Vector_VectorFields-8" class="internal"><span class="codenumber">13.1.6</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S_Vector_VectorFields.html#S_Vector_VectorFields-9" class="internal"><span class="codenumber">13.1.7</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S_Vector_IdeaLineIntegral.html" class="internal"><span class="codenumber">13.2</span> <span class="title">The Idea of a Line Integral</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_IdeaLineIntegral.html#S_Vector_IdeaLineIntegral-3" class="internal"><span class="codenumber">13.2.1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_IdeaLineIntegral.html#SS_Vector_IdeaLineIntegral_OrientCurve" class="internal"><span class="codenumber">13.2.2</span> <span class="title">Orientations of Curves</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_IdeaLineIntegral.html#SS_Vector_IdeaLineIntegral_LineIntegrals" class="internal"><span class="codenumber">13.2.3</span> <span class="title">Line Integrals</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_IdeaLineIntegral.html#SS_Vector_IdeaLineIntegral_Properties" class="internal"><span class="codenumber">13.2.4</span> <span class="title">Properties of Line Integrals</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_IdeaLineIntegral.html#SS_Vector_IdeaLineIntegral_Circulation" class="internal"><span class="codenumber">13.2.5</span> <span class="title">The Circulation of a Vector Field</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_IdeaLineIntegral.html#S_Vector_IdeaLineIntegral-8" class="internal"><span class="codenumber">13.2.6</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S_Vector_IdeaLineIntegral.html#S_Vector_IdeaLineIntegral-9" class="internal"><span class="codenumber">13.2.7</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S_Vector_ParamLineIntegrals.html" class="internal"><span class="codenumber">13.3</span> <span class="title">Using Parametrizations to Calculate Line Integrals</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_ParamLineIntegrals.html#S_Vector_ParamLineIntegrals-3" class="internal"><span class="codenumber">13.3.1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_ParamLineIntegrals.html#SS_Vector_ParamLineIntegrals_Evaluation" class="internal"><span class="codenumber">13.3.2</span> <span class="title">Parametrizations in the Definition of <span class="process-math">\(\int_C\vF\cdot d\vr\)</span></span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_ParamLineIntegrals.html#alt_li_notation" class="internal"><span class="codenumber">13.3.3</span> <span class="title">Alternative Notation for Line Integrals</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_ParamLineIntegrals.html#S_Vector_ParamLineIntegrals-6" class="internal"><span class="codenumber">13.3.4</span> <span class="title">Independence of Parametrization for a Fixed Curve</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_ParamLineIntegrals.html#S_Vector_ParamLineIntegrals-7" class="internal"><span class="codenumber">13.3.5</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S_Vector_ParamLineIntegrals.html#S_Vector_ParamLineIntegrals-8" class="internal"><span class="codenumber">13.3.6</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S_Vector_FTCLI.html" class="internal"><span class="codenumber">13.4</span> <span class="title">Path-Independent Vector Fields and the Fundamental Theorem of Calculus for Line Integrals</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_FTCLI.html#S_Vector_FTCLI-3" class="internal"><span class="codenumber">13.4.1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_FTCLI.html#S_Vector_FTCLI-4" class="internal"><span class="codenumber">13.4.2</span> <span class="title">Path-Independent Vector Fields</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_FTCLI.html#S_Vector_FTCLI-5" class="internal"><span class="codenumber">13.4.3</span> <span class="title">Line Integrals Along Closed Curves</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_FTCLI.html#SS_Vector_FTCLI_Other" class="internal"><span class="codenumber">13.4.4</span> <span class="title">What other vector fields are path-independent?</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_FTCLI.html#S_Vector_FTCLI-7" class="internal"><span class="codenumber">13.4.5</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S_Vector_FTCLI.html#S_Vector_FTCLI-8" class="internal"><span class="codenumber">13.4.6</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S_Vector_ScalarLineIntegral.html" class="internal"><span class="codenumber">13.5</span> <span class="title">Line Integrals of Scalar Functions</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_ScalarLineIntegral.html#S_Vector_ScalarLineIntegral-3" class="internal"><span class="codenumber">13.5.1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_ScalarLineIntegral.html#S_Vector_ScalarLineIntegral-4" class="internal"><span class="codenumber">13.5.2</span> <span class="title">Defining line integrals of scalar functions</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_ScalarLineIntegral.html#S_Vector_ScalarLineIntegral-5" class="internal"><span class="codenumber">13.5.3</span> <span class="title">Using Parameterizations to Calculate Scalar Line Integrals</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_ScalarLineIntegral.html#S_Vector_ScalarLineIntegral-6" class="internal"><span class="codenumber">13.5.4</span> <span class="title">Properties of Scalar Line Integrals</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_ScalarLineIntegral.html#SS_Vector_ScalarLineIntegral_Visualizations" class="internal"><span class="codenumber">13.5.5</span> <span class="title">Visualizations of Scalar Line Integrals as Area Under a Curve</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_ScalarLineIntegral.html#S_Vector_ScalarLineIntegral-8" class="internal"><span class="codenumber">13.5.6</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S_Vector_ScalarLineIntegral.html#ez_Vector_ScalarLineIntegral" class="internal"><span class="codenumber">13.5.7</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S_Vector_Div.html" class="internal"><span class="codenumber">13.6</span> <span class="title">The Divergence of a Vector Field</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_Div.html#S_Vector_Div-3" class="internal"><span class="codenumber">13.6.1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_Div.html#SS_Vector_Div_Defn" class="internal"><span class="codenumber">13.6.2</span> <span class="title">Definition of the Divergence of a Vector Field</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_Div.html#SS_Vector_Div_Development" class="internal"><span class="codenumber">13.6.3</span> <span class="title">Measuring the Change in Strength of a Vector Field</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_Div.html#S_Vector_Div-6" class="internal"><span class="codenumber">13.6.4</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S_Vector_Div.html#S_Vector_Div-7" class="internal"><span class="codenumber">13.6.5</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S_Vector_Curl.html" class="internal"><span class="codenumber">13.7</span> <span class="title">The Curl of a Vector Field</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_Curl.html#S_Vector_Curl-3" class="internal"><span class="codenumber">13.7.1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_Curl.html#SS_Vector_Curl_Development" class="internal"><span class="codenumber">13.7.2</span> <span class="title">Measuring the Circulation Density of Vector Field in <span class="process-math">\(\R^2\)</span></span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_Curl.html#SS_Vector_Curl_Development3D" class="internal"><span class="codenumber">13.7.3</span> <span class="title">Measuring Rotation in Three Dimensions</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_Curl.html#S_Vector_Curl-6" class="internal"><span class="codenumber">13.7.4</span> <span class="title">Circulation Density in Three Dimensions</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_Curl.html#SS_Vector_Curl_Interpretation" class="internal"><span class="codenumber">13.7.5</span> <span class="title">Interpretation and Usage of Curl</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_Curl.html#S_Vector_Curl-8" class="internal"><span class="codenumber">13.7.6</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S_Vector_Curl.html#S_Vector_Curl-9" class="internal"><span class="codenumber">13.7.7</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S_Vector_GreensTheorem.html" class="internal"><span class="codenumber">13.8</span> <span class="title">Green’s Theorem</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_GreensTheorem.html#S_Vector_GreensTheorem-3" class="internal"><span class="codenumber">13.8.1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_GreensTheorem.html#SS_Vector_GreensTheorem_Circulation" class="internal"><span class="codenumber">13.8.2</span> <span class="title">Circulation</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_GreensTheorem.html#S_Vector_GreensTheorem-5" class="internal"><span class="codenumber">13.8.3</span> <span class="title">Green’s Theorem</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_GreensTheorem.html#S_Vector_GreensTheorem-6" class="internal"><span class="codenumber">13.8.4</span> <span class="title">What happens when vector fields are not smooth?</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_GreensTheorem.html#S_Vector_GreensTheorem-7" class="internal"><span class="codenumber">13.8.5</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S_Vector_GreensTheorem.html#S_Vector_GreensTheorem-8" class="internal"><span class="codenumber">13.8.6</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S-11-6-Parametric-Surfaces-Surface-Area.html" class="internal"><span class="codenumber">13.9</span> <span class="title">Surfaces Defined Parametrically and Surface Area</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-6-Parametric-Surfaces-Surface-Area.html#S-11-6-Parametric-Surfaces-Surface-Area-3" class="internal"><span class="codenumber">13.9.1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-6-Parametric-Surfaces-Surface-Area.html#S-11-6-Parametric-Surfaces-Surface-Area-4" class="internal"><span class="codenumber">13.9.2</span> <span class="title">Parametric Surfaces</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-6-Parametric-Surfaces-Surface-Area.html#SS-11-6-2-Surface-Area-Parametrically-Defined-Surfaces" class="internal"><span class="codenumber">13.9.3</span> <span class="title">The Surface Area of Parametrically Defined Surfaces</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-6-Parametric-Surfaces-Surface-Area.html#S-11-6-Parametric-Surfaces-Surface-Area-6" class="internal"><span class="codenumber">13.9.4</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-11-6-Parametric-Surfaces-Surface-Area.html#S-11-6-Parametric-Surfaces-Surface-Area-7" class="internal"><span class="codenumber">13.9.5</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S_Vector_FluxInt.html" class="internal"><span class="codenumber">13.10</span> <span class="title">Flux Integrals</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_FluxInt.html#S_Vector_FluxInt-3" class="internal"><span class="codenumber">13.10.1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_FluxInt.html#SS_Vector_FluxInt_Idea" class="internal"><span class="codenumber">13.10.2</span> <span class="title">The Idea of the Flux of a Vector Field through a Surface</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_FluxInt.html#S_Vector_FluxInt-5" class="internal"><span class="codenumber">13.10.3</span> <span class="title">The Details of Measuring the Flux of a Vector Field through a Surface</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_FluxInt.html#S_Vector_FluxInt-6" class="internal"><span class="codenumber">13.10.4</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S_Vector_FluxInt.html#S_Vector_FluxInt-7" class="internal"><span class="codenumber">13.10.5</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S_Vector_ScalarSurfaceIntegral.html" class="internal"><span class="codenumber">13.11</span> <span class="title">Surface Integrals of Scalar Valued Functions</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_ScalarSurfaceIntegral.html#S_Vector_ScalarSurfaceIntegral-3" class="internal"><span class="codenumber">13.11.1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_ScalarSurfaceIntegral.html#S_Vector_ScalarSurfaceIntegral-4" class="internal"><span class="codenumber">13.11.2</span> <span class="title">Defining surface integrals of scalar functions</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_ScalarSurfaceIntegral.html#S_Vector_ScalarSurfaceIntegral-5" class="internal"><span class="codenumber">13.11.3</span> <span class="title">Properties of Scalar Surface Integrals</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_ScalarSurfaceIntegral.html#S_Vector_ScalarSurfaceIntegral-6" class="internal"><span class="codenumber">13.11.4</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S_Vector_ScalarSurfaceIntegral.html#S_Vector_ScalarSurfaceIntegral-7" class="internal"><span class="codenumber">13.11.5</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S_Vector_StokesThm.html" class="internal"><span class="codenumber">13.12</span> <span class="title">Stokes’ Theorem</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_StokesThm.html#S_Vector_StokesThm-3" class="internal"><span class="codenumber">13.12.1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_StokesThm.html#SS_Vector_StokesThm_Development" class="internal"><span class="codenumber">13.12.2</span> <span class="title">Circulation in three dimensions and Stokes’ Theorem</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_StokesThm.html#SS_Vector_StokesThm_Verify" class="internal"><span class="codenumber">13.12.3</span> <span class="title">Verifying and Applying Stokes’ Theorem</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_StokesThm.html#surfaceboundaries" class="internal"><span class="codenumber">13.12.4</span> <span class="title">Practice with Surfaces and their Boundaries</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_StokesThm.html#S_Vector_StokesThm-7" class="internal"><span class="codenumber">13.12.5</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S_Vector_StokesThm.html#S_Vector_StokesThm-8" class="internal"><span class="codenumber">13.12.6</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S_Vector_DivThm.html" class="internal"><span class="codenumber">13.13</span> <span class="title">The Divergence Theorem</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_DivThm.html#S_Vector_DivThm-3" class="internal"><span class="codenumber">13.13.1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_DivThm.html#SS_Vector_DivThm_Verify" class="internal"><span class="codenumber">13.13.2</span> <span class="title">The Divergence Theorem</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_DivThm.html#S_Vector_DivThm-5" class="internal"><span class="codenumber">13.13.3</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S_Vector_DivThm.html#S_Vector_DivThm-6" class="internal"><span class="codenumber">13.13.4</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-backmatter">
+<div class="toc-title-box"><a href="root-1-2-8.html" class="internal"><span class="title">Back Matter</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-appendix">
+<div class="toc-title-box"><a href="root-1-2-8-1.html" class="internal"><span class="codenumber">A</span> <span class="title">Supplementary Materials</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S-app-conics.html" class="internal"><span class="codenumber">A.1</span> <span class="title">Conic Sections</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-app-conics.html#S-app-conics-2" class="internal"><span class="codenumber">A.1.1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-app-conics.html#coordtransform" class="internal"><span class="codenumber">A.1.2</span> <span class="title">Coordinate Transformations</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-app-conics.html#S-app-conics-4" class="internal"><span class="codenumber">A.1.3</span> <span class="title">Conic Sections</span></a></div></li>
+</ul>
+</li></ul>
+</li>
+<li class="toc-item toc-index"><div class="toc-title-box"><a href="root-1-2-8-2.html" class="internal"><span class="title">Index</span></a></div></li>
+</ul>
+</li>
+</ul></nav></div>
+<main class="ptx-main"><div id="ptx-content" class="ptx-content"><section class="section" id="S-VVF-ArcLength"><h2 class="heading hide-type">
+<span class="type">Section</span><span class="space"> </span><span class="codenumber">10.3</span><span class="space"> </span><span class="title">Arc Length</span>
+</h2>
+<article class="objectives goal-like" id="S-VVF-ArcLength-2"><h3 class="heading"><span class="type">Motivating Questions</span></h3>
+<ul class="disc" id="S-VVF-ArcLength-2-1">
+<li id="S-VVF-ArcLength-2-1-1">
+<div class="para" id="S-VVF-ArcLength-2-1-1-1">How can a definite integral be used to measure the length of a curve in 2- or 3-space?<div class="autopermalink" data-description="Paragraph"><a href="#S-VVF-ArcLength-2-1-1-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Objective"><a href="#S-VVF-ArcLength-2-1-1" title="Copy heading and permalink for Objective">🔗</a></div>
+</li>
+<li id="S-VVF-ArcLength-2-1-2">
+<div class="para" id="S-VVF-ArcLength-2-1-2-1">Is it possible to parameterize any curve with constant speed?<div class="autopermalink" data-description="Paragraph"><a href="#S-VVF-ArcLength-2-1-2-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Objective"><a href="#S-VVF-ArcLength-2-1-2" title="Copy heading and permalink for Objective">🔗</a></div>
+</li>
+</ul>
+<div class="autopermalink" data-description="Motivating Questions 10.3"><a href="#S-VVF-ArcLength-2" title="Copy heading and permalink for Motivating Questions 10.3">🔗</a></div></article><section class="subsection" id="S-VVF-ArcLength-3"><h3 class="heading hide-type">
+<span class="type">Subsection</span><span class="space"> </span><span class="codenumber">10.3.1</span><span class="space"> </span><span class="title">Introduction</span>
+</h3>
+<div class="para logical" id="S-VVF-ArcLength-3-2">
+<div class="para">In the previous sections, we have introduced the notation and graphs for vector-valued functions, as well as how the calculus operations of limits, derivatives, and integrals will apply to these functions. In this section, we will start utilizing these calculus elements alongside our vector tools (like magnitude, direction, or projection) to measure and efficiently calculate important properties of our curve and how motion can occur along the curve. The first property we will investigate comes up naturally when looking at curves in space: “What is the length of a given curve in space?” Remember that <a href="S-Precalc-3Dcoord.html#Distance-formula" class="xref" data-knowl="./knowl/xref/Distance-formula.html" data-reveal-label="Reveal" data-close-label="Close" title="Assemblage: The distance between points in three dimensions">the distance between two points in space</a> is given by</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/Distance-formula.html">
+\begin{equation*}
+\vert{PQ}\vert = \sqrt{(x_1-x_0)^2 + (y_1-y_0)^2 + (z_1-z_0)^2}
+\end{equation*}
+</div>
+<div class="para">In single-variable calculus, you likely learned that displacement (net change in position) and total distance traveled for an object moving in one-dimension will not be the same if the object changes direction. For vector-valued functions in higher dimensions, we will now explore how the length of a curve is different than the displacement of an object that moves along that curve.</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#S-VVF-ArcLength-3-2" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<article class="exploration project-like" id="PA-arclength"><h4 class="heading">
+<span class="type">Preview Activity</span><span class="space"> </span><span class="codenumber">10.3.1</span><span class="period">.</span>
+</h4>
+<div class="introduction" id="PA-arclength-1"><div class="para" id="PA-arclength-1-1">In <a href="S-VVF-Plotting.html#PA-VVF-Plotting" class="xref" data-knowl="./knowl/xref/PA-VVF-Plotting.html" data-reveal-label="Reveal" data-close-label="Close" title="Preview Activity 10.1.1">Preview Activity 10.1.1</a> and <a href="S-VVF-Calculus.html#PA-VVF-Calculus" class="xref" data-knowl="./knowl/xref/PA-VVF-Calculus.html" data-reveal-label="Reveal" data-close-label="Close" title="Preview Activity 10.2.1">Preview Activity 10.2.1</a> we saw how the output from the location tracking system (LTS) of a self-driving car is related to a vector-valued function that corresponds to the location of the car. We want to relate the location at different times to properties about how the car is being driven. In order to attract investors and drive shareholder value in <em class="emphasis">Steer Clear</em>, you decide to use the location tracking system’s output to build a customized navigation and telemetry tool for a self-driving car. The first element you will need to build is a way to use the LTS output to calculate how far the car has driven in a given time.<div class="autopermalink" data-description="Paragraph"><a href="#PA-arclength-1-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></div>
+<article class="task exercise-like" id="PA-arclength1"><h5 class="heading"><span class="codenumber">(a)</span></h5>
+<div class="para" id="PA-arclength1-1-1">In your testing center (an abandoned parking garage), you drive your car up a ramp and note that the LTS recorded that the car had coordinates of <span class="process-math">\(\langle 10,-5,0\rangle\)</span> at <span class="process-math">\(t=0\)</span> and <span class="process-math">\(\langle -8,10,12\rangle\)</span> at <span class="process-math">\(t=30\text{.}\)</span> What is the distance between initial (<span class="process-math">\(t=0\)</span>) and final (<span class="process-math">\(t=30\)</span>) positions of the car? This is the <em class="emphasis">displacement</em> of your total trip.<div class="autopermalink" data-description="Paragraph"><a href="#PA-arclength1-1-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="part 10.3.1.a"><a href="#PA-arclength1" title="Copy heading and permalink for part 10.3.1.a">🔗</a></div></article><article class="task exercise-like" id="PA-arclength-3"><h5 class="heading"><span class="codenumber">(b)</span></h5>
+<div class="para" id="PA-arclength-3-1-1">Do you think the distance the car actually traveled is greater than, less than, or exactly the same as your answer to <a href="S-VVF-ArcLength.html#PA-arclength1" class="xref" data-knowl="./knowl/xref/PA-arclength1.html" data-reveal-label="Reveal" data-close-label="Close" title="part 10.3.1.a">part a</a>? Write a couple of sentences to explain your reasoning.<div class="autopermalink" data-description="Paragraph"><a href="#PA-arclength-3-1-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="part 10.3.1.b"><a href="#PA-arclength-3" title="Copy heading and permalink for part 10.3.1.b">🔗</a></div></article><article class="task exercise-like" id="PA-arclength3"><h5 class="heading"><span class="codenumber">(c)</span></h5>
+<div class="para logical" id="PA-arclength3-1-1">
+<div class="para">In order to get more information for your telemetry system, you decide to pull the location data from your drive up the parking ramp every 10 seconds. The LTS gives the following data:</div>
+<ul class="disc" id="PA-arclength3-1-1-1">
+<li id="PA-arclength3-1-1-1-1">
+<div class="para" id="p-derived-PA-arclength3-1-1-1-1">
+<span class="process-math">\(\langle 10,-5,0\rangle\)</span> at <span class="process-math">\(t=0\)</span>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#PA-arclength3-1-1-1-1" title="Copy heading and permalink for Item">🔗</a></div>
+</li>
+<li id="PA-arclength3-1-1-1-2">
+<div class="para" id="p-derived-PA-arclength3-1-1-1-2">
+<span class="process-math">\(\langle 6,0,6 \rangle\)</span> at <span class="process-math">\(t=10\)</span>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#PA-arclength3-1-1-1-2" title="Copy heading and permalink for Item">🔗</a></div>
+</li>
+<li id="PA-arclength3-1-1-1-3">
+<div class="para" id="p-derived-PA-arclength3-1-1-1-3">
+<span class="process-math">\(\langle -10,2,10\rangle\)</span> at <span class="process-math">\(t=20\)</span>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#PA-arclength3-1-1-1-3" title="Copy heading and permalink for Item">🔗</a></div>
+</li>
+<li id="PA-arclength3-1-1-1-4">
+<div class="para" id="p-derived-PA-arclength3-1-1-1-4">
+<span class="process-math">\(\langle -8,10,12\rangle\)</span> at <span class="process-math">\(t=30\)</span>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#PA-arclength3-1-1-1-4" title="Copy heading and permalink for Item">🔗</a></div>
+</li>
+</ul>
+<div class="para">Calculate the distance between successive times and estimate how far your car went on the drive up the parking ramp.</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#PA-arclength3-1-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="part 10.3.1.c"><a href="#PA-arclength3" title="Copy heading and permalink for part 10.3.1.c">🔗</a></div></article><article class="task exercise-like" id="PA-arclength-5"><h5 class="heading"><span class="codenumber">(d)</span></h5>
+<div class="para" id="PA-arclength-5-1-1">Do you think your estimate from <a href="S-VVF-ArcLength.html#PA-arclength3" class="xref" data-knowl="./knowl/xref/PA-arclength3.html" data-reveal-label="Reveal" data-close-label="Close" title="part 10.3.1.c">part c</a> is greater than, less than, or equal to the actual distance traveled? Write a couple of sentences to explain your reasoning.<div class="autopermalink" data-description="Paragraph"><a href="#PA-arclength-5-1-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="part 10.3.1.d"><a href="#PA-arclength-5" title="Copy heading and permalink for part 10.3.1.d">🔗</a></div></article><article class="task exercise-like" id="PA-arclength-6"><h5 class="heading"><span class="codenumber">(e)</span></h5>
+<div class="para" id="PA-arclength-6-1-1">You look into the documentation on your location tracking system and see that you can specify how often the software will output location data. You decide that getting the location every half second seems like a good idea. How many data points will that correspond to for your drive up the ramp? Write a few sentences to describe what steps you would take with this new location data to calculate a better estimate on the distance traveled by your car.<div class="autopermalink" data-description="Paragraph"><a href="#PA-arclength-6-1-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="part 10.3.1.e"><a href="#PA-arclength-6" title="Copy heading and permalink for part 10.3.1.e">🔗</a></div></article><div class="autopermalink" data-description="Preview Activity 10.3.1"><a href="#PA-arclength" title="Copy heading and permalink for Preview Activity 10.3.1">🔗</a></div></article><div class="para logical" id="S-VVF-ArcLength-3-4">
+<div class="para">The last part of the Preview Activity is an example of algorithmic thinking, a vital skill in mathematical, scientific, and engineering fields. Algorithmic thinking involves breaking larger problems into different tasks where a precise set of rules or operations can be stated for each task. We have referred to the <a href="C_VVF.html#C_VVF_classic-calc-approach" class="internal" title="Introduction: Classic Calculus Approach">classic calculus approach</a> in a few scenarios and will again this section. However, now we take a moment to mention how the classic calculus approach has the structure of this algorithmic thinking. Specifically, the tasks for the classic calculus approach can be summarized as</div>
+<ol class="decimal ol-marker-6" id="S-VVF-ArcLength-3-4-2">
+<li id="S-VVF-ArcLength-3-4-2-1">
+<div class="para" id="S-VVF-ArcLength-3-4-2-1-1">approximate a measurement,<div class="autopermalink" data-description="Paragraph"><a href="#S-VVF-ArcLength-3-4-2-1-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item 1"><a href="#S-VVF-ArcLength-3-4-2-1" title="Copy heading and permalink for Item 1">🔗</a></div>
+</li>
+<li id="S-VVF-ArcLength-3-4-2-2">
+<div class="para" id="S-VVF-ArcLength-3-4-2-2-1">quantify how the approximation changes with a finer scale or refinement, and<div class="autopermalink" data-description="Paragraph"><a href="#S-VVF-ArcLength-3-4-2-2-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item 2"><a href="#S-VVF-ArcLength-3-4-2-2" title="Copy heading and permalink for Item 2">🔗</a></div>
+</li>
+<li id="S-VVF-ArcLength-3-4-2-3">
+<div class="para" id="S-VVF-ArcLength-3-4-2-3-1">apply a limit to describe how our approximation converges to the measurement of interest<div class="autopermalink" data-description="Paragraph"><a href="#S-VVF-ArcLength-3-4-2-3-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item 3"><a href="#S-VVF-ArcLength-3-4-2-3" title="Copy heading and permalink for Item 3">🔗</a></div>
+</li>
+</ol>
+<div class="para">Each of these steps requires precise statements of how the approximation is made and changes when looking at a finer scale. The details of how each of these tasks is done will change depending on the measurement, which is why so much time will be spent talking about steps 1 and 2 when introducing new concepts.</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#S-VVF-ArcLength-3-4" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Subsection 10.3.1: Introduction"><a href="#S-VVF-ArcLength-3" title="Copy heading and permalink for Subsection 10.3.1: Introduction">🔗</a></div></section><section class="subsection" id="S-VVF-ArcLength-4"><h3 class="heading hide-type">
+<span class="type">Subsection</span><span class="space"> </span><span class="codenumber">10.3.2</span><span class="space"> </span><span class="title">Arc Length</span>
+</h3>
+<div class="para" id="S-VVF-ArcLength-4-2">The central question we want to answer in this section is “Given a curve <span class="process-math">\(C\)</span> from <span class="process-math">\(P\)</span> to <span class="process-math">\(Q\text{,}\)</span> what is the length of <span class="process-math">\(C\text{?}\)</span>”<div class="autopermalink" data-description="Paragraph"><a href="#S-VVF-ArcLength-4-2" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<figure class="figure figure-like" id="arclength1"><div class="image-box" style="width: 80%; margin-left: 10%; margin-right: 10%;">
+<img src="generated/sageplot/line-arclength1.svg" role="img" class="contained" alt="described in detail following the image" aria-describedby="line-arclength1-description"><details class="image-description" aria-live="polite"><summary title="details"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span></summary><div id="line-arclength1-description"><div class="para" id="line-arclength1-1-1">An oriented curve from a point <span class="process-math">\(P\)</span> to a point <span class="process-math">\(Q\)</span><div class="autopermalink" data-description="Paragraph"><a href="#line-arclength1-1-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></div></details>
+</div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">10.3.1<span class="period">.</span></span><span class="space"> </span>A curve <span class="process-math">\(C\)</span> from the point <span class="process-math">\(P\)</span> to the point <span class="process-math">\(Q\)</span><div class="autopermalink" data-description="Figure 10.3.1"><a href="#arclength1" title="Copy heading and permalink for Figure 10.3.1">🔗</a></div></figcaption></figure><div class="para" id="S-VVF-ArcLength-4-4">As suggested by the Preview Activity and the classic calculus approach, we will approximate the length of the curve <span class="process-math">\(C\)</span> by computing the length of line segments between points on <span class="process-math">\(C\text{.}\)</span> In particular, we will call these intermediate points <span class="process-math">\(\vr_0,\vr_1,...\vr_n\text{.}\)</span> Remember that we are specifying location using vectors to be graphed in standard position. Using vectors to specify position means that the corresponding line segments between successive <span class="process-math">\(\vr_i\)</span> positions can be represented by the vector difference <span class="process-math">\(\Delta\vr_i = \vr_{i}-\vr_{i-1}\text{.}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#S-VVF-ArcLength-4-4" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<figure class="figure figure-like" id="arclength2"><div class="image-box" style="width: 80%; margin-left: 10%; margin-right: 10%;">
+<img src="generated/sageplot/line-arclength2.svg" role="img" class="contained" alt="described in detail following the image" aria-describedby="line-arclength2-description"><details class="image-description" aria-live="polite"><summary title="details"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span></summary><div id="line-arclength2-description"><div class="para" id="line-arclength2-1-1">An oriented curve from a point <span class="process-math">\(P\)</span> to a point <span class="process-math">\(Q\text{.}\)</span> Point <span class="process-math">\(P\)</span> is labeled as <span class="process-math">\(\vr_0\)</span> and point <span class="process-math">\(Q\)</span> is labeled as <span class="process-math">\(\vr_n\text{.}\)</span> There are several intermediate points drawn as well as vectors connecting consecutive intermediate points. The vector from <span class="process-math">\(\vr_{i-1}\)</span> to <span class="process-math">\(\vr_i\)</span> is labeled <span class="process-math">\(\Delta\vr_i = \vr_i-\vr_{i-1}\text{.}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#line-arclength2-1-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></div></details>
+</div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">10.3.2<span class="period">.</span></span><span class="space"> </span>A curve <span class="process-math">\(C\)</span> oriented from the point <span class="process-math">\(P\)</span> to the point <span class="process-math">\(Q\)</span> split into <span class="process-math">\(n\)</span> parts with endpoints <span class="process-math">\(\vr_0,\vr_1,...\vr_n\)</span><div class="autopermalink" data-description="Figure 10.3.2"><a href="#arclength2" title="Copy heading and permalink for Figure 10.3.2">🔗</a></div></figcaption></figure><div class="para" id="S-VVF-ArcLength-4-6">Notice that the approximation above does not involve a parameterization of <span class="process-math">\(C\)</span> or a description for of the direction or speed of travel along <span class="process-math">\(C\text{.}\)</span> In general, it is easiest to generate the positions <span class="process-math">\(\vr_i\)</span> by evaluating a parameterization at different <span class="process-math">\(t\)</span>-values. We will use <span class="process-math">\(\vr(t)=\langle x(t),y(t),z(t)\rangle\)</span> as a parameterization of <span class="process-math">\(C\)</span> to specify points between <span class="process-math">\(P\)</span> and <span class="process-math">\(Q\text{.}\)</span> Specifically, if <span class="process-math">\(\vr(t)\)</span> is a parameterization of <span class="process-math">\(C\)</span> with <span class="process-math">\(P=\vr(a)\)</span> and <span class="process-math">\(Q=\vr(b)\text{,}\)</span> then we divide <span class="process-math">\(C\)</span> into <span class="process-math">\(n\)</span> parts given by <span class="process-math">\(\vr_i=\vr(t_i)\)</span> where <span class="process-math">\(t_i=a+ i \Delta t\)</span> with <span class="process-math">\(\Delta t= \frac{b-a}{n}\text{.}\)</span> This divides <span class="process-math">\(C\)</span> into parts that correspond to equal steps in the parameter <span class="process-math">\(t\text{,}\)</span> which will <em class="emphasis">not</em> correspond to parts with equal length.<div class="autopermalink" data-description="Paragraph"><a href="#S-VVF-ArcLength-4-6" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical" id="S-VVF-ArcLength-4-7">
+<div class="para">This leads to an approximation for the length of <span class="process-math">\(C\)</span> given by the sum of the lengths of the vectors <span class="process-math">\(\Delta\vr_i = \vr(t_{i})-\vr(t_{i-1})\text{.}\)</span> The magnitude of <span class="process-math">\(\Delta \vr_i\)</span> is determined by the distance formula as we saw in the previous chapter:</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\vecmag{\Delta\vr_i}\sqrt{(x(t_{i}) - x(t_{i-1}))^2 + (y(t_{i}) - y(t_{i-1}))^2 + (z(t_{i}) - z(t_{i-1}))^2}
+\end{equation*}
+</div>
+<div class="para">To make our notation more compact, we write <span class="process-math">\(x(t_{i}) - x(t_{i-1})\)</span> as <span class="process-math">\(\Delta x_i\text{,}\)</span> <span class="process-math">\(y(t_{i}) - y(t_{i-1})\)</span> as <span class="process-math">\(\Delta y_i\text{,}\)</span> and <span class="process-math">\(z(t_{i}) - z(t_{i-1})\)</span> as <span class="process-math">\(\Delta z_i\text{.}\)</span> Our approximation of the length of the curve is calculated by the sum of these lengths, which gives</div>
+<div class="displaymath process-math" id="S-VVF-ArcLength-4-7-11">
+\begin{align*}
+L \approx\amp \sum_{i=1}^{n} \Vert\Delta\vr_i\Vert\\
+\approx\amp \sum_{i=1}^{n} \sqrt{(\Delta x_i)^2 + (\Delta y_i)^2 + (\Delta z_i)^2} 
+\end{align*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#S-VVF-ArcLength-4-7" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="S-VVF-ArcLength-4-8">This is the approximation for the first step of the classic calculus approach. Since this approximation approaches the actual length as we use smaller and smaller steps, we define the arc length as follows:<div class="autopermalink" data-description="Paragraph"><a href="#S-VVF-ArcLength-4-8" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<article class="definition definition-like" id="def-arclength"><h4 class="heading">
+<span class="type">Definition</span><span class="space"> </span><span class="codenumber">10.3.3</span><span class="period">.</span>
+</h4>
+<div class="para logical" id="def-arclength-1-1">
+<div class="para">The arc length of <span class="process-math">\(C\text{,}\)</span> a curve in space, is given by</div>
+<div class="displaymath process-math">
+\begin{equation*}
+L=\lim_{n \rightarrow \infty} \sum_{i=1}^{n} \sqrt{(\Delta x_i)^2 + (\Delta y_i)^2 + (\Delta z_i)^2}
+\end{equation*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#def-arclength-1-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Definition 10.3.3"><a href="#def-arclength" title="Copy heading and permalink for Definition 10.3.3">🔗</a></div></article><div class="para" id="S-VVF-ArcLength-4-10">Use the slider on <a href="S-VVF-ArcLength.html#arclengthinteract" class="xref" data-knowl="./knowl/xref/arclengthinteract.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 10.3.4">Figure 10.3.4</a> to change the number of segments used in the approximation of the arc length of <span class="process-math">\(C\text{.}\)</span> Notice that as the number of segments increases, the difference between the actual length of the curve and the line segments gets smaller. You can also see how the sum of the lengths of the blue segments will approach the true length of the curve (<span class="process-math">\(\approx 6.3286\)</span>).<div class="autopermalink" data-description="Paragraph"><a href="#S-VVF-ArcLength-4-10" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<figure class="figure figure-like" id="arclengthinteract"><iframe id="interactive-arclength1" width="660" height="495" src="interactive-arclength1-if.html"></iframe><figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">10.3.4<span class="period">.</span></span><span class="space"> </span>A plot of curve in space<div class="autopermalink" data-description="Figure 10.3.4"><a href="#arclengthinteract" title="Copy heading and permalink for Figure 10.3.4">🔗</a></div></figcaption></figure><div class="para logical" id="S-VVF-ArcLength-4-12">
+<div class="para">Since we want to shrink the step size <span class="process-math">\(\Delta t\)</span> to get better approximations, we now rewrite the approximation to allow us to see how the approximation changes as we consider smaller values of <span class="process-math">\(\Delta t\text{.}\)</span>
+</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/def-arclength.html" id="S-VVF-ArcLength-4-12-3">
+\begin{align*}
+L \approx\amp \sum_{i=1}^{n} \sqrt{\left(\Delta x_i\right)^2 + \left(\Delta y_i\right)^2 + \left(\Delta z_i\right)^2} \frac{\Delta t}{\Delta t}\\
+\approx\amp \sum_{i=1}^{n} \sqrt{\left(\frac{\Delta x_i}{\Delta t}\right)^2 + \left(\frac{\Delta y_i}{\Delta t}\right)^2 + \left(\frac{\Delta z_i}{\Delta t}\right)^2} \ \Delta t
+\end{align*}
+</div>
+<div class="para">This algebraic manipulation accomplishes the second task in the classic calculus approach (quantify how the approximation changes over a refinement) and sets up the approximation as a Riemann sum. In particular, this approximation is a Riemann sum of the function <span class="process-math">\(\sqrt{\left(\frac{\Delta x_i}{\Delta t}\right)^2 + \left(\frac{\Delta y_i}{\Delta t}\right)^2 + \left(\frac{\Delta z_i}{\Delta t}\right)^2}\)</span> which will simplify as <span class="process-math">\(\Delta t\)</span> goes to 0. Considering the limit applies to each term in the square root separately, we see</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/def-arclength.html" id="S-VVF-ArcLength-4-12-6">
+\begin{align*}
+x'(t) \amp= \lim_{\Delta t \to 0} \frac{x(t_i) - x(t_{i-1})}{\Delta t} \\
+y'(t) \amp= \lim_{\Delta t \to 0} \frac{y(t_i) - y(t_{i-1})}{\Delta t} \\
+z'(t) \amp= \lim_{\Delta t \to 0} \frac{z(t_i) - z(t_{i-1})}{\Delta t} \text{.}
+\end{align*}
+</div>
+<div class="para">The function in the Riemann sum becomes</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/def-arclength.html">
+\begin{equation*}
+\sqrt{\left(x'(t)\right)^2 + \left(y'(t)\right)^2 + \left(z'(t)\right)^2} 
+\end{equation*}
+</div>
+<div class="para">as <span class="process-math">\(\Delta t \rightarrow 0\)</span> or <span class="process-math">\(n\rightarrow \infty\text{.}\)</span> Thus the limit of the Riemann sum from <a href="S-VVF-ArcLength.html#def-arclength" class="xref" data-knowl="./knowl/xref/def-arclength.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 10.3.3">the definition of arc length</a> gives a definite integral</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/def-arclength.html" id="S-VVF-ArcLength-4-12-11">
+\begin{align*}
+L\amp = \lim_{n \rightarrow \infty} \sum_{i=1}^{n} \sqrt{\left(\Delta x_i\right)^2 + \left(\Delta y_i\right)^2 + \left(\Delta z_i\right)^2}\\
+\amp= \lim_{n \rightarrow \infty} \sum_{i=1}^{n} \sqrt{\left(\frac{\Delta x_i}{\Delta t}\right)^2 + \left(\frac{\Delta y_i}{\Delta t}\right)^2 + \left(\frac{\Delta z_i}{\Delta t}\right)^2} \ \Delta t\\
+\amp= \int_a^b  \sqrt{\left(x'(t)\right)^2 + \left(y'(t)\right)^2 + \left(z'(t)\right)^2} \ dt \text{.}
+\end{align*}
+</div>
+<div class="para">The following theorem summarizes how the definition of arc length can be evaluated as a definite integral using a parameterization.</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#S-VVF-ArcLength-4-12" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<article class="theorem theorem-like" id="Length-of-a-curve"><h4 class="heading">
+<span class="type">Theorem</span><span class="space"> </span><span class="codenumber">10.3.5</span><span class="period">.</span><span class="space"> </span><span class="title">The length of a curve.</span>
+</h4>
+<div class="para logical" id="Length-of-a-curve-2">
+<div class="para">If <span class="process-math">\(\vr(t)\)</span> parameterizes a smooth curve <span class="process-math">\(C\)</span> on an interval <span class="process-math">\([a,b]\text{,}\)</span> then the <em class="emphasis">length</em> <span class="process-math">\(L\)</span> of <span class="process-math">\(C\text{,}\)</span> is given by</div>
+<div class="displaymath process-math" id="eq_arclength">
+\begin{equation}
+L = \int_a^b \vecmag{\vr'(t)} \, dt.\tag{10.3.1}
+\end{equation}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#Length-of-a-curve-2" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Theorem 10.3.5: The length of a curve"><a href="#Length-of-a-curve" title="Copy heading and permalink for Theorem 10.3.5: The length of a curve">🔗</a></div></article><div class="para" id="S-VVF-ArcLength-4-14">Note that formula <a href="S-VVF-ArcLength.html#eq_arclength" class="xref" data-knowl="./knowl/xref/eq_arclength.html" data-reveal-label="Reveal" data-close-label="Close" title="Equation 10.3.1">(10.3.1)</a> applies to curves in any dimensional space. Moreover, this formula has a natural interpretation: if <span class="process-math">\(\vr(t)\)</span> records the position of a moving object, then <span class="process-math">\(\vr\, '(t)=\vv(t)\)</span> is the object’s velocity and <span class="process-math">\(\vecmag{\vr\, '(t)}\)</span> its speed. Formula <a href="S-VVF-ArcLength.html#eq_arclength" class="xref" data-knowl="./knowl/xref/eq_arclength.html" data-reveal-label="Reveal" data-close-label="Close" title="Equation 10.3.1">(10.3.1)</a> says that we can integrate the speed of an object traveling over the curve to find the distance traveled by the object. This distance is the length of the curve and is analogous to the formula for <a class="external" href="https://activecalculus.org/single/sec-6-1-area.html#sec-6-1-area-6-9" target="_blank">finding the arc length of a graph</a><details class="ptx-footnote" aria-live="polite" id="S-VVF-ArcLength-4-14-7"><summary class="ptx-footnote__number" title="Footnote 10.3.1"><sup> 1 </sup></summary><div class="ptx-footnote__contents" id="S-VVF-ArcLength-4-14-7"><code class="code-inline tex2jax_ignore">activecalculus.org/single/sec-6-1-area.html#sec-6-1-area-6-9</code></div></details> from single-variable calculus.<div class="autopermalink" data-description="Paragraph"><a href="#S-VVF-ArcLength-4-14" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<article class="activity project-like" id="A_9_8_1"><h4 class="heading">
+<span class="type">Activity</span><span class="space"> </span><span class="codenumber">10.3.2</span><span class="period">.</span>
+</h4>
+<div class="introduction" id="A_9_8_1-1"><div class="para" id="A_9_8_1-1-1">In this activity, we will use parameterizations to find the length of some common curves.<div class="autopermalink" data-description="Paragraph"><a href="#A_9_8_1-1-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></div>
+<article class="task exercise-like" id="A_9_8_1-2"><h5 class="heading"><span class="codenumber">(a)</span></h5>
+<div class="para" id="A_9_8_1-2-1-1">Parameterize a circle of radius <span class="process-math">\(R\)</span> centered at the origin. Give bounds on the parameter.<div class="autopermalink" data-description="Paragraph"><a href="#A_9_8_1-2-1-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="part 10.3.2.a"><a href="#A_9_8_1-2" title="Copy heading and permalink for part 10.3.2.a">🔗</a></div></article><article class="task exercise-like" id="A_9_8_1-3"><h5 class="heading"><span class="codenumber">(b)</span></h5>
+<div class="para" id="A_9_8_1-3-1-1">Use your parameterization from the previous task in the definite integral of <a href="S-VVF-ArcLength.html#Length-of-a-curve" class="xref" data-knowl="./knowl/xref/Length-of-a-curve.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 10.3.5: The length of a curve">Theorem 10.3.5</a> to calculate the circumference of a circle of radius <span class="process-math">\(R\text{.}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#A_9_8_1-3-1-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="part 10.3.2.b"><a href="#A_9_8_1-3" title="Copy heading and permalink for part 10.3.2.b">🔗</a></div></article><article class="task exercise-like" id="A_9_8_1-4"><h5 class="heading"><span class="codenumber">(c)</span></h5>
+<div class="para" id="A_9_8_1-4-1-1">Find the exact length of the spiral defined by <span class="process-math">\(\vr(t) = \langle R\cos(t), R\sin(t), t \rangle\)</span> on the interval <span class="process-math">\([0,2\pi]\text{.}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#A_9_8_1-4-1-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="part 10.3.2.c"><a href="#A_9_8_1-4" title="Copy heading and permalink for part 10.3.2.c">🔗</a></div></article><article class="task exercise-like" id="A_9_8_1-5"><h5 class="heading"><span class="codenumber">(d)</span></h5>
+<div class="para" id="A_9_8_1-5-1-1">Explain why your result for the length of the spiral is larger than the circumference of the circle of the same radius.<div class="autopermalink" data-description="Paragraph"><a href="#A_9_8_1-5-1-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="part 10.3.2.d"><a href="#A_9_8_1-5" title="Copy heading and permalink for part 10.3.2.d">🔗</a></div></article><div class="autopermalink" data-description="Activity 10.3.2"><a href="#A_9_8_1" title="Copy heading and permalink for Activity 10.3.2">🔗</a></div></article><div class="para" id="S-VVF-ArcLength-4-16">
+<a href="S-VVF-ArcLength.html#ex-VVF-arclength-fn" class="xref" data-knowl="./knowl/xref/ex-VVF-arclength-fn.html" data-reveal-label="Reveal" data-close-label="Close" title="Exercise 10.3.6.6">Exercise 6</a> will apply <a href="S-VVF-ArcLength.html#def-arclength" class="xref" data-knowl="./knowl/xref/def-arclength.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 10.3.3">Definition 10.3.3</a> and <a href="S-VVF-ArcLength.html#Length-of-a-curve" class="xref" data-knowl="./knowl/xref/Length-of-a-curve.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 10.3.5: The length of a curve">Theorem 10.3.5</a> to arrive at a formula for the length of a graph given by <span class="process-math">\(y=f(x)\)</span> that may be familiar from single-variable calculus courses.<div class="autopermalink" data-description="Paragraph"><a href="#S-VVF-ArcLength-4-16" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Subsection 10.3.2: Arc Length"><a href="#S-VVF-ArcLength-4" title="Copy heading and permalink for Subsection 10.3.2: Arc Length">🔗</a></div></section><section class="subsection" id="S-VVF-ArcLength-5"><h3 class="heading hide-type">
+<span class="type">Subsection</span><span class="space"> </span><span class="codenumber">10.3.3</span><span class="space"> </span><span class="title">Moving with Unit Speed</span>
+</h3>
+<div class="para" id="S-VVF-ArcLength-5-2">In <a href="S-VVF-ArcLength.html#A_9_8_1" class="xref" data-knowl="./knowl/xref/A_9_8_1.html" data-reveal-label="Reveal" data-close-label="Close" title="Activity 10.3.2">Activity 10.3.2</a>, we considered parameterizations of a circle and a helix. The computation of the arc length in these problems was made easier by the fact that the speed of an object with motion described by the parameterizations used did not depend on the time <span class="process-math">\(t\text{.}\)</span> That is, the speed of an object moving according to the parameterization was <em class="emphasis">constant</em>. Since there are many parameterizations for the same curve, you may be wondering if it is possible to create a parameterization for each curve that moves with constant speed. The answer is “Yes”, but in practice this parameterization might be difficult to write out algebraically.<div class="autopermalink" data-description="Paragraph"><a href="#S-VVF-ArcLength-5-2" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="S-VVF-ArcLength-5-3">Before we examine the details of this constant-speed parameterization, we restrict our focus to trying find a parameterization that describes traveling along our curve with unit speed. In other words, we want to find a parameterization  <span class="process-math">\(\vr(t)\)</span> of the curve that has speed one for all parameter values. That is, we want <span class="process-math">\(\vecmag{\vr\, '(t)} = \vecmag{\vv(t)}=1\text{.}\)</span> We call such a parameterization a <dfn class="terminology">unit speed parameterization</dfn> of the curve.<div class="autopermalink" data-description="Paragraph"><a href="#S-VVF-ArcLength-5-3" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="S-VVF-ArcLength-5-4">If an object moves with constant speed one, then the distance it travels <em class="emphasis">is</em> the time elapsed. For example, if you walk at exactly 1 meter per second for 47 seconds, how far have you gone? If you walk at exactly 1 meter per second, how long will it take you to travel 47 meters? The answer to both is 47 but the units are different. Remember that we do not have to walk in a straight line (i.e., with constant direction) to keep speed constant.<div class="autopermalink" data-description="Paragraph"><a href="#S-VVF-ArcLength-5-4" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<article class="example example-like" id="linearclength"><h4 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">10.3.6</span><span class="period">.</span>
+</h4>
+<div class="para" id="linearclength-1">In this example, we look at a linear path and explore how to write a parameterization that moves with unit speed. We will look at the parameterization of the line through <span class="process-math">\((1,2,3)\)</span> and <span class="process-math">\((-2,3,1)\text{.}\)</span> We are using these values to make the calculations less abstract but there is nothing special about these values and the methods will work for any linear parameterization.<div class="autopermalink" data-description="Paragraph"><a href="#linearclength-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical" id="linearclength-2">
+<div class="para">An easy to find parameterization will have the base point <span class="process-math">\((1,2,3)\)</span> and direction vector given by the difference between our points, <span class="process-math">\(\langle -2-1,3-2,1-3\rangle = \langle -3,1,-2 \rangle\text{.}\)</span> This leads to an initial parameterization of the line as <span class="process-math">\(\vr(t)=\langle 1,2,3\rangle + t \langle -3,1,-2 \rangle\text{.}\)</span> We want to convert this to a parameterization with unit speed. The speed of this parameterization is</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\vecmag{\vr(t)}=\vecmag{\frac{d\vr}{dt}}=\vecmag{\langle -3,1,2\rangle}=\sqrt{14}\text{.}
+\end{equation*}
+</div>
+<div class="para">This means that we need to adjust our parameterization to travel <span class="process-math">\(\sqrt{14}\)</span> times slower, which can be accomplished by replacing <span class="process-math">\(t\)</span> in our parameterization with <span class="process-math">\(\frac{t}{\sqrt{14}}\text{.}\)</span> In other words, we adjusted the parameter used to make sure the speed with respect to the new parameter will be one. This adjustment was easy to do because the amount we needed to change the parameter did not change at different times.</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#linearclength-2" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical" id="linearclength-3">
+<div class="para">Our proposed unit speed parameterization is</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\vr_1(t)= \langle 1,2,3\rangle + \frac{t}{\sqrt{14}} \langle -3,1,-2 \rangle\text{.}
+\end{equation*}
+</div>
+<div class="para">Computing the speed here gives</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\vecmag{\vr_1(t)}=\vecmag{\frac{1}{\sqrt{14}}\langle -3,1,2\rangle}=\frac{\sqrt{14}}{\sqrt{14}}=1\text{.}
+\end{equation*}
+</div>
+<div class="para">Algebraically, we can describe this change by thinking of <span class="process-math">\(\vr(u)\)</span> as the “old” parameterization with parameter <span class="process-math">\(u\text{,}\)</span> and we aim to replace <span class="process-math">\(u\)</span> with a function <span class="process-math">\(\alpha(t)\)</span> so that <span class="process-math">\(\vecmag{\vr\, '(t)}=1\)</span> for all <span class="process-math">\(t\text{.}\)</span> In our linear path case, the choice of <span class="process-math">\(\alpha(t) = \frac{t}{\sqrt{14}}\)</span> meant that applying the chain rule to <span class="process-math">\(\vecmag{\vr\, '(t)}\)</span> gives</div>
+<div class="displaymath process-math" id="unitspeedidea">
+\begin{equation}
+\vecmag{\vr(\alpha(t))}= \vecmag{\frac{d\vr}{du}} \left\vert\frac{d\alpha}{dt}\right\vert=\sqrt{14} \frac{1}{\sqrt{14}} =1\text{.}\tag{10.3.2}
+\end{equation}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#linearclength-3" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Example 10.3.6"><a href="#linearclength" title="Copy heading and permalink for Example 10.3.6">🔗</a></div></article><div class="para logical" id="coordchangetounitspeed">
+<div class="para">The left part of equation <a href="S-VVF-ArcLength.html#unitspeedidea" class="xref" data-knowl="./knowl/xref/unitspeedidea.html" data-reveal-label="Reveal" data-close-label="Close" title="Equation 10.3.2">(10.3.2)</a> shows the important idea needed to find a unit speed parameterization: we will need to pick a transformation <span class="process-math">\(\alpha(t)\)</span> to satisfy</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/unitspeedidea.html ./knowl/xref/arclengthplot.html">
+\begin{equation*}
+\vecmag{\frac{d\vr}{du}} \left\vert\frac{d\alpha}{dt}\right\vert =1\text{.}
+\end{equation*}
+</div>
+<div class="para">Algebraically, this is <em class="alert">very</em> difficult to write out in closed form. However, it will be possible because the arc length traveled as a function of the parameter cannot decrease. If we make a two-dimensional plot with the parameter value on the horizontal axis and the arc length traveled on the vertical axis, then we have a graph that passes the horizontal line test. This means that this function has an inverse! An example of this kind of plot is shown in <a href="S-VVF-ArcLength.html#arclengthplot" class="xref" data-knowl="./knowl/xref/arclengthplot.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 10.3.7">Figure 10.3.7</a>.</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#coordchangetounitspeed" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<figure class="figure figure-like" id="arclengthplot"><div class="image-box" style="width: 80%; margin-left: 10%; margin-right: 10%;">
+<img src="generated/sageplot/line-arclengthplot.svg" role="img" class="contained" alt="A graph in the first quadrant showing arc length as a function of time"><details class="image-description" aria-live="polite"><summary title="details"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span></summary><div id="line-arclengthplot-description"><div class="para" id="line-arclengthplot-2-1">Axes for the first quadrant. The horizontal axis is labeled with time <span class="process-math">\(t\)</span> and the vertical axis is labeled arc length. The graph depics a function that starts at the origin and increases, although the rate of increase varies.<div class="autopermalink" data-description="Paragraph"><a href="#line-arclengthplot-2-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></div></details>
+</div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">10.3.7<span class="period">.</span></span><span class="space"> </span>A plot of the arc length traveled as a function of the parameter value to that point for <span class="process-math">\(\vr(t)=\langle 3t\cos(4t)\sin(3-2t),t-\cos(2+t)\rangle\)</span><div class="autopermalink" data-description="Figure 10.3.7"><a href="#arclengthplot" title="Copy heading and permalink for Figure 10.3.7">🔗</a></div></figcaption></figure><div class="para" id="S-VVF-ArcLength-5-8">In the next example, we will work through how to transform a parameterization with variable speed into one that has unit speed.<div class="autopermalink" data-description="Paragraph"><a href="#S-VVF-ArcLength-5-8" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<article class="example example-like" id="S-VVF-ArcLength-5-9"><h4 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">10.3.8</span><span class="period">.</span>
+</h4>
+<div class="para logical" id="S-VVF-ArcLength-5-9-1">
+<div class="para">In this example, we will consider the curve <span class="process-math">\(C\)</span> parameterized by</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\vr(t) = \left\langle t^2, \frac{8}{3}t^{3/2}, 4t \right\rangle
+\end{equation*}
+</div>
+<div class="para">for <span class="process-math">\(t \geq 0\text{.}\)</span> Our goal is to give a new parameterization of <span class="process-math">\(C\)</span> that has unit speed. Our first step is to find the speed of our current parameterization.</div>
+<div class="displaymath process-math" id="S-VVF-ArcLength-5-9-1-5">
+\begin{align*}
+\vecmag{\vr\, '(t)} \amp =  \sqrt{\left(x'(t)\right)^2 + \left(y'(t)\right)^2 +\left(z'(t)\right)^2} \\
+\amp =  \sqrt{\left(2t\right)^2 + \left(4t^{1/2}\right)^2 + \left(4\right)^2} \\
+\amp =  \sqrt{4t^2 + 16t + 16} \\
+\amp =  \sqrt{(2t+4)^2} \\
+\amp = 2t+4 \text{.}
+\end{align*}
+</div>
+<div class="para">An important element of this example is that our speed is not constant but still algebraically easy enough to work with for later calculations. Note that because we have stated that <span class="process-math">\(t\gt 0\)</span> we only need to consider the positive square root calculation.</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#S-VVF-ArcLength-5-9-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical" id="S-VVF-ArcLength-5-9-2">
+<div class="para">Next, we will calculate <span class="process-math">\(s(a)\text{,}\)</span> the arc length traveled from <span class="process-math">\(t=0\)</span> to <span class="process-math">\(t=a\)</span> along the curve <span class="process-math">\(C\)</span> in order to help us figure out how to transform our parameterization into one with unit speed. We use <a href="S-VVF-ArcLength.html#Length-of-a-curve" class="xref" data-knowl="./knowl/xref/Length-of-a-curve.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 10.3.5: The length of a curve">Theorem 10.3.5</a> to compute the arc length of <span class="process-math">\(C\)</span> as <span class="process-math">\(t\)</span> goes from <span class="process-math">\(0\)</span> to <span class="process-math">\(a\text{.}\)</span>
+</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/Length-of-a-curve.html" id="S-VVF-ArcLength-5-9-2-10">
+\begin{align*}
+s(a) \amp = \int_{0}^a \sqrt{\left(x'(t)\right)^2 + \left(y'(t)\right)^2 +\left(z'(t)\right)^2} \, dt\\
+\amp = 2\int_0^a t+2 \, dt\\
+\amp = \left(t^2+4t\right)\restrict{0}^{a}\\
+\amp = a^2+4a
+\end{align*}
+</div>
+<div class="para">This computation shows us that the arc length traveled from <span class="process-math">\(t=0\)</span> to <span class="process-math">\(t=a\)</span> along the curve <span class="process-math">\(C\)</span> is <span class="process-math">\(a^2+4a\text{.}\)</span> Remember that we want to transform our parameterization to have unit speed, which will mean that the arc length up to a point and the parameter value corresponding to that point will be the same value. We want to state a function that has an input of arc length along the curve <span class="process-math">\(C\)</span> and outputs the time at which our original parameter reaches that location. In other words, we want the inverse function of <span class="process-math">\(s(a)=a^2+4a\)</span> because <span class="process-math">\(s(a)\)</span> has an output of the arc length up to the point corresponding to the parameter value <span class="process-math">\(a\text{.}\)</span> Since <span class="process-math">\(a \geq 0\text{,}\)</span> we can solve the equation <span class="process-math">\(s = a^2+4a\)</span> (or <span class="process-math">\(a^2+4a-s=0\)</span>) for <span class="process-math">\(a\)</span> to obtain <span class="process-math">\(a = \frac{-4 +\sqrt{16+4s}}{2} = -2 + \sqrt{4+s}\text{.}\)</span> Note again that by restricting to positive parameter values, we only need to consider one solution.</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#S-VVF-ArcLength-5-9-2" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="S-VVF-ArcLength-5-9-3">Let’s slow down and make sure we understand our two functions and their composition. The original parameterization <span class="process-math">\(\vr(t)\)</span> has inputs of parameter values (<span class="process-math">\(t\)</span>) and outputs corresponding to locations on our curve <span class="process-math">\(C\text{.}\)</span> Our function <span class="process-math">\(a(s)\)</span> has an input that is arc length (specifically, the arc length traveled from <span class="process-math">\(t=0\)</span> to <span class="process-math">\(t=a\)</span> along the curve <span class="process-math">\(C\)</span>) and output corresponding to <span class="process-math">\(t\text{,}\)</span> the parameter value of the original parameterization corresponding to when the arc length is <span class="process-math">\(s\text{.}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#S-VVF-ArcLength-5-9-3" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="S-VVF-ArcLength-5-9-4">We can now compose our result of <span class="process-math">\(a=-2+\sqrt{4+s}\)</span> with the original parameterization to get our unit speed parameterization. Specifically, we claim that <span class="process-math">\(\vr(a(s))\)</span> will be a unit speed parameterization. Remember that a unit speed parameterization of a curve is equivalent to the idea that “parameter value = time elapsed = arc length traveled”.<div class="autopermalink" data-description="Paragraph"><a href="#S-VVF-ArcLength-5-9-4" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="S-VVF-ArcLength-5-9-5">The parameterization <span class="process-math">\(\vr(a(s))\)</span> is a unit speed parameterization because the parameter being used <em class="emphasis">is</em> the amount of arc length being traveled. The input of the composition <span class="process-math">\(\vr(a(s))\)</span> will be the arc length traveled as its parameter and the “inner” function, <span class="process-math">\(a(s)\text{,}\)</span> will output the parameter value <em class="emphasis">of the original parameterization</em> where that arc length is achieved. This means that <span class="process-math">\(\vr(a(s))\)</span> outputs the location on <span class="process-math">\(C\)</span> where an arc length of <span class="process-math">\(s\)</span> is achieved. A visulaization of these relationships is shown in <a href="S-VVF-ArcLength.html#unitspeeddiagram" class="xref" data-knowl="./knowl/xref/unitspeeddiagram.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 10.3.9">Figure 10.3.9</a>.<div class="autopermalink" data-description="Paragraph"><a href="#S-VVF-ArcLength-5-9-5" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<figure class="figure figure-like" id="unitspeeddiagram"><div class="image-box" style="width: 50%; margin-left: 25%; margin-right: 25%;">
+<img src="generated/latex-image/img_unitspeeddiagram.svg" role="img" class="contained" alt="A diagram showing the relationships involved in the composition"><details class="image-description" aria-live="polite"><summary title="details"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span></summary><div id="img_unitspeeddiagram-description"><div class="para" id="img_unitspeeddiagram-2-1">A diagram with three locations labeled <span class="process-math">\((s)\text{,}\)</span> <span class="process-math">\((t)\text{,}\)</span> and position. An arrow labeled <span class="process-math">\(\alpha(s)\)</span> points from <span class="process-math">\((s)\)</span> to <span class="process-math">\((t)\text{.}\)</span> An arrow labeled <span class="process-math">\(\vr(t)\)</span> points from <span class="process-math">\((t)\)</span> to position. An arrow labeled <span class="process-math">\(\vr(\alpha(s))\)</span> points from <span class="process-math">\((s)\)</span> to position.<div class="autopermalink" data-description="Paragraph"><a href="#img_unitspeeddiagram-2-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></div></details>
+</div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">10.3.9<span class="period">.</span></span><span class="space"> </span>Composition of <span class="process-math">\(\alpha(s)\)</span> and <span class="process-math">\(\vr(t)\)</span> to get the unit speed parameterization<div class="autopermalink" data-description="Figure 10.3.9"><a href="#unitspeeddiagram" title="Copy heading and permalink for Figure 10.3.9">🔗</a></div></figcaption></figure><div class="para logical" id="S-VVF-ArcLength-5-9-7">
+<div class="para">To illustrate the concepts of the previous paragraph concretely, we return to the algebra of our problem. For our example, the composition <span class="process-math">\(\vr(a(s))\)</span> gives the following as the unit speed parameterization:</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\vr_{new}(s)=\left\langle \left(-2 + \sqrt{4+s}\right)^2, \frac{8}{3}\left(-2 + \sqrt{4+s}\right)^{3/2}, 4\left(-2 + \sqrt{4+s}\right) \right\rangle
+\end{equation*}
+</div>
+<div class="para">If we are diligent and persistent with our calculations, we can show that <span class="process-math">\(\vecmag{\vr_{new}'}=1\text{:}\)</span>
+</div>
+<div class="displaymath process-math" id="S-VVF-ArcLength-5-9-7-4">
+\begin{align*}
+\vr_{new}' =\amp \left\langle 2(-2+\sqrt{4+s})\frac{1/2}{\sqrt{4+s}} \right., \\
+\amp \quad \quad   \left.  \frac{8}{3}\left(\frac{3}{2}\left(-2+\sqrt{4+s}\right)^{1/2}\left(\frac{1/2}{\sqrt{4+s}}\right)\right) ,  4 \frac{1/2}{\sqrt{4+s}} \right\rangle \\
+=\amp \frac{1}{\sqrt{4+s}} \left\langle -2+\sqrt{4+s},2\sqrt{-2+\sqrt{4+s}},2 \right\rangle \\
+\vecmag{\vr_{new}'} =\amp \frac{1}{\sqrt{4+s}} \sqrt{\left( \left(-2+\sqrt{4+s}\right)^2+\left(2\sqrt{-2+\sqrt{4+s}}\right)^2+(2)^2 \right)} \\
+=\amp \frac{1}{\sqrt{4+s}} \sqrt{\left( (-2+\sqrt{4+s})+2\right)^2}  \\
+=\amp \sqrt{\frac{4+s}{4+s}} = 1
+\end{align*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#S-VVF-ArcLength-5-9-7" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="S-VVF-ArcLength-5-9-8">The crucial step, both algebraically and conceptually, in our work was the inverse function of <span class="process-math">\(s(a)\text{,}\)</span> which was relatively simple for this example. In general, this can be difficult to write out explicitly.<div class="autopermalink" data-description="Paragraph"><a href="#S-VVF-ArcLength-5-9-8" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Example 10.3.8"><a href="#S-VVF-ArcLength-5-9" title="Copy heading and permalink for Example 10.3.8">🔗</a></div></article><div class="para" id="S-VVF-ArcLength-5-10">The example above shows how to convert a parameterization to one that has unit speed. Key to this was understanding that distance along the curve is not the same as the parameter being used (in general). If we consider the curve defined by the parabola <span class="process-math">\(y = x^2/2\)</span> with <span class="process-math">\(x\in[0,2]\text{,}\)</span> then we can parameterize this curve by <span class="process-math">\(\vr(t) = \langle t, t^2/2\rangle\)</span> for <span class="process-math">\(t\in[0,2]\text{.}\)</span> <a href="S-VVF-ArcLength.html#F_9_8_parametrization" class="xref" data-knowl="./knowl/xref/F_9_8_parametrization.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 10.3.10">Figure 10.3.10</a> shows a plot of this parabola with equally-spaced points in the parameter <span class="process-math">\(t\)</span> on the left and equally-spaced points in arc length on the right. You can see in the plot on the left that equally-spaced points based on parameter values will <em class="emphasis">not</em> be separated by equal distances along the curve.<div class="autopermalink" data-description="Paragraph"><a href="#S-VVF-ArcLength-5-10" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<figure class="figure figure-like" id="F_9_8_parametrization"><div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="external/images/fig_9_8_param.svg" role="img" class="contained"></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">10.3.10<span class="period">.</span></span><span class="space"> </span>A plot of <span class="process-math">\(y = x^2/2\)</span> with <span class="process-math">\(x\in[0,2]\)</span> with points equally spaced in the parameter value (on left) and in arc length (on right)<div class="autopermalink" data-description="Figure 10.3.10"><a href="#F_9_8_parametrization" title="Copy heading and permalink for Figure 10.3.10">🔗</a></div></figcaption></figure><div class="para" id="S-VVF-ArcLength-5-12">In many ways, a parameterization with unit speed is a more natural parametrization. Consider an interstate highway cutting across a state. One way to parametrize the curve defined by the highway is to drive along the highway and record our position at every time (<span class="process-math">\(t\)</span>), thus creating a function <span class="process-math">\(\vr(t)\text{.}\)</span> If we encounter an accident or road construction, however, this parametrization might not be at all relevant to another person driving the same highway. A parameterization using unit speed is like using the mile markers on the side of road to specify our position on the highway. If we know how far we’ve traveled along the highway, we know exactly where we are. Another way to think about this is that by driving at exactly one mile per hour, we can put mile markers down every hour.<div class="autopermalink" data-description="Paragraph"><a href="#S-VVF-ArcLength-5-12" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="S-VVF-ArcLength-5-13">These examples illustrate a general method for finding a unit speed parameterization. Evaluating an arc length integral <em class="emphasis">and</em> finding the formula for the inverse of a function can each be difficult. Although this process is always theoretically possible, it is frequently not practical to parameterize a curve in terms of arc length. However, we can guarantee that such a parameterization exists, and this observation plays an important role in the next section.<div class="autopermalink" data-description="Paragraph"><a href="#S-VVF-ArcLength-5-13" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<aside class="aside aside-like" id="S-VVF-ArcLength-5-14"><div class="para" id="S-VVF-ArcLength-5-14-1">Many other textbooks will refer to the unit speed parameterization of a curve as the <dfn class="terminology">arc length parameterization</dfn>. Conceptually, we derived the value of this parameterization from wanting to move with a constant speed of 1, which is why we have opted to use the name “unit speed parameterization”. After seeing the motivation for wanting to move with unit speed, you can see the correspondence between the arc length and the parameter necessary to give this new description.<div class="autopermalink" data-description="Paragraph"><a href="#S-VVF-ArcLength-5-14-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></aside><div class="autopermalink" data-description="Subsection 10.3.3: Moving with Unit Speed"><a href="#S-VVF-ArcLength-5" title="Copy heading and permalink for Subsection 10.3.3: Moving with Unit Speed">🔗</a></div></section><section class="subsection" id="driverroad"><h3 class="heading hide-type">
+<span class="type">Subsection</span><span class="space"> </span><span class="codenumber">10.3.4</span><span class="space"> </span><span class="title">The Driver or The Road?</span>
+</h3>
+<div class="para" id="driverroad-2">In <a href="S-VVF-ArcLength.html#driver_road_act" class="xref" data-knowl="./knowl/xref/driver_road_act.html" data-reveal-label="Reveal" data-close-label="Close" title="Activity 10.3.3: Is it a property of the driver or the road?">Activity 10.3.3</a>, we will look at several measurements as we consider different drivers completing one lap around the track seen in <a href="S-VVF-ArcLength.html#racetrack_plot" class="xref" data-knowl="./knowl/xref/racetrack_plot.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 10.3.11">Figure 10.3.11</a>.<div class="autopermalink" data-description="Paragraph"><a href="#driverroad-2" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<figure class="figure figure-like" id="racetrack_plot"><div class="sidebyside"><div class="sbsrow" style="margin-left:0%;margin-right:0%;">
+<div class="sbspanel top" style="width:50%;"><img src="external/images/racetrack1.png" class="contained"></div>
+<div class="sbspanel top" style="width:50%;"><img src="external/images/racetrack2.png" class="contained"></div>
+</div></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">10.3.11<span class="period">.</span></span><span class="space"> </span>A plot of the racetrack with scale in meters<div class="autopermalink" data-description="Figure 10.3.11"><a href="#racetrack_plot" title="Copy heading and permalink for Figure 10.3.11">🔗</a></div></figcaption></figure><div class="para" id="driverroad-4">All of the drivers are going the same way around the track, all start at the same location at <span class="process-math">\(t=0\text{,}\)</span> all complete one lap of the track, and all of the cars have perfect grip of the road (the race cars are never sliding). The picture of the racetrack above is given so you have an example to help you think about the tasks in this problem, not because any particular feature of the track needs to be considered for the following activity.<div class="autopermalink" data-description="Paragraph"><a href="#driverroad-4" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<article class="activity project-like" id="driver_road_act"><h4 class="heading">
+<span class="type">Activity</span><span class="space"> </span><span class="codenumber">10.3.3</span><span class="period">.</span><span class="space"> </span><span class="title">Is it a property of the driver or the road?</span>
+</h4>
+<div class="introduction" id="driver_road_act-2"><div class="para" id="driver_road_act-2-1">In this activity, we want to determine if the different measurements we have described are a property of the driver or the road. A measurement is a <dfn class="terminology">property of the driver</dfn> if the values of that measurement <em class="emphasis">can</em> be different for different drivers when measured at the same location on the racetrack. A measurement is a <dfn class="terminology">property of the road</dfn> when different drivers <em class="emphasis">must</em> have the same values when measured at the same location on the racetrack.<div class="autopermalink" data-description="Paragraph"><a href="#driver_road_act-2-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></div>
+<article class="task exercise-like" id="driver_road_act-3"><h5 class="heading"><span class="codenumber">(a)</span></h5>
+<div class="para" id="driver_road_act-3-1-1">Let’s start by looking at a couple of easy measurements. Is the time elapsed a property of the driver or the road? Be sure to explain your answer.<div class="autopermalink" data-description="Paragraph"><a href="#driver_road_act-3-1-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="solutions"><details id="driver_road_act-3-2" class="hint solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Hint</span><span class="period">.</span></summary><div class="hint solution-like knowl__content">
+<div class="para" id="driver_road_act-3-2-1">Remember that we are <em class="emphasis">not</em> asking if the driver or road can control time. We are asking if the elapsed time is the same for all drivers at a fixed point on the racetrack or if drivers can have a different elapsed time to a particular location on the racetrack.<div class="autopermalink" data-description="Paragraph"><a href="#driver_road_act-3-2-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Hint 10.3.3.a.1"><a href="#driver_road_act-3-2" title="Copy heading and permalink for Hint 10.3.3.a.1">🔗</a></div>
+</div></details></div>
+<div class="autopermalink" data-description="part 10.3.3.a"><a href="#driver_road_act-3" title="Copy heading and permalink for part 10.3.3.a">🔗</a></div></article><article class="task exercise-like" id="driver_road_act-4"><h5 class="heading"><span class="codenumber">(b)</span></h5>
+<div class="para" id="driver_road_act-4-1-1">Is position (the location of the car on the racetrack) a property of the driver or the road? Be sure to explain your answer.<div class="autopermalink" data-description="Paragraph"><a href="#driver_road_act-4-1-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="solutions"><details id="driver_road_act-4-2" class="hint solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Hint</span><span class="period">.</span></summary><div class="hint solution-like knowl__content">
+<div class="para" id="driver_road_act-4-2-1">You should make sure you understand that the measurements for different drivers must be made at the same location on the track, as stated above. Your explanation sentence may sound a little silly.<div class="autopermalink" data-description="Paragraph"><a href="#driver_road_act-4-2-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Hint 10.3.3.b.1"><a href="#driver_road_act-4-2" title="Copy heading and permalink for Hint 10.3.3.b.1">🔗</a></div>
+</div></details></div>
+<div class="autopermalink" data-description="part 10.3.3.b"><a href="#driver_road_act-4" title="Copy heading and permalink for part 10.3.3.b">🔗</a></div></article><article class="task exercise-like" id="driver_road_act-5"><h5 class="heading"><span class="codenumber">(c)</span></h5>
+<div class="para" id="driver_road_act-5-1-1">Now that we are warmed up, let’s look at some more interesting measurements.<div class="autopermalink" data-description="Paragraph"><a href="#driver_road_act-5-1-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="para" id="driver_road_act-5-1-2">
+<em class="emphasis">Speedometer Reading</em>: The car’s speedometer reading measures how fast (as a scalar) the car is moving. Is the car’s speedometer reading a property of the driver or the road? Be sure to explain your answer.<div class="autopermalink" data-description="Paragraph"><a href="#driver_road_act-5-1-2" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="part 10.3.3.c"><a href="#driver_road_act-5" title="Copy heading and permalink for part 10.3.3.c">🔗</a></div></article><article class="task exercise-like" id="driver_road_act-6"><h5 class="heading"><span class="codenumber">(d)</span></h5>
+<div class="para" id="driver_road_act-6-1-1">What vector calculus quantity is the speedometer reading?<div class="autopermalink" data-description="Paragraph"><a href="#driver_road_act-6-1-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="solutions"><details id="driver_road_act-6-2" class="hint solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Hint</span><span class="period">.</span></summary><div class="hint solution-like knowl__content">
+<div class="para" id="driver_road_act-6-2-1">The vector calculus quantities we have covered are time, position, velocity, acceleration, speed, and arc length.<div class="autopermalink" data-description="Paragraph"><a href="#driver_road_act-6-2-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Hint 10.3.3.d.1"><a href="#driver_road_act-6-2" title="Copy heading and permalink for Hint 10.3.3.d.1">🔗</a></div>
+</div></details></div>
+<div class="autopermalink" data-description="part 10.3.3.d"><a href="#driver_road_act-6" title="Copy heading and permalink for part 10.3.3.d">🔗</a></div></article><article class="task exercise-like" id="driver_road_act-7"><h5 class="heading"><span class="codenumber">(e)</span></h5>
+<div class="para" id="driver_road_act-7-1-1">
+<em class="emphasis">Odometer Reading</em>: The racecar’s odometer measures the distance traveled by the car. Every car’s odometer is set to be zero at the start of the race. Is the car’s odometer reading a property of the driver or the road? Be sure to explain your answer.<div class="autopermalink" data-description="Paragraph"><a href="#driver_road_act-7-1-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="part 10.3.3.e"><a href="#driver_road_act-7" title="Copy heading and permalink for part 10.3.3.e">🔗</a></div></article><div class="autopermalink" data-description="Activity 10.3.3: Is it a property of the driver or the road?"><a href="#driver_road_act" title="Copy heading and permalink for Activity 10.3.3: Is it a property of the driver or the road?">🔗</a></div></article><div class="para" id="driverroad-6">When we are using the analogy of the racetrack for a curve in space, each different driver corresponds to a different parameterization of the curve. If a measurement is a property of the driver, that measurement can take different values for different parameterizations. If a measurement is a property of the road, then every parameterization <em class="emphasis">must</em> have the same measured value when considered at the same location on the curve. In short, parameterizations are drivers and the curve in space is the racetrack.<div class="autopermalink" data-description="Paragraph"><a href="#driverroad-6" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Subsection 10.3.4: The Driver or The Road?"><a href="#driverroad" title="Copy heading and permalink for Subsection 10.3.4: The Driver or The Road?">🔗</a></div></section><section class="subsection" id="S-VVF-ArcLength-7"><h3 class="heading hide-type">
+<span class="type">Subsection</span><span class="space"> </span><span class="codenumber">10.3.5</span><span class="space"> </span><span class="title">Summary</span>
+</h3>
+<ul class="disc" id="S-VVF-ArcLength-7-2">
+<li id="S-VVF-ArcLength-7-2-1">
+<div class="para logical" id="S-VVF-ArcLength-7-2-1-1">
+<div class="para">The integration process shows that the length <span class="process-math">\(L\)</span> of a smooth curve defined by <span class="process-math">\(\vr(t)\)</span> on an interval <span class="process-math">\([a,b]\)</span> is</div>
+<div class="displaymath process-math">
+\begin{equation*}
+L = \int_a^b |\vr'(t)| \, dt.
+\end{equation*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#S-VVF-ArcLength-7-2-1-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#S-VVF-ArcLength-7-2-1" title="Copy heading and permalink for Item">🔗</a></div>
+</li>
+<li id="S-VVF-ArcLength-7-2-2">
+<div class="para" id="S-VVF-ArcLength-7-2-2-1">A parameterization with unit speed is useful because when we move with unit speed, the parameter value is equal to the arc length traveled to that point.<div class="autopermalink" data-description="Paragraph"><a href="#S-VVF-ArcLength-7-2-2-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#S-VVF-ArcLength-7-2-2" title="Copy heading and permalink for Item">🔗</a></div>
+</li>
+</ul>
+<div class="autopermalink" data-description="Subsection 10.3.5: Summary"><a href="#S-VVF-ArcLength-7" title="Copy heading and permalink for Subsection 10.3.5: Summary">🔗</a></div></section><section class="exercises" id="S-VVF-ArcLength-8"><h3 class="heading hide-type">
+<span class="type">Exercises</span><span class="space"> </span><span class="codenumber">10.3.6</span><span class="space"> </span><span class="title">Exercises</span>
+</h3>
+<div class="para" id="S-VVF-ArcLength-8-1">The WeBWorK problems are written by many different authors. Some authors use parentheses when writing vectors, e.g., <span class="process-math">\((x(t),y(t),z(t))\)</span> instead of angle brackets <span class="process-math">\(\langle x(t),y(t),z(t) \rangle\text{.}\)</span> Please keep this in mind when working WeBWorK exercises.<div class="autopermalink" data-description="Paragraph"><a href="#S-VVF-ArcLength-8-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<article class="exercise exercise-like" id="Library__Michigan__Chap17Sec2__Q13.pg"><h4 class="heading"><span class="codenumber">1<span class="period">.</span></span></h4>
+<div id="webwork-79" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="79" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-localize-hint="Hint" data-localize-solution="Solution" data-sourceFilePath="Library/Michigan/Chap17Sec2/Q13.pg" data-courseID="mitchkeller-dev" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-79')">Activate</button></div>
+<div class="problem-contents">
+<div class="para logical" id="extracted-webwork-79-1-1-1">
+<div class="para">Find the length of the curve</div>
+<div class="displaymath process-math">
+\begin{equation*}
+x = 3+2t,\quad y = 2-2t, z = 4-4t,
+\end{equation*}
+</div>
+<div class="para">for <span class="process-math">\(2 \le t \le 4\text{.}\)</span>
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#extracted-webwork-79-1-1-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="para" id="extracted-webwork-79-1-1-2">length = <span class="fillin underline" role="img" aria-label="35-character blank" style="width: 15.9090909090909em;"></span><div class="autopermalink" data-description="Paragraph"><a href="#extracted-webwork-79-1-1-2" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="para" id="extracted-webwork-79-1-1-3">
+<em class="emphasis">(Think of second way that you could calculate this length, too, and see that you get the same result.)</em><div class="autopermalink" data-description="Paragraph"><a href="#extracted-webwork-79-1-1-3" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</div>
+</div>
+<div class="autopermalink" data-description="Exercise 10.3.6.1"><a href="#Library__Michigan__Chap17Sec2__Q13.pg" title="Copy heading and permalink for Exercise 10.3.6.1">🔗</a></div></article><article class="exercise exercise-like" id="Library__272__setStewart13_3__problem_2.pg"><h4 class="heading"><span class="codenumber">2<span class="period">.</span></span></h4>
+<div id="webwork-80" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="80" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-localize-hint="Hint" data-localize-solution="Solution" data-sourceFilePath="Library/272/setStewart13_3/problem_2.pg" data-courseID="mitchkeller-dev" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-80')">Activate</button></div>
+<div class="problem-contents">
+<div class="para" id="extracted-webwork-80-1-1-1">Consider the curve <span class="process-math">\(\displaystyle  \mathbf{r} = 
+(e^{4 t} \cos(-3 t), e^{4 t} \sin(-3 t), e^{4 t})\text{.}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#extracted-webwork-80-1-1-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="para" id="extracted-webwork-80-1-1-2">Compute the arclength function <span class="process-math">\(s(t)\text{:}\)</span> (with initial point <span class="process-math">\(t=0\)</span>).<div class="autopermalink" data-description="Paragraph"><a href="#extracted-webwork-80-1-1-2" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</div>
+</div>
+<div class="autopermalink" data-description="Exercise 10.3.6.2"><a href="#Library__272__setStewart13_3__problem_2.pg" title="Copy heading and permalink for Exercise 10.3.6.2">🔗</a></div></article><article class="exercise exercise-like" id="Library__Rochester__setVecFunction2Curvature__ur_vc_4_1.pg"><h4 class="heading"><span class="codenumber">3<span class="period">.</span></span></h4>
+<div id="webwork-81" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="81" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-localize-hint="Hint" data-localize-solution="Solution" data-sourceFilePath="Library/Rochester/setVecFunction2Curvature/ur_vc_4_1.pg" data-courseID="mitchkeller-dev" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-81')">Activate</button></div>
+<div class="problem-contents"><div class="para logical" id="extracted-webwork-81-1-1-1">
+<div class="para">Find the length of the given curve:</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\mathbf{r} \left( t \right) = \left( 5 t, 5 \sin t, 5 \cos t \right)
+\end{equation*}
+</div>
+<div class="para">where <span class="process-math">\(-3 \leq t \leq 4\text{.}\)</span>
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#extracted-webwork-81-1-1-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></div>
+</div>
+<div class="autopermalink" data-description="Exercise 10.3.6.3"><a href="#Library__Rochester__setVecFunction2Curvature__ur_vc_4_1.pg" title="Copy heading and permalink for Exercise 10.3.6.3">🔗</a></div></article><article class="exercise exercise-like" id="Library__Dartmouth__setMTWCh4S2__problem_3.pg"><h4 class="heading"><span class="codenumber">4<span class="period">.</span></span></h4>
+<div id="webwork-82" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="82" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-localize-hint="Hint" data-localize-solution="Solution" data-sourceFilePath="Library/Dartmouth/setMTWCh4S2/problem_3.pg" data-courseID="mitchkeller-dev" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-82')">Activate</button></div>
+<div class="problem-contents">
+<div class="para" id="extracted-webwork-82-1-1-1">Consider the path <span class="process-math">\(\mathbf{r}(t) = (4 t, 2 t^2, 2\ln t)\)</span> defined for <span class="process-math">\(t &gt; 0\text{.}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#extracted-webwork-82-1-1-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="para" id="extracted-webwork-82-1-1-2">Find the length of the curve between the points <span class="process-math">\((4, 2, 0)\)</span> and <span class="process-math">\((16, 32, 2 \ln(4))\text{.}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#extracted-webwork-82-1-1-2" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</div>
+</div>
+<div class="autopermalink" data-description="Exercise 10.3.6.4"><a href="#Library__Dartmouth__setMTWCh4S2__problem_3.pg" title="Copy heading and permalink for Exercise 10.3.6.4">🔗</a></div></article><article class="exercise exercise-like" id="Library__Dartmouth__setMTWCh4S2__problem_4.pg"><h4 class="heading"><span class="codenumber">5<span class="period">.</span></span></h4>
+<div id="webwork-83" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="83" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-localize-hint="Hint" data-localize-solution="Solution" data-sourceFilePath="Library/Dartmouth/setMTWCh4S2/problem_4.pg" data-courseID="mitchkeller-dev" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-83')">Activate</button></div>
+<div class="problem-contents">
+<div class="para" id="extracted-webwork-83-1-1-1">Starting from the point <span class="process-math">\(\left( -3, -3, -1 \right)\text{,}\)</span> reparametrize the curve<div class="autopermalink" data-description="Paragraph"><a href="#extracted-webwork-83-1-1-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="para" id="extracted-webwork-83-1-1-2">
+<span class="process-math">\(\mathbf{x} (t) = ( -3  - 2t, -3 + 2t, -1  - 2t )\)</span> in terms of arclength.<div class="autopermalink" data-description="Paragraph"><a href="#extracted-webwork-83-1-1-2" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="para" id="extracted-webwork-83-1-1-3">
+<span class="process-math">\(\mathbf{y}(s) = (\)</span> <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>, <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>,<span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span> <span class="process-math">\()\)</span><div class="autopermalink" data-description="Paragraph"><a href="#extracted-webwork-83-1-1-3" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</div>
+</div>
+<div class="autopermalink" data-description="Exercise 10.3.6.5"><a href="#Library__Dartmouth__setMTWCh4S2__problem_4.pg" title="Copy heading and permalink for Exercise 10.3.6.5">🔗</a></div></article><article class="exercise exercise-like" id="ex-VVF-arclength-fn"><h4 class="heading"><span class="codenumber">6<span class="period">.</span></span></h4>
+<div class="para" id="ex-VVF-arclength-fn-1-1">We can adapt the arc length formula to curves in 2-space that define <span class="process-math">\(y\)</span> as a function of <span class="process-math">\(x\)</span> as the following activity shows.<div class="autopermalink" data-description="Paragraph"><a href="#ex-VVF-arclength-fn-1-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="para logical" id="ex-VVF-arclength-fn-1-2">
+<div class="para">Let <span class="process-math">\(y = f(x)\)</span> define a smooth curve in 2-space. Parameterize this curve and use Equation <a href="S-VVF-ArcLength.html#eq_arclength" class="xref" data-knowl="./knowl/xref/eq_arclength.html" data-reveal-label="Reveal" data-close-label="Close" title="Equation 10.3.1">(10.3.1)</a> to show that the length of the curve defined by <span class="process-math">\(f\)</span> on an interval <span class="process-math">\([a,b]\)</span> is</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/eq_arclength.html">
+\begin{equation*}
+\int_a^b \sqrt{1+[f'(t)]^2} \, dt.
+\end{equation*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#ex-VVF-arclength-fn-1-2" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Exercise 10.3.6.6"><a href="#ex-VVF-arclength-fn" title="Copy heading and permalink for Exercise 10.3.6.6">🔗</a></div></article><article class="exercise exercise-like" id="S-VVF-ArcLength-8-8"><h4 class="heading"><span class="codenumber">7<span class="period">.</span></span></h4>
+<div class="introduction" id="S-VVF-ArcLength-8-8-1"><div class="para" id="S-VVF-ArcLength-8-8-1-1">In this exercise, we will make the unit speed parameterization for the curve parameterized by <span class="process-math">\(\vr(t)=\langle \frac{3}{2} t^2,2t^2,\frac{5}{3}t^3\rangle\)</span> for <span class="process-math">\(t\in[0,7]\text{.}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#S-VVF-ArcLength-8-8-1-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></div>
+<article class="task exercise-like" id="S-VVF-ArcLength-8-8-2"><h5 class="heading"><span class="codenumber">(a)</span></h5>
+<div class="para" id="S-VVF-ArcLength-8-8-2-1-1">Calculate the speed for the parameterization <span class="process-math">\(\vr(t)=\langle \frac{3}{2} t^2,2t^2,\frac{5}{3}t^3\rangle\text{.}\)</span> Factor out as large a power of <span class="process-math">\(t\)</span> out of the square root as possible.<div class="autopermalink" data-description="Paragraph"><a href="#S-VVF-ArcLength-8-8-2-1-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="part 10.3.6.7.a"><a href="#S-VVF-ArcLength-8-8-2" title="Copy heading and permalink for part 10.3.6.7.a">🔗</a></div></article><article class="task exercise-like" id="S-VVF-ArcLength-8-8-3"><h5 class="heading"><span class="codenumber">(b)</span></h5>
+<div class="para" id="S-VVF-ArcLength-8-8-3-1-1">Use your speed calculation from above to compute the arc length on our curve <span class="process-math">\(C\)</span> as <span class="process-math">\(t\)</span> goes from 0 to <span class="process-math">\(a\text{.}\)</span> Your answer should be in terms of <span class="process-math">\(a\text{.}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#S-VVF-ArcLength-8-8-3-1-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="solutions"><details id="S-VVF-ArcLength-8-8-3-2" class="hint solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Hint</span><span class="period">.</span></summary><div class="hint solution-like knowl__content">
+<div class="para" id="S-VVF-ArcLength-8-8-3-2-1">After factoring out the power of t, you should have a nice substitution problem with <span class="process-math">\(u=t^2+1\text{.}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#S-VVF-ArcLength-8-8-3-2-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Hint 10.3.6.7.b.1"><a href="#S-VVF-ArcLength-8-8-3-2" title="Copy heading and permalink for Hint 10.3.6.7.b.1">🔗</a></div>
+</div></details></div>
+<div class="autopermalink" data-description="part 10.3.6.7.b"><a href="#S-VVF-ArcLength-8-8-3" title="Copy heading and permalink for part 10.3.6.7.b">🔗</a></div></article><article class="task exercise-like" id="S-VVF-ArcLength-8-8-4"><h5 class="heading"><span class="codenumber">(c)</span></h5>
+<div class="para" id="S-VVF-ArcLength-8-8-4-1-1">Your previous step should have created a function <span class="process-math">\(s(a)\)</span> which outputs the arclength traveled on <span class="process-math">\(C\)</span> for <span class="process-math">\(t\)</span> from 0 to <span class="process-math">\(a\text{.}\)</span> Find the inverse function, <span class="process-math">\(a(s)\text{,}\)</span> that outputs the time past 0 that is needed to travel <span class="process-math">\(s\)</span> along the curve.<div class="autopermalink" data-description="Paragraph"><a href="#S-VVF-ArcLength-8-8-4-1-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="part 10.3.6.7.c"><a href="#S-VVF-ArcLength-8-8-4" title="Copy heading and permalink for part 10.3.6.7.c">🔗</a></div></article><article class="task exercise-like" id="S-VVF-ArcLength-8-8-5"><h5 class="heading"><span class="codenumber">(d)</span></h5>
+<div class="para" id="S-VVF-ArcLength-8-8-5-1-1">Verify that the composition of <span class="process-math">\(\vr(a(s))\)</span> is a parameterization of <span class="process-math">\(C\)</span> with unit speed.<div class="autopermalink" data-description="Paragraph"><a href="#S-VVF-ArcLength-8-8-5-1-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="part 10.3.6.7.d"><a href="#S-VVF-ArcLength-8-8-5" title="Copy heading and permalink for part 10.3.6.7.d">🔗</a></div></article><div class="autopermalink" data-description="Exercise 10.3.6.7"><a href="#S-VVF-ArcLength-8-8" title="Copy heading and permalink for Exercise 10.3.6.7">🔗</a></div></article><div class="autopermalink" data-description="Exercises 10.3.6"><a href="#S-VVF-ArcLength-8" title="Copy heading and permalink for Exercises 10.3.6">🔗</a></div></section><div class="autopermalink" data-description="Section 10.3: Arc Length"><a href="#S-VVF-ArcLength" title="Copy heading and permalink for Section 10.3: Arc Length">🔗</a></div></section></div>
+<div id="ptx-content-footer" class="ptx-content-footer">
+<a class="previous-button button" href="S-VVF-Calculus.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Top</span></a><a class="next-button button" href="S-VVF-TNB.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a>
+</div></main>
+</div>
+<div id="ptx-page-footer" class="ptx-page-footer">
+<a class="pretext-link" href="https://pretextbook.org" title="PreTeXt"><div class="logo"><svg xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="338 3000 8772 6866" role="img"><title>PreTeXt logo</title><g style="stroke-width:.025in; stroke:currentColor; fill:none"><polyline points="472,3590 472,9732 " style="stroke-width:174; stroke-linejoin:miter; stroke-linecap:round; "></polyline><path style="stroke-width:126;stroke-linecap:butt;" d="M 4724,9448 A 4660 4660  0  0  1  8598  9259"></path><path style="stroke-width:174;stroke-linecap:butt;" d="M 4488,9685 A 4228 4228  0  0  0   472  9732"></path><path style="stroke-width:126;stroke-linecap:butt;" d="M 4724,3590 A 4241 4241  0  0  1  8598  3496"></path><path style="stroke-width:126;stroke-linecap:round;" d="M 850,3496  A 4241 4241  0  0  1  4724  3590"></path><path style="stroke-width:126;stroke-linecap:round;" d="M 850,9259  A 4507 4507  0  0  1  4724  9448"></path><polyline points="5385,4299 4062,8125" style="stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="8598,3496 8598,9259" style="stroke-width:126; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="850,3496 850,9259" style="stroke-width:126; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="4960,9685 4488,9685" style="stroke-width:174; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="3070,4582 1889,6141 3070,7700" style="stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="6418,4582 7600,6141 6418,7700" style="stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="8976,3590 8976,9732" style="stroke-width:174; stroke-linejoin:miter; stroke-linecap:round;"></polyline><path style="stroke-width:174;stroke-linecap:butt;" d="M 4960,9685 A 4228 4228  0  0  1  8976  9732"></path></g></svg></div></a><a class="runestone-link" href="https://runestone.academy" title="Runestone Academy"><img class="logo" src="https://runestone.academy/runestone/static/images/RAIcon_cropped.png" alt="Runstone Academy logo"></a><a class="mathjax-link" href="https://www.mathjax.org" title="MathJax"><img class="logo" src="https://www.mathjax.org/badge/badge-square-2.png" alt="MathJax logo"></a>
+</div>
+<!--Start: Google Global Site Tag code--><!--*** DO NOT COPY ANOTHER PROJECT'S MAGIC NUMBERS/ID ***--><!--***           GET YOUR OWN FROM GOOGLE             ***-->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-QJKN634F7R"></script><script>  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-QJKN634F7R');
+</script><!--End: Google Global Site Tag code-->
+</body>
+</html>

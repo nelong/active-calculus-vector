@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+<!--******************************************-->
+<!--*  Authored with PreTeXt                 *-->
+<!--*  pretextbook.org                       *-->
+<!--*  Theme: default-modern                 *-->
+<!--*  Palette:                              *-->
+<!--******************************************-->
+
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="example example-like"><h4 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">9.3.12</span><span class="period">.</span>
+</h4>
+<div class="para logical">
+<div class="para">In this example we will look at calculating and making sense of the different parts of the projection of <span class="process-math">\(\langle 4,3\rangle \)</span> onto <span class="process-math">\(\langle 0,2 \rangle\text{.}\)</span> For notational purposes, we will let <span class="process-math">\(\vu = \langle 4,3\rangle \)</span> and  <span class="process-math">\(\vv = \langle 0,2 \rangle\text{.}\)</span> Applying <a href="S-Precalc-DotProduct.html#def-vector-projections" class="xref" data-knowl="./knowl/xref/def-vector-projections.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 9.3.10">Definition 9.3.10</a>, we find</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/def-vector-projections.html">
+\begin{align*}
+\proj_\vv \vu \amp= \left(\frac{\langle 4,3\rangle \cdot \langle 0,2 \rangle  }{\langle 0,2 \rangle \cdot \langle 0,2 \rangle} \right) \langle 0,2 \rangle \\
+\amp= \left(\frac{6}{4}\right) \langle 0,2 \rangle \\
+\amp= \left(\frac{3}{2}\right) \langle 0,2 \rangle = \langle 0,3 \rangle \text{.}
+\end{align*}
+</div>
+<div class="para">Using the other formula for the projection, we have</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/def-vector-projections.html">
+\begin{align*}
+\proj_\vv \vu \amp= \left(\frac{\langle 4,3\rangle \cdot \langle 0,2 \rangle  }{\vecmag{\langle 0,2 \rangle}} \right) \frac{\langle 0,2 \rangle}{\vecmag{\langle 0,2 \rangle }} \\
+\amp= \left(\frac{6}{2}\right) \frac{\langle 0,2 \rangle}{2} \\
+\amp= (3) \langle 0,1 \rangle = \langle 0,3 \rangle \text{.}
+\end{align*}
+</div>
+<div class="para">Note that the scalar <span class="process-math">\((3)\)</span> in the last equation is <span class="process-math">\(\comp_\vv \vu\)</span> and the vector <span class="process-math">\(\langle 0,1\rangle\)</span> is the unit vector in the direction of <span class="process-math">\(\vv\text{.}\)</span>
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#vecprojex-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<figure class="figure figure-like"><div class="image-box" style="width: 75%; margin-left: 12.5%; margin-right: 12.5%;">
+<img src="generated/sageplot/img-projexplot.svg" role="img" class="contained" alt="described in detail following the image" aria-describedby="img-projexplot-description"><details class="image-description" aria-live="polite"><summary title="details"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span></summary><div id="img-projexplot-description"><div class="para" id="img-projexplot-1-1">A plot of <span class="process-math">\(\vu\text{,}\)</span> <span class="process-math">\(\vv\text{,}\)</span> <span class="process-math">\(\proj_\vv \vu\text{,}\)</span> and <span class="process-math">\(\proj_{\perp \vv} \vu\)</span><div class="autopermalink" data-description="Paragraph"><a href="#img-projexplot-1-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></div></details>
+</div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">9.3.13<span class="period">.</span></span><span class="space"> </span>A plot of <span class="process-math">\(\vu\text{,}\)</span> <span class="process-math">\(\vv\text{,}\)</span> <span class="process-math">\(\proj_\vv \va\text{,}\)</span> and <span class="process-math">\(\proj_{\perp \vv} \vu\)</span><div class="autopermalink" data-description="Figure 9.3.13"><a href="#projexplot" title="Copy heading and permalink for Figure 9.3.13">🔗</a></div></figcaption></figure><div class="para logical">
+<div class="para">We can now compute the orthogonal projection of <span class="process-math">\(\vu\)</span> onto <span class="process-math">\(\vv\)</span> using <span class="process-math">\(\proj_\vv \vu\text{.}\)</span>
+</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\proj_{\perp \vv} \vu = \vu - \proj_\vv \vu = \langle 4,3 \rangle - \langle 0,3\rangle =\langle 4,0\rangle\text{.}
+\end{equation*}
+</div>
+<div class="para">We can summarize these calculations as follows:</div>
+<ul class="disc" id="vecprojex-3-5">
+<li>
+<div class="para">The projection of <span class="process-math">\(\vu\)</span> onto <span class="process-math">\(\vv\)</span> is asking how much of <span class="process-math">\(\langle 4,3 \rangle\)</span> is in the vertical direction.<div class="autopermalink" data-description="Paragraph"><a href="#vecprojex-3-5-1-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#vecprojex-3-5-1" title="Copy heading and permalink for Item">🔗</a></div>
+</li>
+<li>
+<div class="para">The projection of <span class="process-math">\(\vu\)</span> onto <span class="process-math">\(\vv\)</span> can be split into the scalar <span class="process-math">\(3\text{,}\)</span> the component of <span class="process-math">\(\vu\)</span> in the direction of <span class="process-math">\(\vv\text{,}\)</span> and the unit vector in the direction of <span class="process-math">\(\vv\text{,}\)</span> <span class="process-math">\(\langle 0,1 \rangle \text{.}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#vecprojex-3-5-2-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#vecprojex-3-5-2" title="Copy heading and permalink for Item">🔗</a></div>
+</li>
+<li>
+<div class="para">The orthogonal projection of <span class="process-math">\(\vu\)</span> onto <span class="process-math">\(\vv\)</span> will be given by how much of <span class="process-math">\(\vu\)</span> is horizontal because we subtract out all of the vertical component of <span class="process-math">\(\vu\text{.}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#vecprojex-3-5-3-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#vecprojex-3-5-3" title="Copy heading and permalink for Item">🔗</a></div>
+</li>
+</ul>
+<div class="autopermalink" data-description="Paragraph"><a href="#vecprojex-3" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Example 9.3.12"><a href="#vecprojex" title="Copy heading and permalink for Example 9.3.12">🔗</a></div></article><span class="incontext"><a class="internal" href="S-Precalc-DotProduct.html#vecprojex">in-context</a></span>
+</body>
+</html>

@@ -1,0 +1,1134 @@
+<!DOCTYPE html>
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<html lang="en-US" dir="ltr">
+<!--******************************************-->
+<!--*  Authored with PreTeXt                 *-->
+<!--*  pretextbook.org                       *-->
+<!--*  Theme: default-modern                 *-->
+<!--*  Palette:                              *-->
+<!--******************************************-->
+<head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Surface Integrals of Scalar Valued Functions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
+<link href="_static/pretext/css/theme.css" rel="stylesheet" type="text/css">
+<link href="_static/pretext/css/ol-markers.css" rel="stylesheet" type="text/css">
+<script>
+var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
+window.MathJax = {
+  "tex": {
+    "inlineMath": [
+      [
+        "\\(",
+        "\\)"
+      ]
+    ],
+    "tags": "none",
+    "tagSide": "right",
+    "tagIndent": ".8em",
+    "packages": {
+      "[+]": [
+        "base",
+        "extpfeil",
+        "ams",
+        "amscd",
+        "color",
+        "newcommand",
+        "knowl"
+      ]
+    }
+  },
+  "options": {
+    "ignoreHtmlClass": "tex2jax_ignore|ignore-math",
+    "processHtmlClass": "process-math",
+    "renderActions": {
+      "findScript": [
+        10,
+        function (doc) {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
+                var display = !!node.type.match(/; *mode=display/);
+                var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                var text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = {node: text, delim: '', n: 0};
+                math.end = {node: text, delim: '', n: 0};
+                doc.math.push(math);
+            });
+        },
+        ""
+      ]
+    }
+  },
+  "chtml": {
+    "scale": 0.98,
+    "mtextInheritFont": true
+  },
+  "loader": {
+    "load": [
+      "input/asciimath",
+      "[tex]/extpfeil",
+      "[tex]/amscd",
+      "[tex]/color",
+      "[tex]/newcommand",
+      "[pretext]/mathjaxknowl3.js"
+    ],
+    "paths": {
+      "pretext": "_static/pretext/js/lib"
+    }
+  },
+  "startup": {
+    pageReady() {
+      return MathJax.startup.defaultPageReady().then(function () {
+      console.log("in ready function");
+      rsMathReady();
+      }
+    )}
+  }
+};
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:type" content="book">
+<meta property="book:title" content="Active Calculus - Multivariable">
+<meta property="book:author" content="Nicholas Long">
+<meta property="book:author" content="Mitchel T. Keller">
+<meta property="book:author" content="Steve Schlicker">
+<script src="_static/pretext/js/lib/jquery.min.js"></script><script src="_static/pretext/js/lib/jquery.sticky.js"></script><script src="_static/pretext/js/lib/jquery.espy.min.js"></script><script src="_static/pretext/js/pretext.js"></script><script src="_static/pretext/js/pretext_add_on.js?x=1"></script><script src="_static/pretext/js/user_preferences.js"></script><!--** eBookCongig is necessary to configure interactive       **-->
+<!--** Runestone components to run locally in reader's browser **-->
+<!--** No external communication:                              **-->
+<!--**     log level is 0, Runestone Services are disabled     **-->
+<script type="text/javascript">
+eBookConfig = {};
+eBookConfig.useRunestoneServices = false;
+eBookConfig.host = 'http://127.0.0.1:8000';
+eBookConfig.course = 'PTX_Course_Title_Here';
+eBookConfig.basecourse = 'PTX_Base_Course';
+eBookConfig.isLoggedIn = false;
+eBookConfig.email = '';
+eBookConfig.isInstructor = false;
+eBookConfig.logLevel = 0;
+eBookConfig.username = '';
+eBookConfig.readings = null;
+eBookConfig.activities = null;
+eBookConfig.downloadsEnabled = false;
+eBookConfig.allow_pairs = false;
+eBookConfig.enableScratchAC = false;
+eBookConfig.build_info = "";
+eBookConfig.python3 = null;
+eBookConfig.runestone_version = '7.8.4';
+eBookConfig.jobehost = '';
+eBookConfig.proxyuri_runs = '';
+eBookConfig.proxyuri_files = '';
+eBookConfig.enable_chatcodes =  false;
+</script>
+<!--*** Runestone Services ***-->
+<script src="_static/prefix-runtime.962d00926ef9460e.bundle.js"></script><script src="_static/prefix-723.3e6434f80549315a.bundle.js"></script><script src="_static/prefix-runestone.2e7f40e86ae7d163.bundle.js"></script><link rel="stylesheet" type="text/css" href="_static/prefix-723.3bccd435914aa0ff.css">
+<link rel="stylesheet" type="text/css" href="_static/prefix-runestone.5bdeacdba067a0e3.css">
+<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script src="_static/pretext/js/pretext-webwork/2.17/pretext-webwork.js"></script><script src="https://webwork-ptx.aimath.org/webwork2_files/node_modules/iframe-resizer/js/iframeResizer.min.js"></script><script src="_static/pretext/js/lti_iframe_resizer.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/components/prism-core.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/line-numbers/prism-line-numbers.min.js" integrity="sha512-dubtf8xMHSQlExGRQ5R7toxHLgSDZ0K7AunqPWHXmJQ8XyVIG19S1T95gBxlAeGOK02P4Da2RTnQz0Za0H0ebQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/line-highlight/prism-line-highlight.min.js" integrity="sha512-93uCmm0q+qO5Lb1huDqr7tywS8A2TFA+1/WHvyiWaK6/pvsFl6USnILagntBx8JnVbQH5s3n0vQZY6xNthNfKA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="https://cdn.geogebra.org/apps/deployggb.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js" integrity="sha512-4xUl/d6D6THrAnXAwGajXkoWaeMNwEKK4iNfq5DotEbLPAfk6FSxSP3ydNxqDgCw1c/0Z1Jg6L8h2j+++9BZmg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="lunr-pretext-search-index.js" async=""></script><script src="_static/pretext/js/pretext_search.js"></script><script src="_static/pretext/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
+</script>
+</head>
+<body id="acmulti" class="pretext book ignore-math">
+<a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead"><div class="ptx-banner"><div class="title-container">
+<h1 class="heading"><a href="root-1-2.html"><span class="title">Active Calculus - Multivariable</span></a></h1>
+<p class="byline">Nicholas Long, Mitchel T. Keller, Steve Schlicker</p>
+</div></div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><div class="ptx-navbar-contents">
+<button class="toc-toggle button" title="Contents"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5d2;</span><span class="name">Contents</span></button><a class="index-button button" href="root-1-2-8-2.html" title="Index"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span><span class="name">Index</span></a><div class="searchbox">
+<div class="searchwidget"><button id="searchbutton" class="searchbutton button" type="button" title="Search book"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe8b6;</span><span class="name">Search Book</span></button></div>
+<div id="searchresultsplaceholder" class="searchresultsplaceholder" style="display: none">
+<div class="search-results-controls">
+<input aria-label="Search term" id="ptxsearch" class="ptxsearch" type="text" name="terms" placeholder="Search term"><button title="Close search" id="closesearchresults" class="closesearchresults"><span class="material-symbols-outlined">close</span></button>
+</div>
+<h2 class="search-results-heading">Search Results: </h2>
+<div id="searchempty" class="searchempty"><span>No results.</span></div>
+<ol id="searchresults" class="searchresults"></ol>
+</div>
+</div>
+<span class="nav-other-controls"><button id="calculator-toggle" class="calculator-toggle button" title="Show calculator" aria-expanded="false" aria-controls="calculator-container"><span class="icon material-symbols-outlined" aria-hidden="true">&#xea5f;</span><span class="name">Calc</span></button><div id="calculator-container" class="calculator-container" style="display: none; z-index:100;"><div id="geogebra-calculator"></div></div>
+<script>
+var ggbApp = new GGBApplet({"appName": "graphing",
+    "width": 330,
+    "height": 600,
+    "showToolBar": true,
+    "showAlgebraInput": true,
+    "perspective": "G/A",
+    "algebraInputPosition": "bottom",
+    "scaleContainerClass": "calculator-container",
+    "allowUpscale": true,
+    "autoHeight": true,
+    "disableAutoScale": false},
+true);
+</script><button id="light-dark-button" class="light-dark-button button" title="Dark Mode"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe51c;</span><span class="name">Dark Mode</span></button></span><span class="treebuttons"><a class="previous-button button" href="S_Vector_FluxInt.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="up-button button" href="C_Vector.html" title="Up"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Up</span></a><a class="next-button button" href="S_Vector_StokesThm.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a></span>
+</div></nav><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\newcommand{\R}{\mathbb{R}}
+\newcommand{\va}{\vec{a}}
+\newcommand{\vb}{\vec{b}}
+\newcommand{\vc}{\vec{c}}
+\newcommand{\vC}{\vec{C}}
+\newcommand{\vd}{\vec{d}}
+\newcommand{\ve}{\vec{e}}
+\newcommand{\cursedihat}{\hat{\dot{i}}}
+\newcommand{\vi}{\hat{\imath}}
+\newcommand{\vj}{\hat{\jmath}}
+\newcommand{\vk}{\hat{k}}
+\newcommand{\vn}{\vec{n}}
+\newcommand{\vm}{\vec{m}}
+\newcommand{\vr}{\vec{r}}
+\newcommand{\vs}{\vec{s}}
+\newcommand{\vu}{\vec{u}}
+\newcommand{\vv}{\vec{v}}
+\newcommand{\vw}{\vec{w}}
+\newcommand{\vx}{\vec{x}}
+\newcommand{\vy}{\vec{y}}
+\newcommand{\vz}{\vec{z}}
+\newcommand{\vzero}{\vec{0}}
+\newcommand{\vF}{\vec{F}}
+\newcommand{\vG}{\vec{G}}
+\newcommand{\vH}{\vec{H}}
+\newcommand{\vR}{\vec{R}}
+\newcommand{\vT}{\vec{T}}
+\newcommand{\vN}{\vec{N}}
+\newcommand{\vL}{\vec{L}}
+\newcommand{\vB}{\vec{B}}
+\newcommand{\vS}{\vec{S}}
+\newcommand{\proj}{\text{proj}}
+\newcommand{\comp}{\text{comp}}
+\newcommand{\nin}{}
+\newcommand{\vecmag}[1]{\left\lVert #1\right\rVert}
+\newcommand{\grad}{\nabla}
+\newcommand\restrict[1]{\raise-.5ex\hbox{$\Big|$}_{#1}}
+\DeclareMathOperator{\curl}{curl}
+\DeclareMathOperator{\divg}{div}
+\newcommand{\lt}{&lt;}
+\newcommand{\gt}{&gt;}
+\newcommand{\amp}{&amp;}
+\definecolor{fillinmathshade}{gray}{0.9}
+\newcommand{\fillinmath}[1]{\mathchoice{\colorbox{fillinmathshade}{$\displaystyle     \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\textstyle        \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptstyle      \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptscriptstyle\phantom{\,#1\,}$}}}
+\)</span></div>
+<div class="ptx-page">
+<div id="ptx-sidebar" class="ptx-sidebar"><nav id="ptx-toc" class="ptx-toc depth2 focused" data-preexpanded-levels="0" data-max-levels="2"><ul class="structural toc-item-list contains-active">
+<li class="toc-item toc-frontmatter">
+<div class="toc-title-box"><a href="frontmatter.html" class="internal"><span class="title">Front Matter</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-colophon"><div class="toc-title-box"><a href="frontmatter-3.html" class="internal"><span class="title">Colophon</span></a></div></li>
+<li class="toc-item toc-preface"><div class="toc-title-box"><a href="frontmatter-4.html" class="internal"><span class="title">Features of the Text</span></a></div></li>
+<li class="toc-item toc-preface"><div class="toc-title-box"><a href="frontmatter-5.html" class="internal"><span class="title">Vector Calculus Preface</span></a></div></li>
+<li class="toc-item toc-preface"><div class="toc-title-box"><a href="frontmatter-6.html" class="internal"><span class="title">Acknowledgments</span></a></div></li>
+<li class="toc-item toc-preface"><div class="toc-title-box"><a href="frontmatter-7.html" class="internal"><span class="title">Active Calculus - Multivariable: our goals</span></a></div></li>
+<li class="toc-item toc-preface"><div class="toc-title-box"><a href="frontmatter-8.html" class="internal"><span class="title">How to Use this Text</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="C_MVPrecalc.html" class="internal"><span class="codenumber">9</span> <span class="title">Precalculus of Multivariable Functions</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S-Precalc-3Dcoord.html" class="internal"><span class="codenumber">9.1</span> <span class="title">Three Dimensional Space</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-3Dcoord.html#S-Precalc-3Dcoord-3" class="internal"><span class="codenumber">9.1.1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-3Dcoord.html#S-Precalc-3Dcoord-4" class="internal"><span class="codenumber">9.1.2</span> <span class="title">Three Dimensional Space and Coordinates</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-3Dcoord.html#S-Precalc-3Dcoord-5" class="internal"><span class="codenumber">9.1.3</span> <span class="title">Fundamental Planes</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-3Dcoord.html#subsec-distanceformula" class="internal"><span class="codenumber">9.1.4</span> <span class="title">Distance in Three Dimensions</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-Precalc-3Dcoord.html#S-Precalc-3Dcoord-8" class="internal"><span class="codenumber">9.1.5</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S-Precalc-Vectors.html" class="internal"><span class="codenumber">9.2</span> <span class="title">Vectors</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-Vectors.html#S-Precalc-Vectors-3" class="internal"><span class="codenumber">9.2.1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-Vectors.html#S-Precalc-Vectors-4" class="internal"><span class="codenumber">9.2.2</span> <span class="title">Representations of Vectors</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-Vectors.html#S-Precalc-Vectors-5" class="internal"><span class="codenumber">9.2.3</span> <span class="title">Equality of Vectors</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-Vectors.html#S-Precalc-Vectors-6" class="internal"><span class="codenumber">9.2.4</span> <span class="title">Operations on Vectors</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-Vectors.html#S-Precalc-Vectors-7" class="internal"><span class="codenumber">9.2.5</span> <span class="title">Properties of Vector Operations</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-Vectors.html#SS_Precalc_Vectors_Geometric" class="internal"><span class="codenumber">9.2.6</span> <span class="title">Geometric Interpretation of Vector Operations</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-Vectors.html#S-Precalc-Vectors-9" class="internal"><span class="codenumber">9.2.7</span> <span class="title">The Magnitude of a Vector</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-Precalc-Vectors.html#ez_Precalc_Vectors" class="internal"><span class="codenumber">9.2.8</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S-Precalc-DotProduct.html" class="internal"><span class="codenumber">9.3</span> <span class="title">The Dot Product</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-DotProduct.html#S-Precalc-DotProduct-3" class="internal"><span class="codenumber">9.3.1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-DotProduct.html#S-Precalc-DotProduct-4" class="internal"><span class="codenumber">9.3.2</span> <span class="title">The Dot Product</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-DotProduct.html#subsec-vecangle" class="internal"><span class="codenumber">9.3.3</span> <span class="title">The Angle between Vectors</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-DotProduct.html#S-Precalc-DotProduct-6" class="internal"><span class="codenumber">9.3.4</span> <span class="title">Projections</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-DotProduct.html#S-Precalc-DotProduct-7" class="internal"><span class="codenumber">9.3.5</span> <span class="title">Work, Force, and Displacement</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-Precalc-DotProduct.html#ez_Precalc_DotProduct" class="internal"><span class="codenumber">9.3.6</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S-Precalc-CrossProduct.html" class="internal"><span class="codenumber">9.4</span> <span class="title">The Cross Product</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-CrossProduct.html#S-Precalc-CrossProduct-3" class="internal"><span class="codenumber">9.4.1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-CrossProduct.html#S-Precalc-CrossProduct-4" class="internal"><span class="codenumber">9.4.2</span> <span class="title">Computing the cross product</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-CrossProduct.html#geocross" class="internal"><span class="codenumber">9.4.3</span> <span class="title">The Vector Nature of the Cross Product</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-CrossProduct.html#subsec-crossapp" class="internal"><span class="codenumber">9.4.4</span> <span class="title">Applications of the Cross Product</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-CrossProduct.html#S-Precalc-CrossProduct-7" class="internal"><span class="codenumber">9.4.5</span> <span class="title">Comparing the dot and cross products</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-CrossProduct.html#vecnotation" class="internal"><span class="codenumber">9.4.6</span> <span class="title">Object Types and Vector Notation</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-Precalc-CrossProduct.html#ez_Precalc_CrossProduct" class="internal"><span class="codenumber">9.4.7</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S-Precalc-Lines.html" class="internal"><span class="codenumber">9.5</span> <span class="title">Lines in Space</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-Lines.html#S-Precalc-Lines-3" class="internal"><span class="codenumber">9.5.1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-Lines.html#S-Precalc-Lines-4" class="internal"><span class="codenumber">9.5.2</span> <span class="title">Lines in Space</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-Lines.html#S-Precalc-Lines-5" class="internal"><span class="codenumber">9.5.3</span> <span class="title">The Parametric Equations of a Line</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-Precalc-Lines.html#S-Precalc-Lines-7" class="internal"><span class="codenumber">9.5.4</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S-Precalc-Planes.html" class="internal"><span class="codenumber">9.6</span> <span class="title">Planes in Space</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-Planes.html#S-Precalc-Planes-3" class="internal"><span class="codenumber">9.6.1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-Planes.html#S-Precalc-Planes-4" class="internal"><span class="codenumber">9.6.2</span> <span class="title">Planes in Space</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-Precalc-Planes.html#S-Precalc-Planes-6" class="internal"><span class="codenumber">9.6.3</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S-Precalc-CommonGraphs.html" class="internal"><span class="codenumber">9.7</span> <span class="title">Common Graphs in Three Dimensions</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-CommonGraphs.html#S-Precalc-CommonGraphs-3" class="internal"><span class="codenumber">9.7.1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-CommonGraphs.html#subsec-cylsurf" class="internal"><span class="codenumber">9.7.2</span> <span class="title">Cylinder Surfaces</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-CommonGraphs.html#quadric-surfaces" class="internal"><span class="codenumber">9.7.3</span> <span class="title">Quadric Surfaces</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-Precalc-CommonGraphs.html#S-Precalc-CommonGraphs-7" class="internal"><span class="codenumber">9.7.4</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S-Precalc-OtherCoordSystems.html" class="internal"><span class="codenumber">9.8</span> <span class="title">Polar, Cylindrical, and Spherical Coordinates</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-OtherCoordSystems.html#S-Precalc-OtherCoordSystems-3" class="internal"><span class="codenumber">9.8.1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-OtherCoordSystems.html#subsec-polar" class="internal"><span class="codenumber">9.8.2</span> <span class="title">Polar Coordinates</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-OtherCoordSystems.html#subsec-cylindrical" class="internal"><span class="codenumber">9.8.3</span> <span class="title">Cylindrical Coordinates</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-Precalc-OtherCoordSystems.html#subsec-SphCoord" class="internal"><span class="codenumber">9.8.4</span> <span class="title">Spherical Coordinates</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-Precalc-OtherCoordSystems.html#S-Precalc-OtherCoordSystems-8" class="internal"><span class="codenumber">9.8.5</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="C_VVF.html" class="internal"><span class="codenumber">10</span> <span class="title">Vector Valued Functions of One Variable</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S-VVF-Plotting.html" class="internal"><span class="codenumber">10.1</span> <span class="title">Vector-Valued Functions of One Variable</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-VVF-Plotting.html#S-VVF-Plotting-3" class="internal"><span class="codenumber">10.1.1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-VVF-Plotting.html#S-VVF-Plotting-4" class="internal"><span class="codenumber">10.1.2</span> <span class="title">Vector-Valued Functions</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-VVF-Plotting.html#subsec-parameterizingcurves" class="internal"><span class="codenumber">10.1.3</span> <span class="title">Parameterizing Curves</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-VVF-Plotting.html#S-VVF-Plotting-7" class="internal"><span class="codenumber">10.1.4</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S-VVF-Calculus.html" class="internal"><span class="codenumber">10.2</span> <span class="title">Calculus of Vector-Valued Functions of One Variable</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-VVF-Calculus.html#S-VVF-Calculus-3" class="internal"><span class="codenumber">10.2.1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-VVF-Calculus.html#vvf-derivative" class="internal"><span class="codenumber">10.2.2</span> <span class="title">The Derivative</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-VVF-Calculus.html#S-VVF-Calculus-5" class="internal"><span class="codenumber">10.2.3</span> <span class="title">Computing Derivatives</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-VVF-Calculus.html#tangentlines" class="internal"><span class="codenumber">10.2.4</span> <span class="title">Tangent Lines</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-VVF-Calculus.html#S-VVF-Calculus-7" class="internal"><span class="codenumber">10.2.5</span> <span class="title">Integrating a Vector-Valued Function</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-VVF-Calculus.html#S-VVF-Calculus-9" class="internal"><span class="codenumber">10.2.6</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S-VVF-ArcLength.html" class="internal"><span class="codenumber">10.3</span> <span class="title">Arc Length</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-VVF-ArcLength.html#S-VVF-ArcLength-3" class="internal"><span class="codenumber">10.3.1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-VVF-ArcLength.html#S-VVF-ArcLength-4" class="internal"><span class="codenumber">10.3.2</span> <span class="title">Arc Length</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-VVF-ArcLength.html#S-VVF-ArcLength-5" class="internal"><span class="codenumber">10.3.3</span> <span class="title">Moving with Unit Speed</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-VVF-ArcLength.html#driverroad" class="internal"><span class="codenumber">10.3.4</span> <span class="title">The Driver or The Road?</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-VVF-ArcLength.html#S-VVF-ArcLength-7" class="internal"><span class="codenumber">10.3.5</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-VVF-ArcLength.html#S-VVF-ArcLength-8" class="internal"><span class="codenumber">10.3.6</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S-VVF-TNB.html" class="internal"><span class="codenumber">10.4</span> <span class="title">The TNB Frame</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-VVF-TNB.html#S-VVF-TNB-3" class="internal"><span class="codenumber">10.4.1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-VVF-TNB.html#subsec-T" class="internal"><span class="codenumber">10.4.2</span> <span class="title">Direction of travel</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-VVF-TNB.html#subsec-N" class="internal"><span class="codenumber">10.4.3</span> <span class="title">The Direction of Turning</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-VVF-TNB.html#subsec-B" class="internal"><span class="codenumber">10.4.4</span> <span class="title">The Binormal Vector</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-VVF-TNB.html#subsec-driverroadTNB" class="internal"><span class="codenumber">10.4.5</span> <span class="title">The Driver or the Road: TNB Frame</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-VVF-TNB.html#S-VVF-TNB-8" class="internal"><span class="codenumber">10.4.6</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-VVF-TNB.html#S-VVF-TNB-9" class="internal"><span class="codenumber">10.4.7</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S-VVF-Curvature.html" class="internal"><span class="codenumber">10.5</span> <span class="title">Curvature</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-VVF-Curvature.html#S-VVF-Curvature-3" class="internal"><span class="codenumber">10.5.1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-VVF-Curvature.html#S-VVF-Curvature-4" class="internal"><span class="codenumber">10.5.2</span> <span class="title">Curvature</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-VVF-Curvature.html#S-VVF-Curvature-5" class="internal"><span class="codenumber">10.5.3</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-VVF-Curvature.html#S-VVF-Curvature-6" class="internal"><span class="codenumber">10.5.4</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S-VVF-Spliting-Acceleration.html" class="internal"><span class="codenumber">10.6</span> <span class="title">Splitting the Acceleration Vector</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-VVF-Spliting-Acceleration.html#S-VVF-Spliting-Acceleration-3" class="internal"><span class="codenumber">10.6.1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-VVF-Spliting-Acceleration.html#S-VVF-Spliting-Acceleration-4" class="internal"><span class="codenumber">10.6.2</span> <span class="title">Splitting Acceleration</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-VVF-Spliting-Acceleration.html#subsec-DR-splita" class="internal"><span class="codenumber">10.6.3</span> <span class="title">The Driver or the Road?</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-VVF-Spliting-Acceleration.html#S-VVF-Spliting-Acceleration-6" class="internal"><span class="codenumber">10.6.4</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-VVF-Spliting-Acceleration.html#S-VVF-Spliting-Acceleration-7" class="internal"><span class="codenumber">10.6.5</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="C_MVF.html" class="internal"><span class="codenumber">11</span> <span class="title">Derivatives of Multivariable Functions</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S-MV-Functions.html" class="internal"><span class="codenumber">11.1</span> <span class="title">Functions of Several Variables</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-MV-Functions.html#S-MV-Functions-3" class="internal"><span class="codenumber">11.1.1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-MV-Functions.html#S-MV-Functions-4" class="internal"><span class="codenumber">11.1.2</span> <span class="title">Functions of Several Variables</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-MV-Functions.html#S-MV-Functions-5" class="internal"><span class="codenumber">11.1.3</span> <span class="title">Representations for Functions of Two Variables</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-MV-Functions.html#S-MV-Functions-6" class="internal"><span class="codenumber">11.1.4</span> <span class="title">Traces</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-MV-Functions.html#S-MV-Functions-7" class="internal"><span class="codenumber">11.1.5</span> <span class="title">Contour Maps and Level Curves</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-MV-Functions.html#S-MV-Functions-8" class="internal"><span class="codenumber">11.1.6</span> <span class="title">A gallery of functions</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-MV-Functions.html#S-MV-Functions-9" class="internal"><span class="codenumber">11.1.7</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-MV-Functions.html#S-MV-Functions-10" class="internal"><span class="codenumber">11.1.8</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S-10-1-Limits.html" class="internal"><span class="codenumber">11.2</span> <span class="title">Limits</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-1-Limits.html#S-10-1-Limits-3" class="internal"><span class="codenumber">11.2.1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-1-Limits.html#S-10-1-Limits-4" class="internal"><span class="codenumber">11.2.2</span> <span class="title">Limits of Functions of Two Variables</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-1-Limits.html#subsec-polarlimit" class="internal"><span class="codenumber">11.2.3</span> <span class="title">Using Polar Coordinates in Limits</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-1-Limits.html#S-10-1-Limits-6" class="internal"><span class="codenumber">11.2.4</span> <span class="title">Continuity</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-1-Limits.html#S-10-1-Limits-7" class="internal"><span class="codenumber">11.2.5</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-10-1-Limits.html#S-10-1-Limits-8" class="internal"><span class="codenumber">11.2.6</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S-10-2-First-Order-Partial-Derivatives.html" class="internal"><span class="codenumber">11.3</span> <span class="title">First-Order Partial Derivatives</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-2-First-Order-Partial-Derivatives.html#S-10-2-First-Order-Partial-Derivatives-3" class="internal"><span class="codenumber">11.3.1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-2-First-Order-Partial-Derivatives.html#S-10-2-First-Order-Partial-Derivatives-4" class="internal"><span class="codenumber">11.3.2</span> <span class="title">First-Order Partial Derivatives</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-2-First-Order-Partial-Derivatives.html#S-10-2-First-Order-Partial-Derivatives-5" class="internal"><span class="codenumber">11.3.3</span> <span class="title">Interpretations of First-Order Partial Derivatives</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-2-First-Order-Partial-Derivatives.html#S-10-2-First-Order-Partial-Derivatives-6" class="internal"><span class="codenumber">11.3.4</span> <span class="title">Using Tables and Contour Plots to Estimate Partial Derivatives</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-2-First-Order-Partial-Derivatives.html#S-10-2-First-Order-Partial-Derivatives-7" class="internal"><span class="codenumber">11.3.5</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-10-2-First-Order-Partial-Derivatives.html#S-10-2-First-Order-Partial-Derivatives-8" class="internal"><span class="codenumber">11.3.6</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S-10-3-Second-Order-Partial-Derivatives.html" class="internal"><span class="codenumber">11.4</span> <span class="title">Second-Order Partial Derivatives</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-3-Second-Order-Partial-Derivatives.html#S-10-3-Second-Order-Partial-Derivatives-3" class="internal"><span class="codenumber">11.4.1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-3-Second-Order-Partial-Derivatives.html#S-10-3-Second-Order-Partial-Derivatives-4" class="internal"><span class="codenumber">11.4.2</span> <span class="title">Second-Order Partial Derivatives</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-3-Second-Order-Partial-Derivatives.html#S-10-3-Second-Order-Partial-Derivatives-5" class="internal"><span class="codenumber">11.4.3</span> <span class="title">Interpreting the Second-Order Partial Derivatives</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-3-Second-Order-Partial-Derivatives.html#S-10-3-Second-Order-Partial-Derivatives-6" class="internal"><span class="codenumber">11.4.4</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-10-3-Second-Order-Partial-Derivatives.html#S-10-3-Second-Order-Partial-Derivatives-7" class="internal"><span class="codenumber">11.4.5</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S-10-4-Linearization.html" class="internal"><span class="codenumber">11.5</span> <span class="title">Linearization: Tangent Planes and Differentials</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-4-Linearization.html#S-10-4-Linearization-3" class="internal"><span class="codenumber">11.5.1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-4-Linearization.html#S-10-4-Linearization-4" class="internal"><span class="codenumber">11.5.2</span> <span class="title">Differentiability and Local Linearity</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-4-Linearization.html#subsec-tangentplane" class="internal"><span class="codenumber">11.5.3</span> <span class="title">The Tangent Plane</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-4-Linearization.html#S-10-4-Linearization-6" class="internal"><span class="codenumber">11.5.4</span> <span class="title">Linearization</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-4-Linearization.html#S-10-4-Linearization-7" class="internal"><span class="codenumber">11.5.5</span> <span class="title">Differentials</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-4-Linearization.html#S-10-4-Linearization-8" class="internal"><span class="codenumber">11.5.6</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-10-4-Linearization.html#S-10-4-Linearization-9" class="internal"><span class="codenumber">11.5.7</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S-10-5-Chain-Rule.html" class="internal"><span class="codenumber">11.6</span> <span class="title">The Multivariable Chain Rule</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-5-Chain-Rule.html#S-10-5-Chain-Rule-3" class="internal"><span class="codenumber">11.6.1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-5-Chain-Rule.html#S-10-5-Chain-Rule-4" class="internal"><span class="codenumber">11.6.2</span> <span class="title">The Chain Rule</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-5-Chain-Rule.html#S-10-5-Chain-Rule-5" class="internal"><span class="codenumber">11.6.3</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-10-5-Chain-Rule.html#S-10-5-Chain-Rule-6" class="internal"><span class="codenumber">11.6.4</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S-10-6-Directional-Derivative.html" class="internal"><span class="codenumber">11.7</span> <span class="title">Directional Derivatives and the Gradient</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-6-Directional-Derivative.html#S-10-6-Directional-Derivative-3" class="internal"><span class="codenumber">11.7.1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-6-Directional-Derivative.html#S-10-6-Directional-Derivative-4" class="internal"><span class="codenumber">11.7.2</span> <span class="title">Directional Derivatives</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-6-Directional-Derivative.html#S-10-6-Directional-Derivative-5" class="internal"><span class="codenumber">11.7.3</span> <span class="title">Efficiently Computing the Directional Derivative</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-6-Directional-Derivative.html#gradient_ss" class="internal"><span class="codenumber">11.7.4</span> <span class="title">The Gradient</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-6-Directional-Derivative.html#vec-grad" class="internal"><span class="codenumber">11.7.5</span> <span class="title">Vector Properties of the Gradient</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-6-Directional-Derivative.html#S-10-6-Directional-Derivative-8" class="internal"><span class="codenumber">11.7.6</span> <span class="title">Applications</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-6-Directional-Derivative.html#S-10-6-Directional-Derivative-9" class="internal"><span class="codenumber">11.7.7</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-10-6-Directional-Derivative.html#S-10-6-Directional-Derivative-10" class="internal"><span class="codenumber">11.7.8</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S-MV-HD.html" class="internal"><span class="codenumber">11.8</span> <span class="title">Higher Dimensions</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-MV-HD.html#S-MV-HD-3" class="internal"><span class="codenumber">11.8.1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-MV-HD.html#S-MV-HD-4" class="internal"><span class="codenumber">11.8.2</span> <span class="title">Inputs and Outputs with Functions of Three or More Variables</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-MV-HD.html#S-MV-HD-5" class="internal"><span class="codenumber">11.8.3</span> <span class="title">Attempting to Graph Functions of Three or More Variables</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-MV-HD.html#subsec-3plusdiff" class="internal"><span class="codenumber">11.8.4</span> <span class="title">Measuring Change with Functions of Three or More Variables</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-MV-HD.html#HD-gradient" class="internal"><span class="codenumber">11.8.5</span> <span class="title">Directional Derivatives and Gradients</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-MV-HD.html#S-MV-HD-8" class="internal"><span class="codenumber">11.8.6</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-MV-HD.html#S-MV-HD-9" class="internal"><span class="codenumber">11.8.7</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S-10-7-Optimization.html" class="internal"><span class="codenumber">11.9</span> <span class="title">Optimization</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-7-Optimization.html#S-10-7-Optimization-3" class="internal"><span class="codenumber">11.9.1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-7-Optimization.html#S-10-7-Optimization-4" class="internal"><span class="codenumber">11.9.2</span> <span class="title">Extrema and Critical Points</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-7-Optimization.html#S-10-7-Optimization-5" class="internal"><span class="codenumber">11.9.3</span> <span class="title">Classifying Critical Points: The Second Derivative Test</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-7-Optimization.html#S-10-7-Optimization-6" class="internal"><span class="codenumber">11.9.4</span> <span class="title">Optimization on a Restricted Domain</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-7-Optimization.html#S-10-7-Optimization-7" class="internal"><span class="codenumber">11.9.5</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-10-7-Optimization.html#S-10-7-Optimization-8" class="internal"><span class="codenumber">11.9.6</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S-10-8-Lagrange-Multipliers.html" class="internal"><span class="codenumber">11.10</span> <span class="title">Constrained Optimization: Lagrange Multipliers</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-8-Lagrange-Multipliers.html#S-10-8-Lagrange-Multipliers-3" class="internal"><span class="codenumber">11.10.1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-8-Lagrange-Multipliers.html#S-10-8-Lagrange-Multipliers-4" class="internal"><span class="codenumber">11.10.2</span> <span class="title">Constrained Optimization and Lagrange Multipliers</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-10-8-Lagrange-Multipliers.html#S-10-8-Lagrange-Multipliers-5" class="internal"><span class="codenumber">11.10.3</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-10-8-Lagrange-Multipliers.html#S-10-8-Lagrange-Multipliers-6" class="internal"><span class="codenumber">11.10.4</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-chapter">
+<div class="toc-title-box"><a href="C_MI.html" class="internal"><span class="codenumber">12</span> <span class="title">Multiple Integrals</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S-11-1-Double-Integrals-Rectangles.html" class="internal"><span class="codenumber">12.1</span> <span class="title">Double Riemann Sums and Double Integrals over Rectangles</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-1-Double-Integrals-Rectangles.html#S-11-1-Double-Integrals-Rectangles-3" class="internal"><span class="codenumber">12.1.1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-1-Double-Integrals-Rectangles.html#S-11-1-Double-Integrals-Rectangles-4" class="internal"><span class="codenumber">12.1.2</span> <span class="title">Double Riemann Sums over Rectangles</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-1-Double-Integrals-Rectangles.html#S-11-1-Double-Integrals-Rectangles-5" class="internal"><span class="codenumber">12.1.3</span> <span class="title">Double Riemann Sums and Double Integrals</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-1-Double-Integrals-Rectangles.html#interpret-dblint" class="internal"><span class="codenumber">12.1.4</span> <span class="title">Interpretation of Double Riemann Sums and Double integrals</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-1-Double-Integrals-Rectangles.html#S-11-1-Double-Integrals-Rectangles-7" class="internal"><span class="codenumber">12.1.5</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-11-1-Double-Integrals-Rectangles.html#S-11-1-Double-Integrals-Rectangles-8" class="internal"><span class="codenumber">12.1.6</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S-11-2-Iterated-Integrals.html" class="internal"><span class="codenumber">12.2</span> <span class="title">Iterated Integrals</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-2-Iterated-Integrals.html#S-11-2-Iterated-Integrals-3" class="internal"><span class="codenumber">12.2.1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-2-Iterated-Integrals.html#S-11-2-Iterated-Integrals-4" class="internal"><span class="codenumber">12.2.2</span> <span class="title">Iterated Integrals</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-2-Iterated-Integrals.html#S-11-2-Iterated-Integrals-5" class="internal"><span class="codenumber">12.2.3</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-11-2-Iterated-Integrals.html#S-11-2-Iterated-Integrals-6" class="internal"><span class="codenumber">12.2.4</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S-11-3-Double-Integrals-General.html" class="internal"><span class="codenumber">12.3</span> <span class="title">Double Integrals over General Regions</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-3-Double-Integrals-General.html#S-11-3-Double-Integrals-General-3" class="internal"><span class="codenumber">12.3.1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-3-Double-Integrals-General.html#S-11-3-Double-Integrals-General-4" class="internal"><span class="codenumber">12.3.2</span> <span class="title">Double Integrals over General Regions</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-3-Double-Integrals-General.html#S-11-3-Double-Integrals-General-5" class="internal"><span class="codenumber">12.3.3</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-11-3-Double-Integrals-General.html#S-11-3-Double-Integrals-General-6" class="internal"><span class="codenumber">12.3.4</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S-11-4-Double-Integrals-Applications.html" class="internal"><span class="codenumber">12.4</span> <span class="title">Applications of Double Integrals</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-4-Double-Integrals-Applications.html#S-11-4-Double-Integrals-Applications-3" class="internal"><span class="codenumber">12.4.1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-4-Double-Integrals-Applications.html#S-11-4-Double-Integrals-Applications-4" class="internal"><span class="codenumber">12.4.2</span> <span class="title">Mass</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-4-Double-Integrals-Applications.html#S-11-4-Double-Integrals-Applications-5" class="internal"><span class="codenumber">12.4.3</span> <span class="title">Area</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-4-Double-Integrals-Applications.html#S-11-4-Double-Integrals-Applications-6" class="internal"><span class="codenumber">12.4.4</span> <span class="title">Center of Mass</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-4-Double-Integrals-Applications.html#S-11-4-Double-Integrals-Applications-7" class="internal"><span class="codenumber">12.4.5</span> <span class="title">Probability</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-4-Double-Integrals-Applications.html#S-11-4-Double-Integrals-Applications-8" class="internal"><span class="codenumber">12.4.6</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-11-4-Double-Integrals-Applications.html#S-11-4-Double-Integrals-Applications-9" class="internal"><span class="codenumber">12.4.7</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S-11-5-Double-Integrals-Polar.html" class="internal"><span class="codenumber">12.5</span> <span class="title">Double Integrals in Polar Coordinates</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-5-Double-Integrals-Polar.html#S-11-5-Double-Integrals-Polar-3" class="internal"><span class="codenumber">12.5.1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-5-Double-Integrals-Polar.html#S-11-5-Double-Integrals-Polar-4" class="internal"><span class="codenumber">12.5.2</span> <span class="title">Integrating in Polar Coordinates</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-5-Double-Integrals-Polar.html#S-11-5-Double-Integrals-Polar-5" class="internal"><span class="codenumber">12.5.3</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-11-5-Double-Integrals-Polar.html#S-11-5-Double-Integrals-Polar-6" class="internal"><span class="codenumber">12.5.4</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S-11-7-Triple-Integrals.html" class="internal"><span class="codenumber">12.6</span> <span class="title">Triple Integrals</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-7-Triple-Integrals.html#S-11-7-Triple-Integrals-3" class="internal"><span class="codenumber">12.6.1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-7-Triple-Integrals.html#S-11-7-Triple-Integrals-4" class="internal"><span class="codenumber">12.6.2</span> <span class="title">Triple Riemann Sums and Triple Integrals</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-7-Triple-Integrals.html#S-11-7-Triple-Integrals-5" class="internal"><span class="codenumber">12.6.3</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-11-7-Triple-Integrals.html#S-11-7-Triple-Integrals-6" class="internal"><span class="codenumber">12.6.4</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S-11-8-Triple-Integrals-Cylindrical-Spherical.html" class="internal"><span class="codenumber">12.7</span> <span class="title">Triple Integrals in Cylindrical and Spherical Coordinates</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-8-Triple-Integrals-Cylindrical-Spherical.html#S-11-8-Triple-Integrals-Cylindrical-Spherical-3" class="internal"><span class="codenumber">12.7.1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-8-Triple-Integrals-Cylindrical-Spherical.html#S-11-8-Triple-Integrals-Cylindrical-Spherical-4" class="internal"><span class="codenumber">12.7.2</span> <span class="title">Triple Integrals in Cylindrical Coordinates</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-8-Triple-Integrals-Cylindrical-Spherical.html#S-11-8-Triple-Integrals-Cylindrical-Spherical-5" class="internal"><span class="codenumber">12.7.3</span> <span class="title">Triple Integrals in Spherical Coordinates</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-8-Triple-Integrals-Cylindrical-Spherical.html#S-11-8-Triple-Integrals-Cylindrical-Spherical-6" class="internal"><span class="codenumber">12.7.4</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-11-8-Triple-Integrals-Cylindrical-Spherical.html#S-11-8-Triple-Integrals-Cylindrical-Spherical-7" class="internal"><span class="codenumber">12.7.5</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S-11-9-Change-of-Variable.html" class="internal"><span class="codenumber">12.8</span> <span class="title">Change of Variables</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-9-Change-of-Variable.html#S-11-9-Change-of-Variable-3" class="internal"><span class="codenumber">12.8.1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-9-Change-of-Variable.html#S-11-9-Change-of-Variable-4" class="internal"><span class="codenumber">12.8.2</span> <span class="title">Change of Variables in Polar Coordinates</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-9-Change-of-Variable.html#S-11-9-Change-of-Variable-5" class="internal"><span class="codenumber">12.8.3</span> <span class="title">General Change of Coordinates</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-9-Change-of-Variable.html#S-11-9-Change-of-Variable-6" class="internal"><span class="codenumber">12.8.4</span> <span class="title">Change of Variables in a Triple Integral</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-9-Change-of-Variable.html#S-11-9-Change-of-Variable-7" class="internal"><span class="codenumber">12.8.5</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-11-9-Change-of-Variable.html#S-11-9-Change-of-Variable-8" class="internal"><span class="codenumber">12.8.6</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-chapter contains-active">
+<div class="toc-title-box"><a href="C_Vector.html" class="internal"><span class="codenumber">13</span> <span class="title">Vector Calculus</span></a></div>
+<ul class="structural toc-item-list contains-active">
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S_Vector_VectorFields.html" class="internal"><span class="codenumber">13.1</span> <span class="title">Vector Fields</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_VectorFields.html#S_Vector_VectorFields-3" class="internal"><span class="codenumber">13.1.1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_VectorFields.html#SS_Vector_VectorFields_Examples" class="internal"><span class="codenumber">13.1.2</span> <span class="title">Examples of Vector Fields</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_VectorFields.html#SS_Vector_VectorFields_Mathematical" class="internal"><span class="codenumber">13.1.3</span> <span class="title">Mathematical Vector Fields</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_VectorFields.html#SS_Vector_VectorFields_Plotting" class="internal"><span class="codenumber">13.1.4</span> <span class="title">Plotting Vector Fields</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_VectorFields.html#SS_Vector_VectorFields_Gradient" class="internal"><span class="codenumber">13.1.5</span> <span class="title">Gradient Vector Fields</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_VectorFields.html#S_Vector_VectorFields-8" class="internal"><span class="codenumber">13.1.6</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S_Vector_VectorFields.html#S_Vector_VectorFields-9" class="internal"><span class="codenumber">13.1.7</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S_Vector_IdeaLineIntegral.html" class="internal"><span class="codenumber">13.2</span> <span class="title">The Idea of a Line Integral</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_IdeaLineIntegral.html#S_Vector_IdeaLineIntegral-3" class="internal"><span class="codenumber">13.2.1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_IdeaLineIntegral.html#SS_Vector_IdeaLineIntegral_OrientCurve" class="internal"><span class="codenumber">13.2.2</span> <span class="title">Orientations of Curves</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_IdeaLineIntegral.html#SS_Vector_IdeaLineIntegral_LineIntegrals" class="internal"><span class="codenumber">13.2.3</span> <span class="title">Line Integrals</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_IdeaLineIntegral.html#SS_Vector_IdeaLineIntegral_Properties" class="internal"><span class="codenumber">13.2.4</span> <span class="title">Properties of Line Integrals</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_IdeaLineIntegral.html#SS_Vector_IdeaLineIntegral_Circulation" class="internal"><span class="codenumber">13.2.5</span> <span class="title">The Circulation of a Vector Field</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_IdeaLineIntegral.html#S_Vector_IdeaLineIntegral-8" class="internal"><span class="codenumber">13.2.6</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S_Vector_IdeaLineIntegral.html#S_Vector_IdeaLineIntegral-9" class="internal"><span class="codenumber">13.2.7</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S_Vector_ParamLineIntegrals.html" class="internal"><span class="codenumber">13.3</span> <span class="title">Using Parametrizations to Calculate Line Integrals</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_ParamLineIntegrals.html#S_Vector_ParamLineIntegrals-3" class="internal"><span class="codenumber">13.3.1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_ParamLineIntegrals.html#SS_Vector_ParamLineIntegrals_Evaluation" class="internal"><span class="codenumber">13.3.2</span> <span class="title">Parametrizations in the Definition of <span class="process-math">\(\int_C\vF\cdot d\vr\)</span></span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_ParamLineIntegrals.html#alt_li_notation" class="internal"><span class="codenumber">13.3.3</span> <span class="title">Alternative Notation for Line Integrals</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_ParamLineIntegrals.html#S_Vector_ParamLineIntegrals-6" class="internal"><span class="codenumber">13.3.4</span> <span class="title">Independence of Parametrization for a Fixed Curve</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_ParamLineIntegrals.html#S_Vector_ParamLineIntegrals-7" class="internal"><span class="codenumber">13.3.5</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S_Vector_ParamLineIntegrals.html#S_Vector_ParamLineIntegrals-8" class="internal"><span class="codenumber">13.3.6</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S_Vector_FTCLI.html" class="internal"><span class="codenumber">13.4</span> <span class="title">Path-Independent Vector Fields and the Fundamental Theorem of Calculus for Line Integrals</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_FTCLI.html#S_Vector_FTCLI-3" class="internal"><span class="codenumber">13.4.1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_FTCLI.html#S_Vector_FTCLI-4" class="internal"><span class="codenumber">13.4.2</span> <span class="title">Path-Independent Vector Fields</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_FTCLI.html#S_Vector_FTCLI-5" class="internal"><span class="codenumber">13.4.3</span> <span class="title">Line Integrals Along Closed Curves</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_FTCLI.html#SS_Vector_FTCLI_Other" class="internal"><span class="codenumber">13.4.4</span> <span class="title">What other vector fields are path-independent?</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_FTCLI.html#S_Vector_FTCLI-7" class="internal"><span class="codenumber">13.4.5</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S_Vector_FTCLI.html#S_Vector_FTCLI-8" class="internal"><span class="codenumber">13.4.6</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S_Vector_ScalarLineIntegral.html" class="internal"><span class="codenumber">13.5</span> <span class="title">Line Integrals of Scalar Functions</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_ScalarLineIntegral.html#S_Vector_ScalarLineIntegral-3" class="internal"><span class="codenumber">13.5.1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_ScalarLineIntegral.html#S_Vector_ScalarLineIntegral-4" class="internal"><span class="codenumber">13.5.2</span> <span class="title">Defining line integrals of scalar functions</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_ScalarLineIntegral.html#S_Vector_ScalarLineIntegral-5" class="internal"><span class="codenumber">13.5.3</span> <span class="title">Using Parameterizations to Calculate Scalar Line Integrals</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_ScalarLineIntegral.html#S_Vector_ScalarLineIntegral-6" class="internal"><span class="codenumber">13.5.4</span> <span class="title">Properties of Scalar Line Integrals</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_ScalarLineIntegral.html#SS_Vector_ScalarLineIntegral_Visualizations" class="internal"><span class="codenumber">13.5.5</span> <span class="title">Visualizations of Scalar Line Integrals as Area Under a Curve</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_ScalarLineIntegral.html#S_Vector_ScalarLineIntegral-8" class="internal"><span class="codenumber">13.5.6</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S_Vector_ScalarLineIntegral.html#ez_Vector_ScalarLineIntegral" class="internal"><span class="codenumber">13.5.7</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S_Vector_Div.html" class="internal"><span class="codenumber">13.6</span> <span class="title">The Divergence of a Vector Field</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_Div.html#S_Vector_Div-3" class="internal"><span class="codenumber">13.6.1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_Div.html#SS_Vector_Div_Defn" class="internal"><span class="codenumber">13.6.2</span> <span class="title">Definition of the Divergence of a Vector Field</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_Div.html#SS_Vector_Div_Development" class="internal"><span class="codenumber">13.6.3</span> <span class="title">Measuring the Change in Strength of a Vector Field</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_Div.html#S_Vector_Div-6" class="internal"><span class="codenumber">13.6.4</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S_Vector_Div.html#S_Vector_Div-7" class="internal"><span class="codenumber">13.6.5</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S_Vector_Curl.html" class="internal"><span class="codenumber">13.7</span> <span class="title">The Curl of a Vector Field</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_Curl.html#S_Vector_Curl-3" class="internal"><span class="codenumber">13.7.1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_Curl.html#SS_Vector_Curl_Development" class="internal"><span class="codenumber">13.7.2</span> <span class="title">Measuring the Circulation Density of Vector Field in <span class="process-math">\(\R^2\)</span></span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_Curl.html#SS_Vector_Curl_Development3D" class="internal"><span class="codenumber">13.7.3</span> <span class="title">Measuring Rotation in Three Dimensions</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_Curl.html#S_Vector_Curl-6" class="internal"><span class="codenumber">13.7.4</span> <span class="title">Circulation Density in Three Dimensions</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_Curl.html#SS_Vector_Curl_Interpretation" class="internal"><span class="codenumber">13.7.5</span> <span class="title">Interpretation and Usage of Curl</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_Curl.html#S_Vector_Curl-8" class="internal"><span class="codenumber">13.7.6</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S_Vector_Curl.html#S_Vector_Curl-9" class="internal"><span class="codenumber">13.7.7</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S_Vector_GreensTheorem.html" class="internal"><span class="codenumber">13.8</span> <span class="title">Green’s Theorem</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_GreensTheorem.html#S_Vector_GreensTheorem-3" class="internal"><span class="codenumber">13.8.1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_GreensTheorem.html#SS_Vector_GreensTheorem_Circulation" class="internal"><span class="codenumber">13.8.2</span> <span class="title">Circulation</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_GreensTheorem.html#S_Vector_GreensTheorem-5" class="internal"><span class="codenumber">13.8.3</span> <span class="title">Green’s Theorem</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_GreensTheorem.html#S_Vector_GreensTheorem-6" class="internal"><span class="codenumber">13.8.4</span> <span class="title">What happens when vector fields are not smooth?</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_GreensTheorem.html#S_Vector_GreensTheorem-7" class="internal"><span class="codenumber">13.8.5</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S_Vector_GreensTheorem.html#S_Vector_GreensTheorem-8" class="internal"><span class="codenumber">13.8.6</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S-11-6-Parametric-Surfaces-Surface-Area.html" class="internal"><span class="codenumber">13.9</span> <span class="title">Surfaces Defined Parametrically and Surface Area</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-6-Parametric-Surfaces-Surface-Area.html#S-11-6-Parametric-Surfaces-Surface-Area-3" class="internal"><span class="codenumber">13.9.1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-6-Parametric-Surfaces-Surface-Area.html#S-11-6-Parametric-Surfaces-Surface-Area-4" class="internal"><span class="codenumber">13.9.2</span> <span class="title">Parametric Surfaces</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-6-Parametric-Surfaces-Surface-Area.html#SS-11-6-2-Surface-Area-Parametrically-Defined-Surfaces" class="internal"><span class="codenumber">13.9.3</span> <span class="title">The Surface Area of Parametrically Defined Surfaces</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-11-6-Parametric-Surfaces-Surface-Area.html#S-11-6-Parametric-Surfaces-Surface-Area-6" class="internal"><span class="codenumber">13.9.4</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S-11-6-Parametric-Surfaces-Surface-Area.html#S-11-6-Parametric-Surfaces-Surface-Area-7" class="internal"><span class="codenumber">13.9.5</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S_Vector_FluxInt.html" class="internal"><span class="codenumber">13.10</span> <span class="title">Flux Integrals</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_FluxInt.html#S_Vector_FluxInt-3" class="internal"><span class="codenumber">13.10.1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_FluxInt.html#SS_Vector_FluxInt_Idea" class="internal"><span class="codenumber">13.10.2</span> <span class="title">The Idea of the Flux of a Vector Field through a Surface</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_FluxInt.html#S_Vector_FluxInt-5" class="internal"><span class="codenumber">13.10.3</span> <span class="title">The Details of Measuring the Flux of a Vector Field through a Surface</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_FluxInt.html#S_Vector_FluxInt-6" class="internal"><span class="codenumber">13.10.4</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S_Vector_FluxInt.html#S_Vector_FluxInt-7" class="internal"><span class="codenumber">13.10.5</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section contains-active">
+<div class="toc-title-box"><a href="S_Vector_ScalarSurfaceIntegral.html" class="internal"><span class="codenumber">13.11</span> <span class="title">Surface Integrals of Scalar Valued Functions</span></a></div>
+<ul class="structural toc-item-list active">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_ScalarSurfaceIntegral.html#S_Vector_ScalarSurfaceIntegral-3" class="internal"><span class="codenumber">13.11.1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_ScalarSurfaceIntegral.html#S_Vector_ScalarSurfaceIntegral-4" class="internal"><span class="codenumber">13.11.2</span> <span class="title">Defining surface integrals of scalar functions</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_ScalarSurfaceIntegral.html#S_Vector_ScalarSurfaceIntegral-5" class="internal"><span class="codenumber">13.11.3</span> <span class="title">Properties of Scalar Surface Integrals</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_ScalarSurfaceIntegral.html#S_Vector_ScalarSurfaceIntegral-6" class="internal"><span class="codenumber">13.11.4</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S_Vector_ScalarSurfaceIntegral.html#S_Vector_ScalarSurfaceIntegral-7" class="internal"><span class="codenumber">13.11.5</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S_Vector_StokesThm.html" class="internal"><span class="codenumber">13.12</span> <span class="title">Stokes’ Theorem</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_StokesThm.html#S_Vector_StokesThm-3" class="internal"><span class="codenumber">13.12.1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_StokesThm.html#SS_Vector_StokesThm_Development" class="internal"><span class="codenumber">13.12.2</span> <span class="title">Circulation in three dimensions and Stokes’ Theorem</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_StokesThm.html#SS_Vector_StokesThm_Verify" class="internal"><span class="codenumber">13.12.3</span> <span class="title">Verifying and Applying Stokes’ Theorem</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_StokesThm.html#surfaceboundaries" class="internal"><span class="codenumber">13.12.4</span> <span class="title">Practice with Surfaces and their Boundaries</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_StokesThm.html#S_Vector_StokesThm-7" class="internal"><span class="codenumber">13.12.5</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S_Vector_StokesThm.html#S_Vector_StokesThm-8" class="internal"><span class="codenumber">13.12.6</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S_Vector_DivThm.html" class="internal"><span class="codenumber">13.13</span> <span class="title">The Divergence Theorem</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_DivThm.html#S_Vector_DivThm-3" class="internal"><span class="codenumber">13.13.1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_DivThm.html#SS_Vector_DivThm_Verify" class="internal"><span class="codenumber">13.13.2</span> <span class="title">The Divergence Theorem</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S_Vector_DivThm.html#S_Vector_DivThm-5" class="internal"><span class="codenumber">13.13.3</span> <span class="title">Summary</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="S_Vector_DivThm.html#S_Vector_DivThm-6" class="internal"><span class="codenumber">13.13.4</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-item toc-backmatter">
+<div class="toc-title-box"><a href="root-1-2-8.html" class="internal"><span class="title">Back Matter</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-appendix">
+<div class="toc-title-box"><a href="root-1-2-8-1.html" class="internal"><span class="codenumber">A</span> <span class="title">Supplementary Materials</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-section">
+<div class="toc-title-box"><a href="S-app-conics.html" class="internal"><span class="codenumber">A.1</span> <span class="title">Conic Sections</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-app-conics.html#S-app-conics-2" class="internal"><span class="codenumber">A.1.1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-app-conics.html#coordtransform" class="internal"><span class="codenumber">A.1.2</span> <span class="title">Coordinate Transformations</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="S-app-conics.html#S-app-conics-4" class="internal"><span class="codenumber">A.1.3</span> <span class="title">Conic Sections</span></a></div></li>
+</ul>
+</li></ul>
+</li>
+<li class="toc-item toc-index"><div class="toc-title-box"><a href="root-1-2-8-2.html" class="internal"><span class="title">Index</span></a></div></li>
+</ul>
+</li>
+</ul></nav></div>
+<main class="ptx-main"><div id="ptx-content" class="ptx-content"><section class="section" id="S_Vector_ScalarSurfaceIntegral"><h2 class="heading hide-type">
+<span class="type">Section</span><span class="space"> </span><span class="codenumber">13.11</span><span class="space"> </span><span class="title">Surface Integrals of Scalar Valued Functions</span>
+</h2>
+<article class="objectives goal-like" id="S_Vector_ScalarSurfaceIntegral-2"><h3 class="heading"><span class="type">Motivating Questions</span></h3>
+<ul class="disc" id="S_Vector_ScalarSurfaceIntegral-2-1">
+<li id="S_Vector_ScalarSurfaceIntegral-2-1-1">
+<div class="para" id="S_Vector_ScalarSurfaceIntegral-2-1-1-1">How can we measure the accumulation of a scalar-valued function along a surface in space?<div class="autopermalink" data-description="Paragraph"><a href="#S_Vector_ScalarSurfaceIntegral-2-1-1-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Objective"><a href="#S_Vector_ScalarSurfaceIntegral-2-1-1" title="Copy heading and permalink for Objective">🔗</a></div>
+</li>
+<li id="S_Vector_ScalarSurfaceIntegral-2-1-2">
+<div class="para" id="S_Vector_ScalarSurfaceIntegral-2-1-2-1">What does that accumulation measure?<div class="autopermalink" data-description="Paragraph"><a href="#S_Vector_ScalarSurfaceIntegral-2-1-2-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Objective"><a href="#S_Vector_ScalarSurfaceIntegral-2-1-2" title="Copy heading and permalink for Objective">🔗</a></div>
+</li>
+<li id="S_Vector_ScalarSurfaceIntegral-2-1-3">
+<div class="para" id="S_Vector_ScalarSurfaceIntegral-2-1-3-1">How can we efficiently calculate scalar surface integrals?<div class="autopermalink" data-description="Paragraph"><a href="#S_Vector_ScalarSurfaceIntegral-2-1-3-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Objective"><a href="#S_Vector_ScalarSurfaceIntegral-2-1-3" title="Copy heading and permalink for Objective">🔗</a></div>
+</li>
+</ul>
+<div class="autopermalink" data-description="Motivating Questions 13.11"><a href="#S_Vector_ScalarSurfaceIntegral-2" title="Copy heading and permalink for Motivating Questions 13.11">🔗</a></div></article><section class="subsection" id="S_Vector_ScalarSurfaceIntegral-3"><h3 class="heading hide-type">
+<span class="type">Subsection</span><span class="space"> </span><span class="codenumber">13.11.1</span><span class="space"> </span><span class="title">Introduction</span>
+</h3>
+<article class="exploration project-like" id="S_Vector_ScalarSurfaceIntegral-3-2"><h4 class="heading">
+<span class="type">Preview Activity</span><span class="space"> </span><span class="codenumber">13.11.1</span><span class="period">.</span>
+</h4>
+<div class="introduction" id="S_Vector_ScalarSurfaceIntegral-3-2-1">
+<div class="para" id="S_Vector_ScalarSurfaceIntegral-3-2-1-1">In <a href="S_Vector_ScalarLineIntegral.html#PA_ScalarLI" class="xref" data-knowl="./knowl/xref/PA_ScalarLI.html" data-reveal-label="Reveal" data-close-label="Close" title="Preview Activity 13.5.1">Preview Activity 13.5.1</a> we looked at how to understand line integrals of scalar functions through the analogy of running a mining machine along a given path. In short, the amount of copium mined depended on the density of copium at points on the path and the length of the path driven by the mining rig.<div class="autopermalink" data-description="Paragraph"><a href="#S_Vector_ScalarSurfaceIntegral-3-2-1-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<figure class="figure figure-like" id="CopiumPlot3"><div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="generated/sageplot/CopiumMinePlot3.svg" role="img" class="contained"></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">13.11.1<span class="period">.</span></span><span class="space"> </span>A plot of land with density of copium deposits and the edges of the plot drawn in yellow<div class="autopermalink" data-description="Figure 13.11.1"><a href="#CopiumPlot3" title="Copy heading and permalink for Figure 13.11.1">🔗</a></div></figcaption></figure><div class="para" id="S_Vector_ScalarSurfaceIntegral-3-2-1-3">The opening tasks of <a href="S_Vector_ScalarLineIntegral.html#PA_ScalarLI" class="xref" data-knowl="./knowl/xref/PA_ScalarLI.html" data-reveal-label="Reveal" data-close-label="Close" title="Preview Activity 13.5.1">Preview Activity 13.5.1</a> had you estimating the amount of copium mined by driving along the edge of a plot of land (drawn in yellow on <a href="S_Vector_ScalarSurfaceIntegral.html#CopiumPlot3" class="xref" data-knowl="./knowl/xref/CopiumPlot3.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 13.11.1">Figure 13.11.1</a>). This iterpretation meant that the scalar function we were using measured the linear density of copium. Thus, the Riemann sum we computed was the product of linear density of copium with the distance traveled.<div class="autopermalink" data-description="Paragraph"><a href="#S_Vector_ScalarSurfaceIntegral-3-2-1-3" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</div>
+<article class="task exercise-like" id="S_Vector_ScalarSurfaceIntegral-3-2-2"><h5 class="heading"><span class="codenumber">(a)</span></h5>
+<div class="introduction" id="S_Vector_ScalarSurfaceIntegral-3-2-2-1"><div class="para" id="S_Vector_ScalarSurfaceIntegral-3-2-2-1-1">In this task, we will interpret <a href="S_Vector_ScalarSurfaceIntegral.html#CopiumPlot3" class="xref" data-knowl="./knowl/xref/CopiumPlot3.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 13.11.1">Figure 13.11.1</a> as a contour graph of the density of copium per unit area. This will allow us to compute the total amount of copium in our mining area by setting up a double integral. To approximate the total amount of copium available in our mine, do the following:<div class="autopermalink" data-description="Paragraph"><a href="#S_Vector_ScalarSurfaceIntegral-3-2-2-1-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></div>
+<article class="task exercise-like" id="PA_Vector_ScalarSurfaceIntegrals_task2"><h6 class="heading"><span class="codenumber">(i)</span></h6>
+<div class="para" id="PA_Vector_ScalarSurfaceIntegrals_task2-1-1">Break the mining plot (the area inside the yellow segments of <a href="S_Vector_ScalarSurfaceIntegral.html#CopiumPlot3" class="xref" data-knowl="./knowl/xref/CopiumPlot3.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 13.11.1">Figure 13.11.1</a>) into three pieces. Estimate the area of the three pieces you are using. Write a few sentences explaining your methods of estimating the areas.<div class="autopermalink" data-description="Paragraph"><a href="#PA_Vector_ScalarSurfaceIntegrals_task2-1-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="part 13.11.1.a.i"><a href="#PA_Vector_ScalarSurfaceIntegrals_task2" title="Copy heading and permalink for part 13.11.1.a.i">🔗</a></div></article><article class="task exercise-like" id="S_Vector_ScalarSurfaceIntegral-3-2-2-3"><h6 class="heading"><span class="codenumber">(ii)</span></h6>
+<div class="para" id="S_Vector_ScalarSurfaceIntegral-3-2-2-3-1-1">For each of the three pieces you used in <a href="S_Vector_ScalarSurfaceIntegral.html#PA_Vector_ScalarSurfaceIntegrals_task2" class="xref" data-knowl="./knowl/xref/PA_Vector_ScalarSurfaceIntegrals_task2.html" data-reveal-label="Reveal" data-close-label="Close" title="part 13.11.1.a.i">part a.i</a>, estimate the average density of copium on the piece. Write a few sentences explaining your methods of estimating the average density on each piece.<div class="autopermalink" data-description="Paragraph"><a href="#S_Vector_ScalarSurfaceIntegral-3-2-2-3-1-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="part 13.11.1.a.ii"><a href="#S_Vector_ScalarSurfaceIntegral-3-2-2-3" title="Copy heading and permalink for part 13.11.1.a.ii">🔗</a></div></article><article class="task exercise-like" id="S_Vector_ScalarSurfaceIntegral-3-2-2-4"><h6 class="heading"><span class="codenumber">(iii)</span></h6>
+<div class="para" id="S_Vector_ScalarSurfaceIntegral-3-2-2-4-1-1">Give an estimate for the total amount of copium on the mining plot and explain your computation.<div class="autopermalink" data-description="Paragraph"><a href="#S_Vector_ScalarSurfaceIntegral-3-2-2-4-1-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="part 13.11.1.a.iii"><a href="#S_Vector_ScalarSurfaceIntegral-3-2-2-4" title="Copy heading and permalink for part 13.11.1.a.iii">🔗</a></div></article><div class="autopermalink" data-description="part 13.11.1.a"><a href="#S_Vector_ScalarSurfaceIntegral-3-2-2" title="Copy heading and permalink for part 13.11.1.a">🔗</a></div></article><article class="task exercise-like" id="S_Vector_ScalarSurfaceIntegral-3-2-3"><h5 class="heading"><span class="codenumber">(b)</span></h5>
+<div class="para logical" id="S_Vector_ScalarSurfaceIntegral-3-2-3-1-1">
+<div class="para">What if instead of your mining plot being on a flat piece of land as represented in <a href="S_Vector_ScalarSurfaceIntegral.html#CopiumPlot3" class="xref" data-knowl="./knowl/xref/CopiumPlot3.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 13.11.1">Figure 13.11.1</a>, your mining plot was on a hill as represented in <a href="S_Vector_ScalarSurfaceIntegral.html#fig_3D_CopiumMining" class="xref" data-knowl="./knowl/xref/fig_3D_CopiumMining.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 13.11.2">Figure 13.11.2</a>. If we had the same copium density plot as a function of the <span class="process-math">\((x,y)\)</span> coordinates, which of the following would you expect to be true?</div>
+<ul class="disc" id="S_Vector_ScalarSurfaceIntegral-3-2-3-1-1-4">
+<li id="S_Vector_ScalarSurfaceIntegral-3-2-3-1-1-4-1">
+<div class="para" id="p-derived-S_Vector_ScalarSurfaceIntegral-3-2-3-1-1-4-1">the total amount of copium available on <a href="S_Vector_ScalarSurfaceIntegral.html#fig_3D_CopiumMining" class="xref" data-knowl="./knowl/xref/fig_3D_CopiumMining.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 13.11.2">Figure 13.11.2</a> is greater than on <a href="S_Vector_ScalarSurfaceIntegral.html#CopiumPlot3" class="xref" data-knowl="./knowl/xref/CopiumPlot3.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 13.11.1">Figure 13.11.1</a>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#S_Vector_ScalarSurfaceIntegral-3-2-3-1-1-4-1" title="Copy heading and permalink for Item">🔗</a></div>
+</li>
+<li id="S_Vector_ScalarSurfaceIntegral-3-2-3-1-1-4-2">
+<div class="para" id="p-derived-S_Vector_ScalarSurfaceIntegral-3-2-3-1-1-4-2">the total amount of copium available on <a href="S_Vector_ScalarSurfaceIntegral.html#fig_3D_CopiumMining" class="xref" data-knowl="./knowl/xref/fig_3D_CopiumMining.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 13.11.2">Figure 13.11.2</a> is lesser than on <a href="S_Vector_ScalarSurfaceIntegral.html#CopiumPlot3" class="xref" data-knowl="./knowl/xref/CopiumPlot3.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 13.11.1">Figure 13.11.1</a>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#S_Vector_ScalarSurfaceIntegral-3-2-3-1-1-4-2" title="Copy heading and permalink for Item">🔗</a></div>
+</li>
+<li id="S_Vector_ScalarSurfaceIntegral-3-2-3-1-1-4-3">
+<div class="para" id="p-derived-S_Vector_ScalarSurfaceIntegral-3-2-3-1-1-4-3">the total amount of copium available on <a href="S_Vector_ScalarSurfaceIntegral.html#fig_3D_CopiumMining" class="xref" data-knowl="./knowl/xref/fig_3D_CopiumMining.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 13.11.2">Figure 13.11.2</a> is the same as on <a href="S_Vector_ScalarSurfaceIntegral.html#CopiumPlot3" class="xref" data-knowl="./knowl/xref/CopiumPlot3.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 13.11.1">Figure 13.11.1</a>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#S_Vector_ScalarSurfaceIntegral-3-2-3-1-1-4-3" title="Copy heading and permalink for Item">🔗</a></div>
+</li>
+</ul>
+<div class="para">Explain your reasoning for your choice.</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#S_Vector_ScalarSurfaceIntegral-3-2-3-1-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <figure class="figure figure-like" id="fig_3D_CopiumMining"><iframe id="int_3D_CopiumMining" width="600" height="600" src="int_3D_CopiumMining-if.html"></iframe><figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">13.11.2<span class="period">.</span></span><span class="space"> </span>A 3D plot of the region including our mining area (shown with boundary in red)<div class="autopermalink" data-description="Figure 13.11.2"><a href="#fig_3D_CopiumMining" title="Copy heading and permalink for Figure 13.11.2">🔗</a></div></figcaption></figure><div class="autopermalink" data-description="part 13.11.1.b"><a href="#S_Vector_ScalarSurfaceIntegral-3-2-3" title="Copy heading and permalink for part 13.11.1.b">🔗</a></div></article><div class="autopermalink" data-description="Preview Activity 13.11.1"><a href="#S_Vector_ScalarSurfaceIntegral-3-2" title="Copy heading and permalink for Preview Activity 13.11.1">🔗</a></div></article><div class="para" id="S_Vector_ScalarSurfaceIntegral-3-3">In <a href="S_Vector_FluxInt.html" class="internal" title="Section 13.10: Flux Integrals">Section 13.10</a>, the idea of a flux integral was introduced by looking at how much of a vector field flows through a given section of a surface in space. In particular, the flux integral measured the accumulated amount of the vector field that is orthogonal to the surface, which changes at different points on the surface. <a href="S_Vector_FluxInt.html#thm_flux_int_calc" class="xref" data-knowl="./knowl/xref/thm_flux_int_calc.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 13.10.7">Theorem 13.10.7</a> gives an efficient way to calculate a flux integral in terms of a parameterization of the surface. This was an extension of the method for computing the surface area given in <a href="S-11-6-Parametric-Surfaces-Surface-Area.html" class="internal" title="Section 13.9: Surfaces Defined Parametrically and Surface Area">Section 13.9</a>.<div class="autopermalink" data-description="Paragraph"><a href="#S_Vector_ScalarSurfaceIntegral-3-3" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="S_Vector_ScalarSurfaceIntegral-3-4">Just as we generalized line integrals of vector fields into scalar line integrals in <a href="S_Vector_ScalarLineIntegral.html" class="internal" title="Section 13.5: Line Integrals of Scalar Functions">Section 13.5</a>, we will spend this section examining questions related to the accumulation of scalar-valued functions along surfaces in space as a means of generalizing flux integrals.<div class="autopermalink" data-description="Paragraph"><a href="#S_Vector_ScalarSurfaceIntegral-3-4" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Subsection 13.11.1: Introduction"><a href="#S_Vector_ScalarSurfaceIntegral-3" title="Copy heading and permalink for Subsection 13.11.1: Introduction">🔗</a></div></section><section class="subsection" id="S_Vector_ScalarSurfaceIntegral-4"><h3 class="heading hide-type">
+<span class="type">Subsection</span><span class="space"> </span><span class="codenumber">13.11.2</span><span class="space"> </span><span class="title">Defining surface integrals of scalar functions</span>
+</h3>
+<div class="para" id="S_Vector_ScalarSurfaceIntegral-4-2">In order to create a Riemann sum that will measure the acculumation of <span class="process-math">\(f(x,y,z)\text{,}\)</span> a scalar valued function, over <span class="process-math">\(S_1\text{,}\)</span> a smooth, bounded surface in space, we will break our surface into smaller pieces where we can approximate the value of <span class="process-math">\(f\)</span> and the surface area of each piece. Recall that in <a href="S-11-6-Parametric-Surfaces-Surface-Area.html#SS-11-6-2-Surface-Area-Parametrically-Defined-Surfaces" class="internal" title="Subsection 13.9.3: The Surface Area of Parametrically Defined Surfaces">Subsection 13.9.3</a> and <a href="S_Vector_FluxInt.html" class="internal" title="Section 13.10: Flux Integrals">Section 13.10</a>, we developed a way to measure surface area given a parameterization for the surface.<div class="autopermalink" data-description="Paragraph"><a href="#S_Vector_ScalarSurfaceIntegral-4-2" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="S_Vector_ScalarSurfaceIntegral-4-3">Suppose that <span class="process-math">\(S_1\)</span> is parameterized by <span class="process-math">\(\vr(s,t)\)</span> with <span class="process-math">\(a\leq s\leq b\)</span> and <span class="process-math">\(c \leq t \leq d\text{.}\)</span> In our classic calculus style, we slice our region of interest into smaller pieces. Specifically, we slice <span class="process-math">\(a\leq s\leq b\)</span> into <span class="process-math">\(n\)</span> equally-sized subintervals with endpoints <span class="process-math">\(s_0,s_1,\ldots,s_n\)</span> and we slice <span class="process-math">\(c \leq t \leq d\)</span> into <span class="process-math">\(m\)</span> equally-sized subintervals with endpoints <span class="process-math">\(t_0,t_1,\ldots,t_m\text{.}\)</span> This divides <span class="process-math">\(D\)</span> into <span class="process-math">\(nm\)</span> rectangles of size <span class="process-math">\(\Delta{s}=\frac{b-a}{n}\)</span> by <span class="process-math">\(\Delta{t}=\frac{d-c}{m}\text{.}\)</span> We index these rectangles as <span class="process-math">\(D_{i,j}\text{.}\)</span> Every <span class="process-math">\(D_{i,j}\)</span> has area (in the <span class="process-math">\(st\)</span>-plane) of <span class="process-math">\(\Delta{s}\Delta{t}\text{.}\)</span> The partition of <span class="process-math">\(D\)</span> into the rectangles <span class="process-math">\(D_{i,j}\)</span> also partitions <span class="process-math">\(S_1\)</span> into <span class="process-math">\(nm\)</span> corresponding pieces which we call <span class="process-math">\(S_{i,j}=\vr(D_{i,j})\text{.}\)</span> From <a href="S-11-6-Parametric-Surfaces-Surface-Area.html" class="internal" title="Section 13.9: Surfaces Defined Parametrically and Surface Area">Section 13.9</a> (specifically equation <a href="S-11-6-Parametric-Surfaces-Surface-Area.html#SS-11-6-2-Surface-Area-Parametrically-Defined-Surfaces-7-10" class="xref" data-knowl="./knowl/xref/eq_11_6_parallelogram_area.html" data-reveal-label="Reveal" data-close-label="Close" title="Equation 13.9.1">(13.9.1)</a>) the surface area of <span class="process-math">\(S_{i,j}\)</span> is approximated by <span class="process-math">\(SA_{i,j}=\vecmag{(\vr_s \times \vr_t)(s_i,t_j)}\Delta{s}\Delta{t}\text{.}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#S_Vector_ScalarSurfaceIntegral-4-3" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="S_Vector_ScalarSurfaceIntegral-4-4">We illustrate this approximation of <span class="process-math">\(S_1\)</span> by rectangular patches of tangent planes, each with area <span class="process-math">\(SA_{i,j}=\vecmag{(\vr_s \times \vr_t)(s_i,t_j)}\Delta{s}\Delta{t}\)</span> in <a href="S_Vector_ScalarSurfaceIntegral.html#fig_SurfaceAreaPieces" class="xref" data-knowl="./knowl/xref/fig_SurfaceAreaPieces.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 13.11.3">Figure 13.11.3</a>, where you can adjust the slider to control the number of rectangles. (For simplicity, the figure takes <span class="process-math">\(m=n\text{.}\)</span>)<div class="autopermalink" data-description="Paragraph"><a href="#S_Vector_ScalarSurfaceIntegral-4-4" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<figure class="figure figure-like" id="fig_SurfaceAreaPieces"><iframe id="int_SurfaceAreaPieces" width="600" height="660" src="int_SurfaceAreaPieces-if.html"></iframe><figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">13.11.3<span class="period">.</span></span><span class="space"> </span>Pieces of the tangent planes used to approximate surface area<div class="autopermalink" data-description="Figure 13.11.3"><a href="#fig_SurfaceAreaPieces" title="Copy heading and permalink for Figure 13.11.3">🔗</a></div></figcaption></figure><div class="para logical" id="S_Vector_ScalarSurfaceIntegral-4-6">
+<div class="para">To measure the accumulation <span class="process-math">\(A\)</span> of the output of <span class="process-math">\(f(x,y,z)\)</span> over <span class="process-math">\(S_1\text{,}\)</span> we use the following Riemann sum:</div>
+<div class="displaymath process-math" id="S_Vector_ScalarSurfaceIntegral-4-6-4">
+\begin{align*}
+A\amp = \sum_{i=1}^{n} \sum_{i=1}^{m} f(x_{i,j}^*,y_{i,j}^*,z_{i,j}^*) SA_{i,j}\\
+\amp =\sum_{i=1}^{n} \sum_{i=1}^{m} f(x(s_{i}^*,t_{j}^*),y(s_{i}^*,t_{j}^*),z(s_{i}^*,t_{j}^*)) SA_{i,j}\\
+\amp= \sum_{i=1}^{n} \sum_{i=1}^{m} f(s_{i}^*,t_{j}^*)) \vecmag{(\vr_s \times \vr_t)(s_i,t_j)} \Delta{s}\Delta{t}\text{.}
+\end{align*}
+</div>
+<div class="para">as <span class="process-math">\(\Delta s\to 0\)</span> and <span class="process-math">\(\Delta t\to 0\text{,}\)</span> a double Riemann sum of this form represents the double integral (over the variables <span class="process-math">\(s\)</span> and <span class="process-math">\(t\)</span>) of the function <span class="process-math">\(f(x(s,t),y(s,t),z(s,t)) \vecmag{(\vr_s \times \vr_t)(s,t)}\text{.}\)</span> This leads to the following theorem.</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#S_Vector_ScalarSurfaceIntegral-4-6" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<article class="theorem theorem-like" id="ScalarSurfaceIntDef"><h4 class="heading">
+<span class="type">Theorem</span><span class="space"> </span><span class="codenumber">13.11.4</span><span class="period">.</span>
+</h4>
+<div class="para logical" id="ScalarSurfaceIntDef-1-1">
+<div class="para">Let a smooth surface <span class="process-math">\(S_1\)</span> be parametrized by <span class="process-math">\(\vr(s,t)\)</span> over a region <span class="process-math">\(D\text{,}\)</span> and let <span class="process-math">\(f\)</span> be a continuous function on a neighborhood around <span class="process-math">\(S_1\text{.}\)</span> The accumulation of <span class="process-math">\(f(x,y,z)\)</span> over <span class="process-math">\(S_1\)</span> is denoted by <span class="process-math">\(\iint_{S_1} f \, dS\)</span> and is called the <dfn class="terminology">scalar surface integral of <span class="process-math">\(f\)</span> over <span class="process-math">\(S_1\)</span></dfn>. The scalar surface integral of <span class="process-math">\(f\)</span> over <span class="process-math">\(S_1\)</span> is computed as</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\iint_{S_1} f \, dS = \iint_D f(s,t) \vecmag{(\vr_s \times \vr_t)(s,t)} \, dA\text{.}
+\end{equation*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#ScalarSurfaceIntDef-1-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Theorem 13.11.4"><a href="#ScalarSurfaceIntDef" title="Copy heading and permalink for Theorem 13.11.4">🔗</a></div></article><div class="para" id="S_Vector_ScalarSurfaceIntegral-4-8">In the following example, we both reason about the value of a scalar surface integral without working through computations and apply <a href="S_Vector_ScalarSurfaceIntegral.html#ScalarSurfaceIntDef" class="xref" data-knowl="./knowl/xref/ScalarSurfaceIntDef.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 13.11.4">Theorem 13.11.4</a> to compute values of scalar surface integrals.<div class="autopermalink" data-description="Paragraph"><a href="#S_Vector_ScalarSurfaceIntegral-4-8" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<article class="example example-like" id="ex_Vector_ScalarSurfaceIntegral_cone_part"><h4 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">13.11.5</span><span class="period">.</span>
+</h4>
+<div class="introduction" id="ex_Vector_ScalarSurfaceIntegral_cone_part-1"><div class="para" id="ex_Vector_ScalarSurfaceIntegral_cone_part-1-1">For this example, we will consider the surface <span class="process-math">\(S_1\)</span> given by <span class="process-math">\(x^2+y^2=z^2\)</span> such that <span class="process-math">\(1\leq z \leq 3\text{.}\)</span> This is the same part of the cone used in <a href="S_Vector_FluxInt.html#flux_int_example1" class="xref" data-knowl="./knowl/xref/flux_int_example1.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 13.10.9">Example 13.10.9</a>. We also let <span class="process-math">\(f(x,y,z)=x\text{.}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#ex_Vector_ScalarSurfaceIntegral_cone_part-1-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></div>
+<article class="task exercise-like" id="ex_Vector_ScalarSurfaceIntegral_cone_part-2"><h5 class="heading"><span class="codenumber">(a)</span></h5>
+<div class="para logical" id="ex_Vector_ScalarSurfaceIntegral_cone_part-2-1-1">
+<div class="para">For our first part of our example, we use symmetry to reason about <span class="process-math">\(\iint_{S_1} f\, dS\text{.}\)</span> Without using any calculations or parameterizations, we can reason that this scalar surface integral will be zero. In a scalar surface integral, we are calculating the accumulation of the scalar output over a surface area in space. In <a href="S_Vector_ScalarSurfaceIntegral.html#fig_Scalar_Surface_Int_Example1" class="xref" data-knowl="./knowl/xref/fig_Scalar_Surface_Int_Example1.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 13.11.6">Figure 13.11.6</a>, you can see that we can symmetrically break our surface <span class="process-math">\(S_1\)</span> into two regions that have exactly the same surface area properties <em class="alert">and</em> symmetric output values for our scalar function, <span class="process-math">\(f\text{.}\)</span> Here we denote by <span class="process-math">\(S_2\)</span> the portion of <span class="process-math">\(S_1\)</span> with <span class="process-math">\(x\geq 0\)</span> (colored green), while <span class="process-math">\(S_3\)</span> is the magenta portion of the surface, which has <span class="process-math">\(x \lt 0\text{.}\)</span> The only difference between the green and magenta portions  of <a href="S_Vector_ScalarSurfaceIntegral.html#fig_Scalar_Surface_Int_Example1" class="xref" data-knowl="./knowl/xref/fig_Scalar_Surface_Int_Example1.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 13.11.6">Figure 13.11.6</a> that is relevant to our surface integral is that the values of <span class="process-math">\(f\)</span> will be positive on the green surface <span class="process-math">\(S_2\)</span> and negative on the magenta surface <span class="process-math">\(S_3\)</span> No matter how we break up the Riemann sum or the corresponding scalar surface integral for the green side of our surface, applying the same pattern to the magenta side will give the same result but with an opposite sign. In other words,</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/fig_Scalar_Surface_Int_Example1.html ./knowl/xref/fig_Scalar_Surface_Int_Example1.html">
+\begin{equation*}
+\int_{S_2} f \, dS = - \int_{S_3} f \, dS\text{.}
+\end{equation*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#ex_Vector_ScalarSurfaceIntegral_cone_part-2-1-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <figure class="figure figure-like" id="fig_Scalar_Surface_Int_Example1"><iframe id="int_Scalar_Surface_Int_Example1" width="600" height="600" src="int_Scalar_Surface_Int_Example1-if.html"></iframe><figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">13.11.6<span class="period">.</span></span><span class="space"> </span>The surface <span class="process-math">\(S_1\)</span> divided into regions <span class="process-math">\(S_2\)</span> with positive <span class="process-math">\(x\)</span>-coordinate in green and <span class="process-math">\(S_3\)</span> with negative <span class="process-math">\(x\)</span>-coordinate in red<div class="autopermalink" data-description="Figure 13.11.6"><a href="#fig_Scalar_Surface_Int_Example1" title="Copy heading and permalink for Figure 13.11.6">🔗</a></div></figcaption></figure> <div class="para logical" id="ex_Vector_ScalarSurfaceIntegral_cone_part-2-1-3">
+<div class="para">Therefore,</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\int_{S_1} f \, dS = \int_{S_2} f \, dS + \int_{S_3} f \, dS = \int_{S_2} f \, dS - \int_{S_2} f \, dS =0\text{.}
+\end{equation*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#ex_Vector_ScalarSurfaceIntegral_cone_part-2-1-3" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="part 13.11.5.a"><a href="#ex_Vector_ScalarSurfaceIntegral_cone_part-2" title="Copy heading and permalink for part 13.11.5.a">🔗</a></div></article><article class="task exercise-like" id="ex_Vector_ScalarSurfaceIntegral_cone_part-3"><h5 class="heading"><span class="codenumber">(b)</span></h5>
+<div class="para logical" id="ex_Vector_ScalarSurfaceIntegral_cone_part-3-1-1">
+<div class="para">From a calculation standpoint, we can  verify this result using our parameterization from <a href="S_Vector_FluxInt.html#flux_int_example1" class="xref" data-knowl="./knowl/xref/flux_int_example1.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 13.10.9">Example 13.10.9</a> in <a href="S_Vector_ScalarSurfaceIntegral.html#ScalarSurfaceIntDef" class="xref" data-knowl="./knowl/xref/ScalarSurfaceIntDef.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 13.11.4">Theorem 13.11.4</a>. Specifically, we will use the parameterization of <span class="process-math">\(S_1\)</span> given by <span class="process-math">\(\vr(s,t)=\langle s \cos(t), s \sin(t), s \rangle \)</span> with bounds <span class="process-math">\(1\leq s \leq 3\)</span> and <span class="process-math">\(0 \leq t \lt 2 \pi\text{.}\)</span> We also know from <a href="S_Vector_FluxInt.html#flux_int_example1" class="xref" data-knowl="./knowl/xref/flux_int_example1.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 13.10.9">Example 13.10.9</a> that</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/flux_int_example1.html ./knowl/xref/ScalarSurfaceIntDef.html ./knowl/xref/flux_int_example1.html ./knowl/xref/ScalarSurfaceIntDef.html">
+\begin{equation*}
+\vw= \vr_s \times \vr_t = \langle-s \cos(t), -s \sin(t), s \rangle \text{.}
+\end{equation*}
+</div>
+<div class="para">Hence, we have <span class="process-math">\(\vecmag{\vw}=\sqrt{s^2(\cos(t)^2+\sin(t)^2) +s^2}=\sqrt{2} s\text{.}\)</span> Thus, <a href="S_Vector_ScalarSurfaceIntegral.html#ScalarSurfaceIntDef" class="xref" data-knowl="./knowl/xref/ScalarSurfaceIntDef.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 13.11.4">Theorem 13.11.4</a> gives</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/flux_int_example1.html ./knowl/xref/ScalarSurfaceIntDef.html ./knowl/xref/flux_int_example1.html ./knowl/xref/ScalarSurfaceIntDef.html">
+\begin{equation*}
+\int_{S_1} f \, dS = \int_1^3 \int_0^{2\pi} (s \cos(t)) \, \sqrt{2} s\, dt\, ds =0\text{.}
+\end{equation*}
+</div>
+<div class="para">Notice that we can evaluate this integral quickly because the inside integral is <span class="process-math">\(\int_0^{2\pi} \cos(t)\, dt = 0\text{.}\)</span>
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#ex_Vector_ScalarSurfaceIntegral_cone_part-3-1-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="part 13.11.5.b"><a href="#ex_Vector_ScalarSurfaceIntegral_cone_part-3" title="Copy heading and permalink for part 13.11.5.b">🔗</a></div></article><article class="task exercise-like" id="ex_Vector_ScalarSurfaceIntegral_cone_part-4"><h5 class="heading"><span class="codenumber">(c)</span></h5>
+<div class="para logical" id="ex_Vector_ScalarSurfaceIntegral_cone_part-4-1-1">
+<div class="para">If we want to calculate the integral of <span class="process-math">\(f(x,y,z) = x\)</span> over <span class="process-math">\(S_2\text{,}\)</span> then we have very little extra work to do. Only the bounds on the integral will change since we are using the same parameterization and function from the previous part. We can use the parameterization given by <span class="process-math">\(\vr(s,t)=\langle s \cos(t), s \sin(t), s \rangle \)</span> with <span class="process-math">\(1\leq s \leq 3\)</span> and <span class="process-math">\(-\frac{\pi}{2} \leq t \lt \frac{\pi}{2} \text{.}\)</span> As before, <span class="process-math">\(\vecmag{\vw} =\sqrt{s^2(\cos(t)^2+\sin(t)^2) +s^2}=2s\text{.}\)</span> Thus, <a href="S_Vector_ScalarSurfaceIntegral.html#ScalarSurfaceIntDef" class="xref" data-knowl="./knowl/xref/ScalarSurfaceIntDef.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 13.11.4">Theorem 13.11.4</a> gives</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/ScalarSurfaceIntDef.html" id="ex_Vector_ScalarSurfaceIntegral_cone_part-4-1-1-8">
+\begin{align*}
+\int_{S_2} f \, dS \amp =  \int_1^3 \int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} (s \cos(t)) \, \sqrt{2} s \, dt\, ds\\
+\amp = \int_1^3 \sqrt{2} s^2 [\sin(t)]_{\mid_{t=-\frac{\pi}{2}}^{\frac{\pi}{2}}}   \,  ds\\
+\amp = \int_1^3 2 \sqrt{2} s^2   \,  ds\\
+\amp = \int_1^3 2 \sqrt{s} s^2  \,  ds = 52\sqrt{2}/3\text{.}
+\end{align*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#ex_Vector_ScalarSurfaceIntegral_cone_part-4-1-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="para" id="ex_Vector_ScalarSurfaceIntegral_cone_part-4-1-2">It makes sense that the result of <span class="process-math">\(\int_{S_2} f \, dS\)</span> is positive because the output of our function is non-negative for all points on <span class="process-math">\(S_2\text{.}\)</span> Remember that the Riemann sum used in calculating surface integrals of scalar functions is the product of the function’s value on each piece times the estimate of the surface area. Thus, if the function’s value is positive for all points on the surface, then the scalar surface integral will also be positive.<div class="autopermalink" data-description="Paragraph"><a href="#ex_Vector_ScalarSurfaceIntegral_cone_part-4-1-2" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="part 13.11.5.c"><a href="#ex_Vector_ScalarSurfaceIntegral_cone_part-4" title="Copy heading and permalink for part 13.11.5.c">🔗</a></div></article><div class="autopermalink" data-description="Example 13.11.5"><a href="#ex_Vector_ScalarSurfaceIntegral_cone_part" title="Copy heading and permalink for Example 13.11.5">🔗</a></div></article><div class="para" id="S_Vector_ScalarSurfaceIntegral-4-10">Before moving on to an activity that gives you a chance to practice reasoning about scalar surface integrals, we consider an additional example. We<div class="autopermalink" data-description="Paragraph"><a href="#S_Vector_ScalarSurfaceIntegral-4-10" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<article class="example example-like" id="S_Vector_ScalarSurfaceIntegral-4-11"><h4 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">13.11.7</span><span class="period">.</span>
+</h4>
+<div class="para logical" id="S_Vector_ScalarSurfaceIntegral-4-11-1">
+<div class="para">For this example, we will consider the same surface <span class="process-math">\(S_1\)</span> as in <a href="S_Vector_ScalarSurfaceIntegral.html#ex_Vector_ScalarSurfaceIntegral_cone_part" class="xref" data-knowl="./knowl/xref/ex_Vector_ScalarSurfaceIntegral_cone_part.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 13.11.5">Example 13.11.5</a>, but we will change the scalar function we are integrating to something more complicated. Our goal is to calculate</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/ex_Vector_ScalarSurfaceIntegral_cone_part.html">
+\begin{equation*}
+\int_{S_1} z-x^2 \, dS \text{.}
+\end{equation*}
+</div>
+<div class="para">We can reuse the parameterization and calculations from above for <span class="process-math">\(S_1\)</span> here and move directly to setting up the iterated integral. We will take a moment here to note that converting our scalar function <span class="process-math">\(g(x,y,z)= z-x^2\)</span> to a function of <span class="process-math">\(s\)</span> and <span class="process-math">\(t\)</span> will give <span class="process-math">\(g(s,t)=s-s^2 \cos(t)^2\text{.}\)</span> Therefore, we have the following iterated integral, which we evaluate:</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/ex_Vector_ScalarSurfaceIntegral_cone_part.html" id="S_Vector_ScalarSurfaceIntegral-4-11-1-9">
+\begin{align*}
+\int_{S_1} z-x^2 \, dS \amp =  \int_1^3 \int_{0}^{2 \pi} (s-s^2 \cos(t)^2) \cdot 2s\, dt\, ds\\
+\amp = \int_1^3 2s^2 \left[t-s\left(\frac{2t+\sin(2t)}{4}\right)\right]_{t=0}^{2 \pi} \,  ds\\
+\amp = \int_1^3 2s^2 (-\pi (s-2)) \,  ds = -\frac{16\pi}{3}
+\end{align*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#S_Vector_ScalarSurfaceIntegral-4-11-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para" id="S_Vector_ScalarSurfaceIntegral-4-11-2">This result is a bit more difficult to to make sense of as being negative. In <a href="S_Vector_ScalarSurfaceIntegral.html#fig_Scalar_Surface_Int_Example2" class="xref" data-knowl="./knowl/xref/fig_Scalar_Surface_Int_Example2.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 13.11.8">Figure 13.11.8</a>, we have a plot of the surface <span class="process-math">\(S_1\)</span> in blue and the parabolic cylinder surface given by <span class="process-math">\(z-x^2=0\)</span> is plotted in yellow. The points on the yellow surface correspond to where our scalar function (<span class="process-math">\(g(x,y,z)= z-x^2\)</span>) gives an output of zero. The points inside the parabolic cylinder have a <span class="process-math">\(z\)</span>-coordinate greater than <span class="process-math">\(x^2\text{,}\)</span> which means that <span class="process-math">\(g\)</span> will have a positive output for these points. The points outside of the parabolic cylinder have a <span class="process-math">\(z\)</span>-coordinate less than <span class="process-math">\(x^2\text{,}\)</span> which means that <span class="process-math">\(g\)</span> will have a negative output for these points. In order to make an argument about whether <span class="process-math">\(\int_{S_1} z-x^2 \, dS\)</span> is positive, negative, or zero, we will need to assess whether there is more surface area where <span class="process-math">\(g\)</span> takes on positive values, more with negative values, or an equal amount of positive-negative values. Actually, our problem is even harder than this! Beacuse the Riemann sum is the product of the output for each piece of our surface times the surface area estimate, we will need to think about which points/pieces have larger or smaller outputs for <span class="process-math">\(g\text{.}\)</span> This is <em class="emphasis">very</em> difficult in general, because we need a systematic way of estimating both the output of <span class="process-math">\(g\)</span> and the surface area of different pieces of the surface.<div class="autopermalink" data-description="Paragraph"><a href="#S_Vector_ScalarSurfaceIntegral-4-11-2" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<figure class="figure figure-like" id="fig_Scalar_Surface_Int_Example2"><iframe id="int_Scalar_Surface_Int_Example2" width="600" height="600" src="int_Scalar_Surface_Int_Example2-if.html"></iframe><figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">13.11.8<span class="period">.</span></span><span class="space"> </span>The surface <span class="process-math">\(S_1\)</span> is plotted with the surface given by <span class="process-math">\(z-x^2=0\)</span><div class="autopermalink" data-description="Figure 13.11.8"><a href="#fig_Scalar_Surface_Int_Example2" title="Copy heading and permalink for Figure 13.11.8">🔗</a></div></figcaption></figure><div class="para" id="S_Vector_ScalarSurfaceIntegral-4-11-4">In our case, there is more surface area of <span class="process-math">\(S_1\)</span> inside the parabolic cylinder than outside. For points that are far away from the yellow surface, the magnitude of the value of <span class="process-math">\(g\)</span> for that point will be large. For points that are close to the yellow surface, the <span class="process-math">\(z\)</span>-coordinates are close to <span class="process-math">\(x^2\text{,}\)</span> and thus values of <span class="process-math">\(g\)</span> are close to zero. This means that in order to properly estimate the scalar surface integral, we must assess whether there is a greater weighted surface area inside the parabolic cylinder than outside, where the weight of each surface area piece is given by how far the piece is from the yellow parabolic cylinder. This is not an easy argument to make, and is not easy to verify visually for this example. For some examples, you may be able to make a nice geometric arguement about the size of scalar surface integrals, but the algebraic calculation given by <a href="S_Vector_ScalarSurfaceIntegral.html#ScalarSurfaceIntDef" class="xref" data-knowl="./knowl/xref/ScalarSurfaceIntDef.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 13.11.4">Theorem 13.11.4</a> gives an exact value.<div class="autopermalink" data-description="Paragraph"><a href="#S_Vector_ScalarSurfaceIntegral-4-11-4" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Example 13.11.7"><a href="#S_Vector_ScalarSurfaceIntegral-4-11" title="Copy heading and permalink for Example 13.11.7">🔗</a></div></article><div class="para" id="S_Vector_ScalarSurfaceIntegral-4-12">In the next activity, we consider some situations where we can reason about the sign of a surface integral of a scalar function.<div class="autopermalink" data-description="Paragraph"><a href="#S_Vector_ScalarSurfaceIntegral-4-12" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<article class="activity project-like" id="ScalarSurfaceInt_Sensemaking"><h4 class="heading">
+<span class="type">Activity</span><span class="space"> </span><span class="codenumber">13.11.2</span><span class="period">.</span>
+</h4>
+<div class="introduction" id="ScalarSurfaceInt_Sensemaking-1"><div class="para" id="ScalarSurfaceInt_Sensemaking-1-1">In this activity, we will try to understand the scalar surface integral by looking at whether the value of the scalar surface integral will be positive, negative, or zero over common surfaces. In each part below, you are given a function and a surface. For each surface, first draw a plot of the surface and make sure you have labeled a proper scale for each coordinate direction. Then reason if the given surface integral is positive, negative, or zero. Be sure to justify your answers in terms of the function being integrated <em class="emphasis">and</em> the particulars of the surface of integration.<div class="autopermalink" data-description="Paragraph"><a href="#ScalarSurfaceInt_Sensemaking-1-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></div>
+<article class="task exercise-like" id="task_SSIS_2"><h5 class="heading"><span class="codenumber">(a)</span></h5>
+<div class="para" id="task_SSIS_2-1-1">For <span class="process-math">\(S_1\)</span> defined as the top half (<span class="process-math">\(z \geq 0\)</span>) of the sphere of radius one centered at the origin, consider the surface integral <span class="process-math">\(\iint_{S_1} x \, dS\text{.}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#task_SSIS_2-1-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="part 13.11.2.a"><a href="#task_SSIS_2" title="Copy heading and permalink for part 13.11.2.a">🔗</a></div></article><article class="task exercise-like" id="task_SSIS_3"><h5 class="heading"><span class="codenumber">(b)</span></h5>
+<div class="para" id="task_SSIS_3-1-1">For <span class="process-math">\(S_2\)</span> defined as the bottom half (<span class="process-math">\(z \leq 0\)</span>) of the sphere of radius one centered at the origin, consider the surface integral <span class="process-math">\(\iint_{S_2} z \, dS\text{.}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#task_SSIS_3-1-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="part 13.11.2.b"><a href="#task_SSIS_3" title="Copy heading and permalink for part 13.11.2.b">🔗</a></div></article><article class="task exercise-like" id="task_SSIS_4"><h5 class="heading"><span class="codenumber">(c)</span></h5>
+<div class="para" id="task_SSIS_4-1-1">For <span class="process-math">\(S_3\)</span> defined as the disc of radius one centered at <span class="process-math">\((1,0,0)\)</span> on the plane <span class="process-math">\(x=1\text{,}\)</span> consider the surface integral <span class="process-math">\(\iint_{S_3} x+z \, dS\text{.}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#task_SSIS_4-1-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="part 13.11.2.c"><a href="#task_SSIS_4" title="Copy heading and permalink for part 13.11.2.c">🔗</a></div></article><article class="task exercise-like" id="task_SSIS_5"><h5 class="heading"><span class="codenumber">(d)</span></h5>
+<div class="para" id="task_SSIS_5-1-1">For <span class="process-math">\(S_1\)</span> as defined above, consider the surface integral <span class="process-math">\(\iint_{S_1} x+z \, dS\text{.}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#task_SSIS_5-1-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="part 13.11.2.d"><a href="#task_SSIS_5" title="Copy heading and permalink for part 13.11.2.d">🔗</a></div></article><div class="autopermalink" data-description="Activity 13.11.2"><a href="#ScalarSurfaceInt_Sensemaking" title="Copy heading and permalink for Activity 13.11.2">🔗</a></div></article><div class="autopermalink" data-description="Subsection 13.11.2: Defining surface integrals of scalar functions"><a href="#S_Vector_ScalarSurfaceIntegral-4" title="Copy heading and permalink for Subsection 13.11.2: Defining surface integrals of scalar functions">🔗</a></div></section><section class="subsection" id="S_Vector_ScalarSurfaceIntegral-5"><h3 class="heading hide-type">
+<span class="type">Subsection</span><span class="space"> </span><span class="codenumber">13.11.3</span><span class="space"> </span><span class="title">Properties of Scalar Surface Integrals</span>
+</h3>
+<div class="para" id="S_Vector_ScalarSurfaceIntegral-5-2">Before stating some useful properties of scalar line integrals, we will recall some convenient notation. If <span class="process-math">\(S_1\)</span> and <span class="process-math">\(S_2\)</span> are disjoint surfaces<details class="ptx-footnote" aria-live="polite" id="S_Vector_ScalarSurfaceIntegral-5-2-3"><summary class="ptx-footnote__number" title="Footnote 13.11.1"><sup> 1 </sup></summary><div class="ptx-footnote__contents" id="S_Vector_ScalarSurfaceIntegral-5-2-3">Technically, the surfaces may intersect, but there are restrictions on the manner in which they can intersect, and we will not go into the details here.</div></details>, we denote by <span class="process-math">\(S_1+S_2\)</span> the surface containing every point that is in <span class="process-math">\(S_1\)</span> or <span class="process-math">\(S_2\text{.}\)</span>  Also, if <span class="process-math">\(S_1\)</span> is a surface, then <span class="process-math">\(-S_1\)</span> denotes the same surface but parameterized in such a way that the normal vector points in the opposite direction. The list below summarizes some other properties of scalar surface integrals, each of which has a familiar analogue amongst the properties of other integrals we have studied.<div class="autopermalink" data-description="Paragraph"><a href="#S_Vector_ScalarSurfaceIntegral-5-2" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<article class="assemblage assemblage-like" id="asm_ScalarSurfaceInt_Properties"><h4 class="heading"><span class="title">Properties of Scalar Line Integrals.</span></h4>
+<div class="para logical" id="asm_ScalarSurfaceInt_Properties-2">
+<div class="para">For a constant scalar <span class="process-math">\(k\text{,}\)</span> scalar valued functions<span class="process-math">\(f\)</span> and <span class="process-math">\(g\text{,}\)</span> and oriented surfaces <span class="process-math">\(S_1\)</span>and <span class="process-math">\(S_2\text{,}\)</span> the following properties hold:</div>
+<ol class="lower-alpha ol-marker-3" id="asm_ScalarSurfaceInt_Properties-2-6">
+<li id="asm_ScalarSurfaceInt_Properties-2-6-1">
+<div class="para" id="asm_ScalarSurfaceInt_Properties-2-6-1-1">
+<span class="process-math">\(\displaystyle \displaystyle \iint_{S_1} (k f) \, dS = k \iint_{S_1} f \, dS\)</span><div class="autopermalink" data-description="Paragraph"><a href="#asm_ScalarSurfaceInt_Properties-2-6-1-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item a"><a href="#asm_ScalarSurfaceInt_Properties-2-6-1" title="Copy heading and permalink for Item a">🔗</a></div>
+</li>
+<li id="asm_ScalarSurfaceInt_Properties-2-6-2">
+<div class="para" id="asm_ScalarSurfaceInt_Properties-2-6-2-1">
+<span class="process-math">\(\displaystyle \displaystyle\iint_{S_1} (f+g) \, dS = \iint_{S_1} f dS + \iint_{S_1} g \, dS \)</span><div class="autopermalink" data-description="Paragraph"><a href="#asm_ScalarSurfaceInt_Properties-2-6-2-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item b"><a href="#asm_ScalarSurfaceInt_Properties-2-6-2" title="Copy heading and permalink for Item b">🔗</a></div>
+</li>
+<li id="asm_ScalarSurfaceInt_Properties-2-6-3">
+<div class="para" id="asm_ScalarSurfaceInt_Properties-2-6-3-1">
+<span class="process-math">\(\displaystyle \displaystyle\iint_{-S_1} f \, dS = \iint_{S_1} f \, dS\)</span><div class="autopermalink" data-description="Paragraph"><a href="#asm_ScalarSurfaceInt_Properties-2-6-3-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item c"><a href="#asm_ScalarSurfaceInt_Properties-2-6-3" title="Copy heading and permalink for Item c">🔗</a></div>
+</li>
+<li id="asm_ScalarSurfaceInt_Properties-2-6-4">
+<div class="para" id="asm_ScalarSurfaceInt_Properties-2-6-4-1">
+<span class="process-math">\(\displaystyle \displaystyle\iint_{S_1+S_2} f \, dS = \iint_{S_1} f \, dS + \iint_{S_2} f \, dS\)</span><div class="autopermalink" data-description="Paragraph"><a href="#asm_ScalarSurfaceInt_Properties-2-6-4-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item d"><a href="#asm_ScalarSurfaceInt_Properties-2-6-4" title="Copy heading and permalink for Item d">🔗</a></div>
+</li>
+</ol>
+<div class="autopermalink" data-description="Paragraph"><a href="#asm_ScalarSurfaceInt_Properties-2" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Assemblage: Properties of Scalar Line Integrals"><a href="#asm_ScalarSurfaceInt_Properties" title="Copy heading and permalink for Assemblage: Properties of Scalar Line Integrals">🔗</a></div></article><article class="activity project-like" id="Explain_SSI_Properties"><h4 class="heading">
+<span class="type">Activity</span><span class="space"> </span><span class="codenumber">13.11.3</span><span class="period">.</span><span class="space"> </span><span class="title">Explaining Properties of Scalar Surface Integrals.</span>
+</h4>
+<div class="introduction" id="Explain_SSI_Properties-2"><div class="para" id="Explain_SSI_Properties-2-1">In this activity, we will be explaining each of the properties from <a href="S_Vector_ScalarLineIntegral.html#asm_ScalarLineInt_Properties" class="xref" data-knowl="./knowl/xref/asm_ScalarLineInt_Properties.html" data-reveal-label="Reveal" data-close-label="Close" title="Assemblage: Properties of Scalar Line Integrals">Properties of Scalar Line Integrals</a> in the context of a new analogy. We have just purchased a plot of land that spans two mountains, Sugar Mountain and Spice Mountain. We will label the plot of land on Sugar Mountain <span class="process-math">\(S_1\)</span> and the plot of land on Spice Mountain <span class="process-math">\(S_2\text{.}\)</span> Unfortunately there are two types of toxic organisms on the surface of your new land, which may explain why you paid so little for the land. Let <span class="process-math">\(f\)</span> be the density of the toxic fungus on your new plot of land and let <span class="process-math">\(g\)</span> be the density of toxic bacteria on the new plot.<div class="autopermalink" data-description="Paragraph"><a href="#Explain_SSI_Properties-2-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></div>
+<article class="task exercise-like" id="Explain_SSI_Properties-3"><h5 class="heading"><span class="codenumber">(a)</span></h5>
+<div class="para" id="Explain_SSI_Properties-3-1-1">Explain in your own words what <span class="process-math">\(\iint_{S_1} f \, dS\)</span> means in the above analogy and what exactly would be measured by this scalar line integral.<div class="autopermalink" data-description="Paragraph"><a href="#Explain_SSI_Properties-3-1-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="part 13.11.3.a"><a href="#Explain_SSI_Properties-3" title="Copy heading and permalink for part 13.11.3.a">🔗</a></div></article><article class="task exercise-like" id="Explain_SSI_Properties-4"><h5 class="heading"><span class="codenumber">(b)</span></h5>
+<div class="para" id="Explain_SSI_Properties-4-1-1">Explain in your own words what <span class="process-math">\(\displaystyle \iint_{S_1} (2 f) \, dS = 2 \iint_{S_1} f \, dS\)</span> means in the new analogy. It may be helpful to describe each side of the equation separately and say why they are equal in the analogy.<div class="autopermalink" data-description="Paragraph"><a href="#Explain_SSI_Properties-4-1-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="part 13.11.3.b"><a href="#Explain_SSI_Properties-4" title="Copy heading and permalink for part 13.11.3.b">🔗</a></div></article><article class="task exercise-like" id="Explain_SSI_Properties-5"><h5 class="heading"><span class="codenumber">(c)</span></h5>
+<div class="para" id="Explain_SSI_Properties-5-1-1">Explain in your own words what <span class="process-math">\(\displaystyle \iint_{S_2} (f+g) \, dS = \iint_{S_2} f \, dS + \iint_{S_2} g \, dS\)</span> means in the new analogy. It may be helpful to describe each side of the equation separately and say why they are equal in the analogy.<div class="autopermalink" data-description="Paragraph"><a href="#Explain_SSI_Properties-5-1-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="part 13.11.3.c"><a href="#Explain_SSI_Properties-5" title="Copy heading and permalink for part 13.11.3.c">🔗</a></div></article><article class="task exercise-like" id="Explain_SSI_Properties-6"><h5 class="heading"><span class="codenumber">(d)</span></h5>
+<div class="para" id="Explain_SSI_Properties-6-1-1">Explain in your own words what <span class="process-math">\(\displaystyle \iint_{-S_2} f \, dS = \iint_{S_2} f \, dS\)</span> means in the new analogy. It may be helpful to describe each side of the equation separately and say why they are equal in the analogy.<div class="autopermalink" data-description="Paragraph"><a href="#Explain_SSI_Properties-6-1-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="part 13.11.3.d"><a href="#Explain_SSI_Properties-6" title="Copy heading and permalink for part 13.11.3.d">🔗</a></div></article><article class="task exercise-like" id="Explain_SSI_Properties-7"><h5 class="heading"><span class="codenumber">(e)</span></h5>
+<div class="para" id="Explain_SSI_Properties-7-1-1">Explain in your own words what <span class="process-math">\(\displaystyle \iint_{S_1+S_2} f \, dS = \iint_{S_1} f \, dS + \iint_{S_2} f \, dS\)</span> means in the new analogy. It may be helpful to describe each side of the equation separately and say why they are equal in the analogy.<div class="autopermalink" data-description="Paragraph"><a href="#Explain_SSI_Properties-7-1-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="part 13.11.3.e"><a href="#Explain_SSI_Properties-7" title="Copy heading and permalink for part 13.11.3.e">🔗</a></div></article><div class="autopermalink" data-description="Activity 13.11.3: Explaining Properties of Scalar Surface Integrals"><a href="#Explain_SSI_Properties" title="Copy heading and permalink for Activity 13.11.3: Explaining Properties of Scalar Surface Integrals">🔗</a></div></article><div class="para" id="S_Vector_ScalarSurfaceIntegral-5-5">We will conclude this section with one more example of computing a scalar surface integral and then an activity that asks you to compute one for yourself using a parameterization of a surface.<div class="autopermalink" data-description="Paragraph"><a href="#S_Vector_ScalarSurfaceIntegral-5-5" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<article class="example example-like" id="ScalarSurfaceInt_Example1"><h4 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">13.11.9</span><span class="period">.</span>
+</h4>
+<div class="para logical" id="ScalarSurfaceInt_Example1-1">
+<div class="para">Let us return to one of the problems from <a href="S_Vector_ScalarSurfaceIntegral.html#ScalarSurfaceInt_Sensemaking" class="xref" data-knowl="./knowl/xref/ScalarSurfaceInt_Sensemaking.html" data-reveal-label="Reveal" data-close-label="Close" title="Activity 13.11.2">Activity 13.11.2</a>. Specifically, we will compute the answer to <a href="S_Vector_ScalarSurfaceIntegral.html#task_SSIS_2" class="xref" data-knowl="./knowl/xref/task_SSIS_2.html" data-reveal-label="Reveal" data-close-label="Close" title="part 13.11.2.a">part a</a> of that activity. We will compute <span class="process-math">\(\iint_{S_1} x \, dS\)</span> where <span class="process-math">\(S_1\)</span> is the top half (<span class="process-math">\(z \geq 0\)</span>) of the sphere of radius one centered at the origin. Thinking in terms of spherical coordinates is helpul for determining a parameterization of <span class="process-math">\(S_1\text{.}\)</span> Here we can use <span class="process-math">\(\vr(s,t)=\langle \cos(s)\sin(t),\sin(s)\sin(t),\cos(t)\rangle\)</span> where <span class="process-math">\(0 \leq s\leq 2\pi\)</span> and <span class="process-math">\(0\leq t\leq \pi/2\text{,}\)</span> which comes from thinking of <span class="process-math">\(s=\theta\)</span> and <span class="process-math">\(t=\phi\)</span> in spherical coordinates (and <span class="process-math">\(\rho=1\)</span>). Using <a href="S_Vector_ScalarSurfaceIntegral.html#ScalarSurfaceIntDef" class="xref" data-knowl="./knowl/xref/ScalarSurfaceIntDef.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 13.11.4">Theorem 13.11.4</a>, we need to compute the partial derivatives of <span class="process-math">\(\vr\)</span> with respect to <span class="process-math">\(s\)</span> and <span class="process-math">\(t\text{,}\)</span> then compute <span class="process-math">\(|{\vr_s \times \vr_t}| \text{.}\)</span> For our parameterization, we get</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/ScalarSurfaceInt_Sensemaking.html ./knowl/xref/task_SSIS_2.html ./knowl/xref/ScalarSurfaceIntDef.html" id="ScalarSurfaceInt_Example1-1-18">
+\begin{align*}
+\vr_s \amp = \langle -\sin(s)\sin(t),\cos(s)\sin(t),0\rangle \\
+\vr_t \amp = \langle \cos(s)\cos(t),\sin(s)\cos(t),-\sin(t)\rangle \\
+\vr_s \times \vr_t \amp = -\sin(t) \langle \cos(s)\sin(t),\sin(s)\sin(t),\cos(t) \rangle
+\end{align*}
+</div>
+<div class="para">The form given for <span class="process-math">\(\vr_s \times \vr_t\)</span> is simplified. Before simplifying, we have</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/ScalarSurfaceInt_Sensemaking.html ./knowl/xref/task_SSIS_2.html ./knowl/xref/ScalarSurfaceIntDef.html" id="ScalarSurfaceInt_Example1-1-20">
+\begin{align*}
+\langle \amp -(\sin(t))^2 \cos(s), -(\sin(t))^2 \sin(s),\\
+\amp -(\cos(s))^2 \cos(t) \sin(t) -(\sin(s))^2 \cos(t) \sin(t) \rangle\text{.}
+\end{align*}
+</div>
+<div class="para">Note that <span class="process-math">\(\vr_s \times \vr_t = -\sin(t) \vr(s,t)\text{,}\)</span> which means that <span class="process-math">\(\vecmag{\vr_s \times \vr_t} = \sin(t)\)</span> because <span class="process-math">\(\vecmag{\vr(s,t)} = 1\)</span> for any <span class="process-math">\(s\)</span> or <span class="process-math">\(t\)</span> and <span class="process-math">\(\sin(t)\geq 0\)</span> for <span class="process-math">\(0\leq t\leq \pi/2\text{.}\)</span>
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#ScalarSurfaceInt_Example1-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical" id="ScalarSurfaceInt_Example1-2">
+<div class="para">We can now use <a href="S_Vector_ScalarSurfaceIntegral.html#ScalarSurfaceIntDef" class="xref" data-knowl="./knowl/xref/ScalarSurfaceIntDef.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 13.11.4">Theorem 13.11.4</a> to compute the scalar surface integral as</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/ScalarSurfaceIntDef.html ./knowl/xref/task_SSIS_2.html" id="ScalarSurfaceInt_Example1-2-2">
+\begin{align*}
+\iint_{S_1} x \, dS \amp = \int_0^{\pi/2}\int_0^{2\pi} \left[\cos(s)\sin(t)\right] (\sin(t)) \, ds\, dt\\
+\amp = \left[\sin(s)\right]_{0}^{2\pi}\int_0^{\pi}(\sin(t))^2\, dt  = 0\cdot \int_0^{\pi}(\sin(t))^2\, dt =0\text{.}
+\end{align*}
+</div>
+<div class="para">This result should match your answer for <a href="S_Vector_ScalarSurfaceIntegral.html#task_SSIS_2" class="xref" data-knowl="./knowl/xref/task_SSIS_2.html" data-reveal-label="Reveal" data-close-label="Close" title="part 13.11.2.a">part a of Subsection 13.11.2</a> since the values of the function <span class="process-math">\(f(x,y,z)=x\)</span> are symmetric but opposite in sign for the parts of the surface in the octants with <span class="process-math">\(x\gt 0\)</span> as compared to the octants with <span class="process-math">\(x\lt 0\text{.}\)</span>
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#ScalarSurfaceInt_Example1-2" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Example 13.11.9"><a href="#ScalarSurfaceInt_Example1" title="Copy heading and permalink for Example 13.11.9">🔗</a></div></article><article class="activity project-like" id="act_Vector_ScalarSurfaceInt_UseParam"><h4 class="heading">
+<span class="type">Activity</span><span class="space"> </span><span class="codenumber">13.11.4</span><span class="period">.</span>
+</h4>
+<div class="para" id="act_Vector_ScalarSurfaceInt_UseParam-1-1">Compute the value of the scalar surface integral in <a href="S_Vector_ScalarSurfaceIntegral.html#task_SSIS_4" class="xref" data-knowl="./knowl/xref/task_SSIS_4.html" data-reveal-label="Reveal" data-close-label="Close" title="part 13.11.2.c">part c of Subsection 13.11.2</a>. That is, compute <span class="process-math">\(\iint_{S_3} x+z \, dS\)</span> where <span class="process-math">\(S_3\)</span> is the disc of radius one centered at <span class="process-math">\((1,0,0)\)</span> on the plane <span class="process-math">\(x=1\text{.}\)</span> Explain why your answer makes sense geometrically.<div class="autopermalink" data-description="Paragraph"><a href="#act_Vector_ScalarSurfaceInt_UseParam-1-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Activity 13.11.4"><a href="#act_Vector_ScalarSurfaceInt_UseParam" title="Copy heading and permalink for Activity 13.11.4">🔗</a></div></article><div class="autopermalink" data-description="Subsection 13.11.3: Properties of Scalar Surface Integrals"><a href="#S_Vector_ScalarSurfaceIntegral-5" title="Copy heading and permalink for Subsection 13.11.3: Properties of Scalar Surface Integrals">🔗</a></div></section><section class="subsection" id="S_Vector_ScalarSurfaceIntegral-6"><h3 class="heading hide-type">
+<span class="type">Subsection</span><span class="space"> </span><span class="codenumber">13.11.4</span><span class="space"> </span><span class="title">Summary</span>
+</h3>
+<div class="para logical" id="S_Vector_ScalarSurfaceIntegral-6-2">
+<ul class="disc" id="S_Vector_ScalarSurfaceIntegral-6-2-1">
+<li id="S_Vector_ScalarSurfaceIntegral-6-2-1-1">
+<div class="para" id="S_Vector_ScalarSurfaceIntegral-6-2-1-1-1">Scalar surface integrals are defined in terms of double Riemann sums of the product of the value of a scalar-valued function at a point on the surface and the area patch of the tangent plane to the surface at that point.<div class="autopermalink" data-description="Paragraph"><a href="#S_Vector_ScalarSurfaceIntegral-6-2-1-1-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#S_Vector_ScalarSurfaceIntegral-6-2-1-1" title="Copy heading and permalink for Item">🔗</a></div>
+</li>
+<li id="S_Vector_ScalarSurfaceIntegral-6-2-1-2">
+<div class="para" id="S_Vector_ScalarSurfaceIntegral-6-2-1-2-1">A scalar surface integral measures the total accumulation of a scalar-valued function on the surface.<div class="autopermalink" data-description="Paragraph"><a href="#S_Vector_ScalarSurfaceIntegral-6-2-1-2-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#S_Vector_ScalarSurfaceIntegral-6-2-1-2" title="Copy heading and permalink for Item">🔗</a></div>
+</li>
+<li id="S_Vector_ScalarSurfaceIntegral-6-2-1-3">
+<div class="para" id="S_Vector_ScalarSurfaceIntegral-6-2-1-3-1">Scalar surface integrals can be efficiently computed by parameterizing the surface of integration as <span class="process-math">\(\vr(s,t)\)</span> and then integrating <span class="process-math">\(\iint_D f(s,t) \vecmag{\vr_s\times \vr_t} \, dA\text{,}\)</span> where <span class="process-math">\(D\)</span> is the domain of the parameterization.<div class="autopermalink" data-description="Paragraph"><a href="#S_Vector_ScalarSurfaceIntegral-6-2-1-3-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Item"><a href="#S_Vector_ScalarSurfaceIntegral-6-2-1-3" title="Copy heading and permalink for Item">🔗</a></div>
+</li>
+</ul>
+<div class="autopermalink" data-description="Paragraph"><a href="#S_Vector_ScalarSurfaceIntegral-6-2" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Subsection 13.11.4: Summary"><a href="#S_Vector_ScalarSurfaceIntegral-6" title="Copy heading and permalink for Subsection 13.11.4: Summary">🔗</a></div></section><section class="exercises" id="S_Vector_ScalarSurfaceIntegral-7"><h3 class="heading hide-type">
+<span class="type">Exercises</span><span class="space"> </span><span class="codenumber">13.11.5</span><span class="space"> </span><span class="title">Exercises</span>
+</h3>
+<article class="exercise exercise-like" id="Library__WHFreeman__Rogawski_Calculus_Early_Transcendentals_Second_Edition__16_Line_and_Surface_Integrals__16.4_Parametrized_Surfaces_and_Surface_Integrals__16.4.3.pg"><h4 class="heading"><span class="codenumber">1<span class="period">.</span></span></h4>
+<div class="introduction" id="Library__WHFreeman__Rogawski_Calculus_Early_Transcendentals_Second_Edition__16_Line_and_Surface_Integrals__16.4_Parametrized_Surfaces_and_Surface_Integrals__16.4.3.pg-1"><div class="para" id="Library__WHFreeman__Rogawski_Calculus_Early_Transcendentals_Second_Edition__16_Line_and_Surface_Integrals__16.4_Parametrized_Surfaces_and_Surface_Integrals__16.4.3.pg-1-1">This WebWork problem uses a slightly different notation which you might see in other sources. In this problem, the parameters used are <span class="process-math">\(u\)</span> and <span class="process-math">\(v\)</span> and the parameterization is given by <span class="process-math">\(\vec{\Phi}(u,v)\text{.}\)</span> The tangent vectors created by taking partial derivatives are notated by <span class="process-math">\(\vT_u\)</span> and <span class="process-math">\(\vT_v\text{.}\)</span> and the normal vector to the surface is given by <span class="process-math">\(\vec{n}(u,v)\text{.}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#Library__WHFreeman__Rogawski_Calculus_Early_Transcendentals_Second_Edition__16_Line_and_Surface_Integrals__16.4_Parametrized_Surfaces_and_Surface_Integrals__16.4.3.pg-1-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></div>
+<div id="webwork-319" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="319" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-localize-hint="Hint" data-localize-solution="Solution" data-sourceFilePath="Library/WHFreeman/Rogawski_Calculus_Early_Transcendentals_Second_Edition/16_Line_and_Surface_Integrals/16.4_Parametrized_Surfaces_and_Surface_Integrals/16.4.3.pg" data-courseID="mitchkeller-dev" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-319')">Activate</button></div>
+<div class="problem-contents">
+<div class="para" id="extracted-webwork-319-1-1-1">Show that <span class="process-math">\(\Phi(u,v)= (4 u+3 ,u-v,7 u+v)\)</span> parametrizes the plane <span class="process-math">\(2x-y-z=6\text{.}\)</span> Then:<div class="autopermalink" data-description="Paragraph"><a href="#extracted-webwork-319-1-1-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="para" id="extracted-webwork-319-1-1-2">
+<em class="alert">(a)</em> Calculate <span class="process-math">\({\mathbf{T}}_u\)</span> , <span class="process-math">\({\mathbf{T}}_v\text{,}\)</span> and <span class="process-math">\({\mathbf{n}}(u,v)\text{.}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#extracted-webwork-319-1-1-2" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="para" id="extracted-webwork-319-1-1-3">
+<em class="alert">(b)</em> Find the area of <span class="process-math">\(\mathcal{S}=\Phi(\mathcal{D})\text{,}\)</span> where <span class="process-math">\(\mathcal{D}= (u,v) : 0\le u\le 8, 0\le v \le 8\text{.}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#extracted-webwork-319-1-1-3" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="para" id="extracted-webwork-319-1-1-4">
+<em class="alert">(c)</em> Express <span class="process-math">\(f(x,y,z)=yz\)</span> in terms of <span class="process-math">\(u\)</span> and <span class="process-math">\(v\)</span> and evaluate <span class="process-math">\(\iint_{\mathcal{S}} f(x,y,z)\,d \mathcal{S}\text{.}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#extracted-webwork-319-1-1-4" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="para" id="extracted-webwork-319-1-1-5">
+<em class="alert">(a)</em>  <span class="process-math">\({\mathbf{T}}_u=\)</span> <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span> , <span class="process-math">\({\mathbf{T}}_v=\)</span> <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span> ,  <span class="process-math">\({\mathbf{n}}(u,v)=\)</span> <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span><div class="autopermalink" data-description="Paragraph"><a href="#extracted-webwork-319-1-1-5" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="para" id="extracted-webwork-319-1-1-6">
+<em class="alert">(b)</em> <span class="process-math">\(Area(S)=\)</span> <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span><div class="autopermalink" data-description="Paragraph"><a href="#extracted-webwork-319-1-1-6" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="para" id="extracted-webwork-319-1-1-7">
+<em class="alert">(c)</em> <span class="process-math">\(\iint_{\mathcal{S}} f(x,y,z)\,d \mathcal{S}=\)</span> <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span><div class="autopermalink" data-description="Paragraph"><a href="#extracted-webwork-319-1-1-7" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+</div>
+</div>
+<div class="autopermalink" data-description="Exercise 13.11.5.1"><a href="#Library__WHFreeman__Rogawski_Calculus_Early_Transcendentals_Second_Edition__16_Line_and_Surface_Integrals__16.4_Parametrized_Surfaces_and_Surface_Integrals__16.4.3.pg" title="Copy heading and permalink for Exercise 13.11.5.1">🔗</a></div></article><article class="exercise exercise-like" id="Library__WHFreeman__Rogawski_Calculus_Early_Transcendentals_Second_Edition__16_Line_and_Surface_Integrals__16.4_Parametrized_Surfaces_and_Surface_Integrals__16.4.15.pg"><h4 class="heading"><span class="codenumber">2<span class="period">.</span></span></h4>
+<div id="webwork-320" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="320" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-localize-hint="Hint" data-localize-solution="Solution" data-sourceFilePath="Library/WHFreeman/Rogawski_Calculus_Early_Transcendentals_Second_Edition/16_Line_and_Surface_Integrals/16.4_Parametrized_Surfaces_and_Surface_Integrals/16.4.15.pg" data-courseID="mitchkeller-dev" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-320')">Activate</button></div>
+<div class="problem-contents"><div class="para logical" id="extracted-webwork-320-1-1-1">
+<div class="para">Calculate <span class="process-math">\(\iint_{\mathcal{S}} f(x,y,z)\,dS\)</span> For</div>
+<div class="displaymath process-math">
+\begin{equation*}
+y = 4-z^2  \text{,} \qquad 0\le x, z\le 9 \text{;}\qquad f(x,y,z)=z
+\end{equation*}
+</div>
+<div class="para">
+<span class="process-math">\(\iint_{\mathcal{S}} f(x,y,z)\,dS=\)</span> <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span>
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#extracted-webwork-320-1-1-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></div>
+</div>
+<div class="autopermalink" data-description="Exercise 13.11.5.2"><a href="#Library__WHFreeman__Rogawski_Calculus_Early_Transcendentals_Second_Edition__16_Line_and_Surface_Integrals__16.4_Parametrized_Surfaces_and_Surface_Integrals__16.4.15.pg" title="Copy heading and permalink for Exercise 13.11.5.2">🔗</a></div></article><article class="exercise exercise-like" id="Library__Rochester__setVectorCalculus3__ur_vc_13_1.pg"><h4 class="heading"><span class="codenumber">3<span class="period">.</span></span></h4>
+<div id="webwork-321" class="exercise-wrapper" data-domain="https://webwork-ptx.aimath.org" data-seed="321" data-localize-correct="Correct" data-localize-incorrect="Incorrect" data-localize-blank="Blank" data-localize-submit="Submit" data-localize-check-responses="Check Responses" data-localize-reveal="Reveal" data-localize-randomize="Randomize" data-localize-reset="Reset" data-localize-hint="Hint" data-localize-solution="Solution" data-sourceFilePath="Library/Rochester/setVectorCalculus3/ur_vc_13_1.pg" data-courseID="mitchkeller-dev" data-userID="anonymous" data-coursePassword="anonymous" aria-live="polite">
+<div class="problem-buttons"><button class="webwork-button" onclick="handleWW('webwork-321')">Activate</button></div>
+<div class="problem-contents"><div class="para" id="extracted-webwork-321-1-1-1">Evaluate <span class="process-math">\(\displaystyle \int\!\!\int_{S} \sqrt{ 1 + x^{2} + y^{2} } \: dS\)</span> where <span class="process-math">\(S\)</span> is the helicoid: <span class="process-math">\(\mathbf{r}(u, v) = u\cos(v)\mathbf{i} + u\sin(v)\mathbf{j} + v\mathbf{k}\text{,}\)</span> with <span class="process-math">\(0 \leq u \leq 3, 0 \leq v \leq 3\pi\)</span><div class="autopermalink" data-description="Paragraph"><a href="#extracted-webwork-321-1-1-1" title="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></div>
+</div>
+<div class="autopermalink" data-description="Exercise 13.11.5.3"><a href="#Library__Rochester__setVectorCalculus3__ur_vc_13_1.pg" title="Copy heading and permalink for Exercise 13.11.5.3">🔗</a></div></article><div class="autopermalink" data-description="Exercises 13.11.5"><a href="#S_Vector_ScalarSurfaceIntegral-7" title="Copy heading and permalink for Exercises 13.11.5">🔗</a></div></section><div class="autopermalink" data-description="Section 13.11: Surface Integrals of Scalar Valued Functions"><a href="#S_Vector_ScalarSurfaceIntegral" title="Copy heading and permalink for Section 13.11: Surface Integrals of Scalar Valued Functions">🔗</a></div></section></div>
+<div id="ptx-content-footer" class="ptx-content-footer">
+<a class="previous-button button" href="S_Vector_FluxInt.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Top</span></a><a class="next-button button" href="S_Vector_StokesThm.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a>
+</div></main>
+</div>
+<div id="ptx-page-footer" class="ptx-page-footer">
+<a class="pretext-link" href="https://pretextbook.org" title="PreTeXt"><div class="logo"><svg xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="338 3000 8772 6866" role="img"><title>PreTeXt logo</title><g style="stroke-width:.025in; stroke:currentColor; fill:none"><polyline points="472,3590 472,9732 " style="stroke-width:174; stroke-linejoin:miter; stroke-linecap:round; "></polyline><path style="stroke-width:126;stroke-linecap:butt;" d="M 4724,9448 A 4660 4660  0  0  1  8598  9259"></path><path style="stroke-width:174;stroke-linecap:butt;" d="M 4488,9685 A 4228 4228  0  0  0   472  9732"></path><path style="stroke-width:126;stroke-linecap:butt;" d="M 4724,3590 A 4241 4241  0  0  1  8598  3496"></path><path style="stroke-width:126;stroke-linecap:round;" d="M 850,3496  A 4241 4241  0  0  1  4724  3590"></path><path style="stroke-width:126;stroke-linecap:round;" d="M 850,9259  A 4507 4507  0  0  1  4724  9448"></path><polyline points="5385,4299 4062,8125" style="stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="8598,3496 8598,9259" style="stroke-width:126; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="850,3496 850,9259" style="stroke-width:126; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="4960,9685 4488,9685" style="stroke-width:174; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="3070,4582 1889,6141 3070,7700" style="stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="6418,4582 7600,6141 6418,7700" style="stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="8976,3590 8976,9732" style="stroke-width:174; stroke-linejoin:miter; stroke-linecap:round;"></polyline><path style="stroke-width:174;stroke-linecap:butt;" d="M 4960,9685 A 4228 4228  0  0  1  8976  9732"></path></g></svg></div></a><a class="runestone-link" href="https://runestone.academy" title="Runestone Academy"><img class="logo" src="https://runestone.academy/runestone/static/images/RAIcon_cropped.png" alt="Runstone Academy logo"></a><a class="mathjax-link" href="https://www.mathjax.org" title="MathJax"><img class="logo" src="https://www.mathjax.org/badge/badge-square-2.png" alt="MathJax logo"></a>
+</div>
+<!--Start: Google Global Site Tag code--><!--*** DO NOT COPY ANOTHER PROJECT'S MAGIC NUMBERS/ID ***--><!--***           GET YOUR OWN FROM GOOGLE             ***-->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-QJKN634F7R"></script><script>  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-QJKN634F7R');
+</script><!--End: Google Global Site Tag code-->
+</body>
+</html>
