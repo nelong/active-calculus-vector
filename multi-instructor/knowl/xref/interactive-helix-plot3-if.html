@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<html lang="en-US" dir="ltr">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
+<link href="_static/pretext/css/theme.css" rel="stylesheet" type="text/css">
+<link href="_static/pretext/css/ol-markers.css" rel="stylesheet" type="text/css">
+<script>
+var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
+window.MathJax = {
+  "tex": {
+    "inlineMath": [
+      [
+        "\\(",
+        "\\)"
+      ]
+    ],
+    "tags": "none",
+    "tagSide": "right",
+    "tagIndent": ".8em",
+    "packages": {
+      "[+]": [
+        "base",
+        "extpfeil",
+        "ams",
+        "amscd",
+        "color",
+        "newcommand",
+        "knowl"
+      ]
+    }
+  },
+  "options": {
+    "ignoreHtmlClass": "tex2jax_ignore|ignore-math",
+    "processHtmlClass": "process-math",
+    "renderActions": {
+      "findScript": [
+        10,
+        function (doc) {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
+                var display = !!node.type.match(/; *mode=display/);
+                var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                var text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = {node: text, delim: '', n: 0};
+                math.end = {node: text, delim: '', n: 0};
+                doc.math.push(math);
+            });
+        },
+        ""
+      ]
+    }
+  },
+  "chtml": {
+    "scale": 0.98,
+    "mtextInheritFont": true
+  },
+  "loader": {
+    "load": [
+      "input/asciimath",
+      "[tex]/extpfeil",
+      "[tex]/amscd",
+      "[tex]/color",
+      "[tex]/newcommand",
+      "[pretext]/mathjaxknowl3.js"
+    ],
+    "paths": {
+      "pretext": "_static/pretext/js/lib"
+    }
+  },
+  "startup": {
+    pageReady() {
+      return MathJax.startup.defaultPageReady().then(function () {
+      console.log("in ready function");
+      rsMathReady();
+      }
+    )}
+  }
+};
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>sagecell.makeSagecell({
+  "inputLocation": ".sage-interact",
+  "autoeval": true,
+  "hide": [
+    "editor",
+    "evalButton",
+    "permalink"
+  ]
+});
+</script><link rel="stylesheet" type="text/css" href="https://sagecell.sagemath.org/static/sagecell_embed.css">
+</head>
+<body class="ptx-content ignore-math" id="acmulti">
+<div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\newcommand{\R}{\mathbb{R}}
+\newcommand{\va}{\vec{a}}
+\newcommand{\vb}{\vec{b}}
+\newcommand{\vc}{\vec{c}}
+\newcommand{\vC}{\vec{C}}
+\newcommand{\vd}{\vec{d}}
+\newcommand{\ve}{\vec{e}}
+\newcommand{\cursedihat}{\hat{\dot{i}}}
+\newcommand{\vi}{\hat{\imath}}
+\newcommand{\vj}{\hat{\jmath}}
+\newcommand{\vk}{\hat{k}}
+\newcommand{\vn}{\vec{n}}
+\newcommand{\vm}{\vec{m}}
+\newcommand{\vr}{\vec{r}}
+\newcommand{\vs}{\vec{s}}
+\newcommand{\vu}{\vec{u}}
+\newcommand{\vv}{\vec{v}}
+\newcommand{\vw}{\vec{w}}
+\newcommand{\vx}{\vec{x}}
+\newcommand{\vy}{\vec{y}}
+\newcommand{\vz}{\vec{z}}
+\newcommand{\vzero}{\vec{0}}
+\newcommand{\vF}{\vec{F}}
+\newcommand{\vG}{\vec{G}}
+\newcommand{\vH}{\vec{H}}
+\newcommand{\vR}{\vec{R}}
+\newcommand{\vT}{\vec{T}}
+\newcommand{\vN}{\vec{N}}
+\newcommand{\vL}{\vec{L}}
+\newcommand{\vB}{\vec{B}}
+\newcommand{\vS}{\vec{S}}
+\newcommand{\proj}{\text{proj}}
+\newcommand{\comp}{\text{comp}}
+\newcommand{\nin}{}
+\newcommand{\vecmag}[1]{\left\lVert #1\right\rVert}
+\newcommand{\grad}{\nabla}
+\newcommand\restrict[1]{\raise-.5ex\hbox{$\Big|$}_{#1}}
+\DeclareMathOperator{\curl}{curl}
+\DeclareMathOperator{\divg}{div}
+\newcommand{\lt}{&lt;}
+\newcommand{\gt}{&gt;}
+\newcommand{\amp}{&amp;}
+\definecolor{fillinmathshade}{gray}{0.9}
+\newcommand{\fillinmath}[1]{\mathchoice{\colorbox{fillinmathshade}{$\displaystyle     \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\textstyle        \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptstyle      \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptscriptstyle\phantom{\,#1\,}$}}}
+\)</span></div>
+<div style="width:546px; height:546px; display: block; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;"><pre class="ptx-sagecell sage-interact"><script type="text/x-sage">var('t')
+offset=0.2
+r2(t)=(sin(t),cos(t),t/pi)
+plot10=parametric_plot(r2(t),(t,-pi,3*pi),aspect_ratio=1,color="black",thickness=2)
+tval=pi/2
+pos=r2(tval)
+v2(t)=diff(r2,t)
+a2(t)=diff(v2,t)
+vt=v2(tval)
+at=a2(tval)
+T=vt/norm(vt)
+aTT=(at*T)*T
+aN=sqrt(norm(at)^2-(at*T)^2)
+aNN=at-aTT
+N=(1/aN)*aNN
+plot10+=arrow(pos,pos+T,color="red",thickness=2)
+plot10+=text3d("T",pos+1.15*T,color="red",fontsize=20)
+plot10+=arrow(pos,pos+N,color="green",thickness=2)
+plot10+=text3d("N",pos+N-offset*T,color="green",fontsize=20)
+tval=5*pi/4
+pos=r2(tval)
+v2(t)=diff(r2,t)
+a2(t)=diff(v2,t)
+vt=v2(tval)
+at=a2(tval)
+T=vt/norm(vt)
+aTT=(at*T)*T
+aN=sqrt(norm(at)^2-(at*T)^2)
+aNN=at-aTT
+N=(1/aN)*aNN
+plot10+=arrow(pos,pos+T,color="blue",thickness=2)
+plot10+=text3d("T",pos+1.15*T,color="blue",fontsize=20)
+plot10+=arrow(pos,pos+N,color="yellow",thickness=2)
+plot10+=text3d("N",pos+N-offset*T,color="yellow",fontsize=20)
+show(plot10,viewpoint=[[-0.1392,-0.4403,-0.887],148.67],camera_position=[2.8862,4.3607,5.0912])
+</script></pre></div>
+</body>
+</html>
