@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="example example-like"><h4 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">11.5.3</span><span class="period">.</span>
+</h4>
+<div class="para">Let <span class="process-math">\(f(x,y) = e^{x^2+y^2}\)</span> on the disk <span class="process-math">\(D = \{(x,y) : x^2 + y^2 \leq 1\}\text{.}\)</span> We will evaluate <span class="process-math">\(\iint_D f(x,y) \, dA\text{.}\)</span>
+</div> <div class="para logical">
+<div class="para">In rectangular coordinates the double integral <span class="process-math">\(\iint_D f(x,y) \, dA\)</span> can be written as the iterated integral</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\iint_D f(x,y) \, dA = \int_{x=-1}^{x=1} \int_{y=-\sqrt{1-x^2}}^{y=\sqrt{1-x^2}} e^{x^2+y^2} \, dy \, dx.
+\end{equation*}
+</div>
+</div> <div class="para logical">
+<div class="para">We cannot evaluate this iterated integral, because <span class="process-math">\(e^{x^2 + y^2}\)</span> does not have an elementary antiderivative with respect to either <span class="process-math">\(x\)</span> or <span class="process-math">\(y\text{.}\)</span> However, since <span class="process-math">\(r^2=x^2+y^2\)</span> and the region <span class="process-math">\(D\)</span> is circular, it is natural to wonder whether converting to polar coordinates will allow us to evaluate the new integral. To do so, we replace <span class="process-math">\(x\)</span> with <span class="process-math">\(r \cos(\theta)\text{,}\)</span> <span class="process-math">\(y\)</span> with <span class="process-math">\(r \sin(\theta)\text{,}\)</span> and <span class="process-math">\(dy \, dx\)</span> with <span class="process-math">\(r \, dr \, d\theta\)</span> to obtain</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\iint_D f(x,y) \, dA = \iint_D e^{r^2} \, r \, dr \, d\theta.
+\end{equation*}
+</div>
+</div> <div class="para logical">
+<div class="para">The disc <span class="process-math">\(D\)</span> is described in polar coordinates by the constraints <span class="process-math">\(0 \leq r \leq 1\)</span> and <span class="process-math">\(0 \leq \theta \leq 2\pi\text{.}\)</span> Therefore, it follows that</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\iint_D e^{r^2} \, r \, dr \, d\theta = \int_{\theta=0}^{\theta = 2\pi} \int_{r=0}^{r=1} e^{r^2} \, r \, dr \, d\theta.
+\end{equation*}
+</div>
+</div> <div class="para logical">
+<div class="para">We can evaluate the resulting iterated polar integral as follows:</div>
+<div class="displaymath process-math">
+\begin{align*}
+\int_{\theta=0}^{\theta = 2\pi} \int_{r=0}^{r=1} e^{r^2} \, r \, dr \, d\theta \amp = \int_{\theta=0}^{2\pi}  \left( \frac{1}{2}e^{r^2}\biggm|_{r=0}^{r=1} \right) \, d\theta\\
+\amp = \frac{1}{2} \int_{\theta=0}^{\theta = 2\pi} \left( e-1 \right) \, d\theta\\
+\amp = \frac{1}{2}(e-1) \int_{\theta=0}^{\theta = 2\pi} \, d\theta\\
+\amp = \frac{1}{2}(e-1)\left[\theta\right]\biggm|_{\theta=0}^{\theta = 2\pi}\\
+\amp = \pi(e-1).
+\end{align*}
+</div>
+</div></article><span class="incontext"><a href="S-11-5-Double-Integrals-Polar.html#example-7" class="internal">in-context</a></span>
+</body>
+</html>

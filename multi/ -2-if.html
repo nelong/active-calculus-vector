@@ -142,13 +142,31 @@ window.MathJax = {
 \definecolor{fillinmathshade}{gray}{0.9}
 \newcommand{\fillinmath}[1]{\mathchoice{\colorbox{fillinmathshade}{$\displaystyle     \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\textstyle        \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptstyle      \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptscriptstyle\phantom{\,#1\,}$}}}
 \)</span></div>
-<div style="width:600px; height:600px; display: block; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;"><pre xmlns:xlink="http://www.w3.org/1999/xlink" class="ptx-sagecell sage-interact"><script type="text/x-sage">var('r,s,t,x,y,z')
-xscale=2.5;yscale=2.5;zscale=4.5
-plot3=arrow((0,0,0),(xscale,0,0),color="black",opacity=0.5,width=1)+text3d("x",(xscale+0.15,0,0),fontsize=30)+text3d("y",(0,yscale+0.15,0),fontsize=30)+text3d("z",(0,0,zscale+0.15),fontsize=30)
-plot3+=arrow((0,0,0),(0,yscale,0),color="black",opacity=0.5,width=1)+arrow((0,0,0),(0,0,zscale),color="black",opacity=0.5,width=1)
-plot3+=parametric_plot3d((r*cos(t),r*sin(t),4-r),(r,0,2),(t,0,2*pi),color="lightblue")
-plot3+=parametric_plot3d((r*cos(t),r*sin(t),r),(r,0,2),(t,0,2*pi),color="lightblue")
-plot3
+<div style="width:600px; height:600px; display: block; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;"><pre xmlns:xlink="http://www.w3.org/1999/xlink" class="ptx-sagecell sage-interact"><script type="text/x-sage">var('x,y')
+@interact
+def notsimple(a=slider(0,2.7,0.1,default=0.5,label="k=")):
+  plot8=polygon([(0,0),(2,1),(4,3),(2,2)],color="lightblue",edgecolor="black",gridlines=True,xmin=0,xmax=4,ymin=0,ymax=3,zorder=2,ticks=[[0,1,2,3,4],[0,1,2,3]])
+  #plot8+=text("$D$",(2,1.5),color="black",fontsize=20,axes_labels=["$x$","$y$"],zorder=6)
+  plot8+=plot(x,(x,0,2),color="orange",thickness=2)
+  plot8+=plot(x-1,(x,2,4),color="red",thickness=2)
+  plot8+=plot(1/2*x,(x,0,2),color="blue",thickness=2,)
+  plot8+=plot(1/2*x+1,(x,2,4),color="purple",thickness=2)
+  if(sign(1-a)==1):
+    plot8+=line([(a,a),(2*a,a)],color="magenta",linestyle="--",thickness=2)
+    plot8+=text("$y=k$",(a+0.3,a+0.1),color="magenta",fontsize=15)
+    plot8+=point((a,a),color="orange",size=30,zorder=3)+text("$(k,k)$",(a-0.3,a+0.1),color="orange",fontsize=15)
+    plot8+=point((2*a,a),color="blue",size=30,zorder=3)+text("$(2k,k)$",(2*a+0.3,a-0.1),color="blue",fontsize=15)
+  elif(sign(2-a)==1):
+    plot8+=line([(a,a),(a+1,a)],color="magenta",linestyle="--",thickness=2)
+    plot8+=text("$y=k$",(a+0.4,a+0.1),color="magenta",fontsize=15)
+    plot8+=point((a,a),color="orange",size=30,zorder=3)+text("$(k,k)$",(a-0.3,a+0.1),color="orange",fontsize=15)
+    plot8+=point((a+1,a),color="red",size=30,zorder=3)+text("$(k+1,k)$",(a+1.3,a-0.1),color="red",fontsize=15)
+  else:
+    plot8+=line([(2*(a-1),a),(a+1,a)],color="magenta",linestyle="--",thickness=2)
+    plot8+=text("$y=k$",(2*(a-1)+0.1,a-0.1),color="magenta",fontsize=15)
+    plot8+=point((2*(a-1),a),color="purple",size=30,zorder=3)+text("$(\\frac{k}{2}+1,k)$",(2*(a-1)-0.3,a+0.1),color="purple",fontsize=15)
+    plot8+=point((a+1,a),color="red",size=30,zorder=3)+text("$(k+1,k)$",(a+1.3,a-0.1),color="red",fontsize=15)
+  show(plot8)
 </script></pre></div>
 </body>
 </html>
