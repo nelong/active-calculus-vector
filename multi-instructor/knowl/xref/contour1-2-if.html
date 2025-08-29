@@ -144,11 +144,12 @@ window.MathJax = {
 \)</span></div>
 <div style="width:600px; height:690px; display: block; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;"><pre class="ptx-sagecell sage-interact"><script type="text/x-sage">var('x,y,z')
 @interact
-def contourexpanded(s1=checkbox(False,label="Fill in between contours"),s2=checkbox(False,label="Show Contour Legend"),n=slider(3,20,1,default=9,label="Number of Contours",display_value=False)):
-  g(x,y)=x^2*sin(2*y)/32
-  c=[1350/n*i for i in range(n)]
-  plot17=contour_plot(g(x,y),(x,0,200),(y,0,pi/2),contours=c,aspect_ratio=100,fill=s1,labels=True,label_fmt="%1.0f",colorbar=s2,axes_labels=["$x$","$y$"])
-  show(plot17)
+def contourexpanded(n=slider(3,20,1,default=9,label="Number of Contours",display_value=False)):
+    g(x,y)=x^2*sin(2*y)/32
+    c=[1350/n*i for i in range(n)]
+    cm=["pink","red","orange","yellow","green","blue","indigo","violet"]
+    plot17=contour_plot(g(x,y),(x,0,200),(y,0,pi/2),contours=c,aspect_ratio=100,fill=False,labels=True,label_fmt="%1.0f",axes_labels=["$x$","$y$"],label_inline=True,cmap=cm)
+    show(plot17)
 </script></pre></div>
 </body>
 </html>

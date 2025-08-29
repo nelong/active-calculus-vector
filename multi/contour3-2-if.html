@@ -142,21 +142,23 @@ window.MathJax = {
 \definecolor{fillinmathshade}{gray}{0.9}
 \newcommand{\fillinmath}[1]{\mathchoice{\colorbox{fillinmathshade}{$\displaystyle     \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\textstyle        \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptstyle      \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptscriptstyle\phantom{\,#1\,}$}}}
 \)</span></div>
-<div style="width:600px; height:600px; display: block; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;"><pre class="ptx-sagecell sage-interact"><script type="text/x-sage">var('x,y,z,t,s')
+<div style="width:546px; height:546px; display: block; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;"><pre class="ptx-sagecell sage-interact"><script type="text/x-sage">var('x,y,z,t,s')
 g(x,y)=x^2*sin(2*y)/32
 s=0
 plot19=plot3d(g,(x,0,200),(y,0,pi/2),color="gray",plot_points=21,opacity=0.1*s)
 c=[150*i for i in range(9)]
 for h in c:
     tv=arcsin(32*h/(200^2))/2
-    plot19+=parametric_plot3d((sqrt(32*h/sin(2*t)),t,h),(t,tv,pi/2-tv),color="green",thickness=2)
-c2=[pi/2*i/8 for i in range(1,9)]
+    plot19+=parametric_plot3d((sqrt(32*h/sin(2*t)),t,h),(t,tv,pi/2-tv),color="blue",thickness=2)
+c2=[pi/2*i/8 for i in range(9)]
 for yv in c2:
     plot19+=parametric_plot3d((t,yv,g(t,yv)),(t,0,200),color="red",thickness=2)
-c3=[200*i/8 for i in range(1,9)]
+c3=[200*i/8 for i in range(9)]
 for xv in c3:
-    plot19+=parametric_plot3d((xv,t,g(xv,t)),(t,0,pi/2),color="blue",thickness=2)
-show(plot19,aspect_ratio=[1,100,0.15],viewpoint=[[-0.8451,0.2673,0.4629],68.68],camera_position=[-116.3915,-229.3542,311.024])
+    plot19+=parametric_plot3d((xv,t,g(xv,t)),(t,0,pi/2),color="green",thickness=2)
+plot19+=line([(0,0,0),(100,0,0)],thickness=2,color="black")+line([(0,0,0),(0,1,0)],thickness=2,color="black")+line([(0,0,0),(0,0,500)],thickness=2,color="black")
+plot19+=text3d("x",(100,0,-100),color="black",fontsize=30)+text3d("y",(0,1,-100),color="black",fontsize=30)+text3d("z",(0,0,600),color="black",fontsize=30)
+show(plot19,aspect_ratio=[1,100,0.15],frame=False,viewpoint=[[-0.8982,0.3075,0.314],94.94],camera_position=[-160.2715,-257.0002,95.1452])
 </script></pre></div>
 </body>
 </html>
