@@ -142,24 +142,10 @@ window.MathJax = {
 \definecolor{fillinmathshade}{gray}{0.9}
 \newcommand{\fillinmath}[1]{\mathchoice{\colorbox{fillinmathshade}{$\displaystyle     \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\textstyle        \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptstyle      \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptscriptstyle\phantom{\,#1\,}$}}}
 \)</span></div>
-<div style="width:600px; height:690px; display: block; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;"><pre class="ptx-sagecell sage-interact"><script type="text/x-sage">gz=0
-var('x,y,s,t')
-#print(gz)
+<div style="width:600px; height:690px; display: block; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;"><pre class="ptx-sagecell sage-interact"><script type="text/x-sage">var('x,y,s,t')
 @interact
-def LLSurface2(Zoom=selector(['Reset','Zoom In','Zoom Out'],buttons=True),sp=checkbox(False,label="Show Tangent Plane:")):
-  global gz
-  try:
-    gz
-  except:
-    gz=0
-  if(Zoom=='Zoom In'):
-    cz=-1;
-  if(Zoom=='Zoom Out'):
-    cz=1;
-  if(Zoom=='Reset'):
-    cz=-gz
-  gz+=cz
-  #print(gz)
+def LLSurface2(Zoom=selector(['0','1','2','3','4','5','6','7'],label='Zoom Level',buttons=True),sp=checkbox(False,label="Show Tangent Plane:")):
+  gz=-int(Zoom)
   z=4*2^(gz)
   g(x,y)=6-x^2/2-y^2
   #plot4=plot3d(6-x^2/2-y^2,(x,1-z,1+z),(y,1-z,1+z),color="lightblue",plot_points=21,opacity=0.4,mesh=True)
