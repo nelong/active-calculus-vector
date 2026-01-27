@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+<!--******************************************-->
+<!--*  Authored with PreTeXt                 *-->
+<!--*  pretextbook.org                       *-->
+<!--*  Theme: salem                          *-->
+<!--*  Palette: ice-fire                     *-->
+<!--******************************************-->
+
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="example example-like"><h4 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">10.3.7</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h4>
+<div class="para">In this example, we look at a linear path and explore how to write a parameterization that moves with unit speed. We will look at the parameterization of the line through <span class="process-math">\((1,2,3)\)</span> and <span class="process-math">\((2,0,5)\text{.}\)</span> We are using these values to make the calculations less abstract but there is nothing special about these values and the methods will work for any linear parameterization.<div class="autopermalink" data-description="Paragraph"><a href="#linearclength-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para">An easy-to-find parameterization will have the base point <span class="process-math">\((1,2,3)\)</span> and direction vector given by the difference between our points, <span class="process-math">\(\langle 2-1, 0-2, 5-3\rangle = \langle 1,-2,2 \rangle\text{.}\)</span> This leads to an initial parameterization of the line as <span class="process-math">\(\vr(t)=\langle 1,2,3\rangle + t \langle 1,-2,2 \rangle\text{.}\)</span> Notice that with this parameterization, restricting to <span class="process-math">\(0\leq t\leq 1\)</span> gives a domain for <span class="process-math">\(\vr(t)\)</span> for the line segment from <span class="process-math">\((1,2,3)\)</span> when <span class="process-math">\(t=0\)</span> to <span class="process-math">\((2,0,5)\)</span> when <span class="process-math">\(t=1\text{.}\)</span> The arc length of this segment can be computed using the distance formula, so it is <span class="process-math">\(3\text{.}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#linearclength-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical">
+<div class="para">We want to convert this to a parameterization with unit speed. To think of this another way, we are aiming to have the parameter value when we reach the point <span class="process-math">\((2,0,5)\)</span> be equal to the distance from the base point <span class="process-math">\((1,2,3)\text{.}\)</span> This will mean we seek a parameterization <span class="process-math">\(\vr_1(s)\)</span> where the domain <span class="process-math">\(0\leq s\leq 3\)</span> corresponds to the line segment from <span class="process-math">\((1,2,3)\)</span> to <span class="process-math">\((2,0,5)\text{.}\)</span> The speed of this parameterization is</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\vecmag{\vr\, '(t)}=\vecmag{\frac{d\vr}{dt}}=\vecmag{\langle 1,-2,2\rangle}=\sqrt{9}=3\text{.}
+\end{equation*}
+</div>
+<div class="para">This means that we need to adjust our parameterization to travel <span class="process-math">\(3\)</span> times slower, which can be accomplished by replacing <span class="process-math">\(t\)</span> in our parameterization with <span class="process-math">\(s=t/3\text{.}\)</span> In other words, we adjusted the parameter used to make sure the speed with respect to the new parameter will be one. This adjustment was easy to do because the amount we needed to change the parameter did not change at different times.</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#linearclength-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para logical">
+<div class="para">Our proposed unit speed parameterization is</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\vr_1(s)= \vr\left(\frac{t}{3}\right) \langle 1,2,3\rangle + \frac{t}{3} \langle 1,-2,2 \rangle\text{.}
+\end{equation*}
+</div>
+<div class="para">Computing the speed here gives</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\vecmag{\vr_1(s)}=\vecmag{\frac{1}{3}\langle 1,-2,2\rangle}=\frac{\sqrt{9}}{3}=1\text{.}
+\end{equation*}
+</div>
+<div class="para">Algebraically, we can describe this change by thinking of <span class="process-math">\(\vr(t)\)</span> as the “old” parameterization with parameter <span class="process-math">\(t\text{,}\)</span> and we aim to replace <span class="process-math">\(t\)</span> with a function <span class="process-math">\(s(t)\)</span> so that <span class="process-math">\(\vecmag{\vr_1\, '(s(t))}=1\)</span> for all <span class="process-math">\(t\text{.}\)</span> For this linear path, the choice of <span class="process-math">\(s(t) = t/3\)</span> means that applying the chain rule to <span class="process-math">\(\vecmag{\vr_1\, '(s)}\)</span> gives</div>
+<div class="displaymath process-math">
+\begin{equation}
+\vecmag{\vr_1\, '(s(t))}= \vecmag{\frac{d\vr}{ds}} \left\vert{\frac{ds}{dt}}\right\vert=3 \frac{1}{3} =1\text{.}\tag{10.3.2}
+\end{equation}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#linearclength-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="Example 10.3.7"><a href="#linearclength" title="Copy heading and permalink for Example 10.3.7" aria-label="Copy heading and permalink for Example 10.3.7">🔗</a></div></article><span class="incontext"><a class="internal" href="S-VVF-ArcLength.html#linearclength">in-context</a></span>
+</body>
+</html>

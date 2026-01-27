@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+<!--******************************************-->
+<!--*  Authored with PreTeXt                 *-->
+<!--*  pretextbook.org                       *-->
+<!--*  Theme: salem                          *-->
+<!--*  Palette: ice-fire                     *-->
+<!--******************************************-->
+
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="example example-like"><h4 class="heading">
+<span class="type">Example</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">13.5.6</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h4>
+<div class="introduction">
+<div class="para logical">
+<div class="para">Before getting into the details of computing line integrals of scalar functions, we will first make arguments about when the line integral of a scalar function is positive, negative, or zero. For all of this example, we will use the curve <span class="process-math">\(C\)</span> given by <span class="process-math">\(y=x^2\)</span> for <span class="process-math">\(-1\leq x \leq 2\text{.}\)</span> We also will define the following three scalar-valued functions on <span class="process-math">\(\R^2\text{.}\)</span>
+</div>
+<ul class="disc" id="sli_pm-1-1-5">
+<li>
+<div class="para"><span class="process-math">\(\displaystyle f(x,y)=x\)</span></div>
+<div class="autopermalink" data-description="Item"><a href="#sli_pm-1-1-5-1" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+<li>
+<div class="para"><span class="process-math">\(\displaystyle g(x,y)=-y\)</span></div>
+<div class="autopermalink" data-description="Item"><a href="#sli_pm-1-1-5-2" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+<li>
+<div class="para"><span class="process-math">\(\displaystyle h(x,y)=y-x^2\)</span></div>
+<div class="autopermalink" data-description="Item"><a href="#sli_pm-1-1-5-3" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
+</li>
+</ul>
+<div class="autopermalink" data-description="Paragraph"><a href="#sli_pm-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<figure class="figure figure-like"><div class="image-box" style="width: 75%; margin-left: 12.5%; margin-right: 12.5%;">
+<img src="generated/sageplot/fig_scalarlineint_pmexample1.svg" role="img" class="contained" alt="described in detail following the image" aria-describedby="fig_scalarlineint_pmexample1-description"><details class="image-description" aria-live="polite"><summary title="details"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span></summary><div id="fig_scalarlineint_pmexample1-description"><div class="para" id="fig_scalarlineint_pmexample1-1-1">The curve <span class="process-math">\(C\)</span> used in the line integral for <a href="S_Vector_ScalarLineIntegral.html#sli_pm" class="xref" data-knowl="./knowl/xref/sli_pm.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 13.5.6">Example 13.5.6</a><div class="autopermalink" data-description="Paragraph"><a href="#fig_scalarlineint_pmexample1-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></div></details>
+</div>
+<figcaption><span class="type">Figure</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">13.5.7<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>The curve <span class="process-math">\(C\)</span> used in the line integral for <a href="S_Vector_ScalarLineIntegral.html#sli_pm" class="xref" data-knowl="./knowl/xref/sli_pm.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 13.5.6">Example 13.5.6</a><div class="autopermalink" data-description="Figure 13.5.7"><a href="#fig_sli_pm1" title="Copy heading and permalink for Figure 13.5.7" aria-label="Copy heading and permalink for Figure 13.5.7">🔗</a></div></figcaption></figure>
+</div>
+<article class="task exercise-like"><h5 class="heading"><span class="codenumber">(a)</span></h5>
+<div class="para logical">
+<div class="para">For our first case, we will consider the line integral</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/fig_sli_pm3.html">
+\begin{equation*}
+\int_C f \, ds \text{.}
+\end{equation*}
+</div>
+<div class="para">Remember that the line integral of <span class="process-math">\(f\)</span> over <span class="process-math">\(C\)</span> will measure the accumulation of the output of <span class="process-math">\(f\)</span> over the points on the curve <span class="process-math">\(C\text{.}\)</span> <a href="S_Vector_ScalarLineIntegral.html#fig_sli_pm3" class="xref" data-knowl="./knowl/xref/fig_sli_pm3.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 13.5.8">Figure 13.5.8</a> shows that the blue branch of the curve <span class="process-math">\(C\)</span> (for <span class="process-math">\(0\leq x\leq 2\)</span>) will yield positive output values for <span class="process-math">\(f\text{,}\)</span> while the magenta part, which has <span class="process-math">\(-1\leq x\leq 0\text{,}\)</span> will produce negative output values for <span class="process-math">\(f\text{.}\)</span> Intuitively, there is more of the curve with positive <span class="process-math">\(f\)</span> outputs than negative <span class="process-math">\(f\)</span> outputs, so we would expect <span class="process-math">\(\int_C f \, ds\)</span> to be positive. However, the magnitude of the <span class="process-math">\(f\)</span>-values produced must also be accounted for.</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#task1_sli_pm-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<figure class="figure figure-like"><div class="image-box" style="width: 75%; margin-left: 12.5%; margin-right: 12.5%;">
+<img src="generated/sageplot/fig_scalarlineint_pmexample3.svg" role="img" class="contained" alt="described in detail following the image" aria-describedby="fig_scalarlineint_pmexample3-description"><details class="image-description" aria-live="polite"><summary title="details"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span></summary><div id="fig_scalarlineint_pmexample3-description"><div class="para" id="fig_scalarlineint_pmexample3-1-1">The curve <span class="process-math">\(C\)</span> split into regions with positive (blue) and negative (magenta) outputs of <span class="process-math">\(f\)</span><div class="autopermalink" data-description="Paragraph"><a href="#fig_scalarlineint_pmexample3-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></div></details>
+</div>
+<figcaption><span class="type">Figure</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">13.5.8<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>The curve <span class="process-math">\(C\)</span> split into regions with positive (blue) and negative (magenta) outputs of <span class="process-math">\(f\)</span><div class="autopermalink" data-description="Figure 13.5.8"><a href="#fig_sli_pm3" title="Copy heading and permalink for Figure 13.5.8" aria-label="Copy heading and permalink for Figure 13.5.8">🔗</a></div></figcaption></figure><div class="para logical">
+<div class="para">If we break our curve <span class="process-math">\(C\)</span> into three pieces by dividing at <span class="process-math">\(x=0\)</span> and <span class="process-math">\(x=1\)</span> as shown in <a href="S_Vector_ScalarLineIntegral.html#fig_sli_pm2" class="xref" data-knowl="./knowl/xref/fig_sli_pm2.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 13.5.9">Figure 13.5.9</a>, we can make a rigourous argument about why the result of <span class="process-math">\(\int_C f \, ds\)</span> will be positive. We will call the magenta, green, and blue sections of <a href="S_Vector_ScalarLineIntegral.html#fig_sli_pm2" class="xref" data-knowl="./knowl/xref/fig_sli_pm2.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 13.5.9">Figure 13.5.9</a> <span class="process-math">\(C_1\text{,}\)</span> <span class="process-math">\(C_2\text{,}\)</span> and <span class="process-math">\(C_3\text{,}\)</span> respectively. Using the notation of <a href="S_Vector_IdeaLineIntegral.html#asm_Vector_IdeaLineIntegral_Properties" class="xref" data-knowl="./knowl/xref/asm_Vector_IdeaLineIntegral_Properties.html" data-reveal-label="Reveal" data-close-label="Close" title="Assemblage: Properties of Line Integrals">Properties of Line Integrals</a>, we have <span class="process-math">\(C = C_1+C_2+C_3\text{.}\)</span> No matter how we break up the curve <span class="process-math">\(C_1\)</span> to set up a Riemann sum used in <a href="S_Vector_ScalarLineIntegral.html#ScalarLineIntegral_def" class="xref" data-knowl="./knowl/xref/ScalarLineIntegral_def.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 13.5.5: The Line Integral of a Scalar Function">Definition 13.5.5</a> we can do the symmetric version on curve <span class="process-math">\(C_2\text{.}\)</span> The only difference between the Riemann sums and thier associated line integrals for <span class="process-math">\(C_1\)</span> and <span class="process-math">\(C_2\)</span> will be the sign on the output of <span class="process-math">\(f\text{.}\)</span> This means that</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/fig_sli_pm2.html ./knowl/xref/fig_sli_pm2.html ./knowl/xref/asm_Vector_IdeaLineIntegral_Properties.html ./knowl/xref/ScalarLineIntegral_def.html">
+\begin{equation*}
+\int_{C_1} f \, ds = -\int_{C_2} f \, ds
+\end{equation*}
+</div>
+<div class="para">and thus</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/fig_sli_pm2.html ./knowl/xref/fig_sli_pm2.html ./knowl/xref/asm_Vector_IdeaLineIntegral_Properties.html ./knowl/xref/ScalarLineIntegral_def.html">
+\begin{align*}
+\int_C f \, ds \amp= \int_{C_1} f \, ds + \int_{C_2} f \, ds +\int_{C_3} f \, ds \\
+\amp =-\int_{C_2} f \, ds + \int_{C_2} f \, ds +\int_{C_3} f \, ds\\
+\amp = \int_{C_3} f \, ds\text{.}
+\end{align*}
+</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#task1_sli_pm-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<figure class="figure figure-like"><div class="image-box" style="width: 75%; margin-left: 12.5%; margin-right: 12.5%;">
+<img src="generated/sageplot/fig_scalarlineint_pmexample2.svg" role="img" class="contained" alt="described in detail following the image" aria-describedby="fig_scalarlineint_pmexample2-description"><details class="image-description" aria-live="polite"><summary title="details"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span></summary><div id="fig_scalarlineint_pmexample2-description"><div class="para" id="fig_scalarlineint_pmexample2-1-1">The curve <span class="process-math">\(C\)</span> split into three regions with positive (blue and green) and negative (magenta) outputs of <span class="process-math">\(f\)</span><div class="autopermalink" data-description="Paragraph"><a href="#fig_scalarlineint_pmexample2-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></div></details>
+</div>
+<figcaption><span class="type">Figure</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">13.5.9<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>The curve <span class="process-math">\(C\)</span> split into three regions with positive (blue and green) and negative (magenta) outputs of <span class="process-math">\(f\)</span><div class="autopermalink" data-description="Figure 13.5.9"><a href="#fig_sli_pm2" title="Copy heading and permalink for Figure 13.5.9" aria-label="Copy heading and permalink for Figure 13.5.9">🔗</a></div></figcaption></figure><div class="para">The argument for why <span class="process-math">\(\int_{C_1} f \, ds = -\int_{C_2} f \, ds\)</span> requires that both the points on the curves <span class="process-math">\(C_1\)</span> and <span class="process-math">\(C_2\)</span> and the output of <span class="process-math">\(f\)</span> on those parts is symmetric. In <a href="S_Vector_ScalarLineIntegral.html#act_Vector_ScalarLineIntegral_caution" class="xref" data-knowl="./knowl/xref/act_Vector_ScalarLineIntegral_caution.html" data-reveal-label="Reveal" data-close-label="Close" title="Activity 13.5.3">Activity 13.5.3</a> you will see examples where having only one part of this symmetry is not sufficent to make this type of argument.<div class="autopermalink" data-description="Paragraph"><a href="#task1_sli_pm-5" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="para">We have shown that <span class="process-math">\(\int_C f \, ds =  \int_{C_3} f \, ds \)</span> and want to demonstrate why <span class="process-math">\(\int_{C_3} f \, ds \)</span> will be positive. Because the output of <span class="process-math">\(f\)</span> is positive for all of the points on the curve <span class="process-math">\(C_3\text{,}\)</span> all elements of the associated Riemann sum in <a href="S_Vector_ScalarLineIntegral.html#ScalarLineIntegral_def" class="xref" data-knowl="./knowl/xref/ScalarLineIntegral_def.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 13.5.5: The Line Integral of a Scalar Function">Definition 13.5.5</a> will be positive (the length of the displacement vectors and corresponding arc lengths are always positive). Thus <span class="process-math">\(\int_C f \, ds =  \int_{C_3} f \, ds \gt 0\text{.}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#task1_sli_pm-6" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="part 13.5.6.a"><a href="#task1_sli_pm" title="Copy heading and permalink for part 13.5.6.a" aria-label="Copy heading and permalink for part 13.5.6.a">🔗</a></div></article><article class="task exercise-like"><h5 class="heading"><span class="codenumber">(b)</span></h5>
+<div class="para">We now want to consider whether <span class="process-math">\(\int_C g \, ds \)</span> will be positive, negative, or zero. This is a simpler argument than in the previous case because the output of <span class="process-math">\(g\)</span> will be negative for all points in <span class="process-math">\(C\)</span> (execept for the origin). Each term in the Riemann sum used to define the scalar line integral will be the product of a negative value (<span class="process-math">\(g(\vr_i^{*})\)</span>) and a positive value (<span class="process-math">\(|{\vr_{i}-\vr_{i-1}}|\)</span>). Therefore the Riemann sums will be negative and the limit as you take more terms in this sum will also be negative. Thus, <span class="process-math">\(\int_C g \, ds \lt 0\text{.}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#sli_pm-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="part 13.5.6.b"><a href="#sli_pm-3" title="Copy heading and permalink for part 13.5.6.b" aria-label="Copy heading and permalink for part 13.5.6.b">🔗</a></div></article><article class="task exercise-like"><h5 class="heading"><span class="codenumber">(c)</span></h5>
+<div class="para">Finally, we want to make an argument whether <span class="process-math">\(\int_C h \, ds\)</span> will be positive, negative, or zero. While we cannot lean on the intuitive nature of the where coordinates are positive or negative, we can make a very precise argument about the output of <span class="process-math">\(h\)</span> for the points on <span class="process-math">\(C\text{.}\)</span> While <span class="process-math">\(g(x,y)=y-x^2\)</span> will have a range that includes all real numbers, the output of <span class="process-math">\(g\)</span> is <em class="alert">always</em> zero for the points on our curve <span class="process-math">\(C\)</span> because for points on <span class="process-math">\(C\text{,}\)</span> the <span class="process-math">\(y\)</span>-coordinate is equal to the <span class="process-math">\(x\)</span>-coordinate squared. This means that no matter how we break up our segments for the Riemann sum, the <span class="process-math">\(h(\vr_i^{*})\)</span> terms will always be zero. No matter how many terms are used the Reimann sum will be zero, and the limit of the Riemann sums will also be zero. Thus, <span class="process-math">\(\int_C h \, ds=0\text{.}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#sli_pm-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="autopermalink" data-description="part 13.5.6.c"><a href="#sli_pm-4" title="Copy heading and permalink for part 13.5.6.c" aria-label="Copy heading and permalink for part 13.5.6.c">🔗</a></div></article><div class="autopermalink" data-description="Example 13.5.6"><a href="#sli_pm" title="Copy heading and permalink for Example 13.5.6" aria-label="Copy heading and permalink for Example 13.5.6">🔗</a></div></article><span class="incontext"><a class="internal" href="S_Vector_ScalarLineIntegral.html#sli_pm">in-context</a></span>
+</body>
+</html>

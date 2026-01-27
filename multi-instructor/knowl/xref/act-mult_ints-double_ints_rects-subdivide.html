@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+<!--******************************************-->
+<!--*  Authored with PreTeXt                 *-->
+<!--*  pretextbook.org                       *-->
+<!--*  Theme: salem                          *-->
+<!--*  Palette: ice-fire                     *-->
+<!--******************************************-->
+
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="activity project-like"><h5 class="heading">
+<span class="type">Activity</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">12.1.2</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h5>
+<div class="introduction"><div class="para">In this activity, we will go through the first two steps of the classic calculus approach to compute the definite integral of <span class="process-math">\(f(x,y) = 100 - x^2-y^2\)</span> on the rectangular domain <span class="process-math">\(R = [0,8] \times [2,6]\text{.}\)</span> Remember that we are trying to measure the volume below the graph of <span class="process-math">\(f\)</span> over the region <span class="process-math">\(R\text{,}\)</span> so we will start with estimating this volume.<div class="autopermalink" data-description="Paragraph"><a href="#act-mult_ints-double_ints_rects-subdivide-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></div>
+<article class="task exercise-like"><h6 class="heading"><span class="codenumber">(a)</span></h6>
+<div class="para">To understand the numerical calculations involved in the classic calculus approach for a double integral, it is most important to understand the region of integration. Thus, we will not look a graph of <span class="process-math">\(z=f(x,y)\text{.}\)</span> Instead, we will stay focused in the <span class="process-math">\(xy\)</span>-plane.  On the axes below, outline the rectangular region <span class="process-math">\(R\)</span> that corresponds to the region of integration.<div class="autopermalink" data-description="Paragraph"><a href="#blank1010-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>  <div class="image-box" style="width: 60%; margin-left: 20%; margin-right: 20%;">
+<img src="generated/sageplot/img-blank1010.svg" role="img" class="contained" alt="described in detail following the image" aria-describedby="blank1010-1-2-description"><details class="image-description" aria-live="polite"><summary title="details"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span></summary><div id="blank1010-1-2-description"><div class="para" id="blank1010-1-2-2-1">ADD ALT TEXT TO THIS IMAGE<div class="autopermalink" data-description="Paragraph"><a href="#blank1010-1-2-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div></div></details>
+</div> <div class="workspace" data-space="1.5in"></div>
+<div class="autopermalink" data-description="part 12.1.2.a"><a href="#blank1010" title="Copy heading and permalink for part 12.1.2.a" aria-label="Copy heading and permalink for part 12.1.2.a">🔗</a></div></article><article class="task exercise-like"><h6 class="heading"><span class="codenumber">(b)</span></h6>
+<div class="para">Because all of the regions and subregions we are considering in this section are rectangles, we can break up the <span class="process-math">\(x\)</span> and <span class="process-math">\(y\)</span> coordinates into pieces separately. For this activity, break the interval of <span class="process-math">\(x\)</span>-coordinates into <em class="emphasis">four</em> equally-sized subintervals and break the interval of <span class="process-math">\(y\)</span>-coordinates into <em class="emphasis">three</em> equally-sized subintervals.<div class="autopermalink" data-description="Paragraph"><a href="#act-mult_ints-double_ints_rects-subdivide-3-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="para">What is the length of each subinterval in the <span class="process-math">\(x\)</span>-direction? How about in the <span class="process-math">\(y\)</span>-direction?<div class="autopermalink" data-description="Paragraph"><a href="#act-mult_ints-double_ints_rects-subdivide-3-1-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="workspace" data-space="1.5in"></div>
+<div class="autopermalink" data-description="part 12.1.2.b"><a href="#act-mult_ints-double_ints_rects-subdivide-3" title="Copy heading and permalink for part 12.1.2.b" aria-label="Copy heading and permalink for part 12.1.2.b">🔗</a></div></article><article class="task exercise-like"><h6 class="heading"><span class="codenumber">(c)</span></h6>
+<div class="para">Let <span class="process-math">\(S_i\)</span> be the <span class="process-math">\(i\)</span>-th subinterval for <span class="process-math">\(x\text{.}\)</span> We want to state the endpoints of each of the <span class="process-math">\(S_i\text{.}\)</span> The first subinterval, <span class="process-math">\(S_1\text{,}\)</span> will go from <span class="process-math">\(x_0\)</span> to <span class="process-math">\(x_1\text{,}\)</span> the second subinterval, <span class="process-math">\(S_2\text{,}\)</span> will go from <span class="process-math">\(x_1\)</span> to <span class="process-math">\(x_2\text{,}\)</span> the third subinterval, <span class="process-math">\(S_3\text{,}\)</span> will go from <span class="process-math">\(x_2\)</span> to <span class="process-math">\(x_3\text{,}\)</span> and the fourth subinterval, <span class="process-math">\(S_4\text{,}\)</span> will go from <span class="process-math">\(x_3\)</span> to <span class="process-math">\(x_4\text{.}\)</span><div class="autopermalink" data-description="Paragraph"><a href="#act-mult_ints-double_ints_rects-subdivide-4-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="para">Give the values for <span class="process-math">\(x_0\text{,}\)</span> <span class="process-math">\(x_1\text{,}\)</span> <span class="process-math">\(x_2\text{,}\)</span> <span class="process-math">\(x_3\text{,}\)</span> and <span class="process-math">\(x_4\)</span> and add these as tick marks on the <span class="process-math">\(x\)</span>-axis of the graph in <a href="sec-mult_ints-double_ints_rects.html#blank1010" class="xref" data-knowl="./knowl/xref/blank1010.html" data-reveal-label="Reveal" data-close-label="Close" title="part 12.1.2.a">part a</a> to make sure your subintervals are equally sized.<div class="autopermalink" data-description="Paragraph"><a href="#act-mult_ints-double_ints_rects-subdivide-4-1-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="workspace" data-space="1.5in"></div>
+<div class="autopermalink" data-description="part 12.1.2.c"><a href="#act-mult_ints-double_ints_rects-subdivide-4" title="Copy heading and permalink for part 12.1.2.c" aria-label="Copy heading and permalink for part 12.1.2.c">🔗</a></div></article><article class="task exercise-like"><h6 class="heading"><span class="codenumber">(d)</span></h6>
+<div class="para">Let <span class="process-math">\(T_i\)</span> be the <span class="process-math">\(i\)</span>-th subinterval for <span class="process-math">\(y\text{.}\)</span> Give the values for <span class="process-math">\(y_0\text{,}\)</span> <span class="process-math">\(y_1\text{,}\)</span> <span class="process-math">\(y_2\text{,}\)</span> and <span class="process-math">\(y_3\)</span> and add these as tick marks on the <span class="process-math">\(y\)</span>-axis of the graph in <a href="sec-mult_ints-double_ints_rects.html#blank1010" class="xref" data-knowl="./knowl/xref/blank1010.html" data-reveal-label="Reveal" data-close-label="Close" title="part 12.1.2.a">part a</a> to make sure your subintervals are equally sized.<div class="autopermalink" data-description="Paragraph"><a href="#act-mult_ints-double_ints_rects-subdivide-5-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="workspace" data-space="1.5in"></div>
+<div class="autopermalink" data-description="part 12.1.2.d"><a href="#act-mult_ints-double_ints_rects-subdivide-5" title="Copy heading and permalink for part 12.1.2.d" aria-label="Copy heading and permalink for part 12.1.2.d">🔗</a></div></article><article class="task exercise-like"><h6 class="heading"><span class="codenumber">(e)</span></h6>
+<div class="para logical">
+<div class="para">We will use the subintervals in the <span class="process-math">\(x\)</span>- and <span class="process-math">\(y\)</span>-coordinates to specify smaller rectangles into which <span class="process-math">\(R\)</span> is divided to compute an approximation. Let <span class="process-math">\(R_{i j}\)</span> be the rectangle corresponding to <span class="process-math">\(S_i \times T_j\text{.}\)</span> </div>
+<ol class="lower-roman ol-marker-5" id="act-mult_ints-double_ints_rects-subdivide-6-1-1-6">
+<li>
+<div class="para">How many smaller rectangles are there in this partition?</div>
+<div class="autopermalink" data-description="Item i"><a href="#act-mult_ints-double_ints_rects-subdivide-6-1-1-6-1" title="Copy heading and permalink for Item i" aria-label="Copy heading and permalink for Item i">🔗</a></div>
+</li>
+<li>
+<div class="para">Outline each of the smaller rectangles on the graph in <a href="sec-mult_ints-double_ints_rects.html#blank1010" class="xref" data-knowl="./knowl/xref/blank1010.html" data-reveal-label="Reveal" data-close-label="Close" title="part 12.1.2.a">part a</a> and label each rectangle as either <span class="process-math">\(R_{1 1}, R_{1 2} , ...\text{.}\)</span>
+</div>
+<div class="autopermalink" data-description="Item ii"><a href="#act-mult_ints-double_ints_rects-subdivide-6-1-1-6-2" title="Copy heading and permalink for Item ii" aria-label="Copy heading and permalink for Item ii">🔗</a></div>
+</li>
+<li>
+<div class="para">Since each smaller rectangle <span class="process-math">\(R_{i j}\)</span> has the same area, let <span class="process-math">\(\Delta A\)</span> denote the area of each of these smaller rectangles. What is <span class="process-math">\(\Delta A\text{?}\)</span>
+</div>
+<div class="autopermalink" data-description="Item iii"><a href="#act-mult_ints-double_ints_rects-subdivide-6-1-1-6-3" title="Copy heading and permalink for Item iii" aria-label="Copy heading and permalink for Item iii">🔗</a></div>
+</li>
+</ol>
+<div class="autopermalink" data-description="Paragraph"><a href="#act-mult_ints-double_ints_rects-subdivide-6-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="workspace" data-space="1.5in"></div>
+<div class="autopermalink" data-description="part 12.1.2.e"><a href="#act-mult_ints-double_ints_rects-subdivide-6" title="Copy heading and permalink for part 12.1.2.e" aria-label="Copy heading and permalink for part 12.1.2.e">🔗</a></div></article><article class="task exercise-like"><h6 class="heading"><span class="codenumber">(f)</span></h6>
+<div class="para">To find the volume of the rectangular prisms over each <span class="process-math">\(R_{i j}\text{,}\)</span> we must pick a point in each subrectangle at which to evaluate <span class="process-math">\(f\text{,}\)</span> which will be the height of the rectangular prism. For this activity, we will use the upper-right corner of each subrectangle as the designated point.<div class="autopermalink" data-description="Paragraph"><a href="#act-mult_ints-double_ints_rects-subdivide-7-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div> <div class="para">State the point at the upper right of each smaller rectangle and evaluate <span class="process-math">\(f\)</span> at each of these points.<div class="autopermalink" data-description="Paragraph"><a href="#act-mult_ints-double_ints_rects-subdivide-7-1-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="workspace" data-space="1.5in"></div>
+<div class="autopermalink" data-description="part 12.1.2.f"><a href="#act-mult_ints-double_ints_rects-subdivide-7" title="Copy heading and permalink for part 12.1.2.f" aria-label="Copy heading and permalink for part 12.1.2.f">🔗</a></div></article><article class="task exercise-like"><h6 class="heading"><span class="codenumber">(g)</span></h6>
+<div class="para logical">
+<div class="para">Write a sentence about why the volume of each rectangular prism used for this approximation is</div>
+<div class="displaymath process-math">
+\begin{equation*}
+f(x_i,y_j) \Delta A\text{.}
+\end{equation*}
+</div>
+<div class="para">Write a couple sentences about how you would find an approximation of the volume under the surface <span class="process-math">\(z=f(x,y)\)</span> over the region <span class="process-math">\(R\text{.}\)</span> (Do not do  calculation, but rather explain what calculation is being done.)</div>
+<div class="autopermalink" data-description="Paragraph"><a href="#act-mult_ints-double_ints_rects-subdivide-8-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="workspace" data-space="1.5in"></div>
+<div class="autopermalink" data-description="part 12.1.2.g"><a href="#act-mult_ints-double_ints_rects-subdivide-8" title="Copy heading and permalink for part 12.1.2.g" aria-label="Copy heading and permalink for part 12.1.2.g">🔗</a></div></article><article class="task exercise-like"><h6 class="heading"><span class="codenumber">(h)</span></h6>
+<div class="para">We chose the upper-right point of each subrectangle <span class="process-math">\(R_{i j}\)</span> to find the height of each rectangular prism used in the approximation. Write a sentence or two about whether you think the upper right point provides an overestimate, an underestimate, or approximately the average value for <span class="process-math">\(f\)</span> on each <span class="process-math">\(R_{i j}\text{.}\)</span> Explain how this suggests that your estimate for the volume under the surface <span class="process-math">\(z=f(x,y)\)</span> over the region <span class="process-math">\(R\)</span> is either an overestimate, an underestimate, or approximately the correct value.<div class="autopermalink" data-description="Paragraph"><a href="#act-mult_ints-double_ints_rects-subdivide-9-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+</div>
+<div class="workspace" data-space="1.5in"></div>
+<div class="autopermalink" data-description="part 12.1.2.h"><a href="#act-mult_ints-double_ints_rects-subdivide-9" title="Copy heading and permalink for part 12.1.2.h" aria-label="Copy heading and permalink for part 12.1.2.h">🔗</a></div></article><div class="autopermalink" data-description="Activity 12.1.2"><a href="#act-mult_ints-double_ints_rects-subdivide" title="Copy heading and permalink for Activity 12.1.2" aria-label="Copy heading and permalink for Activity 12.1.2">🔗</a></div></article><span class="incontext"><a class="internal" href="sec-mult_ints-double_ints_rects.html#act-mult_ints-double_ints_rects-subdivide">in-context</a></span>
+</body>
+</html>
