@@ -1575,11 +1575,11 @@ s\)</span> and <span class="process-math">\(\vr_t(s_{i-1},t_{j-1}) \Delta t\text
 </div></div></details>
 </div>
 <figcaption><span class="type">Figure</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">13.9.6<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>Approximation surface area with a parallelogram.<div class="autopermalink" data-description="Figure 13.9.6"><a href="#F_11_6_approx" title="Copy heading and permalink for Figure 13.9.6" aria-label="Copy heading and permalink for Figure 13.9.6">🔗</a></div></figcaption></figure><div class="para logical" id="SS-11-6-2-Surface-Area-Parametrically-Defined-Surfaces-7">
-<div class="para">Say that the small parallelogram has area <span class="process-math">\(S_{ij}\text{.}\)</span> If we can find its area, then all that remains is to sum the areas of all of the generated parallelograms and take a limit. Recall from our earlier work in the course that given two vectors <span class="process-math">\(\vu\)</span> and <span class="process-math">\(\vv\text{,}\)</span> the area of the parallelogram spanned by <span class="process-math">\(\vu\)</span> and <span class="process-math">\(\vv\)</span> is given by the magnitude of their cross product, <span class="process-math">\(| \vu \times \vv|\text{.}\)</span> In the present context, it follows that the area, <span class="process-math">\(S_{ij}\text{,}\)</span> of the parallelogram determined by the vectors <span class="process-math">\(\vr_s(s_{i-1},t_{j-1}) \Delta s\)</span> and <span class="process-math">\(\vr_t(s_{i-1},t_{j-1}) \Delta t\)</span> is</div>
+<div class="para">Say that the small parallelogram has area <span class="process-math">\(S_{ij}\text{.}\)</span> If we can find its area, then all that remains is to sum the areas of all of the generated parallelograms and take a limit. Recall from our earlier work in the course that given two vectors <span class="process-math">\(\vu\)</span> and <span class="process-math">\(\vv\text{,}\)</span> the area of the parallelogram spanned by <span class="process-math">\(\vu\)</span> and <span class="process-math">\(\vv\)</span> is given by the magnitude of their cross product, <span class="process-math">\(\vecmag{ \vu \times \vv}\text{.}\)</span> In the present context, it follows that the area, <span class="process-math">\(S_{ij}\text{,}\)</span> of the parallelogram determined by the vectors <span class="process-math">\(\vr_s(s_{i-1},t_{j-1}) \Delta s\)</span> and <span class="process-math">\(\vr_t(s_{i-1},t_{j-1}) \Delta t\)</span> is</div>
 <div class="displaymath process-math" id="SS-11-6-2-Surface-Area-Parametrically-Defined-Surfaces-7-10">
 \begin{align}
-S_{ij} \amp = |(\vr_s(s_{i-1},t_{j-1}) \Delta s) \times (\vr_t(s_{i-1},t_{j-1}) \Delta t)| \notag\\
-\amp = |\vr_s(s_{i-1},t_{j-1}) \times \vr_t(s_{i-1},t_{j-1})| \Delta s \Delta t,\tag{13.9.1}
+S_{ij} \amp = \vecmag{(\vr_s(s_{i-1},t_{j-1}) \Delta s) \times (\vr_t(s_{i-1},t_{j-1}) \Delta t)}\notag\\
+\amp = \vecmag{\vr_s(s_{i-1},t_{j-1}) \times \vr_t(s_{i-1},t_{j-1})} \Delta s \Delta t,\tag{13.9.1}
 \end{align}
 </div>
 <div class="para">where the latter equality holds from standard properties of the cross product and length.</div>
@@ -1589,7 +1589,7 @@ S_{ij} \amp = |(\vr_s(s_{i-1},t_{j-1}) \Delta s) \times (\vr_t(s_{i-1},t_{j-1}) 
 <div class="para">We sum the surface area approximations from Equation <a href="S-11-6-Parametric-Surfaces-Surface-Area.html#SS-11-6-2-Surface-Area-Parametrically-Defined-Surfaces-7-10" class="xref" data-knowl="./knowl/xref/eq_11_6_parallelogram_area.html" data-reveal-label="Reveal" data-close-label="Close" title="Equation 13.9.1">(13.9.1)</a> over all sub-rectangles to obtain an estimate for the total surface area, <span class="process-math">\(S\text{,}\)</span> given by</div>
 <div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/eq_11_6_parallelogram_area.html" id="SS-11-6-2-Surface-Area-Parametrically-Defined-Surfaces-8-4">
 \begin{equation*}
-S \approx \sum_{i=1}^m \sum_{j=1}^n |\vr_s(s_{i-1},t_{j-1}) \times \vr_t(s_{i-1},t_{j-1})| \Delta s \Delta t.
+S \approx \sum_{i=1}^m \sum_{j=1}^n \vecmag{\vr_s(s_{i-1},t_{j-1}) \times \vr_t(s_{i-1},t_{j-1})} \Delta s \Delta t.
 \end{equation*}
 </div>
 <div class="autopermalink" data-description="Paragraph"><a href="#SS-11-6-2-Surface-Area-Parametrically-Defined-Surfaces-8" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
@@ -1601,7 +1601,7 @@ S \approx \sum_{i=1}^m \sum_{j=1}^n |\vr_s(s_{i-1},t_{j-1}) \times \vr_t(s_{i-1}
 <div class="para">Let <span class="process-math">\(\vr(s,t) = \langle x(s,t), y(s,t), z(s,t) \rangle\)</span> be a parameterization of a smooth surface over a domain <span class="process-math">\(D\text{.}\)</span> The <em class="emphasis">area of the surface</em> defined by <span class="process-math">\(\vr\)</span> on <span class="process-math">\(D\)</span> is given by</div>
 <div class="displaymath process-math" id="E_surface_area">
 \begin{equation}
-S = \iint_D |\vr_s \times \vr_t | \ dA.\tag{13.9.2}
+S = \iint_D \vecmag{\vr_s \times \vr_t } \ dA.\tag{13.9.2}
 \end{equation}
 </div>
 <div class="autopermalink" data-description="Paragraph"><a href="#Surface-area-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
@@ -1698,7 +1698,7 @@ S = \iint_D \sqrt{\left(f_x(x,y)\right)^2 + \left(f_y(x,y)\right)^2 + 1} \ dA.
 <div class="para">If <span class="process-math">\(\vr(s,t) = \langle x(s,t), y(s,t), z(s,t) \rangle\)</span> describes a smooth surface in 3-space on a domain <span class="process-math">\(D\text{,}\)</span> then the area, <span class="process-math">\(S\text{,}\)</span> of that surface is given by</div>
 <div class="displaymath process-math" id="S-11-6-Parametric-Surfaces-Surface-Area-6-2-2-1-4">
 \begin{equation*}
-S = \iint_D |\vr_s \times \vr_t| \ dA.
+S = \iint_D \vecmag{\vr_s \times \vr_t} \ dA.
 \end{equation*}
 </div>
 <div class="autopermalink" data-description="Paragraph"><a href="#S-11-6-Parametric-Surfaces-Surface-Area-6-2-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
