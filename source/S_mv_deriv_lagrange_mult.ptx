@@ -12,23 +12,20 @@
 <!-- derivatives for profit.  All trademarks are the registered marks of   -->
 <!-- their respective owners.                                              -->
 <!-- **********************************************************************-->
-<section xml:id="S-mv_deriv-lagrange">
+<section xmlns:xi="http://www.w3.org/2001/XInclude" xml:id="S-mv_deriv-lagrange">
   <title>Constrained Optimization: Lagrange Multipliers</title>
 
   <objectives>
     <ul>
       <li>
         <p>
-          What geometric condition enables us to optimize a function
-          <m>f=f(x,y)</m> subject to a constraint given by <m>g(x,y) = k</m>,
-          where <m>k</m> is a constant?
+          What geometric condition enables us to optimize a function <m>f=f(x,y)</m> subject to a constraint given by <m>g(x,y) = k</m>, where <m>k</m> is a constant?
         </p>
       </li>
 
       <li>
         <p>
-          How can we exploit this geometric condition to find the extreme values
-          of a function subject to a constraint?
+          How can we exploit this geometric condition to find the extreme values of a function subject to a constraint?
         </p>
       </li>
     </ul>
@@ -39,13 +36,7 @@
     <title>Notes to the Instructor and Dependencies</title>
 
     <p>
-      This section requires the optimization tools from
-      <xref ref="S-mv_deriv-optimization"/> and the interpretations of the
-      gradient from <xref ref="S-mv_deriv-directional"/> and
-      <xref ref="S-MV-HD"/>.
-      This section is omitted for time by some instructors but a requirement at
-      some institutions with engineering programs that need this topic covered.
-      This section can likely be covered in a single class, but that depends a lot on students' algebraic proficiency, as the nonlinear systems that arise in these problems can be challenging for students. Students tend to find the fact that there is not one method that will solve all of these systems frustrating, so giving them a variety of problems to practice on is important for instructors who will be giving anything but the most routine Lagrange multiplier problem on an exam. We have placed the geometric aspect (parallel gradients) prominently throughout the section, which allows for asking graphical questions that do not require intensive algebra questions a viable conceptual method for testing students on this material.
+      This section requires the optimization tools from <xref ref="S-mv_deriv-optimization"/> and the interpretations of the gradient from <xref ref="S-mv_deriv-directional"/> and <xref ref="S-MV-HD"/>. This section is omitted for time by some instructors but a requirement at some institutions with engineering programs that need this topic covered. This section can likely be covered in a single class, but that depends a lot on students' algebraic proficiency, as the nonlinear systems that arise in these problems can be challenging for students. Students tend to find the fact that there is not one method that will solve all of these systems frustrating, so giving them a variety of problems to practice on is important for instructors who will be giving anything but the most routine Lagrange multiplier problem on an exam. We have placed the geometric aspect (parallel gradients) prominently throughout the section, which allows for asking graphical questions that do not require intensive algebra questions a viable conceptual method for testing students on this material.
     </p>
     </assemblage>
   </introduction>
@@ -54,49 +45,31 @@
     <title>Introduction</title>
 
     <p>
-      We previously considered how to find the extreme values of functions on
-      both unrestricted domains and on closed, bounded domains.
-      Other types of optimization problems involve maximizing or minimizing a
-      quantity subject to an external constraint.
-      In these cases the extreme values frequently won't occur at the points
-      where the gradient is zero, but rather at other points that satisfy an
-      important geometric condition.
-      These problems are called <term>constrained optimization</term> problems
-      and can be solved with the method of Lagrange Multipliers, which we study
-      in this section.
-      This method also provides an alternative approach to looking for maxima or
-      minima on the boundary of a closed, bounded domain and can be useful in
-      cases where parameterizing the boundary is more difficult than the
-      situation we saw in <xref ref="ex-mv_deriv-optimization-heated_plate"/>.
+      We previously considered how to find the extreme values of functions on both unrestricted domains and closed, bounded domains. Other types of optimization problems involve maximizing or minimizing a quantity subject to an external constraint. In these cases the extreme values frequently won't occur at the points
+      where the gradient is zero, but rather at other points that satisfy an important geometric condition. These problems are called <term>constrained optimization</term> problems and can be solved with the method of Lagrange Multipliers, which we study in this section. This method also provides an alternative approach to looking for maxima or minima on the boundary of a closed, bounded domain and can be useful in cases where parameterizing the boundary is more difficult than the situation we saw in <xref ref="ex-mv_deriv-optimization-heated_plate"/>.
     </p>
 
     <worksheet>
       <exploration xml:id="PA_mv_deriv-lagrange">
         <introduction>
           <p>
-            A shipping company places a restriction on packages so that the sum
-            of the package's length and girth must be at most 12 feet.
-            (The girth is the perimeter of the smallest end of the package.) Our
-            goal is to find the largest possible volume of a rectangular package
-            with a <em>square</em> end that can be sent by this shipping
-            company.
+            A shipping company places a restriction on packages so that the sum of the package's length and girth must be at most 12 feet. (The girth is the perimeter of the smallest end of the package.) Our goal is to find the largest possible volume of a rectangular package with a <em>square</em> end that can be sent by this shipping company.
           </p>
-
+          <figure xml:id="shipping-box">
+            <caption>A shipping box with square end</caption>
+            <image source="./LO-Box.png"/>
+            <description>
+              <p>An elongated rectangular prism with a square end. The square end has its length labeled x and the longer edge is labeled y. 
+              </p>
+            </description>
+          </figure>
+          
           <p>
-            Let <m>x</m> be the length in feet of the side of one square end of
-            the package and <m>y</m> be the length in feet of the package.
-            This allows us to define a function that gives the volume of the
-            package as <m>f(x,y) = x^2y</m> cubic feet.
-            The girth of the package is <m>4x</m>, so we can define
-            <m>g(x,y)=4x+y</m> to be the sum of the girth and length.
-            The domain on which we wish to maximize <m>f</m> is all points for
-            which <m>x\geq 0</m>, <m>y\geq 0</m>, and <m>g(x,y)\leq 12</m>.
-            A moment of reflection should confirm that any package with
-            <m>g(x,y)\lt 12</m> cannot maximize the volume, as increasing either
-            <m>x</m> or <m>y</m> so that <m>g(x,y)</m> remains at most 12 will
-            only lead to a larger volume.
-            Thus, we say that we wish to maximize <m>f(x,y) = x^2y</m> subject
-            to the constraint <m>g(x,y) = 4x+y = 12</m>.
+            Let <m>x</m> be the length in feet of the side of one square end of the package and <m>y</m> be the length in feet of the package. This allows us to define a function that gives the volume of the package as <m>f(x,y) = x^2y</m> cubic feet. The girth of the package is <m>4x</m>, so we can define
+            <m>g(x,y)=4x+y</m> to be the sum of the girth and length. The domain on which we wish to maximize <m>f</m> is all points for which <m>x\geq 0</m>, <m>y\geq 0</m>, and <m>g(x,y)\leq 12</m>. A moment of reflection should confirm that any package with <m>g(x,y)\lt 12</m> cannot maximize the volume, as increasing either <m>x</m> or <m>y</m> so that <m>g(x,y)</m> remains at most 12 will only lead to a larger volume. 
+          </p>
+          <p>  
+            Thus, we say that we wish to maximize <m>f(x,y) = x^2y</m> subject to the constraint <m>g(x,y) = 4x+y = 12</m>. We call <m>f</m> the objective function since it is our goal to find extreme values for this function. We call <m>g</m> our contraint function because we are constrainted (limited) to a specific value of this function.
           </p>
         </introduction>
 
@@ -104,7 +77,7 @@
           <statement>
             <p>
               Compute <m>\nabla f</m> and evaluate the gradient at the points
-              <m>(1,8)</m>, <m>(1.5,6)</m>, <m>(2,4)</m>, and <m>(2.5,2)</m>.
+              <m>P_1:(1,8)</m>, <m>P_2:(1.5,6)</m>, <m>P_3:(2,4)</m>, and <m>P_4:(2.5,2)</m>.
             </p>
           </statement>
 
@@ -143,9 +116,9 @@
               four points for which you evaluated <m>\nabla f</m> in the
               previous part.
               Sketch <m>\nabla f</m> at each of the four points.
-              (You may not have enough space to sketch get the magnitude of each
+              You may not have enough space to sketch get the magnitude of each
               gradient vector correct, but you should accurately depict the
-              direction of each of the four vectors.)
+              direction of each of the four vectors.
             </p>
 
             <image width="75%">
@@ -346,24 +319,16 @@
 
   <subsection>
     <title>Constrained Optimization and Lagrange Multipliers</title>
+    <p>
+      We will further examine our work in <xref ref="PA_mv_deriv-lagrange">Preview Activity</xref> to motivate and understand the general method for solving constrained optimization problems. In <xref ref="PA_mv_deriv-lagrange">Preview Activity</xref>, we considered an optimization problem where there is an external constraint on the variables, namely that the girth plus the length of the package cannot exceed 12 feet.
+    </p>
+    <p>
+      You saw in your plots that the direction to move in the <m>(x,y)</m>-plane to increase the volume would take you off of the constraint line. For points <m>P_1</m> and <m>P_2</m> you saw how moving down on the constraint line would move you at least a little bit in the direction of greatest increase (as measured by <m>\nabla f</m>). Similarly, at points <m>P_3</m> and <m>P_4</m> you could move up the constraint line to increase the value of the objective function. So somewhere between <m>P_2</m> and <m>P_3</m> there has to be a place where moving down the constraint line will no longer increase the output of our objective function. 
+    </p>
+
 
     <p>
-      In <xref ref="PA_mv_deriv-lagrange">Preview Activity</xref>, we considered
-      an optimization problem where there is an external constraint on the
-      variables, namely that the girth plus the length of the package cannot
-      exceed 12 feet.
-      Ultimately, we observed that the gradient of the
-      <term>objective function</term> <m>f</m> and the gradient of the
-      <term>constraint</term> <m>g</m> must be parallel when we maximize
-      <m>f</m> subject to the constraint.
-      This is because the only way to increase the value of the objective
-      function at such a point is to move off of the constraint curve, which is
-      not allowed.
-      In <xref ref="fig-mv_deriv-lagrange-PA-summary-contour"/>, we show the
-      contour <m>f(x,y)=x^2y = 16</m>, the constraint <m>g(x,y) = 4x+y=12</m>,
-      and the point <m>(2,4)</m> at which these two intersect.
-      We have also included the gradients at this point, illustrating that the
-      gradients are parallel.
+      Ultimately, we observed that the gradient of the <term>objective function</term> <m>f</m> and the gradient of the <term>constraint</term> <m>g</m> must be parallel when we maximize <m>f</m> subject to the constraint. This is because the only way to increase the value of the objective function at such a point is to move off of the constraint curve, which is not allowed. In <xref ref="fig-mv_deriv-lagrange-PA-summary-contour"/>, we show the contour <m>f(x,y)=x^2y = 16</m>, the constraint <m>g(x,y) = 4x+y=12</m>, and the point <m>(2,4)</m> at which these two intersect. We have also included the gradients at this point, illustrating that the gradients are parallel.
     </p>
 
     <figure xml:id="fig-mv_deriv-lagrange-PA-summary-contour">
@@ -426,74 +391,48 @@
     </figure>
 
     <p>
-      After doing the preview activity and looking at
-      <xref ref="fig-mv_deriv-lagrange-PA-summary-contour"/>, you may be
-      wondering if there are <em>other</em> contours that intersect the
-      constraint line and have a point where the gradient to the objective
-      function and the gradient to the constraint function are parallel.
-      Fortunately, we can compute partial derivatives to understand the
-      gradients and our algebraic understanding of what it means for two vectors
-      to be parallel to determine that there are no other points.
+      After doing the preview activity and looking at <xref ref="fig-mv_deriv-lagrange-PA-summary-contour"/>, you may be wondering if there are <em>other</em> contours that intersect the constraint line and have a point where the gradient to the objective function and the gradient to the constraint function are parallel. In the next example, we will set up an algebraic approach to finding all points on the constraint where the gradients of the objective and constraint functions are parallel and then find where maximum and minimum values occur for the objective function. 
+    </p>
+
+    <example xml:id="LM-example1">
+      <p>
       Summarizing the information from the Preview Activity, we define
       <md>
         <mrow>f(x,y) \amp= x^2 y </mrow>
         <mrow>g(x,y) \amp= 4x+y</mrow>
       </md>
-      and wish to maximize <m>f</m> subject to the constraint
-      <m>g(x,y) = 12</m>.
-      Computing the gradients gives us
+      and wish to maximize <m>f</m> subject to the constraint <m>g(x,y) = 12</m>. Computing the gradients of both <m>f</m> and <m>g</m> gives us
       <md>
         <mrow>\nabla f(x,y) \amp = \langle 2xy, x^2\rangle</mrow>
         <mrow>\nabla g(x,y) \amp = \langle 4,1 \rangle</mrow>
       </md>.
-      Now recall that two vectors are parallel exactly when one is a scalar
-      multiple of the other.
-      Algebraically, this happens when one vector is a scalar multiple of the
-      other:
+      Now recall that two vectors are parallel exactly when one is a scalar multiple of the other. Algebraically, this happens when one vector is a scalar multiple of the other:
       <md number="yes" xml:id="eqn-mv_deriv-lagrange-parallel">
         \nabla f = \lambda g
       </md>.
-      We refer to the scalar <m>\lambda</m> as a
-      <term>Lagrange multiplier</term>.
-      <idx><h>Lagrange multiplier</h></idx>
-      <idx><h>multiplier</h><h>Lagrange</h></idx> For our objective and
-      constraint functions, this gives rise to the system of equations:
+      We refer to the scalar <m>\lambda</m> as a <term>Lagrange multiplier</term>. <idx><h>Lagrange multiplier</h></idx><idx><h>multiplier</h><h>Lagrange</h></idx> For our objective and constraint functions, this gives rise to the system of equations:
       <md number="yes">
         <mrow xml:id="eqn-mv_deriv-lagrange-parallel-x"> 2xy\amp = 4\lambda</mrow>
         <mrow xml:id="eqn-mv_deriv-lagrange-parallel-y"> x^2\amp = \lambda</mrow>
         <mrow xml:id="eqn-mv_deriv-lagrange-constraint"> 4x+y\amp = 12 </mrow>
       </md>
-      The first two equations come from equating the first and second components
-      of <xref ref="eqn-mv_deriv-lagrange-parallel"/>, respectively.
-      The third equation is the constraint equation.
+      The first two equations come from equating the first and second components of <xref ref="eqn-mv_deriv-lagrange-parallel"/>, respectively. The third equation is the constraint equation.
     </p>
 
     <p>
-      Now we must solve the system of equations.
-      We can use <xref ref="eqn-mv_deriv-lagrange-parallel-y"/> to give us an
-      expression for <m>\lambda</m> that can be substituted into
-      <xref ref="eqn-mv_deriv-lagrange-parallel-x"/>.
-      This gives the equation <m>2xy = 4x^2</m>, which is equivalent to
+      Now we must solve the system of equations to find all points where the gradients of <m>f</m> and <m>g</m> will be parallel. We can use <xref ref="eqn-mv_deriv-lagrange-parallel-y"/> to give us an expression for <m>\lambda</m> that can be substituted into <xref ref="eqn-mv_deriv-lagrange-parallel-x"/>. This gives the equation <m>2xy = 4x^2</m>, which is equivalent to
       <md>
         0=4x^2-2xy = 2x(2x-y)
       </md>.
-      From this, we can see that either <m>x=0</m> or <m>y=2x</m>.
-      (It is important that we not <q>cancel</q> the <m>x</m> from
-      <m>2xy = 4x^2</m>, as that would lead to us losing the solution
-      <m>x=0</m>.) We can now substitute these solutions into
-      <xref ref="eqn-mv_deriv-lagrange-constraint"/>, which gives us <m>y=12</m>
-      when <m>x=0</m> and <m>4x+2x=12</m> or <m>x=2</m> when <m>y=2x</m>.
-      Substituting <m>x=2</m> into
-      <xref ref="eqn-mv_deriv-lagrange-constraint"/> gives us <m>y=4</m>.
-      Since <m>f(0,3)=0</m>, one of these solutions gives a minimum.
-      On the other hand, <m>f(2,4) = 16</m>, so we have a maximum value of 16
-      cubic feet for a rectangular package with a square end subject to the
-      given constraint.
+      From this, we can see that either <m>x=0</m> or <m>y=2x</m>. It is important that we not <q>cancel</q> the <m>x</m> from <m>2xy = 4x^2</m>, as that would lead to us losing the solution <m>x=0</m>. We can now substitute these solutions into <xref ref="eqn-mv_deriv-lagrange-constraint"/>, which gives us <m>y=12</m> when <m>x=0</m> and <m>4x+2x=12</m> or <m>x=2</m> when <m>y=2x</m>. Substituting <m>x=2</m> into <xref ref="eqn-mv_deriv-lagrange-constraint"/> gives us <m>y=4</m>. Thus we need to consider the points <m>(0,12)</m> and <m>(2,4)</m>. 
     </p>
-
-    <p>
-      We summarize the process of Lagrange multipliers as follows.
+    <p>  
+      Conceptually, the point <m>(0,12)</m> would correspond to a minimum volume of zero because the side length on the square side of our box would be zero. Algebraically, we get <m>f(0,12)=0</m>. On the other hand, <m>f(2,4) = 16</m>, so we have a maximum value of 16 cubic feet for a rectangular package with a square end subject to the given constraint. You should note that this point occurs between <m>P_2</m> and <m>P_3</m>, as we previously reasoned.
     </p>
+  </example>
+  <p>
+    We summarize the process of Lagrange multipliers as follows.
+  </p>
 
     <proposition xml:id="keyidea-Lagrange-multipliers">
       <title>Method of Lagrange Multipliers</title>
@@ -897,8 +836,7 @@
     </worksheet>
 
     <p>
-      The next activity gives you an opportunity to practice the algebraic
-      aspects of solving a constrained optimization problem using the method of
+      The next activity gives you an opportunity to practice the algebraic aspects of solving a constrained optimization problem using the method of
       Lagrange multipliers.
     </p>
 
@@ -906,19 +844,15 @@
       <activity workspace="1.5in" xml:id="A_mv_deriv-lagrange_1">
         <introduction>
           <p>
-            A cylindrical soda can holds about 355 cc of liquid.
-            In this activity, we want to find the dimensions of such a can that
-            will minimize the surface area.
-            For the sake of simplicity, assume the can is a perfect cylinder.
+            A cylindrical soda can holds about 355 cc of liquid. In this activity, we want to find the dimensions of such a can that
+            will minimize the surface area, since this will minimize the material used to construct this can. For the sake of simplicity, assume the can is a perfect cylinder.
           </p>
         </introduction>
 
         <task>
           <statement>
             <p>
-              What are the variables in this problem?
-              Based on the context, what restriction(s), if any, are there on
-              these variables?
+              What are the variables in this problem? Based on the context, what restriction(s), if any, are there on these variables? You will likely find it useful to draw a picture of your cylindrical can and label your variables. 
             </p>
           </statement>
 
@@ -944,11 +878,7 @@
         <task>
           <statement>
             <p>
-              What quantity do we want to optimize in this problem?
-              What equation describes the constraint?
-              (You need to decide which of these functions plays the role of
-              <m>f</m> and which plays the role of <m>g</m> in our discussion of
-              Lagrange multipliers.)
+              What quantity do we want to optimize in this problem? What equation describes the constraint? You need to decide which of these functions plays the role of the objective function, <m>f</m>, and which plays the role of the constraint function, <m>g</m>, in our discussion of Lagrange multipliers.
             </p>
           </statement>
 
@@ -956,11 +886,11 @@
             <p>
               Minimize surface area
               <m>
-            A(r,h) = 2\pi r^2 + 2\pi r h
-          </m>
-              subject to <m>
-            V(r,h) = \pi r^2 h= 355
-          </m>.
+                A(r,h) = 2\pi r^2 + 2\pi r h
+              </m>
+                  subject to <m>
+                V(r,h) = \pi r^2 h= 355
+              </m>.
             </p>
           </answer>
 
@@ -968,13 +898,13 @@
             <p>
               We want to minimize the surface area <m>A</m> of the can, where
               <m>
-            A(r,h) = 2\pi r^2 + 2\pi r h
-          </m>.
-              The volume of the can is <m>V(r,h) = \pi r^2 h</m>, so our
-              constraint is
-              <m>
-            V(r,h) = \pi r^2 h = 355
-          </m>.
+                A(r,h) = 2\pi r^2 + 2\pi r h
+              </m>.
+                  The volume of the can is <m>V(r,h) = \pi r^2 h</m>, so our
+                  constraint is
+                  <m>
+                V(r,h) = \pi r^2 h = 355
+              </m>.
             </p>
           </solution>
         </task>
@@ -982,9 +912,7 @@
         <task>
           <statement>
             <p>
-              Find <m>\lambda</m> and the values of your variables that satisfy
-              Equation <xref ref="eqn-mv_deriv-lagrange-parallel"/> in the
-              context of this problem.
+              Use your choices for the objective and constraint equations to set up a system of equations in terms of your variables and <m>\lambda</m> corresponding to the Lagrange Multipliers. Find <m>\lambda</m> and the values of your variables that satisfy Equation <xref ref="eqn-mv_deriv-lagrange-parallel"/> in the context of this problem.
             </p>
           </statement>
 
@@ -1085,23 +1013,50 @@
     </worksheet>
 
     <p>
-      The method of Lagrange multipliers also works for functions of three
-      variables.
-      That is, if we have a function <m>f = f(x,y,z)</m> that we want to
-      optimize subject to a constraint <m>g(x,y,z) = c</m>, the optimal point
-      <m>(x,y,z)</m> lies on the level surface <m>S</m> defined by the
-      constraint <m>g(x,y,z) = k</m>.
-      Because gradient vectors are orthogonal to level <em>surfaces</em> as well, the argument we made to justify the need for the gradient of the objective function to be parallel to the gradient of the constraint at the location of an exreme value still holds.
-      In other words, just as in the two variable case, we can optimize <m>f(x,y,z)</m>
-      subject to the constraint <m>g(x,y,z) = c</m> by finding all points
-      <m>(x,y,z)</m> that satisfy <m>\nabla f = \lambda \nabla g</m> and
-      <m>g(x,y,z) = c</m>. (In fact, this method also works for functions of an arbitrary number of variables.)
+      The method of Lagrange multipliers also works for functions of three variables. That is, if we have a function <m>f = f(x,y,z)</m> that we want to optimize subject to a constraint <m>g(x,y,z) = c</m>, the optimal point <m>(x,y,z)</m> lies on the level surface <m>S</m> defined by the constraint <m>g(x,y,z) = k</m>. Because gradient vectors are orthogonal to level <em>surfaces</em> as well, the argument we made to justify the need for the gradient of the objective function to be parallel to the gradient of the constraint at the location of an exreme value still holds. In other words, just as in the two variable case, we can optimize <m>f(x,y,z)</m> subject to the constraint <m>g(x,y,z) = c</m> by finding all points <m>(x,y,z)</m> that satisfy <m>\nabla f = \lambda \nabla g</m> and <m>g(x,y,z) = c</m>. In fact, this method also works for functions of an arbitrary number of variables.
     </p>
     <p>
-      The following example illustrates using the method of Lagrange multipliers to optimize a function of three variables. While the problem in the previous activity is one that you could have solved using only single-variable calculus techniques such as solving the constraint equation for one variable and substituting into the objective function to reduce the number of variables, this example also illustrates how Lagrange multipliers can be used to help solve problems that are not amenable to that strategy.
+      In <xref ref="LM-3D"/>, you can see a level set of a three variable objective function plotted in light blue and a constraint given by the pink plane. This is three dimensional analog to our plot earlier. You can use the slider at the top of <xref ref="LM-3D"/> to find the value for our objective function where the level surface is tangent to the pink constraint. When these surfaces are tangent, their gradients, visualized as normal vectors to the surfaces, will be parallel. 
+    </p>
+    <figure xml:id="LM-3D">
+      <caption>A three dimensional plot of a level surface for <m>f(x,y,z)</m> shown in blue and a constraint plane shown in pink.</caption>
+      <interactive title="interactive-LM-3D" platform="sage" width="91%" aspect="1:1">
+        <description><p>A three dimensional plot with a curved surface shown in blue and a triangular portion of a tilted plane shown in pink </p></description>
+        <slate surface="sage">
+            @interact
+            def _(c=slider(0.1,2,default=0.5,label="Level Set value")):
+              var('s,t,x,y,z')
+              xscale=10;yscale=10;zscale=10
+              plot1=arrow((0,0,0),(xscale,0,0),color="black",opacity=0.5,width=2)+text3d("x",(xscale+0.5,0,0),fontsize=30)+text3d("y",(0,yscale+0.5,0),fontsize=30)+text3d("z",(0,0,zscale+0.5),fontsize=30)
+              plot1+=arrow((0,0,0),(0,yscale,0),color="black",opacity=0.5)+arrow((0,0,0),(0,0,zscale),color="black",opacity=0.5)
+              xc=s+3;yc=t+2;zc=s^2/2+t^2/4+c-3;
+              xc2=xc+zc+2;yc2=yc+(-xc+zc)+4;zc2=-yc-xc+zc+8+c/2+1
+              param(s,t)=(xc2,yc2,zc2)
+              #set up grid      n is number of steps in s    m is number of steps in t  
+              #a1 is min s    a2 is max s   b1 is min t    b2 is max t
+              n=7;m=7;a1=-2.5;a2=2.5;b1=-2.5;b2=2.5; 
+              #c1 is surface color     o1 is surface opacity
+              #c2 and o2 are for constant t value traces
+              #c3 and o3 are for constant s value traces
+              c1="lightblue"; c2="black"; c3="black"; o1=0.5; o2=0.4; o3=0.4;
+              plot1+=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1,frame=False)
+              for i in range(n+1):
+                sv=a1+i/n*(a2-a1)
+                plot1+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c2,opacity=o2)
+              for i in range(m+1):
+                tv=b1+i/m*(b2-b1)
+                plot1+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
+              k=8
+              plot1+=polygon([(k,0,0),(0,k,0),(0,0,k),(k,0,0)],color="pink",plot_points=5,mesh=True,opacity=0.8)
+              show(plot1,viewpoint=[[-0.8588,-0.3426,-0.381],92.64],camera_position=[22.7525,-13.4797,8.6722])
+          </slate>
+        </interactive>
+      </figure>
+    <p>
+      <xref ref="LM-3dexample"/> illustrates how to use the method of Lagrange multipliers to optimize a function of three variables. The problem in <xref ref="A_mv_deriv-lagrange_1"/> is one that you could have solved using only single-variable calculus techniques such as solving the constraint equation for one variable and substituting into the objective function to reduce the number of variable. <xref ref="LM-3dexample"/> illustrates how Lagrange multipliers can be used to help solve problems that are not amenable to that strategy.
     </p>
 
-    <example>
+    <example xml:id="LM-3dexample">
       <p>
         Suppose that we have created a three-dimensional coordinate system for a heated chamber with the origin at the center of the chamber. The temperature, in degrees Celsius, at the point <m>(x,y,z)</m> inside the chamber is given by <m>T(x,y,z) = 6x-3y^2+8z+400</m>. We wish to find the hottest and coldest points on the sphere <m>x^2+y^2+z^2 = 100</m>. 
       </p>
@@ -1331,998 +1286,5 @@
       </li>
     </ul>
   </outcomes>
-  <exercises>
-    <exercise label="Library__Michigan__Chap15Sec3__Q05__pg" xml:id="ex-10-8-WW-plane">
-      <!--<title>Maximum and minimum values on a plane</title>-->
-      <webwork source="Library/Michigan/Chap15Sec3/Q05.pg"/>
-    </exercise>
-
-    <exercise label="Library__Michigan__Chap15Sec3__Q17__pg" xml:id="ex-10-8-WW-cubic">
-      <!--<title>Maximum and minimum values of a cubic</title>-->
-      <webwork source="Library/Michigan/Chap15Sec3/Q17.pg"/>
-    </exercise>
-
-    <exercise label="Library__Dartmouth__setStewartCh15S8__problem_2__pg" xml:id="ex-10-8-WW-square-sum">
-      <!--<title>Maximum and minimum values of a sum of squares</title>-->
-      <webwork source="Library/Dartmouth/setStewartCh15S8/problem_2.pg"/>
-    </exercise>
-
-    <exercise label="Library__Dartmouth__setStewartCh15S8__problem_1__pg" xml:id="ex-10-8-WW-hyperbola">
-      <!--<title>Maximum and minimum values on a hyperbola</title>-->
-      <webwork source="Library/Dartmouth/setStewartCh15S8/problem_1.pg"/>
-    </exercise>
-
-    <exercise label="Library__Michigan__Chap15Sec3__Q40__pg" xml:id="ex-10-8-WW-distance">
-      <!--<title>Minimizing a distance</title>-->
-      <webwork source="Library/Michigan/Chap15Sec3/Q40.pg"/>
-    </exercise>
-
-    <exercise label="Library__Michigan__Chap15Sec3__Q43__pg" xml:id="ex-10-8-WW-two-ways">
-      <!--<title>Constrained optimization two ways</title>-->
-      <webwork source="Library/Michigan/Chap15Sec3/Q43.pg"/>
-    </exercise>
-
-    <exercise label="Library__272__setStewart14_8__problem_10__pg" xml:id="ex-10-8-WW-plane-ellipse">
-      <!--<title>Intersection of a plane and an ellipse</title>-->
-      <webwork source="Library/272/setStewart14_8/problem_10.pg"/>
-    </exercise>
-
-    <exercise label="Library__Dartmouth__setStewartCh15S8__problem_3__pg" xml:id="ex-10-8-WW-3-variable">
-      <!--<title>Optimizing a function of three variables</title>-->
-      <webwork source="Library/Dartmouth/setStewartCh15S8/problem_3.pg"/>
-    </exercise>
-
-    <exercise label="Library__Dartmouth__setStewartCh15S8__problem_4__pg" xml:id="ex-10-8-WW-4-variable">
-      <!--<title>Optimizing a function of four variables</title>-->
-      <webwork source="Library/Dartmouth/setStewartCh15S8/problem_4.pg"/>
-    </exercise>
-
-    <exercise label="Library__Dartmouth__setStewartCh15S8__problem_9__pg" xml:id="ex-10-8-WW-volume">
-      <!--<title>Maximum and minimum volumes of a box</title>-->
-      <webwork source="Library/Dartmouth/setStewartCh15S8/problem_9.pg"/>
-    </exercise>
-
-    <exercise label="Library__Michigan__Chap15Sec3__Q38__pg" xml:id="ex-10-8-WW-squares">
-      <!--<title>Maximizing a sum of squares</title>-->
-      <webwork source="Library/Michigan/Chap15Sec3/Q38.pg"/>
-    </exercise>
-    <!--MBX exception
-      <exercise xml:id="ex-10-8-WW-indifference">
-      <title>Indifference curves</title>
-         <webwork source="Library/Michigan/Chap15Sec3/Q23.pg" />
-      </exercise> -->
-    <exercise>
-      <statement>
-        <p>
-          The Cobb-Douglas production function
-          <idx><h>Cobb-Douglas production function</h></idx> is used in
-          economics to model production levels based on labor and equipment.
-          Suppose we have a specific Cobb-Douglas function of the form
-          <md>
-            f(x, y) = 50 x^{0.4}y^{0.6},
-          </md>
-          where <m>x</m> is the dollar amount spent on labor and <m>y</m> the
-          dollar amount spent on equipment.
-          Use the method of Lagrange multipliers to determine how much should be
-          spent on labor and how much on equipment to maximize productivity if
-          we have a total of 1.5 million dollars to invest in labor and
-          equipment.
-        </p>
-      </statement>
-
-      <answer>
-        <p>
-          We maximize our output when we spend $0.6 million on labor and $0.9
-          million on equipment.
-        </p>
-      </answer>
-
-      <solution>
-        <p>
-          To find the values of <m>\lambda</m> that satisfy
-          <m>\nabla f = \lambda \nabla g</m> for our Cobb-Douglas function, we
-          calculate both <m>\nabla f</m> and <m>\nabla g</m>.
-          Now
-          <md>
-            \nabla f = \frac{20y^{0.6}}{x^{0.6}} \vi + \frac{30x^{0.4}}{y^{0.4}} \vj \ \ \ \ \text{ and }  \ \ \ \ \nabla g = \vi + \vj
-          </md>,
-          so we need a value of <m>\lambda</m> so that
-          <md>
-            \frac{20y^{0.6}}{x^{0.6}} \vi + \frac{30x^{0.4}}{y^{0.4}} \vj = \lambda(\vi + \vj)
-          </md>.
-        </p>
-
-        <p>
-          Equating components and the original constraint give us the three
-          equations
-          <md>
-            <mrow xml:id="eqn_mv_deriv-lagrange_lag_ex1" number="yes">20y^{0.6} \amp = \lambda x^{0.6}</mrow>
-            <mrow xml:id="eqn_mv_deriv-lagrange_lag_ex2" number="yes">30x^{0.4} \amp = \lambda y^{0.4}</mrow>
-            <mrow xml:id="eqn_mv_deriv-lagrange_lag_ex3" number="yes">x+y \amp = 1.5</mrow>
-          </md>
-          in the three unknowns <m>x</m>, <m>y</m>, and <m>\lambda</m>.
-          Dividing both sides of <xref ref="eqn_mv_deriv-lagrange_lag_ex1"/> by
-          the corresponding sides of <xref ref="eqn_mv_deriv-lagrange_lag_ex2"/>
-          yields
-          <md>
-            <mrow>\frac{2}{3} \frac{y^{0.6}}{x^{0.4}} \amp = \frac{x^{0.6}}{y^{0.4}}</mrow>
-            <mrow xml:id="eq_mv_deriv-lagrange_lag_ex4" number="yes">\frac{2}{3} y \amp = x</mrow>
-          </md>
-        </p>
-
-        <p>
-          Substituting into <xref ref="eqn_mv_deriv-lagrange_lag_ex3"/> gives us
-          <md>
-            \frac{2}{3}y + y = 1.5
-          </md>
-          or
-          <md>
-            y = \frac{9}{10}
-          </md>.
-        </p>
-
-        <p>
-          Then <m>x = \frac{3}{5}</m> and <m>\lambda \approx 25.51</m>.
-          Therefore we maximize our output when we spend $0.6 million on labor
-          and $0.9 million on equipment.
-        </p>
-      </solution>
-    </exercise>
-
-    <exercise>
-      <statement>
-        <p>
-          Use the method of Lagrange multipliers to find the point on the line
-          <m>x-2y=5</m> that is closest to the point <m>(1,3)</m>.
-          To do so, respond to the following prompts.
-          <ol marker="a.">
-            <li>
-              <p>
-                Write the function <m>f=f(x,y)</m> that measures the
-                <em>square</em> of the distance from <m>(x,y)</m> to
-                <m>(1,3)</m>.
-                (The extrema of this function are the same as the extrema of the
-                distance function, but <m>f(x,y)</m> is simpler to work with.)
-              </p>
-            </li>
-
-            <li>
-              <p>
-                What is the constraint <m>g(x,y) = c</m>?
-              </p>
-            </li>
-
-            <li>
-              <p>
-                Write the equations resulting from
-                <m>\nabla f = \lambda \nabla
-                      g</m> and the
-                constraint.
-                Find all the points <m>(x,y)</m> satisfying these equations.
-              </p>
-            </li>
-
-            <li>
-              <p>
-                Test all the points you found to determine the extrema.
-              </p>
-            </li>
-          </ol>
-        </p>
-      </statement>
-
-      <answer>
-        <p>
-          <ol marker="a.">
-            <li>
-              <p>
-                The square of the distance from <m>(x,y)</m> to <m>(1,3)</m> is
-                given by <m>f(x,y) = (x-1)^2 + (y-3)^2</m>.
-              </p>
-            </li>
-
-            <li>
-              <p>
-                The constraint is that the point <m>(x,y)</m> lies on the line
-                <m>x-2y=5</m>, so <m>g(x,y) = x-2y</m>.
-              </p>
-            </li>
-
-            <li>
-              <p>
-                Since <m>\nabla f = \langle 2(x-1) + 2(y-3)</m> and
-                <m>\nabla g = \langle 1, -2 \rangle</m>, the equations resulting
-                from <m>\nabla f = \lambda \nabla g</m> and the constraint are
-                <md>
-                  <mrow>2(x-1) \amp = \lambda</mrow>
-                  <mrow>2(y-3) \amp = -2\lambda</mrow>
-                  <mrow>x-2y \amp = 5</mrow>
-                </md>.
-                Substituting <m>2(x-1)</m> for <m>\lambda</m> in the second
-                equation yields <m>2(y-3) = -4(x-1)</m> or <m>4x+2y=10</m>.
-                Adding corresponding sides of this new equation with the third
-                equation gives us <m>5x = 15</m> or <m>x=3</m>.
-                Then <m>y = -1</m>.
-              </p>
-            </li>
-
-            <li>
-              <p>
-                This single critical point gives us an extreme distance of
-                <m>\sqrt{f(3,-1)} = \sqrt{20}</m>.
-                This is the only extreme value and since points on the plane can
-                be found as far as possible from the point <m>(1,3)</m>, we have
-                found the minimum distance.
-              </p>
-            </li>
-          </ol>
-        </p>
-      </answer>
-
-      <solution>
-        <p>
-          <ol marker="a.">
-            <li>
-              <p>
-                The square of the distance from <m>(x,y)</m> to <m>(1,3)</m> is
-                given by <m>f(x,y) = (x-1)^2 + (y-3)^2</m>.
-              </p>
-            </li>
-
-            <li>
-              <p>
-                The constraint is that the point <m>(x,y)</m> lies on the line
-                <m>x-2y=5</m>, so <m>g(x,y) = x-2y</m>.
-              </p>
-            </li>
-
-            <li>
-              <p>
-                Since <m>\nabla f = \langle 2(x-1) + 2(y-3)</m> and
-                <m>\nabla g = \langle 1, -2 \rangle</m>, the equations resulting
-                from <m>\nabla f = \lambda \nabla g</m> and the constraint are
-                <md>
-                  <mrow>2(x-1) \amp = \lambda</mrow>
-                  <mrow>2(y-3) \amp = -2\lambda</mrow>
-                  <mrow>x-2y \amp = 5</mrow>
-                </md>.
-                Substituting <m>2(x-1)</m> for <m>\lambda</m> in the second
-                equation yields <m>2(y-3) = -4(x-1)</m> or <m>4x+2y=10</m>.
-                Adding corresponding sides of this new equation with the third
-                equation gives us <m>5x = 15</m> or <m>x=3</m>.
-                Then <m>y = -1</m>.
-              </p>
-            </li>
-
-            <li>
-              <p>
-                This single critical point gives us an extreme distance of
-                <m>\sqrt{f(3,-1)} = \sqrt{20}</m>.
-                This is the only extreme value and since points on the plane can
-                be found as far as possible from the point <m>(1,3)</m>, we have
-                found the minimum distance.
-              </p>
-            </li>
-          </ol>
-        </p>
-      </solution>
-    </exercise>
-
-    <exercise>
-      <statement>
-        <p>
-          Apply the Method of Lagrange Multipliers to solve each of the
-          following constrained optimization problems.
-          <ol marker="a.">
-            <li>
-              <p>
-                Determine the absolute maximum and absolute minimum values of
-                <m>f(x,y) = (x-1)^2 + (y-2)^2</m> subject to the constraint that
-                <m>x^2 + y^2 = 16</m>.
-              </p>
-            </li>
-
-            <li>
-              <p>
-                Determine the points on the sphere <m>x^2 + y^2 + z^2 = 4</m>
-                that are closest to and farthest from the point <m>(3,1,-1)</m>.
-                (As in the preceding exercise, you may find it simpler to work
-                with the square of the distance formula, rather than the
-                distance formula itself.)
-              </p>
-            </li>
-
-            <li>
-              <p>
-                Find the absolute maximum and minimum of
-                <m>f(x,y,z) = x^2 + y^2 + z^2</m> subject to the constraint that
-                <m>(x-3)^2 + (y+2)^2 + (z-5)^2 \le 16</m>.
-                (Hint: here the constraint is a closed, bounded region.
-                Use the boundary of that region for applying Lagrange
-                Multipliers, but don't forget to also test any critical values
-                of the function that lie in the interior of the region.)
-              </p>
-            </li>
-          </ol>
-        </p>
-      </statement>
-
-      <answer>
-        <p>
-          <ol marker="a.">
-            <li>
-              <p>
-                The maximum value of <m>f</m> subject to this constraint is
-                <m>21+8\sqrt{5}</m> and occurs at the point
-                <m>\left(\frac{4}{\sqrt{5}}, \frac{8}{\sqrt{5}}\right)</m> while
-                the minimum value is <m>21-8\sqrt{5}</m> and occurs at
-                <m>\left(-\frac{4}{\sqrt{5}}, -\frac{8}{\sqrt{5}}\right)</m>.
-              </p>
-            </li>
-
-            <li>
-              <p>
-                The point on the sphere closest to <m>(3,1,-1)</m> is
-                <m>\left(\frac{6}{\sqrt{11}}, \frac{2}{\sqrt{11}}, -\frac{2}{\sqrt{11}} \right)</m>
-                and the point on the sphere farthest from <m>(3,1,-1)</m> is
-                <m>\left(-\frac{6}{\sqrt{11}}, -\frac{2}{\sqrt{11}}, \frac{2}{\sqrt{11}} \right)</m>.
-              </p>
-            </li>
-
-            <li>
-              <p>
-                The absolute maximum value of <m>f</m> on the domain
-                <m>(x-3)^2 + (y+2)^2 + (z-5)^2 \le 16</m> is
-                <m>54+8\sqrt{38}</m> and the absolute minimum value is 0.
-              </p>
-            </li>
-          </ol>
-        </p>
-      </answer>
-
-      <solution>
-        <p>
-          <ol marker="a.">
-            <li>
-              <p>
-                Here we have <m>g(x,y) = x^2+y^2</m>, so the system of equations
-                resulting from <m>\nabla f = \lambda \nabla g</m> and the
-                constraint is
-                <md>
-                  <mrow>2(x-1) \amp = 2\lambda x</mrow>
-                  <mrow>2(y-2) \amp = 2\lambda y</mrow>
-                  <mrow>x^2 + y^2 \amp = 16</mrow>
-                </md>.
-                Dividing corresponding sides of the first equation by the second
-                shows that <m>\frac{x-1}{y-2} = \frac{x}{y}</m> or
-                <m>(x-1)y = x(y-2)</m>.
-                Simplifying yields <m>y=2x</m>.
-                Substituting into the constraint equation gives us
-                <m>x^2+4x^2 = 16</m> or <m>x = \pm \frac{4}{\sqrt{5}}</m>.
-                Checking the values of <m>f</m> at these critical points we see
-                that
-                <md>
-                  <mrow>f\left(\frac{4}{\sqrt{5}}, \frac{8}{\sqrt{5}}\right) \amp = 21-8\sqrt{5} \approx 3.11</mrow>
-                  <mrow>f\left(-\frac{4}{\sqrt{5}}, -\frac{8}{\sqrt{5}}\right) \amp = 21+8\sqrt{5} \approx 38.89</mrow>
-                </md>.
-                So the maximum value of <m>f</m> subject to this constraint is
-                <m>21+8\sqrt{5}</m> and occurs at the point
-                <m>\left(\frac{4}{\sqrt{5}}, \frac{8}{\sqrt{5}}\right)</m> while
-                the minimum value is <m>21-8\sqrt{5}</m> and occurs at
-                <m>\left(-\frac{4}{\sqrt{5}}, -\frac{8}{\sqrt{5}}\right)</m>.
-              </p>
-            </li>
-
-            <li>
-              <p>
-                The square of the distance from <m>(x,y,z)</m> to
-                <m>(3,1,-1)</m> is given by
-                <m>f(x,y) = (x-3)^2 + (y-1)^2 + (z+1)^2</m>.
-                The constraint is <m>g(x,y) = x^2+y^2+z^2=4</m>.
-                The equations resulting from <m>\nabla f = \lambda \nabla g</m>
-                and the constraint are
-                <md>
-                  <mrow>2(x-3) \amp = 2\lambda x</mrow>
-                  <mrow>2(y-1) \amp = 2\lambda y</mrow>
-                  <mrow>2(z+1) \amp = 2\lambda z</mrow>
-                  <mrow>x^2+y^2+z^2 \amp = 4</mrow>
-                </md>.
-                Dividing corresponding sides of the first equation by the second
-                shows that <m>\frac{x-3}{y-1} = \frac{x}{y}</m> or
-                <m>(x-3)y = x(y-1)</m>.
-                Simplifying yields <m>x=3y</m>.
-                Dividing corresponding sides of the second equation by the third
-                shows that <m>\frac{y-1}{z+1} = \frac{y}{z}</m> or
-                <m>(y-1)z = y(z+1)</m>.
-                Simplifying yields <m>z=-y</m>.
-                Substituting into the constraint equation gives us
-                <m>11y^2=4</m> or <m>y = \pm \frac{2}{\sqrt{11}}</m>.
-                Checking the values of <m>f</m> at these critical points we see
-                that
-                <md>
-                  <mrow>f\left(\frac{6}{\sqrt{11}}, \frac{2}{\sqrt{11}}, -\frac{2}{\sqrt{11}} \right) \amp = 15-4\sqrt{11} \approx 1.73</mrow>
-                  <mrow>f\left(-\frac{6}{\sqrt{11}}, -\frac{2}{\sqrt{11}}, \frac{2}{\sqrt{11}} \right) \amp = 15+4\sqrt{11} \approx 28.27</mrow>
-                </md>.
-                So the point on the sphere closest to <m>(3,1,-1)</m> is
-                <m>\left(\frac{6}{\sqrt{11}}, \frac{2}{\sqrt{11}}, -\frac{2}{\sqrt{11}} \right)</m>
-                and the point on the sphere farthest from <m>(3,1,-1)</m> is
-                <m>\left(-\frac{6}{\sqrt{11}}, -\frac{2}{\sqrt{11}}, \frac{2}{\sqrt{11}} \right)</m>.
-              </p>
-            </li>
-
-            <li>
-              <p>
-                First we find the critical points of <m>f</m> inside the sphere.
-                We have <m>\nabla f = 0</m> when
-                <md>
-                  2x = 0, \ 2y = 0, \ \text{ and }  \ 2z = 0
-                </md>,
-                yielding the single critical point <m>(0,0,0)</m>.
-                Next we determine the critical points of <m>f</m> on the
-                boundary of the sphere
-                <m>(x-3)^2 + (y+2)^2 + (z-5)^2 \le 16</m>, using the constraint
-                <m>g(x,y,z) = (x-3)^2 + (y+2)^2 + (z-5)^2 = 16</m>.
-                The equations resulting from <m>\nabla f = \lambda \nabla g</m>
-                and the constraint are
-                <md>
-                  <mrow>2x \amp = 2\lambda (x-3)</mrow>
-                  <mrow>2y \amp = 2\lambda (y+2)</mrow>
-                  <mrow>2z \amp = 2\lambda (z-5)</mrow>
-                  <mrow>(x-3)^2 + (y+2)^2 + (z-5)^2 \amp = 16</mrow>
-                </md>.
-                Dividing corresponding sides of the first equation by the second
-                shows that <m>\frac{x}{y} = \frac{x-3}{y+2}</m> or
-                <m>x(y+2)=y(x-3)</m>.
-                Simplifying yields <m>x=-\frac{3}{2}y</m>.
-                Dividing corresponding sides of the second equation by the third
-                shows that <m>\frac{y}{z}=\frac{y+2}{z-5}</m> or
-                <m>y(z-5) = z(y+2)</m>.
-                Simplifying yields <m>z=-\frac{5}{2}y</m>.
-                Substituting into the constraint equation gives us
-                <m>\frac{19}{2}y^2+38y+38=16</m>.
-                The quadratic formula reveals that
-                <m>y = -2 \pm \frac{4}{19} \sqrt{38}</m>.
-                Checking the values of <m>f</m> at these critical points we see
-                that
-                <md>
-                  <mrow>f\left(-\frac{3}{2}\left(-2 +\frac{4}{19} \sqrt{38}\right), -2 + \frac{4}{19} \sqrt{38}, -\frac{5}{2}\left(-2 +\frac{4}{19} \sqrt{38}\right) \right) \amp = 54-8\sqrt{38} \approx 4.68</mrow>
-                  <mrow>f\left(-\frac{3}{2}\left(-2 -\frac{4}{19} \sqrt{38}\right), -2 - \frac{4}{19} \sqrt{38}, -\frac{5}{2}\left(-2 -\frac{4}{19} \sqrt{38}\right)  \right) \amp = 54+8\sqrt{38} \approx 103.32</mrow>
-                  <mrow>f(0,0,0) \amp = 0</mrow>
-                </md>.
-                So the absolute maximum value of <m>f</m> on the domain
-                <m>(x-3)^2 + (y+2)^2 + (z-5)^2 \le 16</m> is
-                <m>54+8\sqrt{38}</m> and the absolute minimum value is 0.
-              </p>
-            </li>
-          </ol>
-        </p>
-      </solution>
-    </exercise>
-
-    <exercise>
-      <statement>
-        <p>
-          In this exercise we consider how to apply the Method of Lagrange
-          Multipliers to optimize functions of three variable subject to two
-          constraints.
-          Suppose we want to optimize <m>f = f(x,y,z)</m> subject to the
-          constraints <m>g(x,y,z) = c</m> and <m>h(x,y,z) = k</m>.
-          Also suppose that the two level surfaces <m>g(x,y,z) = c</m> and
-          <m>h(x,y,z) = k</m> intersect at a curve <m>C</m>.
-          The optimum point <m>P = (x_0,y_0,z_0)</m> will then lie on <m>C</m>.
-          <ol marker="a.">
-            <li>
-              <p>
-                Assume that <m>C</m> can be represented parametrically by a
-                vector-valued function <m>\vr = \vr(t)</m>.
-                Let <m>\overrightarrow{OP} = \vr(t_0)</m>.
-                Use the Chain Rule applied to <m>f(\vr(t))</m>,
-                <m>g(\vr(t))</m>, and <m>h(\vr(t))</m>, to explain why
-                <md>
-                  <mrow> \nabla f(x_0,y_0,z_0) \cdot \vr'(t_0) \amp =  0, </mrow>
-                  <mrow> \nabla g(x_0,y_0,z_0) \cdot \vr'(t_0) \amp = 0, \text{ and } </mrow>
-                  <mrow> \nabla h(x_0,y_0,z_0) \cdot \vr'(t_0) \amp = 0. </mrow>
-                </md>
-                Explain how this shows that <m>\nabla f(x_0,y_0,z_0)</m>,
-                <m>\nabla g(x_0,y_0,z_0)</m>, and <m>\nabla h(x_0,y_0,z_0)</m>
-                are all orthogonal to <m>C</m> at <m>P</m>.
-                This shows that <m>\nabla f(x_0,y_0,z_0)</m>,
-                <m>\nabla g(x_0,y_0,z_0)</m>, and <m>\nabla h(x_0,y_0,z_0)</m>
-                all lie in the same plane.
-              </p>
-            </li>
-
-            <li>
-              <p>
-                Assuming that <m>\nabla g(x_0,y_0,z_0)</m> and
-                <m>\nabla h(x_0,y_0,z_0)</m> are nonzero and not parallel,
-                explain why every point in the plane determined by
-                <m>\nabla g(x_0,y_0,z_0)</m> and <m>\nabla h(x_0,y_0,z_0)</m>
-                has the form
-                <m>s\nabla g(x_0,y_0,z_0)+t\nabla h(x_0,y_0,z_0)</m> for some
-                scalars <m>s</m> and <m>t</m>.
-              </p>
-            </li>
-
-            <li>
-              <p>
-                Parts (a.) and (b.) show that there must exist scalars
-                <m>\lambda</m> and <m>\mu</m> such that
-                <md>
-                  \nabla f(x_0,y_0,z_0) = \lambda \nabla g(x_0,y_0,z_0)+ \mu \nabla h(x_0,y_0,z_0).
-                </md>
-                So to optimize <m>f = f(x,y,z)</m> subject to the constraints
-                <m>g(x,y,z) = c</m> and <m>h(x,y,z) = k</m> we must solve the
-                system of equations
-                <md>
-                  <mrow> \nabla f(x,y,z) \amp = \lambda \nabla g(x,y,z)+ \mu \nabla h(x,y,z), </mrow>
-                  <mrow>g(x,y,z) \amp = c, \text{ and } </mrow>
-                  <mrow> h(x,y,z) \amp = k. </mrow>
-                </md>
-                for <m>x</m>, <m>y</m>, <m>z</m>, <m>\lambda</m>, and
-                <m>\mu</m>.
-              </p>
-
-              <p>
-                Use this idea to find the maximum and minimum values of
-                <m>f(x,y,z) = x+2y</m> subject to the constraints
-                <m>y^2+z^2=8</m> and <m>x+y+z = 10</m>.
-              </p>
-            </li>
-          </ol>
-        </p>
-      </statement>
-
-      <answer>
-        <p>
-          <ol marker="a.">
-            <li>
-              <p>
-                Let <m>C</m> be given by the vector function
-                <m>\vr (t) = \langle x(t), y(t), z(t) \rangle</m>, and set
-                <m>\vr (t_0) = \langle x_0, y_0, z_0 \rangle</m>.
-                Now let <m>F(t) = f(x(t), y(t), z(t))</m>.
-                Since <m>P = (x_0, y_0, z_0)</m> is an extremum of <m>f</m> on
-                the curve <m>C</m>, we must have <m>\frac{dF}{dt} = 0</m> at
-                <m>t = t_0</m>.
-                By Chain Rule
-                <md>
-                  <mrow> \frac{dF}{dt} \amp = \frac{\partial f}{\partial x} \cdot \frac{dx}{dt} + \frac{\partial f}{\partial y} \cdot \frac{dy}{dt} + \frac{\partial f}{\partial z} \cdot \frac{dz}{dt}</mrow>
-                  <mrow> \amp = \left \langle \frac{\partial f}{\partial x}, \frac{\partial f}{\partial y} , \frac{\partial f}{\partial z} \right \rangle \cdot \left \langle \frac{dx}{dt}, \frac{dy}{dt}, \frac{dz}{dt} \right \rangle </mrow>
-                  <mrow> \amp = \nabla f \cdot \vr ' (t)</mrow>
-                </md>.
-                Thus
-                <md>
-                  0 = F'(t_0) = \nabla f (x_0, y_0, z_0) \cdot \vr ' (t_0)
-                </md>.
-              </p>
-
-              <p>
-                Note that along the curve <m>C</m>, <m>g(x, y, z) = c</m> and
-                <m>h(x, y, z) = k</m>, so both functions are constant.
-                Thus their rate of change must be <m>0</m> and so we have
-                <md>
-                  <mrow> \frac{d}{dt} g( \vr (t)) \amp = 0 \text{ and} </mrow>
-                  <mrow> \frac{d}{dt} h( \vr (t)) \amp = 0 </mrow>
-                </md>.
-                Again by Chain Rule
-                <md>
-                  <mrow> \frac{dg}{dt} \amp = \frac{\partial g}{\partial x} \cdot \frac{dx}{dt} + \frac{\partial g}{\partial y} \cdot \frac{dy}{dt} + \frac{\partial g}{\partial z} \cdot \frac{dz}{dt}</mrow>
-                  <mrow> \amp = \left \langle \frac{\partial g}{\partial x}, \frac{\partial g}{\partial y} , \frac{\partial g}{\partial z} \right \rangle \cdot \left \langle \frac{dx}{dt}, \frac{dy}{dt}, \frac{dz}{dt} \right \rangle </mrow>
-                  <mrow> \amp = \nabla g \cdot \vr ' (t)</mrow>
-                </md>
-                and so
-                <md>
-                  0 = g'(\vr(t_0)) = \nabla g (x_0, y_0, z_0) \cdot \vr ' (t_0)
-                </md>.
-                Similarly
-                <md>
-                  0 = h'(\vr(t_0)) = \nabla h (x_0, y_0, z_0) \cdot \vr ' (t_0)
-                </md>.
-              </p>
-
-              <p>
-                Note that <m>\vr ' (t_0)</m> is the tangent vector to
-                <m>f(t)</m> at <m>t = t_0</m>.
-                Thus the above results show that
-                <m>\nabla f(x_0, y_0, z_0), \nabla g(x_0, y_0, z_0)</m>, and
-                <m>\nabla h(x_0, y_0, z_0)</m> are all orthogonal to the tangent
-                vector of <m>C</m> since the dot product of each of these with
-                the tangent vector <m>\vr ' (t_0)</m> is <m>0</m>.
-                Thus all three of these gradient vectors are orthogonal to
-                <m>C</m> at <m>P</m> and therefore they all lie in the same
-                plane.
-              </p>
-            </li>
-
-            <li>
-              <p>
-                We are considering the plane that contains the point
-                <m>P = (x_0, y_0, z_0)</m> as well as the non-parallel vectors
-                <m>\nabla g(x_0, y_0, z_0)</m> and
-                <m>\nabla h(x_0, y_0, z_0)</m>.
-                Note that we could compute the cross product of these vectors to
-                find a normal vector of the plane, then use that to write an
-                equation of the plane.
-                Here we claim (informally) that any point in the plane can be
-                obtained by starting at <m>P</m>, moving some distance in the
-                direction of <m>\nabla g(x_0, y_0, z_0)</m> and then moving some
-                distance in the direction of <m>\nabla h(x_0, y_0, z_0)</m>.
-                In other words, an arbitrary point in the plane can be expressed
-                as <m>s \nabla g(x_0, y_0, z_0) + t \nabla h(x_0, y_0, z_0)</m>.
-                (Using ideas from linear algebra, we claim that the plane
-                determined by <m>\nabla g(x_0, y_0, z_0)</m> and
-                <m>\nabla h(x_0, y_0, z_0)</m> is the span of these two vectors,
-                and thus every point in the plane can be expressed as a linear
-                combination of these two vectors.)
-              </p>
-            </li>
-
-            <li>
-              <p>
-                For this exercise we have
-                <m>f(x, y, z) = x + 2y, g(x, y, z) = y^2 + z^2</m>, and
-                <m>h(x, y, z) = x + y + z</m>.
-                Thus
-                <m>\nabla f(x, y, z) = \langle 1, 2, 0 \rangle,\nabla g(x, y, z) = \langle 0, 2y, 2z \rangle </m>,
-                and <m>\nabla h(x, y, z) = \langle 1, 1, 1 \rangle</m>.
-                Therefore the system of equations we have to solve is
-                <md>
-                  <mrow> \langle 1, 2, 0 \rangle \amp = \lambda \langle 0, 2y, 2z \rangle + \mu \langle 1, 1, 1 \rangle </mrow>
-                  <mrow>y^2 + z^2 \amp = 8 </mrow>
-                  <mrow>x + y + z \amp = 10 </mrow>
-                </md>
-                or
-                <md>
-                  <mrow>1 \amp = \lambda (0) + \mu(1) </mrow>
-                  <mrow>2 \amp = \lambda (2y) + \mu(1) </mrow>
-                  <mrow>0 \amp = \lambda (2z) + \mu(1) </mrow>
-                  <mrow>y^2 + z^2 \amp = 8 </mrow>
-                  <mrow>x + y + z \amp = 10 </mrow>
-                </md>.
-                From the first equation we get <m>\mu = 1</m>.
-                Plugging that into the second and third equations above yields
-                <m>y = \frac{1}{2 \lambda}</m> and
-                <m>z = - \frac{1}{2 \lambda} </m>, with <m>\lambda \neq 0 </m>.
-                Substituting these values into the fourth equation above gives
-                us
-                <md>
-                  8 = \left ( \frac{1}{2 \lambda} \right )^2 + \left (- \frac{1}{2 \lambda} \right )^2
-                </md>.
-                Simplifying yields
-                <md>
-                  16 \lambda ^2 = 1
-                </md>,
-                and so we find <m>\lambda = \pm \frac{1}{4}</m>.
-                If <m>\lambda = \frac{1}{4}</m>, we have <m>y = 2</m> and
-                <m>z = -2</m>.
-                Substituting these values into the fifth equation above yields
-                <m>x = 10</m>.
-                Following the same approach for <m>\lambda = - \frac{1}{4}</m>
-                yields <m>y = -2, z = 2</m>, and <m>x = 10</m>.
-              </p>
-
-              <p>
-                Finally, we use these values to find the maximum and minimum of
-                <m>f</m> subject to the constraints.
-                Since <m>f(x, y, z) = x + 2y</m>, we have
-                <m>f(10, 2, -2) = 10 + 2(2) = 14</m> and
-                <m>f(10, -2, 2) = 10 + 2(-2) = 6</m>.
-                So, subject to the given constraints, the maximum of <m>f</m> is
-                14 and the minimum of <m>f</m> is 6.
-              </p>
-            </li>
-          </ol>
-        </p>
-      </answer>
-
-      <solution>
-        <p>
-          <ol marker="a.">
-            <li>
-              <p>
-                Let <m>C</m> be given by the vector function
-                <m>\vr (t) = \langle x(t), y(t), z(t) \rangle</m>, and set
-                <m>\vr (t_0) = \langle x_0, y_0, z_0 \rangle</m>.
-                Now let <m>F(t) = f(x(t), y(t), z(t))</m>.
-                Since <m>P = (x_0, y_0, z_0)</m> is an extremum of <m>f</m> on
-                the curve <m>C</m>, we must have <m>\frac{dF}{dt} = 0</m> at
-                <m>t = t_0</m>.
-                By Chain Rule
-                <md>
-                  <mrow> \frac{dF}{dt} \amp = \frac{\partial f}{\partial x} \cdot \frac{dx}{dt} + \frac{\partial f}{\partial y} \cdot \frac{dy}{dt} + \frac{\partial f}{\partial z} \cdot \frac{dz}{dt}</mrow>
-                  <mrow> \amp = \left \langle \frac{\partial f}{\partial x}, \frac{\partial f}{\partial y} , \frac{\partial f}{\partial z} \right \rangle \cdot \left \langle \frac{dx}{dt}, \frac{dy}{dt}, \frac{dz}{dt} \right \rangle</mrow>
-                  <mrow> \amp = \nabla f \cdot \vr ' (t)</mrow>
-                </md>.
-                Thus
-                <md>
-                  0 = F'(t_0) = \nabla f (x_0, y_0, z_0) \cdot \vr ' (t_0)
-                </md>.
-              </p>
-
-              <p>
-                Note that along the curve <m>C</m>, <m>g(x, y, z) = c</m> and
-                <m>h(x, y, z) = k</m>, so both functions are constant.
-                Thus their rate of change must be <m>0</m> and so we have
-                <md>
-                  <mrow> \frac{d}{dt} g( \vr (t)) \amp = 0 \text{ and} </mrow>
-                  <mrow> \frac{d}{dt} h( \vr (t)) \amp = 0 </mrow>
-                </md>.
-                Again by Chain Rule
-                <md>
-                  <mrow> \frac{dg}{dt} \amp = \frac{\partial g}{\partial x} \cdot \frac{dx}{dt} + \frac{\partial g}{\partial y} \cdot \frac{dy}{dt} + \frac{\partial g}{\partial z} \cdot \frac{dz}{dt}</mrow>
-                  <mrow> \amp = \left \langle \frac{\partial g}{\partial x}, \frac{\partial g}{\partial y} , \frac{\partial g}{\partial z}\right  \rangle \cdot \left \langle \frac{dx}{dt}, \frac{dy}{dt}, \frac{dz}{dt} \right \rangle </mrow>
-                  <mrow> \amp = \nabla g \cdot \vr ' (t)</mrow>
-                </md>
-                and so
-                <md>
-                  0 = g'(\vr(t_0)) = \nabla g (x_0, y_0, z_0) \cdot \vr ' (t_0)
-                </md>.
-                Similarly
-                <md>
-                  0 = h'(\vr(t_0)) = \nabla h (x_0, y_0, z_0) \cdot \vr ' (t_0)
-                </md>.
-              </p>
-
-              <p>
-                Note that <m>\vr ' (t_0)</m> is the tangent vector to
-                <m>f(t)</m> at <m>t = t_0</m>.
-                Thus the above results show that
-                <m>\nabla f(x_0, y_0, z_0), \nabla g(x_0, y_0, z_0)</m>, and
-                <m>\nabla h(x_0, y_0, z_0)</m> are all orthogonal to the tangent
-                vector of <m>C</m> since the dot product of each of these with
-                the tangent vector <m>\vr ' (t_0)</m> is <m>0</m>.
-                Thus all three of these gradient vectors are orthogonal to
-                <m>C</m> at <m>P</m> and therefore they all lie in the same
-                plane.
-              </p>
-            </li>
-
-            <li>
-              <p>
-                We are considering the plane that contains the point
-                <m>P = (x_0, y_0, z_0)</m> as well as the non-parallel vectors
-                <m>\nabla g(x_0, y_0, z_0)</m> and
-                <m>\nabla h(x_0, y_0, z_0)</m>.
-                Note that we could compute the cross product of these vectors to
-                find a normal vector of the plane, then use that to write an
-                equation of the plane.
-                Here we claim (informally) that any point in the plane can be
-                obtained by starting at <m>P</m>, moving some distance in the
-                direction of <m>\nabla g(x_0, y_0, z_0)</m> and then moving some
-                distance in the direction of <m>\nabla h(x_0, y_0, z_0)</m>.
-                In other words, an arbitrary point in the plane can be expressed
-                as <m>s \nabla g(x_0, y_0, z_0) + t \nabla h(x_0, y_0, z_0)</m>.
-                (Using ideas from linear algebra, we claim that the plane
-                determined by <m>\nabla g(x_0, y_0, z_0)</m> and
-                <m>\nabla h(x_0, y_0, z_0)</m> is the span of these two vectors,
-                and thus every point in the plane can be expressed as a linear
-                combination of these two vectors.)
-              </p>
-            </li>
-
-            <li>
-              <p>
-                For this exercise we have
-                <m>f(x, y, z) = x + 2y, g(x, y, z) = y^2 + z^2</m>, and
-                <m>h(x, y, z) = x + y + z</m>.
-                Thus
-                <m>\nabla f(x, y, z) = \langle 1, 2, 0 \rangle,\nabla g(x, y, z) = \langle 0, 2y, 2z \rangle </m>,
-                and <m>\nabla h(x, y, z) = \langle 1, 1, 1 \rangle</m>.
-                Therefore the system of equations we have to solve is
-                <md>
-                  <mrow> \langle 1, 2, 0 \rangle \amp = \lambda \langle 0, 2y, 2z \rangle + \mu \langle 1, 1, 1 \rangle </mrow>
-                  <mrow>y^2 + z^2 \amp = 8 </mrow>
-                  <mrow>x + y + z \amp = 10 </mrow>
-                </md>
-                or
-                <md>
-                  <mrow>1 \amp = \lambda (0) + \mu(1) </mrow>
-                  <mrow>2 \amp = \lambda (2y) + \mu(1) </mrow>
-                  <mrow>0 \amp = \lambda (2z) + \mu(1) </mrow>
-                  <mrow>y^2 + z^2 \amp = 8 </mrow>
-                  <mrow>x + y + z \amp = 10 </mrow>
-                </md>.
-                From the first equation we get <m>\mu = 1</m>.
-                Plugging that into the second and third equations above yields
-                <m>y = \frac{1}{2 \lambda}</m> and
-                <m>z = - \frac{1}{2 \lambda} </m>, with <m>\lambda \neq 0 </m>.
-                Substituting these values into the fourth equation above gives
-                us
-                <md>
-                  8 = \left ( \frac{1}{2 \lambda} \right )^2 + \left (- \frac{1}{2 \lambda} \right )^2
-                </md>.
-                Simplifying yields
-                <md>
-                  16 \lambda ^2 = 1
-                </md>,
-                and so we find <m>\lambda = \pm \frac{1}{4}</m>.
-                If <m>\lambda = \frac{1}{4}</m>, we have <m>y = 2</m> and
-                <m>z = -2</m>.
-                Substituting these values into the fifth equation above yields
-                <m>x = 10</m>.
-                Following the same approach for <m>\lambda = - \frac{1}{4}</m>
-                yields <m>y = -2, z = 2</m>, and <m>x = 10</m>.
-              </p>
-
-              <p>
-                Finally, we use these values to find the maximum and minimum of
-                <m>f</m> subject to the constraints.
-                Since <m>f(x, y, z) = x + 2y</m>, we have
-                <m>f(10, 2, -2) = 10 + 2(2) = 14</m> and
-                <m>f(10, -2, 2) = 10 + 2(-2) = 6</m>.
-                So, subject to the given constraints, the maximum of <m>f</m> is
-                14 and the minimum of <m>f</m> is 6.
-              </p>
-            </li>
-          </ol>
-        </p>
-      </solution>
-    </exercise>
-
-    <exercise xml:id="ex-10-8-multiplier">
-      <statement>
-        <p>
-          There is a useful interpretation of the Lagrange multiplier
-          <m>\lambda</m>.
-          Assume that we want to optimize a function <m>f</m> with constraint
-          <m>g(x,y)=c</m>.
-          Recall that an optimal solution occurs at a point <m>(x_0, y_0)</m>
-          where <m>\nabla f = \lambda \nabla g</m>.
-          As the constraint changes, so does the point at which the optimal
-          solution occurs.
-          So we can think of the optimal point as a function of the parameter
-          <m>c</m>, that is <m>x_0 = x_0(c)</m> and <m>y_0=y_0(c)</m>.
-          The optimal value of <m>f</m> subject to the constraint can then be
-          considered as a function of <m>c</m> defined by
-          <m>f(x_0(c), y_0(c))</m>.
-          The Chain Rule shows that
-          <md>
-            \frac{df}{dc} = \frac{\partial f}{\partial x_0} \frac{dx_0}{dc} + \frac{\partial f}{\partial y_0} \frac{dy_0}{dc}.
-          </md>
-
-          <ol marker="a.">
-            <li>
-              <p>
-                Use the fact that <m>\nabla f = \lambda \nabla g</m> at
-                <m>(x_0,y_0)</m> to explain why
-                <md>
-                  \frac{df}{dc} = \lambda \frac{dg}{dc}.
-                </md>
-              </p>
-            </li>
-
-            <li>
-              <p>
-                Use the fact that <m>g(x,y) = c</m> to show that
-                <md>
-                  \frac{df}{dc} = \lambda.
-                </md>
-                Conclude that <m>\lambda</m> tells us the rate of change of the
-                function <m>f</m> as the parameter <m>c</m> increases (or by
-                approximately how much the optimal value of the function
-                <m>f</m> will change if we increase the value of <m>c</m> by 1
-                unit).
-              </p>
-            </li>
-
-            <li>
-              <p>
-                Suppose that <m>\lambda = 324</m> at the point where the package
-                described in
-                <xref ref="PA_mv_deriv-lagrange">Preview Activity</xref> has its
-                maximum volume.
-                Explain in context what the value <m>324</m> tells us about the
-                package.
-              </p>
-            </li>
-
-            <li>
-              <p>
-                Suppose that the maximum value of a function <m>f = f(x,y)</m>
-                subject to a constraint <m>g(x,y) = 100</m> is <m>236</m>.
-                When using the method of Lagrange multipliers and solving
-                <m>\nabla f = \lambda \nabla g</m>, we obtain a value of
-                <m>\lambda = 15</m> at this maximum.
-                Find an approximation to the maximum value of <m>f</m> subject
-                to the constraint <m>g(x,y) = 98</m>.
-              </p>
-            </li>
-          </ol>
-        </p>
-      </statement>
-
-      <answer>
-        <p>
-          <ol marker="a.">
-            <li>
-              <p>
-                The Chain Rule shows that
-                <md>
-                  <mrow>\frac{df}{dc} \amp = \frac{\partial f}{\partial x_0} \frac{dx_0}{dc} + \frac{\partial f}{\partial y_0} \frac{dy_0}{dc}</mrow>
-                  <mrow>\amp = \left(\lambda \frac{\partial g}{\partial x_0} \right) \frac{dx_0}{dc} + \left(\lambda \frac{\partial g}{\partial y_0} \right) \frac{dy_0}{dc}</mrow>
-                  <mrow>\amp = \lambda \left(\frac{\partial g}{\partial x_)} \frac{dx_)}{dc} + \frac{\partial g}{\partial y_0} \frac{dy_0}{dc} \right)</mrow>
-                  <mrow>\amp = \lambda \frac{dg}{dc}</mrow>
-                </md>.
-              </p>
-            </li>
-
-            <li>
-              <p>
-                Since <m>g(x,y)=c</m>, we have <m>\frac{dg}{dc} = 1</m>.
-                So
-                <md>
-                  \frac{df}{dc}  = \lambda \frac{dg}{dc} = \lambda
-                </md>.
-              </p>
-            </li>
-
-            <li>
-              <p>
-                If we could increase the girth plus the length by 1 inch, the
-                maximum volume of our package will increase by approximately 324
-                cubic inches.
-              </p>
-            </li>
-
-            <li>
-              <p>
-                206
-              </p>
-            </li>
-          </ol>
-        </p>
-      </answer>
-
-      <solution>
-        <p>
-          <ol marker="a.">
-            <li>
-              <p>
-                The Chain Rule shows that
-                <md>
-                  <mrow>\frac{df}{dc} \amp = \frac{\partial f}{\partial x_0} \frac{dx_0}{dc} + \frac{\partial f}{\partial y_0} \frac{dy_0}{dc}</mrow>
-                  <mrow>\amp = \left(\lambda \frac{\partial g}{\partial x_0} \right) \frac{dx_0}{dc} + \left(\lambda \frac{\partial g}{\partial y_0} \right) \frac{dy_0}{dc}</mrow>
-                  <mrow>\amp = \lambda \left(\frac{\partial g}{\partial x_)} \frac{dx_)}{dc} + \frac{\partial g}{\partial y_0} \frac{dy_0}{dc} \right)</mrow>
-                  <mrow>\amp = \lambda \frac{dg}{dc}</mrow>
-                </md>.
-              </p>
-            </li>
-
-            <li>
-              <p>
-                Since <m>g(x,y)=c</m>, we have <m>\frac{dg}{dc} = 1</m>.
-                So
-                <md>
-                  \frac{df}{dc}  = \lambda \frac{dg}{dc} = \lambda
-                </md>.
-              </p>
-            </li>
-
-            <li>
-              <p>
-                If we could increase the girth plus the length by 1 inch, the
-                maximum volume of our package will increase by approximately 324
-                cubic inches.
-              </p>
-            </li>
-
-            <li>
-              <p>
-                Finding <m>\lambda = 15</m> tells us that if the constraint
-                increases by 1 then the value of <m>f</m> will change by 15
-                units.
-                In this case, if our constraint decreases by 2 (from
-                <m>g(x, y) = 100</m> to <m>g(x, y) = 98</m> ), we expect our
-                maximum value of <m>f</m> to decrease by <m>15 \cdot 2 = 30</m>
-                units.
-                Thus our approximation for the maximum value of <m>f</m> subject
-                to the constraint <m>g(x, y) = 98</m> is <m>236 - 30 = 206</m>.
-              </p>
-            </li>
-          </ol>
-        </p>
-      </solution>
-    </exercise>
-  </exercises>
+  <xi:include href="./exercises/ez-S_mv_Lagrange.ptx" />
 </section>
