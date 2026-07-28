@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="20" xml:id="extracted-Library__WHFreeman__Rogawski_Calculus_Early_Transcendentals_Second_Edition__16_Line_and_Surface_Integrals__16__3_Conservative_Vector_Fields__16__3__12__pg" assembly-id="Library__WHFreeman__Rogawski_Calculus_Early_Transcendentals_Second_Edition__16_Line_and_Surface_Integrals__16__3_Conservative_Vector_Fields__16__3__12__pg">
+  <static seed="710" source="Library/WHFreeman/Rogawski_Calculus_Early_Transcendentals_Second_Edition/16_Line_and_Surface_Integrals/16.3_Conservative_Vector_Fields/16.3.12.pg">
+    <statement><p>Determine whether the vector field is conservative and, if so, find the
+general potential function.</p>
+<p><me>\mathbf{F} = \left\lt  \cos z ,2 y^{13}, -x\sin z\right&gt;</me>
+<m>\varphi=</m> <fillin characters="20" name="AnSwEr0001"/> <m>+ c</m></p>
+<p>Note: if the vector field is not conservative, write "DNE".</p>
+</statement>
+    <answer>
+      <p>
+        <m>x\cos\mathopen{}\left(z\right)+\frac{y^{14}}{7}</m>
+      </p>
+    </answer>
+    <solution><m>\mathbf{F}</m> satisfies the cross partials condition:
+<me>\begin{array}{l}\frac{\partial  F_1}{\partial y}=\frac{\partial }{\partial y}(  \cos z )=0\\
+\frac{\partial  F_2}{\partial x}=\frac{\partial }{\partial x}( 2 y^{13} )=0\end{array} \quad\Rightarrow\quad \frac{\partial  F_1}{\partial y}=\frac{\partial  F_2}{\partial x}</me>
+<me>\begin{array}{rcl}\frac{\partial  F_2}{\partial z}=\frac{\partial }{\partial z}( 2 y^{13} )=0\\
+\frac{\partial  F_3}{\partial y}=\frac{\partial }{\partial y}( -x  \sin z )=0\end{array} \Rightarrow \frac{\partial  F_2}{\partial z}=\frac{\partial  F_3}{\partial y}</me><me>\begin{array}{rcl}\frac{\partial  F_3}{\partial x}=\frac{\partial }{\partial x}( -x  \sin z )=- \sin z\\
+\frac{\partial  F_1}{\partial z}=\frac{\partial }{\partial z}(  \cos z )=- \sin z\end{array} \Rightarrow  \frac{\partial  F_3}{\partial x}=\frac{\partial  F_1}{\partial z}</me>
+We see that the conditions are satisfied, therefore <m>\mathbf{F}</m> is conservative. We find the general potential function for <m>\mathbf{F}</m>. 
+
+
+<alert> Step 1. </alert> Use the condition <m>\frac{\partial \varphi }{\partial x}= F_1</m>. 
+
+
+<m>\varphi ( x,y,z )</m> is an antiderivative of <m>F_1= \cos z</m> when <m>y</m> and <m>z</m> are fixed, therefore:
+<me>\varphi ( x,y,z )=\int  \cos z \,dx=x  \cos z+g( y,z ) \quad \mathbf{(1)}</me>
+<alert> Step 2. </alert> Use the condition <m>\frac{\partial \varphi }{\partial y}= F_2</m>. 
+
+
+Using <m>\mathbf{(1)}</m> we get:
+<me>\frac{\partial }{\partial y}\left(x  \cos z+g( y,z )\right) = 2 y^{13}</me>
+<me>g_y(y,z) = 2 y^{13}</me>
+We integrate with respect to <m>y</m>, holding <m>z</m> fixed:
+<me>g(y,z)=\int 2 y^{13} \,dy= \frac1{7} \cdot y^{14} + g(z)</me>
+Substituting in <m>\mathbf{(1)}</m> gives
+<me>\varphi(x,y,z)=x \cos z+ \frac{y^{14}}{7}+g(z)\quad \mathbf{(2)}</me>
+<alert> Step 3. </alert> Use the condition <m>\frac{\partial \varphi }{\partial z}= F_3</m>. 
+
+
+By <m>\mathbf{(2)}</m> we have
+<me>\frac{\partial}{\partial z}\left(x \cos z+ \frac{y^{14}}{7}+g(z)\right) = -x  \sin z</me>
+<me>-x \sin z+ g'(z) = -x  \sin z</me>
+<me>g'(z) = 0\quad\Rightarrow\quad g(z)=c</me>
+Substituting in <m>\mathbf{(2)}</m> we obtain the general potential function:
+<me>\varphi ( x,y,z )=x  \cos z+ \frac{y^{14}}{7}+c</me>
+
+
+</solution>
+  </static>
+  <rendering-data sourceFilePath="Library/WHFreeman/Rogawski_Calculus_Early_Transcendentals_Second_Edition/16_Line_and_Surface_Integrals/16.3_Conservative_Vector_Fields/16.3.12.pg" origin="webwork2" domain="https://webwork-ptx.aimath.org" course-id="anonymous" user-id="anonymous" passwd="anonymous" language="en-US"/>
+  <pg source="Library/WHFreeman/Rogawski_Calculus_Early_Transcendentals_Second_Edition/16_Line_and_Surface_Integrals/16.3_Conservative_Vector_Fields/16.3.12.pg"/>
+</webwork-reps>

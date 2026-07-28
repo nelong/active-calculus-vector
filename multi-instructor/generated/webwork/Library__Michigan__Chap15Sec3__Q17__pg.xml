@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="20" xml:id="extracted-Library__Michigan__Chap15Sec3__Q17__pg" assembly-id="Library__Michigan__Chap15Sec3__Q17__pg">
+  <static seed="490" source="Library/Michigan/Chap15Sec3/Q17.pg">
+    <statement><p>Use Lagrange multipliers to find the maximum and minimum values of
+<m>f(x,y) = x^2 y + 3 y^2 - y</m>, subject to the constraint
+<m>x^2 + y^2 \leq 10</m></p>
+<p>maximum = <fillin characters="35" name="AnSwEr0001"/></p>
+<p>minimum = <fillin characters="35" name="AnSwEr0002"/></p>
+<p><em>(For either value, enter <alert>DNE</alert> if there is
+no such value.)</em></p>
+</statement>
+    <answer>
+      <p>
+        <m>33.1623</m>
+      </p>
+    </answer>
+    <answer>
+      <p>
+        <m>-5</m>
+      </p>
+    </answer>
+    <solution><m>f</m>:
+<me>f_x = 2xy = 0, \quad
+   f_y = x^2 + 6 y - 1 = 0.</me>
+From the first equation, we get either <m>x=0</m> or <m>y=0</m>.
+If <m>x=0</m>, from the second equation we get <m>6 y - 1 = 0</m>,
+so <m>y=1/6</m>.  If instead <m>y=0</m>,
+then from the second equation <m>x=\pm 1</m>.  We conclude that the critical
+points are <m>(0,1/6)</m>, <m>(1,0)</m>, and <m>(-1,0)</m>. All three critical
+points satisfy the constraint <m>x^2+y^2\le 10</m>.
+
+
+
+
+The Lagrange conditions, <m>\nabla f= \lambda\nabla g</m>, are:
+<me>2xy=\lambda 2x,\qquad x^2 + 6 y - 1 =\lambda 2y.</me>
+From the first equation, when <m>x\neq 0</m>, we divide by <m>2x</m>
+to get <m>\lambda=y</m>.  Substituting into the second equation,
+we get
+<me>x^2 + 6 y - 1 = 2y^2.</me>
+Then using <m>x^2 = 10 - y^2</m> from the constraint, we have
+<me>10 - y^2 + 6 y - 1 = 2 y^2,</me>
+so <m>3 y^2 - 6 y - 9 = 0</m>.  Factoring, we get
+<m>(3y + 3 )( y - 3 ) = 0</m>, so
+<m>y = -1</m> or <m>y = 3</m>.
+From the constraint, we get <m>x=\pm 3</m> when <m>y=-1</m> and
+<m>x=\pm 1</m> for <m>y=3</m>.
+
+
+
+If instead <m>x=0</m>, so that we cannot
+divide by <m>x</m> in the first Lagrange equation, then from the constraint,
+<m>y=\pm \sqrt{10}</m>.
+
+
+
+Summarizing, the following points are either critical points or satisfy
+the Lagrange conditions:
+<me>(\pm 1,0),(0,1/6),(\pm 3, -1),(\pm 1, 3),
+(0, -\sqrt{10}), \mbox{ and } (0, \sqrt{10}).</me>
+These are the candidates for global maximum or minimum points.
+The corresponding values for <m>f(x,y)=x^2 y + 3 y^2 - y</m> are:
+<me>0, -0.083, -5, 27, 33.162,
+   \mbox{ and } 26.838.</me>
+The largest value is <m>33.1623</m> at the point
+<m>(0,-\sqrt{10})</m>,
+and the smallest value is <m>-5</m> at
+<m>(\pm 3,-1)</m>,
+
+
+
+</solution>
+  </static>
+  <rendering-data sourceFilePath="Library/Michigan/Chap15Sec3/Q17.pg" origin="webwork2" domain="https://webwork-ptx.aimath.org" course-id="anonymous" user-id="anonymous" passwd="anonymous" language="en-US"/>
+  <pg source="Library/Michigan/Chap15Sec3/Q17.pg"/>
+</webwork-reps>

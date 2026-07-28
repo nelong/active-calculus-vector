@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="20" xml:id="extracted-Library__WHFreeman__Rogawski_Calculus_Early_Transcendentals_Second_Edition__17_Fundamental_Theorems_of_Vector_Analysis__17__2_Stokes_Theorem__17__2__7__pg" assembly-id="Library__WHFreeman__Rogawski_Calculus_Early_Transcendentals_Second_Edition__17_Fundamental_Theorems_of_Vector_Analysis__17__2_Stokes_Theorem__17__2__7__pg">
+  <static seed="882" source="Library/WHFreeman/Rogawski_Calculus_Early_Transcendentals_Second_Edition/17_Fundamental_Theorems_of_Vector_Analysis/17.2_Stokes_Theorem/17.2.7.pg">
+    <statement><p>Verify Stokes' Theorem for the given
+vector field and surface, oriented with an upward-pointing normal:</p>
+<p><m>\mathbf{F} = \left\lt  e^{y-z}, 0,0\right&gt;,\quad</m> the square with vertices
+<m>(7,0,5)</m>, <m>(7,7,5)</m>, <m>(0,7,5)</m>, and <m>(0,0,5)</m>.</p>
+<p><m>\int_{\mathcal{C}} \mathbf{F} \cdot  d\mathbf{s}=</m> <fillin characters="20" name="AnSwEr0001"/></p>
+<p><m>\iint_{\mathcal{S}} \text{curl}  (\mathbf{F})\cdot \,d\mathbf{S}  =</m> <fillin characters="20" name="AnSwEr0002"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>-51.6762</m>
+      </p>
+    </answer>
+    <answer>
+      <p>
+        <m>-51.6762</m>
+      </p>
+    </answer>
+    <solution><alert> Step 1. </alert> Compute the integral around the boundary curve. 
+
+
+The boundary consists of four segments <m>{\mathcal{C}}_1</m>, <m>{\mathcal{C}}_2</m>, <m>{\mathcal{C}}_3</m>, and <m>{\mathcal{C}}_4</m> shown in the figure: 
+
+
+<image xmlns:pi="http://pretextbook.org/2020/pretext/internal" pi:generated="webwork/images/Library__WHFreeman__Rogawski_Calculus_Early_Transcendentals_Second_Edition__17_Fundamental_Theorems_of_Vector_Analysis__17__2_Stokes_Theorem__17__2__7__pg-image-1.png" width="45%"/> <m>A=\left(0,0,5\right),\quad B=\left(0,7,5\right),\quad C=\left(7,7,5\right),\quad D=\left(7,0,5\right)</m>
+
+
+
+We parametrize the segments by
+<me>{\mathcal{C}}_1:  {\gamma }_1(t)=(t,0,5),\quad 0\le t\le 7</me>
+<me>{\mathcal{C}}_2:  {\gamma }_2(t)=(7,t,5),\quad 0\le t\le 7</me>
+<me>{\mathcal{C}}_3:  {\gamma }_3(t)=(7-t,7,5),\quad 0\le t\le 7</me>
+<me>{\mathcal{C}}_4:  {\gamma }_4(t)=(0,7-t,5),\quad 0\le t\le 7</me>
+We compute the following values:
+<me>\mathbf{F} \left({\gamma}_1(t)\right) = \left\lt  e^{y-z},0,0 \right&gt; = \left\lt  e^{-5},0,0 \right&gt;</me>
+<me>\mathbf{F} \left({\gamma}_2(t)\right) = \left\lt  e^{y-z},0,0 \right&gt; = \left\lt  e^{t-5},0,0 \right&gt;</me>
+<me>\mathbf{F} \left({\gamma}_3(t)\right) = \left\lt  e^{y-z},0,0 \right&gt; = \left\lt  
+e^{2},0,0 \right&gt;</me>
+<me>\mathbf{F} \left({\gamma}_4(t)\right) = \left\lt  e^{y-z},0,0 \right&gt; = \left\lt  e^{-t+2},0,0 \right&gt;</me>
+Hence,
+<me>\mathbf{F} \left({\gamma}_1(t)\right)\cdot {\gamma}_1'(t) = \left\lt e^{-5},0,0 \right&gt;\cdot  \left\lt  1,0,0 \right&gt; = e^{-5}</me>
+<me>\mathbf{F} \left({\gamma}_2(t)\right)\cdot {\gamma }_2'(t)= \left\lt   e^{t-5},0,0 \right&gt;\cdot  \left\lt  0,1,0 \right&gt; =0</me>
+<me>\mathbf{F} \left({\gamma}_3(t)\right)\cdot {\gamma }_3'(t) = \left\lt  e^{2},0,0\right&gt;\cdot  \left\lt  -1,0,0 \right&gt; =-e^{2}</me>
+<me>\mathbf{F} \left({\gamma}_4(t)\right)\cdot {\gamma }_4'(t) = \left\lt   e^{-t+2},0,0 \right&gt;\cdot \left\lt  0,-1,0 \right&gt;=0</me>
+We obtain the following integral:
+<me>\int_{\mathcal{C}} \mathbf{F} \cdot  d\mathbf{s}=
+\sum_{i=1}^4 \int_{{\mathcal{C}}_i} \mathbf{F} \cdot d\mathbf{s} =</me><me>\int_0^{7}  e^{-5} \,dt+0+\int_0^{7} -e^{2} \,dt+0
+= 7 \left(e^{-5}-e^{2}  \right)  \quad \mathbf{(1)}</me>
+<alert> Step 2. </alert> Compute the <m>\text{curl}</m>. 
+
+
+<me>\text{curl}  (\mathbf{F}) =
+\left|\begin{array}{ccc} \mathbf{i} \amp \mathbf{j} \amp \mathbf{k} \\
+\frac{\partial }{\partial x}\amp \frac{\partial }{\partial y}\amp \frac{\partial }{\partial z}\\
+e^{y-z}\amp 0\amp 0\end{array}\right| =</me><me>-e^{y-z} \mathbf{j} - e^{y-z} \mathbf{k} 
+= \left\lt  0,- e^{y-z},- e^{y-z} \right&gt;</me>
+<alert> Step 3. </alert> Compute the flux of the curl through the surface. 
+
+
+We parametrize the surface by
+<me>\Phi (x,y)=(x,y,5),\quad 0\le x,\,y\le 7</me>
+The upward pointing normal is <m>\mathbf{n} = \left\lt  0,0,1 \right&gt;</m>. We express <m>\text{curl}  (\mathbf{F})</m> in terms of the parameters <m>x</m> and <m>y</m>:
+<me>\text{curl} (\mathbf{F})\left(\Phi (x,y)\right) =
+\left\lt  0,- e^{y-5},- e^{y-5} \right&gt;</me>
+Hence,
+<me>\text{curl}  (\mathbf{F})\cdot \mathbf{n} =
+\left\lt  0,- e^{y-5},- e^{y-5} \right&gt;\cdot  \left\lt  0,0,1 \right&gt; =- e^{y-5}</me>
+The surface integral is thus
+<me>\iint_{\mathcal{S}} \text{curl}  (\mathbf{F})\cdot \,d\mathbf{S}  =
+\iint_{\mathcal{D}} - e^{y-5} \,dA=</me><me>\int_0^{7} \int_0^{7} - e^{y-5} \,dy \,dx=
+7\int_0^{7} - e^{y-5} \,dy=</me><me>7\left(- e^{y-5}\bigg|_0^{7}\right)=
+7\left(-e^{7-5}+ e^{-5}\right)=</me><me>7\left(e^{-5}-e^{2}\right)\quad \mathbf{(2)}</me>
+We see that the integrals in <m>\mathbf{(1)}</m> and <m>\mathbf{(2)}</m> are equal.
+
+
+</solution>
+  </static>
+  <rendering-data sourceFilePath="Library/WHFreeman/Rogawski_Calculus_Early_Transcendentals_Second_Edition/17_Fundamental_Theorems_of_Vector_Analysis/17.2_Stokes_Theorem/17.2.7.pg" origin="webwork2" domain="https://webwork-ptx.aimath.org" course-id="anonymous" user-id="anonymous" passwd="anonymous" language="en-US"/>
+  <pg source="Library/WHFreeman/Rogawski_Calculus_Early_Transcendentals_Second_Edition/17_Fundamental_Theorems_of_Vector_Analysis/17.2_Stokes_Theorem/17.2.7.pg"/>
+</webwork-reps>

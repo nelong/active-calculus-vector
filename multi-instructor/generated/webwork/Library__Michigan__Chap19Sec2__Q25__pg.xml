@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="20" xml:id="extracted-Library__Michigan__Chap19Sec2__Q25__pg" assembly-id="Library__Michigan__Chap19Sec2__Q25__pg">
+  <static seed="820" source="Library/Michigan/Chap19Sec2/Q25.pg">
+    <statement><p>Compute the flux of <m>\vec F = 4 x\vec i + 4 y\vec j +  z\vec k</m>
+over the quarter cylinder <m>S</m> given by <m>x^2+y^2=16</m>,
+<m>0\leq x\leq 4</m>,
+<m>0\leq y\leq 4</m>, <m>0\leq z\leq 4</m>, oriented outward.</p>
+<p>flux = <fillin characters="35" name="AnSwEr0001"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>\frac{4\pi \cdot 4^{3}}{2}</m>
+      </p>
+    </answer>
+    <solution><m>\vec k</m>-component of <m>\vec F</m> does not contribute to the
+flux as it is perpendicular to the surface. The vector field
+<m>4 x\vec i + 4 y\vec j</m> is everywhere perpendicular to <m>S</m>
+and has constant magnitude <m>||(4 x)^2+(4 y)^2|| = 4</m> on the
+surface <m>S</m>. Thus
+<me>\int_S\vec F\cdot d\vec A
+=\int_S 4(x\vec i +y\vec j)\cdot d\vec A
+=4\cdot \hbox{Area of }S = 4\frac{16 \pi}{2} = 32\,\pi.</me>
+
+
+
+
+Alternatively, the flux can be computed by integrating with respect to
+<m>x</m> and <m>z</m>, treating <m>y</m> as a function of <m>x</m> and <m>z</m>.  A
+parameterization of <m>S</m> is given
+by <m>y=\sqrt{16-x^2}</m>, <m>0\leq x\leq 4</m>,
+<m>0\leq y\leq 4</m>, <m>0\leq z\leq 4</m>.  Thus,
+<me>\int_S\vec F\cdot d\vec A 
+= \int_0^{4}\int_0^{4}(4 x\vec i + 4 \sqrt{1-x^2}\vec j+  z\vec k)
+\cdot(-y_x\vec i + \vec j- y_z \vec k)\,dx\,dz</me>
+<me>= \int_0^{4}\int_0^{4}(4 x\vec i+ 4 \sqrt{1-x^2}\vec j+  z\vec k)
+\cdot\left(\frac{x}{\sqrt{16 -x^2}}\vec i +\vec j + 0\vec k\right)\,dx\,dz</me>
+<me>= \int_0^{4}\int_0^{4}\left(4\frac{x^2}{\sqrt{16-x^2}}
++ 4 \sqrt{16 -x^2}\right)\,dx\,dz</me>
+<me>= 4 \int_0^{4}\int_0^{4}\frac{1}{\sqrt{16-x^2}}\,dx\,dz
+= 64\cdot \arcsin \frac{x}{4}\bigg|_0^{4} = 32\,\pi.</me>
+
+
+
+</solution>
+  </static>
+  <rendering-data sourceFilePath="Library/Michigan/Chap19Sec2/Q25.pg" origin="webwork2" domain="https://webwork-ptx.aimath.org" course-id="anonymous" user-id="anonymous" passwd="anonymous" language="en-US"/>
+  <pg source="Library/Michigan/Chap19Sec2/Q25.pg"/>
+</webwork-reps>

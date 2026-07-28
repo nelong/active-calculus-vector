@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="20" xml:id="extracted-Library__UBC__calculusStewart__surfaceIntegrals25__pg" assembly-id="Library__UBC__calculusStewart__surfaceIntegrals25__pg">
+  <static seed="826" source="Library/UBC/calculusStewart/surfaceIntegrals25.pg">
+    <statement><p>Evaluate the surface integral <m>\int_S \mathbf{F} \cdot \ d \mathbf{S}</m> where <m>\mathbf{F}=\left\lt  3 x, - z,  y \right&gt;</m> and <m>S</m> is the part of the sphere <m>x^2+y^2+z^2=4</m> in the first octant, with orientation toward the origin.</p>
+<p><m>\int\int_S \mathbf{F} \cdot \ d \mathbf{S}=</m> <fillin characters="20" name="AnSwEr0001"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>\frac{-24\pi }{6}</m>
+      </p>
+    </answer>
+    <solution><m>\mathbf{r}(x,y)=(x,y,g(x,y))</m> where <m>z = g(x,y) = \sqrt{4-x^2-y^2}</m> and <m>D</m> is the quarter disk <m>D = \lbrace(x,y) |\ 0 \le x \le d, 0 \le y \le \sqrt{4-x^2}\rbrace</m>. <m>S</m> has downwards orientation, so
+<me>\int_S \mathbf{F} \cdot \ d \mathbf{S}
+    = -\int\int_D ( -3 x \frac{\delta g}{\delta x}  + 1 z \frac{\delta g}{\delta y} + 1 y)dA</me>
+<me>= -\int\int_D \left[ -3 x \cdot \frac 1 2 (4 - x^2-y^2)^{-\frac {1} 2} \cdot (-2 x)  + 1 z \cdot \frac 1 2 (4 - x^2-y^2)^{-\frac{1} 2} \cdot (-2 y) + 1 y\right] dA</me>
+<me>= -\int\int_D\left(\frac {3 x^2} {\sqrt{4 - x^2-y^2}} + \frac{- y \sqrt{4 - x^2-y^2}}{\sqrt{4 - x^2-y^2}} + 1 y\right)dA</me>
+<me>=-3\int\int_D x^2(4-(x^2+y^2))^{-\frac{1}{2}}dA</me>
+<me>=-3\int_0^{\frac {\pi} 2}\int_0^{2} r^2\cos^2 \theta (4-r^2)^{-\frac{1}{2}}rdrd\theta</me>
+<me>=-3\int_0^{\frac {\pi} 2} \cos^2 \theta d\theta \int_0^{2} r^3 (4-r^2)^{-\frac{1}{2}}dr</me>
+<me>=-3\int_0^{\frac {\pi} 2} (\frac 1 2 + \frac 1 2 \cos (2\theta)) d\theta
+        \int_{4}^{0} -\frac 1 2 (4 - u)(u)^{-\frac 1 2} du</me>
+using the substitution <m>u = 4-r^2</m>
+<me>= -3\left[\frac 1 2 \theta + \frac 1 4 \sin (2\theta)\right]_0^{\frac {\pi} 2} \cdot (-\frac 1 2)\left[8\sqrt u - \frac 2 3 u^{\frac 3 2}\right]_{4}^0</me>
+<me>= -3 \cdot \frac {\pi} 4 (-\frac 1 2) (-16+\frac {16} 3)</me>
+<me>= -4 \pi</me>
+
+
+
+</solution>
+  </static>
+  <rendering-data sourceFilePath="Library/UBC/calculusStewart/surfaceIntegrals25.pg" origin="webwork2" domain="https://webwork-ptx.aimath.org" course-id="anonymous" user-id="anonymous" passwd="anonymous" language="en-US"/>
+  <pg source="Library/UBC/calculusStewart/surfaceIntegrals25.pg"/>
+</webwork-reps>

@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="20" xml:id="extracted-Library__Michigan__Chap16Sec3__Q35__pg" assembly-id="Library__Michigan__Chap16Sec3__Q35__pg">
+  <static seed="595" source="Library/Michigan/Chap16Sec3/Q35.pg">
+    <statement><p>Find the mass of the solid bounded by the <m>xy</m>-plane, <m>yz</m>-plane,
+<m>xz</m>-plane, and the plane <m>(x/4)+(y/2)+(z/8) = 1</m>, if the
+density of the solid is given by <m>\delta (x,y,z)=x + 4 y</m>.</p>
+<p>mass = <fillin characters="35" name="AnSwEr0001"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>\frac{4\cdot 4\cdot 2\cdot 2\cdot \left(4+2\cdot 4\right)}{24}</m>
+      </p>
+    </answer>
+    <solution><m>z = 8 - 2 x - 4 y</m>.  Note that the projection of this
+into the <m>xy</m>-plane is the triangular region below
+<m>y = 2 - \frac{1}{2} x</m>.
+
+
+
+The mass of the volume is then
+<me>M = \int_R \delta\,dV =
+    \int_0^4\int_0^{2 - \frac{1}{2} x}\int_0^{8-2 x-4 y}\,x + 4 y\,dz\,dy\,dx.</me>
+Integrating with respect to <m>z</m>,
+<me>M = \int_0^4\int_0^{2 - \frac{1}{2} x} (x + 4 y)(8-2 x-4 y)\,dy\,dx</me>
+so that
+<me>M = \int_0^4\int_0^{2 - \frac{1}{2} x} -2 x^2 + 8 x - 4 x y - 8 x y +
+	32 y - 16 y^2\,dy\,dx.</me>
+Then, integrating with respect to <m>y</m>,
+<me>M = \int_0^4 (-2 x^2 + 8 x)(2 - \frac{1}{2} x) +
+	\frac12(32 - 12 x)(2 - \frac{1}{2} x)^2 - \frac{16}{3} (2 - \frac{1}{2} x)^3\,dx.</me>
+Expanding the these terms, we have
+<me>M = \int_0^4 \frac{1}{6} x^3 + 0 x^2  - 8 x + \frac{64}{3}\, dx = 32.</me>
+
+
+
+
+</solution>
+  </static>
+  <rendering-data sourceFilePath="Library/Michigan/Chap16Sec3/Q35.pg" origin="webwork2" domain="https://webwork-ptx.aimath.org" course-id="anonymous" user-id="anonymous" passwd="anonymous" language="en-US"/>
+  <pg source="Library/Michigan/Chap16Sec3/Q35.pg"/>
+</webwork-reps>

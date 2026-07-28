@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="20" xml:id="extracted-Library__Michigan__Chap14Sec3__Q29__pg" assembly-id="Library__Michigan__Chap14Sec3__Q29__pg">
+  <static seed="421" source="Library/Michigan/Chap14Sec3/Q29.pg">
+    <statement><p>A fluid moves through a tube of length 1 meter and radius 
+<m>r = 0.006 \pm 0.00025</m> meters under a pressure
+<m>p = 2\cdot 10^5 \pm 1500</m> pascals, at a rate
+<m>v= 0.375 \cdot 10^{-9}</m> <m>\hbox{m}^3</m> per unit
+time. Use differentials to estimate the maximum error
+in the viscosity <m>\eta</m> given by
+<me>\eta = \frac{ \pi}{8} \frac{p r^4}{v}.</me></p>
+<p>maximum error <m>\approx</m> <fillin characters="65" name="AnSwEr0001"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>\frac{\pi }{8}\mathopen{}\left(\frac{0.006^{4}\cdot 1500}{0.375}+\frac{4\cdot 2\cdot 10^{5}\cdot 0.006^{3}\cdot 0.00025}{0.375}\right)\cdot 10^{9}</m>
+      </p>
+    </answer>
+    <solution><m>\eta</m> is approximated by <m>d\eta</m>, where
+<me>d\eta = \frac{\partial \eta}{\partial r} dr +  \frac{\partial
+\eta}{\partial p} dp.</me>
+
+
+
+
+We need to find
+<me>\frac{\partial \eta}{\partial r}=\frac{ \pi}{8} \frac{p 4 r^3}{v }</me>
+and
+<me>\frac{\partial \eta}{\partial p}=\frac{ \pi}{8} \frac{  r^4}{v}.</me>
+For <m>r = 0.006</m>, <m>v = 0.375\cdot 10^{-9}</m> and <m>p=2\cdot 10^5</m> we get
+<me>\frac{\partial \eta}{\partial r}(0.006,2\cdot 10^5) =
+    \frac{ \pi}{8} \frac{(2\cdot 10^5)(4\, (0.006)^3)}{0.375\cdot 10^{-9}} =
+    1.80956\times 10^{8},</me>
+and similarly
+<me>\frac{\partial \eta}{\partial p}(0.006, 2\cdot 10^5) = 1.35717,</me>
+so that
+<me>d\eta = \frac{\partial \eta}{\partial r} d r +
+    \frac{\partial \eta}{\partial p} dp.</me>
+is largest when we take all positive values to give
+<me>d\eta = (1.80956\times 10^{8})(0.00025) + (1.35717)(1500) = 47274.7.</me>
+
+
+
+
+This seems quite large, but <m>\eta(0.006,2\cdot 10^5) = 271434</m>,
+so the maximum error represents about 20 % of any
+value computed by the given formula.  Notice also the relative
+error in <m>r</m> is <m>\pm 4</m> %, which means that
+the relative error in <m>r^4</m> is <m>\pm 10</m> %.
+
+
+
+
+</solution>
+  </static>
+  <rendering-data sourceFilePath="Library/Michigan/Chap14Sec3/Q29.pg" origin="webwork2" domain="https://webwork-ptx.aimath.org" course-id="anonymous" user-id="anonymous" passwd="anonymous" language="en-US"/>
+  <pg source="Library/Michigan/Chap14Sec3/Q29.pg"/>
+</webwork-reps>

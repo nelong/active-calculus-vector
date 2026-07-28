@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="20" xml:id="extracted-Library__Michigan__Chap16Sec7__Q25__pg" assembly-id="Library__Michigan__Chap16Sec7__Q25__pg">
+  <static seed="640" source="Library/Michigan/Chap16Sec7/Q25.pg">
+    <statement><p>Use the change of variables <m>s=xy</m>, <m>t=xy^2</m> to compute
+<m>\int_R xy^2\,dA</m>, where <m>R</m> is the region bounded by 
+ <m>xy=4,\ xy=8,\ xy^2=4,\ xy^2=8</m>.</p>
+<p><m>\int_R xy^2\,dA =</m> <fillin characters="35" name="AnSwEr0001"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>4\cdot 4</m>
+      </p>
+    </answer>
+    <solution><me>\begin{array}{ccc}s\amp =\amp xy\\t\amp =\amp xy^2,\end{array}.</me>
+we have
+<me>\frac{\partial(s,t)}{\partial(x,y)}=
+\left|
+\begin{array}{ccc}
+\frac{\partial s}{\partial x} \amp \frac{\partial s}{\partial y}\\
+\frac{\partial t}{\partial x} \amp \frac{\partial t}{\partial y}
+\end{array}\right|
+=\left|\begin{array}{ccc}y\amp x\\y^2\amp 2xy\end{array}\right|=xy^2=t.</me>
+Since  <me>\frac{\partial(s,t)}{\partial(x,y)}\cdot
+\frac{\partial(x,y)}{\partial(s,t)}=1,
+\qquad
+ \frac{\partial(x,y)}{\partial(s,t)}=\frac{1}{t}.</me>
+
+So
+<me>\int_R xy^2\,dA=\int_{T}t\left|\frac{\partial(x,y)}{\partial(s,t)}\right|\,ds\,dt=
+\int_{T}t\,(\frac 1t)\,ds\,dt=\int_{T}\,ds\,dt,</me>
+where <m>T</m> is the region bounded by <m>s=4</m>, <m>s=8</m>, <m>t=4</m>, <m>t=8</m>.
+Then <me>\int_Rxy^2\,dA=\int_4^{8}\,ds\int_4^{8}\,dt=16.</me>
+
+
+
+</solution>
+  </static>
+  <rendering-data sourceFilePath="Library/Michigan/Chap16Sec7/Q25.pg" origin="webwork2" domain="https://webwork-ptx.aimath.org" course-id="anonymous" user-id="anonymous" passwd="anonymous" language="en-US"/>
+  <pg source="Library/Michigan/Chap16Sec7/Q25.pg"/>
+</webwork-reps>

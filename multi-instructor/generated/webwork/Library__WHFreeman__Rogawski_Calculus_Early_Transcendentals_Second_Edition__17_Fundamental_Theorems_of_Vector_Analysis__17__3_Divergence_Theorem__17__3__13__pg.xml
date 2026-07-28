@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="20" xml:id="extracted-Library__WHFreeman__Rogawski_Calculus_Early_Transcendentals_Second_Edition__17_Fundamental_Theorems_of_Vector_Analysis__17__3_Divergence_Theorem__17__3__13__pg" assembly-id="Library__WHFreeman__Rogawski_Calculus_Early_Transcendentals_Second_Edition__17_Fundamental_Theorems_of_Vector_Analysis__17__3_Divergence_Theorem__17__3__13__pg">
+  <static seed="900" source="Library/WHFreeman/Rogawski_Calculus_Early_Transcendentals_Second_Edition/17_Fundamental_Theorems_of_Vector_Analysis/17.3_Divergence_Theorem/17.3.13.pg">
+    <statement><p>Use the Divergence Theorem to evaluate the surface integral <m>\iint_{\mathcal{S}} \mathbf{F}\cdot d\mathbf{S}</m> .</p>
+<p><m>\mathbf{F} = \left\lt  x^3,2,z^3\right&gt;</m>, <m>\mathcal{S}</m> is the sphere <m>x^2+y^2+z^2=49</m>.</p>
+<p><m>\iint_{\mathcal{S}} \mathbf{F}\cdot d\mathbf{S}=</m> <fillin characters="20" name="AnSwEr0001"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>84481.2</m>
+      </p>
+    </answer>
+    <solution><m>\mathbf{F} = \left\lt   x^3,2, z^3 \right&gt;</m>: 
+<me>\text{div} (\mathbf{F})=\frac{\partial }{\partial x}(x^3)+\frac{\partial }{\partial y}(2)+\frac{\partial }{\partial z}(z^3)=</me><me>3 x^2+3 z^2=3(x^2+ z^2)</me>
+Using the Divergence Theorem we obtain (<m>\mathcal{W}</m> is the region inside the sphere)
+<me>\iint_{\mathcal{S}} \mathbf{F} \cdot d\mathbf{S} =\iiint_{\mathcal{W}} \text{div} (\mathbf{F}) \,dV=</me><me>\iiint_{\mathcal{W}} 3(x^2+ z^2) \,dV</me>
+We convert the integral to spherical coordinates. We have
+<me>x^2+ z^2 = \rho^2\cos^2\theta \sin^2\phi +\rho^2 \cos^2\phi
+  =</me><me>\rho^2 \cos^2\theta \sin^2\phi +\rho^2(1-\sin^2\phi)= 
+  -\rho^2 \sin^2\phi (1-\cos^2\theta)+\rho^2 
+  =</me><me>-\rho^2 \sin^2\phi \sin^2\theta +\rho^2 = \rho^2 (1-\sin^2\phi \sin^2\theta)</me>
+We obtain the following integral:
+<me>\iint_{\mathcal{S}} \mathbf{F} \cdot d\mathbf{S}  =</me><me>3\int_0^{2\pi } \int_0^{\pi } \int_0^{7} {\rho }^2(1-\sin^2\phi  \sin^2\theta )\cdot {\rho }^2  \sin \phi \, d\rho \, d\phi  \,d\theta=</me>
+<me>3\int_0^{2\pi } \int_0^{\pi } \int_0^{7} {\rho }^4 (\sin \phi -\sin^3\phi  \sin^2\theta ) d\rho \, d\phi  \,d\theta=</me>
+<me>3\int_0^{2\pi } \int_0^{\pi } \int_0^{7} {\rho }^4  \sin \phi \, d\rho \, d\phi  \,d\theta</me><me>-3\int_0^{2\pi} \int_0^{\pi} \int_0^{7} \rho^4\sin^3\phi \sin^2\theta \,d\rho \, d\phi\,d\theta =</me>
+<me>6\pi\left(\int_0^{\pi}\sin\phi\,d\phi\right)\left(\int_0^{7}\rho^4\,d\rho\right)</me><me>-3\left(\int_0^{2\pi}\sin^2\theta\,d\theta\right)\left(\int_0^{\pi}\sin^3\phi\,  d\phi \right)\left(\int_0^{7} {\rho }^4 \,d\rho \right)=</me>
+<me>6\pi \left(-\cos\phi\bigg|_{\phi=0}^{\pi}\right) \left(\frac{\rho^5}{5}\bigg|_{\rho=0}^{7}\right)</me><me>-3\left(\frac{\theta}{2}-\frac{\sin 2\theta}{4}\bigg|_{\theta =0}^{2\pi}\right)
+\cdot \left(-\frac{\sin^2\phi\cos\phi}{3}-\frac23 \cos\phi \bigg|_{\phi=0}^{\pi}\right) \left(\frac{\rho^5}{5}\bigg|_{\rho =0}^{7}\right) =</me>
+<me>\frac{16807}{5}\left(12\pi -3\pi\cdot\frac43\right)=\frac{134456\pi}{5}</me>
+
+
+</solution>
+  </static>
+  <rendering-data sourceFilePath="Library/WHFreeman/Rogawski_Calculus_Early_Transcendentals_Second_Edition/17_Fundamental_Theorems_of_Vector_Analysis/17.3_Divergence_Theorem/17.3.13.pg" origin="webwork2" domain="https://webwork-ptx.aimath.org" course-id="anonymous" user-id="anonymous" passwd="anonymous" language="en-US"/>
+  <pg source="Library/WHFreeman/Rogawski_Calculus_Early_Transcendentals_Second_Edition/17_Fundamental_Theorems_of_Vector_Analysis/17.3_Divergence_Theorem/17.3.13.pg"/>
+</webwork-reps>

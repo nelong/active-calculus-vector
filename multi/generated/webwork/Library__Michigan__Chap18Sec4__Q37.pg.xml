@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="20" xml:id="extracted-Library__Michigan__Chap18Sec4__Q37.pg" assembly-id="Library__Michigan__Chap18Sec4__Q37.pg">
+  <static seed="621" source="Library/Michigan/Chap18Sec4/Q37.pg">
+    <statement><p>Let <m>\vec F = (3 x^2 y +  y^3 + 6 e^x)\,\vec i + (2 e^{y^2} + 108 x)\,\vec j</m>. Consider
+the line integral of <m>\vec F</m> around the circle of
+radius <m>a</m>, centered at the origin and traversed
+counterclockwise.</p>
+<p><alert>(a)</alert>
+Find the line integral for <m>a=1</m>.</p>
+<p>line integral = <fillin characters="35" name="AnSwEr0001"/></p>
+<p><alert>(b)</alert>
+For which value of <m>a</m> is the line integral a maximum?</p>
+<p><m>a =</m> <fillin characters="15" name="AnSwEr0002"/></p>
+<p><em>(Be sure you can explain why your answer gives the
+correct maximum.)</em></p>
+</statement>
+    <answer>
+      <p>
+        <m>2\pi \mathopen{}\left(\frac{108}{2}-\frac{3}{4}\right)</m>
+      </p>
+    </answer>
+    <answer>
+      <p>
+        <m>6</m>
+      </p>
+    </answer>
+    <solution><alert>(a)</alert>
+We use Green's Theorem. Let <m>R</m> be the region enclosed by the circle <m>C</m>.
+Then
+<me>\int_C \vec F\cdot d\vec r =
+\int_R\left( \frac{\partial}{\partial x}(2 e^{y^2} + 108 x) -
+             \frac{\partial}{\partial y}(3 x^2 y +  y^3 + 6 e^x)\right)\,dA =</me>
+<me>\int_R 108 - 3(x^2 + y^2)\, dA.</me>
+Converting to polar coordinates, we have
+<me>\int_C \vec F\cdot d\vec r =
+\int_0^{2\pi}\int_0^1 (108 - 3 r^2)r\,dr\,d\theta =
+2\pi\left(54 r^2 - \frac{3}{4} r^4\right)\bigg|_0^1 = \frac{213}{2}\pi.</me>
+
+
+
+
+<alert>(b)</alert>
+The integrand of the integral over the disk <m>R</m> is
+<m>108 - 3(x^2+y^2)</m>. Since the integrand is positive for
+<m>x^2 + y^2 \lt  \frac{108}{3} = 36</m> and negative for
+<m>x^2 + y^2 &gt; 36</m>, the
+integrand is positive inside the circle of radius 6 and negative outside that
+circle. Thus, the integral over <m>R</m> increases with <m>a</m> until <m>a=6</m> and
+then decreases. The maximum value of the line integral occurs when
+<m>a = 6</m>.
+
+
+
+</solution>
+  </static>
+  <rendering-data sourceFilePath="Library/Michigan/Chap18Sec4/Q37.pg" origin="webwork2" domain="https://webwork-ptx.aimath.org" course-id="anonymous" user-id="anonymous" passwd="anonymous" language="en-US"/>
+  <pg source="Library/Michigan/Chap18Sec4/Q37.pg"/>
+</webwork-reps>

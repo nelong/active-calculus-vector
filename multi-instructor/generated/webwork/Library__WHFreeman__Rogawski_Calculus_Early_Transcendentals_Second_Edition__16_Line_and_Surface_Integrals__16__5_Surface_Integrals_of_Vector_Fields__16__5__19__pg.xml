@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="20" xml:id="extracted-Library__WHFreeman__Rogawski_Calculus_Early_Transcendentals_Second_Edition__16_Line_and_Surface_Integrals__16__5_Surface_Integrals_of_Vector_Fields__16__5__19__pg" assembly-id="Library__WHFreeman__Rogawski_Calculus_Early_Transcendentals_Second_Edition__16_Line_and_Surface_Integrals__16__5_Surface_Integrals_of_Vector_Fields__16__5__19__pg">
+  <static seed="830" source="Library/WHFreeman/Rogawski_Calculus_Early_Transcendentals_Second_Edition/16_Line_and_Surface_Integrals/16.5_Surface_Integrals_of_Vector_Fields/16.5.19.pg">
+    <statement><p>Let <m>{\mathbf{e}}_{\mathbf{r}}</m> be the unit radial vector and
+<m>r=\sqrt{x^2+y^2+z^2}</m>.</p>
+<p>Calculate the integral of <m>\mathbf{F} = e^{-r} {\mathbf{e}}_{\mathbf{r}}</m> over:</p>
+<p><alert> (a) </alert> The upper-hemisphere of <m>x^2+y^2+z^2=81</m> , outward-pointing normal</p>
+<p><alert> (b) </alert> The region on the sphere of radius <m>r=6</m> centered at the origin that lies inside the first octant <m>x,y,z \ge 0</m></p>
+<p><alert> (a) </alert> <m>\iint_S  \mathbf{F} \cdot d\mathbf{S}  =</m> <fillin characters="20" name="AnSwEr0001"/></p>
+<p><alert> (b) </alert> <m>\iint_S  \mathbf{F} \cdot d\mathbf{S}  =</m><fillin characters="20" name="AnSwEr0002"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>0.0628079</m>
+      </p>
+    </answer>
+    <answer>
+      <p>
+        <m>0.14017</m>
+      </p>
+    </answer>
+    <solution><alert> (a) </alert> We parametrize the upper-hemisphere by,
+<me>\mathrm{\Phi }:  x=9  \cos\theta   \sin\phi ,    y=9  \sin\theta   \sin\phi ,    z=9  \cos\phi</me>
+with the parameter domain:
+<me>\mathcal{D}=\left\lbrace( \theta ,\phi  ): 0\le \theta \lt 2\pi , 0\le \phi \lt \frac{\pi }{2}\right\rbrace</me>
+The outward pointing unit normal is :
+<me>\mathbf{n} =  {\mathbf{e}}_{\mathbf{r}}</me>
+We compute the dot product <m>\mathbf{F} \cdot \mathbf{n}</m> on the sphere. On the sphere <m>r=9</m>, hence,
+<me>\mathbf{F} \cdot \mathbf{n} =
+e^{-r}\,{\mathbf{e}}_{\mathbf{r}} \cdot \mathbf{n} =
+e^{-9} {\mathbf{e}}_{\mathbf{r}} \cdot {\mathbf{e}}_{\mathbf{r}} = e^{-9},</me>
+which is constant on the hemisphere, so the integral is just 
+<me>\big(e^{-9}\big) (\text{area of the hemisphere})=e^{-9}(2)(\pi 9^2)=162e^{-9}.</me>  
+Of course one can obtain the same result by integrating 
+<me>\iint_S  \mathbf{F} \cdot d\mathbf{S}  =
+\iint_{\mathcal{D}} \left(\mathbf{F} \cdot \mathbf{n} \right) \,\rho^2 \sin(\phi) d\phi \, d\theta=</me><me>\int_0^{2\pi } \int_0^{\pi/2}  e^{-9}\, 81 \sin\phi  \,d\phi  \,d\theta= 
+ 162\pi e^{-9}\int_0^{\pi/2} \sin\phi  \,d\phi =</me><me>162\pi  e^{-9}\left(- \cos\phi \bigg|_0^{\pi/2}\right) =
+162\pi e^{-9}</me>
+<alert> (b) </alert> We parametrize the part of the sphere inside the first octant of the sphere by,
+<me>\mathrm{\Phi }:  x=6\cos\theta   \sin\phi ,    y=6\sin\theta   \sin\phi ,    z=6\cos\phi</me>
+with the parameter domain:
+<me>\mathcal{D}=\left\lbrace( \theta ,\phi  ): 0\le \theta \lt  \frac{\pi}{2} , 0\le \phi \lt \frac{\pi }{2}\right\rbrace</me>
+Again the outward pointing unit normal is (as seen above):
+<me>\mathbf{n} = {\mathbf{e}}_{\mathbf{r}}</me>
+We compute the dot product <m>\mathbf{F} \cdot \mathbf{n}</m> on the sphere. On the sphere <m>r=6</m>, hence,
+<me>\mathbf{F} \cdot \mathbf{n} =
+e^{-r}\,{\mathbf{e}}_{\mathbf{r}} \cdot \mathbf{n} =
+e^{-6} {\mathbf{e}}_{\mathbf{r}} \cdot  {\mathbf{e}}_{\mathbf{r}} = 
+e^{-6}.</me>
+
+Again this is constant on the sphere, so the integral is 
+<me>\big(e^{-6}\big)(\text{area of the surface}).</me> 
+One eighth of the sphere lies inside the first octant so the area of our surface is one eighth of the area of the sphere. Thus the integral is 
+<me>\big(e^{-6})(1/8)(4\pi 6^2)= \frac{36}{2}e^{-6}</me>
+
+Of course one can obtain the same result by integrating:
+<me>\iint_S  \mathbf{F} \cdot d\mathbf{S}  =
+\iint_{\mathcal{D}} \left(\mathbf{F} \cdot \mathbf{n} \right) \,\rho^2 \sin(\phi) d\phi \, d\theta=</me><me>\int_0^{\pi/2} \int_0^{\pi/2}  e^{-6}\,36 \sin\phi  \,d\phi  \,d\theta=</me><me>\frac{36\pi}{2}  e^{-6}\int_0^{\pi/2} \sin\phi  \,d\phi =
+\frac{36\pi}{2}  e^{-6}\left(- \cos\phi \bigg|_0^{\pi/2}\right)=
+\frac{36\pi}{2}  e^{-6}</me>
+
+
+
+
+</solution>
+  </static>
+  <rendering-data sourceFilePath="Library/WHFreeman/Rogawski_Calculus_Early_Transcendentals_Second_Edition/16_Line_and_Surface_Integrals/16.5_Surface_Integrals_of_Vector_Fields/16.5.19.pg" origin="webwork2" domain="https://webwork-ptx.aimath.org" course-id="anonymous" user-id="anonymous" passwd="anonymous" language="en-US"/>
+  <pg source="Library/WHFreeman/Rogawski_Calculus_Early_Transcendentals_Second_Edition/16_Line_and_Surface_Integrals/16.5_Surface_Integrals_of_Vector_Fields/16.5.19.pg"/>
+</webwork-reps>

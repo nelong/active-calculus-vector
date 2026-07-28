@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="20" xml:id="extracted-Library__WHFreeman__Rogawski_Calculus_Early_Transcendentals_Second_Edition__15_Multiple_Integration__15__4_Integration_in_Polar_Cylindrical_and_Spherical_Coordinates__15__4__14__pg" assembly-id="Library__WHFreeman__Rogawski_Calculus_Early_Transcendentals_Second_Edition__15_Multiple_Integration__15__4_Integration_in_Polar_Cylindrical_and_Spherical_Coordinates__15__4__14__pg">
+  <static seed="117" source="Library/WHFreeman/Rogawski_Calculus_Early_Transcendentals_Second_Edition/15_Multiple_Integration/15.4_Integration_in_Polar_Cylindrical_and_Spherical_Coordinates/15.4.14.pg">
+    <statement><p>Sketch the region of integration and
+evaluate by changing to polar coordinates:</p>
+<p><me>\int_{9}^{18}\int_0^{f(x)} \frac1{\sqrt{x^2+y^2}} \,dy\,dx</me>
+For <m>f(x)=\sqrt{18 x-x^2}</m></p>
+<p>Answer: <fillin characters="20" name="AnSwEr0001"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>4.79556</m>
+      </p>
+    </answer>
+    <solution><me>9\le x\le 18,\quad 0\le y\le \sqrt{18 x-x^2}</me>
+<image xmlns:pi="http://pretextbook.org/2020/pretext/internal" pi:generated="webwork/images/Library__WHFreeman__Rogawski_Calculus_Early_Transcendentals_Second_Edition__15_Multiple_Integration__15__4_Integration_in_Polar_Cylindrical_and_Spherical_Coordinates__15__4__14__pg-image-1.png" width="37%"/> For <m>f(x)=\sqrt{18 x-x^2}</m>, and <m>R=9</m>
+
+
+
+We first describe <m>\mathcal{D}</m> in polar coordinates. 
+The region lies in the angular sector <m>0\le \theta \le \frac{\pi }{4}</m>.
+
+ 
+The circle <m>y=\sqrt{18 x-x^2}</m> or <m>{( x-9 )}^2+{y}^2=81</m>, <m>y\ge 0</m> (obtained by completing the square)
+
+ is the circle of radius <m>9</m> and center <m>( 9,0 )</m>.
+
+ Its polar equation is <m>r=18 \cos \theta</m>. The polar equation of the line <m>x=9</m> is <m>r \cos \theta =9</m> or <m>r=9 \sec \theta</m>.
+
+
+
+<image xmlns:pi="http://pretextbook.org/2020/pretext/internal" pi:generated="webwork/images/Library__WHFreeman__Rogawski_Calculus_Early_Transcendentals_Second_Edition__15_Multiple_Integration__15__4_Integration_in_Polar_Cylindrical_and_Spherical_Coordinates__15__4__14__pg-image-2.png" width="41%"/> 
+<m>R=9</m> , and <m>\quad 9 \sec \theta \le r \le 18 \cos \theta</m>
+
+
+
+Therefore, <m>\mathcal{D}</m> has the following description: 
+<me>0\le \theta \le \frac{\pi }{4},\quad 9 \sec \theta \le r\le 18 \cos \theta</me> 
+Using change of variables we get
+<me>\begin{array}{rcl}
+\int_{9}^{18} \int_0^{\sqrt{18 x-x^2}} \frac{dy \,dx}{\sqrt{{x}^2+{y}^2}}\amp =\amp 
+\int_0^{\pi/4}\int_{9\sec\theta}^{18\cos\theta}\frac1{r}\cdot r\,dr\,d\theta\\
+\amp =\amp \int_0^{\pi/4}\int_{9\sec\theta}^{18\cos\theta}\,dr\,d\theta\\
+\amp =\amp \int_0^{\pi/4} r\bigg|_{r=9\sec\theta}^{18\cos\theta} \,d\theta\\
+\amp =\amp \int_0^{\pi/4} ( 18 \cos \theta -9 \sec \theta ) \,d\theta\\
+\amp =\amp 18\sin \theta \bigg|_0^{\pi/4}- 9\ln ( \sec \theta + \tan \theta)\bigg|_0^{\pi/4}\\
+\amp =\amp 9\left(2 \sin \frac{\pi }{4}-\left( \ln \left( \sec \frac{\pi }{4}+ \tan \frac{\pi }{4}\right)- \ln 1\right)\right)\\
+\amp =\amp 9\left(2\cdot \frac{\sqrt{2}}{2}- \ln \left(\sqrt{2}+1\right)\right)\\
+\amp =\amp 9\left(\sqrt{2}- \ln \left(1+\sqrt{2}\right)\right)\\
+\amp \approx\amp  4.79556
+\end{array}</me>
+
+
+
+</solution>
+  </static>
+  <rendering-data sourceFilePath="Library/WHFreeman/Rogawski_Calculus_Early_Transcendentals_Second_Edition/15_Multiple_Integration/15.4_Integration_in_Polar_Cylindrical_and_Spherical_Coordinates/15.4.14.pg" origin="webwork2" domain="https://webwork-ptx.aimath.org" course-id="anonymous" user-id="anonymous" passwd="anonymous" language="en-US"/>
+  <pg source="Library/WHFreeman/Rogawski_Calculus_Early_Transcendentals_Second_Edition/15_Multiple_Integration/15.4_Integration_in_Polar_Cylindrical_and_Spherical_Coordinates/15.4.14.pg"/>
+</webwork-reps>

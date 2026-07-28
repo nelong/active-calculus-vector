@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="20" xml:id="extracted-Library__Michigan__Chap19Sec3__Q05.pg" assembly-id="Library__Michigan__Chap19Sec3__Q05.pg">
+  <static seed="632" source="Library/Michigan/Chap19Sec3/Q05.pg">
+    <statement><p>Compute the flux of the vector field <m>\vec F = z\vec i + 8 x\vec k</m>
+through the parameterized surface <m>S</m> oriented upward and given,
+for <m>0\le s\le 1, \ \ 2\le t\le 3</m>, by
+<me>x=s^2, \quad y=2s+t^2, \quad z=3 t.</me></p>
+<p>flux = <fillin characters="35" name="AnSwEr0001"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>9\cdot \left(9-4\right)\cdot 1+4\cdot \left(9-4\right)\cdot 1^{4}</m>
+      </p>
+    </answer>
+    <solution><m>\partial \vec r / \partial s \times \partial \vec r
+/ \partial t</m> is given by 
+<me>\frac{\partial \vec r}{\partial s}\times\frac{\partial \vec
+r}{\partial t}=
+\left|\begin{array}{ccc}
+\quad\vec i\quad\amp \quad\vec j\quad\amp \quad\vec k\quad\\
+ 2s \amp  2 \amp  0 \\
+  0 \amp  2t \amp  3
+\end{array}
+\right| = 6\vec i- 6 s\vec j+4st\vec k.</me>
+Since the <m>z</m>-component, <m>4st</m>, of the vector <m>\partial \vec r /
+\partial s \times \partial \vec r / \partial t</m> is positive for <m>0 \lt  s
+\leq 1, 2 \leq t \leq 3</m>, we see that <m>\partial \vec r/\partial s
+\times \partial \vec r / \partial t</m> points upward, in the direction
+of the orientation of <m>S</m> we were given.
+
+
+
+
+Thus, we use
+<me>d\vec A = \left(\frac{\partial \vec r}{\partial s} \times
+\frac{\partial \vec r}{\partial t}\right)\,ds\,dt,</me>
+and so we have
+<me>\int_S\vec F\cdot d\vec A =
+\int_0^{1}\int_{2}^{3} (3 t\vec i + 8 s^2\vec k)\cdot
+(6\vec i- 6 s\vec j+4st\vec k)\,dt\,ds</me>
+<me>=\int_0^{1}\int_{2}^{3} (18 t + 32 s^3 t)\,dt\,ds =
+\int_0^{1}(9 t^2 + 16 s^3 t^2)\bigg|_{t=2}^{t=3}\,ds</me>
+<me>=\int_0^{1}(45 + 80 s^3)\,ds=(45s + 20 s^4)\bigg|_0^{1}
+=65.</me>
+
+
+
+</solution>
+  </static>
+  <rendering-data sourceFilePath="Library/Michigan/Chap19Sec3/Q05.pg" origin="webwork2" domain="https://webwork-ptx.aimath.org" course-id="anonymous" user-id="anonymous" passwd="anonymous" language="en-US"/>
+  <pg source="Library/Michigan/Chap19Sec3/Q05.pg"/>
+</webwork-reps>

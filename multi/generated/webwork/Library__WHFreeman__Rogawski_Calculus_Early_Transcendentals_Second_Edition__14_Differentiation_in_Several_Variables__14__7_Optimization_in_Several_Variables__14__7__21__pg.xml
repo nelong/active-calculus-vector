@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="20" xml:id="extracted-Library__WHFreeman__Rogawski_Calculus_Early_Transcendentals_Second_Edition__14_Differentiation_in_Several_Variables__14__7_Optimization_in_Several_Variables__14__7__21__pg" assembly-id="Library__WHFreeman__Rogawski_Calculus_Early_Transcendentals_Second_Edition__14_Differentiation_in_Several_Variables__14__7_Optimization_in_Several_Variables__14__7__21__pg">
+  <static seed="513" source="Library/WHFreeman/Rogawski_Calculus_Early_Transcendentals_Second_Edition/14_Differentiation_in_Several_Variables/14.7_Optimization_in_Several_Variables/14.7.21.pg">
+    <statement><p>Find the critical point of the function <m>f(x,y)=-\left(25x+5y^{2}+\ln\mathopen{}\left(\left|x+y\right|\right)\right)</m>.</p>
+<p><m>c=</m> <fillin characters="20" name="AnSwEr0001"/></p>
+<p>Use the Second Derivative Test to determine whether it is
+<var form="buttons">
+<li>
+<p>a saddle point</p>
+</li>
+<li>
+<p>test fails</p>
+</li>
+<li>
+<p>a local minimum</p>
+</li>
+<li>
+<p>a local maximum</p>
+</li>
+</var></p>
+</statement>
+    <answer>
+      <p>
+        <m>\left(-2.54,2.5\right)</m>
+      </p>
+    </answer>
+    <solution><m>f(x,y)=-\left(25x+5y^{2}+\ln\mathopen{}\left(\left|x+y\right|\right)\right)</m> equal to zero and solve
+<me>f_x(x,y)=-\left(25+\frac{1}{x+y}\right)=0</me>
+<me>f_y(x,y)=-\left(10y+\frac{1}{x+y}\right)=0</me>
+The first equation implies that <m>\frac{1}{x+y}=-25</m>. Substituting into the second equation gives 
+<me>25-10y=0 \quad \Rightarrow \quad y=2.5</me>
+We substitute <m>y=2.5</m> in the first equation and solve for <m>x</m>:
+<me>-25-\frac{1}{x+2.5}=0 \quad \Rightarrow \quad x+2.5=\frac{1}{-25} \quad \Rightarrow \quad x=\frac{-2.5 \cdot -25 + 1}{-25}=\frac{63.5}{-25}</me>
+We obtain critical point <m>\left(\frac{63.5}{-25}, 2.5\right)</m>. 
+
+
+Notice, that although <m>f_x</m> and <m>f_y</m> do not exist where <m>x+y=0</m>, these are not critical points, since <m>f</m> is not defined at these points.
+
+
+
+Now we compute the Discriminant. We find the second-order partials:
+<me>f_{xx}(x,y)=\frac{\partial}{\partial x}\left(-\left(25+\frac{1}{x+y}\right)\right)=\frac{1}{\left(x+y\right)^{2}}</me> 
+<me>f_{yy}(x,y)=\frac{\partial}{\partial y}\left(-\left(10y+\frac{1}{x+y}\right)\right)=\frac{1}{\left(x+y\right)^{2}}-10</me> 
+<me>f_{xy}(x,y)=\frac{\partial}{\partial y}\left(-\left(25+\frac{1}{x+y}\right)\right)=\frac{1}{\left(x+y\right)^{2}}</me> 
+The discriminant is thus
+<me>D(x,y)=f_{xx}f_{yy}-f_{xy}^2=\frac{1}{\left(x+y\right)^{2}} \cdot \left(\frac{1}{\left(x+y\right)^{2}}-10\right)-\frac{1}{(x+y)^4}=-\frac{10}{\left(x+y\right)^{2}}</me>
+
+
+
+Applying the Second Derivative Test we have
+<me>D\left(\frac{63.5}{-25},2.5\right)=-6250\lt 0</me>
+We conclude that <m>f\left(\frac{63.5}{-25},2.5\right)</m> is a saddle point.
+
+
+
+
+
+</solution>
+  </static>
+  <rendering-data sourceFilePath="Library/WHFreeman/Rogawski_Calculus_Early_Transcendentals_Second_Edition/14_Differentiation_in_Several_Variables/14.7_Optimization_in_Several_Variables/14.7.21.pg" origin="webwork2" domain="https://webwork-ptx.aimath.org" course-id="anonymous" user-id="anonymous" passwd="anonymous" language="en-US"/>
+  <pg source="Library/WHFreeman/Rogawski_Calculus_Early_Transcendentals_Second_Edition/14_Differentiation_in_Several_Variables/14.7_Optimization_in_Several_Variables/14.7.21.pg"/>
+</webwork-reps>

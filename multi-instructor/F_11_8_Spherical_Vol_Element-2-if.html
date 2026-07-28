@@ -13,79 +13,14 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
 <link href="_static/pretext/css/theme.css" rel="stylesheet" type="text/css">
 <link href="_static/pretext/css/ol-markers.css" rel="stylesheet" type="text/css">
-<script>
-var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
-window.MathJax = {
-  "tex": {
-    "inlineMath": [
-      [
-        "\\(",
-        "\\)"
-      ]
-    ],
-    "tags": "none",
-    "tagSide": "right",
-    "tagIndent": ".8em",
-    "packages": {
-      "[+]": [
-        "base",
-        "extpfeil",
-        "ams",
-        "amscd",
-        "color",
-        "newcommand",
-        "knowl"
-      ]
-    }
-  },
-  "options": {
-    "ignoreHtmlClass": "tex2jax_ignore|ignore-math",
-    "processHtmlClass": "process-math",
-    "renderActions": {
-      "findScript": [
-        10,
-        function (doc) {
-            document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
-                var display = !!node.type.match(/; *mode=display/);
-                var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
-                var text = document.createTextNode('');
-                node.parentNode.replaceChild(text, node);
-                math.start = {node: text, delim: '', n: 0};
-                math.end = {node: text, delim: '', n: 0};
-                doc.math.push(math);
-            });
-        },
-        ""
-      ]
-    }
-  },
-  "chtml": {
-    "scale": 0.98,
-    "mtextInheritFont": true
-  },
-  "loader": {
-    "load": [
-      "input/asciimath",
-      "[tex]/extpfeil",
-      "[tex]/amscd",
-      "[tex]/color",
-      "[tex]/newcommand",
-      "[pretext]/mathjaxknowl3.js"
-    ],
-    "paths": {
-      "pretext": "_static/pretext/js"
-    }
-  },
-  "startup": {
-    pageReady() {
-      return MathJax.startup.defaultPageReady().then(function () {
-      console.log("in ready function");
-      rsMathReady();
-      }
-    )}
-  }
-};
-</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>sagecell.makeSagecell({
+<script type="module">import { startMathJax } from './_static/pretext/js/dist/mathjax_startup.js';
+startMathJax({
+hasWebworkReps: true,
+hasSage: true,
+isReact: false,
+htmlPresentation: false,
+});
+</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script><script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>sagecell.makeSagecell({
   "inputLocation": ".sage-interact",
   "autoeval": true,
   "hide": [
@@ -133,7 +68,7 @@ window.MathJax = {
 \newcommand{\nin}{}
 \newcommand{\vecmag}[1]{\left\lVert #1\right\rVert}
 \newcommand{\grad}{\nabla}
-\newcommand\restrict[1]{\raise-.5ex\hbox{$\Big|$}_{#1}}
+\newcommand\restrict[2]{\raise-.5ex\hbox{$\Big|_{#1}^{#2}$}}
 \DeclareMathOperator{\curl}{curl}
 \DeclareMathOperator{\divg}{div}
 \newcommand{\lt}{&lt;}
@@ -151,7 +86,7 @@ x1=-1;x2=3;y1=-1;y2=3;
 param(s,t)=(s,t,0)
 #set up grid      n is number of steps in s    m is number of steps in t  
 #a1 is min s    a2 is max s   b1 is min t    b2 is max t
-n=8;m=8;a1=x1;a2=x2;b1=y1;b2=y2; 
+n=6;m=6;a1=x1;a2=x2;b1=y1;b2=y2; 
 #c1 is surface color     o1 is surface opacity
 #c2 and o2 are for constant t value traces
 #c3 and o3 are for constant s value traces
@@ -165,9 +100,9 @@ for i in range(m+1):
     plot4+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
 
 t1=0.5;t2=1.2;p1=2.2;p2=3;h1=0.5;h2=0.9;
-plot4+=parametric_plot3d((r*cos(t),r*sin(t),0),(r,p1*sin(h1),p2*sin(h2)),(t,t1,t2),color="gray")
+plot4+=parametric_plot3d((r*cos(t),r*sin(t),0),(r,p1*sin(h1),p2*sin(h2)),(t,t1,t2),color="gray",opacity=0.7)
 plot4+=line([(p2*sin(h2)*cos(t1),p2*sin(h2)*sin(t1),0),(0,0,0),(p2*sin(h2)*cos(t2),p2*sin(h2)*sin(t2),0)],color="gray",thickness=2,linestyle="--")
-plot4+=text3d("\u0394\u03B8",(p1/3*cos(t2/2+t1/2),p1/3*sin(t2/2+t1/2),0),color="black",fontsize=25)
+plot4+=text3d("\u0394\u03B8",(p1/3*cos(t2/2+t1/2),p1/3*sin(t2/2+t1/2),0),color="black",fontsize=25,zorder=5)
 
 plot4+=parametric_plot3d((p1*sin(h)*cos(t),p1*sin(h)*sin(t),p1*cos(h)),(h,h1,h2),(t,t1,t2),color="gray")
 plot4+=parametric_plot3d((p2*sin(h)*cos(t),p2*sin(h)*sin(t),p2*cos(h)),(h,h1,h2),(t,t1,t2),color="gray")
@@ -178,19 +113,20 @@ plot4+=parametric_plot3d((p*sin(h)*cos(t2),p*sin(h)*sin(t2),p*cos(h)),(p,p1,p2),
                          
 
 plot4+=parametric_plot3d((p*sin(h1)*cos(t1),p*sin(h1)*sin(t1),p*cos(h1)),(p,p1,p2),color="red",thickness=4)
-plot4+=text3d("\u0394\u03C1",((p2+p1)/2*sin(h1)*cos(t1)-0.3,(p2+p1)/2*sin(h1)*sin(t1)-0.3,(p2+p1)/2*cos(h1)),color="red",fontsize=25)
+plot4+=text3d("\u0394\u03C1",((p2+p1)/2*sin(h1)*cos(t1)-0.3,(p2+p1)/2*sin(h1)*sin(t1)-0.3,(p2+p1)/2*cos(h1)),color="red",fontsize=25,zorder=5)
 
 plot4+=parametric_plot3d((p2*sin(h1)*cos(t),p2*sin(h1)*sin(t),p2*cos(h1)),(t,t1,t2),color="blue",thickness=4)
 
 plot4+=parametric_plot3d((p2*sin(h)*cos(t1),p2*sin(h)*sin(t1),p2*cos(h)),(h,h1,h2),color="green",thickness=4)
+plot4+=text3d("\u0394\u03C6",(1.5*sin(h2/2+h1/2)*cos(t1),1.5*sin(h2/2+h1/2)*sin(t1),1.5*cos(h2/2+h1/2)),color="black",fontsize=25,zorder=5)
 
-plot4+=line([(p2*sin(h2)*cos(t1),p2*sin(h2)*sin(t1),p2*cos(h2)),(0,0,0),(p2*sin(h2)*cos(t2),p2*sin(h2)*sin(t2),p2*cos(h2))],color="gray",thickness=1)
-plot4+=line([(p2*sin(h1)*cos(t1),p2*sin(h1)*sin(t1),p2*cos(h1)),(0,0,0),(p2*sin(h1)*cos(t2),p2*sin(h1)*sin(t2),p2*cos(h1))],color="gray",thickness=1)
+plot4+=line([(p2*sin(h2)*cos(t1),p2*sin(h2)*sin(t1),p2*cos(h2)),(0,0,0),(p2*sin(h2)*cos(t2),p2*sin(h2)*sin(t2),p2*cos(h2))],color="gray",thickness=2)
+plot4+=line([(p2*sin(h1)*cos(t1),p2*sin(h1)*sin(t1),p2*cos(h1)),(0,0,0),(p2*sin(h1)*cos(t2),p2*sin(h1)*sin(t2),p2*cos(h1))],color="gray",thickness=2)
 
 plot4+=line([(p2*sin(h2)*cos(t1),p2*sin(h2)*sin(t1),0),(0,0,0),(p2*sin(h2)*cos(t2),p2*sin(h2)*sin(t2),0)],color="gray",thickness=2,linestyle="--")
 
 
-show(plot4,viewpoint=[[-0.6077,-0.4034,-0.6841],88.27],camera_position=[8.2389,-1.9081,5.8545])
+show(plot4,viewpoint=[[-0.694,-0.4224,-0.583],92.46],camera_position=[8.5103,-2.8816,4.3276])
 </script></pre></div>
 </body>
 </html>

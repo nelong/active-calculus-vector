@@ -1,0 +1,114 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="20" xml:id="extracted-Library__Michigan__Chap20Sec4__Q03__pg" assembly-id="Library__Michigan__Chap20Sec4__Q03__pg">
+  <static seed="802" source="Library/Michigan/Chap20Sec4/Q03.pg">
+    <statement><p>Calculate the circulation, <m>\int_C\vec F\cdot d\vec r</m>, in two ways,
+directly and using Stokes' Theorem.  The vector field
+<m>\vec F = 7 y\vec i - 7 x\vec j</m> and <m>C</m> is the boundary of
+<m>S</m>, the part of the surface <m>z = 4 -x^2-y^2</m> above the
+<m>xy</m>-plane, oriented upward.</p>
+<p>Note that <m>C</m> is a circle in the <m>xy</m>-plane.  Find a <m>\vec r(t)</m> that
+parameterizes this curve.</p>
+<p><m>\vec r(t) =</m> <fillin characters="25" name="AnSwEr0001"/>,</p>
+<p>with <fillin characters="5" name="AnSwEr0002"/> <m>\le t\le</m> <fillin characters="5" name="AnSwEr0003"/></p>
+<p><em>(Note that answers must be provided for all three of these
+answer blanks to be able to determine correctness of the
+parameterization.)</em></p>
+<p>With this parameterization, the circulation integral is</p>
+<p><m>\int_C\vec F\cdot d\vec r = \int_a^b</m> <fillin characters="35" name="AnSwEr0004"/> <m>dt</m>,
+where <m>a</m> and <m>b</m> are the endpoints you gave above.</p>
+<p>Evaluate your integral to find the circulation:
+<m>\int_C\vec F\cdot d\vec r =</m> <fillin characters="35" name="AnSwEr0005"/></p>
+<p>Using Stokes' Theorem, we equate
+<m>\int_C\vec F\cdot d\vec r = \int_S\mbox{curl }\vec F\cdot d\vec A</m>.
+Find
+<m>\mbox{curl }\vec F =</m> <fillin characters="35" name="AnSwEr0006"/>.</p>
+<p>Noting that the surface is given by <m>z = 4 - x^2 - y^2</m>, find</p>
+<p><m>d\vec A =</m> <fillin characters="35" name="AnSwEr0007"/> <m>dy\,dx</m>.</p>
+<p>With <m>R</m> giving the region in the <m>xy</m>-plane enclosed by the surface,
+this gives</p>
+<p><m>\int_S \mbox{curl }\vec F\cdot d\vec A =
+  \int_{R}</m> <fillin characters="25" name="AnSwEr0008"/> <m>dy\,dx</m>.</p>
+<p>Evaluate this integral to find the circulation:</p>
+<p><m>\int_C \vec F\cdot d\vec r =
+   \int_{S} \mbox{curl }\vec F\cdot d\vec A =</m> <fillin characters="35" name="AnSwEr0009"/>.</p>
+</statement>
+    <answer>
+      <p>
+        <m>2\cos\mathopen{}\left(t\right)\,\mathit{\vec i}+2\sin\mathopen{}\left(t\right)\,\mathit{\vec j}</m>
+      </p>
+    </answer>
+    <answer>
+      <p>
+        <m>0</m>
+      </p>
+    </answer>
+    <answer>
+      <p>
+        <m>2\pi </m>
+      </p>
+    </answer>
+    <answer>
+      <p>
+        <m>-4\cdot 7</m>
+      </p>
+    </answer>
+    <answer>
+      <p>
+        <m>-7\cdot 4\cdot 2\pi </m>
+      </p>
+    </answer>
+    <answer>
+      <p>
+        <m>-14\,\mathit{\vec k}</m>
+      </p>
+    </answer>
+    <answer>
+      <p>
+        <m>2x\,\mathit{\vec i}+2y\,\mathit{\vec j}+\,\mathit{\vec k}</m>
+      </p>
+    </answer>
+    <answer>
+      <p>
+        <m>-2\cdot 7</m>
+      </p>
+    </answer>
+    <answer>
+      <p>
+        <m>-7\cdot 4\cdot 2\pi </m>
+      </p>
+    </answer>
+    <solution><m>C</m> is the curve <m>x^2+y^2=4</m>, oriented counterclockwise, we
+calculate <m>\int_C\vec F\cdot d\vec r</m> directly using the
+parameterization
+<me>x(t) = 2\cos t,\quad y(t)=2\sin t,\quad z(t)=0,\quad 0\le t\le
+2\pi,\quad \hbox{ so } \vec r'(t)=-2\sin t\vec i+2\cos t\vec j.</me>
+Thus,
+<me>\int_C\vec F\cdot d\vec r = \int_0^{2\pi}(14\sin t\vec i-14\cos t\vec
+j)\cdot (-2\sin t\vec i+2\cos t\vec j)\, dt</me>
+<me>= -28\int_0^{2\pi}(\sin^2t+\cos^2t)\, dt = -28\cdot 2\pi = -56\pi.</me>
+
+
+
+
+Then, finding <m>\mbox{curl }\vec F</m>, we have
+<me>\mbox{curl }\vec F=\left|\begin{array}{ccc}
+\vec i \amp  \vec j \amp  \vec k \\
+\frac{\partial}{\partial x} \amp  \frac{\partial}{\partial y} \amp 
+\frac{\partial}{\partial z} \\
+7 y \ \ \amp  -7 x \ \ \amp  0
+\end{array}\right| =-14\vec k,</me>
+Then if <m>z = f(x,y)</m>, we know <m>d\vec A = -f_x\vec i - f_y\vec j + \vec k</m>,
+so
+<me>d\vec A = 2x\vec i + 2y\vec j + \vec k,</me>
+and
+<me>\int_C\vec F\cdot d\vec r = \int_S\mbox{curl }\vec F\cdot d\vec A =
+\int_{R} -14\vec k\cdot(2x\vec i+2y\vec j+\vec k)\, dx\, dy
+= -14\int dx\,dy = -56\pi.</me>
+
+
+
+</solution>
+  </static>
+  <rendering-data sourceFilePath="Library/Michigan/Chap20Sec4/Q03.pg" origin="webwork2" domain="https://webwork-ptx.aimath.org" course-id="anonymous" user-id="anonymous" passwd="anonymous" language="en-US"/>
+  <pg source="Library/Michigan/Chap20Sec4/Q03.pg"/>
+</webwork-reps>

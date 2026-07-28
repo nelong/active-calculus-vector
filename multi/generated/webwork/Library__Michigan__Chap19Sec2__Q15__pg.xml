@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="20" xml:id="extracted-Library__Michigan__Chap19Sec2__Q15__pg" assembly-id="Library__Michigan__Chap19Sec2__Q15__pg">
+  <static seed="817" source="Library/Michigan/Chap19Sec2/Q15.pg">
+    <statement><p>Compute the flux of the vector field
+<m>\vec F = 3 xz\vec i +  y\vec k</m>
+through the surface <m>S</m>, which is
+the hemisphere
+<m>x^2 + y^2 + z^2 = 9</m>, <m>z \geq 0</m>, oriented upward.</p>
+<p>flux = <fillin characters="35" name="AnSwEr0001"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>\frac{\pi \cdot 3\cdot 3^{4}}{4}</m>
+      </p>
+    </answer>
+    <solution><m>z=\sqrt{9 - x^2 - y^2}</m>, so
+<me>z_x = -\frac{x}{\sqrt{9 -x^2-y^2}} \quad z_y =
+-\frac{y}{\sqrt{9 -x^2-y^2}}.</me>
+Thus
+<me>\vec F\cdot\vec A =
+  \left(3 x\sqrt{9 - x^2-y^2}\vec i +  y\vec k\right) \cdot
+\left(\frac{x}{\sqrt{9 -x^2-y^2}}\vec i +
+  \frac{y}{\sqrt{9 -x^2-y^2}}\vec j + \vec k\right)</me>
+<me>= 3 x^2 +  y.</me>
+The flux integral is then given by
+<me>\int_S \vec F \cdot d\vec A
+= \int_S 3 x^2 +  y\,dx\,dy
+= \int_{-3}^{3}\int_{-\sqrt{9-x^2}}^{\sqrt{9-x^2}}(3 x^2 +
+   y)\,dy\,dx</me>
+Changing to polar coordinates gives
+<me>\int_S \vec F \cdot d\vec A = \int_0^{2\pi}\int_0^{3} (3 r^2\cos^2\theta
++  r\sin\theta)\,r\,dr\,d\theta,</me>
+so that
+<me>\int_S \vec F \cdot d\vec A =
+\int_0^{2\pi} \left(\frac{243}{4}\cos^2\theta + 9\sin\theta\right)\,d\theta
+= \frac{243}{4} \pi.</me>
+
+
+
+</solution>
+  </static>
+  <rendering-data sourceFilePath="Library/Michigan/Chap19Sec2/Q15.pg" origin="webwork2" domain="https://webwork-ptx.aimath.org" course-id="anonymous" user-id="anonymous" passwd="anonymous" language="en-US"/>
+  <pg source="Library/Michigan/Chap19Sec2/Q15.pg"/>
+</webwork-reps>

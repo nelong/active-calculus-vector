@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="20" xml:id="extracted-Library__UBC__calculusStewart__divergence17__pg" assembly-id="Library__UBC__calculusStewart__divergence17__pg">
+  <static seed="815" source="Library/UBC/calculusStewart/divergence17.pg">
+    <statement><p>Let <m>\mathbf{F}(x,y,z)=2 z^2 x\mathbf{i} + (\frac {2} 3 y^3 + \tan(z))\mathbf{j} + (2 x^2z + 4 y^2)\mathbf{k}</m>. Use the Divergence Theorem to evaluate <m>\int_S \mathbf{F} \cdot \ d \mathbf{S}</m> where <m>S</m> is the top half of the sphere <m>x^2+y^2+z^2=1</m> oriented upwards.</p>
+<p><m>\int\int_S \mathbf{F} \cdot \ d \mathbf{S}=</m> <fillin characters="20" name="AnSwEr0001"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>\frac{4\pi }{5}+\frac{4\pi }{4}</m>
+      </p>
+    </answer>
+    <solution><m>S_2 = S\cup S_1</m>, where <m>S</m> is the part of the sphere <m>x^2+y^2+z^2=1</m> that lies above the plane <m>z=0</m>, and <m>S_1</m> is the disk <m>x^2+y^2=1</m> on the plane <m>z=0</m> oriented downward, and we then apply the Divergence Theorem. Since the disk <m>S_1</m> is oriented downward, its unit normal vector is <m>\mathbf{n} = -\mathbf{k}</m> and <m>\mathbf{F} \cdot (-\mathbf{k}) = -2 x^2 z - 4 y^2 = -4 y^2</m> on <m>S_1</m> (since <m>z=0</m> on <m>S_1</m>). So <m>\int\int_{S_1} \mathbf{F} \cdot \ d \mathbf{S} = \int\int_{S_1} \mathbf{F} \cdot \mathbf{n} \  dS = \int\int_{S_1} (-4 y^2) \ dS = -4\int_0^{2\pi}\int_0^1 r^2(\sin^2\theta)r \ dr\ d\theta = \pi</m>.
+
+Let <m>E</m> be the region bounded by <m>S_2</m>. Now since <m>S_2</m> is closed, we can use the Divergence Theorem. Since <m>{\rm div }\ \mathbf{F} = \frac {\delta}{\delta x}(2 z^2 x) + \frac {\delta}{\delta y}(\frac {2} 3 y^3 + \tan(z)) + \frac {\delta}{\delta x}(2 x^2z + 4 y^2) = 2 z^2 + 2 y^2 + 2 z^2</m>, we use spherical coordinates to get <m>\int\int_{S_2} \mathbf{F} \cdot \ d \mathbf{S} = \int \int \int_E {\rm div }\ \mathbf{F} \  dV = 2 \int_0^{2\pi}\int_0^{\pi/2}\int_0^1 \rho^2 \cdot \rho^2 \sin \phi \ d\rho\ d\phi\ d\theta = \frac{4} 5 \pi</m>. Finally <m>\int\int_S \mathbf{F}\cdot \ d \mathbf{S}\ = \int\int_{S_2} \mathbf{F}\cdot \ d \mathbf{S}\ - \int\int_{S_1} \mathbf{F}\cdot \ d \mathbf{S}\ = \frac{4} 5 \pi-\pi = \frac {36}{20} \pi</m>.
+
+
+
+</solution>
+  </static>
+  <rendering-data sourceFilePath="Library/UBC/calculusStewart/divergence17.pg" origin="webwork2" domain="https://webwork-ptx.aimath.org" course-id="anonymous" user-id="anonymous" passwd="anonymous" language="en-US"/>
+  <pg source="Library/UBC/calculusStewart/divergence17.pg"/>
+</webwork-reps>

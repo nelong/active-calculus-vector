@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="20" xml:id="extracted-Library__UBC__calculusStewart__surfaceIntegrals28.pg" assembly-id="Library__UBC__calculusStewart__surfaceIntegrals28.pg">
+  <static seed="196" source="Library/UBC/calculusStewart/surfaceIntegrals28.pg">
+    <statement><p>Evaluate the surface integral <m>\int_S \mathbf{F} \cdot \ d \mathbf{S}</m> where <m>\mathbf{F}=5xy\boldsymbol{i}+6x^{2}\boldsymbol{j}+5yz\boldsymbol{k}\ </m> and <m>S</m> is the surface <m>z=xe^y,\ 0 \le x \le 1, 0 \le y \le 1</m>, with upwards orientation.</p>
+<p><m>\int\int_S \mathbf{F} \cdot \ d \mathbf{S}=</m> <fillin characters="20" name="AnSwEr0001"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>1.5\mathopen{}\left(1-e\right)</m>
+      </p>
+    </answer>
+    <solution><m>\mathbf{r}(x,y)=(x,y,g(x,y))</m> where <m>z = g(x,y) = xe^y</m> and <m>D</m> is the square <m>D = [0,1]\times [0,1]</m>. <m>S</m> has upwards orientation, so
+<me>\int_S \mathbf{F} \cdot \ d \mathbf{S}
+    = \int\int_D ( -5 x y \frac{\delta g}{\delta x} - 6 x^2 \frac{\delta g}{\delta y} + 5 y z)\ dA</me>
+<me>= \int\int_D (-5 x y e^y - 6 x^3 e^y + 5 y z)\ dA</me>
+<me>= \int_0^1\int_0^1 (-5 x y e^y - 6 x^3 e^y + 5 x y e^y)\ dy\ dx</me>
+<me>= \int_0^1 [- 6 x^3 e^y]_0^1\ dx</me>
+<me>= \int_0^1 - 6 x^3 (e - 1)\ dx</me>
+<me>= 6(1 - e)\int_0^1 x^3 \ dx</me>
+<me>= \frac {3} 2 (1-e)</me>
+
+
+
+</solution>
+  </static>
+  <rendering-data sourceFilePath="Library/UBC/calculusStewart/surfaceIntegrals28.pg" origin="webwork2" domain="https://webwork-ptx.aimath.org" course-id="anonymous" user-id="anonymous" passwd="anonymous" language="en-US"/>
+  <pg source="Library/UBC/calculusStewart/surfaceIntegrals28.pg"/>
+</webwork-reps>

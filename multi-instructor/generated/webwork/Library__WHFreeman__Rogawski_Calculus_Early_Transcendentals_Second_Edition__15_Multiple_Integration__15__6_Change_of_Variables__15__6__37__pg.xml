@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="20" xml:id="extracted-Library__WHFreeman__Rogawski_Calculus_Early_Transcendentals_Second_Edition__15_Multiple_Integration__15__6_Change_of_Variables__15__6__37__pg" assembly-id="Library__WHFreeman__Rogawski_Calculus_Early_Transcendentals_Second_Edition__15_Multiple_Integration__15__6_Change_of_Variables__15__6__37__pg">
+  <static seed="649" source="Library/WHFreeman/Rogawski_Calculus_Early_Transcendentals_Second_Edition/15_Multiple_Integration/15.6_Change_of_Variables/15.6.37.pg">
+    <statement><p>Sketch the domain <m>\mathcal{D}</m> bounded by
+<m>y=x^2</m>, <m>y=\frac12 x^2</m>, and <m>y=8 x</m>. Use a change of variables with
+the map <m>x= uv</m>, <m>y=u^2</m> to calculate
+<me>\int\!\!\int _{\mathcal{D}} y^{-1}\,dx\,dy</me>
+This is an improper integral since <m>f(x,y)=y^{-1}</m> is undefined at
+<m>(0,0)</m>, but it becomes proper after changing variables.</p>
+<p><m>\int\!\!\int _{\mathcal{D}} y^{-1}\,dx\,dy=</m> <fillin characters="20" name="AnSwEr0001"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>8</m>
+      </p>
+    </answer>
+    <solution><m>\mathcal{D}</m> is shown in the figure.
+
+
+
+<image xmlns:pi="http://pretextbook.org/2020/pretext/internal" pi:generated="webwork/images/Library__WHFreeman__Rogawski_Calculus_Early_Transcendentals_Second_Edition__15_Multiple_Integration__15__6_Change_of_Variables__15__6__37__pg-image-1.png" width="40%"/>
+With <m>a=8</m>
+
+
+
+We must identify the domain <m>{\mathcal{D}}_0</m> in the <m>uv</m>-plane. 
+Notice that <m>\Phi</m> is one-to-one, where <m>u\ge 0</m> (or <m>u\le 0</m>), since in <m>\mathcal{D}</m>, <m>x\ge 0</m>,
+
+ 
+so it also follows by <m>x=uv</m> that <m>v\ge 0</m>. Therefore, we search the domain <m>{\mathcal{D}}_0</m> in the first quadrant of the <m>uv</m>-plane.
+
+ To do this, we examine the curves that are mapped to the curves defining the boundary of <m>\mathcal{D}</m>. We examine each curve separately.
+
+
+
+<m>y={x}^2</m>: 
+Since <m>x=uv</m> and <m>y={u}^2</m> we get
+<me>{u}^2={( uv )}^2\quad\Rightarrow\quad 1={v}^2\quad\Rightarrow\quad v=1</me>
+<m>y=\frac{1}{2}{x}^2</m>:
+<me>{u}^2=\frac{1}{2}{( uv )}^2\quad\Rightarrow\quad 1=\frac{1}{2}{v}^2
+\quad\Rightarrow \quad {v}^2=2\quad\Rightarrow\quad v=\sqrt{2}</me>
+<m>y=8 x</m>: <m>{u}^2=8 uv\quad\Rightarrow\quad v=\frac{u}{8}</m> or <m>u=8 v</m>.
+
+
+ 
+The region <m>{\mathcal{D}}_0</m> is the region in the first quadrant of the <m>uv</m>-plane enclosed by the curves <m>v=1</m>, <m>v=\sqrt{2}</m>, and <m>u=8 v</m>.
+
+
+
+<image xmlns:pi="http://pretextbook.org/2020/pretext/internal" pi:generated="webwork/images/Library__WHFreeman__Rogawski_Calculus_Early_Transcendentals_Second_Edition__15_Multiple_Integration__15__6_Change_of_Variables__15__6__37__pg-image-2.png" width="33%"/>
+With <m>a=8</m>
+
+
+
+We now use change of variables to compute the integral <m>\int\!\!\int _{\mathcal{D}} {y}^{-1} \,dx \,dy</m>.
+The function in terms of the new variables is <m>f( x,y )={u}^{-2}</m>.
+
+ We compute the Jacobian of <m>\Phi ( u,v )=( x,y )=(uv,{u}^2)</m>:
+<me>\mathrm{Jac}(\Phi)=\left|\begin{array}{cc}
+\frac{\partial x}{\partial u}\amp \frac{\partial x}{\partial v}\\
+\noalign{\medskip}
+\frac{\partial y}{\partial u}\amp \frac{\partial y}{\partial v}\end{array}\right|=\left|\begin{array}{cc}v\amp u\\ 2u\amp 0\end{array}\right|=-2{u}^2</me>
+Using the Change of Variables Formula gives
+<me>\int\!\!\int _{\mathcal{D}} {y}^{-1} \,dx \,dy =
+\int\!\!\int _{\mathcal{D}_0} {u}^{-2}\cdot 2{u}^2 \,du \,dv=
+\int_1^{\sqrt{2}} \int_0^{8 v} 2 \,du \,dv=</me><me>\int_1^{\sqrt{2}} 2u\bigg|_{u=0}^{8 v} \,dv=
+\int_1^{\sqrt{2}} 2\cdot 8\cdot v \,dv=
+8 {v}^2\bigg|_1^{\sqrt{2}}=8\cdot (2-1)=8</me>
+
+
+
+</solution>
+  </static>
+  <rendering-data sourceFilePath="Library/WHFreeman/Rogawski_Calculus_Early_Transcendentals_Second_Edition/15_Multiple_Integration/15.6_Change_of_Variables/15.6.37.pg" origin="webwork2" domain="https://webwork-ptx.aimath.org" course-id="anonymous" user-id="anonymous" passwd="anonymous" language="en-US"/>
+  <pg source="Library/WHFreeman/Rogawski_Calculus_Early_Transcendentals_Second_Edition/15_Multiple_Integration/15.6_Change_of_Variables/15.6.37.pg"/>
+</webwork-reps>

@@ -13,79 +13,14 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
 <link href="_static/pretext/css/theme.css" rel="stylesheet" type="text/css">
 <link href="_static/pretext/css/ol-markers.css" rel="stylesheet" type="text/css">
-<script>
-var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
-window.MathJax = {
-  "tex": {
-    "inlineMath": [
-      [
-        "\\(",
-        "\\)"
-      ]
-    ],
-    "tags": "none",
-    "tagSide": "right",
-    "tagIndent": ".8em",
-    "packages": {
-      "[+]": [
-        "base",
-        "extpfeil",
-        "ams",
-        "amscd",
-        "color",
-        "newcommand",
-        "knowl"
-      ]
-    }
-  },
-  "options": {
-    "ignoreHtmlClass": "tex2jax_ignore|ignore-math",
-    "processHtmlClass": "process-math",
-    "renderActions": {
-      "findScript": [
-        10,
-        function (doc) {
-            document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
-                var display = !!node.type.match(/; *mode=display/);
-                var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
-                var text = document.createTextNode('');
-                node.parentNode.replaceChild(text, node);
-                math.start = {node: text, delim: '', n: 0};
-                math.end = {node: text, delim: '', n: 0};
-                doc.math.push(math);
-            });
-        },
-        ""
-      ]
-    }
-  },
-  "chtml": {
-    "scale": 0.98,
-    "mtextInheritFont": true
-  },
-  "loader": {
-    "load": [
-      "input/asciimath",
-      "[tex]/extpfeil",
-      "[tex]/amscd",
-      "[tex]/color",
-      "[tex]/newcommand",
-      "[pretext]/mathjaxknowl3.js"
-    ],
-    "paths": {
-      "pretext": "_static/pretext/js"
-    }
-  },
-  "startup": {
-    pageReady() {
-      return MathJax.startup.defaultPageReady().then(function () {
-      console.log("in ready function");
-      rsMathReady();
-      }
-    )}
-  }
-};
-</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>sagecell.makeSagecell({
+<script type="module">import { startMathJax } from './_static/pretext/js/dist/mathjax_startup.js';
+startMathJax({
+hasWebworkReps: true,
+hasSage: true,
+isReact: false,
+htmlPresentation: false,
+});
+</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script><script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>sagecell.makeSagecell({
   "inputLocation": ".sage-interact",
   "autoeval": true,
   "hide": [
@@ -133,7 +68,7 @@ window.MathJax = {
 \newcommand{\nin}{}
 \newcommand{\vecmag}[1]{\left\lVert #1\right\rVert}
 \newcommand{\grad}{\nabla}
-\newcommand\restrict[1]{\raise-.5ex\hbox{$\Big|$}_{#1}}
+\newcommand\restrict[2]{\raise-.5ex\hbox{$\Big|_{#1}^{#2}$}}
 \DeclareMathOperator{\curl}{curl}
 \DeclareMathOperator{\divg}{div}
 \newcommand{\lt}{&lt;}
@@ -169,7 +104,7 @@ def expxtrace(a=slider(-2,-1,0.1,default=-1.5,label="y-coordinate")):
   plot12=plot99+parametric_plot3d((1.75,y,f(1.75,y)+0.05),(y,-2,0),color="blue",thickness=3)
   plot12+=point3d((1.75,a,f(1.75,a)),color="black",size=30)
   plot12+=parametric_plot3d((1.75,a+t,fv+t*fyv+0.05),(t,-0.5,0.5),color="black",thickness=4,zorder=5)
-  show(plot12,viewpoint=[[-0.4995,0.5074,0.7022],110.69],camera_position=[-4.3266,-0.9076,3.4276])
+  show(plot12,viewpoint=[[-0.5268,-0.5508,-0.6474],116.47],camera_position=[7.3902,-0.7407,2.4237])
 </script></pre></div>
 </body>
 </html>

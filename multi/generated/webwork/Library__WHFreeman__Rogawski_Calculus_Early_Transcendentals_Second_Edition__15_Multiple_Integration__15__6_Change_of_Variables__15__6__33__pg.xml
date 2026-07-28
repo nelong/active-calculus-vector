@@ -1,0 +1,105 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="20" xml:id="extracted-Library__WHFreeman__Rogawski_Calculus_Early_Transcendentals_Second_Edition__15_Multiple_Integration__15__6_Change_of_Variables__15__6__33__pg" assembly-id="Library__WHFreeman__Rogawski_Calculus_Early_Transcendentals_Second_Edition__15_Multiple_Integration__15__6_Change_of_Variables__15__6__33__pg">
+  <static seed="644" source="Library/WHFreeman/Rogawski_Calculus_Early_Transcendentals_Second_Edition/15_Multiple_Integration/15.6_Change_of_Variables/15.6.33.pg">
+    <statement><p>Show that <m>T(u,v)=(u^2-v^2,2uv)</m> maps the triangle
+<m>=\lbrace (u,v): 0\le v\le u\le 2\rbrace</m> to the domain <m>\mathcal{D}</m> bounded
+by <m>x=0</m>, <m>y=0</m>,</p>
+<p>and <m>y^2=64-16x</m>.  Use <m>T</m> to evaluate
+<me>\int\!\!\int _{\mathcal{D}}\sqrt{x^2+y^2}\, dx\,dy</me>
+Answer : <fillin characters="20" name="AnSwEr0001"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>79.6444</m>
+      </p>
+    </answer>
+    <solution><m>{\mathcal{D}}_0</m> is mapped to the boundary of <m>\mathcal{D}</m>. 
+
+
+<image xmlns:pi="http://pretextbook.org/2020/pretext/internal" pi:generated="webwork/images/Library__WHFreeman__Rogawski_Calculus_Early_Transcendentals_Second_Edition__15_Multiple_Integration__15__6_Change_of_Variables__15__6__33__pg-image-1.png" width="79%"/>
+
+
+With <m>u_0=2,\quad x_0=2,\quad</m> and <m>y_0=8</m>
+
+
+ 
+We have
+<me>x={u}^2-{v}^2\quad\text{and}\quad y=2uv</me>
+The line <m>v=u</m> is mapped to the following set:
+<me>(x,y)=({u}^2-{u}^2,2{u}^2)=(0,2{u}^2)</me><me>\quad \Rightarrow\quad x=0,\quad y\ge 0</me> 
+
+
+
+That is, the image of the line <m>u=v</m> is the positive <m>y</m>-axis. 
+The line <m>v=0</m> is mapped to the following set:
+<me>( x,y )=({u}^2,0)</me><me>\quad\Rightarrow\quad x={u}^2,\quad y=0</me><me>\quad\Rightarrow\quad y=0,\quad x\ge 0</me> 
+Thus, the line <m>v=0</m> is mapped to the positive <m>x</m>-axis. 
+We now show that the vertical line <m>u=2</m> is mapped to the curve <m>{y}^2+16x=32</m>.
+
+
+ 
+The image of the line <m>u=2</m> is the following set:
+<me>(x,y)=(4-{v}^2,4v)</me><me>\quad\Rightarrow\quad x=4-{v}^2,\quad y=4v</me>
+We substitute <m>v=\frac{y}{4}</m> in the equation <m>x=4-{v}^2</m> to obtain
+<me>x=4-{\left(\frac{y}{4}\right)}^2=4-\frac{{y}^2}{16}</me><me>\quad\Rightarrow\quad
+ 16x=64-{y}^2</me><me>\quad\Rightarrow\quad {y}^2+16x=64</me>
+Since the boundary of <m>{\mathcal{D}}_0</m> is mapped to the boundary of <m>\mathcal{D}</m>,
+we conclude that the domain <m>{\mathcal{D}}_0</m> is mapped by <m>T</m> to the domain <m>\mathcal{D}</m> in the <m>xy</m>-plane.
+
+ 
+We now compute the integral <m>\int\!\!\int _{\mathcal{D}} \sqrt{{x}^2+{y}^2} \,dx \,dy</m>. 
+
+
+
+We express the function <m>f( x,y )=\sqrt{{x}^2+{y}^2}</m> in terms of the new variables <m>u</m> and <m>v</m>:
+<me>\begin{array}{rcl}
+f( x,y ) =
+\sqrt{{({u}^2-{v}^2)}^2+{( 2uv )}^2}\amp =\amp 
+\sqrt{{u}^4-2{u}^2{v}^2+{v}^4+4{u}^2{v}^2}\\
+\amp =\amp 
+\sqrt{{u}^4+2{u}^2{v}^2+{v}^4}=
+\sqrt{{({u}^2+{v}^2)}^2}\\
+\amp =\amp 
+{u}^2+{v}^2
+\end{array}</me>
+We compute the Jacobian of <m>T</m>: 
+<me>\mathrm{Jac}(T) =
+\frac{\partial ( x,y )}{\partial ( u,v )}=
+\left|\begin{array}{rr}
+\frac{\partial x}{\partial u}\amp \frac{\partial x}{\partial v}\\
+\noalign{\medskip}
+\frac{\partial y}{\partial u}\amp \frac{\partial y}{\partial v}\end{array}\right|=</me><me>\left|\begin{array}{cc}
+2u\amp -2v\\ 2v\amp 2u\end{array}\right|=</me><me>4{u}^2+4{v}^2=
+4({u}^2+{v}^2)</me>
+<image xmlns:pi="http://pretextbook.org/2020/pretext/internal" pi:generated="webwork/images/Library__WHFreeman__Rogawski_Calculus_Early_Transcendentals_Second_Edition__15_Multiple_Integration__15__6_Change_of_Variables__15__6__33__pg-image-2.png" width="32%"/> 
+With <m>u_0=2</m>
+
+
+
+<me>\begin{array}{rcl}
+\int\!\!\int _{\mathcal{D}} \sqrt{{x}^2+{y}^2} \,dx \,dy \amp =\amp 
+\int\!\!\int _{\mathcal{D}_0} ({u}^2+{v}^2)\cdot 4({u}^2+{v}^2) \,du \,dv\\
+\amp =\amp 
+4\int_0^{2} \int_0^{u} ({u}^4+2{u}^2{v}^2+{v}^4) \,dv \,du\\
+\amp =\amp 
+4\int_0^{2} {u}^4v+\frac{2}{3}{u}^2{v}^3+\frac{{v}^5}{5}\bigg|_{v=0}^{u} \,du\\
+\amp =\amp 
+4\int_0^{2} \left({u}^5+\frac{2}{3}{u}^5+\frac{{u}^5}{5}\right) \,du\\
+\amp =\amp 
+4\int_0^{2} \frac{28}{15}{u}^5 \,du\\
+\amp =\amp 
+\frac{112}{15}\cdot \frac{{u}^6}{6}\bigg|_0^{2}\\
+\amp =\amp 
+\frac{3584}{45}
+\approx 79.6444
+\end{array}</me>
+
+
+
+
+
+</solution>
+  </static>
+  <rendering-data sourceFilePath="Library/WHFreeman/Rogawski_Calculus_Early_Transcendentals_Second_Edition/15_Multiple_Integration/15.6_Change_of_Variables/15.6.33.pg" origin="webwork2" domain="https://webwork-ptx.aimath.org" course-id="anonymous" user-id="anonymous" passwd="anonymous" language="en-US"/>
+  <pg source="Library/WHFreeman/Rogawski_Calculus_Early_Transcendentals_Second_Edition/15_Multiple_Integration/15.6_Change_of_Variables/15.6.33.pg"/>
+</webwork-reps>

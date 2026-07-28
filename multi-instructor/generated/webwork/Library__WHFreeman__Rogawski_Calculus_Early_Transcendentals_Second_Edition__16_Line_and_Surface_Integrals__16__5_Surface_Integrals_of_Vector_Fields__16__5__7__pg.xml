@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="20" xml:id="extracted-Library__WHFreeman__Rogawski_Calculus_Early_Transcendentals_Second_Edition__16_Line_and_Surface_Integrals__16__5_Surface_Integrals_of_Vector_Fields__16__5__7__pg" assembly-id="Library__WHFreeman__Rogawski_Calculus_Early_Transcendentals_Second_Edition__16_Line_and_Surface_Integrals__16__5_Surface_Integrals_of_Vector_Fields__16__5__7__pg">
+  <static seed="828" source="Library/WHFreeman/Rogawski_Calculus_Early_Transcendentals_Second_Edition/16_Line_and_Surface_Integrals/16.5_Surface_Integrals_of_Vector_Fields/16.5.7.pg">
+    <statement><p>Compute the surface integral over
+the given oriented surface:</p>
+<p><m>\mathbf{F}=\left\lt  0,3,x^2\right&gt;</m> , <m>\quad</m> hemisphere <m>x^2+y^2+z^2=49</m>,
+<m>\quad z\ge 0</m> , <m>\quad</m> outward-pointing normal</p>
+<p>Answer: <fillin characters="20" name="AnSwEr0001"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>1885.74</m>
+      </p>
+    </answer>
+    <solution><m>\nabla \cdot \mathbf{F}  = 0</m>,
+so <me>\iiint_V \nabla \cdot \mathbf{F} \, dV=0</me> where we integrate over
+the volume enclosed by the region and the <m>xy</m>-plane.  By the
+divergence theorem, the desired integral is then
+<m>-\iint_{x^2+y^2\leq 49} \mathbf{F}\cdot \mathbf{n}\, dxdy</m> where we integrate
+over the disk comprising the bottom of the hemisphere.  The disk lies
+in the plane <m>z=0</m>, so <m>\mathbf{n}=\lt 0,0,-1&gt;</m> and the desired quantity becomes
+<me>\begin{aligned}
+-\iint_{x^2+y^2\leq 49} \left\lt 0,2,x^2\right&gt;\cdot \left\lt 0,0,-1\right&gt;
+\, dxdy 
+\amp  = -\iint_{x^2+y^2\leq 49} -x^2\, dxdy \\
+\amp  = \int_{-7}^7 \int_{-\sqrt{49-y^2}}^{\sqrt{49-y^2}} x^2\, dxdy \\
+\amp  = \int_{-7}^7 \left. \frac{x^3}{3} \right\vert_{-\sqrt{49-y^2}}^{\sqrt{49-y^2}} \, dy \\
+\amp  = \frac{2}{3} \int_{-7}^7 (49-y^2)^{3/2} \, dy \\
+\amp = \frac{2}{3} \left. \frac{x(449-2x^2)\sqrt{49-x^2}+3\cdot 49^2 \arcsin(x/7)}{8} \right|_{-7}^7 \\
+\amp = \frac{2401\pi}{4} \\
+\amp = \frac{2401\pi }{4}
+\end{aligned}</me>
+
+
+
+
+The second approach is to attack the integral directly.
+
+We parametrize the hemisphere <m>S</m> by:
+<me>\mathrm{\Phi }( \theta ,\phi  )=( 7  \cos\theta   \sin\phi ,7 \sin\theta \sin\phi ,7  \cos\phi),</me><me>\,0\le \theta \le 2\pi , \,0\le \phi \le \frac{\pi }{2}</me>
+<alert> Step 1. </alert> Compute the normal vector. 
+
+
+The normal vector that points to the outside of the hemisphere is:
+ <me>\mathbf{n} ={\mathbf{T} }_{\phi }\times {\mathbf{T} }_{\theta }= 49 \sin\phi \left\lt   \cos\theta   \sin\phi , \sin\theta   \sin\phi , \cos\phi  \right&gt;</me>
+For <m>0\le \phi \le \frac{\pi }{2}</m> we have <m>\sin\phi   \cos\phi \ge 0</m>, therefore <m>\mathbf{n}</m> points to the outside of the hemisphere. 
+
+
+<image xmlns:pi="http://pretextbook.org/2020/pretext/internal" pi:generated="webwork/images/Library__WHFreeman__Rogawski_Calculus_Early_Transcendentals_Second_Edition__16_Line_and_Surface_Integrals__16__5_Surface_Integrals_of_Vector_Fields__16__5__7__pg-image-1.png" width="46%"/> 
+
+
+<alert> Step 2. </alert> Evaluate the dot product <m>\mathbf{F} \cdot \mathbf{n}</m>. 
+
+
+We express the vector field in terms of the parameters:
+<me>\mathbf{F} \left(\mathrm{\Phi }( \theta ,\phi  )\right)= \left\lt  0,3,x^2\right&gt; = \left\lt  0,3,49 \,\cos^2\theta  \,\sin^2\phi  \right&gt;</me>
+Hence:
+<me>\mathbf{F} \left(\mathrm{\Phi}(\theta,\phi)\right)\cdot \mathbf{n} (\theta,\phi) =</me><me>\left\lt  0,3,49 \cos^2\theta \sin^2\phi\right&gt; \cdot 49 \sin\phi \left\lt  \cos\theta \sin\phi , \sin\theta   \sin\phi , \cos\phi \right&gt;=</me>
+<me>49 \sin\phi \left(3\sin\theta\sin\phi + 49 \,\cos^2\theta  \,{\sin}^2\phi   \cos\phi \right)=</me>
+<me>147\sin\theta  \,\sin^2\phi +2401 \,\cos^2\theta  \,\sin^3\phi   \cos\phi</me>
+<alert> Step 3. </alert> Evaluate the surface integral. 
+
+
+The surface integral is equal to the following double integral:
+<me>\iint_S   \mathbf{F} \cdot d\mathbf{S}  =
+\iint_{\mathcal{D}} \mathbf{F} \left(\mathrm{\Phi }( \theta ,\phi  )\right)\cdot \mathbf{n} ( \theta ,\phi  ) \,d\theta\, d\phi=</me>
+<me>\int_0^{\pi/2} \int_0^{2\pi } \left(147\sin\theta\sin^2\phi +2401 \,\cos^2\theta   \sin^3\phi   \cos\phi \right) \,d\theta \, d\phi=</me>  <me>\int_0^{\pi/2} \int_0^{2\pi } 147  \sin\theta  \sin^2\phi  \,d\theta\,  d\phi 
++</me><me>\int_0^{\pi/2} \int_0^{2\pi } 2401 \,\cos^2\theta  \,\sin^3\phi   \cos\phi  \,d\theta \, d\phi=</me>
+<me>\left(\int_0^{\pi/2} \sin^2\phi  \,d\phi \right)\left(\int_0^{2\pi } 147  \sin\theta  \,d\theta \right)
++</me><me>\left(\int_0^{\pi/2} 2401 \,\sin^3\phi   \cos\phi  \,d\phi \right)\left(\int_0^{2\pi } \cos^2\theta  \,d\theta \right)=</me>
+<me>\left(\left.\frac{\phi }{2}-\frac{\sin 2\phi }{4}\right|_{\phi =
+0}^{\pi/2}\right)\left(-147  \cos\theta \bigg|_{\theta =0}^{2\pi }\right)
+ +</me><me>\left(\left.\frac{2401 \,\sin^4\phi }{4}\right|_{\phi =
+0}^{\pi/2}\right)\left(\left.\frac{\theta }{2}+\frac{\sin 2\theta }{4}\right|_{\theta =0}^{2\pi }\right)=</me>  <me>0+\frac{2401}4\cdot \pi =\frac{2401\pi }{4}</me>
+
+
+</solution>
+  </static>
+  <rendering-data sourceFilePath="Library/WHFreeman/Rogawski_Calculus_Early_Transcendentals_Second_Edition/16_Line_and_Surface_Integrals/16.5_Surface_Integrals_of_Vector_Fields/16.5.7.pg" origin="webwork2" domain="https://webwork-ptx.aimath.org" course-id="anonymous" user-id="anonymous" passwd="anonymous" language="en-US"/>
+  <pg source="Library/WHFreeman/Rogawski_Calculus_Early_Transcendentals_Second_Edition/16_Line_and_Surface_Integrals/16.5_Surface_Integrals_of_Vector_Fields/16.5.7.pg"/>
+</webwork-reps>

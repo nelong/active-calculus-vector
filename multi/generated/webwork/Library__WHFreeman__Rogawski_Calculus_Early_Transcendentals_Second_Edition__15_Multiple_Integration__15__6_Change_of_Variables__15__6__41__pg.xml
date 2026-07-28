@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="20" xml:id="extracted-Library__WHFreeman__Rogawski_Calculus_Early_Transcendentals_Second_Edition__15_Multiple_Integration__15__6_Change_of_Variables__15__6__41__pg" assembly-id="Library__WHFreeman__Rogawski_Calculus_Early_Transcendentals_Second_Edition__15_Multiple_Integration__15__6_Change_of_Variables__15__6__41__pg">
+  <static seed="646" source="Library/WHFreeman/Rogawski_Calculus_Early_Transcendentals_Second_Edition/15_Multiple_Integration/15.6_Change_of_Variables/15.6.41.pg">
+    <statement><p>Let <m>I=\int\!\!\int _{\mathcal{D}}(x^2-y^2)\,dx\,dy</m>, where
+<me>\mathcal{D} = \lbrace (x,y): 2\le xy\le 5, 0\le x-y\le 2, x \ge 0, y \ge 0\rbrace</me>
+Show that the mapping <m>u = xy</m>, <m>v = x-y</m> maps <m>\mathcal{D}</m> to
+the rectangle <m>\mathcal{R}=[2,5]\times [0,2]</m>.</p>
+<p><m>\mathbf{(a)}</m> Compute <m>\partial(x,y)/\partial(u,v)</m> by first computing
+<m>\partial(u,v)/\partial(x,y)</m>.</p>
+<p><m>\mathbf{(b)}</m> Use the Change of Variables
+Formula to show that <m>I</m> is equal to the integral of <m>f(u,v)=v</m>
+over <m>\mathcal{R}</m> and evaluate.</p>
+<p><m>\mathbf{(a)}\frac{\partial ( x,y )}{\partial ( u,v )}=</m> <fillin characters="20" name="AnSwEr0001"/></p>
+<p><m>\mathbf{(b)}I=</m> <fillin characters="20" name="AnSwEr0002"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>-\frac{1}{x+y}</m>
+      </p>
+    </answer>
+    <answer>
+      <p>
+        <m>6</m>
+      </p>
+    </answer>
+    <solution><m>\mathcal{D}</m> is defined by the inequalities
+<me>\mathcal{D}:\,2\le xy\le 5,\ 0\le x-y\le 2,\ x\ge 0,\ y\ge 0</me>
+
+<image xmlns:pi="http://pretextbook.org/2020/pretext/internal" pi:generated="webwork/images/Library__WHFreeman__Rogawski_Calculus_Early_Transcendentals_Second_Edition__15_Multiple_Integration__15__6_Change_of_Variables__15__6__41__pg-image-1.png" width="43%"/>
+With <m>a_0=2,\quad a_1=5\quad</m> and <m>a_2=2</m>
+
+
+
+Since <m>u=xy</m> and <m>v=x-y</m>, the image of <m>\mathcal{D}</m> under this mapping is the rectangle defined by
+<me>{\mathcal{D}}_0:\,2\le u\le 5,\ 0\le v\le 2</me> 
+That is, <m>{\mathcal{D}}_0=[2,5]\times [0,2]</m>.
+
+
+
+<m>\mathbf{(a)}</m> We compute the Jacobian <m>\frac{\partial ( u,v )}{\partial ( x,y )}</m> 
+
+ and then use the formula for the Jacobian of the inverse mapping to compute <m>\frac{\partial ( x,y )}{\partial ( u,v )}</m>.
+
+ Since <m>u=xy</m> and <m>v=x-y</m>, we have
+<me>\frac{\partial ( u,v )}{\partial ( x,y )}=
+\left|\begin{array}{cc}
+\frac{\partial u}{\partial x}\amp \frac{\partial u}{\partial y}\\
+\noalign{\medskip}
+\frac{\partial v}{\partial x}\amp \frac{\partial v}{\partial y}\end{array}\right|=</me><me>\left|\begin{array}{cc}y\amp x\\ 1\amp -1\end{array}\right|=
+-y-x=
+-( x+y )</me>
+Therefore,
+<me>\frac{\partial ( x,y )}{\partial ( u,v )}={\left(\frac{\partial ( u,v )}{\partial ( x,y )}\right)}^{-1}=-\frac{1}{x+y}</me>
+
+
+
+<m>\mathbf{(b)}</m> In <m>\mathcal{D}</m>, <m>x\ge 0</m> and <m>y\ge 0</m>, hence <m>\left|\frac{\partial ( x,y )}{\partial ( u,v )}\right|=\frac{1}{x+y}</m>.
+
+ Using the change of variable formula gives:
+<me>\begin{array}{rcl}
+I=
+\int\!\!\int _{{\mathcal{D}}_0} ({x}^2-{y}^2)\cdot \frac{1}{x+y} \,du\,dv\amp =\amp 
+\int\!\!\int _{{\mathcal{D}}_0} ( x-y ) \,du \,dv\\
+\amp =\amp 
+\int_0^{2} \int_{2}^{5} v \,du \,dv\\
+\amp =\amp 
+\left(\int_0^{2} v \,dv\right)\left(\int_{2}^{5}\,du\right)\\
+\amp =\amp 
+\left(\frac{{v}^2}{2}\bigg|_0^{2}\right)\left(u\bigg|_{2}^{5}\right)\\
+\amp =\amp 
+\frac{4}{2}\cdot 3=6
+\end{array}</me>
+
+
+
+
+
+</solution>
+  </static>
+  <rendering-data sourceFilePath="Library/WHFreeman/Rogawski_Calculus_Early_Transcendentals_Second_Edition/15_Multiple_Integration/15.6_Change_of_Variables/15.6.41.pg" origin="webwork2" domain="https://webwork-ptx.aimath.org" course-id="anonymous" user-id="anonymous" passwd="anonymous" language="en-US"/>
+  <pg source="Library/WHFreeman/Rogawski_Calculus_Early_Transcendentals_Second_Edition/15_Multiple_Integration/15.6_Change_of_Variables/15.6.41.pg"/>
+</webwork-reps>

@@ -1,0 +1,167 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="20" xml:id="extracted-S_Vector_Curl-9-20" assembly-id="S_Vector_Curl-9-20">
+  <static seed="751">
+    <statement><tabular valign="top">
+<row>
+<cell>Match the vector fields:<ol>
+<li>
+div(F)=<m>0</m>, curl(F)=<m>-1</m>
+</li>
+<li>
+div(F)=<m>2</m>, curl(F)=<m>3</m>
+</li>
+<li>
+div(F)=<m>0</m>, curl(F)=<m>2</m>
+</li>
+<li>
+div(F)=<m>-1</m>, curl(F)=<m>0</m>
+</li>
+<li>
+div(F)=<m>0</m>, curl(F)=<m>0</m>
+</li>
+<li>
+div(F)=<m>-2</m>, curl(F)=<m>-1</m>
+</li>
+</ol></cell>
+<cell><CENTER>
+<tabular bottom="none" left="none" right="none" top="none">
+<row halign="left" valign="middle">
+<cell><A HREF="/webwork2_files/tmp/anonymous/images/2da48197-c262-36ac-aedd-60ffffde834e___dc837e09-1c98-37b9-8071-bc96a173e92f.png"><IMG ALIGN="BOTTOM" BORDER="2" HEIGHT="230" SRC="/webwork2_files/tmp/anonymous/images/2da48197-c262-36ac-aedd-60ffffde834e___dc837e09-1c98-37b9-8071-bc96a173e92f.png" WIDTH="230"/></A></cell>
+<cell><A HREF="/webwork2_files/tmp/anonymous/images/2da48197-c262-36ac-aedd-60ffffde834e___3488f268-019c-315f-b926-51fea22a65b3.png"><IMG ALIGN="BOTTOM" BORDER="2" HEIGHT="230" SRC="/webwork2_files/tmp/anonymous/images/2da48197-c262-36ac-aedd-60ffffde834e___3488f268-019c-315f-b926-51fea22a65b3.png" WIDTH="230"/></A></cell>
+<cell><A HREF="/webwork2_files/tmp/anonymous/images/2da48197-c262-36ac-aedd-60ffffde834e___60973c95-eac4-3cdd-b2f3-3cf267035f78.png"><IMG ALIGN="BOTTOM" BORDER="2" HEIGHT="230" SRC="/webwork2_files/tmp/anonymous/images/2da48197-c262-36ac-aedd-60ffffde834e___60973c95-eac4-3cdd-b2f3-3cf267035f78.png" WIDTH="230"/></A></cell>
+</row>
+<row halign="left" valign="middle">
+<cell><CENTER><B>A</B></CENTER></cell>
+<cell><CENTER><B>B</B></CENTER></cell>
+<cell><CENTER><B>C</B></CENTER></cell>
+</row>
+<row halign="left" valign="middle">
+<cell><A HREF="/webwork2_files/tmp/anonymous/images/2da48197-c262-36ac-aedd-60ffffde834e___44e53e95-4c71-3669-8d87-fcb2ea2ed36d.png"><IMG ALIGN="BOTTOM" BORDER="2" HEIGHT="230" SRC="/webwork2_files/tmp/anonymous/images/2da48197-c262-36ac-aedd-60ffffde834e___44e53e95-4c71-3669-8d87-fcb2ea2ed36d.png" WIDTH="230"/></A></cell>
+<cell><A HREF="/webwork2_files/tmp/anonymous/images/2da48197-c262-36ac-aedd-60ffffde834e___dcc4a9e7-7442-36ee-84d0-59a5ffed644d.png"><IMG ALIGN="BOTTOM" BORDER="2" HEIGHT="230" SRC="/webwork2_files/tmp/anonymous/images/2da48197-c262-36ac-aedd-60ffffde834e___dcc4a9e7-7442-36ee-84d0-59a5ffed644d.png" WIDTH="230"/></A></cell>
+<cell><A HREF="/webwork2_files/tmp/anonymous/images/2da48197-c262-36ac-aedd-60ffffde834e___f0f25932-925a-39e1-9476-08148ef473c7.png"><IMG ALIGN="BOTTOM" BORDER="2" HEIGHT="230" SRC="/webwork2_files/tmp/anonymous/images/2da48197-c262-36ac-aedd-60ffffde834e___f0f25932-925a-39e1-9476-08148ef473c7.png" WIDTH="230"/></A></cell>
+</row>
+<row halign="left" valign="middle">
+<cell><CENTER><B>D</B></CENTER></cell>
+<cell><CENTER><B>E</B></CENTER></cell>
+<cell><CENTER><B>F</B></CENTER></cell>
+</row>
+</tabular>
+<p/></CENTER></cell>
+</row>
+</tabular>
+</statement>
+  </static>
+  <rendering-data problemSource="Active_Calculus__Multivariable/13_7_7_20.pg" origin="generated" domain="https://webwork-ptx.aimath.org" course-id="anonymous" user-id="anonymous" passwd="anonymous" language="en-US"/>
+  <pg><![CDATA[
+## DBsubject(Calculus - multivariable)
+## DBchapter(Vector calculus)
+## DBsection(Curl and divergence)
+## Institution(NAU)
+## Author(Nandor Sieben)
+# File Created: 10/22/20
+
+
+DOCUMENT();
+loadMacros(
+"PGstandard.pl",
+"PGgraphmacros.pl",
+"VectorField2D.pl",
+"PGunion.pl",
+"imageChoice.pl",
+);
+
+
+TEXT(beginproblem());
+$refreshCachedImages = 1;
+
+Context()->variables->add(y=>"Real");
+
+# 9 vector fields
+@fieldsA=(
+         ["x+y-1","2y+1"],
+         ["x-y-1","2x+y"],
+         ["x","3y"],
+         ["0","-x"],
+         ["-y","x-3"],
+         ["(x-3)/((x-3)^2+y^2+.0000001)","y/(x^2+y^2+.0000001)"],
+         ["0","-y"],
+         ["-x","x-y"],
+         ["y-2x","0"],
+         );
+
+@fieldsDiv=(3,2,4,0,0,0,-1,-2,-2);
+@fieldsRot=(-1,3,0,-1,2,0,0,1,-1);
+
+# make graphs for each
+@gr = ();
+foreach my $i (0..8) {
+#    $gr[$i] = init_graph(-2,-2,2,2,grid=>[10,10],axes=>[0,0],pixels=>[230,230]);
+    $gr[$i] = init_graph(-2,-2,2,2,pixels=>[250,250]);
+}
+
+foreach my $i (0..8) {
+VectorField2D(
+graphobject => $gr[$i],
+Fx => Formula("( $fieldsA[$i][0] )/10"),
+Fy => Formula("( $fieldsA[$i][1] )/10"),
+xvar => "x",
+yvar => "y",
+xmin => -2,
+xmax =>  2,
+ymin => -2,
+ymax =>  2,
+xsamples => 10,
+ysamples => 10,
+vectorcolor => "blue",
+vectorscale => 1.5,
+vectorthickness => 1.5,
+# xavoid=>0,
+# yavoid=>0,
+);
+}
+
+@QA = ();
+foreach my $i (0..8) { push( @QA, "div(F)=\($fieldsDiv[$i]\), curl(F)=\($fieldsRot[$i]\)",  $gr[$i] ); }
+
+$ml = new_image_match_list(
+  link => 1,                #  do not link to separate image
+  size => [230,230],        #  image size in pixels
+  tex_size => 450,          #  tex size in precent times 10
+  columns => 3,             #  number of columns
+  separation => 20,         #  separation between image columns 
+);
+
+$ml->rf_print_q(~~&pop_up_list_print_q); # use pop-up-lists
+$ml->ra_pop_up_list([ No_answer=>"?", A=>"A", B=>"B", C=>"C", D=>"D", E=>"E", F=>"F"] );
+
+$ml->qa(@QA);               #  set the questions and answers
+$ml->choose(6);             #  select 6 of them
+#$ml->choose_extra(0);      #  and show the other 1
+
+BEGIN_TEXT
+\{
+ColumnTable(
+"Match the vector fields:".
+$ml->print_q() # no period!
+, # comma!
+$BCENTER.
+$ml->print_a().
+$BR.
+$ECENTER # no period!
+, # comma!
+indent => 0, separation => 30, valign => "TOP"
+)
+\}
+END_TEXT
+
+install_problem_grader(~~&std_problem_grader);
+$showPartialCorrectAnswers = 0;
+
+ANS(str_cmp($ml->ra_correct_ans));
+
+foreach my $i (0..3) {
+  $a[$i] = $ml->ra_correct_ans->[$i];
+}
+
+ENDDOCUMENT();]]></pg>
+</webwork-reps>

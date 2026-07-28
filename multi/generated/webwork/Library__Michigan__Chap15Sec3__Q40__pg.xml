@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="20" xml:id="extracted-Library__Michigan__Chap15Sec3__Q40__pg" assembly-id="Library__Michigan__Chap15Sec3__Q40__pg">
+  <static seed="489" source="Library/Michigan/Chap15Sec3/Q40.pg">
+    <statement><p>Find the minimum distance from the point <m>(1,1,10)</m>
+to the paraboloid given by the equation <m>z=x^2+y^2</m>.</p>
+<p>Minimum distance = <fillin characters="35" name="AnSwEr0001"/></p>
+<p><alert> Note:</alert> 
+If you need to find
+roots of a polynomial of degree <m>\geq 3</m>,
+you may want to use a calculator of computer to do so numerically.
+Also be sure that you can give a geometric
+justification for your answer.</p>
+</statement>
+    <answer>
+      <p>
+        <m>\sqrt{2.98019}</m>
+      </p>
+    </answer>
+    <solution><m>(x,y,z)</m> be a point on the paraboloid.
+The square of the distance from
+<m>(x,y,z)</m> to the point <m>(1,1,10)</m> is given by
+<me>f(x,y,z) = (x-1)^2 + (y-1)^2 + (z-10)^2,</me>
+and so we wish to minimize <m>f(x,y,z)</m> subject to the constraint
+<me>g(x,y,z) = x^2+y^2-z = 0.</me>
+We look for solutions to the equations
+<m>\nabla f = \lambda\nabla g</m> and <m>g=0</m>:
+<me>2(x-1) = 2\lambda x,</me>
+<me>2(y-1) = 2\lambda y,</me>
+<me>2(z-10) = -\lambda,</me>
+and
+<me>x^2+y^2-z = 0.</me>
+If <m>\lambda=0</m>, the first three equations would imply that
+<m>(x,y,z)=(1,1,10)</m>, which does not satisfy the fourth
+equation and so <m>\lambda\ne 0</m>. If collect terms in <m>x</m> and
+<m>y</m> in the first and second equations, respectively, we get
+<me>(1 - \lambda) x = 1,</me>
+and
+<me>(1 - \lambda) y = 1.</me>
+Note that we cannot have <m>\lambda = 1</m>, <m>x = 0</m> or <m>y = 0</m>,
+and so can divide these two equation to solve for <m>y</m>, getting
+<me>y =  x</me>.
+
+
+
+If we divide the first and third equations we got from the
+Lagrange multipliers method, we have
+<me>\frac{x - 1}{z - 10} = -2x,</me>
+so that
+<me>z = 10 - \frac12(1 - \frac{1}{x}).</me>
+
+
+
+We can then plug all of these into the last equation, the constraint.
+This gives
+<me>x^2 +  x^2 - 10 + \frac12(1 - \frac{1}{x}) = 0.</me>
+Multiplying by <m>x</m> and collecting terms, we have
+<me>4 x^3 - 19 x - 1 = 0.</me>
+Let <m>h(x) = 4 x^3 - 19 x - 1</m>.  Clearly
+<m>h(-3) \lt  0</m>, <m>h(-\frac12) &gt; 0</m>, <m>h(0) \lt  0</m> and <m>h(3) &gt; 0</m>.
+Thus there must be roots lying between <m>x = -3</m> and <m>x = -0.5</m>,
+between <m>x = -0.5</m> and <m>x = 0</m>, and between <m>x = 0</m> and
+<m>x = 3</m>.  We can locate these numerically using a calculator or
+computer program, to find
+<me>x = -2.152641074, \quad x = -0.05266232621, \quad\mbox{and}\quad
+   x = 2.2053034.</me>
+Then, using the equations for <m>y</m> and <m>z</m> in terms of <m>x</m>, we
+have the corresponding values of <m>y</m> and <m>z</m>, and therefore
+have three solutions to the Lagrange multiplier equations:
+<me>x_1 = -2.152641074, y_1 = -2.152641074, z_1 = 9.26772718694375,</me>
+<me>x_2 = -0.05266232621, y_2 = -0.05266232621, z_2 = 0.00554664120369691,</me>
+and
+<me>x_3 = 2.2053034, y_3 = 2.2053034, z_3 = 9.72672617210312.</me>
+
+
+
+The distances (squared) from the paraboloid are
+<me>d_1 = d(x_1,y_1,z_1) = 20.4145149556851,</me>
+<me>d_2 = d(x_2,y_2,z_2) = 102.105293887198,</me>
+and
+<me>d_3 = d(x_3,y_3,z_3) = 2.98019115711653,</me>
+so that the minimum distance is <m>\sqrt{d_3} = 1.72632</m>.
+
+
+
+
+Note that the geometric interpretation of this is that it is the
+length of a perpendicular line segment drawn from the paraboloid
+to the point.
+
+
+
+</solution>
+  </static>
+  <rendering-data sourceFilePath="Library/Michigan/Chap15Sec3/Q40.pg" origin="webwork2" domain="https://webwork-ptx.aimath.org" course-id="anonymous" user-id="anonymous" passwd="anonymous" language="en-US"/>
+  <pg source="Library/Michigan/Chap15Sec3/Q40.pg"/>
+</webwork-reps>

@@ -18,54 +18,57 @@
 <meta name="robots" content="noindex, nofollow">
 </head>
 <body class="ignore-math">
-<article class="task exercise-like"><h5 class="heading">
-<span class="type">part</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">12.3.18.b</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
-</h5>
-<div class="para">In the previous part, we used a vertically simple description for the region of integration <span class="process-math">\(D\text{,}\)</span> which allowed us to use an iterated integral where we integrated with respect to <span class="process-math">\(y\)</span> first, while treating <span class="process-math">\(x\)</span> as a constant, and then integrated across the interval of relevent <span class="process-math">\(x\)</span>-values. In this task, we will use a horizontally simple description for the region of integration. As a consequence, the order in which we integrate will be switched.<div class="autopermalink" data-description="Paragraph"><a href="#task-mult_ints-general-y_slice-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
+<article class="task exercise-like"><h2 class="heading">
+<span class="type">part</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">12.4.26.a</span><span class="period heading-divison-mark heading-divison-mark__period">.</span>
+</h2>
 <div class="para logical">
-<div class="para">We will use the inequalities from <a href="S-mult_ints-general.html#examp-mult_ints-double_ints_general-triangular" class="xref" data-knowl="./knowl/xref/examp-mult_ints-double_ints_general-triangular.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 12.3.7">Example 12.3.7</a> that correspond to the horizontally simple description</div>
+<div class="para">We will use the inequalities from <a href="S-mult_ints-general.html#examp-mult_ints-double_ints_general-triangular" class="xref" data-knowl="./knowl/xref/examp-mult_ints-double_ints_general-triangular.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 12.4.8">Example 12.4.8</a> that correspond to the horizontally simple description of <span class="process-math">\(D\text{:}\)</span>
+</div>
 <div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/examp-mult_ints-double_ints_general-triangular.html">
 \begin{equation*}
-\text{Along }y=k\text{, the }x\text{-coordinates go from }\frac{2}{3}k\text{ to }2\text{,}
+\text{Along }y=k\text{, the }x\text{-coordinates go from }\frac{2}{3}k\text{ to }2
 \end{equation*}
 </div>
-<div class="para">which corresponds to the inequalities</div>
+<div class="para">This description corresponds to the inequalities</div>
 <div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/examp-mult_ints-double_ints_general-triangular.html">
 \begin{equation*}
 0\leq y \leq 3 \quad \quad \frac{2}{3}y \leq x \leq 2\text{.}
 \end{equation*}
 </div>
-<div class="para">Using these inequalities corresponds to integrating with respect to <span class="process-math">\(x\)</span> first. That is, the variable in the inner integral is <span class="process-math">\(x\text{.}\)</span>
-</div>
-<div class="autopermalink" data-description="Paragraph"><a href="#task-mult_ints-general-y_slice-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="para">Using these inequalities corresponds to integrating with respect to <span class="process-math">\(x\)</span> in the inner integral of the iterated integral. That is, the variable in the inner integral is <span class="process-math">\(x\)</span> and we treat <span class="process-math">\(y\)</span> as a constant when antidifferentiating.</div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#task-mult_ints-general-y_slice-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <div class="para logical">
-<div class="para">Therefore,</div>
+<div class="para">Therefore we can write the double integral as a <span class="process-math">\(dx\, dy\)</span> iterated integral in the form</div>
 <div class="displaymath process-math">
 \begin{equation*}
-\iint_D x^2y \, dA = \int_{y=0}^{y=3} \int_{x=(2/3)y}^{x=2} x^2y \, dx \, dy\text{.}
+\iint_D x^2y \, dA = \int_{y=0}^{y=3} \int_{x=\frac{2}{3} y}^{x=2} x^2y \, dx \, dy\text{.}
 \end{equation*}
 </div>
-<div class="para">We evaluate the resulting iterated integral as before by twice applying the Fundamental Theorem of Calculus, and find that</div>
+<div class="para">We can now evaluate the resulting iterated integral as before by twice applying the Fundamental Theorem of Calculus. In the inner integral, we treat <span class="process-math">\(y\)</span> as a constant and integrate with respect to <span class="process-math">\(x\text{.}\)</span> When we do so, we find that</div>
 <div class="displaymath process-math">
 \begin{align*}
-\int_{y=0}^{y=3} \int_{x=\frac{2}{3}y}^{2} x^2y \, dx \, dy \amp = \int_{y=0}^{y=3} \left[\frac{x^3}{3}\right]\restrict{x=\frac{2}{3}y}^{x=2}y \, dx\\
-\amp = \int_{y=0}^{y=3} \left[\frac{8}{3}y - \frac{8}{81}y^4 \right] \, dy\\
-\amp = \left[\frac{8}{3}\frac{y^2}{2} - \frac{8}{81}\frac{y^5}{5}\right]\restrict{y=0}^{y=3}\\
+\int_{y=0}^{y=3} \int_{x=\frac{2}{3}y}^{2} x^2y \, dx \, dy \amp = \int_{y=0}^{y=3} \left[ \frac{x^3}{3}\cdot y \right]\restrict{x=\frac{2}{3}y}{x=2} \, dx\\
+\amp = \int_{y=0}^{y=3} \left[ \frac{8}{3}y - \frac{8}{81}y^4 \right] \, dy\\
+\amp = \left[ \frac{8}{3}\frac{y^2}{2} - \frac{8}{81}\frac{y^5}{5}\right] \restrict{y=0}{y=3}\\
 \amp = \left(\frac{8}{3}\right) \left(\frac{9}{2}\right) - \left(\frac{8}{81}\right) \left(\frac{243}{5}\right)\\
 \amp = 12 - \frac{24}{5}\\
 \amp = \frac{36}{5}\text{.}
 \end{align*}
 </div>
-<div class="autopermalink" data-description="Paragraph"><a href="#task-mult_ints-general-y_slice-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#task-mult_ints-general-y_slice-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<div class="para">In <a href="S-mult_ints-general.html#dblintproj2" class="xref" data-knowl="./knowl/xref/dblintproj2.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 12.3.21">Figure 12.3.21</a>, you can see the same volume as before in pink which corresponds to the volume computed by the double integral. In this part, we used a horizontally simple description which means the slices correspond to constant values of <span class="process-math">\(y\text{.}\)</span> The cross sectional area of this slice along a constant <span class="process-math">\(y\)</span>-value is shown in blue. Use the slider at the top of <a href="S-mult_ints-general.html#dblintproj2" class="xref" data-knowl="./knowl/xref/dblintproj2.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 12.3.21">Figure 12.3.21</a> to see how the area of cross section changes with respect to <span class="process-math">\(y\text{.}\)</span> You should notice how as <span class="process-math">\(y\)</span> increases, the cross sectional area first increases and then decreases.<div class="autopermalink" data-description="Paragraph"><a href="#task-mult_ints-general-y_slice-4" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="para">In <a href="S-mult_ints-general.html#dblintproj2" class="xref" data-knowl="./knowl/xref/dblintproj2.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 12.4.27">Figure 12.4.27</a>, you can see the same solid as before in pink. The volume of this solid is the value of the double integral. In this example, we used a horizontally simple description which means the slices correspond to constant values of <span class="process-math">\(y\text{.}\)</span> A cross section along a constant <span class="process-math">\(y\)</span>-value is shown in blue in the figure. Use the slider at the top of <a href="S-mult_ints-general.html#dblintproj2" class="xref" data-knowl="./knowl/xref/dblintproj2.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 12.4.27">Figure 12.4.27</a> to see how the size of cross section changes with respect to <span class="process-math">\(y\text{.}\)</span> Notice how as <span class="process-math">\(y\)</span> increases, the  area of the cross section first increases and then decreases.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#task-mult_ints-general-y_slice-3" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <figure class="figure figure-like"><div class="interactive-iframe-container">
-<iframe id="dblintproj2-2" style="width:600px; height:690px; display: block; " src="dblintproj2-2-if.html" title="described in detail following the image" aria-describedby="dblintproj2-2-description"></iframe><details class="image-description" aria-live="polite"><summary title="details"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span></summary><div id="dblintproj2-2-description"><div class="para" id="dblintproj2-2-1-1">A three-dimensional plot of a solid in <span class="process-math">\(xyz\)</span>-space. The solid is bounded below by the <span class="process-math">\(xy\)</span>-plane, and its base is the triangular region <span class="process-math">\(D\)</span> with vertices <span class="process-math">\((0,0)\text{,}\)</span> <span class="process-math">\((2,0)\text{,}\)</span> and <span class="process-math">\((2,3)\text{.}\)</span> The upper surface of the solid rises from the origin in a curved manner and is determined by the graph of the function <span class="process-math">\(f(x,y)=x^2y\text{.}\)</span> A slice of the solid parallel to the <span class="process-math">\(xz\)</span>-plane is shown with a slider that can adjust the <span class="process-math">\(y\)</span>-value at which the slice is located.<div class="autopermalink" data-description="Paragraph"><a href="#dblintproj2-2-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div></div></details>
+<iframe id="dblintproj2-2" style="width:600px; height:660px; display: block; " src="dblintproj2-2-if.html" title="described in detail following the image" aria-describedby="dblintproj2-2-description"></iframe><details class="image-description" aria-live="polite"><summary title="details"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span></summary><div id="dblintproj2-2-description">
+<div class="para" id="dblintproj2-2-1-1">A three-dimensional plot of a solid in <span class="process-math">\(xyz\)</span>-space. The solid is bounded below by the <span class="process-math">\(xy\)</span>-plane, and its base is the triangular region <span class="process-math">\(D\)</span> with vertices <span class="process-math">\((0,0)\text{,}\)</span> <span class="process-math">\((2,0)\text{,}\)</span> and <span class="process-math">\((2,3)\text{.}\)</span> The upper surface of the solid rises from the origin in a curved manner and is determined by the graph of the function <span class="process-math">\(f(x,y)=x^2y\text{.}\)</span> A slice of the solid parallel to the <span class="process-math">\(xz\)</span>-plane is shown with a slider that can adjust the <span class="process-math">\(y\)</span>-value at which the slice is located.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#dblintproj2-2-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<figcaption><span class="type">Figure</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">12.3.21<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>A plot of the volume below <span class="process-math">\(f(x,y)\)</span> over the region <span class="process-math">\(D\)</span><div class="autopermalink" data-description="Figure 12.3.21"><a href="#dblintproj2" title="Copy heading and permalink for Figure 12.3.21" aria-label="Copy heading and permalink for Figure 12.3.21">🔗</a></div></figcaption></figure><div class="autopermalink" data-description="part 12.3.18.b"><a href="#task-mult_ints-general-y_slice" title="Copy heading and permalink for part 12.3.18.b" aria-label="Copy heading and permalink for part 12.3.18.b">🔗</a></div></article><span class="incontext"><a class="internal" href="S-mult_ints-general.html#task-mult_ints-general-y_slice">in-context</a></span>
+</div></details>
+</div>
+<div class="interactive-iframe-container__opener"><a href="dblintproj2-2.html" title="Open in new tab" aria-label="Open in new tab" target="_blank"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe89e;</span></a></div>
+<figcaption><span class="type">Figure</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">12.4.27<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>A plot of the solid below <span class="process-math">\(f(x,y)\)</span> over the region <span class="process-math">\(D\)</span><div class="autopermalink" aria-hidden="true" data-description="Figure 12.4.27"><a tabindex="-1" href="#dblintproj2" title="Copy heading and permalink for Figure 12.4.27" aria-label="Copy heading and permalink for Figure 12.4.27">🔗</a></div></figcaption>
+</figure><div class="autopermalink" aria-hidden="true" data-description="part 12.4.26.a"><a tabindex="-1" href="#task-mult_ints-general-y_slice" title="Copy heading and permalink for part 12.4.26.a" aria-label="Copy heading and permalink for part 12.4.26.a">🔗</a></div>
+</article><span class="incontext"><a class="internal" href="S-mult_ints-general.html#task-mult_ints-general-y_slice">In Context</a></span>
 </body>
 </html>

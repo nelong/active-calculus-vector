@@ -1,0 +1,94 @@
+\documentclass{standalone}
+\usepackage[svgnames]{xcolor}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usetikzlibrary{arrows.meta,plotmarks,backgrounds}
+\usepgfplotslibrary{fillbetween}
+\tikzset{inner frame sep = 0pt, background rectangle/.style = { thick, draw = DarkBlue, fill = white }}
+\pgfplotsset{
+	compat = 1.18,
+	layers/standard/.define layer set = {
+		background,
+		axis background,
+		axis grid,
+		axis ticks,
+		axis lines,
+		axis tick labels,
+		pre main,
+		main,
+		axis descriptions,
+		axis foreground
+	}{
+		grid style = { /pgfplots/on layer = axis grid },
+		tick style = { /pgfplots/on layer = axis ticks },
+		axis line style = { /pgfplots/on layer = axis lines },
+		label style = { /pgfplots/on layer = axis descriptions },
+		legend style = { /pgfplots/on layer = axis descriptions },
+		title style = { /pgfplots/on layer = axis descriptions },
+		colorbar style = { /pgfplots/on layer = axis descriptions },
+		ticklabel style = { /pgfplots/on layer = axis tick labels },
+		axis background@ style = { /pgfplots/on layer = axis background },
+		3d box foreground style = { /pgfplots/on layer = axis foreground }
+	},
+    layers/axis on top/.define layer set = {
+        background,
+        axis background,
+        pre main,
+        main,
+        axis grid,
+        axis ticks,
+        axis lines,
+        axis tick labels,
+        axis descriptions,
+        axis foreground
+    }{ /pgfplots/layers/standard }
+}
+\begin{document}
+\begin{tikzpicture}[framed]
+\begin{axis}
+[
+	trig format plots=rad,
+	view={0}{90},
+	scale only axis,
+	height=300,
+	width=300,
+	axis x line=middle,
+	axis y line=center,
+	xlabel={\(c\)},
+	ylabel={\(d\)},
+	xtick distance=100,
+	ytick distance=100,
+	xmajorgrids=true,
+	xminorgrids=true,
+	minor x tick num=1,
+	ymajorgrids=true,
+	yminorgrids=true,
+	minor y tick num=1,
+	grid style={gray!40},
+	xmin=0,
+	xmax=400,
+	ymin=0,
+	ymax=400,
+]
+\definecolor{gray}{RGB}{128,128,128}
+\path[name path=xaxis] (0, 0) -- (400,0);
+\definecolor{blue}{RGB}{0,0,255}
+\addplot[smooth, color=blue, line width=2pt, solid, domain=0:166.666666666667, samples=30] {((1000-6*x)/12)};
+\addplot[smooth, color=blue, line width=2pt, solid, domain=0:333.333333333333, samples=30] {((2000-6*x)/12)};
+\addplot[smooth, color=blue, line width=2pt, solid, domain=0:500, samples=30] {((3000-6*x)/12)};
+\addplot[smooth, color=blue, line width=2pt, solid, domain=0:666.666666666667, samples=30] {((4000-6*x)/12)};
+\addplot[smooth, color=blue, line width=2pt, solid, domain=0:833.333333333333, samples=30] {((5000-6*x)/12)};
+\addplot[smooth, color=blue, line width=2pt, solid, domain=0:1000, samples=30] {((6000-6*x)/12)};
+\addplot[smooth, color=blue, line width=2pt, solid, domain=0:1166.66666666667, samples=30] {((7000-6*x)/12)};
+\addplot[smooth, color=blue, line width=2pt, solid, domain=0:1333.33333333333, samples=30] {((8000-6*x)/12)};
+\node[blue] at (axis cs: 75.5555555555556,65.5555555555556) {1000};
+\node[blue] at (axis cs: 131.111111111111,121.111111111111) {2000};
+\node[blue] at (axis cs: 186.666666666667,176.666666666667) {3000};
+\node[blue] at (axis cs: 242.222222222222,232.222222222222) {4000};
+\node[blue] at (axis cs: 297.777777777778,287.777777777778) {5000};
+\node[blue] at (axis cs: 353.333333333333,343.333333333333) {6000};
+\node[blue] at (axis cs: 408.888888888889,398.888888888889) {7000};
+\node[blue] at (axis cs: 464.444444444444,454.444444444444) {8000};
+\end{axis}
+\end{tikzpicture}
+\end{document}

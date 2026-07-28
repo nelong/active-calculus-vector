@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="20" xml:id="extracted-Library__Michigan__Chap16Sec1__Q05__pg" assembly-id="Library__Michigan__Chap16Sec1__Q05__pg">
+  <static seed="498" source="Library/Michigan/Chap16Sec1/Q05.pg">
+    <statement><p>Let <m>R</m> be the rectangle with vertices
+<m>(0,0)</m>, <m>(2,0)</m>, <m>(2,2)</m>, and
+<m>(0,2)</m> and let <m>f(x,y) = \sqrt{4xy}</m>.</p>
+<p><alert>(a)</alert>
+Find reasonable upper and lower bounds for <m>\int_{R}f\,dA</m>
+without subdividing <m>R</m>.</p>
+<p>upper bound = <fillin characters="15" name="AnSwEr0001"/></p>
+<p>lower bound = <fillin characters="15" name="AnSwEr0002"/></p>
+<p><alert>(b)</alert>
+Estimate <m>\int_{R}f\,dA</m> three ways: by partitioning <m>R</m> into
+four subrectangles and evaluating <m>f</m> at its maximum and minimum
+values on each subrectangle, and then by considering the average of
+these (over and under) estimates.</p>
+<p>overestimate: <m>\int_{R}f\,dA \approx</m> <fillin characters="55" name="AnSwEr0003"/></p>
+<p>underestimate: <m>\int_{R}f\,dA \approx</m> <fillin characters="55" name="AnSwEr0004"/></p>
+<p>average: <m>\int_{R}f\,dA \approx</m> <fillin characters="55" name="AnSwEr0005"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>4\sqrt{4\cdot 2\cdot 2}</m>
+      </p>
+    </answer>
+    <answer>
+      <p>
+        <m>0</m>
+      </p>
+    </answer>
+    <answer>
+      <p>
+        <m>\frac{4}{4}\mathopen{}\left(\sqrt{\frac{4\cdot 4}{4}}+2\sqrt{\frac{4\cdot 4}{2}}+\sqrt{4\cdot 4}\right)</m>
+      </p>
+    </answer>
+    <answer>
+      <p>
+        <m>\frac{4}{4}\sqrt{\frac{4\cdot 4}{4}}</m>
+      </p>
+    </answer>
+    <answer>
+      <p>
+        <m>\frac{4}{8}\mathopen{}\left(2\sqrt{\frac{4\cdot 4}{4}}+2\sqrt{\frac{4\cdot 4}{2}}+\sqrt{4\cdot 4}\right)</m>
+      </p>
+    </answer>
+    <solution><alert>(a)</alert>
+If we take the partition of <m>R</m> consisting of just <m>R</m> itself, we
+get
+<me>\mbox{Lower bound }= \mbox{min}_R f\cdot A_R=0\cdot (2-0)(2-0)=0.</me>
+Similarly, we get
+<me>\mbox{Upper bound } = \hbox{max}_R f\cdot A_R = 4\cdot (2-0)(2-0)=16.</me>
+
+
+
+
+<alert>(b)</alert>
+The estimates asked for are just the upper and lower
+sums.  We partition <m>R</m> into subrectangles <m>R_{(a,b)}</m> of
+width 1 and height 1, where <m>(a,b)</m> is the lower-left
+corner of <m>R_{(a,b)}</m>.
+The subrectangles are then <m>R_{(0,0)}</m>, <m>R_{(1,0)}</m>,
+<m>R_{(0,2)}</m>, and <m>R_{(2,2)}</m>.
+Then we find the lower sum
+<me>\mbox{Lower } =\sum_{(a,b)}A_{R_{(a,b)}}\cdot\min_{R_{(a,b)}}f
+    = \sum_{(a,b)} 1\cdot (\mbox{Min of }f \mbox{ on }R_{(a,b)}).</me>
+The minimum occurs at the lower-left corner of each rectangle, so
+<me>\mbox{Lower } = 1\cdot( f(0,0) + f(1,0) + f(0,1) + f(1,1) )
+  = 16.</me>
+
+Similarly, the upper sum is
+<me>\mbox{Upper } = 1\sum_{(a,b)}(\mbox{Max of }f \mbox{ on }R_{(a,b)}),</me>
+so
+<me>\mbox{Upper } = 1(f(2,2)+f(4,2)+f(2,4)+f(4,4)) = 1(6 + 2\sqrt2).</me>
+The upper sum is an overestimate and the lower sum is an
+underestimate, so we can get a better estimate by averaging them
+to get <m>1(4 + 2\sqrt2)</m>.
+
+
+
+</solution>
+  </static>
+  <rendering-data sourceFilePath="Library/Michigan/Chap16Sec1/Q05.pg" origin="webwork2" domain="https://webwork-ptx.aimath.org" course-id="anonymous" user-id="anonymous" passwd="anonymous" language="en-US"/>
+  <pg source="Library/Michigan/Chap16Sec1/Q05.pg"/>
+</webwork-reps>

@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="20" xml:id="extracted-ex-11-5-WW-cone" assembly-id="ex-11-5-WW-cone">
+  <static seed="93" source="Library/FortLewis/Calc3/16-4-Polar-integrals/HGM5-16-4-24-Double-integrals-polar.pg">
+    <statement><p>Consider the solid shaped like an ice cream cone 
+that is bounded by the functions
+<m>z = \sqrt{x^2 + y^2}</m> 
+and 
+<m>z = \sqrt{18 - x^2 - y^2} .</m>
+Set up an integral in polar coordinates to find
+the volume of this ice cream cone.</p>
+<p><em>Instructions:</em>
+Please enter the integrand in the first answer box,
+typing <em>theta</em> for <m>\theta</m>. 
+Depending on the order of integration you choose,  
+enter <em>dr</em> and <em>dtheta</em> 
+in either order into the second and third answer boxes 
+with only one <em>dr</em> or 
+<em>dtheta</em> in each box.  Then, enter the limits of 
+integration and evaluate the integral to find the volume.</p>
+<p><m>\displaystyle \int_A^B \int_C^D</m> 
+<fillin characters="40" name="AnSwEr0001"/>
+<fillin characters="5" name="MuLtIaNsWeR_AnSwEr0001_1"/>
+<fillin characters="5" name="MuLtIaNsWeR_AnSwEr0001_2"/></p>
+<p>A = <fillin characters="20" name="MuLtIaNsWeR_AnSwEr0001_3"/></p>
+<p>B = <fillin characters="20" name="MuLtIaNsWeR_AnSwEr0001_4"/></p>
+<p>C = <fillin characters="20" name="MuLtIaNsWeR_AnSwEr0001_5"/></p>
+<p>D = <fillin characters="20" name="MuLtIaNsWeR_AnSwEr0001_6"/></p>
+<p>Volume = <fillin characters="40" name="AnSwEr0002"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>\left(\sqrt{18-r^{2}}-r\right)r;\,dr;\,dtheta;\,0;\,2\pi ;\,0;\,3</m>
+      </p>
+    </answer>
+    <answer>
+      <p>
+        <m>\frac{44.7351\pi }{3}</m>
+      </p>
+    </answer>
+    <solution><p>SOLUTION</p>
+<p>The functions <m>z = \sqrt{x^2+y^2}</m> and <m>z =\sqrt{ 18-x^2-y^2}</m> intersect when 
+<m>\sqrt{x^2+y^2} =\sqrt{ 18-x^2-y^2} \; \Rightarrow \; x^2+y^2 = 18 - x^2 - y^2 \;
+\Rightarrow \; x^2+y^2 = 9</m>.</p>
+<p>Thus the region of integration is the disk</p>
+<p><m>\begin{array}{lcl} D\amp  =\amp  \left \lbrace (x,y) \, | \, x^2+y^2 \le 9  \right\rbrace
+\\ \amp =\amp  \left \lbrace (r, \theta) \, | \, 0 \le \theta \le 2 \pi, \, 0 \le r \le 3 
+\right \rbrace\end{array}</m>.</p>
+<p>In polar coordinates,  the cone <m>z = \sqrt{x^2+y^2}</m> has 
+equation <m>z= r</m>, while the 
+hemisphere <m>z = \sqrt{18- x^2- y^2}</m> has equation <m>z= \sqrt{18-r^2}</m>, so
+the volume is given by</p>
+<p><m>\begin{array}{lcl} V\amp  =\amp  \displaystyle \int_0^{2 \pi} \int_0^{3}\left( \sqrt{18-r^2}-r\right) \, r \, dr \, d\theta
+\\ \amp =\amp  \displaystyle 2 \pi \int_0^{3} \left(\sqrt{18-r^2}\,r-r^2 \right) \, dr</m></p>
+<p>\\ \amp =\amp  \displaystyle2 \pi \int_0^{3} \sqrt{18-r^2}\,r \, dr -2 \pi \int_0^{3}r^2 
+ \, dr  
+\quad [Substitution: u= 18 -r^2,\, du = - 2r dr ] \\
+\amp =\amp -  \displaystyle \pi \int_{18}^{9} u^{1/2} \, du  - 2\pi \left[\frac{r^3}{3}\right]_0^{3}
+\\ \amp  = \amp  \displaystyle \frac{2}{3} \pi \left[ u^{3/2} \right]_{9}^{18} - 2 \pi \left(\frac{27}{3} \right)
+\\ \amp =\amp  \displaystyle \frac{2}{3} \pi \left( 18^{3/2} - 9^{3/2} \right)
+- 2\pi \left(\frac{27}{3} \right)
+\\ \amp  = \amp   \displaystyle 18 \pi \left( 2^{3/2} -2\right) 
+\end{array}</p>
+</solution>
+  </static>
+  <rendering-data sourceFilePath="Library/FortLewis/Calc3/16-4-Polar-integrals/HGM5-16-4-24-Double-integrals-polar.pg" origin="webwork2" domain="https://webwork-ptx.aimath.org" course-id="anonymous" user-id="anonymous" passwd="anonymous" language="en-US"/>
+  <pg source="Library/FortLewis/Calc3/16-4-Polar-integrals/HGM5-16-4-24-Double-integrals-polar.pg"/>
+</webwork-reps>

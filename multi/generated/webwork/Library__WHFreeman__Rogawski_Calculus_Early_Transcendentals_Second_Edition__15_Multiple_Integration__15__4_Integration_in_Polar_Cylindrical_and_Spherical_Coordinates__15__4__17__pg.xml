@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="20" xml:id="extracted-Library__WHFreeman__Rogawski_Calculus_Early_Transcendentals_Second_Edition__15_Multiple_Integration__15__4_Integration_in_Polar_Cylindrical_and_Spherical_Coordinates__15__4__17__pg" assembly-id="Library__WHFreeman__Rogawski_Calculus_Early_Transcendentals_Second_Edition__15_Multiple_Integration__15__4_Integration_in_Polar_Cylindrical_and_Spherical_Coordinates__15__4__17__pg">
+  <static seed="118" source="Library/WHFreeman/Rogawski_Calculus_Early_Transcendentals_Second_Edition/15_Multiple_Integration/15.4_Integration_in_Polar_Cylindrical_and_Spherical_Coordinates/15.4.17.pg">
+    <statement><p>Calculate the integral over the given region by changing to polar coordinates:
+<me>f(x,y)=|16xy|,\quad x^2+y^2\le 4</me></p>
+<p>Answer: <fillin characters="20" name="AnSwEr0001"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>128</m>
+      </p>
+    </answer>
+    <solution><me>\mathcal{D} : \,0\le \theta \le 2\pi,\ 0\le r\le 2</me>
+<image xmlns:pi="http://pretextbook.org/2020/pretext/internal" pi:generated="webwork/images/Library__WHFreeman__Rogawski_Calculus_Early_Transcendentals_Second_Edition__15_Multiple_Integration__15__4_Integration_in_Polar_Cylindrical_and_Spherical_Coordinates__15__4__17__pg-image-1.png" width="38%"/> For <m>R=2</m>
+
+
+
+The function is <m>f( x,y )=|16xy|=|16r \cos \theta \cdot r \sin \theta |=8{r}^2| \sin 2\theta |</m>.
+Using change of variables we obtain
+<me>\int\!\!\int _{\mathcal{D}} |16xy| \,dA =
+\int_0^{2\pi } \int_0^{2} 8{r}^2| \sin 2\theta |\cdot r \,dr \,d\theta =
+\int_0^{2\pi } \int_0^{2} 8{r}^3| \sin 2\theta | \,dr \,d\theta =</me><me>\int_0^{2\pi } 2{r}^4| \sin 2\theta |\bigg|_{r=0}^{2} \,d\theta =
+\int_0^{2\pi } 2\cdot16| \sin 2\theta | \,d\theta \quad (\mathbf{1})</me>
+The signs of <m>\sin 2\theta</m> in the interval of integration are
+
+
+
+For <m>0\le \theta \le \frac{\pi }{2}</m> or <m>\pi \le \theta \le \frac{3\pi }{2}</m>, <m>\sin 2\theta \ge 0</m>, hence <m>| \sin 2\theta |= \sin 2\theta</m>.
+
+
+
+For <m>\frac{\pi }{2}\le \theta \le \pi</m> or <m>\frac{3\pi }{2}\le \theta \le 2\pi</m>, <m>\sin 2\theta \le 0</m>, hence <m>| \sin 2\theta |=- \sin 2\theta</m>. 
+
+
+
+Therefore, by <m>(\mathbf{1})</m> we get
+<me>\begin{array}{rcl}
+\int\!\!\int _{\mathcal{D}} |16xy| \,dA \amp =\amp \int_0^{\pi/2} 2\cdot16 \sin 2\theta \,d\theta -\int_{\pi/2}^{\pi } 2\cdot16\sin 2\theta \,d\theta\\
+\amp \amp +\int_{\pi }^{3\pi/2} 2\cdot16\sin 2\theta \,d\theta
+ - \int_{3\pi/2}^{2\pi } 2\cdot16\sin 2\theta \,d\theta\\
+\amp =\amp 
+-16 \cos 2\theta \bigg|_0^{\pi/2}+16 \cos 2\theta \bigg|_{\pi/2}^{\pi }\\
+\amp \amp -16 \cos 2\theta \bigg|_{\pi }^{3\pi/2} + 16 \cos 2\theta \bigg|_{3\pi/2}^{2\pi }\\
+\amp =\amp -16( \cos \pi -1 )+16( \cos 2\pi - \cos \pi )
+\\
+\amp \amp  - 16( \cos 3\pi - \cos 2\pi )+16( \cos 4\pi - \cos 3\pi )\\
+\amp =\amp  2\cdot 16+2\cdot 16+2\cdot 16+2\cdot 16\\
+\amp =\amp 128
+\end{array}</me>
+
+
+
+</solution>
+  </static>
+  <rendering-data sourceFilePath="Library/WHFreeman/Rogawski_Calculus_Early_Transcendentals_Second_Edition/15_Multiple_Integration/15.4_Integration_in_Polar_Cylindrical_and_Spherical_Coordinates/15.4.17.pg" origin="webwork2" domain="https://webwork-ptx.aimath.org" course-id="anonymous" user-id="anonymous" passwd="anonymous" language="en-US"/>
+  <pg source="Library/WHFreeman/Rogawski_Calculus_Early_Transcendentals_Second_Edition/15_Multiple_Integration/15.4_Integration_in_Polar_Cylindrical_and_Spherical_Coordinates/15.4.17.pg"/>
+</webwork-reps>

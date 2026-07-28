@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="20" xml:id="extracted-Library__Michigan__Chap18Sec2__Q13__pg" assembly-id="Library__Michigan__Chap18Sec2__Q13__pg">
+  <static seed="673" source="Library/Michigan/Chap18Sec2/Q13.pg">
+    <statement><p>Find <m>\int_C\vec F\cdot d\vec r</m> for
+<m>\vec F = 5 y\vec i - (\sin y)\vec j</m> on the curve
+counterclockwise around the unit circle
+<m>C</m> starting at the point <m>(1,0).</m></p>
+<p><m>\int_C\vec F\cdot d\vec r =</m> <fillin characters="35" name="AnSwEr0001"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>-1\cdot 5\pi </m>
+      </p>
+    </answer>
+    <solution><m>C</m> is parameterized by
+<me>\vec r=\cos t\,\vec i+\sin t\,\vec j,\qquad\mbox{for } 0\le t\le 2\pi,</me>
+so
+<me>\vec F(t) = 5\sin t\,\vec i - \sin{(\sin t)}\,\vec j \quad \text{and} \quad
+\vec r\,'(t)=-\sin t\,\vec i + \cos t\,\vec j.</me>
+Thus,
+<me>\int_C \vec F\cdot d\vec r =
+\int_0^{2\pi} (5\sin t\,\vec i - \sin{(\sin t)}\,\vec j)\cdot
+(-\sin t\,\vec i+\,\cos t\,\vec j) dt</me>
+<me>=\int_0^{2\pi}(-5\sin^2 t - \sin{(\sin t)}\cos t) dt</me>
+Using an identity to rewrite the first term, we get
+<me>=\int_0^{2\pi}\bigg[-\frac{5}{2}(1-\cos 2t) - \sin{(\sin t)}\cos t\bigg] dt</me>
+Integrating, using a substitution to integrate the last term in the integrand,
+we obtain:
+<me>=\bigg[-\frac{5}{2}(t - \frac{1}{2} \sin 2t) +\cos{(\sin t)}\bigg]\bigg|_0^{2\pi}</me>
+<me>=-5\pi \quad \text {units of work}</me>
+
+
+
+</solution>
+  </static>
+  <rendering-data sourceFilePath="Library/Michigan/Chap18Sec2/Q13.pg" origin="webwork2" domain="https://webwork-ptx.aimath.org" course-id="anonymous" user-id="anonymous" passwd="anonymous" language="en-US"/>
+  <pg source="Library/Michigan/Chap18Sec2/Q13.pg"/>
+</webwork-reps>

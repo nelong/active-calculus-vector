@@ -1,0 +1,120 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="20" xml:id="extracted-Library__Michigan__Chap16Sec7__Q19.pg" assembly-id="Library__Michigan__Chap16Sec7__Q19.pg">
+  <static seed="596" source="Library/Michigan/Chap16Sec7/Q19.pg">
+    <statement><p>In this problem we
+use the change of variables <m>x=5 s + t</m>,
+<m>y = s -  t</m> to compute the integral
+<m>\int_R (x+y)\,dA</m>, where <m>R</m> is the parallelogram with vertices
+<m>(x,y)=(0,0)</m>, <m>(10,2)</m>, <m>(11,1)</m>, and <m>(1,-1)</m>.</p>
+<p>First find the magnitude of the Jacobian,
+<m>\left|\frac{\partial(x,y)}{\partial(s,t)}\right| =</m>
+<fillin characters="15" name="AnSwEr0001"/>.</p>
+<p>Then, with
+<m>a =</m> <fillin characters="15" name="AnSwEr0002"/>,
+<m>b =</m> <fillin characters="15" name="AnSwEr0003"/>,</p>
+<p><m>c =</m> <fillin characters="15" name="AnSwEr0004"/>, and
+<m>d =</m> <fillin characters="15" name="AnSwEr0005"/>,</p>
+<p><m>\int_R (x+y)\,dA =
+   \int_a^b\,\int_c^d\, (</m>
+<fillin characters="5" name="AnSwEr0006"/> <m>s +</m>
+<fillin characters="5" name="AnSwEr0007"/> <m>t +</m>
+<fillin characters="5" name="AnSwEr0008"/> <m>)\; dt\, ds</m>
+= <fillin characters="25" name="AnSwEr0009"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>5\cdot 1+1</m>
+      </p>
+    </answer>
+    <answer>
+      <p>
+        <m>0</m>
+      </p>
+    </answer>
+    <answer>
+      <p>
+        <m>\frac{1\cdot 10+2}{1+5\cdot 1}</m>
+      </p>
+    </answer>
+    <answer>
+      <p>
+        <m>0</m>
+      </p>
+    </answer>
+    <answer>
+      <p>
+        <m>\frac{1-5\cdot \left(-1\right)}{5\cdot 1+1}</m>
+      </p>
+    </answer>
+    <answer>
+      <p>
+        <m>6\cdot \left(5+1\right)</m>
+      </p>
+    </answer>
+    <answer>
+      <p>
+        <m>6\cdot \left(1-1\right)</m>
+      </p>
+    </answer>
+    <answer>
+      <p>
+        <m>0</m>
+      </p>
+    </answer>
+    <answer>
+      <p>
+        <m>\frac{\left(1\cdot 10+2\right)\mathopen{}\left(1-5\cdot \left(-1\right)\right)\mathopen{}\left(1+2+5\cdot 2-5\cdot \left(-1\right)+1\cdot \left(10+5\cdot 10-1+5\cdot \left(-1\right)\right)\right)}{2\cdot \left(1+5\cdot 1\right)^{2}}</m>
+      </p>
+    </answer>
+    <solution><me>\begin{array}{ccc}
+    x \amp  = \amp  5 s + t\\
+    y \amp  = \amp  s -  t,
+\end{array}</me>
+we have
+<me>\left|\frac{\partial(x,y)}{\partial(s,t)}\right| =
+  \left|\begin{array}{cc}
+    \frac{\partial x}{\partial s} \amp  \frac{\partial x}{\partial t}\\
+    \frac{\partial y}{\partial s} \amp  \frac{\partial y}{\partial t}
+  \end{array}\right|
+  =\left|\begin{array}{cc}
+    5 \amp  1 \\
+    1 \amp  -1
+  \end{array}\right| = |-6|,</me>
+hence
+<me>\left|\frac{\partial(x,y)}{\partial(s,t)}\right| = 6.</me>
+We therefore get
+<me>\int_R (x+y) \,dA =
+    \int_{T} ((5 s + t) + (s -  t))
+        \left|\frac{\partial(x,y)}{\partial(s,t)}\right|dsdt =</me>
+<me>\int_{T}(6s)(6)\,ds\,dt=\int_{T} (36s)\,ds\,dt,</me>
+where <m>T</m> is the region in the <m>st</m>-plane corresponding
+to <m>R</m>.
+
+
+
+
+Now, we need to find  <m>T</m>.
+
+Because
+<me>\begin{array}{ccc}
+    x \amp  = \amp  5 s+ t \\
+    y \amp  = \amp  s -  t
+\end{array}</me>
+we can use the boundaries of the region <m>R</m> to find the boundaries
+of <m>T</m>.  Using the four vertices of the parallelogram <m>R</m>, we the
+edges <m>y = \frac1{5}\,x</m>, <m>y = -x</m>, <m>y = \frac{1}{5}\,(x-1) - 1</m> and
+<m>y = -(x - 10) + 2</m>.  So, from the above transformation, the boundaries
+are <m>t = 0</m>, <m>s = 0</m>, <m>t = 1</m> and <m>s = 2</m>.
+Therefore
+<me>\int_R(x+y)\,dA = \int_{0}^{1} \int_{0}^{2}\, 36s \,ds\,dt
+  = 72.</me>
+(Alternately, we could of course also write the integral as
+<m>\int_{1}^{0} \int_{2}^{0}\, 36s \,ds\,dt</m>.)
+
+
+
+</solution>
+  </static>
+  <rendering-data sourceFilePath="Library/Michigan/Chap16Sec7/Q19.pg" origin="webwork2" domain="https://webwork-ptx.aimath.org" course-id="anonymous" user-id="anonymous" passwd="anonymous" language="en-US"/>
+  <pg source="Library/Michigan/Chap16Sec7/Q19.pg"/>
+</webwork-reps>

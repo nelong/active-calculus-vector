@@ -1,0 +1,165 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="20" xml:id="extracted-Library__FortLewis__Calc3__14-3-Local-linearity__HGM4-14-3-14-Local-linearity-differential__pg" assembly-id="Library__FortLewis__Calc3__14-3-Local-linearity__HGM4-14-3-14-Local-linearity-differential__pg">
+  <static seed="363">
+    <statement><p>A student was asked to find an equation for the plane that is tangent
+plane to the surface</p>
+<p><m>\displaystyle{ z = {x^{2}-y^{3}} }</m></p>
+<p>at the point <m>\displaystyle{ (x,y) = (5,1) }</m>.  The student<rsq/>s answer was</p>
+<p><m>\displaystyle{ z = {24+2x\mathopen{}\left(x-5\right)-3y^{2}\mathopen{}\left(y-1\right)}}</m>.</p>
+<p><ol label="a.">
+<li>
+<p>At a glance, how do you know this is wrong?  What mistakes did the student make?  Select all that apply.</p>
+<p><ul form="checkboxes" name="AnSwEr0001">
+<li>
+<p>The 24 should not be in the answer.</p>
+</li>
+<li>
+<p>The partial derivatives were not evaluated at the point.</p>
+</li>
+<li>
+<p>The answer is not a linear function.</p>
+</li>
+<li>
+<p>The (x - 5) and (y - 1) should be x and y.</p>
+</li>
+<li>
+<p>All of the above</p>
+</li>
+</ul></p>
+</li>
+<li>
+<p>Find a correct equation for the tangent plane.</p>
+</li>
+</ol></p>
+<p><m>\displaystyle{ z = }</m><fillin characters="1" name="AnSwEr0002"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>\text{Choice 2, Choice 3}</m>
+      </p>
+    </answer>
+    <answer>
+      <p>
+        <m>24+10\mathopen{}\left(x-5\right)-3\mathopen{}\left(y-1\right)</m>
+      </p>
+    </answer>
+  </static>
+  <rendering-data problemSource="Active_Calculus__Multivariable/11_5_5_3.pg" origin="generated" domain="https://webwork-ptx.aimath.org" course-id="anonymous" user-id="anonymous" passwd="anonymous" language="en-US"/>
+  <pg><![CDATA[
+## DESCRIPTION
+##   Calculate Differentials
+## ENDDESCRIPTION
+
+## Tagged by nhamblet
+
+## DBsubject(Calculus - multivariable)
+## DBchapter(Differentiation of multivariable functions)
+## DBsection(Differentiability, linearization and tangent planes)
+## Date(10/23/09)
+## Institution(Fort Lewis College)
+## Author(Paul Pearson)
+## Level(2)
+## MO(1)
+## TitleText1('Calculus')
+## AuthorText1('Hughes-Hallett')
+## EditionText1('5')
+## Section1('14.3')
+## Problem1('18')
+## TitleText2('Calculus')
+## AuthorText2('Hughes-Hallett')
+## EditionText2('')
+## Section2('14.3')
+## Problem2('18')
+## KEYWORDS('Derivative', 'Differential', 'Tangent Plane')
+
+
+DOCUMENT();
+
+loadMacros(
+  "PGstandard.pl",
+  "MathObjects.pl",
+  "PGML.pl",
+  "parserCheckboxList.pl",
+  "weightedGrader.pl",
+  "PGcourse.pl"
+);
+
+install_weighted_grader();
+
+$showPartialCorrectAnswers = 0;
+
+##############################################
+#  Setup
+
+Context("Numeric")->variables->are(x=>'Real',y=>'Real',z=>'Real');
+
+#
+#  The function
+#
+
+$m = random(2,4,1);
+$n = $m++;
+
+$f = Formula("x^($n) - y^($m)");
+
+#
+#  Partial derivatives
+#
+$fx = $f->D('x');
+$fy = $f->D('y');
+
+#
+#  A point (x,y) = (a,b)
+#
+($a,$b) = (random(1,5,1),random(1,5,1));
+
+$fab = $f -> eval(x=>$a,y=>$b) -> reduce;
+
+$fxab = $fx -> eval(x=>$a,y=>$b) -> reduce;
+$fyab = $fy -> eval(x=>$a,y=>$b) -> reduce;
+
+$studentplane = Compute("$fab + $fx*(x - $a) + $fy*(y - $b)")->reduce;
+$tangentplane = Formula("$fab + ($fxab)*(x-$a) + ($fyab)*(y-$b)") -> reduce;
+
+
+
+##########
+#  Part A
+
+$cmc = CheckboxList( 
+  [  [ "The partial derivatives were not evaluated at the point.$BR",
+       "The answer is not a linear function.$BR",                
+       "The $fab should not be in the answer.$BR",
+       "The (x - $a) and (y - $b) should be x and y.$BR",
+     ],  
+     "All of the above"
+  ],
+  [0,1]
+);
+
+
+##############################################
+#  Main text
+
+BEGIN_PGML
+
+A student was asked to find an equation for the plane that is tangent
+plane to the surface 
+
+    [`` z = [$f] ``] 
+
+at the point [`` (x,y) = ([$a],[$b]) ``].  The student's answer was
+
+    [`` z = [$studentplane]``]. 
+
+a) At a glance, how do you know this is wrong?  What mistakes did the student make?  Select all that apply.
+
+    [__]{$cmc}{cmp_options => {weight => 5}}
+b) Find a correct equation for the tangent plane.   
+
+    [`` z = ``][_]{$tangentplane}{cmp_options =>{ weight => 95, width => 40}}
+
+END_PGML
+
+ENDDOCUMENT();]]></pg>
+</webwork-reps>

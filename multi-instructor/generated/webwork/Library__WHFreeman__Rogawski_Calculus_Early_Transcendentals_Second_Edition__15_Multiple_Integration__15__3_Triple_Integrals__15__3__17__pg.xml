@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="20" xml:id="extracted-Library__WHFreeman__Rogawski_Calculus_Early_Transcendentals_Second_Edition__15_Multiple_Integration__15__3_Triple_Integrals__15__3__17__pg" assembly-id="Library__WHFreeman__Rogawski_Calculus_Early_Transcendentals_Second_Edition__15_Multiple_Integration__15__3_Triple_Integrals__15__3__17__pg">
+  <static seed="607" source="Library/WHFreeman/Rogawski_Calculus_Early_Transcendentals_Second_Edition/15_Multiple_Integration/15.3_Triple_Integrals/15.3.17.pg">
+    <statement><p>Integrate <m>f(x,y,z)=6 xz</m> over the region in the first octant
+<m>(x,y,z\ge 0)</m> above the parabolic cylinder <m>z=y^2</m> and below the
+paraboloid <m>z=8-2x^2-y^2</m>.</p>
+<p>Answer : <fillin characters="20" name="AnSwEr0001"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>146.286</m>
+      </p>
+    </answer>
+    <solution><m>\mathcal{W}</m> onto the <m>xy</m>-plane. We find the curve of intersection between the upper and lower surfaces,
+
+ by solving the following equation for <m>x,y\ge 0</m>:
+<me>8-2{x}^2-{y}^2={y}^2\quad \Rightarrow\quad {y}^2=4-{x}^2\quad \Rightarrow\quad y=\sqrt{4-{x}^2}, x\ge 0</me>
+The projection <m>\mathcal{D}</m> of <m>\mathcal{W}</m> onto the <m>xy</m>-plane is the region bounded by the circle <m>{x}^2+{y}^2=4</m> and the positive axes.
+
+
+<image xmlns:pi="http://pretextbook.org/2020/pretext/internal" pi:generated="webwork/images/Library__WHFreeman__Rogawski_Calculus_Early_Transcendentals_Second_Edition__15_Multiple_Integration__15__3_Triple_Integrals__15__3__17__pg-image-1.png" width="30%"/> 
+
+
+We now compute the triple integral over <m>\mathcal{W}</m> by evaluating the following iterated integral:
+
+
+
+<me>\begin{array}{rcl}
+\int\!\!\int\!\!\int _{\mathcal{W}} 6 xz \,dV \amp =\amp 
+\int\!\!\int _{\mathcal{D}} \left(\int_{{y}^2}^{8-2{x}^2-{y}^2}6 xz \,dz\right)\,dA\\
+\amp =\amp 
+\int\!\!\int _{\mathcal{D}} 3xz^2\bigg|_{{z=y}^2}^{8-2{x}^2-{y}^2}dA\\
+\amp =\amp 
+\int\!\!\int _{\mathcal{D}} 3x\left({\left(8-2{x}^2-{y}^2\right)}^2-{y}^4\right) \,dA\\
+\amp =\amp 
+\int\!\!\int _{\mathcal{D}}3x\left(8-2{x}^2-2{y}^2\right)\left(8-2{x}^2\right)\,dA\\
+\amp =\amp 
+\int\!\!\int _{\mathcal{D}} 12x\left(4-{x}^2\right)\left(4-{x}^2-{y}^2\right) \,dA\\
+\amp =\amp 
+\int_0^2 \left(12x\left(4-{x}^2\right) \int_0^{\sqrt{4-{x}^2}} \left(4-{x}^2-{y}^2\right) \,dy\right)dx\\
+\amp =\amp 
+\int_0^2 12x\left(4-{x}^2\right)\left(\left(4-{x}^2\right)y-\frac{{y}^3}{3}\right)\bigg|_{y=0}^{\sqrt{4-{x}^2}} \,dx\\
+\amp =\amp 
+\int_0^2 12x\left(4-{x}^2\right)\left({\left(4-{x}^2\right)}^{3/2}-\frac{{\left(4-{x}^2\right)}^{3/2}}{3}\right) \,dx\\
+\amp =\amp 
+\int_0^2 \frac{24}{3}{\left(4-{x}^2\right)}^{5/2}x \,dx
+\end{array}</me>
+We compute the integral using the substitution <m>u=4-{x}^2, du=-2x \,dx</m>. This gives
+
+
+
+<me>\begin{array}{rcl}
+\int\!\!\int\!\!\int _{\mathcal{W}} 6 xz \,dV \amp =\amp 
+\int_0^2 \frac{24}{3}{\left(4-{x}^2\right)}^{5/2}x \,dx\\
+\amp =\amp 
+\int_4^0 \frac{24}{3}{u}^{5/2}\left(-\frac{du}{2}\right)=
+\int_0^4 \frac{12}{3}{u}^{5/2} \,du\\
+\amp =\amp 
+\frac{12}{3}\cdot \frac{2}{7}{u}^{7/2}\bigg|_0^4=
+\frac{24}{21}\cdot {4}^{7/2}\\
+\amp =\amp 
+\frac{24}{21}\cdot 2^7=
+\frac{3072}{21}\approx
+146.286
+\end{array}</me>
+
+
+
+
+
+
+</solution>
+  </static>
+  <rendering-data sourceFilePath="Library/WHFreeman/Rogawski_Calculus_Early_Transcendentals_Second_Edition/15_Multiple_Integration/15.3_Triple_Integrals/15.3.17.pg" origin="webwork2" domain="https://webwork-ptx.aimath.org" course-id="anonymous" user-id="anonymous" passwd="anonymous" language="en-US"/>
+  <pg source="Library/WHFreeman/Rogawski_Calculus_Early_Transcendentals_Second_Edition/15_Multiple_Integration/15.3_Triple_Integrals/15.3.17.pg"/>
+</webwork-reps>

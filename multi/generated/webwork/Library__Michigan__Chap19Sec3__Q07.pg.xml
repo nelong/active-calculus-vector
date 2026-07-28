@@ -1,0 +1,106 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="20" xml:id="extracted-Library__Michigan__Chap19Sec3__Q07.pg" assembly-id="Library__Michigan__Chap19Sec3__Q07.pg">
+  <static seed="631" source="Library/Michigan/Chap19Sec3/Q07.pg">
+    <statement><p>Compute the flux of the vector field <m>\vec F = 8 x^2y^2z\vec k</m>
+through the surface <m>S</m> which is
+the cone <m>\sqrt{x^2+y^2}=z</m>, with
+<m>0\le z\le R</m>, oriented downward.</p>
+<p><alert>(a)</alert>
+Parameterize the cone using cylindrical coordinates (write <m>\theta</m>
+as <em>theta</em>).</p>
+<p><m>x(r,\theta) =</m> <fillin characters="25" name="AnSwEr0001"/></p>
+<p><m>y(r,\theta) =</m> <fillin characters="25" name="AnSwEr0002"/></p>
+<p><m>z(r,\theta) =</m> <fillin characters="25" name="AnSwEr0003"/></p>
+<p>with <fillin characters="10" name="AnSwEr0004"/> <m>\le r\le</m> <fillin characters="10" name="AnSwEr0005"/></p>
+<p>and  <fillin characters="10" name="AnSwEr0006"/> <m>\le \theta \le</m> <fillin characters="10" name="AnSwEr0007"/></p>
+<p><alert>(b)</alert>
+With this parameterization, what is <m>d\vec A</m>?</p>
+<p><m>d\vec A</m> = <fillin characters="35" name="AnSwEr0008"/></p>
+<p><alert>(c)</alert>
+Find the flux of <m>\vec F</m> through <m>S</m>.</p>
+<p>flux = <fillin characters="35" name="AnSwEr0009"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>r\cos\mathopen{}\left(theta\right)</m>
+      </p>
+    </answer>
+    <answer>
+      <p>
+        <m>r\sin\mathopen{}\left(theta\right)</m>
+      </p>
+    </answer>
+    <answer>
+      <p>
+        <m>r</m>
+      </p>
+    </answer>
+    <answer>
+      <p>
+        <m>0</m>
+      </p>
+    </answer>
+    <answer>
+      <p>
+        <m>R</m>
+      </p>
+    </answer>
+    <answer>
+      <p>
+        <m>0</m>
+      </p>
+    </answer>
+    <answer>
+      <p>
+        <m>2\pi </m>
+      </p>
+    </answer>
+    <answer>
+      <p>
+        <m>(r\cos\mathopen{}\left(theta\right)\,\mathit{\vec i}+r\sin\mathopen{}\left(theta\right)\,\mathit{\vec j}-r\,\mathit{\vec k})drdtheta</m>
+      </p>
+    </answer>
+    <answer>
+      <p>
+        <m>\frac{-8\pi R^{7}}{28}</m>
+      </p>
+    </answer>
+    <solution><m>S</m> is
+parameterized by
+<me>\vec r(r,\theta)=r\cos \theta\vec i+r\sin \theta\vec j+r\vec k,</me>
+with <m>0\le r\le R</m> and <m>0\le\theta\le 2\pi</m>.
+We have
+<me>\frac{\partial \vec r}{\partial r}\times \frac{\partial \vec r}{\partial \theta} =
+\left|\begin{array}{ccc}
+\vec i \amp  \vec j \amp  \vec  k\\
+\cos{\theta} \amp  \sin{\theta} \amp  1 \\
+-r\sin{\theta} \amp  r\cos{\theta} \amp  0 \end{array}\right| =
+- r \cos\theta \vec i - r \sin \theta \vec j + r \vec k.</me>
+Since the vector <m>\partial \vec r / \partial r \times \partial \vec r
+/ \partial \theta</m> points upward, in the direction opposite to the specified
+orientation, we use
+<me>d\vec A= -\left(\partial\vec r/\partial
+r\times\partial\vec r/\partial\theta\right) \,dr\,d\theta
+= (r\cos\theta\vec i + r\sin\theta\vec j - r\vec k)\, dr\,d\theta\,.</me>
+
+Hence
+<me>\int_S\vec F\cdot d\vec A = \int_0^{2\pi}\!\int_0^R 8 (r^5
+\cos^2\theta\sin^2\theta\vec k)\cdot (r \cos\theta \vec i + r \sin
+\theta \vec j - r \vec k)\,dr\,d\theta</me>
+<me>=
+\int_0^{2\pi}\int_0^{R} -8 r^6\cos^2{\theta}\sin^2{\theta}\,dr\,d\theta</me>
+<me>= -\frac{8 R^7}{7}\int_0^{2\pi} \sin^2{\theta}\cos^2{\theta}\, d\theta</me>
+<me>= -\frac{8 R^7}{7}\int_0^{2\pi} \sin^2{\theta}(1-\sin^2{\theta})\, d\theta</me>
+<me>= -\frac{ 8 R^7}{7}\int_0^{2\pi} (\sin^2{\theta}-\sin^4{\theta})\, d\theta</me>
+<me>= -\left(\frac{8 R^7}{7}\right)\left(\frac{\pi}{4}\right)= -\frac{2}{7} \pi R^7.</me>
+
+The cone is not differentiable at the point <m>(0,0)</m>. However the flux
+integral, which is improper, converges.
+
+
+
+</solution>
+  </static>
+  <rendering-data sourceFilePath="Library/Michigan/Chap19Sec3/Q07.pg" origin="webwork2" domain="https://webwork-ptx.aimath.org" course-id="anonymous" user-id="anonymous" passwd="anonymous" language="en-US"/>
+  <pg source="Library/Michigan/Chap19Sec3/Q07.pg"/>
+</webwork-reps>

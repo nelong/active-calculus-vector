@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="20" xml:id="extracted-Library__Michigan__Chap19Sec2__Q27__pg" assembly-id="Library__Michigan__Chap19Sec2__Q27__pg">
+  <static seed="821" source="Library/Michigan/Chap19Sec2/Q27.pg">
+    <statement><p>Compute the flux of</p>
+<p><m>\displaystyle{ \vec F = 5(x+z)\vec i + 4\vec j + 5 z\vec k }</m></p>
+<p>through the surface  <m>S</m> given by</p>
+<p><m>y=x^2+z^2</m>, with <m>\ 0\le y\le 1\ </m>, <m>\ x\ge 0\ </m>, <m>\ z\ge 0</m>,</p>
+<p>oriented toward the <m>\ xz</m>-plane.</p>
+<p>flux = <fillin characters="35" name="AnSwEr0001"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>\frac{1\mathopen{}\left(1\cdot 5\mathopen{}\left(1+\pi \right)-4\pi \right)}{4}</m>
+      </p>
+    </answer>
+    <solution><p>SOLUTION</p>
+<p>We integrate with respect the <m>x</m> and <m>z</m>, treating <m>y</m> as a
+function of <m>x</m> and <m>z</m>.  Since <m>y=x^2+z^2</m>, we have <m>y_x=2x</m> and
+<m>y_z=2z</m>. The region of integration in the <m>xz</m>-plane is given by
+<m>x^2+z^2 \le 1,\, x\ge 0, z\ge 0</m>.
+The orientation is toward the <m>xz</m>-plane,
+so we have
+<me>d\vec A =
+(y_x\vec i - \vec j + y_z\vec k)\,dx\,dz =
+(2x\vec i - \vec j + 2z\vec k)\,dx\,dz.</me>
+Then
+<me>\int_S\vec F\cdot d\vec A
+= \int_0^{1}\int_0^{\sqrt{1-z^2}}
+    (5(x+z)\vec i + 4\vec j + 5 z\vec k)\cdot
+       (2x\vec i - \vec j + 2z\vec k)\,dx\,dz.</me><me>= \int_0^{1}\int_0^{\sqrt{1-z^2}}
+    (10 x^2 + 10 xz - 4 + 10 z^2)\,dx\,dz.</me>Using polar coordinates with <m>x=r\cos \theta</m>, <m>z=r\sin\theta</m>,
+<me>\int_S\vec F\cdot d\vec A =
+\int_0^{\pi/2}\int_0^{1}
+    (10 r^2 + 10 r^2\cos\theta\sin\theta - 4) r\,dr\,d\theta</me><me>= \int_0^{\pi/2}
+  \left(\frac{5}{2} r^4 (1 + \cos\theta\sin\theta) -
+        2 r^2\right)\Bigg|_0^{1}\,d\theta</me><me>= \int_0^{\pi/2}
+  \frac{5}{2} (1 + \cos\theta\sin\theta) - 2\,d\theta</me><me>= \frac{5}{2} (\frac{\pi}{2} + \frac{1}{2}) - 1\pi.</me></p>
+</solution>
+  </static>
+  <rendering-data sourceFilePath="Library/Michigan/Chap19Sec2/Q27.pg" origin="webwork2" domain="https://webwork-ptx.aimath.org" course-id="anonymous" user-id="anonymous" passwd="anonymous" language="en-US"/>
+  <pg source="Library/Michigan/Chap19Sec2/Q27.pg"/>
+</webwork-reps>

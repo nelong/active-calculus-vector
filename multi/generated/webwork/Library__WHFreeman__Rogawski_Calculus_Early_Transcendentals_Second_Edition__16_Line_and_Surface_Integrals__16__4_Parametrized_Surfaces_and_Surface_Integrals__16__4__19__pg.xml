@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="20" xml:id="extracted-Library__WHFreeman__Rogawski_Calculus_Early_Transcendentals_Second_Edition__16_Line_and_Surface_Integrals__16__4_Parametrized_Surfaces_and_Surface_Integrals__16__4__19__pg" assembly-id="Library__WHFreeman__Rogawski_Calculus_Early_Transcendentals_Second_Edition__16_Line_and_Surface_Integrals__16__4_Parametrized_Surfaces_and_Surface_Integrals__16__4__19__pg">
+  <static seed="788" source="Library/WHFreeman/Rogawski_Calculus_Early_Transcendentals_Second_Edition/16_Line_and_Surface_Integrals/16.4_Parametrized_Surfaces_and_Surface_Integrals/16.4.19.pg">
+    <statement><p>Calculate <m>\iint_{\mathcal{S}} f(x,y,z)\,dS</m> For
+<me>x^2+y^2=9 \text{,} \quad 0\le z\le 2 \text{;}\qquad f(x,y,z)=e^{-z}</me>
+<m>\iint_{\mathcal{S}} f(x,y,z)\,dS=</m> <fillin characters="20" name="AnSwEr0001"/></p>
+</statement>
+    <answer>
+      <p>
+        <m>16.2985</m>
+      </p>
+    </answer>
+    <solution><me>\mathrm{\Phi }( \theta ,z )=( 3  \cos \theta ,3  \sin \theta ,z ),\,\,0\le \theta \le 2\pi ,\,0\le z\le 2</me>
+<alert> [Step 1.] </alert> Compute the tangent and normal vectors. 
+
+
+The tangent vectors are the partial derivatives:
+<me>{\mathbf{T} }_{\theta }=\frac{\partial \mathrm{\Phi }}{\partial \theta }=</me><me>\frac{\partial }{\partial \theta }( 3  \cos \theta ,3  \sin \theta ,z )=
+\left\lt  -3  \sin \theta ,3  \cos \theta ,0 \right&gt;</me>
+<me>{\mathbf{T} }_z =\frac{\partial }{\partial z}( 3  \cos \theta ,3  \sin \theta ,z )= \left\lt  0,0,1 \right&gt;</me>
+The normal vector is their cross product:
+<me>\mathbf{n} ( \theta ,z )={\mathbf{T} }_{\theta }\times {\mathbf{T} }_z = \left|\begin{array}{ccc}\mathbf{i} \amp \mathbf{j} \amp \mathbf{k} \\ -3  \sin \theta \amp 3  \cos \theta \amp 0\\ 0\amp 0\amp 1\end{array}\right|=</me>
+<me>( 3  \cos \theta  ) \mathbf{i} +( 3  \sin \theta  ) \mathbf{j}=
+\left\lt  3  \cos \theta ,3  \sin \theta ,0 \right&gt;</me>
+The length of the normal vector is thus
+<me>\| \mathbf{n} ( \theta ,z )\|=\sqrt{{( 3  \cos \theta  )}^2+{( 3  \sin \theta  )}^2+0}=</me><me>\sqrt{9\left(\cos^2 \theta +\sin^2 \theta \right)}=\sqrt{9}=3</me>
+<alert> [Step 2.] </alert> Calculate the surface integral. 
+
+
+The surface integral equals the following double integral:
+<me>\iint_S  f( x,y,z ) \,dS =\iint_{\mathcal{D}} f\left(\mathrm{\Phi }( \theta ,z )\right)\| \mathbf{n} \|  \,d\theta  \,dz=</me><me>\int_0^{2\pi } \int_0^{2}  e^{-z}\cdot 3 \,d\theta  \,dz
+=\left(\int_0^{2\pi } 3 \,d\theta \right)\left(\int_0^{2}  e^{-z} \,dz\right)=</me>
+<me>6\pi \cdot \left(- {e^{-z}} \right)\bigg|_0^{2}=6\pi \left(1- e^{-2}\right)</me>
+
+
+</solution>
+  </static>
+  <rendering-data sourceFilePath="Library/WHFreeman/Rogawski_Calculus_Early_Transcendentals_Second_Edition/16_Line_and_Surface_Integrals/16.4_Parametrized_Surfaces_and_Surface_Integrals/16.4.19.pg" origin="webwork2" domain="https://webwork-ptx.aimath.org" course-id="anonymous" user-id="anonymous" passwd="anonymous" language="en-US"/>
+  <pg source="Library/WHFreeman/Rogawski_Calculus_Early_Transcendentals_Second_Edition/16_Line_and_Surface_Integrals/16.4_Parametrized_Surfaces_and_Surface_Integrals/16.4.19.pg"/>
+</webwork-reps>
