@@ -79,61 +79,61 @@
           <image width="100%" xml:id="img-secline1">
               <sageplot>
                 var('t,x')
-                f(x)=x^3-3*x^2+x
-                a=1/2
+                f(x)=2*(x-1/2)^3-2*(x-1/2)^2-x+1
+                a=0.05
                 f0=f(a)
-                plot2=plot(f(x),(x,-0.25,0.75),color="black",axes=False,thickness=3,xmin=-0.25,xmax=0.75,ymin=-0.5,ymax=0.25)
+                plot2=plot(f(x),(x,0,1),color="black",ticks=[[],[]],thickness=3,axes_labels=["$x$","$y$"])
                 plot2+=point((a,f0),color="black",size=50,zorder=5)
-                plot2+=text("$P:(a,f(a))$",(0.65,-0.1),color="black",fontsize=20)
-                h=0.5
-                f1=f(a-h)
-                plot2+=point((a-h,f1),color="blue",size=50,zorder=5)
-                plot2+=plot((f0-f1)/h*(x-a)+f0,(x,-0.25,0.75),color="blue",thickness=2)
-                plot2+=line([(a,f0),(a-h,f0)],color="green",thickness=2)
-                plot2+=line([(a-h,f0),(a-h,f1)],color="orange",thickness=2)
-                plot2+=text("$h$",(a-h/2,f0-0.05),color="green",fontsize=20)
-                plot2+=text("$f(a)-f(a-h)$",(-0.25,-0.05),color="orange",fontsize=20)
+                plot2+=text("$(a,f(a))$",(0.1,0.25),color="black",fontsize=20)
+                h=0.7
+                f1=f(a+h)
+                plot2+=point((a+h,f1),color="blue",size=50,zorder=5)
+                plot2+=plot((f1-f0)/h*(x-a)+f0,(x,0,1),color="blue",thickness=2)
+                plot2+=line([(a,f0),(a+h,f0)],color="green",thickness=2)
+                plot2+=line([(a+h,f0),(a+h,f1)],color="orange",thickness=2)
+                plot2+=text("$h$",(a+h/2,f0+0.05),color="green",fontsize=20)
+                plot2+=text("$f(a+h)-f(a)$",(0.95,0.25),color="orange",fontsize=20)
                 plot2
               </sageplot>
             <description><p>A plot of a downward facing parabola with a blue line going between two points on the parabola. The blue line corresponds to more horizontal change than vertical change. The right point on the parabola is labeled <m>P:(a,f(a))</m>. The change in the vertical coordinates between these two points is represented with a vertical segment in yellow and is labeled <m>f(a)-f(a-h)</m>. The change in the horizontal coordinates between two points is represented by a green line segment that is labeled <m>h</m>. </p></description></image>
             <image width="100%" xml:id="img-secline2">
               <sageplot>
                 var('t,x')
-                f(x)=x^3-3*x^2+x
-                a=1/2
+                f(x)=2*(x-1/2)^3-2*(x-1/2)^2-x+1
+                a=0.05
                 f0=f(a)
-                plot3=plot(f(x),(x,-0.25,0.75),color="black",axes=False,thickness=3,xmin=-0.25,xmax=0.75,ymin=-0.5,ymax=0.25)
-                plot3+=point((a,f0),color="black",size=50,zorder=5)
-                plot3+=text("$P:(a,f(a))$",(0.65,-0.1),color="black",fontsize=20)
+                plot2=plot(f(x),(x,0,1),color="black",ticks=[[],[]],thickness=3,axes_labels=["$x$","$y$"])
+                plot2+=point((a,f0),color="black",size=50,zorder=5)
+                plot2+=text("$(a,f(a))$",(0.1,0.25),color="black",fontsize=20)
                 h=0.25
-                f1=f(a-h)
-                plot3+=point((a-h,f1),color="blue",size=50,zorder=5)
-                plot3+=plot((f0-f1)/h*(x-a)+f0,(x,-0.25,0.75),color="blue",thickness=2)
-                plot3+=line([(a,f0),(a-h,f0)],color="green",thickness=2)
-                plot3+=line([(a-h,f0),(a-h,f1)],color="orange",thickness=2)
-                plot3+=text("$h$",(a-h/2,f0-0.05),color="green",fontsize=20)
-                plot3+=text("$f(a)-f(a-h)$",(0.10,-0.05),color="orange",fontsize=18)
-                plot3
+                f1=f(a+h)
+                plot2+=point((a+h,f1),color="blue",size=50,zorder=5)
+                plot2+=plot((f1-f0)/h*(x-a)+f0,(x,0,1),color="blue",thickness=2)
+                plot2+=line([(a,f0),(a+h,f0)],color="green",thickness=2)
+                plot2+=line([(a+h,f0),(a+h,f1)],color="orange",thickness=2)
+                plot2+=text("$h$",(a+h/2,f0+0.05),color="green",fontsize=20)
+                plot2+=text("$f(a+h)-f(a)$",(0.45,0.3),color="orange",fontsize=20)
+                plot2
               </sageplot>
             <description><p>A plot of a downward facing parabola with a blue line going between two points on the parabola. The blue line in this plot is steeper than in the previous plot and the points are closer together on the parabola. The right point on the parabola is labeled <m>P:(a,f(a))</m>. The change in the vertical coordinates between these two points is represented with a vertical segment in yellow and is labeled <m>f(a)-f(a-h)</m>. The change in the horizontal coordinates between two points is represented by a green line segment that is labeled <m>h</m>.</p></description></image>
             <image width="100%" xml:id="img-secline3">
               <sageplot>
                 var('t,x')
-                f(x)=x^3-3*x^2+x
-                a=1/2
+                f(x)=2*(x-1/2)^3-2*(x-1/2)^2-x+1
+                a=0.05
                 f0=f(a)
-                plot4=plot(f(x),(x,-0.25,0.75),color="black",axes=False,thickness=3,xmin=-0.25,xmax=0.75,ymin=-0.5,ymax=0.25)
-                plot4+=point((a,f0),color="black",size=50,zorder=5)
-                plot4+=text("$P:(a,f(a))$",(0.65,-0.1),color="black",fontsize=20)
-                h=0.1
-                f1=f(a-h)
-                plot4+=point((a-h,f1),color="blue",size=50,zorder=5)
-                plot4+=plot((f0-f1)/h*(x-a)+f0,(x,-0.25,0.75),color="blue",thickness=2)
-                plot4+=line([(a,f0),(a-h,f0)],color="green",thickness=2)
-                plot4+=line([(a-h,f0),(a-h,f1)],color="orange",thickness=2)
-                plot4+=text("$h$",(a-h/2,f0-0.05),color="green",fontsize=20)
-                plot4+=text("$f(a)-f(a-h)$",(0.20,-0.05),color="orange",fontsize=20)
-                plot4
+                plot2=plot(f(x),(x,0,0.5),color="black",ticks=[[],[]],thickness=3,axes_labels=["$x$","$y$"])
+                plot2+=point((a,f0),color="black",size=50,zorder=5)
+                plot2+=text("$(a,f(a))$",(0.02,0.45),color="black",fontsize=20)
+                h=0.05
+                f1=f(a+h)
+                plot2+=point((a+h,f1),color="blue",size=50,zorder=5)
+                plot2+=plot((f1-f0)/h*(x-a)+f0,(x,0,0.5),color="blue",thickness=2)
+                plot2+=line([(a,f0),(a+h,f0)],color="green",thickness=2)
+                plot2+=line([(a+h,f0),(a+h,f1)],color="orange",thickness=2)
+                plot2+=text("$h$",(a+h/2,f0-0.05),color="green",fontsize=20)
+                plot2+=text("$f(a+h)-f(a)$",(0.2,0.4),color="orange",fontsize=20)
+                plot2
               </sageplot>
             <description><p>A plot of a downward facing parabola with a blue line going between two points on the parabola. The blue line in this plot is slightly steeper than in the previous plot and the two points are close together on the parabola. The right point on the parabola is labeled <m>P:(a,f(a))</m>. The change in the vertical coordinates between these two points is represented with a vertical segment in yellow and is labeled <m>f(a)-f(a-h)</m>. The change in the horizontal coordinates between two points is represented by a green line segment that is labeled <m>h</m>.</p></description></image>
           </sidebyside>

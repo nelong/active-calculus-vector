@@ -365,6 +365,55 @@
   <p>
     We could have used a shape other than a square in the development of the circulation density, but a square allows for calculations that are easier to understand as the area of the shape decreases. <!--Our use of rectangular coordinates made it easiest to use rectangular figures but more general arguments exist.-->
   </p>
+<exercise>
+  <p>
+    In this exercise, we will look at the circulation density of the vector field given by <m>\vF=\langle \sin(x+y),x-y \rangle</m> which is plotted in <xref ref="fig_Vector_Curl_example1"/>. 
+  </p>
+  <figure xml:id="fig_Vector_Curl_example1">
+    <caption>The vector field <m>\vF=\langle \sin(x+y),x-y \rangle</m></caption>
+    <image width="60%" xml:id="img_Curl_example1">
+    <description><p> A vector field with vectors shortest along the line <m>y=x</m> and longer as distance from that line increases. Vectors in the fourth quadrant point primarily in the positive <m>x</m>-direction, although none are truly vertical. Vectors in the second quadrant point primarily in the negative <m>x</m>-direction, although none are truly vertical. Vectors in the first and third quadrants exhibit a form of counterclockwise rotation. </p> </description>
+    <sageplot>
+      var('x,y,t')
+      final_plot2=plot_vector_field((sin(x+y),(x-y)),(x,-3.1,3.1),(y,-3.1,3.1),headwidth=4,plot_points=15,zorder=-1,color='blue',axes_labels=["$x$","$y$"],frame=False,aspect_ratio=1,ticks=[[],[]])
+      final_plot2           
+    </sageplot>
+    </image>
+  </figure>
+  <p>  
+    We can compute the partial derivatives of our component functions to see that <m>\vF</m> will have a circulation density of 
+    <md>\frac{\partial F_2}{\partial x} -\frac{\partial F_1}{\partial y} = 1- \cos(x+y)</md>.
+    Thus, we will have a positive circulation density at all points except where <m>\cos(x+y)=1</m>. You can look at points in the first or third quadrant of <xref ref="fig_Vector_Curl_example1"/> and see that a spinner will rotate in the counterclockwise direction. In particular, you can see that the strongest rotation will occur near points on the line <m>y=x</m> since those will have a circulation density of 2. 
+  </p>
+  <figure xml:id="fig_Vector_Curl_example12">
+    <caption>The vector field <m>\vF=\langle \sin(x+y),x-y \rangle</m> shown around the point (2,2).</caption>
+    <image width="60%" xml:id="img_Curl_example12">
+    <description><p> A vector field with vectors shortest along the line <m>y=x</m> and longer as distance from that line increases. Vectors in the fourth quadrant point primarily in the positive <m>x</m>-direction, although none are truly vertical. Vectors in the second quadrant point primarily in the negative <m>x</m>-direction, although none are truly vertical. Vectors in the first and third quadrants exhibit a form of counterclockwise rotation. </p> </description>
+    <sageplot>
+      var('x,y,t')
+      final_plot2=plot_vector_field((sin(x+y),(x-y)),(x,2.5,1.5),(y,1.5,2.5),headwidth=4,plot_points=15,zorder=-1,color='blue',axes_labels=["$x$","$y$"],frame=False,aspect_ratio=1,ticks=[[],[]])
+      final_plot2+=point((2,2),color="black",size=30)
+      final_plot2            
+    </sageplot>
+    </image>
+  </figure>
+  
+  <p>
+    If we look at a point where the circulation density is zero, like at <m>(-2,2)</m>, then we can see what appears to be a close to a constant vector field, as shown in <xref ref="fig_Vector_Curl_example13"/>. This means that the amount that any blade would be pushed by our vector field, the blade opposite would be pushed in exactly the same way, yeilding no rotation.
+  </p>
+  <figure xml:id="fig_Vector_Curl_example13">
+    <caption>The vector field <m>\vF=\langle \sin(x+y),x-y \rangle</m> shown around the point (-2,2).</caption>
+    <image width="60%" xml:id="img_Curl_example13">
+    <description><p> A vector field with vectors shortest along the line <m>y=x</m> and longer as distance from that line increases. Vectors in the fourth quadrant point primarily in the positive <m>x</m>-direction, although none are truly vertical. Vectors in the second quadrant point primarily in the negative <m>x</m>-direction, although none are truly vertical. Vectors in the first and third quadrants exhibit a form of counterclockwise rotation. </p> </description>
+    <sageplot>
+      var('x,y,t')
+      final_plot2=plot_vector_field((sin(x+y),(x-y)),(x,-2.5,-1.5),(y,1.5,2.5),headwidth=4,plot_points=15,zorder=-1,color='blue',axes_labels=["$x$","$y$"],frame=False,aspect_ratio=1,ticks=[[],[]])
+      final_plot2+=point((-2,2),color="black",size=30)
+      final_plot2             
+    </sageplot>
+    </image>
+  </figure>
+</exercise>
 <worksheet>
   <activity workspace="1.5in" xml:id="act_Vector_Curl_2D">
   <title>Matching Visual Measurements to Algebraic Calculations</title>
@@ -700,7 +749,7 @@
         <caption>The trace of <m>\vF</m> in the plane <m>z=-2</m></caption>
         <image width="65%" xml:id="curl_3d_xy">
           <description>
-            A vector field in two dimensions. The horizontal axis is labeled <m>x</m> and ranges from <m>0</m> to <m>2</m>. The vertical axis has the same range and is labeled <m>y</m>. There is a point marked at <m>(1,1)</m>. Vectors point primarily down and are longer when closer to the horizontal axis. In the upper-left of the plot, the vectors point more down and left. In the lower-right of the plot, vectors point more down and right.
+            <p>A vector field in two dimensions. The horizontal axis is labeled <m>x</m> and ranges from <m>0</m> to <m>2</m>. The vertical axis has the same range and is labeled <m>y</m>. There is a point marked at <m>(1,1)</m>. Vectors point primarily down and are longer when closer to the horizontal axis. In the upper-left of the plot, the vectors point more down and left. In the lower-right of the plot, vectors point more down and right.</p>
           </description>
           <sageplot>
             var('x,y')
@@ -730,7 +779,7 @@
         <caption>The trace of <m>\vF</m> in the plane <m>y=1</m></caption>
         <image width="65%" xml:id="curl_3d_xz">
           <description>
-            A vector field in two dimensions. The horizontal axis is labeled <m>x</m> and ranges from <m>0</m> to <m>2</m>. The vertical axis ranges from <m>-3</m> to <m>-1</m> and is labeled <m>z</m>. There is a point marked at <m>(1,-2)</m>. Vectors in the right half of the figure are longer and point primarily up, although slightly to the left. Vectors in the left half of the figure are very short and point primarily right until around <m>x=0.75</m>, where they start to point up but are very short.
+            <p>A vector field in two dimensions. The horizontal axis is labeled <m>x</m> and ranges from <m>0</m> to <m>2</m>. The vertical axis ranges from <m>-3</m> to <m>-1</m> and is labeled <m>z</m>. There is a point marked at <m>(1,-2)</m>. Vectors in the right half of the figure are longer and point primarily up, although slightly to the left. Vectors in the left half of the figure are very short and point primarily right until around <m>x=0.75</m>, where they start to point up but are very short.</p>
           </description>
           <sageplot>
             var('x z')
