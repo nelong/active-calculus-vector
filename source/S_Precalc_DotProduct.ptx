@@ -448,9 +448,9 @@
     <figure xml:id="F_9_3_Angle_between">
       <caption>The angle between vectors for two different configurations of <m>\vu</m> and <m>\vv</m> </caption>
       <sidebyside widths="35% 35%" valign="bottom">
-        <image width="100%" label="img-acutevec">
+        <image width="100%">
           <description><p> A plot of two vectors with an acute angle between them. The first vector moves more up than to the right and the second is shorter and moves more to the right than up. The first vector is labeled <m>\vv</m> and the second is labeled <m>\vu</m>. The acute angle shown with a curved arrow going counterclockwise from the second vector to the first is labeled <m>\theta</m> and the other angle formed by the vectors is labeled with <m>2\pi-\theta</m>.</p></description>
-          <sageplot>
+          <sageplot label="img-acutevec">
             var('t')
             at1=arctan(1/2)
             at2=arctan(3)
@@ -466,9 +466,9 @@
             plot4
           </sageplot>
         </image>
-        <image width="100%" label="img-obtusevec">
+        <image width="100%">
           <description><p> A plot of two vectors with an obtuse angle between them. The first vector moves up and right and the second moves more down than to the left. The first vector is labeled <m>\vu</m> and the second is labeled <m>\vv</m>. The obtuse angle shown with a curved arrow going counterclockwise from the second vector to the first is labeled <m>\theta</m> and the other angle formed by the vectors is labeled with <m>2\pi-\theta</m>.</p></description>
-          <sageplot>
+          <sageplot label="img-obtusevec">
             var('t')
             at1=arctan(1/2)
             at2=pi+arctan(2/1)
@@ -506,9 +506,9 @@
         </p>
         <figure xml:id="dotprodtri">
           <caption>A triangle of vectors, <m>\vu</m>, <m>\vv</m>, and <m>\vu-\vv</m> </caption>
-          <image width="30%" label="img-dotprodtri">
+          <image width="30%">
             <description><p>A triangle formed by three vectors. The first vector moves more to the right than up and is labeled <m>\vv</m>. The second vector starts at the same point as the first vector and moves more up than to the right. The second vector is labeled <m>\vu</m>. The angle from the first vector to the second is labeled with a curved arrow moving counterclockwise and <m>\theta</m>. The third vector is drawn in gray from the end of the first vector to the end of the second arrow, moving up and to the left. The third vector is labeled <m>\vu-\vv</m>.</p></description>
-            <sageplot>
+            <sageplot label="img-dotprodtri">
               var('t')
               at1=arctan(1/2)
               at2=arctan(3)
@@ -822,9 +822,9 @@
           </p>
           <figure xml:id="projplot1">
             <caption>A plot of <m>\vu</m> and <m>\vv</m> </caption>
-            <image width="65%" label="img-projplot1">
+            <image width="65%">
               <description><p> A plot of <m>\vu</m>, <m>\vv</m></p></description>
-              <sageplot>
+              <sageplot label="img-projplot1">
                 u=vector([5,-1])
                 v=vector([2,1])
                 putov=(u.dot_product(v)/v.dot_product(v))*v
@@ -840,8 +840,8 @@
 
         </statement>
         <solution>
-          <image width="65%" label="img-projplot1-soln">
-            <sageplot>
+          <image width="65%">
+            <sageplot label="img-projplot1-soln">
               u=vector([5,-1])
               v=vector([2,1])
               putov=(v.dot_product(u)/u.dot_product(u))*u
@@ -866,9 +866,9 @@
           </p>
           <figure xml:id="projplot2">
             <caption>A plot of <m>\vu</m> and <m>\vv</m> </caption>
-            <image width="65%" label="img-projplot2">
+            <image width="65%">
               <description><p> A plot of <m>\vu</m>, <m>\vv</m></p></description>
-              <sageplot>
+              <sageplot label="img-projplot2">
                 u=vector([3,-2])
                 v=vector([-4,1])
                 putov=(u.dot_product(v)/v.dot_product(v))*v
@@ -883,8 +883,8 @@
           </figure>
         </statement>
         <solution>
-          <image width="65%" label="img-projplot2-soln">
-            <sageplot>
+          <image width="65%">
+            <sageplot label="img-projplot2-soln">
               u=vector([3,-2])
               v=vector([-4,1])
               putov=(u.dot_product(v)/v.dot_product(v))*v
@@ -911,9 +911,9 @@
           <figure xml:id="projplot3">
             <caption>A plot of <m>\vu</m> and <m>\vv</m> </caption>
             <sidebyside widths="50% 50%" valign="bottom">  
-              <image width="45%" label="img-proj-switch1">
+              <image width="45%">
                 <description><p>Vector <m>\vv</m> points horizontally with <m>\vu</m> above it making an acute angle <m>\theta</m>.</p></description>
-                <sageplot>
+                <sageplot label="img-proj-switch1">
                   var('t')
                   plot8=arrow((0,0),(3,0),color="black",width=3,axes=False,aspect_ratio=1)
                   plot8+=text("$\\vec{u}$",(1.4,2.4),color="black",fontsize=25)
@@ -924,9 +924,9 @@
                   plot8
                 </sageplot>
               </image>
-              <image width="45%" label="img-proj-switch2">
+              <image width="45%">
                 <description><p>Vector <m>\vv</m> points horizontally with <m>\vu</m> above it making an obtuse angle <m>\theta</m>.</p></description>
-                <sageplot>
+                <sageplot label="img-proj-switch2">
                   var('t')
                   plot9=arrow((0,0),(2,0),color="black",width=3,axes=False,aspect_ratio=1)
                   plot9+=text("$\\vec{v}$",(2.1,0),color="black",fontsize=25)
@@ -938,9 +938,9 @@
                 </sageplot>
               </image>
             </sidebyside>            
-            <!-- <image width="65%" label="img-projplot3">
+            <!-- <image width="65%">
               <description><p> A plot of <m>\vu</m>, <m>\vv</m></p></description>
-              <sageplot>
+              <sageplot label="img-projplot3">
                 u=vector([5,-1])
                 v=vector([2,1])
                 putov=(u.dot_product(v)/v.dot_product(v))*v
@@ -1001,8 +1001,8 @@
               </sageplot>
             </image>
           </sidebyside>
-          <!-- <image width="65%" label="img-projplot3-soln">
-            <sageplot>
+          <!-- <image width="65%">
+            <sageplot label="img-projplot3-soln">
               u=vector([5,-1])
               v=vector([2,1])
               putov=(u.dot_product(v)/v.dot_product(v))*v
@@ -1027,9 +1027,9 @@
           </p>
           <figure xml:id="projplot4">
             <caption>A plot of <m>\vu</m> and <m>\vv</m> </caption>
-            <image width="65%" label="img-projplot4">
+            <image width="65%">
               <description><p> A plot of <m>\vu</m>, <m>\vv</m></p></description>
-              <sageplot>
+              <sageplot label="img-projplot4">
                 u=vector([3,-2])
                 v=vector([-4,1])
                 putov=(u.dot_product(v)/v.dot_product(v))*v
@@ -1044,8 +1044,8 @@
           </figure>
         </statement>
         <solution>
-          <image width="65%" label="img-projplot4-soln">
-            <sageplot>
+          <image width="65%">
+            <sageplot label="img-projplot4-soln">
               u=vector([3,-2])
               v=vector([-4,1])
               putov=(u.dot_product(v)/v.dot_product(v))*v
@@ -1070,9 +1070,9 @@
           </p>
           <figure xml:id="projplot5">
             <caption>A plot of <m>\vu</m> and <m>\vv</m> </caption>
-            <image width="65%" label="img-projplot5">
+            <image width="65%">
               <description><p> A plot of <m>\vu</m>, <m>\vv</m></p></description>
-              <sageplot>
+              <sageplot label="img-projplot5">
                 u=vector([-2,-1])
                 v=vector([1/2,-1])
                 putov=(u.dot_product(v)/v.dot_product(v))*v
@@ -1088,8 +1088,8 @@
 
         </statement>
         <solution>
-          <image width="65%" label="img-projplot5-soln">
-            <sageplot>
+          <image width="65%">
+            <sageplot label="img-projplot5-soln">
               u=vector([-2,-1])
               v=vector([1/2,-1])
               putov=(u.dot_product(v)/v.dot_product(v))*v
@@ -1114,9 +1114,9 @@
           </p>
           <figure xml:id="projplot6">
             <caption>A plot of <m>\vu</m> and <m>\vv</m> </caption>
-            <image width="65%" label="img-projplot6">
+            <image width="65%">
               <description><p> A plot of <m>\vu</m>, <m>\vv</m></p></description>
-              <sageplot>
+              <sageplot label="img-projplot6">
                 u=vector([-2,-1])
                 v=vector([1/2,-1])
                 putov=(u.dot_product(v)/v.dot_product(v))*v
@@ -1132,8 +1132,8 @@
 
         </statement>
         <solution>
-          <image width="65%" label="img-projplot6-soln">
-            <sageplot>
+          <image width="65%">
+            <sageplot label="img-projplot6-soln">
               u=vector([-2,-1])
               v=vector([1/2,-1])
               putov=(v.dot_product(u)/u.dot_product(u))*u
@@ -1276,9 +1276,9 @@
     </p>
     <figure xml:id="fig-dotproduct-proj-labeled">
       <caption>The relationship between <m>\vu</m>, <m>\vv</m>, the projection of <m>\vu</m> onto <m>\vv</m> and the orthogonal projection of <m>\vu</m> onto <m>\vv</m>.</caption>
-        <image width="45%" label="img-proj-def-labeled">
+        <image width="45%">
           <description><p>Vector <m>\vv</m> points horizontally with <m>\vu</m> above it making an acute angle <m>\theta</m>. The vector <m>\proj_{\perp \vv}\vu</m> is orthogonal to <m>\vv</m>, pointing upward so that the tip of <m>\vw_2</m> coincides with the tip of <m>\vu</m>. Vector <m>\proj_{\vv}</m> has the same tail as <m>\vv</m> and its tip coincides with the tail of <m>\vw_2</m>.</p></description>
-          <sageplot>
+          <sageplot label="img-proj-def-labeled">
             var('t')
             plot8=arrow((0,0),(3,0),color="black",width=3,axes=False,aspect_ratio=1)
             plot8+=text("$\\vec{u}$",(1.4,2.4),color="black",fontsize=25)
@@ -1324,9 +1324,9 @@
       </p>
       <figure xml:id="projexplot">
         <caption>A plot of <m>\vu</m>, <m>\vv</m>, <m>\proj_{\vv} \va</m>, and <m>\proj_{\perp \vv} \vu</m> </caption>
-        <image width="75%" label="img-projexplot">
+        <image width="75%">
           <description><p> A plot of <m>\vu</m>, <m>\vv</m>, <m>\proj_{\vv} \vu</m>, and <m>\proj_{\perp \vv} \vu</m></p></description>
-          <sageplot>
+          <sageplot label="img-projexplot">
             plot10=arrow((0,0),(4,3),color="black",width=3,gridlines=True)
             plot10+=arrow((0,0),(0,2),color="black",width=3)
             plot10+=arrow((0,0),(0,3),color="red",width=2)
@@ -1406,9 +1406,9 @@
           <p>
             <m>\langle 2, 6 \rangle = \langle -2, 4 \rangle + \langle a, b \rangle</m>. Solve for <m>\proj_{\perp \vv} \vu</m> to get <m>\langle 4, 2 \rangle</m>.
           </p>
-          <image width="35%" label="img-projection-activity">
+          <image width="35%">
             <description><p>A two dimensional plot with a vector starting at the origin moving four units right and eight units down, labeled <m>\vv</m>. Another vector starting at the origin and moving two units to the right and six units up is labeled <m>\vu</m>. A vector drawn in red starting at the origin and moving in the direction opposite of the first vector is labeled <m>\mathrm{proj}_{\vec{v}} \vec{u}</m>. The last vector is plotted in blue and starts at the end of the red vector and ends at the final point of the second vector. The last vector is labeled <m>\mathrm{proj}_{\perp \vec{v}} \vec{u}</m></p></description>
-            <sageplot>
+            <sageplot label="img-projection-activity">
               u=vector([2,6])
               v=vector([4,-8])
               putov=(u.dot_product(v)/v.dot_product(v))*v
@@ -1476,9 +1476,9 @@
 
     <figure xml:id="workex">
       <caption>A diagram showing the force applied to the refrigerator as the refrigerator is moved from <m>A</m> to <m>B</m> </caption>
-      <image width="70%" label="img-workex">
+      <image width="70%">
         <description><p> A diagram with an orange rectangle shown over a point labeled <m>A</m>. A horizontal arrow in black is drawn to the right and has its end point labeled <m>B</m>. From the left middle point of the orange rectangle a blue arrow is drawn that moves to the right and up. This blue arrow is labeled <m>\vF</m>. A solid gray segment is drawn horizontally from the starting point of the blue vector and is labeled <m>\Vert\vF\Vert \cos(\theta)</m>. A vertical dashed line segment is drawn from the end of the blue vector to the end of the gray horizontal segment.</p></description>
-        <sageplot>
+        <sageplot label="img-workex">
           plot7=polygon([(0,0),(0,1),(1/2,1),(1/2,0),(0,0)],color="orange",axes=False,aspect_ratio=1,xmin=-1/2,xmax=3.5,ymin=-0.25,ymax=1.25)
           plot7+=line([(0,0),(0,1),(1/2,1),(1/2,0),(0,0)],color="black")
           plot7+=arrow((0,0),(3,0),width=4,color="black")+point((0,0),color="black",size=35)+point((3,0),color="black",size=35)

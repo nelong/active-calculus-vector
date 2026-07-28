@@ -311,9 +311,9 @@
         </p>
         <figure xml:id="domainmv1">
           <caption>A plot of the domain of <m>f(x,y)=\sqrt{xy}</m></caption>
-          <image width="45%" label="img-domainmv1">
+          <image width="45%">
             <description><p>A plot highlighting the first and third quadrants which includes both coordinate axes</p></description>
-            <sageplot>
+            <sageplot label="img-domainmv1">
               plot1=polygon([(0,0),(2,0),(2,2),(0,2),(0,0)],color="gray",xmin=-1.5,xmax=1.5,ymin=-1.5,ymax=1.5,gridlines=True,aspect_ratio=1,axes=true,axes_labels=["$x$","$y$"])
               plot1+=polygon([(0,0),(-2,0),(-2,-2),(0,-2),(0,0)],color="gray")
               plot1        
@@ -330,9 +330,9 @@
         </p>
         <figure xml:id="domainmv2">
           <caption>A plot of the domain of <m>g(x,y)=\frac{\arcsin(y)}{2x}</m></caption>
-          <image width="55%" label="img-domainmv2">
+          <image width="55%">
             <description><p>A plot with the horizontal band having <m>-1\leq y\leq 1</m> shaded. The portion of this region with <m>x=0</m> is marked with a dashed line.</p></description>
-            <sageplot>
+            <sageplot label="img-domainmv2">
               plot2=polygon([(2.5,-1),(2.5,1),(-2.5,1),(-2.5,-1)],color="gray",xmin=-2.1,xmax=2.1,ymin=-2.1,ymax=2.1,gridlines=True,aspect_ratio=1,axes=true,axes_labels=["$x$","$y$"])
               plot2+=line([(0,1),(0,-1)],linestyle="--",thickness=3)
               plot2       
@@ -576,7 +576,7 @@
     </figure> -->
     <figure xml:id="zfnxy">
       <caption>The projectile distance surface given by <m>z=f(x,y) = \frac{x^2 \sin(2y)}{g}</m></caption>
-      <interactive title="interactive-zfnxy" platform="sage" width="90%" aspect="1:1">
+      <interactive label="interactive-zfnxy" platform="sage" width="90%" aspect="1:1">
         <description><p>A plot of a curved surface that this is u-shaped along constant values of one coordinate and increases parabolically as that the other horizontal coordinate is increased.</p></description>
       <slate surface="sage">
           var('x,y')
@@ -595,7 +595,7 @@
     </p>
     <figure xml:id="yfnxz">
       <caption>The surface given by <m>y=g(x,z) = \frac{x^2}{5}+z^2</m></caption>
-      <interactive title="interactive-yfnxz" platform="sage" width="90%" aspect="1:1">
+      <interactive label="interactive-yfnxz" platform="sage" width="90%" aspect="1:1">
         <description><p>A bowl shaped surface is shown opening to the side. A red segment is drawn through this surface changing only in the vertical coordinate. The two points at which this red segment intersects the surface are highlighted in red and the segment is labeled <q>Same <m>(x,y)</m> value </q>.</p></description>
       <slate surface="sage">
           var('x,y,z,r,t')
@@ -677,7 +677,7 @@
     </p>
     <figure xml:id="trace1">
       <caption>The surface given by <m>z=f(x,y) = \frac{x^2 \sin(2y)}{g}</m> with traces <m>y=0.6</m> (in red) and <m>x=150</m> (in blue)</caption>
-      <interactive title="interactive-trace1" platform="sage" width="90%" aspect="1:1">
+      <interactive label="interactive-trace1" platform="sage" width="90%" aspect="1:1">
         <description><p>A three dimensional plot of a curved surface that this is u-shaped along constant values of one coordinate and increases parabolically as that the other horizontal coordinate is increased. On the lower corner of this curved surface are drawn three mutually perpendicular line segments labeled <m>x</m>, <m>y</m>, and <m>z</m> signifying origin. 
         In the direction of the segment labeled y from the origin, there is a two dimensional flat grid labeled <m>x</m> horizontally and <m>z</m> vertically. A branch of a parabola is shown in red from the bottom left of this grid to the top right. This red curve is copied along the curved surface along a direction that is parallel to the segment labeled x (from the origin). 
         In the direction of the segment labeled x from the origin, there is a two dimensional flat grid labeled <m>y</m> horizontally and <m>z</m> vertically. A parabola is shown in blue pointing downward on this grid with a vertex about half way up the grid. This blue curve is copied along the curved surface along a direction that is parallel to the segment labeled y (from the origin).</p> </description>
@@ -789,7 +789,7 @@
           </p>
           <figure xml:id="tracey1">
             <caption>A bounding box for the region with <m>-1 \leq x,y,z \leq 1</m></caption>
-            <interactive title="interactive-tracey1" platform="sage" width="91%" aspect="1:1">
+            <interactive label="interactive-tracey1" platform="sage" width="91%" aspect="1:1">
               <description><p>A three dimensional plot of sides of a box shown in gray. The sides of this box are shown with a grid from negative one to one in both the horizontal and vertical coordinates.</p></description>
               <slate surface="sage">
                 var('t,s')
@@ -837,7 +837,7 @@
         </statement>
         <solution>
           <image>
-            <interactive title="interactive-traces" platform="sage" width="91%" aspect="1:1">
+            <interactive label="interactive-traces" platform="sage" width="91%" aspect="1:1">
               <description><p>A three dimensional plot of sides of a box shown in gray. The sides of this box are shown with a grid from negative one to one in both the horizontal and vertical coordinates. A plot of the traces for <m>z=yx^2</m> is shown with the constant values of x shown in blue and constant values of y shown in red.</p></description>
               <slate surface="sage">
                 var('t,s,x,y')
@@ -863,7 +863,7 @@
     </p>
     <figure xml:id="traceonoff">
       <caption>A plot of the distance surface with or without traces for perspective</caption>
-      <interactive title="interactive-traceonoff" platform="sage" width="100%" aspect="1:1.08">
+      <interactive label="interactive-traceonoff" platform="sage" width="100%" aspect="1:1.08">
         <description><p>An interactive three dimensional plot of a curved surface shown in light gray that this is u-shaped along constant values of one coordinate and increases parabolically as that the other horizontal coordinate is increased. A checkbox at the top of the plot will add a set of grid lines along the surface that allow the user to see the surface through more than shading of the surface. </p></description>
         <slate surface="sage">
           var('x,y')
@@ -1159,7 +1159,7 @@
     </p>
     <figure xml:id="contour1">
       <caption>A contour plot of <m>f(x,y) = \frac{x^2 \sin(2y)}{32}</m></caption>
-      <interactive title="interactive-contour1" platform="sage" width="100%" aspect="1:1.15">
+      <interactive label="interactive-contour1" platform="sage" width="100%" aspect="1:1.15">
         <description><p>An interactive two dimensional plot with the horizontal coordinate labeled <m>x</m> and going from 0 to 200. The vertical coordinate is labeled <m>y</m> and goes from o to 1.6. The slider at the top of the figure changes the number of curves drawn in this space. These curves are U-shaped curves that are oriented to the right of the space. The color of these curves go through a rainbow of colors from pink to purple where each curve is labeled with larger numbers as they are nested closer to the middle of the right boundary.</p></description>
       <slate surface="sage">
         var('x,y,z')
@@ -1178,7 +1178,7 @@
     </p>
     <figure xml:id="contour2">
       <caption>A plot of the contours of <m>f(x,y) = \frac{x^2 \sin(2y)}{32}</m> at the appropriate heights</caption>
-      <interactive title="interactive-contour2" platform="sage" width="91%" aspect="1:1">
+      <interactive label="interactive-contour2" platform="sage" width="91%" aspect="1:1">
         <description><p>A three dimensional plot of a curved surface shown faintly in light gray that this is u-shaped along constant values of one coordinate and increases parabolically as that the other horizontal coordinate is increased. There are eight curves shown along this surface at constant heights of 0 through 1050 with steps of size 150. These curves are all U-shaped and the colors go from pink to red to orange to yellow to green to blue to purple to pink. </p></description>
       <slate surface="sage">
           var('x,y,z,t,s')
@@ -1209,7 +1209,7 @@
     </p>
     <figure xml:id="contour3">
       <caption>A plot of the contours and traces of <m>f(x,y) = \frac{x^2 \sin(2y)}{32}</m> at the appropriate values</caption>
-      <interactive title="interactive-contour3" platform="sage" width="91%" aspect="1:1">
+      <interactive label="interactive-contour3" platform="sage" width="91%" aspect="1:1">
         <description><p>A three dimensional plot of a curved surface shown faintly in light gray that this is u-shaped along constant values of one coordinate and increases parabolically as that the other horizontal coordinate is increased. Three mutually perpendicular segments are drawn from the lower corner of the surface and are labled <m>x</m> and <m>y</m> horizontally and <m>z</m> for the vertical segment. Eight red curves are shown along the surface in a direction parallel to the segment labeled <m>x</m>. Eight green curves are shown along the surface in a direction parallel to the segment labeled <m>y</m>. Eight blue curves are shown along the surface with constant steps in the height.</p> </description>
       <slate surface="sage">
           var('x,y,z,t,s')
@@ -1335,7 +1335,7 @@
     </p>
     <figure xml:id="contourgallery">
       <caption>A plot of various functions and their contour plots</caption>
-      <interactive title="interactive-contourgallery" platform="sage" width="100%" aspect="1:1.90">
+      <interactive label="interactive-contourgallery" platform="sage" width="100%" aspect="1:1.90">
         <description><p>An interactive set of plots that consists of a three dimensional plot and a two dimensional plot. A drop down list at the top of the plots allows the user to select from Surface 1 to Surface 7. 
         For Surface 1, the three dimensional plot shows a circular paraboloid opening toward the axis labeled <m>z</m> and the two dimensional plot shows a collection of concentric circles with rainbow colors that are labeled from 1 to 7 and spaced closer together as the circle's radius increases.
         For Surface 2, the three dimensional plot shows top half of a cone opening toward the axis labeled <m>z</m> and the two dimensional plot shows a collection of concentric circles with rainbow colors that are labeled from .4 to 2.4 and equally spaced as the circle's radius increases.  

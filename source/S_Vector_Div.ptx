@@ -231,7 +231,7 @@
   </p>
   <figure xml:id="fig_div_ex1">
     <caption>An interactive plot of <m>\vF=\langle x,y\rangle</m> with point <m>(a,b)</m> and region plotted</caption>
-    <interactive title="sage_div_interact1" platform="sage" width="98%" aspect="1:1.20">
+    <interactive label="sage_div_interact1" platform="sage" width="98%" aspect="1:1.20">
       <description><p>A two dimensional interactive plot of the vector field <m>\vF=\langle x,y\rangle</m>. The vector field is drawn with arrows pointing away from the origin and longer arrows farther from the origin. The user can use inputs at the top of the figure to specify the location of a highlighted point and the radius of a circle drawn centered at the highlighted point. </p></description>
     <slate surface="sage">
         var('t,x,y')
@@ -253,7 +253,7 @@
   </p>
   <figure xml:id="fig_div_ex2">
     <caption>An interactive plot of <m>\vG=\langle y,-x \rangle</m> with point <m>(a,b)</m> and region plotted</caption>
-    <interactive title="sage_div_interact2" platform="sage" width="98%" aspect="1:1.20">
+    <interactive label="sage_div_interact2" platform="sage" width="98%" aspect="1:1.20">
       <description><p>A two dimensional interactive plot of the vector field <m>\vF=\langle y,-x rangle</m>. The vector field is drawn with arrows pointing in a circular pattern going clockwise around the origin and longer arrows farther from the origin. The user can use inputs at the top of the figure to specify the location of a highlighted point and the radius of a circle drawn centered at the highlighted point. </p> </description>
     <slate surface="sage">
         var('t,x,y')
@@ -273,7 +273,7 @@
   </p>
   <figure xml:id="fig_div_ex3">
     <caption>An interactive plot of <m>\vH=\langle x^2-y,y^2-y\rangle</m> with point <m>(a,b)</m> and region plotted</caption>
-    <interactive title="sage_div_interact3" platform="sage" width="98%" aspect="1:1.20">
+    <interactive label="sage_div_interact3" platform="sage" width="98%" aspect="1:1.20">
       <description><p>A two dimensional interactive plot of the vector field <m>\vF=\langle x^2-y,y^2-y \rangle</m>. The vector field is drawn with arrows pointing to the right and down for vertical coordinates above -1.3 and pointing to the right and up for vertical coordinates below -1.3. The arrows are drawn longer as the location is farther from the origin. The user can use inputs at the top of the figure to specify the location of a highlighted point and the radius of a circle drawn centered at the highlighted point. </p></description>
       <slate surface="sage">
         var('t,x,y')
@@ -430,9 +430,9 @@
         <p>
           If you look at the figure below, you can see that a careful examination of the amount of the vector field entering and leaving a circle is balanced, regardless of where you put your circle. This is a bit subtle but you have to look at the total amount of vector field entering the region and not just the length of the vectors. A small amount entering over a larger length of boundary can cancel out a set of longer vectors leaving the region through a short segment of the boundary.
         </p>
-        <image width="55%" label="img_act_Vector_Div_Graphical_yx_soln">
+        <image width="55%">
           <description><p>A vector field with vectors pointing toward the origin. Vectors get longer as distance from the origin increases. </p></description>
-          <sageplot>
+          <sageplot label="img_act_Vector_Div_Graphical_yx_soln">
             var('t,x,y')
             plot3=plot_vector_field((y,x),(x,-2,2),(y,-2,2),color='black',axes_labels=["$x$","$y$"],frame=False,aspect_ratio=1,ticks=[[],[]])
             plot3+=circle((1,1),0.3,color='red')+circle((-0.25,.75),0.3,color='green')+circle((-1.5,-0.2),0.3,color='blue')
