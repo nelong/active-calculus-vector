@@ -128,7 +128,7 @@
         </p>
         <figure xml:id="rcirccyl">
           <caption>A right circular cylinder centered on the <m>z</m>-axis</caption>
-          <interactive title="interactive-rcirccyl" platform="sage" width="100%" aspect="1:1">
+          <interactive label="interactive-rcirccyl" platform="sage" width="100%" aspect="1:1">
             <slate surface="sage">
               from sage.plot.plot3d.plot3d import axes
               var('s,t')
@@ -224,7 +224,7 @@
         </figure> -->
         <figure xml:id="Torus3d">
           <caption>The surface of a torus shown centered at the origin with hole oriented around the z-axis</caption>
-          <interactive title="interactive-torus3d" platform="sage" width="100%" aspect="1:1">
+          <interactive label="interactive-torus3d" platform="sage" width="100%" aspect="1:1">
             <description>
               <p>An 3D plot with axes labeled x, y, and z. A torus is drawn in light blue center at the origin and its inner opening oriented along the z-axis. Circular slices oriented radially from the z-axis are highlighted in green and circular slices centered around the z-axis are highlighted in red. </p>
             </description>
@@ -258,7 +258,7 @@
         </p>
         <figure xml:id="Torus_slice">
           <caption>A slice of a torus shown as the revolution of a circle (shown in green) around the z-axis. </caption>
-          <interactive title="interactive-torus_slice" platform="sage" width="100%" aspect="1:1">
+          <interactive label="interactive-torus_slice" platform="sage" width="100%" aspect="1:1">
             <description>
               <p>An 3D plot with axes labeled x, y, and z. A gray plan extends from the z-axis in the direction of positive x and y coordinates. On this gray plane is a green circle, centered on the xy-plane, with 13 points on the circle shown in black. For each of the black points on the green circle is rotated around the z-axis as shown by circles drawn in red. </p>
             </description>
@@ -343,14 +343,15 @@
       </p>
       <figure xml:id="sphere-param">
         <caption>A plot of a sphere of radius <m>R</m> centered at the origin</caption>
-        <interactive title="interactive-sphere-param" platform="sage" width="100%" aspect="1:1">
+        <interactive label="interactive-sphere-param" platform="sage" width="100%" aspect="1:1">
+          <description>
+            <p>An interactive three dimensional plot that shows axes labeled x, y, and z. A sphere centered at the origin is shown in light blue. A checkbox above the interactive plot will toggle a half circle plotted along the sphere from the positive z-axis to the negative z-axis.</p>
+          </description>
           <slate surface="sage">
             <xi:include href="./interacts/surface-param.txt" parse="text" />
           </slate>
         </interactive>
-        <description>
-          <p>An interactive three dimensional plot that shows axes labeled x, y, and z. A sphere centered at the origin is shown in light blue. A checkbox above the interactive plot will toggle a half circle plotted along the sphere from the positive z-axis to the negative z-axis.</p>
-        </description>
+        
       </figure>
     </introduction>
     <task>
@@ -360,7 +361,7 @@
           <md number="yes" xml:id="sph-cyl-coord"> x(s,t)= r(s) \cos(t) , \quad y(s,t)=r(s) \sin(t), \quad z(s,t)= z(s) </md>
           where <m>r(s)</m> and <m>z(s)</m> describe the other cylindrical coordinates in terms of another parameter. 
         </p>
-        <figure xml:id="slice-sphere" width="60%">
+        <figure xml:id="slice-sphere">
           <caption>A plot of a half circle in the <m>rz</m>-plane representing the slice of the sphere we will be rotation around the <m>z</m>-axis</caption>
           <image width="60%" xml:id="img-slice-sphere">
             <sageplot>
@@ -429,7 +430,7 @@
         </p>
         <figure xml:id="param-plot3d">
           <caption>An interactive plot where users can input their parameterization and bounds</caption>
-          <interactive title="interactive-param-plot3d" platform="sage" width="130%" aspect="1:1.2">
+          <interactive label="interactive-param-plot3d" platform="sage" width="130%" aspect="1:1.2">
             <slate surface="sage">
               var('s,t')
               @interact
@@ -571,6 +572,11 @@
     <figure xml:id="fig-surface-param-traces">
       <caption>A three-dimensional plot of a parametric surface with traces corresponding to constant <m>s</m> values highlighted in yellow and constant <m>t</m> values highlighted in magenta. The tangent vector corresponding to <m>\frac{d \vr}{dt} (a,t)</m> is shown with the yellow arrow and the tangent vector corresponding to <m>\frac{d \vr}{ds} (s,b)</m> is shown with the red arrow.</caption>
       <interactive label="sage_surface-param-traces" platform="sage" width="100%" aspect="1:1.10">
+        <description>
+          <p>
+            An interactive three-dimensional plot of a curved surface that is parabolic in one coordinate direction and cubic in the other. A grid of magenta and yellow traces along the surface are drawn. Two sliders at the top of the figure allow the user to change the location of a highlighted point on the surface. At the highlighted point, a vector is shown in magenta that is tilted to be tangent to the magenta trace through the highlighted point. A yellow vector is also drawn tangent to the yellow trace through the highlighted point. A yellow parallelogram is drawn with sides given by the magenta and yellow vectors. 
+          </p>
+        </description>
         <slate surface="sage">
           var('t,s,u,v,z,y,z')
           f=-x^2/2-3*y^3/3
@@ -595,10 +601,10 @@
             show(plot1)
         </slate>
       </interactive>
-      <description><p>An interactive three-dimensional plot of a curved surface that is parabolic in one coordinate direction and cubic in the other. A grid of magenta and yellow traces along the surface are drawn. Two sliders at the top of the figure allow the user to change the location of a highlighted point on the surface. At the highlighted point, a vector is shown in magenta that is tilted to be tangent to the magenta trace through the highlighted point. A yellow vector is also drawn tangent to the yellow trace through the highlighted point. A yellow parallelogram is drawn with sides given by the magenta and yellow vectors. </p></description>
+
     </figure>
     <p>
-      We can use the red and yellow tangent vectors at the highlighted point (shown in black) to create the tangent plane at the highlighted point. A parallelogram of the tangent plane is shown in orange. Note that the orange parallelogram will move and tilt to estimate the curved surface near the highlighted point. We can use the properties of the cross product to both compute a vector that will be orthogonal to the curved surface at the highlighted point <emph>and</emph> find the area of the orange parallelogram (<xref ref="crossdirection"/> and <xref ref="crosslength"/>).
+      We can use the red and yellow tangent vectors at the highlighted point (shown in black) to create the tangent plane at the highlighted point. A parallelogram of the tangent plane is shown in orange. Note that the orange parallelogram will move and tilt to estimate the curved surface near the highlighted point. We can use the properties of the cross product to both compute a vector that will be orthogonal to the curved surface at the highlighted point <em>and</em> find the area of the orange parallelogram (<xref ref="crossdirection"/> and <xref ref="crosslength"/>).
     </p>
     <p>
       We take a few moments now to summarize the ideas above, but state our derivatives of <m>\vr(s,t)</m> as partial derivatives with respect to <m>s</m> or <m>t</m>, since those will correspond to holding the <m>t</m> and <m>s</m> parameters constant (respectively). 
@@ -631,7 +637,7 @@
       </p>
       <figure xml:id="torus-properties">
         <caption> </caption>
-        <interactive title="interactive-torus-properties" platform="sage" width="100%" aspect="1:1.10">
+        <interactive label="interactive-torus-properties" platform="sage" width="100%" aspect="1:1.10">
           <slate surface="sage">
             var('t,s,u,v,z,y,z')
             import numpy as np
@@ -660,33 +666,35 @@
           </slate>
         </interactive>
       </figure>
-      <ul>
-        <li>
-          <p>
-            The traces with constant values of <m>t</m> are shown in magenta on <xref ref="torus-properties"/> and are parameterized by <m>\vr(s,t_0)= \langle (b+a \cos(s)) \cos(t_0), (b+a \cos(s)) \sin(t_0), a \sin(s) \rangle</m> when <m>t=t_0</m>.
-          </p>
-        </li>
-        <li>
-          <p>
-            The traces with constant values of <m>s</m> are shown in yellow on <xref ref="torus-properties"/> and are parameterized by <m>\vr(s_0,t)= \langle (b+a \cos(s_0)) \cos(t), (b+a \cos(s_0)) \sin(t), a \sin(s_0) \rangle</m> when <m>s=s_0</m>.
-          </p>
-        </li>
-        <li>
-          <p>
-            The vector tangent to the surface along the trace with constant <m>t</m>-value is given by <m>\vr_s=\langle (-a\sin(s))\cos(t), (-a\sin(s))\sin(t),0\rangle</m> and is shown with the red arrow on <xref ref="torus-properties"/>. 
-          </p>
-        </li>
-        <li>
-          <p>
-            The vector tangent to the surface along the trace with constant <m>s</m>-value is given by <m>\vr_t=\langle (a+b\cos(s))(-\sin(t)),(a+b\sin(s))(\cos(t)),0 \rangle</m> and is shown with the yellow arrow on <xref ref="torus-properties"/>. 
-          </p>
-        </li>
-        <li>
-          <p>
-            The green vector is calculated by <m>\vr_s \times \vr_t</m>, is orthogonal to the surface at the highlighted point, and the length of the green vector corresponds to the area of the orange parallelogram. Note that as the length of the yellow vector increases, the parallelogram's area and the length of the green vector both increase correspondingly.
-          </p>
-        </li>
-      </ul>
+      <p>
+        <ul>
+          <li>
+            <p>
+              The traces with constant values of <m>t</m> are shown in magenta on <xref ref="torus-properties"/> and are parameterized by <m>\vr(s,t_0)= \langle (b+a \cos(s)) \cos(t_0), (b+a \cos(s)) \sin(t_0), a \sin(s) \rangle</m> when <m>t=t_0</m>.
+            </p>
+          </li>
+          <li>
+            <p>
+              The traces with constant values of <m>s</m> are shown in yellow on <xref ref="torus-properties"/> and are parameterized by <m>\vr(s_0,t)= \langle (b+a \cos(s_0)) \cos(t), (b+a \cos(s_0)) \sin(t), a \sin(s_0) \rangle</m> when <m>s=s_0</m>.
+            </p>
+          </li>
+          <li>
+            <p>
+              The vector tangent to the surface along the trace with constant <m>t</m>-value is given by <m>\vr_s=\langle (-a\sin(s))\cos(t), (-a\sin(s))\sin(t),0\rangle</m> and is shown with the red arrow on <xref ref="torus-properties"/>. 
+            </p>
+          </li>
+          <li>
+            <p>
+              The vector tangent to the surface along the trace with constant <m>s</m>-value is given by <m>\vr_t=\langle (a+b\cos(s))(-\sin(t)),(a+b\sin(s))(\cos(t)),0 \rangle</m> and is shown with the yellow arrow on <xref ref="torus-properties"/>. 
+            </p>
+          </li>
+          <li>
+            <p>
+              The green vector is calculated by <m>\vr_s \times \vr_t</m>, is orthogonal to the surface at the highlighted point, and the length of the green vector corresponds to the area of the orange parallelogram. Note that as the length of the yellow vector increases, the parallelogram's area and the length of the green vector both increase correspondingly.
+            </p>
+          </li>
+        </ul>
+      </p>
     </example>
   </subsection>
 

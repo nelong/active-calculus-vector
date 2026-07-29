@@ -33,7 +33,7 @@
 
 <!-- PTX incompatibility -->
   <exercise xml:id="ex-9-1-WW-sphere">
-    <title>Intersections of a sphere and fundamental planes</title> 
+    <!-- <title>Intersections of a sphere and fundamental planes</title>  -->
       <webwork source="Library/FortLewis/Calc3/12-1-Two-variable-functions/HGM4-12-1-30-Functions-of-two-variables.pg" />
   </exercise> 
 
@@ -127,47 +127,65 @@
       <sbsgroup widths="45% 45%" margins="0% 0%">
         <sidebyside>
           <figure>
-            <image width="45%" label="img-coord2d-PA6">
+            <caption/>
+            <image width="45%">
               <description><p>A two-dimensional plot of a parabola opening in the positive vertical direction. </p></description>
-              <sageplot>
-                var('x')
-                plot6=plot(x^2,(x,-4,4),color="black",axes=true,axes_labels=["$x$","$y$"],gridlines=True,xmin=-4,xmax=4,ymin=-4,ymax=4,aspect_ratio=1)
-                plot6   
-              </sageplot>
+              <prefigure xmlns="https://prefigure.org" label="img-coord2d-PA6">
+                <diagram dimensions="(300,300)" margins="5">
+                  <definition>f(x)=x^2</definition>
+                  <coordinates bbox="(-4,-4,4,4)">
+                    <grid-axes xlabel="x" ylabel="y"/>
+                    <graph at="graph" function="f"/>    
+                  </coordinates>
+                </diagram>
+              </prefigure>
             </image>
           </figure>
           <figure>
-            <image width="45%" label="img-coord2d-PA7">
+            <caption/>
+            <image width="45%">
               <description><p>A two-dimensional plot of a parabola opening in the positive horizontal direction.</p></description>
-              <sageplot>
-                var('t')
-                plot7=parametric_plot((t^2,t),(t,-4,4),color="black",axes=true,axes_labels=["$x$","$y$"],gridlines=True,aspect_ratio=1)
-                plot7+=point((0,0),color="black",size=0,xmin=-4,xmax=4,ymin=-4,ymax=4)
-                plot7
-              </sageplot>
+              <prefigure xmlns="https://prefigure.org" label="img-coord2d-PA7">
+                <diagram dimensions="(300,300)" margins="5">
+                  <definition>f(t)=(t^2,t)</definition>
+                  <coordinates bbox="(-4,-4,4,4)">
+                    <grid-axes xlabel="x" ylabel="y"/>
+                    <parametric-curve at="graph" function="f" domain="(-2,2)"/>    
+                  </coordinates>
+                </diagram>
+              </prefigure>
             </image>  
           </figure>
         </sidebyside>
         <sidebyside>
           <figure>
-            <image width="45%" label="img-coord2d-PA8">
+            <caption/>
+            <image width="45%">
               <description><p>A two-dimensional plot of a line with slope <m>1</m> and <m>y</m>-intercept <m>1</m>.</p></description>
-              <sageplot>
-                var('t')
-                plot8=parametric_plot((t,t+1),(t,-4,4),color="black",axes=true,axes_labels=["$x$","$y$"],gridlines=True,xmin=-4,xmax=4,ymin=-4,ymax=4,aspect_ratio=1)
-                plot8
-              </sageplot>
+              <prefigure xmlns="https://prefigure.org" label="img-coord2d-PA8">
+                <diagram dimensions="(300,300)" margins="5">
+                  <definition>f(t)=(t,t+1)</definition>
+                  <coordinates bbox="(-4,-4,4,4)">
+                    <grid-axes xlabel="x" ylabel="y"/>
+                    <parametric-curve at="graph" function="f" domain="(-4,4)"/>    
+                  </coordinates>
+                </diagram>
+              </prefigure>
             </image>
           </figure>
           <figure>
-            <image width="45%" label="img-coord2d-PA9">
+            <caption/>
+            <image width="45%">
               <description><p>A two-dimensional plot of a vertical line with <m>x</m>-intercept <m>2</m>.</p></description>
-              <sageplot>
-                var('t')
-                plot9=parametric_plot((2,t),(t,-4,4),color="black",gridlines=True,aspect_ratio=1,axes=true,axes_labels=["$x$","$y$"])
-                plot9+=point((0,0),color="black",size=0,xmin=-4,xmax=4,ymin=-4,ymax=4)
-                plot9
-              </sageplot>
+              <prefigure xmlns="https://prefigure.org" label="img-coord2d-PA9">
+                <diagram dimensions="(300,300)" margins="5">
+                  <definition>f(t)=(2,t)</definition>
+                  <coordinates bbox="(-4,-4,4,4)">
+                    <grid-axes xlabel="x" ylabel="y"/>
+                    <parametric-curve at="graph" function="f" domain="(-4,4)"/>    
+                  </coordinates>
+                </diagram>
+              </prefigure>
             </image>             
           </figure>       
         </sidebyside>
@@ -181,80 +199,82 @@
   </solution>
 </exercise>
 <exercise xml:id="yneqfx2">
-  <statement>
+  <introduction>
     <p>
       In this exercise, we want to algebraically identify when the graph of a given equation can be expressed as:
       <ul>
         <li><m>y</m> as a function of <m>x</m>, but <m>x</m> cannot be written as a function of <m>y</m></li>
         <li><m>x</m> as a function of <m>y</m>, but <m>y</m> cannot be written as a function of <m>x</m></li>
-        <li><m>y</m> as a function of <m>x</m> and <li><m>x</m> as a function of <m>y</m></li></li>
-        <li>neither <m>y</m> as a function of <m>x</m> nor <li><m>x</m> as a function of <m>y</m></li></li>
+        <li><m>y</m> as a function of <m>x</m> and <m>x</m> as a function of <m>y</m></li>
+        <li>neither <m>y</m> as a function of <m>x</m> nor <m>x</m> as a function of <m>y</m></li>
       </ul> 
     </p>
     <p>
       For each equation below, state which of the four options above applies to whether the graph can be expressed with each coordinate being a function of the other or not. 
-      <ol>
-        <li>
-          <p>
-            <md>3x-2y=10 </md>
-          </p>
-        </li>
-        <li>
-          <p>
-            <md>3x^2+2y^2=10 </md>
-          </p>
-        </li>
-        <li>
-          <p>
-            <md>3y=10x^2-10 </md>
-          </p>
-        </li>
-        <li>
-          <p>
-            <md>y=5 </md>
-          </p>
-        </li>
-        <li>
-          <p>
-            <md>x=2 </md>
-          </p>
-        </li>
-      </ol>  
     </p>
-  </statement>
-  <solution>
-    <p>
-        <ol>
-      <li>
-        <p>
-          Both coordinates expressible as a function of the other
-        </p>
-      </li>
-      <li>
-        <p>
-          Neither coordinate expressible as a function of the other
-        </p>
-      </li>
-      <li>
-        <p>
-          Both coordinates expressible as a function of the other
-        </p>
-      </li>
-      <li>
-        <p>
-          <m>y</m> is a function of <m>x</m> but not the other way around.
-        </p>
-      </li>
-      <li>
-        <p>
-          <m>x</m> is a function of <m>y</m> but not the other way around.
-        </p>
-      </li>
-    </ol>
-    </p>
-  </solution>
+  </introduction>
+        <task>
+          <statement>
+            <p>
+              <m>3x-2y=10 </m>
+            </p>
+          </statement>
+          <solution>
+            <p>
+              Both coordinates expressible as a function of the other
+            </p>
+          </solution>
+        </task>
+        <task>
+          <statement>
+            <p>
+              <m>3x^2+2y^2=10 </m>
+            </p>
+          </statement>
+          <solution>
+            <p>
+              Neither coordinate expressible as a function of the other.
+            </p>
+          </solution>
+        </task>
+        <task>
+          <statement>
+            <p>
+              <m>3y=10x^2-10 </m>
+            </p>
+          </statement>
+          <solution>
+            <p>
+              Both coordinates expressible as a function of the other.
+            </p>
+          </solution>
+        </task>
+        <task>
+          <statement>
+            <p>
+              <m>y=5 </m>
+            </p>
+          </statement>
+          <solution>
+            <p>
+              <m>y</m> is a function of <m>x</m> but not the other way around.
+            </p>
+          </solution>
+        </task>
+        <task>
+          <statement>
+            <p>
+              <m>x=2 </m>
+            </p>
+          </statement>
+          <solution>
+            <p>
+              <m>x</m> is a function of <m>y</m> but not the other way around.
+            </p>
+          </solution>
+        </task>
 </exercise>
-<exercise xml:id="Ez-9-1-1">
+<exercise>
   <introduction>
     <p>
       Find the equation of each of the following geometric objects.

@@ -44,9 +44,9 @@
 </p>
   <figure xml:id="arclength1">
     <caption>A curve <m>C</m> from the point <m>P</m> to the point <m>Q</m> </caption>
-    <image width="80%" label="line-arclength1"> <!--source="/line_int_defn3"-->
+    <image width="80%"> <!--source="/line_int_defn3"-->
       <description><p>An oriented curve from a point <m>P</m> to a point <m>Q</m>. The curve moves up and left from the point <m>P</m>, then turns up and to the right before moving down and right to the point <m>Q</m>.</p></description>
-      <sageplot>
+      <sageplot label="line-arclength1">
         tpoints=[4,0.5]
         offsetx=[0.1,0.2]
         offsety=[-0.2,-0.2]
@@ -155,10 +155,10 @@
   </p>
   <figure xml:id="arclength2">
     <caption>A curve <m>C</m> oriented from the point <m>P</m> to the point <m>Q</m> split into <m>6</m> parts with endpoints <m>\vr_0,\vr_1,...,\vr_6</m></caption>
-    <image width="80%" label="line-arclength2"> <!--source="/line_int_defn3"-->
+    <image width="80%"> <!--source="/line_int_defn3"-->
       <description><p>An oriented curve from a point <m>P</m> to a point <m>Q</m>. Point <m>P</m> is labeled as <m>\vr_0</m> and point <m>Q</m> is labeled as <m>\vr_n</m>. There are five intermediate points drawn as well as vectors connecting consecutive intermediate points. The vector from <m>\vr_{3}</m> to <m>\vr_4</m> is labeled <m>\Delta\vr_4 = \vr_4-\vr_{3}</m>. </p></description>
       
-      <sageplot>
+      <sageplot label="line-arclength2">
         tpoints=[4,3.5,3,2.5,1.5,1,0.5]
         offsetx=[0.1,-0.2,-0.25,0,0,0,0.2]
         offsety=[-0.2,-0.1,0.1,0.3,0.3,0.3,-0.2]
@@ -504,29 +504,6 @@
       The parameterization <m>\vr(a(s))</m> is a unit speed parameterization because the parameter <m>s</m> <em>is</em> the amount of arc length traveled. In terms of the mile marker analogy, the value of <m>s</m> is the value you see on the mile marker. The input of the composition <m>\vr(a(s))</m> will be the arc length traveled. The <q>inner</q> function, <m>a(s)</m>,  outputs the parameter value <em>of the original parameterization</em> where that arc length is achieved. (Keep in mind <xref ref="fig-arclength-inverse"/>, which illustrates the inverse relationship between <m>a</m> and <m>s</m>.) This means that <m>\vr(a(s))</m> outputs the location on <m>C</m> where an arc length of <m>s</m> is achieved. 
       <!-- A visualization of these relationships is shown in <xref ref="unitspeeddiagram"/>. -->
     </p>
-    <!-- <figure xml:id="unitspeeddiagram">
-      <caption>Composition of <m>\alpha(s)</m> and <m>\vr(t)</m> to get the unit speed parameterization</caption>
-      <image width="50%" label="img_unitspeeddiagram">
-        <shortdescription>A diagram showing the relationships involved in the composition</shortdescription>
-        <description>
-          <p>A diagram with three locations labeled <m>(s)</m>, <m>(t)</m>, and position. An arrow labeled <m>\alpha(s)</m> points from <m>(s)</m> to <m>(t)</m>. An arrow labeled <m>\vr(t)</m> points from <m>(t)</m> to position. An arrow labeled <m>\vr(\alpha(s))</m> points from <m>(s)</m> to position.
-          </p>
-        </description>
-        <latex-image>
-          \begin{tikzpicture}
-          \path
-          (-0,0) node (s) {$(s)$}      
-          (4,0) node (t) {$(t)$}
-          (4,-4) node[align=center] (C) {position};
-          \begin{scope}[nodes={midway,scale=.75}]
-          \draw[->] (s)- -(t) node[above]{$\alpha(s)$}; % If this is restored, remove the space between the dashes on this line and the two below. They break XML comments.
-          \draw[->] (t)- -(C) node[left]{$\vec{r}(t)$};
-          \draw[->] (s)- -(C) node[left]{$\vec{r}(\alpha(s))$};
-          \end{scope}
-          \end{tikzpicture}   
-        </latex-image>
-      </image>
-    </figure> -->
     <p>
       To illustrate the concepts of the previous paragraph concretely, we return to the algebra of our problem. For our example, the composition <m>\vr(a(s))</m> gives the following as the unit speed parameterization:
       <md>\vr_{1}(s)=\left\langle \left(-2 + \sqrt{4+s}\right)^2, \frac{8}{3}\left(-2 + \sqrt{4+s}\right)^{3/2}, 4\left(-2 + \sqrt{4+s}\right) \right\rangle</md>.

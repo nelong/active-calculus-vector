@@ -223,13 +223,13 @@
     </aside>
 
     <figure xml:id="F-Precalc-vectors-standard">
-      <caption>Left:  Right: </caption>
+      <caption/>
       <sidebyside widths="50% 50%">
         <figure xml:id="F-Precalc-vectors-standard-origin">
           <caption>The vector <m>\langle 3,4\rangle</m> in standard position</caption>
-          <image width="55%" label="img-vec-standard1">
+          <image width="55%">
             <description><p>The vector <m>\langle 3,4\rangle</m> plotted as an arrow moving three units right and 4 units up starting from the origin</p></description>
-            <sageplot>
+            <sageplot label="img-vec-standard1">
               plot1=arrow((0,0),(3,4),color="black",width=3,axes=True,axes_labels=["$x$","$y$"],ticks=[[3],[4]],xmin=-0.5,xmax=6,ymin=-0.5,ymax=6,aspect_ratio=1)
               plot1
             </sageplot>
@@ -237,9 +237,9 @@
         </figure>
         <figure xml:id="F-Precalc-vectors-standard-translated">
           <caption>The vector <m>\langle 3,4\rangle</m> represented from <m>(1,1)</m> to <m>(4,5)</m></caption>
-          <image width="55%" label="img-vec-standard2">
+          <image width="55%">
             <description><p>The vector <m>\langle 3,4\rangle</m> plotted as an arrow moving three units right and 4 units up starting from the point <m>(1,1)</m>, labeled as Q, and going to the point <m>(4,5)</m>, labeled as R</p></description>
-            <sageplot>
+            <sageplot label="img-vec-standard2">
               plot2=arrow((1,1),(4,5),color="black",width=3,axes=True,axes_labels=["$x$","$y$"],ticks=[[1,4],[1,5]],xmin=-0.5,xmax=6,ymin=-0.5,ymax=6,aspect_ratio=1)
               plot2+=point((1,1),color="black",size=40)+text("$Q=(1,1)$",(1,0.75),color="black",fontsize=15)
               plot2+=point((4,5),color="black",size=40)+text("$R=(4,5)$",(4,5.25),color="black",fontsize=15)
@@ -398,7 +398,9 @@
       Vectors are not numbers (scalars), but we can now represent vectors with components that are real numbers. As such, we naturally wonder if it is possible to add two vectors together, multiply two vectors, or combine vectors in any other ways. In this section, we will study two operations on vectors: vector addition and scalar multiplication. To begin, we investigate a natural way to think about combining vectors in the context of measuring the change of location.
     </p>
     <historical component="instructor">
-      <xref ref="Act-Precalc-navigation"/> is a conceptual activity that motivates the addition, the subtraction, and the rescaling of vectors and we recommend that you do this with a graph or grid paper for students to label and plot the locations and associated vectors.
+      <p>
+        <xref ref="Act-Precalc-navigation"/> is a conceptual activity that motivates the addition, the subtraction, and the rescaling of vectors and we recommend that you do this with a graph or grid paper for students to label and plot the locations and associated vectors.
+      </p>
     </historical>
   <worksheet>
   <activity workspace="1.5in" xml:id="Act-Precalc-navigation">
@@ -944,10 +946,10 @@
 
     <figure xml:id="F-9-2-vector-sum7">
       <caption>Scalar multiplication</caption>
-      <image width="45%" label="img-scalarmult">
+      <image width="45%">
         <description><p>A two dimensional plot with a black arrow starting at the origin, going up and right, and labeled <m>\vv</m>. Another arrow in gray starts at the origin and goes twice as far up and to the right as the first arrow. The second arrow is labeled <m>2\vv</m>. A third arrow starts at the origin and moves in the exact opposite direction and distance as the second arrow and is labeled <m>-2\vv</m>. </p> </description>
-        <sageplot>
-          plot9=arrow((0,0),(4,6),color="gray",width=3,axes=True,ticks=[[],[]],xmin=-7,xmax=7,ymin=-7,ymax=7,aspect_ratio=1)
+        <sageplot label="img-scalarmult">
+          plot9=arrow((0,0),(4,6),color="lightgray",width=3,axes=True,ticks=[[],[]],xmin=-7,xmax=7,ymin=-7,ymax=7,aspect_ratio=1)
           plot9+=arrow((0,0),(2,3),color="black",width=3)
           plot9+=arrow((0,0),(-4,-6),color="gray",width=3)
           plot9+=text("$\\vec{v}$",(1.25,1),color="black",fontsize=20)
@@ -967,13 +969,13 @@
           Suppose that <m>\vu</m> and <m>\vv</m> are the vectors shown in <xref ref="F-9-2-vector-activity1a"/>.
         </p>
         <figure xml:id="F-9-2-vector-activity1a">
-          <caption>Left: Sketch sums. Right: Sketch multiples.</caption>
+          <caption/>
             <sidebyside widths="50% 50%" margins="0%">
               <figure xml:id="F-9-2-vector-activity1a-sums">
                 <caption>Sketch sums</caption>
-                <image label="img-sumact1">
+                <image>
                   <description><p>A two dimensional plot with horizontal and vertical axes. An arrow that moves more right than up is drawn from the origin and labeled <m>\vv</m>. An arrow that moves more up than right is drawn from the origin and labeled <m>/vu</m></p></description>
-                  <sageplot>
+                  <sageplot label="img-sumact1">
                     plot10=arrow((0,0),(1,3),color="black",width=3,axes=True,ticks=[[],[]],xmin=-6,xmax=6,ymin=-6,ymax=6,aspect_ratio=1)
                     plot10+=arrow((0,0),(2,1),color="black",width=3)
                     plot10+=text("$\\vec{u}$",(0.5,3.25),color="black",fontsize=20)
@@ -984,9 +986,9 @@
               </figure>
               <figure xml:id="F-9-2-vector-activity1a-multiples">
                 <caption>Sketch multiples</caption>
-                <image label="img-sumact2">
+                <image>
                   <description><p>A two dimensional plot with horizontal and vertical axes. An arrow that moves more right than up is drawn from the origin and labeled <m>\vv</m>. An arrow that moves more up than right is drawn from the origin and labeled <m>/vu</m></p></description>
-                  <sageplot>
+                  <sageplot label="img-sumact2">
                     plot10=arrow((0,0),(1,3),color="black",width=3,axes=True,ticks=[[],[]],xmin=-6,xmax=6,ymin=-6,ymax=6,aspect_ratio=1)
                     plot10+=arrow((0,0),(2,1),color="black",width=3)
                     plot10+=text("$\\vec{u}$",(0.5,3.25),color="black",fontsize=20)
@@ -1043,7 +1045,7 @@
       <task>
         <statement>
           <p>
-            On the in <xref ref="F-9-2-vector-activity1a-multiples"/>, sketch the vectors <m>-3\vv</m>, <m>-2\vv</m>, <m>-1\vv</m>, <m>2\vv</m>, and <m>3\vv</m>.
+            On the axes in <xref ref="F-9-2-vector-activity1a-multiples"/>, sketch the vectors <m>-3\vv</m>, <m>-2\vv</m>, <m>-1\vv</m>, <m>2\vv</m>, and <m>3\vv</m>.
           </p>
         </statement>
         <solution>
