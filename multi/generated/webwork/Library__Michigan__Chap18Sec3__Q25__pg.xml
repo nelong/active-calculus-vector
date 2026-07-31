@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="20" xml:id="extracted-Library__Michigan__Chap18Sec3__Q25__pg" assembly-id="Library__Michigan__Chap18Sec3__Q25__pg">
-  <static seed="679" source="Library/Michigan/Chap18Sec3/Q25.pg">
-    <statement><p>Let <m>{\nabla f} = -2xe^{-x^{2}}\sin\mathopen{}\left(y\right)\,\vec i + e^{-x^{2}}\cos\mathopen{}\left(y\right)\, \vec j</m>.
+  <static seed="680" source="Library/Michigan/Chap18Sec3/Q25.pg">
+    <statement><p>Let <m>{\nabla f} = -4xe^{-x^{2}}\sin\mathopen{}\left(5y\right)\,\vec i + 10e^{-x^{2}}\cos\mathopen{}\left(5y\right)\, \vec j</m>.
 Find the change in <m>f</m> between <m>(0,0)</m> and <m>(1,\pi/2)</m>
 in two ways.</p>
 <p><alert>(a)</alert>
@@ -49,7 +49,7 @@ By computing values of <m>f</m>.  To do this,</p>
     </answer>
     <answer>
       <p>
-        <m>\frac{\pi }{2}e^{-t^{2}}\cos\mathopen{}\left(\frac{\pi t}{2}\right)-2te^{-t^{2}}\sin\mathopen{}\left(\frac{\pi t}{2}\right)</m>
+        <m>10\frac{\pi }{2}e^{-t^{2}}\cos\mathopen{}\left(\frac{5\pi t}{2}\right)-4te^{-t^{2}}\sin\mathopen{}\left(\frac{5\pi t}{2}\right)</m>
       </p>
     </answer>
     <answer>
@@ -59,17 +59,17 @@ By computing values of <m>f</m>.  To do this,</p>
     </answer>
     <answer>
       <p>
-        <m>1e^{-1}\sin\mathopen{}\left(\frac{1\pi }{2}\right)</m>
+        <m>2e^{-1}\sin\mathopen{}\left(\frac{5\pi }{2}\right)</m>
       </p>
     </answer>
     <answer>
       <p>
-        <m>1e^{-1}\sin\mathopen{}\left(\frac{1\pi }{2}\right)</m>
+        <m>2e^{-1}\sin\mathopen{}\left(\frac{5\pi }{2}\right)</m>
       </p>
     </answer>
     <answer>
       <p>
-        <m>e^{-x^{2}}\sin\mathopen{}\left(y\right)</m>
+        <m>2e^{-x^{2}}\sin\mathopen{}\left(5y\right)</m>
       </p>
     </answer>
     <answer>
@@ -79,12 +79,12 @@ By computing values of <m>f</m>.  To do this,</p>
     </answer>
     <answer>
       <p>
-        <m>1\cdot 1e^{-1}</m>
+        <m>1\cdot 2e^{-1}</m>
       </p>
     </answer>
     <answer>
       <p>
-        <m>1e^{-1}\sin\mathopen{}\left(\frac{1\pi }{2}\right)-0</m>
+        <m>2e^{-1}\sin\mathopen{}\left(\frac{5\pi }{2}\right)-0</m>
       </p>
     </answer>
     <solution><alert>(a)</alert>
@@ -92,8 +92,8 @@ The parameterization is
 <m>\vec r(t) = (x(t),y(t)) = \langle t, \pi\,t/2\rangle</m>.  Then
 <m>\vec r\,'(t) = \langle 1, \pi/2\rangle</m>, so that
 <me>\int_C\nabla f\cdot d\vec r =
-  \int_0^1 \langle -2xe^{-x^{2}}\sin\mathopen{}\left(y\right), e^{-x^{2}}\cos\mathopen{}\left(y\right)\rangle\cdot \langle 1,\pi/2\rangle\,dt =</me>
-<me>\int_0^1 \left(\frac{\pi }{2}e^{-t^{2}}\cos\mathopen{}\left(\frac{\pi t}{2}\right)-2te^{-t^{2}}\sin\mathopen{}\left(\frac{\pi t}{2}\right)\right)\,dt.</me>
+  \int_0^1 \langle -4xe^{-x^{2}}\sin\mathopen{}\left(5y\right), 10e^{-x^{2}}\cos\mathopen{}\left(5y\right)\rangle\cdot \langle 1,\pi/2\rangle\,dt =</me>
+<me>\int_0^1 \left(10\frac{\pi }{2}e^{-t^{2}}\cos\mathopen{}\left(\frac{5\pi t}{2}\right)-4te^{-t^{2}}\sin\mathopen{}\left(\frac{5\pi t}{2}\right)\right)\,dt.</me>
 As noted, it's simpler to integrate on the pair of line segments
 <m>C_1</m> from <m>(0,0)</m> to <m>(1,0)</m> and <m>C_2</m> from <m>(1,0)</m>
 to <m>(1,\pi/2)</m>.  Parameterizing these in a manner similar to our
@@ -104,8 +104,8 @@ parameterization of <m>C</m>, on <m>C_1</m> we have
    \int_0^1 0\,dt = 0,</me>
 and
 <me>\int_{C_2}\nabla f\cdot d\vec r =
-   \int_0^1 \frac{\pi}{2}\,1\,e^{-1}\,\cos(1\frac{\pi}{2}\,t)\,dt = 1 e^{-1},</me>
-so that the change in <m>f</m> is <m>(1 e^{-1}) + (0) = 1 e^{-1}</m>.
+   \int_0^1 \frac{\pi}{2}\,10\,e^{-1}\,\cos(5\frac{\pi}{2}\,t)\,dt = 2 e^{-1},</me>
+so that the change in <m>f</m> is <m>(2 e^{-1}) + (0) = 2 e^{-1}</m>.
 
 
 
@@ -114,13 +114,13 @@ so that the change in <m>f</m> is <m>(1 e^{-1}) + (0) = 1 e^{-1}</m>.
 The other way to find the change in <m>f</m> between these two points is to
 first find <m>f</m>. To do this,
 observe that
-<me>-2xe^{-x^{2}}\sin\mathopen{}\left(y\right)\,\vec i + e^{-x^{2}}\cos\mathopen{}\left(y\right)\,\vec j =
-\frac{\partial}{\partial x}\left(e^{-x^{2}}\sin\mathopen{}\left(y\right) \right) \vec i +
-\frac{\partial}{\partial y}\left(e^{-x^{2}}\sin\mathopen{}\left(y\right) \right) \vec j =</me>
-<me>\nabla \left(e^{-x^{2}}\sin\mathopen{}\left(y\right)\right).</me>
+<me>-4xe^{-x^{2}}\sin\mathopen{}\left(5y\right)\,\vec i + 10e^{-x^{2}}\cos\mathopen{}\left(5y\right)\,\vec j =
+\frac{\partial}{\partial x}\left(2e^{-x^{2}}\sin\mathopen{}\left(5y\right) \right) \vec i +
+\frac{\partial}{\partial y}\left(2e^{-x^{2}}\sin\mathopen{}\left(5y\right) \right) \vec j =</me>
+<me>\nabla \left(2e^{-x^{2}}\sin\mathopen{}\left(5y\right)\right).</me>
 So one possibility for <m>f</m> is <m>f(x,y)=e^{x^2}\sin y</m>. Thus,
-<me>\mbox{Change in } f\bigg|_{(0,0)}^{(1,\pi/2)} = e^{-x^{2}}\sin\mathopen{}\left(y\right)
-\bigg|_{(0,0)}^{(1,\pi/2)}= 1 e^{-1} - 0 = 1 e^{-1}.</me>
+<me>\mbox{Change in } f\bigg|_{(0,0)}^{(1,\pi/2)} = 2e^{-x^{2}}\sin\mathopen{}\left(5y\right)
+\bigg|_{(0,0)}^{(1,\pi/2)}= 2 e^{-1} - 0 = 2 e^{-1}.</me>
 
 
 

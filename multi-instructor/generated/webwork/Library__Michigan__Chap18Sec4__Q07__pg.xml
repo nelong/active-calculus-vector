@@ -1,22 +1,22 @@
 <?xml version='1.0' encoding='utf-8'?>
 <webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="20" xml:id="extracted-Library__Michigan__Chap18Sec4__Q07__pg" assembly-id="Library__Michigan__Chap18Sec4__Q07__pg">
-  <static seed="699" source="Library/Michigan/Chap18Sec4/Q07.pg">
+  <static seed="692" source="Library/Michigan/Chap18Sec4/Q07.pg">
     <statement><p>For each of the following, decide if the given vector field is
 a gradient of a function <m>f</m>.  If so, give find the function <m>f</m>
 and enter it as your answer; if not, enter the word <em>none</em>
 for your answer and be sure that you are able to explain why this is the
 case.</p>
 <p><alert>(a)</alert>
-<m>[ 2 y ]\,\vec i + [ 8 x ]\,\vec j</m>:
+<m>[ 4 x\cos(y^2) ]\,\vec i + [ 4 y\cos(x^2) ]\,\vec j</m>:
 <m>f =</m> <fillin characters="45" name="AnSwEr0001"/></p>
 <p><alert>(b)</alert>
-<m>[ 4 x\cos(x^2 + y^2) ]\,\vec i + [ 4 y\cos(x^2 + y^2) ]\,\vec j</m>:
+<m>[ 8 x ]\,\vec i + [ 6 y ]\,\vec j</m>:
 <m>f =</m> <fillin characters="45" name="AnSwEr0002"/></p>
 <p><alert>(c)</alert>
-<m>[ 6\cos(x^2 + 6 y^2) - 12 x^2\sin(x^2 + 6 y^2) ]\,\vec i + [ -72 x y\sin(x^2 + 6 y^2) ]\,\vec j</m>:
+<m>[ 8 x y ]\,\vec i + [ 4 x^2 ]\,\vec j</m>:
 <m>f =</m> <fillin characters="45" name="AnSwEr0003"/></p>
 <p><alert>(d)</alert>
-<m>[ 4 x \cos(x^2 + y^2) ]\,\vec i + [ 4 y \cos(x^2 + y^2) + 6 x ]\,\vec j</m>:
+<m>[ 8\cos(x^2 + 4 y^2) - 16 x^2\sin(x^2 + 4 y^2) ]\,\vec i + [ -64 x y\sin(x^2 + 4 y^2) ]\,\vec j</m>:
 <m>f =</m> <fillin characters="45" name="AnSwEr0004"/></p>
 </statement>
     <answer>
@@ -26,25 +26,25 @@ case.</p>
     </answer>
     <answer>
       <p>
-        <m>2\sin\mathopen{}\left(x^{2}+y^{2}\right)+K</m>
+        <m>4x^{2}+3y^{2}+K</m>
       </p>
     </answer>
     <answer>
       <p>
-        <m>6x\cos\mathopen{}\left(x^{2}+6y^{2}\right)+K</m>
+        <m>4x^{2}y+K</m>
       </p>
     </answer>
     <answer>
       <p>
-        <m>\text{none}</m>
+        <m>8x\cos\mathopen{}\left(x^{2}+4y^{2}\right)+K</m>
       </p>
     </answer>
     <solution><alert>(a)</alert>
 No.  To see this, suppose we integrate
 <m>\frac{\partial f}{\partial x}</m> to find <m>f</m>.  This gives
-<m>f(x,y) = 2 x y + C(y)</m>, so that, differentiating
+<m>f(x,y) = 2 x^2\cos(y^2) + C(y)</m>, so that, differentiating
 again, we would have to have
-<m>\frac{\partial f}{\partial y} = 2 x + C'(y)</m>.
+<m>\frac{\partial f}{\partial y} = -4 x^2 y\sin(y^2) + C'(y)</m>.
 For no choice of <m>C</m> can we make this work, so there is no
 such function <m>f</m>.
 
@@ -54,33 +54,32 @@ such function <m>f</m>.
 <alert>(b)</alert>
 Yes.  We can find <m>f</m> by integrating
 <m>\frac{\partial f}{\partial x}</m> to find <m>f</m>.  This gives
-<m>f(x,y) = 2\sin(x^2 + y^2) + C(y)</m>, so that, differentiating
+<m>f(x,y) = 4 x^2 + C(y)</m>, so that, differentiating
 again, we have
-<m>\frac{\partial f}{\partial y} = 4 y\cos(x^2 + y^2) + C'(y)</m>.  Thus we
-may take <m>f(x,y) = 2\sin\mathopen{}\left(x^{2}+y^{2}\right)+K</m>.
+<m>\frac{\partial f}{\partial y} = 4 x^2 + C'(y)</m>.  Thus we
+may take <m>f(x,y) = 4x^{2}+3y^{2}+K</m>.
 
 
 
 
 <alert>(c)</alert>
 Yes.  We can find <m>f</m> by integrating
-<m>\frac{\partial f}{\partial y}</m> to find <m>f</m>.  This gives
-<m>f(x,y) = 6 x\cos(x^2 + 6y^2) + C(x)</m>, so that, differentiating
+<m>\frac{\partial f}{\partial x}</m> to find <m>f</m>.  This gives
+<m>f(x,y) = 4 x^2 y + C(y)</m>, so that, differentiating
 again, we have
-<m>\frac{\partial f}{\partial x} = 6 \cos(x^2 + 6y^2) - 12\sin(x^2 + 6y^2) + C'(x)</m>.  Thus we
-may take <m>f(x,y) = 6x\cos\mathopen{}\left(x^{2}+6y^{2}\right)+K</m>.
+<m>\frac{\partial f}{\partial y} = 4 x^2 + C'(y)</m>.  Thus we
+may take <m>f(x,y) = 4x^{2}y+K</m>.
 
 
 
 
 <alert>(d)</alert>
-No.  To see this, suppose we integrate
-<m>\frac{\partial f}{\partial x}</m> to find <m>f</m>.  This gives
-<m>f(x,y) = 2 \sin(x^2 + y^2) + C(y)</m>, so that, differentiating
-again, we would have to have
-<m>\frac{\partial f}{\partial y} = 4 y\cos(x^2 + y^2) + C'(y)</m>.
-For no choice of <m>C</m> can we make this work, so there is no
-such function <m>f</m>.
+Yes.  We can find <m>f</m> by integrating
+<m>\frac{\partial f}{\partial y}</m> to find <m>f</m>.  This gives
+<m>f(x,y) = 8 x\cos(x^2 + 4y^2) + C(x)</m>, so that, differentiating
+again, we have
+<m>\frac{\partial f}{\partial x} = 8 \cos(x^2 + 4y^2) - 16\sin(x^2 + 4y^2) + C'(x)</m>.  Thus we
+may take <m>f(x,y) = 8x\cos\mathopen{}\left(x^{2}+4y^{2}\right)+K</m>.
 
 
 

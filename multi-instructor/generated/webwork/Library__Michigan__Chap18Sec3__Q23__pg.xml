@@ -1,10 +1,10 @@
 <?xml version='1.0' encoding='utf-8'?>
 <webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="20" xml:id="extracted-Library__Michigan__Chap18Sec3__Q23__pg" assembly-id="Library__Michigan__Chap18Sec3__Q23__pg">
-  <static seed="693" source="Library/Michigan/Chap18Sec3/Q23.pg">
+  <static seed="678" source="Library/Michigan/Chap18Sec3/Q23.pg">
     <statement><p>For each of the following decide whether the vector field could be a
 gradient vector field.  Be sure that you can justify your answer.</p>
 <p><alert>(a)</alert>
-<m>\vec  F(x,y,z) = 6 x\,\vec i + 6 y\,\vec j + 6 z\,\vec k</m></p>
+<m>\vec  F(x,y,z) = \frac{ z}{\sqrt{x^2 + z^2}}\,\vec i + \frac{ y}{\sqrt{x^2 + z^2}}\,\vec j + \frac{ x}{\sqrt{x^2 + z^2}}\,\vec k</m></p>
 <p><m>\vec F(x,y,z)</m> is <ul form="popup" name="AnSwEr0001"><li>
 <p>?</p>
 </li><li>
@@ -13,7 +13,7 @@ gradient vector field.  Be sure that you can justify your answer.</p>
 <p>not a gradient vector field</p>
 </li></ul></p>
 <p><alert>(b)</alert>
-<m>\vec  F(x,y,z) = \langle y, z, x\rangle</m></p>
+<m>\vec  F(x,y,z) = 2 x\,\vec i + 2 z\,\vec j</m></p>
 <p><m>\vec F(x,y,z)</m> is <ul form="popup" name="AnSwEr0002"><li>
 <p>?</p>
 </li><li>
@@ -22,7 +22,7 @@ gradient vector field.  Be sure that you can justify your answer.</p>
 <p>not a gradient vector field</p>
 </li></ul></p>
 <p><alert>(c)</alert>
-<m>\vec  F(x,y,z) = \langle z, 0, x\rangle</m></p>
+<m>\vec  F(x,y,z) = \langle 2 y z, 2 x z, 2 x y\rangle</m></p>
 <p><m>\vec F(x,y,z)</m> is <ul form="popup" name="AnSwEr0003"><li>
 <p>?</p>
 </li><li>
@@ -31,7 +31,7 @@ gradient vector field.  Be sure that you can justify your answer.</p>
 <p>not a gradient vector field</p>
 </li></ul></p>
 <p><alert>(d)</alert>
-<m>\vec  F(x,y,z) = 5 x y\,\vec i + 5\,y z\vec j + 5\,x z\,\vec k</m></p>
+<m>\vec  F(x,y,z) = 4 y\,\vec i + 4 x\,\vec j</m></p>
 <p><m>\vec F(x,y,z)</m> is <ul form="popup" name="AnSwEr0004"><li>
 <p>?</p>
 </li><li>
@@ -42,7 +42,7 @@ gradient vector field.  Be sure that you can justify your answer.</p>
 </statement>
     <answer>
       <p>
-        <m>\text{a gradient vector field}</m>
+        <m>\text{not a gradient vector field}</m>
       </p>
     </answer>
     <answer>
@@ -57,23 +57,27 @@ gradient vector field.  Be sure that you can justify your answer.</p>
     </answer>
     <answer>
       <p>
-        <m>\text{not a gradient vector field}</m>
+        <m>\text{a gradient vector field}</m>
       </p>
     </answer>
-    <solution><alert>(a)</alert><m>\vec F</m> is a gradient vector field.
-By integrating the components of the vector field <m>\vec F</m>, we
-can see that <m>f(x,y,z) = 3 x^2 + 3 y^2 + 3 z^2</m> is a potential
-function for <m>\vec F</m>.
+    <solution><alert>(a)</alert><m>\vec F</m> is not a gradient vector field.
+If <m>\vec F</m> were a gradient vector field, then we would have
+<m>\frac{\partial f}{\partial x} = \frac{ z}{\sqrt{x^2 + z^2}}</m>, so that
+<m>\frac{\partial^2 f}{\partial x\partial y} = 0</m>.  But we also have that
+<m>\frac{\partial f}{\partial y} = \frac{ y}{\sqrt{x^2 + z^2}}</m>, so that
+<m>\frac{\partial^2 f}{\partial y\partial x} = \frac{\partial^2 f}{\partial x\partial y} = \frac{- x y}{(x^2 + z^2)^{3/2}}</m>.
+These two are not equal, which is a contradiction.  Therefore
+<m>\vec F</m> cannot be a gradient vector field.
 
 
 
 
 <alert>(b)</alert><m>\vec F</m> is not a gradient vector field.
 If <m>\vec F</m> were a gradient vector field, then we would have
-<m>\frac{\partial f}{\partial x} = y</m>, so that
-<m>\frac{\partial^2 f}{\partial x\partial y} =</m>.  But we also have that
-<m>\frac{\partial f}{\partial y} = z</m>, so that
-<m>\frac{\partial^2 f}{\partial y\partial x} = \frac{\partial^2 f}{\partial x\partial y} = 0</m>.
+<m>\frac{\partial f}{\partial y} = 2z</m>, so that
+<m>\frac{\partial^2 f}{\partial y\partial z} = 2</m>.  But we also have that
+<m>\frac{\partial f}{\partial z} = 0</m>, so that
+<m>\frac{\partial^2 f}{\partial z\partial y} = \frac{\partial^2 f}{\partial y\partial z} = 0</m>.
 These two are not equal, which is a contradiction.  Therefore
 <m>\vec F</m> cannot be a gradient vector field.
 
@@ -82,20 +86,16 @@ These two are not equal, which is a contradiction.  Therefore
 
 <alert>(c)</alert><m>\vec F</m> is a gradient vector field.
 By integrating the components of the vector field <m>\vec F</m>, we
-can see that <m>f(x,y,z) =  x z</m> is a potential
+can see that <m>f(x,y,z) = 2 x y z</m> is a potential
 function for <m>\vec F</m>.
 
 
 
 
-<alert>(d)</alert><m>\vec F</m> is not a gradient vector field.
-If <m>\vec F</m> were a gradient vector field, then we would have
-<m>\frac{\partial f}{\partial x} = 5 x y</m>, so that
-<m>\frac{\partial^2 f}{\partial x\partial y} = 5 x</m>.  But we also have that
-<m>\frac{\partial f}{\partial y} = 5 y z</m>, so that
-<m>\frac{\partial^2 f}{\partial y\partial x} = \frac{\partial^2 f}{\partial x\partial y} = 5 z</m>.
-These two are not equal, which is a contradiction.  Therefore
-<m>\vec F</m> cannot be a gradient vector field.
+<alert>(d)</alert><m>\vec F</m> is a gradient vector field.
+By integrating the components of the vector field <m>\vec F</m>, we
+can see that <m>f(x,y,z) = 4 x y</m> is a potential
+function for <m>\vec F</m>.
 
 
 

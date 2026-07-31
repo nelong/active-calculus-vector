@@ -1,20 +1,20 @@
 <?xml version='1.0' encoding='utf-8'?>
 <webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="20" xml:id="extracted-Library__Michigan__Chap19Sec3__Q11__pg" assembly-id="Library__Michigan__Chap19Sec3__Q11__pg">
-  <static seed="784" source="Library/Michigan/Chap19Sec3/Q11.pg">
+  <static seed="777" source="Library/Michigan/Chap19Sec3/Q11.pg">
     <statement><p>Compute the flux of <m>\vec F=x\vec i+y\vec j+z\vec k</m>
-through the curved surface of the cylinder <m>x^2+y^2=25</m>
-bounded below by the plane <m>x+y+z=2</m>, above by the plane
-<m>x+y+z=7</m>, and oriented away from the <m>z</m>-axis.</p>
+through the curved surface of the cylinder <m>x^2+y^2=1</m>
+bounded below by the plane <m>x+y+z=3</m>, above by the plane
+<m>x+y+z=8</m>, and oriented away from the <m>z</m>-axis.</p>
 <p>flux = <fillin characters="35" name="AnSwEr0001"/></p>
 </statement>
     <answer>
       <p>
-        <m>250\pi </m>
+        <m>10\pi </m>
       </p>
     </answer>
-    <solution><me>\vec r=x\vec i+y\vec j+z\vec k =5\cos t\vec i+ 5\sin t\vec j + s \vec k,</me>
+    <solution><me>\vec r=x\vec i+y\vec j+z\vec k =\cos t\vec i+ \sin t\vec j + s \vec k,</me>
 where <m>0\leq t\leq 2\pi</m> and
-<m>2-5 \cos t-5 \sin t\leq s\leq 7 - 5 \cos t - 5\sin t.</m>
+<m>3- \cos t- \sin t\leq s\leq 8 -  \cos t - \sin t.</m>
 
 
 
@@ -24,16 +24,16 @@ s</m> points away from the <m>z</m>-axis, so
 <m>d\vec A=\left({\partial\vec r}/{\partial t}\times
 {\partial\vec r}/{\partial s}\right)\,ds\, dt</m> and
 <me>\vec F\cdot d\vec A = \left|\begin{array}{ccc}
-x \amp  y \amp  z\\ -5\sin t \amp  5\cos t \amp  0\\ 0 \amp  0 \amp  1\end{array}\right|
+x \amp  y \amp  z\\ -\sin t \amp  \cos t \amp  0\\ 0 \amp  0 \amp  1\end{array}\right|
 \,ds\,dt
-= (5 x\cos t + 5 y\sin t)\,ds\,dt.</me>
+= ( x\cos t +  y\sin t)\,ds\,dt.</me>
 Plugging in for <m>x</m> and <m>y</m>, this is
-<me>\vec F\cdot d\vec A = 25 (\cos^2 t+\sin^2 t)\,ds\,dt
-= 25\, ds\,dt.</me>
+<me>\vec F\cdot d\vec A =  (\cos^2 t+\sin^2 t)\,ds\,dt
+= \, ds\,dt.</me>
 Hence,
 <me>\int_S\vec F\cdot d\vec A =
-\int_0^{2\pi}\int_{2-5\cos t-5\sin t}^{7-5\cos t-5\sin t}
-25\,ds\, dt = \int_0^{2\pi} 125\,dt = 250\pi.</me>
+\int_0^{2\pi}\int_{3-\cos t-\sin t}^{8-\cos t-\sin t}
+\,ds\, dt = \int_0^{2\pi} 5\,dt = 10\pi.</me>
 
 
 

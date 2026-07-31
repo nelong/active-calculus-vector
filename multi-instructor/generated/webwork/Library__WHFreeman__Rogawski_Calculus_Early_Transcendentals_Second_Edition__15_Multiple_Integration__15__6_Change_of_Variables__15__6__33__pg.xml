@@ -1,16 +1,16 @@
 <?xml version='1.0' encoding='utf-8'?>
 <webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="20" xml:id="extracted-Library__WHFreeman__Rogawski_Calculus_Early_Transcendentals_Second_Edition__15_Multiple_Integration__15__6_Change_of_Variables__15__6__33__pg" assembly-id="Library__WHFreeman__Rogawski_Calculus_Early_Transcendentals_Second_Edition__15_Multiple_Integration__15__6_Change_of_Variables__15__6__33__pg">
-  <static seed="648" source="Library/WHFreeman/Rogawski_Calculus_Early_Transcendentals_Second_Edition/15_Multiple_Integration/15.6_Change_of_Variables/15.6.33.pg">
+  <static seed="643" source="Library/WHFreeman/Rogawski_Calculus_Early_Transcendentals_Second_Edition/15_Multiple_Integration/15.6_Change_of_Variables/15.6.33.pg">
     <statement><p>Show that <m>T(u,v)=(u^2-v^2,2uv)</m> maps the triangle
-<m>=\lbrace (u,v): 0\le v\le u\le 4\rbrace</m> to the domain <m>\mathcal{D}</m> bounded
+<m>=\lbrace (u,v): 0\le v\le u\le 1\rbrace</m> to the domain <m>\mathcal{D}</m> bounded
 by <m>x=0</m>, <m>y=0</m>,</p>
-<p>and <m>y^2=1024-64x</m>.  Use <m>T</m> to evaluate
+<p>and <m>y^2=4-4x</m>.  Use <m>T</m> to evaluate
 <me>\int\!\!\int _{\mathcal{D}}\sqrt{x^2+y^2}\, dx\,dy</me>
 Answer : <fillin characters="20" name="AnSwEr0001"/></p>
 </statement>
     <answer>
       <p>
-        <m>5097.24</m>
+        <m>1.24444</m>
       </p>
     </answer>
     <solution><m>{\mathcal{D}}_0</m> is mapped to the boundary of <m>\mathcal{D}</m>. 
@@ -19,7 +19,7 @@ Answer : <fillin characters="20" name="AnSwEr0001"/></p>
 <image xmlns:pi="http://pretextbook.org/2020/pretext/internal" pi:generated="webwork/images/Library__WHFreeman__Rogawski_Calculus_Early_Transcendentals_Second_Edition__15_Multiple_Integration__15__6_Change_of_Variables__15__6__33__pg-image-1.png" width="79%"/>
 
 
-With <m>u_0=4,\quad x_0=4,\quad</m> and <m>y_0=32</m>
+With <m>u_0=1,\quad x_0=1,\quad</m> and <m>y_0=2</m>
 
 
  
@@ -34,15 +34,15 @@ That is, the image of the line <m>u=v</m> is the positive <m>y</m>-axis.
 The line <m>v=0</m> is mapped to the following set:
 <me>( x,y )=({u}^2,0)</me><me>\quad\Rightarrow\quad x={u}^2,\quad y=0</me><me>\quad\Rightarrow\quad y=0,\quad x\ge 0</me> 
 Thus, the line <m>v=0</m> is mapped to the positive <m>x</m>-axis. 
-We now show that the vertical line <m>u=4</m> is mapped to the curve <m>{y}^2+64x=256</m>.
+We now show that the vertical line <m>u=1</m> is mapped to the curve <m>{y}^2+4x=4</m>.
 
 
  
-The image of the line <m>u=4</m> is the following set:
-<me>(x,y)=(16-{v}^2,8v)</me><me>\quad\Rightarrow\quad x=16-{v}^2,\quad y=8v</me>
-We substitute <m>v=\frac{y}{8}</m> in the equation <m>x=16-{v}^2</m> to obtain
-<me>x=16-{\left(\frac{y}{8}\right)}^2=16-\frac{{y}^2}{64}</me><me>\quad\Rightarrow\quad
- 64x=1024-{y}^2</me><me>\quad\Rightarrow\quad {y}^2+64x=1024</me>
+The image of the line <m>u=1</m> is the following set:
+<me>(x,y)=(1-{v}^2,2v)</me><me>\quad\Rightarrow\quad x=1-{v}^2,\quad y=2v</me>
+We substitute <m>v=\frac{y}{2}</m> in the equation <m>x=1-{v}^2</m> to obtain
+<me>x=1-{\left(\frac{y}{2}\right)}^2=1-\frac{{y}^2}{4}</me><me>\quad\Rightarrow\quad
+ 4x=4-{y}^2</me><me>\quad\Rightarrow\quad {y}^2+4x=4</me>
 Since the boundary of <m>{\mathcal{D}}_0</m> is mapped to the boundary of <m>\mathcal{D}</m>,
 we conclude that the domain <m>{\mathcal{D}}_0</m> is mapped by <m>T</m> to the domain <m>\mathcal{D}</m> in the <m>xy</m>-plane.
 
@@ -72,7 +72,7 @@ We compute the Jacobian of <m>T</m>:
 2u\amp -2v\\ 2v\amp 2u\end{array}\right|=</me><me>4{u}^2+4{v}^2=
 4({u}^2+{v}^2)</me>
 <image xmlns:pi="http://pretextbook.org/2020/pretext/internal" pi:generated="webwork/images/Library__WHFreeman__Rogawski_Calculus_Early_Transcendentals_Second_Edition__15_Multiple_Integration__15__6_Change_of_Variables__15__6__33__pg-image-2.png" width="32%"/> 
-With <m>u_0=4</m>
+With <m>u_0=1</m>
 
 
 
@@ -80,18 +80,18 @@ With <m>u_0=4</m>
 \int\!\!\int _{\mathcal{D}} \sqrt{{x}^2+{y}^2} \,dx \,dy \amp =\amp 
 \int\!\!\int _{\mathcal{D}_0} ({u}^2+{v}^2)\cdot 4({u}^2+{v}^2) \,du \,dv\\
 \amp =\amp 
-4\int_0^{4} \int_0^{u} ({u}^4+2{u}^2{v}^2+{v}^4) \,dv \,du\\
+4\int_0^{1} \int_0^{u} ({u}^4+2{u}^2{v}^2+{v}^4) \,dv \,du\\
 \amp =\amp 
-4\int_0^{4} {u}^4v+\frac{2}{3}{u}^2{v}^3+\frac{{v}^5}{5}\bigg|_{v=0}^{u} \,du\\
+4\int_0^{1} {u}^4v+\frac{2}{3}{u}^2{v}^3+\frac{{v}^5}{5}\bigg|_{v=0}^{u} \,du\\
 \amp =\amp 
-4\int_0^{4} \left({u}^5+\frac{2}{3}{u}^5+\frac{{u}^5}{5}\right) \,du\\
+4\int_0^{1} \left({u}^5+\frac{2}{3}{u}^5+\frac{{u}^5}{5}\right) \,du\\
 \amp =\amp 
-4\int_0^{4} \frac{28}{15}{u}^5 \,du\\
+4\int_0^{1} \frac{28}{15}{u}^5 \,du\\
 \amp =\amp 
-\frac{112}{15}\cdot \frac{{u}^6}{6}\bigg|_0^{4}\\
+\frac{112}{15}\cdot \frac{{u}^6}{6}\bigg|_0^{1}\\
 \amp =\amp 
-\frac{229376}{45}
-\approx 5097.24
+\frac{56}{45}
+\approx 1.24444
 \end{array}</me>
 
 

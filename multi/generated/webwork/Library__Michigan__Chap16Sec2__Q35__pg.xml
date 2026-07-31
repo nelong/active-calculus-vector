@@ -1,15 +1,15 @@
 <?xml version='1.0' encoding='utf-8'?>
 <webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="20" xml:id="extracted-Library__Michigan__Chap16Sec2__Q35__pg" assembly-id="Library__Michigan__Chap16Sec2__Q35__pg">
-  <static seed="547" source="Library/Michigan/Chap16Sec2/Q35.pg">
+  <static seed="535" source="Library/Michigan/Chap16Sec2/Q35.pg">
     <statement><p>Evaluate the integral
-<me>\int_0^{3}\int_y^{3} \cos(x^2)\ dx\,dy</me>
+<me>\int_0^{1}\int_y^{1} \sin(x^2)\ dx\,dy</me>
 by reversing the order of integration.</p>
 <p>With order reversed,
-<me>\int_a^b\int_c^d \cos(x^2)\ dy\,dx,</me>
+<me>\int_a^b\int_c^d \sin(x^2)\ dy\,dx,</me>
 where <m>a =</m> <fillin characters="5" name="AnSwEr0001"/>, <m>b =</m> <fillin characters="5" name="AnSwEr0002"/>,
 <m>c =</m> <fillin characters="5" name="AnSwEr0003"/>, and <m>d =</m> <fillin characters="5" name="AnSwEr0004"/>.</p>
 <p>Evaluating the integral,
-<m>\int_0^{3}\int_y^{3} \cos(x^2)\ dx\,dy =</m>
+<m>\int_0^{1}\int_y^{1} \sin(x^2)\ dx\,dy =</m>
 <fillin characters="35" name="AnSwEr0005"/></p>
 </statement>
     <answer>
@@ -19,7 +19,7 @@ where <m>a =</m> <fillin characters="5" name="AnSwEr0001"/>, <m>b =</m> <fillin 
     </answer>
     <answer>
       <p>
-        <m>3</m>
+        <m>1</m>
       </p>
     </answer>
     <answer>
@@ -34,10 +34,10 @@ where <m>a =</m> <fillin characters="5" name="AnSwEr0001"/>, <m>b =</m> <fillin 
     </answer>
     <answer>
       <p>
-        <m>\frac{1}{2}\sin\mathopen{}\left(3\cdot 3\right)</m>
+        <m>\frac{1}{2}\mathopen{}\left(1-\cos\mathopen{}\left(1\cdot 1\right)\right)</m>
       </p>
     </answer>
-    <solution><m>\cos(x^2)</m> has no elementary antiderivative, so we try
+    <solution><m>\sin(x^2)</m> has no elementary antiderivative, so we try
 integrating with respect to <m>y</m> first.
 The region of integration is shown in the figure below.
 
@@ -50,14 +50,14 @@ The region of integration is shown in the figure below.
 
 
 Changing the order of integration, we get
-<me>\int_0^{3}\int_y^{3}\cos(x^2)\ dx\ dy
-    = \int_0^{3}\int_0^x \cos(x^2) \ dy\ dx,</me>
+<me>\int_0^{1}\int_y^{1}\sin(x^2)\ dx\ dy
+    = \int_0^{1}\int_0^x \sin(x^2) \ dy\ dx,</me>
 which we can easily evaluate:
-<me>\int_0^{3}\int_0^x \cos(x^2) \ dy\ dx =
-    \int_0^{3} \cos(x^2)\cdot y\bigg|_0^x\ dx =
-    \int_0^{3} \cos(x^2)\cdot x\ dx</me>
-<me>= \frac12 (\sin(x^2))\bigg|_0^{3} =
-    \frac12 ( \sin 9 ).</me>
+<me>\int_0^{1}\int_0^x \sin(x^2) \ dy\ dx =
+    \int_0^{1} \sin(x^2)\cdot y\bigg|_0^x\ dx =
+    \int_0^{1} \sin(x^2)\cdot x\ dx</me>
+<me>= \frac12 (-\cos(x^2))\bigg|_0^{1} =
+    \frac12 ( 1 - \cos 1 ).</me>
 
 
 

@@ -1,10 +1,10 @@
 <?xml version='1.0' encoding='utf-8'?>
 <webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="20" xml:id="extracted-Library__Michigan__Chap16Sec3__Q23__pg" assembly-id="Library__Michigan__Chap16Sec3__Q23__pg">
-  <static seed="613" source="Library/Michigan/Chap16Sec3/Q23.pg">
+  <static seed="601" source="Library/Michigan/Chap16Sec3/Q23.pg">
     <statement><p>Write limits of integration for the
 integral <m>\int_W g(x,y,z)\,dV</m>, where <m>W</m> is the
 half cylinder shown, if the length of the cylinder is
-3 and its radius is 1.</p>
+1 and its radius is 1.</p>
 <image xmlns:pi="http://pretextbook.org/2020/pretext/internal" pi:generated="webwork/images/Library__Michigan__Chap16Sec3__Q23__pg-image-1.png" width="33%"/>
 <p><m>\int_W g(x,y,z)\,dV = \int_a^b\int_c^d\int_e^f g(x,y,z)\, d</m><fillin characters="3" name="AnSwEr0001"/>
 <m>d</m><fillin characters="3" name="AnSwEr0002"/>
@@ -41,7 +41,7 @@ this problem to be able to check the answers provided.)</p>
     </answer>
     <answer>
       <p>
-        <m>3</m>
+        <m>1</m>
       </p>
     </answer>
     <answer>
@@ -56,37 +56,37 @@ this problem to be able to check the answers provided.)</p>
     </answer>
     <answer>
       <p>
-        <m>0</m>
+        <m>-\sqrt{1-y^{2}}</m>
       </p>
     </answer>
     <answer>
       <p>
-        <m>\sqrt{1-y^{2}}</m>
+        <m>0</m>
       </p>
     </answer>
     <solution><m>W</m> for a fixed value of <m>x</m> is a
 semi-circle the boundary of which is <m>y^2 + z^2 = 1</m>, for
-<m>z\ge 0</m>, so we may take the inner integral
+<m>z\le 0</m>, so we may take the inner integral
 to be
-<me>\int_{0}^{\sqrt{1-y^{2}}} g(x,y,z)\,dz.</me>
+<me>\int_{-\sqrt{1-y^{2}}}^{0} g(x,y,z)\,dz.</me>
 Lining up these stacks parallel to <m>y</m>-axis gives a slice from
 <m>y=-1</m> to
 <m>y=1</m> giving
 <me>\int_{-1}^{1}
-    \int_{0}^{\sqrt{1-y^{2}}} g(x,y,z)\,
+    \int_{-\sqrt{1-y^{2}}}^{0} g(x,y,z)\,
 	dz\,dy.</me>
-Finally, there is a slice for each <m>x</m> between 0 and 3, so the integral
+Finally, there is a slice for each <m>x</m> between 0 and 1, so the integral
 we want is
-<me>\int_{0}^{3}
+<me>\int_{0}^{1}
   \int_{-1}^{1}
-    \int_{0}^{\sqrt{1-y^{2}}} g(x,y,z)\,
+    \int_{-\sqrt{1-y^{2}}}^{0} g(x,y,z)\,
 	dz\,dy\,dx.</me>
 
 
 
 We could also write this as
-<me>\int_{0}^{3}
-  \int_{0}^{1}
+<me>\int_{0}^{1}
+  \int_{-1}^{0}
     \int_{-\sqrt{1-z^{2}}}^{\sqrt{1-z^{2}}} g(x,y,z)\,
 	dy\,dz\,dx.</me>
 

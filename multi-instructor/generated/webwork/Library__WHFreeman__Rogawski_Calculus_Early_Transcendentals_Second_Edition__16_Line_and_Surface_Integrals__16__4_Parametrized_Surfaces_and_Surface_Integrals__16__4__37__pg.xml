@@ -1,13 +1,13 @@
 <?xml version='1.0' encoding='utf-8'?>
 <webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="20" xml:id="extracted-Library__WHFreeman__Rogawski_Calculus_Early_Transcendentals_Second_Edition__16_Line_and_Surface_Integrals__16__4_Parametrized_Surfaces_and_Surface_Integrals__16__4__37__pg" assembly-id="Library__WHFreeman__Rogawski_Calculus_Early_Transcendentals_Second_Edition__16_Line_and_Surface_Integrals__16__4_Parametrized_Surfaces_and_Surface_Integrals__16__4__37__pg">
-  <static seed="760" source="Library/WHFreeman/Rogawski_Calculus_Early_Transcendentals_Second_Edition/16_Line_and_Surface_Integrals/16.4_Parametrized_Surfaces_and_Surface_Integrals/16.4.37.pg">
+  <static seed="753" source="Library/WHFreeman/Rogawski_Calculus_Early_Transcendentals_Second_Edition/16_Line_and_Surface_Integrals/16.4_Parametrized_Surfaces_and_Surface_Integrals/16.4.37.pg">
     <statement><p>Find the surface area of the portion <m>S</m> of the cone <m>z^2=x^2+y^2</m>, where <m>z\ge 0</m>,</p>
-<p>contained within the cylinder <m>y^2+z^2\le 9</m>.</p>
+<p>contained within the cylinder <m>y^2+z^2\le 25</m>.</p>
 <p><m>\mathrm{Area}(S)=</m> <fillin characters="20" name="AnSwEr0001"/></p>
 </statement>
     <answer>
       <p>
-        <m>28.2743</m>
+        <m>78.5398</m>
       </p>
     </answer>
     <solution><m>x=\pm\sqrt{z^2-y^2}</m>. 
@@ -29,7 +29,7 @@ Therefore, the projection <m>\mathcal{D}</m> of <m>S</m> onto the <m>yz</m>-plan
 
 
 
-<image xmlns:pi="http://pretextbook.org/2020/pretext/internal" pi:generated="webwork/images/Library__WHFreeman__Rogawski_Calculus_Early_Transcendentals_Second_Edition__16_Line_and_Surface_Integrals__16__4_Parametrized_Surfaces_and_Surface_Integrals__16__4__37__pg-image-1.png" width="39%"/> With <m>r_0=3</m> 
+<image xmlns:pi="http://pretextbook.org/2020/pretext/internal" pi:generated="webwork/images/Library__WHFreeman__Rogawski_Calculus_Early_Transcendentals_Second_Edition__16_Line_and_Surface_Integrals__16__4_Parametrized_Surfaces_and_Surface_Integrals__16__4__37__pg-image-1.png" width="39%"/> With <m>r_0=5</m> 
 
 
 The area of <m>S</m> is the surface integral:
@@ -43,14 +43,14 @@ We obtain the following integral:
 <me>\iint_{\mathcal{D}} \frac{z\sqrt{2}}{\sqrt{z^2- y^2}} \,dz \,dy</me>
 Using symmetry gives:
 <me>\mathrm{Area}(S) =
-4 \int_0^{3/(\sqrt{2})} \int_y^{\sqrt{9-y^2}} \frac{z\sqrt{2}}{\sqrt{z^2- y^2}} \,dz \,dy=</me><me>4\sqrt{2} \int_0^{3/(\sqrt{2})} \left(\int_y^{\sqrt{9- y^2}} \frac{z \,dz}{\sqrt{z^2- y^2}}\right) \,dy \quad \mathbf{(1)}</me>
+4 \int_0^{5/(\sqrt{2})} \int_y^{\sqrt{25-y^2}} \frac{z\sqrt{2}}{\sqrt{z^2- y^2}} \,dz \,dy=</me><me>4\sqrt{2} \int_0^{5/(\sqrt{2})} \left(\int_y^{\sqrt{25- y^2}} \frac{z \,dz}{\sqrt{z^2- y^2}}\right) \,dy \quad \mathbf{(1)}</me>
 We compute the inner integral using the substitution <m>u=\sqrt{z^2-y^2}</m>, <m>\,du=\frac zu\,dz</m>. We get:
-<me>\int_y^{\sqrt{9-y^2}} \frac{z\,dz}{\sqrt{z^2-y^2}} = \int_0^{\sqrt{9-2y^2}} \frac{u\,du}{u} =</me><me>\int_0^{\sqrt{9-2y^2}}\,du=\sqrt{9-2y^2}</me>
-We substitute in <m>\mathbf{(1)}</m> and compute the resulting integral using the substitution <m>t=\frac1{3}\sqrt{2}y</m>. We get:
+<me>\int_y^{\sqrt{25-y^2}} \frac{z\,dz}{\sqrt{z^2-y^2}} = \int_0^{\sqrt{25-2y^2}} \frac{u\,du}{u} =</me><me>\int_0^{\sqrt{25-2y^2}}\,du=\sqrt{25-2y^2}</me>
+We substitute in <m>\mathbf{(1)}</m> and compute the resulting integral using the substitution <m>t=\frac1{5}\sqrt{2}y</m>. We get:
 <me>\mathrm{Area}(S) =
-4\sqrt{2} \int_0^{3/(\sqrt{2})} \sqrt{9-2 y^2} \,dy=</me><me>4\sqrt{2} \int_0^1 \sqrt{9-9 t^2} \frac{3 dt}{\sqrt{2}}=</me><me>4\cdot {3}^2\int_0^1 \sqrt{1- t^2}\,dt=
-4\cdot {3}^2\cdot \frac{\pi}{4}=
-9 \pi</me>
+4\sqrt{2} \int_0^{5/(\sqrt{2})} \sqrt{25-2 y^2} \,dy=</me><me>4\sqrt{2} \int_0^1 \sqrt{25-25 t^2} \frac{5 dt}{\sqrt{2}}=</me><me>4\cdot {5}^2\int_0^1 \sqrt{1- t^2}\,dt=
+4\cdot {5}^2\cdot \frac{\pi}{4}=
+25 \pi</me>
 
 
 </solution>

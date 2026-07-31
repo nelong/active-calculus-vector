@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='utf-8'?>
 <webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="20" xml:id="extracted-Library__Michigan__Chap20Sec4__Q01__pg" assembly-id="Library__Michigan__Chap20Sec4__Q01__pg">
-  <static seed="801" source="Library/Michigan/Chap20Sec4/Q01.pg">
+  <static seed="794" source="Library/Michigan/Chap20Sec4/Q01.pg">
     <statement><p>Calculate the circulation, <m>\int_C\vec F\cdot d\vec r</m>, in two ways,
 directly and using Stokes' Theorem.  The vector field
-<m>\vec F = (6x-3y+6z)(\vec i+\vec j)</m> and  <m>C</m> is the triangle with
+<m>\vec F = (8x-8y+7z)(\vec i+\vec j)</m> and  <m>C</m> is the triangle with
 vertices <m>(0,0,0)</m>, <m>(3,0,0)</m>, <m>(3,5,0)</m>, traversed in
 that order.</p>
 <p>Calculating directly, we break <m>C</m> into three paths.  For each, give
@@ -50,32 +50,32 @@ plane enclosed by the indicated triangle, is</p>
     </answer>
     <answer>
       <p>
-        <m>\frac{6\cdot 3^{2}}{2}</m>
+        <m>\frac{8\cdot 3^{2}}{2}</m>
       </p>
     </answer>
     <answer>
       <p>
-        <m>6\cdot 3\cdot 5+\frac{-3\cdot 5^{2}}{2}</m>
+        <m>8\cdot 3\cdot 5+\frac{-8\cdot 5^{2}}{2}</m>
       </p>
     </answer>
     <answer>
       <p>
-        <m>-1\cdot \left(\frac{6\cdot 3}{2}+\frac{-3\cdot 5}{2}\right)\mathopen{}\left(3+5\right)</m>
+        <m>-1\cdot \left(\frac{8\cdot 3}{2}+\frac{-8\cdot 5}{2}\right)\mathopen{}\left(3+5\right)</m>
       </p>
     </answer>
     <answer>
       <p>
-        <m>\frac{\left(6--3\right)\cdot 3\cdot 5}{2}</m>
+        <m>\frac{\left(8--8\right)\cdot 3\cdot 5}{2}</m>
       </p>
     </answer>
     <answer>
       <p>
-        <m>-6\,\mathit{\vec i}+6\,\mathit{\vec j}+9\,\mathit{\vec k}</m>
+        <m>-7\,\mathit{\vec i}+7\,\mathit{\vec j}+16\,\mathit{\vec k}</m>
       </p>
     </answer>
     <answer>
       <p>
-        <m>9</m>
+        <m>16</m>
       </p>
     </answer>
     <answer>
@@ -100,7 +100,7 @@ plane enclosed by the indicated triangle, is</p>
     </answer>
     <answer>
       <p>
-        <m>\frac{\left(6--3\right)\cdot 3\cdot 5}{2}</m>
+        <m>\frac{\left(8--8\right)\cdot 3\cdot 5}{2}</m>
       </p>
     </answer>
     <solution><m>\int_C\vec F\cdot d\vec r</m> directly, we compute the
@@ -112,19 +112,19 @@ On <m>C_2</m> and <m>C_3</m>, we similarly can take
    \vec r_3(t) = 3(1 - t)\vec i + 5(1 - t)\vec j.</me>
 Thus
 <me>\int_{C_1}\vec F\cdot d\vec r =
-   \int_0^1 18 t(\vec i + \vec j)\cdot(3\vec i)\,dt =
-   \int_0^1 54\,t\,dt = 27.</me>
+   \int_0^1 24 t(\vec i + \vec j)\cdot(3\vec i)\,dt =
+   \int_0^1 72\,t\,dt = 36.</me>
 Similarly,
 <me>\int_{C_2}\vec F\cdot d\vec r =
-   \int_0^1 (18 - 15 t)(\vec i + \vec j)\cdot( 5\vec j)\,dt =
-   \int_0^1 18 - 75\,t\,dt = \frac{105}{2},</me>
+   \int_0^1 (24 - 40 t)(\vec i + \vec j)\cdot( 5\vec j)\,dt =
+   \int_0^1 24 - 200\,t\,dt = 20,</me>
 and
 <me>\int_{C_3}\vec F\cdot d\vec r =
-   \int_0^1 (18(1 - t) - 15(1 - t))(\vec i + \vec j)\cdot
-	(-3\vec i - 5\vec j)\, dt = -12.</me>
+   \int_0^1 (24(1 - t) - 40(1 - t))(\vec i + \vec j)\cdot
+	(-3\vec i - 5\vec j)\, dt = 64.</me>
 Then
 <me>\int_C\vec F\cdot d\vec r = \int_{C_1}\vec F\cdot d\vec r +
-   \int_{C_2}\vec F\cdot d\vec r + \int_{C_3}\vec F\cdot d\vec r = \frac{135}{2}.</me>
+   \int_{C_2}\vec F\cdot d\vec r + \int_{C_3}\vec F\cdot d\vec r = 120.</me>
 
 
 
@@ -135,14 +135,14 @@ find
 \vec i \amp  \vec j \amp  \vec k\\
 \frac{\partial}{\partial x} \amp  \frac{\partial}{\partial y} \amp 
   \frac{\partial}{\partial z}\\
-6x-3y+6z \amp  6x-3y+6z \amp  0
-\end{array}\right| = -6\vec i+ 6\vec j+ 9\vec k.</me>
+8x-8y+7z \amp  8x-8y+7z \amp  0
+\end{array}\right| = -7\vec i+ 7\vec j+ 16\vec k.</me>
 For Stokes' Theorem, the triangular region <m>S</m> in
 contained by the triangle is oriented upward, so <m>d\vec A=\vec
 k\,dx\,dy</m>.  Thus
 <me>\int_C\vec F\cdot d\vec r = \int_S\mbox{curl }\vec F\cdot d\vec A =
-\int_S(-6\vec i+6\vec j+9\vec k)\cdot \vec k\, dx\, dy
-= \int_0^{3}\int_0^{5 x/3}\,9\,dx\,dy = \frac{135}{2}.</me>
+\int_S(-7\vec i+7\vec j+16\vec k)\cdot \vec k\, dx\, dy
+= \int_0^{3}\int_0^{5 x/3}\,16\,dx\,dy = 120.</me>
 
 
 

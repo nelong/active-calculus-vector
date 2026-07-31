@@ -1,48 +1,48 @@
 <?xml version='1.0' encoding='utf-8'?>
 <webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="20" xml:id="extracted-Library__Michigan__Chap19Sec3__Q01__pg" assembly-id="Library__Michigan__Chap19Sec3__Q01__pg">
-  <static seed="777" source="Library/Michigan/Chap19Sec3/Q01.pg">
+  <static seed="776" source="Library/Michigan/Chap19Sec3/Q01.pg">
     <statement><p>Compute the flux of the vector field <m>\vec F = z\vec k</m>
 through the parameterized surface <m>S</m>, which is
 oriented toward the <m>z</m>-axis and
-given, for <m>0\leq s \leq 4, \ \  0\leq t\leq 5</m>, by
-<me>x =  s + 5 t, \quad y =  s - 5 t, \quad z = s^2+t^2.</me></p>
+given, for <m>0\leq s \leq 2, \ \  0\leq t\leq 1</m>, by
+<me>x = 5 s + 2 t, \quad y = 5 s - 2 t, \quad z = s^2+t^2.</me></p>
 <p>flux = <fillin characters="35" name="AnSwEr0001"/></p>
 </statement>
     <answer>
       <p>
-        <m>\frac{2\cdot 1\cdot 5\cdot 4\cdot 5\cdot \left(4\cdot 4+5\cdot 5\right)}{3}</m>
+        <m>\frac{2\cdot 5\cdot 2\cdot 2\cdot 1\cdot \left(2\cdot 2+1\cdot 1\right)}{3}</m>
       </p>
     </answer>
     <solution><m>S</m> is given by
-<me>\vec r (s,t) = ( s+ 5 t)\vec i + ( s- 5 t)\vec j +
+<me>\vec r (s,t) = (5 s+ 2 t)\vec i + (5 s- 2 t)\vec j +
   (s^2+t^2)\vec k,</me>
 we have
-<me>\frac{\partial \vec r}{\partial s} =  \vec i +  \vec j +2 s\vec k
+<me>\frac{\partial \vec r}{\partial s} =  5\vec i + 5 \vec j +2 s\vec k
 \quad\hbox{ and }\quad \frac{\partial \vec r}{\partial t} =
-5 \vec i - 5 \vec j + 2t\vec k,</me>
+2 \vec i - 2 \vec j + 2t\vec k,</me>
 and
 <me>\frac{\partial \vec r}{\partial s} \times \frac{\partial \vec
 r}{\partial t} =  \left| \begin{array}{ccc}
 	\vec i \amp  \vec j \amp  \vec k\\
-	1     \amp    1   \amp  2s\\
-	5     \amp   -5   \amp  2t \end{array}\right| =
-(10 s+ 2 t)\vec i +(10 s - 2 t)\vec j - 10 \vec k.</me>
+	5     \amp    5   \amp  2s\\
+	2     \amp   -2   \amp  2t \end{array}\right| =
+(4 s+ 10 t)\vec i +(4 s - 10 t)\vec j - 20 \vec k.</me>
 Since the <m>\vec i</m> component of this vector is positive for <m>0 \lt  s \lt 
-4</m>, <m>0 \lt  t \lt  5</m>, it points away from the <m>z</m>-axis, and so has the
+2</m>, <m>0 \lt  t \lt  1</m>, it points away from the <m>z</m>-axis, and so has the
 opposite orientation to the one specified. Thus, we  use
 <me>d\vec A = - \frac{\partial \vec r}{\partial s} \times
   \frac{\partial \vec r}{\partial t} \, ds \, dt,</me>
 and so we have
-<me>\int_S \vec F\cdot d\vec A = -\int_0^{5}\int_0^{4} (s^2+t^2)\vec k
+<me>\int_S \vec F\cdot d\vec A = -\int_0^{1}\int_0^{2} (s^2+t^2)\vec k
 	\cdot \left(
-(10 s+ 2 t)\vec i +(10 s - 2 t)\vec j - 10 \vec k\right)
+(4 s+ 10 t)\vec i +(4 s - 10 t)\vec j - 20 \vec k\right)
 \,ds\,dt</me>
-<me>= 10\int_0^{5}\int_0^{4}(s^2+t^2)\,ds\,dt =
-  10\int_0^{5} \left(\frac{s^3}3+st^2\right)
-	\bigg|_{s=0}^{s=4}\,dt</me>
-<me>= 10\int_0^{5}(\frac{64}{3} + 4 t^2)\,dt =
-  10(\frac{64}{3} t+ \frac{4}{3} t^3\bigg|_0^{5} =
-  10(\frac{320}{3} + \frac{500}{3}) = \frac{8200}{3}.</me>
+<me>= 20\int_0^{1}\int_0^{2}(s^2+t^2)\,ds\,dt =
+  20\int_0^{1} \left(\frac{s^3}3+st^2\right)
+	\bigg|_{s=0}^{s=2}\,dt</me>
+<me>= 20\int_0^{1}(\frac{8}{3} + 2 t^2)\,dt =
+  20(\frac{8}{3} t+ \frac{2}{3} t^3\bigg|_0^{1} =
+  20(\frac{8}{3} + \frac{2}{3}) = \frac{200}{3}.</me>
 
 
 
