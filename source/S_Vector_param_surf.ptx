@@ -32,20 +32,20 @@
     <assemblage>
       <title>Notes to the Instructor and Dependencies</title>
     <p>
-      This section was previously discussed in the chapter on multiple integration, but was not used until surface integrals were defined in Chapter 13. 
+      In the first edition, this section was in the chapter on multiple integration, but it felt like a bit of an afterthought until it was used after surface integrals were defined in the vector calculus chapter. The second edition moves this material to a natural place in the flow of the text overall. Parameterizations of surfaces is a required topic for the remainder of this chapter. While surface area can be treated lightly, the ideas of approximating patches of a surface by parallelograms with sides determined by tangent vectors to the parametric coordinate traces will be used again when studying flux integrals.
     </p>
     </assemblage>
   </introduction>
   <subsection>
     <title>Introduction</title>
-    <p>
-      Our work in <xref ref="S-Precalc-Lines"/> and <xref ref="C_VVF"/> used parameterizations of curves in two or three dimensions to create and use tools describing points and other properties of the curves. Remember that a parameterization of a curve, <m>C</m>, is a vector-valued function of one variable, <m>\vr(t) = \langle x(t), y(t), z(t) \rangle</m>, such that the terminal points of the output vectors of <m>\vr(t)</m> will trace out a given curve in space. Parameterizations of a curve must include bounds on the parameter <m>t</m> that describe where the curve begins and ends, when applicable. The graph of a vector-valued function of one variable often does not include plots of the position vectors, but will plot only the terminal points of the output vectors as a curve in space. 
+    <!-- <p>
+      Our work in <xref ref="S-Precalc-Lines"/> and <xref ref="C_VVF"/> used parameterizations of curves in two or three dimensions to create and use tools describing points and other properties of the curves. Remember that a parameterization of a curve <m>C</m> is a vector-valued function of one variable <m>\vr(t) = \langle x(t), y(t), z(t) \rangle</m> such that the terminal points of the output vectors of <m>\vr(t)</m> trace out the curve in space. Parameterizations of a curve must include bounds on the parameter <m>t</m> that describe where the curve begins and ends, when applicable. The graph of a vector-valued function of one variable often does not include plots of the position vectors. Instead, the convention is to plot only the terminal points of the output vectors as a curve in space. 
     </p>
     <p>
-      Parameterizations of curves enabled us to easily generate points, use vector and calculus tools (like direction of travel, direction of turning, arc length, curvature, etc.), and describe motion along the curve. In each of these uses, the parameterization reduced our curve, as a set of points in space, to a function of one variable, which is so valuable because we have a <em>LOT</em> of tools for functions of one variable. In particular, curves like circles, ellipses, hyperbolas, and parabolas cannot be expressed with one variable as a function of the others, but these curves <em>can</em> be studied with 1-variable calculus through our use of parameterizations. 
-    </p>
+      We used parameterizations of curves to easily generate points on the curve, use vector and calculus tools (like direction of travel, direction of turning, arc length, curvature, etc.), and describe motion along the curve. In each of these uses, the parameterization reduced our curve, as a set of points in space to a function of one variable. This is valuable because we have <em>many</em> tools for functions of one variable. In particular, curves such as circles, ellipses, hyperbolas, and parabolas cannot be expressed with one variable as a function of the others, but these curves <em>can</em> be studied using single-variable calculus by using parameterizations. 
+    </p> -->
     <p>
-      One of the central goals of this section is to extend the idea of parameterizations to curved surfaces in an attempt to apply the many multivariable tools of <xref ref="C_MVF"/> and <xref ref="C_MI"/>. In the following preview activity, we will look at how we can use geometric knowledge of right circular cylinders and cones to create a vector-valued function that will describe the points on the surface of a cone. 
+      In <xref ref="S-Precalc-Lines"/> and <xref ref="C_VVF"/>, we used parameterizations of curves as a means to use the many tools of single-variable calculus to analyze the curve. One of the central goals of this section is to extend the idea of parameterizations to surfaces in an attempt to apply the many <em>multivariable</em> tools of <xref ref="C_MVF"/> and <xref ref="C_MI"/>. In the preview activity, we look at how geometric knowledge of right circular cylinders and cones allows us to create a vector-valued function that describes the points on the surface of a cone. 
     </p>
 
     <!-- <p>
@@ -60,22 +60,22 @@
   <exploration workspace="1.5in" xml:id="PA_param_surfaces">
     <introduction>
       <p>
-        Recall the standard parameterization of the unit circle that is given by
+        Recall the standard parameterization of the unit circle given by
         <md>
-          x(t) = \cos(t) \ \ \ \ \text{ and }  \ \ \ \ y(t) = \sin(t),
-        </md>
+          x(t) = \cos(t) \qquad\text{ and }\qquad y(t) = \sin(t)
+        </md>,
         where <m>0 \le t \le 2\pi</m>.
       </p>
     </introduction>
     <task>
       <statement>
         <p>
-          Give a parameterization of a circle of radius of 2 in <m>\R^3</m> that has its center at <m>(0,0,1)</m> and lies in the plane <m>z=1</m>. Be sure to give the bounds on your parameter as well.
+          Find a parameterization of a circle of radius of 2 in <m>\R^3</m> centered at <m>(0,0,1)</m> and lying in the plane <m>z=1</m>. Be sure to give the bounds on the parameter as well.
         </p>
       </statement>
       <hint>
         <p>
-          The <m>z</m>-coordinate will be constant, so you only have to think about how <m>x</m> and <m>y</m> are changing in your parameterization.
+          The <m>z</m>-coordinate is constant, so only <m>x</m> and <m>y</m> will change in the parameterization.
         </p>
       </hint>
       <solution>
@@ -90,7 +90,7 @@
     <task>
       <statement>
         <p>
-          Give a parameterization of a circle of radius of 2 in <m>\R^3</m> that has its center at <m>(0,0,-5)</m> and lies in the plane <m>z=-5</m>. Be sure to give the bounds on your parameter as well.
+          Find a parameterization of a circle of radius of 2 in <m>\R^3</m> centered at <m>(0,0,-5)</m> and lying in the plane <m>z=-5</m>. Be sure to give the bounds on the parameter as well.
         </p>
       </statement>
       <solution>
@@ -105,7 +105,7 @@
     <task>
       <statement>
         <p>
-          Give a parameterization of a circle of radius of 2 in <m>\R^3</m> that has its center at <m>(0,0,a)</m> and lies in the plane <m>z=a</m>. Be sure to give the bounds on your parameter as well.
+          Find a parameterization of a circle of radius of 2 in <m>\R^3</m> centered at <m>(0,0,a)</m> and lying in the plane <m>z=a</m>. Be sure to give the bounds on the parameter as well.
         </p>
       </statement>
       <solution>
@@ -121,14 +121,14 @@
     <task>
       <statement>
         <p>
-          We can think of a right circular cylinder surface centered on the z-axis, such as the one shown in <xref ref="rcirccyl"/>, as being built with a stack of circles of the same radius centered at points along the z-axis. We want to give a parameterization of a right circular cylinder surface of radius 2, centered on the <m>z</m>-axis with heights from <m>b</m> to <m>c</m>. In other words, we want to express the <m>x</m>, <m>y</m>, and <m>z</m> coordinates of points on the right circular cylinder in terms of two variables. We will let the parameter <m>s</m> measure the height of the circle (in our stack) above or below the <m>xy</m>-plane and let the parameter <m>t</m> measure the location around the circle centered on the <m>z</m>-axis. Use your work for the previous part to write out each of the following:
-          <md>x(s,t) = \hspace{1.0in} y(s,t) = \hspace{1.0in} z(s,t)= \hspace{1.0in}</md>
+          A right circular cylinder surface centered on the <m>z</m>-axis, such as the one shown in <xref ref="rcirccyl"/>, can be thought of as being built from a stack of circles of fixed radius centered at points along the <m>z</m>-axis. Find a parameterization of a right circular cylinder surface of radius 2, centered on the <m>z</m>-axis with heights from <m>b</m> to <m>c</m>. In other words, express the <m>x</m>-, <m>y</m>-, and <m>z</m>-coordinates of points on the right circular cylinder in terms of two variables. Use the parameter <m>s</m> to measure the height of the circle above or below the <m>xy</m>-plane and use the parameter <m>t</m> to measure the location around the circle centered on the <m>z</m>-axis. Use the previous part to write out each of the following:
+          <md>x(s,t) = <fillin characters="3" />\qquad y(s,t) = <fillin characters="3" /> \qquad z(s,t)= <fillin characters="3" /></md>
           with the bounds on <m>s</m> and <m>t</m> given by 
-          <md>\hspace{1.0in} \leq s \leq \hspace{1.0in} \text{ and } \hspace{1.0in} \leq t \leq \hspace{1.0in} </md>
+          <md><fillin characters="1" /> \leq s \leq <fillin characters="1" /> \text{ and } <fillin characters="1" /> \leq t \leq <fillin characters="1" /> </md>
         </p>
         <figure xml:id="rcirccyl">
           <caption>A right circular cylinder centered on the <m>z</m>-axis</caption>
-          <interactive label="interactive-rcirccyl" platform="sage" width="100%" aspect="1:1">
+          <interactive label="interactive-rcirccyl" platform="sage" width="91%" aspect="1:1">
             <slate surface="sage">
               from sage.plot.plot3d.plot3d import axes
               var('s,t')
@@ -165,7 +165,7 @@
     <task>
       <statement>
         <p>
-          Just as a right circular cylinder can be viewed as a <q>stack</q> of circles of constant radius, a cone can be viewed as a stack of circles with varying radius. In particular, the cone given by <m>z^2=x^2+y^2</m> will have contours given by circles centered on the z-axis with radius changing according to the rule <m>r=z</m>. We want to give a parameterization of the cone given by <m>z^2=x^2+y^2</m> with heights from <m>b</m> to <m>c</m>. In other words, we want to express the <m>x</m>, <m>y</m>, and <m>z</m> coordinates of points on the cone in terms of two variables. We will let the parameter <m>s</m> measure the height of the circle (in our stack) above or below the <m>xy</m>-plane and let the parameter <m>t</m> measure the location around the circle centered on the <m>z</m>-axis. Write out each of the following:
+          Just as a right circular cylinder can be viewed as a <q>stack</q> of circles of fixed radius, a cone can be viewed as a stack of circles with <em>varying</em> radius. In particular, the cone <m>z^2=x^2+y^2</m> has contours that are circles centered on the <m>z</m>-axis with radius changing according to the rule <m>r=z</m>. Find a parameterization of the cone <m>z^2=x^2+y^2</m> with heights from <m>b</m> to <m>c</m>. In other words, we want to express the <m>x</m>, <m>y</m>, and <m>z</m> coordinates of points on the cone in terms of two variables. We will let the parameter <m>s</m> measure the height of the circle (in our stack) above or below the <m>xy</m>-plane and let the parameter <m>t</m> measure the location around the circle centered on the <m>z</m>-axis. Write out each of the following:
           <md>x(s,t) = \hspace{1.0in} y(s,t) = \hspace{1.0in} z(s,t)= </md>
           with the bounds on <m>s</m> and <m>t</m> given by 
           <md>\hspace{1.0in} \leq s \leq \hspace{1.0in} \text{ and } \hspace{1.0in} \leq t \leq \hspace{1.0in} </md>
@@ -191,22 +191,22 @@
   <subsection>
     <title>Parameterizations of Surfaces</title>
     <p>
-      In <xref ref="PA_param_surfaces"/>, we finished with a description of a cone in terms of measurements corresponding to the angle around the <m>z</m>-axis and the height above the <m>xy</m>-plane. We used geometric intuition to come up with the coordinate relationships of our two surfaces in <xref ref="PA_param_surfaces"/>. We will spend some time in this subsection talking about how to use algebraic and geometric tools to give parameterizations of curved surfaces. The next subsection will talk about some of the important geometric measurements that can be done with a parameterization of a curved surface. In the last subsection, we will look at how parameterizations are useful in computing the surface area of a curved surface in three dimensions. 
+      <xref ref="PA_param_surfaces"/> concluded with a description of a cone in terms of measurements corresponding to the angle around the <m>z</m>-axis and the position relative to the <m>xy</m>-plane. Geometric intuition described the coordinate relationships of the two surfaces in <xref ref="PA_param_surfaces"/>. This subsection discusses how to use algebraic and geometric tools to find parameterizations of curved surfaces. The next subsection describes some  important geometric measurements of a surface that can be done using a parameterization. The section concludes by examining how parameterizations can be used to compute the surface area of a surface in three dimensions. 
     </p>
 
     <p>
-      In a single-variable setting, any function may have its graph expressed parametrically. For instance, if we look the graph of <m>y = g(x)</m>, we can consider the parameterization <m>\langle t, g(t) \rangle</m> (where <m>t</m> belongs to the domain of <m>g</m>), which will generate the same curve. Certain curves that are not expressible with <m>y</m> as a function of <m>x</m> may be represented parametrically; for instance, the circle (which cannot be represented with either the <m>x</m> or <m>y</m>-coordinate written as a function of the other) can be parameterized by <m>\langle \cos(t), \sin(t) \rangle</m>, where <m>0 \leq t \lt 2\pi</m>.
+      In a single-variable setting, any function may have its graph expressed parametrically. For instance, the graph of <m>y = g(x)</m> can be parameterized as <m>\langle t, g(t) \rangle</m>, where <m>t</m> belongs to the domain of <m>g</m>. Certain curves that are not expressible with <m>y</m> as a function of <m>x</m> can also be represented parametrically. For instance, the unit circle cannot be represented with either the <m>x</m>- or <m>y</m>-coordinate written as a function of the other. However, it can be parameterized as <m>\langle \cos(t), \sin(t) \rangle</m>, where <m>0 \leq t \lt 2\pi</m>.
     </p>
 
     <p>
-      When we look at a surface of the form <m>z = f(x,y)</m>, we can express the <m>(x,y,z)</m> points on the surface parametrically by
+      A surface of the form <m>z = f(x,y)</m> can be expressed parametrically by
       <md>
         \langle x(s,t), y(s,t), z(s,t) \rangle = \langle s, t, f(s,t) \rangle,
       </md>
-      where <m>(s,t)</m> varies over the entire domain of <m>f</m>. In the parameterization above, we can think of <m>s</m> as acting like <m>x</m> and <m>t</m> as acting like <m>y</m>. Therefore, any familiar surface expressed as <m>z=f(x,y)</m> that we have studied so far can be generated as a parametric surface. The greater power of parameterizations is realized when dealing with surfaces that <em>cannot</em> be expressed by a single function <m>z = f(x,y)</m> (such as the unit sphere), but can be represented parametrically. 
+      where <m>(s,t)</m> varies over the entire domain of <m>f</m>. In the parameterization above, we can think of <m>s</m> as acting like <m>x</m> and <m>t</m> as acting like <m>y</m>. Therefore, any familiar surface expressed as <m>z=f(x,y)</m> can be written as a parametric surface. The greater power of parameterizations is realized when dealing with surfaces such as a sphere that <em>cannot</em> be expressed by a single function <m>z = f(x,y)</m> but <em>can</em> be represented parametrically. 
     </p>
     <p>
-      For surfaces where we cannot express one coordinate as a function of the other two, like ellipsoids or hyperboloids, the best strategy is to use geometric knowledge of these surfaces to express each of the <m>x</m>-, <m>y</m>-, and <m>z</m>-coordinates in terms of two measurements/parameters. In <xref ref="PA_param_surfaces"/>, we use parameters that measures the rotational coordinate (around the z-axis) and a coordinate that was related to the height above or below the <m>xy</m>-plane (along with the radial coordinate in the cone). In the next example, we will look at how to parameterize a torus (think of the surface of a doughnut) using this same strategy. 
+      For surfaces such as ellipsoids or hyperboloids where one coordinate cannot be expressed as a function of the other two, a good strategy is to use geometric knowledge of these surfaces to express each of the <m>x</m>-, <m>y</m>-, and <m>z</m>-coordinates in terms of two measurements/parameters. In <xref ref="PA_param_surfaces"/>, the parameters measured the rotational coordinate around the <m>z</m>-axis and the height above or below the <m>xy</m>-plane (along with the radial coordinate in the cone). In the next example, we will look at how to parameterize a torus using this same strategy. 
     </p>
     
     
@@ -223,10 +223,10 @@
         </image>
         </figure> -->
         <figure xml:id="Torus3d">
-          <caption>The surface of a torus shown centered at the origin with hole oriented around the z-axis</caption>
+          <caption>The surface of a torus shown centered at the origin with hole oriented around the <m>z</m>-axis</caption>
           <interactive label="interactive-torus3d" platform="sage" width="100%" aspect="1:1">
             <description>
-              <p>An 3D plot with axes labeled x, y, and z. A torus is drawn in light blue center at the origin and its inner opening oriented along the z-axis. Circular slices oriented radially from the z-axis are highlighted in green and circular slices centered around the z-axis are highlighted in red. </p>
+              <p>A three-dimensional plot with axes labeled <m>x</m>, <m>y</m>, and <m>z</m>. A surface similar to the outside of a bagel is shown. The center of the hole in the surface is at the origin and its inner opening is oriented along the <m>z</m>-axis. Circular slices oriented radially from the <m>z</m>-axis are highlighted in green and circular slices centered around the <m>z</m>-axis are highlighted in red. </p>
             </description>
             <slate surface="sage">
               from sage.plot.plot3d.plot3d import axes
@@ -254,13 +254,13 @@
           </interactive>
         </figure>
         <p>
-          We need to be able to describe each <m>(x,y,z)</m> point on the torus in terms of two parameters. We can think of the torus as being generated by rotating a circle or radius <m>a</m> around the z-axis. If you look at a radial slice out from the z-axis out, as shown by the gray plane in <xref ref="Torus_slice"/>, we generate the torus by revolving the points on the green circle around the z-axis, as shown by the red circles. This means that we can describe each point on the torus in terms of where each point corresponds to its location along the green circle and its location along a red circle (rotation around the z-axis).
+          To describe each point on the torus in terms of two parameters, we can think of the torus as being generated by rotating a circle or radius <m>a</m> around the <m>z</m>-axis. Looking at a radial slice from the <m>z</m>-axis out, as shown by the gray plane in <xref ref="Torus_slice"/>, we generate the torus by revolving the points on the green circle around the <m>z</m>-axis, as shown by the red circles. This means that we can describe each point on the torus in terms of its location along the green circle and its location along a red circle, representing rotation around the <m>z</m>-axis.
         </p>
         <figure xml:id="Torus_slice">
-          <caption>A slice of a torus shown as the revolution of a circle (shown in green) around the z-axis. </caption>
+          <caption>A slice of a torus shown as the revolution of a circle (shown in green) around the <m>z</m>-axis. </caption>
           <interactive label="interactive-torus_slice" platform="sage" width="100%" aspect="1:1">
             <description>
-              <p>An 3D plot with axes labeled x, y, and z. A gray plan extends from the z-axis in the direction of positive x and y coordinates. On this gray plane is a green circle, centered on the xy-plane, with 13 points on the circle shown in black. For each of the black points on the green circle is rotated around the z-axis as shown by circles drawn in red. </p>
+              <p>A three-dimensional plot with axes labeled <m>x</m>, <m>y</m>, and <m>z</m>. A plane extends from the <m>z</m>-axis in the direction of positive <m>x</m> and <m>y</m> coordinates. On this plane is a circle, centered on the <m>xy</m>-plane, with 13 points on the circle. Each of the points on the circle is rotated around the <m>z</m>-axis as shown by  circles parallel to the <m>xy</m>-plane. </p>
             </description>
             <slate surface="sage">
               from sage.plot.plot3d.plot3d import axes
@@ -287,15 +287,20 @@
           </interactive>
         </figure>
         <p>
-          We can think of the green slice of the torus as occurring on a constant value of the cylindrical coordinate <m>\theta</m>. We will use the <m>t</m> parameter to describe our position in terms of rotation around the z-axis; in other words, our parameter <m>t</m> will act as the <m>\theta</m>-coordinate from cylindrical coordinates. We will use our other parameter, <m>s</m>, to describe the location of a point on the green circle. 
+          The green slice of the torus corresponds to a constant value of the cylindrical coordinate <m>\theta</m>. We will use the <m>t</m> parameter to describe position in terms of rotation around the <m>z</m>-axis; in other words, the parameter <m>t</m> acts as the <m>\theta</m>-coordinate from cylindrical coordinates. We will use the other parameter <m>s</m> to describe the location of a point on the green circle. 
         </p>
         <p>
-          Looking at the slice of the torus shown by the grey plane in <xref ref="Torus_slice"/>, we get a two dimensional plot as shown in <xref ref="torus2d"/>. We need to describe points in <m>r</m> and <m>z</m> in terms of the parameter <m>s</m>. Our green circle in the <m>rz</m>-plane will be described by <m>r(s)=b+a \cos(s)</m> and <m>z(s)=\sin(s)</m> with <m>0\leq s \leq 2\pi</m>. This is a typical parameterization of a circle with a horizontal translation by <m>a</m>. 
+          Looking at the slice of the torus shown by the grey plane in <xref ref="Torus_slice"/> reveals a two-dimensional plot as shown in <xref ref="torus2d"/>. Points on the circle are described in <m>r</m> and <m>z</m> in terms of the parameter <m>s</m>. The green circle in the <m>rz</m>-plane is described by <m>r(s)=b+a \cos(s)</m> and <m>z(s)=\sin(s)</m> with <m>0\leq s \leq 2\pi</m>. This is a typical parameterization of a circle with a horizontal translation by <m>a</m>. 
         </p>
         <figure xml:id="torus2d">
-          <caption></caption>
-          <image width="60%" xml:id="img-torus2d">
-            <sageplot>
+          <caption>A circle of radius <m>a</m> centered at the point <m>(b,0)</m></caption>
+          <image width="60%">
+            <description>
+              <p>
+                The right half of a two-dimensional plane in which the verticla axes is labeled <m>z</m>. A circle of radius <m>a</m> centered at the point <m>(b,0)</m> is shown. A point on the circle is highlighted. The distance from the <m>z</m>-axis to the point is labeled <m>r</m>.
+              </p>
+            </description>
+            <sageplot label="img-torus2d">
               var('x,t')
               a=1; b=2;
               sc=2*pi/3;
@@ -312,9 +317,9 @@
           </image>
         </figure>
         <p>
-          We can use our cylindrical coordinate transformations to write the <m>x</m>, <m>y</m>, and <m>z</m>-coordinates in terms of our parameters <m>s</m> and <m>t</m>. The cylindrical coordinates of our points can be written (in terms of <m>s</m> and <m>t</m>) as 
-          <md>\theta = t \quad r = b+a\cos(s) \quad z=a\sin(s)</md>
-          So the rectangular coordinates of the points on the torus can be written (in terms of <m>s</m> and <m>t</m>) as
+          These cylindrical coordinate transformations lead to the <m>x</m>, <m>y</m>, and <m>z</m>-coordinates in terms of parameters <m>s</m> and <m>t</m>. The cylindrical coordinates of the points of the torus can be written in terms of <m>s</m> and <m>t</m> as 
+          <md>\theta = t, \quad r = b+a\cos(s), \quad z=a\sin(s)</md>
+          Therefore, the rectangular coordinates of the points on the torus can be written in terms of <m>s</m> and <m>t</m> as
           <md>
             <mrow>x \amp= r \cos(\theta) \amp= (b+a \cos(s))\cos(t)</mrow>
             <mrow>y \amp= r \sin(\theta) \amp= (b+a \cos(s))\sin(t)</mrow>
@@ -322,7 +327,7 @@
           </md>
         </p>
         <p>
-          Just as in the case of parameterizing a curve in space with a vector valued function of one variable, we need to specify bounds on the parameters used to describe our surface. Remember that for a point on the torus, the <m>t</m>-parameter describes the location in terms of rotation around the <m>z</m>-axis and the <m>s</m>-parameter describes the point's location around the circular slice (in the <m>rz</m>-plane). Both the <m>s</m> and <m>t</m> parameters will be bounded below by <m>0</m> and above by <m>2 \pi</m>. We can organize our parametric equations for the torus using a vector valued function of two variables such as
+          Just as in the case of parameterizing a curve in space using a vector-valued function of one variable, a parametric description of a surface requires bounds on the parameters used to describe the surface. Remember that for a point on the torus, the <m>t</m>-parameter describes the location in terms of rotation around the <m>z</m>-axis and the <m>s</m>-parameter describes the point's location around the circular slice (in the <m>rz</m>-plane). Both the <m>s</m> and <m>t</m> parameters are bounded below by <m>0</m> and above by <m>2 \pi</m>. Therefore, a parametric description for the torus using a vector-valued function of two variables can be written as
           <md> 
             <mrow>\vr (s,t) =&amp; \langle x(s,t),y(s,t),z(s,t)\rangle </mrow>
             <mrow>          =&amp; \langle \left(b+a \cos(s)\right)\cos(t), \left(b+a \cos(s)\right)\sin(t), a \sin(s) \rangle</mrow>
@@ -333,19 +338,19 @@
       </statement>
     </example>
     <p>
-      In our next activity, we will look at how to parameterize a sphere centered at the origin two ways: 1) we think of the sphere as being a surface of revolution around the <m>z</m>-axis and 2) we use spherical coordinates.
+      The next activity finds two ways to parameterize a sphere centered at the origin. The first views the sphere as a surface of revolution around the <m>z</m>-axis, similar to the preceding example. The second uses spherical coordinates.
     </p>
     <worksheet>
   <activity workspace="1.5in" xml:id="act-sphere-param">
       <introduction> 
       <p>
-        In this activity, we want to give a parametrization of the sphere of radius <m>R</m> centered at the origin, as shown in <xref ref="sphere-param"/>. You can check the box at the top of the plot of <xref ref="sphere-param"/> to highlight what a semicircular slice of the sphere looks like along a slice with a constant <m>\theta</m> coordinate. Notice that this slice shows how the sphere can be made by rotating this half circle around the <m>z</m>-axis. 
+        The goal of this activity is to find a parametrization of the sphere of radius <m>R</m> centered at the origin, as shown in <xref ref="sphere-param"/>. Check the box at the top of the plot to highlight what a semicircular slice of the sphere looks like along a slice with a constant <m>\theta</m> coordinate. Notice that this slice shows how the sphere can be made by rotating this half circle around the <m>z</m>-axis. 
       </p>
       <figure xml:id="sphere-param">
         <caption>A plot of a sphere of radius <m>R</m> centered at the origin</caption>
-        <interactive label="interactive-sphere-param" platform="sage" width="100%" aspect="1:1">
+        <interactive label="interactive-sphere-param" platform="sage" width="110%" aspect="1:1">
           <description>
-            <p>An interactive three dimensional plot that shows axes labeled x, y, and z. A sphere centered at the origin is shown in light blue. A checkbox above the interactive plot will toggle a half circle plotted along the sphere from the positive z-axis to the negative z-axis.</p>
+            <p>An interactive three dimensional plot that shows axes labeled <m>x</m>, <m>y</m>, and <m>z</m>. A sphere centered at the origin is shown. A checkbox above the interactive plot toggles a half circle plotted along the sphere from the positive <m>z</m>-axis to the negative <m>z</m>-axis.</p>
           </description>
           <slate surface="sage">
             <xi:include href="./interacts/surface-param.txt" parse="text" />
@@ -357,14 +362,17 @@
     <task>
       <statement>
         <p>
-          Our first approach to parameterizing the sphere of radius <m>R</m> will be similar to our approach to parameterizing the torus as a surface of revolution around the <m>z</m>-axis. In other words, we will let the parameter <m>t</m> represent the location as a rotation around the <m>z</m>-axis. So we will be able to parameterize the sphere with
-          <md number="yes" xml:id="sph-cyl-coord"> x(s,t)= r(s) \cos(t) , \quad y(s,t)=r(s) \sin(t), \quad z(s,t)= z(s) </md>
+          One approach to parameterizing the sphere of radius <m>R</m> is similar to the approach to parameterizing the torus as a surface of revolution around the <m>z</m>-axis. In other words, let the parameter <m>t</m> represent the location as a rotation around the <m>z</m>-axis. This allows for parameterization the sphere as
+          <md number="yes" xml:id="sph-cyl-coord"> x(s,t)= r(s) \cos(t) , \quad y(s,t)=r(s) \sin(t), \quad z(s,t)= z(s) </md>,
           where <m>r(s)</m> and <m>z(s)</m> describe the other cylindrical coordinates in terms of another parameter. 
         </p>
         <figure xml:id="slice-sphere">
-          <caption>A plot of a half circle in the <m>rz</m>-plane representing the slice of the sphere we will be rotation around the <m>z</m>-axis</caption>
-          <image width="60%" xml:id="img-slice-sphere">
-            <sageplot>
+          <caption>A plot of a half circle in the <m>rz</m>-plane representing the slice of the sphere rotated around the <m>z</m>-axis</caption>
+          <image width="30%">
+            <description>
+              <p>A two dimensional plot with horizontal axis labeled <m>r</m> and vertical axis labeled <m>z</m>. The right half of a circle centered at the origin is shown in green and its radius is labeled <m>R</m>.</p>
+            </description>
+            <sageplot label="img-slice-sphere">
               var('t')
               param(t)=(2*cos(t),2*sin(t))
               plot2=parametric_plot((2*cos(t),2*sin(t)),(t,-pi/2,pi/2),color='green',thickness=2,axes_labels=['$r$','$z$'],ticks=[[],[]])
@@ -372,23 +380,20 @@
               plot2.show(xmin=-0.5,xmax=3,ymin=-2.5,ymax=2.5)
               plot2                 
             </sageplot>
-            <description>
-              <p>A two dimensional plot with horizontal axis labeled <m>r</m> and vertical axis labeled <m>z</m>. The right half of a circle centered at the origin is shown in green and its radius is labeled <m>R</m>.</p>
-            </description>
           </image>
         </figure>
         <p>  
-          We want to describe the points on the green half circle shown in <xref ref="slice-sphere"/> in terms of our parameter <m>s</m>. Remember that there is not a unique way to parameterize a curve. Give a parameterization of the green half circle in <xref ref="slice-sphere"/> as a function of the parameter <m>s</m>. Be sure to state the bounds on your parameter.
+          We want to describe the points on the green half circle shown in <xref ref="slice-sphere"/> in terms of the parameter <m>s</m>. Remember that there is not a unique way to parameterize a curve. Give a parameterization of the green half circle in <xref ref="slice-sphere"/> as a function of the parameter <m>s</m>. Be sure to state the bounds on <m>s</m>.
         </p>
       </statement>
       <hint>
         <p>
-          In the spirit of thinking of a sphere as a surface of rotation, you could try to write <m>r</m> as a function of <m>z</m>. In other words, how large is the radius of the revolution around the <m>z</m>-axis in terms of the <m>z</m> coordinate?
+          Think of the sphere as a surface of rotation and write <m>r</m> as a function of <m>z</m>. In other words, how large is the radius of the revolution around the <m>z</m>-axis in terms of the <m>z</m> coordinate?
         </p>
       </hint>
       <answer>
         <p>
-          Using the hint, you could also think of <m>r=\sqrt{R^2-z^2}</m>.
+          <m>r=\sqrt{R^2-z^2}</m>
         </p>
       </answer>
       <solution>
@@ -404,13 +409,13 @@
     <task>
       <statement>
         <p>
-          We want to combine your work for the previous task with <xref ref="sph-cyl-coord">Equation</xref> to generate a parameterization of the sphere of radius <m>R</m>. Plug in your answer for the previous task into <xref ref="sph-cyl-coord">Equation</xref> and state your answer as parametric functions for <m>x</m>, <m>y</m>, and <m>z</m>. Be sure to state the bounds on your parameters <m>s</m> and <m>t</m>.
+          Combine your answer to the previous part with <xref ref="sph-cyl-coord"></xref> to create a parameterization of the sphere of radius <m>R</m>. Substitute your answer for the previous part into <xref ref="sph-cyl-coord"></xref>, writing your answer as parametric functions for <m>x</m>, <m>y</m>, and <m>z</m>. Be sure to state the bounds on the parameters <m>s</m> and <m>t</m>.
           <md>
-            <mrow>\amp x(s,t) \amp= </mrow>
-            <mrow>\amp y(s,t) \amp= </mrow>
-            <mrow>\amp z(s,t) \amp= </mrow>
-            <mrow> \amp\leq s \amp \leq</mrow>
-            <mrow> \amp\leq t \amp \leq</mrow>
+            <mrow> x(s,t) \amp= <fillin characters="5" /></mrow>
+            <mrow> y(s,t) \amp= <fillin characters="5" /></mrow>
+            <mrow> z(s,t) \amp= <fillin characters="5" /></mrow>
+            <mrow> <fillin characters="2" />\amp\leq s \leq<fillin characters="2" /></mrow>
+            <mrow> <fillin characters="2" />\amp\leq t \leq<fillin characters="2" /></mrow>
           </md>
         </p>
       </statement>
@@ -426,11 +431,16 @@
     <task>
       <statement>
         <p>
-          Use <xref ref="param-plot3d"/> to verify that your parameterization for the previous task will plot the sphere of radius 3 centered at the origin. Remember to adjust the upper and lower bounds of <m>s</m> and <m>t</m> to match your parameterization.
+          Use <xref ref="param-plot3d"/> to verify that your parameterization for the previous part plots the sphere of radius 3 centered at the origin. Remember to adjust the upper and lower bounds of <m>s</m> and <m>t</m> to match your parameterization.
         </p>
         <figure xml:id="param-plot3d">
-          <caption>An interactive plot where users can input their parameterization and bounds</caption>
-          <interactive label="interactive-param-plot3d" platform="sage" width="130%" aspect="1:1.2">
+          <caption>An interactive plot where readers can input their parameterization and bounds</caption>
+          <interactive label="interactive-param-plot3d" platform="sage" width="130%" aspect="1:1">
+            <description>
+              <p>
+                A three-dimensional plotting interactive tool. Functions for <m>x</m>, <m>y</m>, and <m>z</m> in terms of the parameters <m>s</m> and <m>t</m> as well as bounds on the parameters are entered. 
+              </p>
+            </description>
             <slate surface="sage">
               var('s,t')
               @interact
@@ -462,7 +472,7 @@
     <task>
       <statement>
         <p>
-          We now want to shift to using spherical coordinates in order to create a parameterization of the sphere of radius <m>R</m>. In particular, we want to express the rectangular coordinate equation <m> x^2+y^2+z^2=R^2</m> in spherical coordinates. State an equation in spherical coordinates that describes the same set of points as <m>x^2+y^2+z^2=R^2</m>.
+          Next we use spherical coordinates to create a parameterization of the sphere of radius <m>R</m>. We want to express the rectangular coordinate equation <m> x^2+y^2+z^2=R^2</m> in spherical coordinates. State an equation in spherical coordinates that describes the same set of points as <m>x^2+y^2+z^2=R^2</m>.
         </p>
       </statement>
       <hint>
@@ -479,7 +489,7 @@
     <task>
       <statement>
         <p>
-          For surfaces of the form <m>z=f(x,y)</m> were easily parameterized because we could write each of the <m>x</m>, <m>y</m>, and <m>z</m>-coordinates in terms of two variables, namely <m>x</m> and <m>y</m>. We can apply a similar idea here because in terms of spherical coordinates, our surface has one spherical coordinate fixed and the other two spherical coordinates can be used as our parameters. Write a couple of sentences to describe which spherical coordinate you want <m>s</m> to act as and which you would like <m>t</m> to act as. You should include the bounds on these parameters as part of your descriptions.
+          Surfaces of the form <m>z=f(x,y)</m> were easily parameterized because each of the coordinates can be expressed in terms of two variables: <m>x</m> and <m>y</m>. We can apply a similar idea here because in spherical coordinates, the sphere has one spherical coordinate fixed and the other two spherical coordinates can be used as parameters. Write a couple of sentences to describe which spherical coordinate <m>s</m> will act as and which coordinate <m>t</m> will act as. Include bounds on these parameters as part of your descriptions.
         </p>
       </statement>
       <solution>
@@ -491,12 +501,12 @@
     <task>
       <statement>
         <p>
-          Let's put the last couple of tasks together to come up with a spherical coordinate parameterization of <m>x^2+y^2+z^2=R^2</m>. Specifically, you will need to plug in the constant value for the appropriate spherical coordinate and <m>s</m> or <m>t</m> (as dictated by your choice in the previous task) for the other two spherical coordinates into the following transformation equations.
+          To create a spherical coordinate parameterization of <m>x^2+y^2+z^2=R^2</m>, substitute the constant value for the appropriate spherical coordinate and <m>s</m> or <m>t</m>, as determined by your choices in the previous part, for the other two spherical coordinates into the following transformation equations:
           <md>x=\rho \cos(\theta) \sin(\phi) \quad \quad y=\rho \sin(\theta) \sin(\phi) \quad \quad z=\rho \cos(\phi)</md>
-          This should give you equations for <m>x</m>, <m>y</m>, and <m>z</m> in terms of the parameters <m>s</m> and <m>t</m>, as well as bounds on both <m>s</m> and <m>t</m>. 
-          <md>x(s,t) = \hspace{1.0in} y(s,t) = \hspace{1.0in} z(s,t)= </md>
+          This gives equations for <m>x</m>, <m>y</m>, and <m>z</m> in terms of the parameters <m>s</m> and <m>t</m>, as well as bounds on both <m>s</m> and <m>t</m>: 
+          <md>x(s,t) = <fillin characters="5" /> \quad y(s,t) = <fillin characters="5" /> \quad z(s,t)=<fillin characters="5" /> </md>
           with the bounds on <m>s</m> and <m>t</m> given by 
-          <md>\hspace{1.0in} \leq s \leq \hspace{1.0in} \text{ and } \hspace{1.0in} \leq t \leq \hspace{1.0in} </md>
+          <md><fillin characters="2" /> \leq s \leq <fillin characters="2" /> \text{ and } <fillin characters="2" /> \leq t \leq <fillin characters="2" /> </md>.
         </p>
       </statement>
       <solution>
@@ -510,7 +520,7 @@
     <task>
       <statement>
         <p>
-          Use <xref ref="param-plot3d"/> to verify that your parameterization of the sphere of radius 3 does parameterize the correct surface. 
+          Use <xref ref="param-plot3d"/> to verify that your parameterization does produce the sphere of radius 3. 
         </p>
       </statement>
     </task>
@@ -546,28 +556,26 @@
     </activity>
 </worksheet>
   <p>
-    As you can see in the previous activity, there are many ways to parameterize the same surface. The parameterizations you generated for the sphere depended on whether you viewed the sphere as a surface of revolution or whether you utilized spherical coordinates. There are many other ways to parameterize a sphere, but these are likely the two most familiar and common ideas.
+    The previous activity demonstrates that it is sometimes possible to parameterize a surface in multiple ways. The parameterizations for the sphere in the activity depended on whether you viewed the sphere as a surface of revolution or whether you used spherical coordinates. There are many other ways to parameterize a sphere, but these are likely the two most familiar and common ideas.
   </p>
   <p>
-    In the exercises of this section, you will be asked to generate and understand the parameterization of the quadric surfaces and cylinder surfaces described in <xref ref="S-Precalc-CommonGraphs"/>. Additionally, you will need to understand how shifts and stretches can be easily applied to each rectangular coordinate separately. 
+    This section's exercises ask you to generate and understand the parameterization of the quadric surfaces and cylinder surfaces described in <xref ref="S-Precalc-CommonGraphs"/>. Additionally, the exercises ask you to understand how shifts and stretches can be applied to each rectangular coordinate separately. 
   </p>
   </subsection>
   <subsection xml:id="geo-surface-param">
     <title>The Geometry of a Parametric Surface</title>
     <p>
-      In this subsection, we will go over several useful ideas about how to view geometric information given by the parameterization of a curved surface. For this section, we will examine a surface <m>S_1</m>, given by a parameterization <m>\vr(s,t)=\langle x(s,t), y(s,t), z(s,t) \rangle </m> with <m>a \leq s \leq b</m> and <m>c \leq t \leq d</m>. 
+      The parameterization of a surface allows us to access important geometric information about the surface. In this subsection, we consider a surface <m>S_1</m>, given by a parameterization <m>\vr(s,t)=\langle x(s,t), y(s,t), z(s,t) \rangle </m> with <m>a \leq s \leq b</m> and <m>c \leq t \leq d</m>. 
     </p>
     <p>
-      In <xref ref="mvf-trace"/>, we saw how holding one of the input coordinates constant allowed us to restrict the graph of <m>z=f(x,y)</m> to a one variable slice which we called the trace. In particular, we could look at the trace along <m>x=a</m> which is given by <m>z=f(a,y)</m>, for example <xref ref="trace1"/>. Restricting our focus to one slice allowed us to define partial derivatives and many other tools in <xref ref="C_MVF"/>.
+      In <xref ref="mvf-trace"/>, we considered a function <m>f(x,y)</m> and saw how holding one of the input coordinates constant allowed us to restrict the graph of <m>z=f(x,y)</m> to a single-variable slice, which we called the trace. For example, we looked at the trace along <m>x=a</m>, which is given by <m>z=f(a,y)</m>. Refer to <xref ref="trace1"/> for an illustration of this. Focusing on a single slice allowed us to define partial derivatives and many other tools in <xref ref="C_MVF"/>.
     </p>
     <p>
-      What happens when we hold one of our parameters constant and allow the other to vary? We will get a slice of the parametric surface but this will not be the direction of one coordinate (<m>x</m>, <m>y</m>, or <m>z</m>), but will describe the surface in a constant direction of one of our parameters, <m>s</m> or <m>t</m>. The trace given by holding <m>s</m> constant will yield <m>\vr(a,t)</m>, a curve parameterized as a vector valued function of one variable (in this case, <m>t</m>). We can use all of our tools from <xref ref="C_VVF"/> to understand this curve. Specifically, the derivative, <m>\frac{d\vr}{dt} (a,t)=\langle \frac{dx}{dt}(a,t),\frac{dy}{dt}(a,t),\frac{dz}{dt}(a,t)\rangle</m> will give a vector that is tangent to the curve given by <m>\vr(a,t)</m>. 
+      What happens when we hold a parameter for a parametric surface constant and allow the other to vary? This gives a slice of the parametric surface, but the slice is not necessarily in the direction of one of the coordinates (<m>x</m>, <m>y</m>, or <m>z</m>). Instead, the slice describes the surface in a constant direction of one parameters, <m>s</m> or <m>t</m>. The trace given by holding <m>s</m> constant yields <m>\vr(a,t)</m>, a curve parameterized as a vector-valued function of one variable. This allows the use of the tools from <xref ref="C_VVF"/> to understand this curve. Specifically, the derivative, <md>\frac{d\vr}{dt} (a,t)=\langle \frac{dx}{dt}(a,t),\frac{dy}{dt}(a,t),\frac{dz}{dt}(a,t)\rangle</md> gives a vector that is tangent to the curve given by <m>\vr(a,t)</m>. 
+      Similarly, we can look at the trace generated in the direction of a constant value of <m>t</m>. This gives a trace parameterized as <m>\vr(s,b)</m> with a tangent vector <m>\frac{d\vr}{ds}(s,b)</m>.  
     </p>
     <p>
-      Similarly, we can look at the trace generated in the direction of a constant value of <m>t</m>. We will get a trace parameterized by <m>\vr(s,b)</m> with a tangent vector given by <m>\frac{d\vr}{ds}(s,b)</m>.  
-    </p>
-    <p>
-      In <xref ref="fig-surface-param-traces"/>, you can see plot of our parametric surface given by <m>\vr(s,t)</m> for <m>s_1 \leq s \leq s_2</m> and <m>t_1 \leq t \leq t_2</m> plotted as a light blue surface. There are five constant values of <m>t</m> plotted along the surface in shown by the magenta curves and five constant values of <m>s</m> plotted along the surface as shown by the yellow curves. The tangent vectors given by <m>\frac{d\vr}{ds} (s,b)</m> and <m>\frac{d\vr}{dt} (a,t)</m> are shown at a particular point on the surface. You can use the sliders at the top of <xref ref="fig-surface-param-traces"/> to change the location at which the tangent vectors are shown. 
+      <xref ref="fig-surface-param-traces"/> shows plot of a parametric surface given by <m>\vr(s,t)</m> for <m>s_1 \leq s \leq s_2</m> and <m>t_1 \leq t \leq t_2</m> plotted as a light blue surface. There are five constant values of <m>t</m> plotted along the surface in shown by the magenta curves and five constant values of <m>s</m> plotted along the surface as shown by the yellow curves. The tangent vectors given by <m>\frac{d\vr}{ds} (s,b)</m> and <m>\frac{d\vr}{dt} (a,t)</m> are shown at a particular point on the surface. Use the sliders at the top of <xref ref="fig-surface-param-traces"/> to change the location at which the tangent vectors are shown. 
     </p>
     <figure xml:id="fig-surface-param-traces">
       <caption>A three-dimensional plot of a parametric surface with traces corresponding to constant <m>s</m> values highlighted in yellow and constant <m>t</m> values highlighted in magenta. The tangent vector corresponding to <m>\frac{d \vr}{dt} (a,t)</m> is shown with the yellow arrow and the tangent vector corresponding to <m>\frac{d \vr}{ds} (s,b)</m> is shown with the red arrow.</caption>
@@ -601,34 +609,33 @@
             show(plot1)
         </slate>
       </interactive>
-
     </figure>
     <p>
-      We can use the red and yellow tangent vectors at the highlighted point (shown in black) to create the tangent plane at the highlighted point. A parallelogram of the tangent plane is shown in orange. Note that the orange parallelogram will move and tilt to estimate the curved surface near the highlighted point. We can use the properties of the cross product to both compute a vector that will be orthogonal to the curved surface at the highlighted point <em>and</em> find the area of the orange parallelogram (<xref ref="crossdirection"/> and <xref ref="crosslength"/>).
+      The red and yellow tangent vectors at the highlighted point allow us to describe the tangent plane at that point. A piece of the tangent plane is shown as an orange parallelogram. Note that the orange parallelogram moves and tilts to approximate the curved surface near the highlighted point. Using the properties of the cross product allows us both to compute a vector that is orthogonal to the curved surface at the highlighted point <em>and</em> to find the area of the orange parallelogram. (Refer to <xref ref="crossdirection"/> and <xref ref="crosslength"/> for the original introduction of these ideas.)
     </p>
     <p>
-      We take a few moments now to summarize the ideas above, but state our derivatives of <m>\vr(s,t)</m> as partial derivatives with respect to <m>s</m> or <m>t</m>, since those will correspond to holding the <m>t</m> and <m>s</m> parameters constant (respectively). 
+      We now summarize the ideas above. Notice that because <m>\vr(s,t)</m> is a function of two variables, we write its derivatives using partial derivative notation with respect to <m>s</m> or <m>t</m>. These partial derivatives correspond, respectively, to holding the parameter <m>t</m> or <m>s</m> constant. 
       <ul>
         <li>
           <p>
-            Curves in the direction of change of <m>s</m> and <m>t</m> are given by vector valued functions <m>\vr(s,b)</m> and <m>\vr(a,t)</m>, respectively.
+            Curves in the direction of change of <m>s</m> and <m>t</m> are given by vector-valued functions <m>\vr(s,b)</m> and <m>\vr(a,t)</m>, respectively.
           </p>
         </li>
         <li>
           <p>
-            Vectors tangent to the parametric surface given by <m>\vr(s,t)</m> through the point given by <m>\vr(a,b)</m> will be given by <m>\frac{\partial \vr}{\partial s}(a,b)= \vr_s(a,b)</m> and <m>\frac{\partial \vr}{\partial t}(a,b)= \vr_t(a,b)</m>.
+            The vectors <md>\frac{\partial \vr}{\partial s}(a,b)= \vr_s(a,b)\quad \text{ and }\quad\frac{\partial \vr}{\partial t}(a,b)= \vr_t(a,b)</md> are tangent to the parametric surface given by <m>\vr(s,t)</m> through the point <m>\vr(a,b)</m>.
           </p>
         </li>
         <li>
           <p>
-            The vector given by <m>(\vr_s \times \vr_t)(a,b)</m> will be orthogonal to surface at the point <m>\vr(a,b)</m> and <m>\vecmag{(\vr_s \times \vr_t)(a,b)}</m> will give the area of the the parallelogram along the tangent plane to the surface with edges <m>\vr_s(a,b)</m> and <m>\vr_t(a,b)</m>.
+            The vector <m>(\vr_s \times \vr_t)(a,b)</m> is orthogonal to surface at the point <m>\vr(a,b)</m>. The area of the the parallelogram along the tangent plane to the surface with edges <m>\vr_s(a,b)</m> and <m>\vr_t(a,b)</m> is <m>\vecmag{(\vr_s \times \vr_t)(a,b)}</m>.
           </p>
         </li>
       </ul>
     </p>
     <example>
       <p>
-        In this example, we will look at each of the properties above as they apply to the parameterization of the torus from <xref ref="ex_Torus"/>. The points on the torus will be given by the parameterization:
+        Recall the parameterization of the torus from <xref ref="ex_Torus"/> given by:
         <md> 
           <mrow>\vr (s,t) =&amp; \langle x(s,t),y(s,t),z(s,t)\rangle </mrow>
           <mrow>          =&amp; \langle (b+a \cos(s)) \cos(t), (b+a \cos(s)) \sin(t), a \sin(s) \rangle</mrow>
@@ -636,8 +643,13 @@
         for <m>s,t \in [0,2 \pi)</m>. 
       </p>
       <figure xml:id="torus-properties">
-        <caption> </caption>
+        <caption>A torus along with tangent vectors to the traces in the <m>s</m>- and <m>t</m>-directions at the point determined by the sliders. Also shown at that point are are a vector orthogonal to the torus and a parallelogram-shaped patch of the tangent plane.</caption>
         <interactive label="interactive-torus-properties" platform="sage" width="100%" aspect="1:1.10">
+        <description>
+          <p>
+            A torus along with tangent vectors to the traces in the <m>s</m>- and <m>t</m>-directions at the point determined by the sliders. Also shown at that point are are a vector orthogonal to the torus and a parallelogram-shaped patch of the tangent plane.
+          </p>
+        </description>
           <slate surface="sage">
             var('t,s,u,v,z,y,z')
             import numpy as np
@@ -670,38 +682,41 @@
         <ul>
           <li>
             <p>
-              The traces with constant values of <m>t</m> are shown in magenta on <xref ref="torus-properties"/> and are parameterized by <m>\vr(s,t_0)= \langle (b+a \cos(s)) \cos(t_0), (b+a \cos(s)) \sin(t_0), a \sin(s) \rangle</m> when <m>t=t_0</m>.
+              Fixing <m>t=t_0</m> gives the parameterized curve <m>\vr(s,t_0)= \langle (b+a \cos(s)) \cos(t_0), (b+a \cos(s)) \sin(t_0), a \sin(s) \rangle</m>. These are the traces with constant values of <m>t</m> and are shown in magenta in <xref ref="torus-properties"/>.
             </p>
           </li>
           <li>
             <p>
-              The traces with constant values of <m>s</m> are shown in yellow on <xref ref="torus-properties"/> and are parameterized by <m>\vr(s_0,t)= \langle (b+a \cos(s_0)) \cos(t), (b+a \cos(s_0)) \sin(t), a \sin(s_0) \rangle</m> when <m>s=s_0</m>.
+              Simmilarly, the traces with constant values of <m>s=s_0</m> are shown in yellow in <xref ref="torus-properties"/>. They are parameterized by <m>\vr(s_0,t)= \langle (b+a \cos(s_0)) \cos(t), (b+a \cos(s_0)) \sin(t), a \sin(s_0) \rangle</m>.
             </p>
           </li>
           <li>
             <p>
-              The vector tangent to the surface along the trace with constant <m>t</m>-value is given by <m>\vr_s=\langle (-a\sin(s))\cos(t), (-a\sin(s))\sin(t),0\rangle</m> and is shown with the red arrow on <xref ref="torus-properties"/>. 
+              The vector tangent to the surface along the trace with constant <m>t</m>-value is  <md>\vr_s=\langle (-a\sin(s))\cos(t), (-a\sin(s))\sin(t),0\rangle</md>. This vector is shown by the magenta arrow in <xref ref="torus-properties"/>. 
             </p>
           </li>
           <li>
             <p>
-              The vector tangent to the surface along the trace with constant <m>s</m>-value is given by <m>\vr_t=\langle (a+b\cos(s))(-\sin(t)),(a+b\sin(s))(\cos(t)),0 \rangle</m> and is shown with the yellow arrow on <xref ref="torus-properties"/>. 
+              The vector tangent to the surface along the trace with constant <m>s</m>-value is  <md>\vr_t=\langle (a+b\cos(s))(-\sin(t)),(a+b\sin(s))(\cos(t)),0 \rangle</md>. This vector is shown by the yellow arrow in <xref ref="torus-properties"/>. 
             </p>
           </li>
           <li>
             <p>
-              The green vector is calculated by <m>\vr_s \times \vr_t</m>, is orthogonal to the surface at the highlighted point, and the length of the green vector corresponds to the area of the orange parallelogram. Note that as the length of the yellow vector increases, the parallelogram's area and the length of the green vector both increase correspondingly.
+              The green vector in <xref ref="torus-properties"/> is calculated by <m>\vr_s \times \vr_t</m>. This vector is orthogonal to the surface at the highlighted point. The length of the green vector corresponds to the area of the orange parallelogram, which lies in the tangent plane to the torus at the point. Notice that as the length of the yellow vector increases, the parallelogram's area and the length of the green vector both increase correspondingly.
             </p>
           </li>
         </ul>
       </p>
     </example>
+    <p>
+      It may have seemed unusual for us to draw attention to the area of the parallelogram formed by the tangent vectors to the trace curves in the discussion above. However, the final subsection will demonstrate how this property can be used to understand a property of the larger surface.
+    </p>
   </subsection>
 
   <subsection xml:id="SS-11-6-2-Surface-Area-Parametrically-Defined-Surfaces">
     <title>The Surface Area of Parametrically Defined Surfaces</title>
     <p>
-      In this subsection, we will use our new tool of parameterizing curved surfaces and a <xref ref="CCA" text="custom">classic calculus approach</xref> to look at how to compute the surface area of a curved surface. For step one of our classic calculus approach, we will break our parametrized surface into pieces that correspond to a grid of <m>s</m> and <m>t</m> steps as shown in <xref ref="fig_SurfaceAreaPieces2"/>. On each of these pieces of our <m>st</m>-grid, we will approximate the surface area of our curved surface with the area of a parallelogram tangent to the surface at that point. The sum of these parallelogram areas will give us the approximation we seek. For step two of our classic calculus approach, we will look at how smaller step sizes in <m>s</m> and <m>t</m> appears as part of the sum used in the approximation. The third step of our classic calculus approach will be to use a limit of the surface area approximation to get a Riemann sum definition for a double integral. We state the result as a Key Idea now and refer you to the proof for a thorough explanation of the tools involved. 
+      We are now ready to use the <xref ref="CCA" text="custom">classic calculus approach</xref> to  compute the surface area of a surface. For step one of the classic calculus approach, we break the parametrized surface into pieces corresponding to a grid of <m>s</m>- and <m>t</m>-steps as shown in <xref ref="fig_SurfaceAreaPieces2"/>. On each of these pieces of the <m>st</m>-grid, we  approximate the surface with a parallelogram tangent to the surface at that point. The sum of the areas of these parallelograms gives an approximation of the area of the surface. In step two of the classic calculus approach, we consider smaller step sizes in <m>s</m> and <m>t</m> as part of the sum used in the approximation. The third step of the classic calculus approach is a limit of the surface area approximation which leads to a double Riemann sum that corresponds to a double integral. 
     </p>
     <figure xml:id="fig_SurfaceAreaPieces2">
     <caption>Pieces of the tangent planes used to approximate surface area</caption>
@@ -733,11 +748,11 @@
     </interactive>
   </figure>
 
-    <proposition xml:id="Surface-area">
+    <proposition xml:id="keyidea-Surface-area">
       <title>Surface area</title>
       <statement>
         <p>
-          Let <m>\vr(s,t) = \langle x(s,t), y(s,t), z(s,t) \rangle</m> be a parameterization of a smooth surface over a domain <m>D</m>. The <em>area of the surface</em><idx><h>surface area</h></idx> defined by <m>\vr</m> on <m>D</m> is given by
+          Let <m>\vr(s,t) = \langle x(s,t), y(s,t), z(s,t) \rangle</m> be a parameterization of a smooth surface over a domain <m>D</m>. The <term>area of the surface</term><idx><h>surface area</h></idx> defined by <m>\vr</m> on <m>D</m> is given by
         <md number="yes" xml:id="E_surface_area">
           S = \iint_D \vecmag{\vr_s \times \vr_t } \ dA.
         </md>
@@ -749,7 +764,7 @@
       <md>
         \vr(s,t) = x(s,t) \vi + y(s,t) \vj + z(s,t) \vk
       </md>
-      with bounds on our parameters given by <m>a \leq s \leq b</m> and <m>c \leq t \leq d</m>. In this case, we are using a rectangular domain in the <m>st</m>-plane but in general, this same approach will work for non-rectangular domains. The partial derivatives of this parameterization, 
+      with <m>a \leq s \leq b</m> and <m>c \leq t \leq d</m>. Although we illustrate the idea using a rectangular domain in the <m>st</m>-plane, this same approach works for non-rectangular domains. The partial derivatives of this parameterization 
       <md>
         <mrow>
         \vr_s(s,t) \amp = x_s(s,t) \vi + y_s(s,t) \vj + z_s(s,t) \vk
@@ -758,29 +773,27 @@
         \vr_t(s,t) \amp = x_t(s,t) \vi + y_t(s,t) \vj + z_t(s,t) \vk
         </mrow>
       </md>
-      will give vectors tangent to the surface in the direction of changes in <m>s</m> and <m>t</m>, respectively.
+      give vectors tangent to the surface in the direction of change in <m>s</m> and <m>t</m>, respectively.
     </p>
     <p>
-      We will break our section of the curved surface into steps in <m>s</m> and <m>t</m>. In particular, we partition the interval of <m>s</m>-values <m>[a,b]</m> into <m>m</m> subintervals of length <m>\Delta s = \frac{b-a}{m}</m> and let <m>s_0</m>, <m>s_1</m>, <m>\ldots</m>, <m>s_m</m> be the endpoints of these subintervals, where <m>a = s_0\lt s_1\lt s_2 \lt  \cdots \lt  s_m = b</m>. We also partition the interval of <m>t</m>-values <m>[c,d]</m> into <m>n</m> subintervals of equal length <m>\Delta t = \frac{d-c}{n}</m> and let <m>t_0</m>, <m>t_1</m>, <m>\ldots</m>, <m>t_n</m> be the endpoints of these subintervals, where <m>c = t_0\lt t_1\lt t_2 \lt  \cdots \lt  t_n = d</m>. 
+      To break the section of the surface into steps in <m>s</m> and <m>t</m>, we partition the interval of <m>s</m>-values <m>[a,b]</m> into <m>m</m> subintervals of length <m>\Delta s = \frac{b-a}{m}</m> and let <m>s_0</m>, <m>s_1</m>, <m>\ldots</m>, <m>s_m</m> be the endpoints of these subintervals, where <m>a = s_0\lt s_1\lt s_2 \lt  \cdots \lt  s_m = b</m>. We also partition the interval of <m>t</m>-values <m>[c,d]</m> into <m>n</m> subintervals of equal length <m>\Delta t = \frac{d-c}{n}</m> and let <m>t_0</m>, <m>t_1</m>, <m>\ldots</m>, <m>t_n</m> be the endpoints of these subintervals, where <m>c = t_0\lt t_1\lt t_2 \lt  \cdots \lt  t_n = d</m>. 
     </p>
     <p>  
-      These subintervals partition the rectangle <m>R = [a,b] \times [c,d]</m> in <m>st</m>-coordinates into <m>mn</m> sub-rectangles <m>R_{ij}</m> with opposite vertices <m>(s_{i-1},t_{j-1})</m> and <m>(s_i, t_j)</m> for <m>i</m> between <m>1</m> and <m>m</m> and <m>j</m> between <m>1</m> and <m>n</m>. These rectangles all have equal area <m>\Delta A = \Delta s \cdot \Delta t</m>.
+      These subintervals partition the rectangle <m>R</m> with <m>a\leq s\leq b</m> and <m>c\leq t\leq d</m> in <m>st</m>-coordinates into <m>mn</m> sub-rectangles <m>R_{ij}</m> with opposite vertices <m>(s_{i-1},t_{j-1})</m> and <m>(s_i, t_j)</m> for <m>i</m> between <m>1</m> and <m>m</m> and <m>j</m> between <m>1</m> and <m>n</m>. These rectangles all have equal area <m>\Delta A = \Delta s \cdot \Delta t</m>.
     </p>
     <p>
-       Each of these rectangles from the <m>st</m>-domain will split our curved surface into a <m>m</m> by <m>n</m> grid of pieces, but these pieces of the curved surface will not all be the same size (in surface area). Looking at the surface shown in <xref ref="fig-surface-param-traces"/>, we can see the traces given for five equally spaced values of <m>s</m> and <m>t</m> breaks our curved surface into a four by four grid of pieces. Note that these pieces of the curved surface do not have the same surface area. So we will need to estimate the surface area for each particular piece of our grid using our tools from the parameterization.
+       Each of these rectangles from the <m>st</m>-domain splits the surface into an <m>m\times n</m> grid of patches, but these patches of the surface do <em>not</em> all have the same (surface) area. <xref ref="fig-surface-param-traces"/> shows a surface with traces given for five equally-spaced values of <m>s</m> and <m>t</m>. This breaks the surface into a <m>4\times 4</m> grid of patches. Since these patches of the surface do not have the same surface area, we estimate the surface area for each particular piece of the grid using the tools from the parameterization.
     </p>
     <p>
-      Each of the pieces of the curved surface correspond to increasing <m>s</m> by a small amount <m>\Delta s</m> or increasing <m>t</m> by a small amount <m>\Delta t</m> from the point <m>(s_{i-1},t_{j-1})</m> in the <m>st</m>-parameter plane. We want to find the vectors corresponding to each of the sides of the orange parallelogram in <xref ref="fig-surface-param-traces"/>. In particular, the vector <m>\vr_t \Delta t</m> will be the vector that corresponds to the side of the parallelogram along a constant value of <m>s</m> (shown as a yellow vector in <xref ref="fig-surface-param-traces"/>) and the vector <m>\vr_s \Delta s</m> will be the vector that corresponds to the side of the parallelogram along a constant value of <m>t</m> (shown as a red vector in <xref ref="fig-surface-param-traces"/>). 
+      Each of the pieces of the surface corresponds to increasing <m>s</m> by a small amount <m>\Delta s</m> or increasing <m>t</m> by a small amount <m>\Delta t</m> from the point <m>(s_{i-1},t_{j-1})</m> in the <m>st</m>-parameter plane. We want to find the vectors corresponding to each of the sides of the orange parallelogram in <xref ref="fig-surface-param-traces"/>. In particular, the vector <m>\vr_t \Delta t</m> corresponds to the side of the parallelogram along a constant value of <m>s</m> (shown as a yellow vector in <xref ref="fig-surface-param-traces"/>) and <m>\vr_s \Delta s</m> corresponds to the side of the parallelogram along a constant value of <m>t</m> (shown as a red vector in <xref ref="fig-surface-param-traces"/>). 
     </p>
     <p>
-      The area of the parallelogram will then be <m>S_{ij}=\vecmag{(\vr_s \Delta s) \times (\vr_t \Delta t)}</m> evaluated at the point given by <m>(s_{i-1},t_{j-1})</m>. This will be the approximation of the surface area for a piece of our grid of the curved surface. We can simplify this magnitude of a cross product to be <m>S_{ij}=\vecmag{\vr_s  \times \vr_t} \Delta s \Delta t</m>, which means that our approximation over all of these pieces of the grid will sum to 
+      The area of this parallelogram is <m>S_{ij}=\vecmag{(\vr_s \Delta s) \times (\vr_t \Delta t)}</m> evaluated at the point <m>(s_{i-1},t_{j-1})</m>. This is an approximation of the surface area for a patch of the surface. The magnitude simplifies to <m>S_{ij}=\vecmag{\vr_s  \times \vr_t} \Delta s \Delta t</m>, which means that the approximation over all of these pieces of the grid sums to 
       <md number="yes" xml:id="eq_11_6_parallelogram_area" >SA\approx \sum_{i=1}^m \sum_{j=1}^n S_{ij}= \sum_{i=1}^m \sum_{j=1}^n \vecmag{\vr_s(s_{i-1},t_{j-1}) \times \vr_t(s_{i-1},t_{j-1})} \Delta s \Delta t</md>.
-    </p>
-    <p>
-      This has satisfied both the first and second steps of the classic calculus approach because we have approximated the surface area and quantified how that approximation will change with a smaller scale of steps (in <m>s</m> and <m>t</m>). You can use <xref ref="fig_SurfaceAreaPieces2"/> to geometrically see how increasing the number of pieces will give successively better approximations for the surface area of each piece. 
+      We have now completed both the first and second steps of the classic calculus approach by  approximating the surface area and quantifying how the approximation changes with a smaller scale of steps (in <m>s</m> and <m>t</m>). You can use <xref ref="fig_SurfaceAreaPieces2"/> to see how increasing the number of pieces gives successively better approximations for the surface area of each piece. 
     </p>
     <p>  
-      Note that this approximation takes the form of a Riemann sum corresponding to the setup of a double integral. In particular, if we take the limit as <m>\Delta s</m> and <m>\Delta t</m> go to zero, our Riemann sum will be come a double integral of <m>\vecmag{\vr_s \times \vr_t}</m> over the rectangular region of integration with <m>a \leq s \leq b</m> and <m>c \leq t \leq d</m>, which gives the following formula for calculating the surface area. 
+      Note that this approximation is a double Riemann sum corresponding to a double integral. In particular, taking the limit as <m>\Delta s</m> and <m>\Delta t</m> go to zero, the Riemann sum becomes a double integral of <m>\vecmag{\vr_s \times \vr_t}</m> over the rectangular region of integration with <m>a \leq s \leq b</m> and <m>c \leq t \leq d</m>, which gives the following formula for calculating the surface area. 
     </p>
 <!-- 
     <figure xml:id="F_11_6_approx">
@@ -792,34 +805,34 @@
     </proposition>
 
     <p>
-      We will now look at an example that shows how to use the parameterizations of the sphere from <xref ref="act-sphere-param"/> along with <xref ref="Surface-area"/> to calculate the surface area of sphere. 
+      Our next example shows how to calculate the surface area of sphere using <xref ref="keyidea-Surface-area"/> applied to the parameterizations of the sphere from <xref ref="act-sphere-param"/>. 
     </p>
 
     <example>
     <p>
-      In this example, we will use our parameterizations for the sphere of radius <m>R</m> from <xref ref="act-sphere-param"/> to calculate the surface area of a sphere. Our first approach to parameterizing the sphere was to consider the sphere as a surface of revolution around the <m>z</m>-axis. This gave the parameterization of 
+      Recall that in <xref ref="act-sphere-param"/>, we found two parameterizations for the sphere of radius <m>R</m> centered at the origin. We will now explore how those parameterizations and <xref ref="keyidea-Surface-area"/> can be used to find the surface area of this sphere. The first approach to parameterizing the sphere was to consider the sphere as a surface of revolution around the <m>z</m>-axis. This gave the parameterization
       <md>\vr(s,t) = \langle \sqrt{R^2-s^2}\cos(t), \sqrt{R^2-s^2}\sin(t), s \rangle</md>
-      with <m>s</m> acting as the <m>z</m>-coordinate, going from <m>R</m> to <m>-R</m>, and <m>t</m> acting as the <m>\theta</m>, going from <m>0</m> to <m>2\pi</m>.
+      with <m>s</m> acting as the <m>z</m>-coordinate, ranging from <m>R</m> to <m>-R</m>, and <m>t</m> acting as <m>\theta</m>, ranging from <m>0</m> to <m>2\pi</m>.
     </p>
     <p>
-      We can calculate <m>\vr_s, \vr_t, \vecmag{\vr_s \times \vr_t}</m> as follows:
+      We calculate <m>\vr_s, \vr_t, \vecmag{\vr_s \times \vr_t}</m> as follows:
       <md>
         <mrow>\vr_s \amp= \left\langle \frac{-2s}{\sqrt{R^2-s^2}}\cos(t), \frac{-2s}{\sqrt{R^2-s^2}}\sin(t), 1 \right\rangle</mrow>
         <mrow>\vr_t \amp= \left\langle -\sqrt{R^2-s^2}\sin(t), \sqrt{R^2-s^2}\cos(t), 0 \right\rangle</mrow>
         <mrow>\vr_s \times \vr_t \amp= \left\langle -\sqrt{R^2-s^2} \cos(t), -\sqrt{R^2-s} \sin(t), -\frac{2s}{\sqrt{R^2-s^2}}  \right\rangle </mrow>
         <mrow>\vecmag{\vr_s \times \vr_t} \amp= \sqrt{(R^2-s^2) \cos^2(t)+(R^2-s) \sin^2(t)+ \frac{4s^2}{R^2-s^2}} </mrow>
       </md>
-      Unfortunately, our expression for <m>\vecmag{\vr_s \times \vr_t}</m> will not simplify much more and we will need to use a trig substitution to compute the appropriate double integral. In particular, the surface area double integral will be
+      Unfortunately, this expression for <m>\vecmag{\vr_s \times \vr_t}</m> does not simplify much more. This gives us the surface area double integral
       <md> \int_{-R}^R \int_0^{2\pi} \sqrt{(R^2-s^2)+ \frac{4s^2}{R^2-s^2}} dt \, ds </md>.
-      We will omit the calculations that result from this and look at using our other parameterization to get a much easier calculation of the surface area of a sphere.
+      While this integral <em>can</em> be evaluated, it requires a trigonometric substitution. We will omit the calculations that result from this and turn to our other parameterization for an easier calculation of the surface area.
     </p>
     <p>
-      We can now use our parameterization of a sphere that came from using spherical coordinates. 
+      Recall the parameterization of the sphere that came from using spherical coordinates: 
       <md>\vr(s,t) = \langle R \sin(s) \cos(t), R \sin(s)\sin(t), R\cos(s) \rangle</md>
-      with <m>s</m> acting as the <m>\phi</m>-coordinate, going from <m>0</m> to <m>2\pi</m>, and <m>t</m> acting as the <m>\theta</m>, going from <m>0</m> to <m>2\pi</m>. 
+      with <m>s</m> acting as the <m>\phi</m>-coordinate, ranging from <m>0</m> to <m>2\pi</m>, and <m>t</m> acting as the <m>\theta</m>, ranging from <m>0</m> to <m>2\pi</m>. 
     </p>
     <p>  
-      We can calculate <m>\vr_s, \vr_t, \vecmag{\vr_s \times \vr_t}</m> as follows:
+      We calculate <m>\vr_s, \vr_t, \vecmag{\vr_s \times \vr_t}</m> as follows:
       <md>
         <mrow>\vr_s \amp= \langle R \cos(s) \cos(t), R \cos(s)\sin(t), -R\sin(s) \rangle</mrow>
         <mrow>\vr_t \amp= \langle -R \sin(s) \sin(t), R \sin(s) \cos(t), 0 \rangle</mrow>
@@ -830,11 +843,11 @@
       You may recognize this expression from our work on the volume element in spherical coordinates, <xref ref="Triple-integral-spherical"/>. In both this case and the volume element of spherical coordinates, we are measuring how warped our space is based on transformations using spherical coordinates. 
     </p>
     <p>
-      Our double integral will then be
-      <md>\int_{0}^\pi \int_0^{2\pi}  R^2\sin(s) dt \, ds </md>
-      which will evaluate to 
-      <md>R^2 (2 \pi) \left[-\cos(s)\restrict{s=0}{s=\pi}\right]= R^2 (2 \pi)(2)=4\pi R^2</md>
-      You may recognize this result as the formula you were likely handed (without explanation) for the surface area of a sphere. 
+      The surface area double integral is
+      <md>\int_{0}^\pi \int_0^{2\pi}  R^2\sin(s) dt \, ds </md>,
+      which evaluates to 
+      <md>R^2 (2 \pi) \left[-\cos(s)\restrict{s=0}{s=\pi}\right]= R^2 (2 \pi)(2)=4\pi R^2</md>, 
+      the familiar formula for the surface area of a sphere for which you likely previously had no explanation.
     </p>
   </example>
 
@@ -842,16 +855,21 @@
   <activity workspace="1.5in" xml:id="cyl-surfacearea">
     <introduction>
       <p>
-        In this activity, we will compute the surface area of a right circular cylinder. In particular, we will consider the cylinder with radius <m>a</m> and height <m>h</m> defined parametrically by
+        This activity computes the surface area of a right circular cylinder. In particular, consider the cylinder with radius <m>a</m> and height <m>h</m> defined parametrically by
           <md>
             \vr(s,t) = a\cos(s) \vi + a\sin(s) \vj + t \vk
           </md>
           for <m>0 \leq s \leq 2\pi</m> and <m>0 \leq t \leq h</m>, as shown in <xref ref="F_11_6_SA_cylinder_ex">Figure</xref>.
       </p>
       <figure xml:id="F_11_6_SA_cylinder_ex">
-        <caption>A cylinder.</caption>
-        <image width="50%" source="images/fig_11_6_cylinder"><description><p>A cylinder.</p>
-        </description></image>
+        <caption>A part of the cylinder of radius <m>a</m> about the <m>z</m>-axis</caption>
+        <image width="50%" source="images/fig_11_6_cylinder">
+          <description>
+            <p>
+              A portion of a cylindrical surface in three-dimensional space. The cylinder is about the <m>z</m>-axis and has radius <m>a</m>. The height of the cylinder is marked as <m>h</m>, with the bottom of the cylinder sitting on the <m>xy</m>-plane.
+            </p>
+          </description>
+        </image>
       </figure>
     </introduction>
     <task>
@@ -873,7 +891,7 @@
     <task>
       <statement>
         <p>
-          Use the calculations from the previous task to set up an iterated integral to determine the surface area of this cylinder.
+          Use the calculations from the previous part to set up an iterated integral to determine the surface area of this cylinder.
         </p>
       </statement>
       <solution>
@@ -893,7 +911,7 @@
     <task>
       <statement>
         <p>
-          Evaluate your iterated integral from the previous task.
+          Evaluate your iterated integral from the previous part.
         </p>
       </statement>
       <solution>
@@ -905,7 +923,7 @@
     <task>
       <statement>
         <p>
-          One way to think about the surface area of a cylinder is to cut the cylinder horizontally and find the perimeter of the resulting cross sectional circle, then multiply by the height.  Calculate the surface area of the given cylinder using this alternate approach, and compare your result the value from the previous task.
+          One way to think about the surface area of a cylinder is to cut the cylinder horizontally and find the perimeter of the resulting cross sectional circle, then multiply by the height.  Calculate the surface area of the given cylinder using this alternate approach, and compare your result the value from the previous part.
         </p>
       </statement>
       <solution>
@@ -918,23 +936,23 @@
 </worksheet>
 
   <p>
-    As we noted earlier, we can take any surface <m>z = f(x,y)</m> and generate a corresponding parameterization for the surface by writing <m>\langle s, t, f(s,t) \rangle</m>. Hence, we can use our recent work with parametrically defined surfaces to find the surface area that is generated by a function <m>f = f(x,y)</m> over a given domain.
+    As we noted earlier, we can take any surface <m>z = f(x,y)</m> and obtain a  parameterization for the surface by writing <m>\langle s, t, f(s,t) \rangle</m>. Hence, we can use <xref ref="keyidea-Surface-area"/> to find the area of a surface  <m>z = f(x,y)</m> over a given domain.
   </p>
 
   <worksheet>
   <activity workspace="1.5in" xml:id="A_11_6_6">
     <introduction>
       <p>
-        Let <m>z = f(x,y)</m> define a smooth surface, and consider the corresponding parameterization <m>\vr(s,t) = \langle s, t, f(s,t) \rangle</m>.
+        Let <m>z = f(x,y)</m> define a smooth surface, and consider the  parameterization <m>\vr(s,t) = \langle s, t, f(s,t) \rangle</m>.
       </p>
     </introduction>
     <task>
       <statement>
         <p>
-          Let <m>D</m> be a region in the domain of <m>f</m>.  Using <xref ref="E_surface_area">Equation</xref>, show that the area, <m>S</m>, of the surface defined by the graph of <m>f</m> over <m>D</m> is
+          Let <m>D</m> be a region in the domain of <m>f</m>.  Using <xref ref="E_surface_area">equation</xref>, show that the area of the surface defined by the graph of <m>f</m> over <m>D</m> is
               <md>
-                S = \iint_D \sqrt{\left(f_x(x,y)\right)^2 + \left(f_y(x,y)\right)^2 + 1} \ dA.
-              </md>
+                \iint_D \sqrt{\left(f_x(x,y)\right)^2 + \left(f_y(x,y)\right)^2 + 1} \ dA
+              </md>.
         </p>
       </statement>
       <solution>
@@ -961,7 +979,7 @@
     <task>
       <statement>
         <p>
-          Use the formula developed in (a) to calculate the area of the surface defined by <m>f(x,y) = \sqrt{4-x^2}</m> over the rectangle <m>D = [-2,2] \times [0,3]</m>.
+          Use the formula developed in the previous part to calculate the area of the surface defined by <m>f(x,y) = \sqrt{4-x^2}</m> over the rectangle <m>D = [-2,2] \times [0,3]</m>.
         </p>
       </statement>
       <solution>
@@ -982,7 +1000,7 @@
     <task>
       <statement>
         <p>
-          Observe that the surface of the solid describe in (b) is half of a circular cylinder.  Use the standard formula for the surface area of a cylinder to calculate the surface area in a different way, and compare your result from (b).
+          Observe that the surface of the solid describe the previous part is half of a circular cylinder.  Use the standard formula for the surface area of a cylinder to calculate the surface area in a different way, and compare your result from above.
         </p>
       </statement>
       <solution>
