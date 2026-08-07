@@ -30,20 +30,23 @@
   </ul>
 </objectives>
 <introduction component="instructor">
-  <p>
-    he material in this section requires students to understand the graph of a vector-valued function of one variable (from <xref ref="S-VVF-Plotting"/>) and tools from <xref ref="S-VVF-Calculus"/>.
-  </p>
+  <assemblage>
+    <title>Notes to the Instructor and Dependencies</title>
+    <p>
+      he material in this section requires students to understand the graph of a vector-valued function of one variable (from <xref ref="S-VVF-Plotting"/>) and tools from <xref ref="S-VVF-Calculus"/>.
+    </p>
+  </assemblage>
 </introduction>
-<subsection>
+  <subsection>
   <title>Introduction</title>
 <p>
   In the previous sections, we introduced vector-valued functions, which provided us with a useful tool for thinking about curves in three-dimensional space. We have also seen how the calculus operations of limits, derivatives, and integrals apply to these functions. In single-variable calculus, you likely learned that displacement (net change in position) and total distance traveled for an object moving in one-dimension will not be the same if the object changes direction. For motion along a curve in two or more dimensions, we have a similar distinction. For instance, consider the curve in <xref ref="arclength1"/>. 
 </p>
   <figure xml:id="arclength1">
     <caption>A curve <m>C</m> from the point <m>P</m> to the point <m>Q</m> </caption>
-    <image width="80%" label="line-arclength1"> <!--source="/line_int_defn3"-->
+    <image width="80%"> <!--source="/line_int_defn3"-->
       <description><p>An oriented curve from a point <m>P</m> to a point <m>Q</m>. The curve moves up and left from the point <m>P</m>, then turns up and to the right before moving down and right to the point <m>Q</m>.</p></description>
-      <sageplot>
+      <sageplot label="line-arclength1">
         tpoints=[4,0.5]
         offsetx=[0.1,0.2]
         offsety=[-0.2,-0.2]
@@ -66,7 +69,7 @@
     </md>.
     However, if this curve is a portion of a road on which we drive a car, the distance traveled as measured by the change in the car's odometer value from point <m>P</m> to point <m>Q</m> will be different than the straight-line distance <m>\vert PQ\vert</m> calculated by the distance formula. You likely saw how to calculate the length of a portion of a curve <m>y=f(x)</m> in your <url href="https://activecalculus.org/single/sec-6-1-area.html" visual="activecalculus.org/single/sec-6-1-area.html">single-variable calculus class</url>. In this section, we will use the idea of vector-valued functions to find the lengths of a larger family of curves.
   </p>
-<worksheet>
+ 
   <exploration workspace="1.5in" xml:id="PA-arclength">
   <introduction>
     <p>
@@ -143,7 +146,7 @@
     </solution>
   </task>
 </exploration>
-</worksheet>
+ 
 </subsection>
 <subsection>
   <title>Arc Length</title>
@@ -152,10 +155,10 @@
   </p>
   <figure xml:id="arclength2">
     <caption>A curve <m>C</m> oriented from the point <m>P</m> to the point <m>Q</m> split into <m>6</m> parts with endpoints <m>\vr_0,\vr_1,...,\vr_6</m></caption>
-    <image width="80%" label="line-arclength2"> <!--source="/line_int_defn3"-->
+    <image width="80%"> <!--source="/line_int_defn3"-->
       <description><p>An oriented curve from a point <m>P</m> to a point <m>Q</m>. Point <m>P</m> is labeled as <m>\vr_0</m> and point <m>Q</m> is labeled as <m>\vr_n</m>. There are five intermediate points drawn as well as vectors connecting consecutive intermediate points. The vector from <m>\vr_{3}</m> to <m>\vr_4</m> is labeled <m>\Delta\vr_4 = \vr_4-\vr_{3}</m>. </p></description>
       
-      <sageplot>
+      <sageplot label="line-arclength2">
         tpoints=[4,3.5,3,2.5,1.5,1,0.5]
         offsetx=[0.1,-0.2,-0.25,0,0,0,0.2]
         offsety=[-0.2,-0.1,0.1,0.3,0.3,0.3,-0.2]
@@ -276,7 +279,7 @@
     This example was simple enough that we didn't actually need to use <xref ref="Length-of-a-curve"/> because we had a straight line path which we could have calculated the length of using the distance formula. This example will be revisited in <xref ref="linearclength"/>.
   </p>
 </example>
-<worksheet>
+ 
   <activity workspace="1.5in" xml:id="act-VVF-arclength-circle-helix">
   <introduction>
     <p>
@@ -339,7 +342,7 @@
     </p>
   </conclusion>
 </activity>
-</worksheet>
+ 
 <p>
   <xref ref="ex-VVF-arclength-fn" text="type-local"/> will apply <xref ref="def-arclength"/> and <xref ref="Length-of-a-curve"/> to arrive at a formula for the length of a graph given by <m>y=f(x)</m> that may be familiar from single-variable calculus courses.   
 </p>
@@ -381,7 +384,7 @@
       This means that we need to adjust our parameterization to travel <m>3</m> times slower, which can be accomplished by replacing <m>t</m> in our parameterization with <m>s=t/3</m>. In other words, we adjust the parameter used to make sure the speed with respect to the new parameter will be one. This adjustment is easy to do because the amount we needed to change the parameter did not change at different times.
     </p> 
     <p>
-      Our proposed unit speed parameterization is <md>\vr_1(s)= \vr\left(\frac{t}{3}\right) \langle 1,2,3\rangle + \laeft(\frac{t}{3}\right) \langle 1,-2,2 \rangle</md>. Computing the speed here gives
+      Our proposed unit speed parameterization is <md>\vr_1(s)= \vr\left(\frac{t}{3}\right) \langle 1,2,3\rangle + \left(\frac{t}{3}\right) \langle 1,-2,2 \rangle</md>. Computing the speed here gives
       <md>\vecmag{\vr_1(s)}=\vecmag{\frac{1}{3}=\langle 1,-2,2\rangle}=\frac{\sqrt{9}}{3}=1</md>.
       Algebraically, we can describe this change by thinking of <m>\vr(t)</m> as the <q>old</q> parameterization with parameter <m>t</m>, and we aim to replace <m>t</m> with a function <m>s(t)</m> so that <m>\vecmag{\vr_1\, '(s(t))}=1</m> for all <m>t</m>. For this linear path, the choice of <m>s(t) = t/3</m> means that applying the chain rule to <m>\vecmag{\vr_1\, '(s)}</m> gives
       <md number="yes" xml:id="unitspeedidea">\vecmag{\vr_1\, '(s(t))}= \vecmag{\frac{d\vr}{ds}} \left\vert{\frac{ds}{dt}}\right\vert=3 \frac{1}{3} =1</md>.
@@ -458,7 +461,7 @@
       <md>
         <mrow>s(a) \amp = \int_{0}^a \sqrt{\left(x'(t)\right)^2 + \left(y'(t)\right)^2 +\left(z'(t)\right)^2} \, dt</mrow>
         <mrow>\amp = \int_0^a 2t+4 \, dt</mrow>
-        <mrow>\amp = \left(t^2+4t\right)\restrict{0}^{a}</mrow>
+        <mrow>\amp = \left(t^2+4t\right)\restrict{0}{a}</mrow>
         <mrow>\amp = a^2+4a</mrow>
       </md>
       This computation shows us that the arc length traveled from <m>t=0</m> to <m>t=a</m> along the curve <m>C</m> is <m>a^2+4a</m>. Remember that we want to transform our parameterization to have unit speed, which will mean that the arc length up to a point and the parameter value corresponding to that point will be the same value. We want to state a function that has an input of arc length along the curve <m>C</m> and outputs the time at which the original parameter reaches that location. In other words, we want the inverse function of <m>s(a)=a^2+4a</m>, because the output of <m>s(a)</m> is arc length up to the point corresponding to the parameter value <m>a</m>. In <xref ref="fig-arclength-inverse"/>, we show the graph of the function <m>s(a)</m>.
@@ -501,29 +504,6 @@
       The parameterization <m>\vr(a(s))</m> is a unit speed parameterization because the parameter <m>s</m> <em>is</em> the amount of arc length traveled. In terms of the mile marker analogy, the value of <m>s</m> is the value you see on the mile marker. The input of the composition <m>\vr(a(s))</m> will be the arc length traveled. The <q>inner</q> function, <m>a(s)</m>,  outputs the parameter value <em>of the original parameterization</em> where that arc length is achieved. (Keep in mind <xref ref="fig-arclength-inverse"/>, which illustrates the inverse relationship between <m>a</m> and <m>s</m>.) This means that <m>\vr(a(s))</m> outputs the location on <m>C</m> where an arc length of <m>s</m> is achieved. 
       <!-- A visualization of these relationships is shown in <xref ref="unitspeeddiagram"/>. -->
     </p>
-    <!-- <figure xml:id="unitspeeddiagram">
-      <caption>Composition of <m>\alpha(s)</m> and <m>\vr(t)</m> to get the unit speed parameterization</caption>
-      <image width="50%" label="img_unitspeeddiagram">
-        <shortdescription>A diagram showing the relationships involved in the composition</shortdescription>
-        <description>
-          <p>A diagram with three locations labeled <m>(s)</m>, <m>(t)</m>, and position. An arrow labeled <m>\alpha(s)</m> points from <m>(s)</m> to <m>(t)</m>. An arrow labeled <m>\vr(t)</m> points from <m>(t)</m> to position. An arrow labeled <m>\vr(\alpha(s))</m> points from <m>(s)</m> to position.
-          </p>
-        </description>
-        <latex-image>
-          \begin{tikzpicture}
-          \path
-          (-0,0) node (s) {$(s)$}      
-          (4,0) node (t) {$(t)$}
-          (4,-4) node[align=center] (C) {position};
-          \begin{scope}[nodes={midway,scale=.75}]
-          \draw[->] (s)- -(t) node[above]{$\alpha(s)$}; % If this is restored, remove the space between the dashes on this line and the two below. They break XML comments.
-          \draw[->] (t)- -(C) node[left]{$\vec{r}(t)$};
-          \draw[->] (s)- -(C) node[left]{$\vec{r}(\alpha(s))$};
-          \end{scope}
-          \end{tikzpicture}   
-        </latex-image>
-      </image>
-    </figure> -->
     <p>
       To illustrate the concepts of the previous paragraph concretely, we return to the algebra of our problem. For our example, the composition <m>\vr(a(s))</m> gives the following as the unit speed parameterization:
       <md>\vr_{1}(s)=\left\langle \left(-2 + \sqrt{4+s}\right)^2, \frac{8}{3}\left(-2 + \sqrt{4+s}\right)^{3/2}, 4\left(-2 + \sqrt{4+s}\right) \right\rangle</md>.
@@ -558,7 +538,7 @@
   <p>
     All of the drivers are going the same way around the track, all start at the same location at <m>t=0</m>, all complete one lap of the track, and all of the cars have perfect grip of the road (the race cars are never sliding). The picture of the racetrack above is given so you have an example to help you think about the tasks in this problem, not because any particular feature of the track needs to be considered for the following activity.
   </p>
-  <worksheet>
+   
   <activity workspace="1.5in" xml:id="driver_road_act">
     <title>Is it a property of the driver or the road?</title>
     <introduction>
@@ -640,7 +620,7 @@
       </solution>
     </task>
   </activity>
-</worksheet>
+ 
   <p>
     When we are using the analogy of the racetrack for a curve in space, each different driver corresponds to a different parameterization of the curve. If a measurement is a property of the driver, that measurement can take different values for different parameterizations. If a measurement is a property of the road, then every parameterization <em>must</em> have the same measured value when considered at the same location on the curve. In short, parameterizations are drivers and the curve in space is the racetrack.
   </p>

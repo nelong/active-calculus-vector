@@ -1,0 +1,1433 @@
+<!-- **********************************************************************-->
+<!-- Copyright 2013-2026                                                   -->
+<!-- Nicholas Long, Mitch Keller, Steven Schlicker                         -->
+<!--                                                                       -->
+<!-- This file is part of Active Calculus Multivariable.                   -->
+<!--                                                                       -->
+<!-- Permission is granted to copy, distribute and/or modify this document -->
+<!-- under the terms of the Creative Commons BY-NC-SA license.  The work   -->
+<!-- may be used for free by any party so long as attribution is given to  -->
+<!-- the author(s), the work and its derivatives are used in the spirit of -->
+<!-- "share and share alike"; no party may sell this work or any of its    -->
+<!-- derivatives for profit.  All trademarks are the registered marks of   -->
+<!-- their respective owners.                                              -->
+<!-- **********************************************************************-->
+<section xmlns:xi="http://www.w3.org/2001/XInclude" xml:id="S-MV-Functions">
+  <title>Functions of Several Variables</title>
+  <objectives>
+      <ul>
+        <li>
+          <p>
+            How can we use the idea of a function to model relationships that depend on multiple inputs? 
+          </p>
+        </li>
+
+        <li>
+          <p>
+            How does thinking about fixing one of the inputs in a multivariable relationship help us understand that relationship?
+          </p>
+        </li>
+
+        <li>
+          <p>
+            How does thinking about the collection of input values that result in the same output from a multivariable relationship help us understand that relationship?
+          </p>
+        </li>
+      </ul>
+  </objectives>
+  <introduction component="instructor">
+    <assemblage>
+      <title>Notes to the Instructor and Dependencies</title>
+    <p>
+      This section expects students to have familiarity with our discussion of 3D coordinates and fundamental planes in <xref ref="S-Precalc-3Dcoord"/> and properties of functions from precalculus (domain, range, etc.). This section can probably be covered in in a single class meeting but students will need to practice with the ideas of traces and contour plots since those will be used throughout the next three chapters. 
+    </p>
+    <p>
+      There are a variety of activities in this section that will allow an instructor to select how much algebraic versus conceptual coverage they would prefer. Some instructors may skip elements like domain and range and would not need to do <xref ref="act-mv_functions-dom-range"/>. <xref ref="act-mv_functions-complete-table"/> introduces users to the spreadsheet version of multivariable functions that will used in application settings for the next couple of chapters. <xref ref="act-mv_functions-draw-trace"/> helps users to connect work with traces and practice drawing surfaces. There are a few different activities you can select from related to contours and how to visualize surfaces. 
+    </p>
+    </assemblage>
+  </introduction>
+  <subsection>
+    <title>Introduction</title> 
+    <p>
+       In this section, we will start our work with (scalar valued) multivariable functions by looking at several basic elements of these type of functions, such as domain, range, different presentations, and how to plot these functions. Our preview activity will use a finance example to get you used to the notation and descriptions of different aspects of functions of several variables. 
+    </p>
+    <!-- <p>
+      Throughout our mathematical careers we have studied functions of a single variable. We define a function of one variable as a rule that assigns exactly one output to each input. We analyze these functions by looking at their graphs, calculating limits, differentiating, integrating, and more. Functions of several variables will be the main focus of Chapters 10 and 11, where we will analyze these functions by looking at their graphs, calculating limits, differentiating, integrating, and more. We will see that many of the ideas from single variable calculus translate well to functions of several variables, but we will have to make some adjustments as well. In this chapter we introduce functions of several variables and then discuss some of the tools (vectors and vector-valued functions) that will help us understand and analyze functions of several variables. 
+    </p> -->
+    <!-- This preview activity is about getting students used to evaluating the function of several variables. I think this needs to be less generic and an introduction to one of the functions we will use as examples and applications throughout this chapter. Don't know that I care which one. -->
+     
+  <exploration workspace="0.75in" xml:id="PA-mv_functions">
+      <introduction>
+        <p>
+          Suppose you invest money in an account that pays 5% interest compounded continuously. If you have an initial investment of <m>P</m> dollars in the account, then <m>A</m>, the amount of money in the account after <m>t</m> years is given by 
+          <md>
+            A = Pe^{0.05t}.
+          </md>
+        </p>
+        <p>
+          The variables <m>P</m> and <m>t</m> are independent of each other, so using functional notation we write
+          <md>
+           A(P,t) = Pe^{0.05t}.
+          </md>
+        </p>
+      </introduction>
+      <task>
+        <statement>
+          <p>
+            Find the amount of money in the account after 7 years if you originally invest 1000 dollars.
+          </p>
+        </statement>
+        <answer>
+          <p>
+            <m>A(1000,7) = $1,419.07</m>
+          </p>
+        </answer>
+        <solution>
+          <p>
+            <m>A(1000,7) = 1000e^{0.05(7)} = \$1,419.07</m>
+          </p>
+        </solution>
+      </task>
+      <task workspace="1.25in">
+        <statement>
+          <p>
+            Evaluate <m>A(5000,8)</m>. Write a sentence to explain what this calculation represents.
+          </p>
+        </statement>
+        <answer>
+          <p>
+            <m>A(5000,8) = \$7,459.12</m>.
+          </p>
+        </answer>
+        <solution>
+          <p>
+            <m>A(5000,8) = \$7,459.12</m>. If you invest $5,000 in an account earning 5% interest compounded continuously, at the end of 8 years you will have $7,459.12.
+          </p>
+        </solution>
+      </task>
+      <task workspace="0in">
+        <statement>
+          <p>
+            Now consider only the situation where the amount invested is fixed at 1000 dollars. Calculate the amount of money in the account after <m>t</m> years as indicated in the table below. Round payments to the nearest penny.
+          </p>
+            <tabular bottom="minor" top="minor">
+              <row bottom="medium">
+                <cell right="medium">Duration (in years)</cell>
+                <cell>   2   </cell>
+                <cell>  3   </cell>
+                <cell>  4   </cell>
+                <cell>  5   </cell>
+                <cell>  6   </cell>
+              </row>
+              <row>
+                <cell right="medium">Amount (dollars)</cell>
+                <cell/>
+                <cell/>
+                <cell/>
+                <cell/>
+                <cell/>
+              </row>
+            </tabular>
+        </statement>
+        <answer>
+          <tabular top="minor">
+            <row bottom="medium">
+              <cell right="medium">Duration (in years)</cell>
+              <cell>  2   </cell>
+              <cell>  3   </cell>
+              <cell>  4   </cell>
+              <cell>  5   </cell>
+              <cell>  6   </cell>
+            </row>
+            <row bottom="minor">
+              <cell right="medium">Amount (dollars)</cell>
+              <cell>   1,105.17   </cell>
+              <cell>  1,161.83   </cell>
+              <cell>  1,221.40   </cell>
+              <cell>  1,284.03   </cell>
+              <cell>  1,349.86   </cell>
+            </row>
+          </tabular>
+        </answer>
+        <solution>
+          <p>
+            <m>A(1000,2) = 1000e^{0.05(2)} = \$1,105.17</m>
+          </p>
+          <p>
+            <m>A(1000,3) = 1000e^{0.05(3)} = \$1,161.83</m>
+          </p>
+          <p>
+            <m>A(1000,4) = 1000e^{0.05(4)} = \$1,221.40</m>
+          </p>
+          <p>
+            <m>A(1000,5) = 1000e^{0.05(5)} = \$1,284.03</m>
+          </p>
+          <p>
+            <m>A(1000,6) = 1000e^{0.05(6)} = \$1,349.86</m>
+          </p>
+        </solution>
+      </task>
+      <task workspace="0in">
+        <statement>
+          <p>
+            Now consider the situation where we want to know the amount of money in the account after 10 years given various initial investments. Calculate the amount of money in the account as indicated in the table below. Round payments to the nearest penny.
+          </p>
+          <tabular top="minor">
+            <row bottom="medium">
+              <cell right="medium">Initial investment (dollars)</cell>
+              <cell> 500  </cell>
+              <cell> 1000   </cell>
+              <cell> 5000   </cell>
+              <cell> 7500   </cell>
+              <cell> 10000   </cell>
+            </row>
+            <row bottom="minor">
+              <cell right="medium">Amount (dollars)</cell>
+              <cell/>
+              <cell/>
+              <cell/>
+              <cell/>
+              <cell/>
+            </row>
+          </tabular>
+        </statement>
+        <answer>
+          <tabular top="minor">
+            <row bottom="medium">
+              <cell right="medium">Initial investment (dollars)</cell>
+              <cell> 500  </cell>
+              <cell> 1000  </cell>
+              <cell> 5000  </cell>
+              <cell> 7500  </cell>
+              <cell> 10000  </cell>
+            </row>
+            <row bottom="minor">
+              <cell right="medium">Amount (dollars)</cell>
+              <cell> 824.36    </cell>
+              <cell>  1648.72   </cell>
+              <cell>  8243.61   </cell>
+              <cell>  12365.41   </cell>
+              <cell>  16487.21   </cell>
+            </row>
+          </tabular>
+        </answer>
+        <solution>
+          <p>
+            <m>A(500,10) = 500e^{0.05(10)} = \$824.36</m>
+          </p>
+          <p>
+            <m>A(1000,10) = 1000e^{0.05(10)} = \$1,648.72</m>
+          </p>
+          <p>
+            <m>A(5000,10) = 5000e^{0.05(10)} = \$8,243.61</m>
+          </p>
+          <p>
+            <m>A(7500,10) = 7500e^{0.05(10)} = \$12,365.41</m>
+          </p>
+          <p>
+            <m>A(10000,10) = 10000e^{0.05(10)} = \$16,487.21</m>
+          </p>
+        </solution>
+      </task>
+      <task>
+        <statement>
+          <p>
+            Describe as best you can what combinations of initial investments and time will result in an account containing $10,000.
+          </p>
+        </statement>
+        <answer>
+          <p>
+            As the amount of money initially invested increases, the length in time for the investment to reach $10,000 is less and less. Using Table 9.1.2, if the initial investment is around $6,000, it will take 10 years for the investment to reach $10,000. Algebraically, we can write this as <m>P=\frac{10,000}{e^{0.05t}}</m>. Conversely, if we want to think of the time to get $10,000 in terms of the initial investment we get <m>t=20 ln(\frac{10,000}{P})</m>.  
+          </p>
+        </answer>
+        <solution>
+          <p>
+            As the amount of money initially invested increases, the length in time for the investment to reach $10,000 is less and less. Using Table 9.1.2, if the initial investment is around $6,000, it will take 10 years for the investment to reach $10,000 (<m>10,000=xe^{0.05(10)} \Rightarrow x=6065.31</m>). Algebraically, we can write this as <m>P=\frac{10,000}{e^{0.05t}}</m>. Conversely, if we want to think of the time to get $10,000 in terms of the initial investment we get <m>t=20 ln(\frac{10,000}{P})</m>.
+          </p>
+        </solution>
+      </task>
+    </exploration>
+    
+   </subsection>
+
+  <subsection>
+    <title>Functions of Several Variables</title>
+    <p>
+      Up to this chapter, we have primarily been concerned with functions of a single variable. Remember that a function is a rule that assigns exactly one output for each allowed input. For instance, the rule that assigns a student ID number to each student at your school is a function because each student (input) gets assigned one and only one ID number. The rule that assigns the classrooms for your courses this semester is <em>not</em> a function because you likely have more than one classroom (multiple outputs) for each student (a single input).
+    </p>
+    <p>
+      We saw the behavior of a function in <xref ref="PA-mv_functions">Preview Activity</xref>, where each pair of inputs, <m>(P,t)</m>, produces a single output <m>A(P,t)</m>. Additionally, the values of the two variables <m>P</m> and <m>t</m> did not depend on one another. That is, we could choose any value of <m>P</m> without limiting what value <m>t</m> might have, and we could select any value of <m>t</m> to use without regard to what value <m>P</m> might have. For that reason we say that the variables <m>t</m> and <m>P</m> are <term>independent</term> of each other. Thus, we call <m>A = A(P,t)</m> a function of the two independent variables <m>P</m> and <m>t</m>. This is the key idea in defining a function of two independent variables. 
+    </p>
+
+    <definition>
+      <statement>
+        <p>
+          A <term>function <m>f</m> of two independent variables</term><idx><h>function</h><h>of two variables</h></idx> is a rule that assigns to each ordered pair <m>(x,y)</m> in some set <m>D</m> exactly one real number <m>f(x,y)</m>.
+        </p>
+      </statement>
+    </definition>
+
+    <p>
+      There is no reason to restrict ourselves to functions of only two variables; we can use any number of variables we like. For example,
+      <md>
+        f(x,y,z) = x^2 - 2xz + \cos(y)
+      </md>
+      defines <m>f</m> as a function of the three variables <m>x</m>, <m>y</m>, and <m>z</m>. In general, a function of <m>n</m> independent variables is a rule that assigns to an ordered <m>n</m>-tuple <m>(x_1, x_2, \ldots, x_n)</m> in some set <m>D</m> exactly one real number.
+        <fn>You may notice that we use variable names like <m>x,y,z</m> when using three variables but when there are more than three variables, it will be convenient to index the variables like <m>x_i</m> so that we can refer to the variables by index. For example the fifth variable in <m>(x_1, x_2, \ldots, x_n)</m> will be <m>x_5</m> and the last two variables will be <m>x_{n-1}</m> and <m>x_n</m>. </fn>
+    </p>
+
+    <p>
+      As with functions of a single variable, it is important to understand the set of inputs for which the function is defined.
+    </p>
+
+    <definition xml:id="domainrange_defn">
+      <statement>
+        <p>
+          The <term>domain</term><idx><h>function</h><h>domain</h></idx> of a function <m>f</m> is the set of all inputs for which the function is defined.
+        </p>
+        <p>
+          The <term>range</term><idx><h>function</h><h>range</h></idx> of a function <m>f</m> is the set of all actual outputs for the function.
+        </p>
+      </statement>
+    </definition>
+    <p>
+      Recall that common ways for scalar functions to <em>not</em> be defined for a particular input include:
+      <ul>
+        <li>dividing by zero,</li>
+        <li>taking the square root of negative numbers, and</li>
+        <li>restricted domains from other functions like <m>\arcsin</m> or logarithms.</li>
+      </ul>
+      For multivariable functions, we have similar phenomena to consider.
+    </p>
+    <example>
+      <introduction>
+        <p>
+          In this example, we will look at the domain and range of a couple of multivariable functions. 
+        </p>
+      </introduction>
+      <task>
+        <p>
+          Let <m>f(x,y)=\sqrt{xy}</m>. For the domain of <m>f</m> we can only use <m>(x,y)</m>-inputs where <m>\sqrt{xy}</m> is defined. This requires that <m>xy</m> be nonnegative. We will use <term>set-builder notation</term> to describe this domain.<idx><h>set-builder notation</h></idx> The domain of <m>f</m> is <m>\{(x,y)\in\mathbb{R}^2\mid xy \geq 0\}</m>. This notation is read as <q>the set of <m>(x,y)</m> coordinates in the cartesian plane such that <m>x</m> times <m>y</m> is greater than or equal to zero</q>. Set builder notation is flexible because this follows the form <m>\{\text{kind of objects}\mid \text{conditions on objects}\}</m>. The symbol <m>|</m> is read as <q>such that</q>. Note that the domain of <m>f</m> does not say that <m>x</m> and <m>y</m> are both nonnegative (quadrant I), but rather that the <em>product</em> of <m>x</m> and <m>y</m> needs to be nonnegative (quadrants I <em>and</em> III). 
+        </p>
+        <figure xml:id="domainmv1">
+          <caption>A plot of the domain of <m>f(x,y)=\sqrt{xy}</m></caption>
+          <image width="45%">
+            <description><p>A plot highlighting the first and third quadrants which includes both coordinate axes</p></description>
+            <sageplot label="img-domainmv1">
+              plot1=polygon([(0,0),(2,0),(2,2),(0,2),(0,0)],color="gray",xmin=-1.5,xmax=1.5,ymin=-1.5,ymax=1.5,gridlines=True,aspect_ratio=1,axes=true,axes_labels=["$x$","$y$"])
+              plot1+=polygon([(0,0),(-2,0),(-2,-2),(0,-2),(0,0)],color="gray")
+              plot1        
+            </sageplot>
+          </image>
+        </figure>
+        <p>
+          When we consider the range of <m>f(x,y)=\sqrt{xy}</m> we need to think about what values can be outputs of <m>f</m>. You may be tempted to say that outputs are scalars, so the range should be all real numbers, <m>\mathbb{R}</m>. However, there is no way to get a negative output for <m>f</m>. Thus, not all real numbers are <em>actual</em> outputs of <m>f</m>. Instead, the range of <m>f</m> will be the interval <m>[0,\infty)</m> because those are the values that <m>f</m> actually outputs. (Specifically, for any nonnegative real number <m>c</m>, <m>f(c,c) = \sqrt{cc} = c</m>.)
+        </p>
+      </task>
+      <task>
+        <p>
+          We now consider the domain and range of <m>g(x,y)=\frac{\arcsin(y)}{2x}</m>. First we need to recall the domain and range of the arcsine function are <m>[-1,1]</m> and <m>[-\frac{\pi}{2},\frac{\pi}{2}]</m>, respectively. Thus, the only valid inputs to <m>g</m> must have <m>y</m>-values in the interval <m>[-1,1]</m> and we must also have <m>x\neq0</m> because we cannot divide by zero. Thus the domain of <m>g</m> is <m>\{(x,y)\in\mathbb{R}^2 \mid x \neq 0 \text{ and } -1 \leq y \leq 1\}</m>.
+        </p>
+        <figure xml:id="domainmv2">
+          <caption>A plot of the domain of <m>g(x,y)=\frac{\arcsin(y)}{2x}</m></caption>
+          <image width="55%">
+            <description><p>A plot with the horizontal band having <m>-1\leq y\leq 1</m> shaded. The portion of this region with <m>x=0</m> is marked with a dashed line.</p></description>
+            <sageplot label="img-domainmv2">
+              plot2=polygon([(2.5,-1),(2.5,1),(-2.5,1),(-2.5,-1)],color="gray",xmin=-2.1,xmax=2.1,ymin=-2.1,ymax=2.1,gridlines=True,aspect_ratio=1,axes=true,axes_labels=["$x$","$y$"])
+              plot2+=line([(0,1),(0,-1)],linestyle="--",thickness=3)
+              plot2       
+            </sageplot>
+          </image>
+        </figure>
+        <p>
+          The range of arcsine is <m>[-\frac{\pi}{2},\frac{\pi}{2}]</m> but since the output of <m>g</m> will be <m>\frac{\arcsin(y)}{2x}</m>, the range of <m>g</m> will be <m>\mathbb{R}</m>, all real numbers. For example, the input <m>(\frac{\pi}{4a},1)</m> will be sent to <m>a</m> for any value of <m>a\neq 0</m> and <m>g(0,1)=0</m>. 
+        </p>
+      </task>
+    </example>
+     
+  <activity workspace="1.5in" xml:id="act-mv_functions-dom-range">
+    <introduction>
+      <p>
+        Identify the domain and range of each of the following functions. Sketch each domain in the <m>xy</m>-plane.
+      </p>
+    </introduction>
+    <task>
+      <statement>
+        <p>
+          <m>f(x,y) = x^2+y^2</m>
+        </p>
+      </statement>
+      <answer>
+        <p>
+          <m>x:(-\infty,\infty)</m> <m>y:(-\infty,\infty)</m>
+        </p>
+      </answer>
+      <solution>
+        <p>
+          There are no <m>x</m> or <m>y</m> values that make the function undefined, so the domain is all ordered pairs of real numbers.
+        </p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>
+          <m>f(x,y) = \sqrt{x^2+y^2}</m>
+        </p>
+      </statement>
+      <answer>
+        <p>
+          <m>x:(-\infty,\infty)</m> <m>y:(-\infty,\infty)</m> 
+        </p>
+      </answer>
+      <solution>
+        <p>
+          The square root function is undefined for inputs that result in a negative radicand. Since <m>x^{2}+y{2} \geq 0</m>, there are no <m>(x,y)</m> that will result in a negative radicand. Therefore, the domain is all real ordered pairs of real numbers.
+        </p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>
+          <m>\displaystyle Q(x,y) = \frac{x+y}{x^2-y^2}</m>
+        </p>
+      </statement>
+      <answer>
+        <p>
+          <m>x \neq y</m> and <m>x \neq - y</m>
+        </p>
+      </answer>
+      <solution>
+        <p>
+          The rational function is undefined when the denominator is zero or undefined. The rational function is defined when <m>x^{2}-y^{2} = (x-y)(x+y) \neq 0</m>. So <m>(x-y) \neq 0</m> and <m>(x+y) \neq 0</m>. Therefore, <m>x \neq y</m> and <m>x \neq - y</m>.
+        </p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>
+          <m>\displaystyle s(x,y) = \frac{1}{\sqrt{1-xy^2}}</m>
+        </p>
+      </statement>
+      <answer>
+        <p>
+          <m>xy^{2} \leq 1</m> or <m>x \leq \frac{1}{y^{2}}</m>
+        </p>
+      </answer>
+      <solution>
+        <p>
+          The rational function is undefined then the denominator is zero or undefined. The denominator is only defined when <m>1-xy^{2} \geq 0</m>. Therefore, <m>xy^{2} \leq 1</m> or <m>x \leq \frac{1}{y^{2}}</m>. But the denominator cannot be equal to zero, so the domain is all ordered pairs such that <m>x \lt \frac{1}{y^{2}}</m>.
+        </p>
+      </solution>
+    </task>
+  </activity>
+ 
+</subsection>
+
+<subsection>
+  <title>Representing Functions of Two Variables</title>
+  <paragraphs>
+    <title>Algebraic rules</title>
+    <p>
+      You have already seen one representation of a function of several variables: the algebraic notation <m>f(x,y)=\sqrt{xy}</m>, which shows an algebraic rule to find the output of the function <m>f</m> for given input values <m>x</m> and <m>y</m>. This kind of representation is convenient to use with algebraic rules for derivatives or for computing the output of a function given particular inputs. The drawback to this representation is that you need a lot of intuition about the type of function being used to understand how the output changes over a range of values. 
+    </p>
+  </paragraphs>
+  <paragraphs>
+    <title>Tables</title>
+    <p>
+      One of the techniques we use to study functions of one variable is to create a table of values. We can do the same for functions of two variables, except that our tables must allow us to keep track of both input variables. We can do this with a two-dimensional table, where we list the <m>x</m>-values down the first column and the <m>y</m>-values across the first row. 
+    </p> 
+  <p>
+    As an example, suppose we launch a projectile (perhaps by hitting a golf ball with a golf club) from ground level. Under ideal conditions, by which we mean ignoring wind resistance, spin, or any other forces except the force of gravity, the horizontal distance the object travels before hitting the ground depends on the initial velocity <m>x</m> the object is given, and the angle <m>y</m> at which it is launched. If we let <m>f</m> represent the horizontal distance the object travels, then <m>f</m> is a function of the two variables <m>x</m> and <m>y</m>, and we represent <m>f</m> in functional notation by
+    <md>
+      f(x,y) = \frac{x^2 \sin(2 y)}{g}
+    </md>,
+    where <m>g</m> is the acceleration due to gravity.<fn>Note that <m>g</m> is constant, <m>9.8</m> meters per second squared or <m>32</m> feet per second squared.</fn> To create a table of values for <m>f</m>, we list the <m>x</m>-values down the first column and the <m>y</m>-values across the first row. The value <m>f(x,y)</m> is  displayed in the location where the <m>x</m> row intersects the <m>y</m> column, as shown in <xref ref="T-mv_functions-range">Table</xref>, where we measure <m>x</m> in feet per second and <m>y</m> in radians. For example, <m>f(75,0.8)=175.7</m> is shown in the table by looking at the value in the row with <m>x=75</m> and column corresponding to <m>y=0.8</m>.
+  </p>
+  <!-- TODO The /paragraphs actually belongs later, but we get an error if the worksheet is inside. -->
+</paragraphs>
+   
+  <activity workspace="0in" xml:id="act-mv_functions-complete-table">
+    <statement>
+      <p>
+        Complete <xref ref="T-mv_functions-range">Table</xref> by filling in the missing values of the function <m>f</m>. Round entries to the nearest tenth. 
+      </p>
+      <table xml:id="T-mv_functions-range">
+        <title>Values of <m>f(x,y) = \displaystyle \frac{x^2 \sin(2y)}{g}</m> with <m>g=32 \text{ft/s}^2</m></title>
+        <tabular halign="center">
+          <row>
+            <cell><m>x \Downarrow \backslash y\Rightarrow</m></cell>
+            <cell bottom="medium"><m>0.4</m></cell>
+            <cell bottom="medium"><m>0.6</m></cell>
+            <cell bottom="medium"><m>0.8</m></cell>
+            <cell bottom="medium"><m>1.0</m></cell>
+            <cell bottom="medium"><m>1.2</m></cell>
+          </row>
+          
+          <row>
+            <cell right="medium">50</cell>
+            <cell>56.0</cell>
+            <cell>72.8</cell>
+            <cell>78.1</cell>
+            <cell>71.0</cell>
+            <cell/>
+          </row>
+          <row>
+            <cell right="medium">75</cell>
+            <cell/>
+            <cell>163.8</cell>
+            <cell>175.7</cell>
+            <cell>159.8</cell>
+            <cell>118.7</cell>
+          </row>
+            <row>
+              <cell right="medium">100</cell>
+              <cell>224.2</cell>
+              <cell>291.3</cell>
+              <cell>312.4</cell>
+              <cell>284.2</cell>
+              <cell>211.1</cell>
+            </row>
+            <row>
+              <cell right="medium">125</cell>
+              <cell>350.3</cell>
+              <cell>455.1</cell>
+              <cell/>
+              <cell>444.0</cell>
+              <cell>329.8</cell>
+            </row>
+            <row>
+              <cell right="medium">150</cell>
+              <cell>504.4</cell>
+              <cell>655.3</cell>
+              <cell>702.8</cell>
+              <cell>639.3</cell>
+              <cell>474.9</cell>
+            </row>
+            <row>
+              <cell right="medium">175</cell>
+              <cell>686.5</cell>
+              <cell>892.0</cell>
+              <cell>956.6</cell>
+              <cell>870.2</cell>
+              <cell/>
+            </row>
+          </tabular>
+        </table>
+    </statement>
+    <answer>
+      <p>
+        <m>f(50,1.2) = 52.8</m>.
+      </p>
+      <p>
+        <m>f(75,0.4) = 126.1</m>.
+      </p>
+      <p>
+        <m>f(125,0.8) = 488.1</m>.
+      </p>
+      <p>
+        <m>f(175,1.4) = 320.6</m>.
+      </p>
+      <p>
+        <m>f(250,0.6) = 1820.4</m>.
+      </p>
+    </answer>
+    <solution>
+      <p>
+        <m>f(50,1.2) = \frac{(50)^{2} \sin(2 \cdot 1.2)}{9.8} = 52.8</m>.
+      </p>
+      <p>
+        <m>f(75,0.4) = \frac{(75)^{2} \sin(2 \cdot 0.4)}{9.8} = 126.1</m>.
+      </p>
+      <p>
+        <m>f(125,0.8) = \frac{(125)^{2} \sin(2 \cdot 0.8)}{9.8} = 488.1</m>.
+      </p>
+      <p>
+        <m>f(175,1.4) = \frac{(175)^{2} \sin(2 \cdot 1.4)}{9.8} = 320.6</m>.
+      </p>
+      <p>
+        <m>f(250,0.6) = \frac{(250)^{2} \sin(2 \cdot 0.6)}{9.8} = 1820.4</m>.
+      </p>
+    </solution>
+  </activity>
+ 
+  <p>
+    Representing a function with a table should reinforce the idea that each of the two independent values for the input variables will have a corresponding output value.
+    However, when looking at a large table of values, it is normal to feel that this representation provides little insight into the relationship described by the function. Additionally, the table is only useful for the input values selected in the rows and columns. While this may seem like a very limited use case, many applied problems involve tables like this because an algebraic function can be extremely difficult to find for every case and it can be very expensive to test many input values to obtain the corresponding output values. You likely have already used spreadsheets to organize information in a multivariable setting like this. 
+  </p>
+  <paragraphs>
+    <title>Graphs</title>
+  <p>
+    If <m>f</m> is a function of a single variable <m>x</m>, then we define the graph of <m>f</m> to be the set of points of the form <m>(x,f(x))</m>, where <m>x</m> is in the domain of <m>f</m>. We then plot these points using the coordinate axes in order to visualize the graph. We can do a similar thing with functions of several variables. <xref ref="T-mv_functions-range">Table</xref> identifies points of the form <m>(x,y,f(x,y))</m>, and we define the graph of <m>f</m> to be the set of these points in <m>\R^3</m>.
+  </p>
+  <definition>
+    <statement>
+      <p>
+        The <term>graph</term><idx><h>function</h><h>graph</h></idx> of a function <m>f = f(x,y)</m> is the set of points of the form <m>(x,y,f(x,y))</m>, where the point <m>(x,y)</m> is in the domain of <m>f</m>.
+      </p>
+    </statement>
+  </definition>
+  <p>
+    We also often refer to the graph of a function <m>f</m> of two variables as the <term>surface</term><idx><h>function</h><h>surface</h></idx> generated by <m>f</m>. Points of  the form <m>(x,y,f(x,y))</m> are in three dimensions. If we consider the graph of the projectile distance function defined by <m>f(x,y) = \frac{x^2 \sin(2y)}{g}</m>, then the function <m>f</m> is continuous in both variables. When these points are plotted in the rectangular coordinate system, the points form a surface in three-dimensional space. The graph of the distance function <m>f</m> is shown in <xref ref="zfnxy">Figure</xref>.
+    </p>
+
+    <!-- <figure xml:id="F-9-1-range">
+      <caption>The distance surface.</caption>
+      <image width="50%" source="images/fig_9_1_range"/>
+    </figure> -->
+    <figure xml:id="zfnxy">
+      <caption>The projectile distance surface given by <m>z=f(x,y) = \frac{x^2 \sin(2y)}{g}</m></caption>
+      <interactive label="interactive-zfnxy" platform="sage" width="90%" aspect="1:1">
+        <description><p>A plot of a curved surface that this is u-shaped along constant values of one coordinate and increases parabolically as that the other horizontal coordinate is increased.</p></description>
+      <slate surface="sage">
+          var('x,y')
+          g(x,y)=x^2*sin(2*y)/32
+          plot10=plot3d(g,(x,0,200),(y,0,pi/2),color="lightblue",aspect_ratio=[1,100,0.15],mesh=True,opacity=0.8,plot_points=21)
+          show(plot10,viewpoint=[[-0.792,0.3576,0.4949],84.75],camera_position=[-200.2301,-189.6884,234.3567])
+        </slate>
+      </interactive>
+    </figure>
+    <!-- TODO Add a link to preface section on graphing tools -->
+    <p>
+      There are many graphing tools available for drawing three-dimensional surfaces as indicated in <xref ref="graphtech" text="custom">the Preface</xref> and most of the in-text three-dimensional graphics are generated by SageMath. Since we will be able to visualize graphs of functions of two independent variables using plots in three dimensions, but not functions of more than two variables, we will primarily deal with functions of two variables in this chapter. It is important to note, however, that the techniques we develop apply to functions of any number of variables and we will highlight these extensions to higher dimensions in <xref ref="S-MV-HD"/>.
+    </p>
+    <p>
+      You may have noticed that we used the notation <m>z=f(x,y)</m> in the caption to <xref ref="zfnxy"/>, which is explicitly saying that we are viewing the <m>z</m>-coordinate in our plot as the output of the function <m>f</m>. In other words, only <m>(x,y,z)</m> points of the form <m>(x,y,f(x,y))</m> are part of the graph plotted. In some situations, it may be advantageous to express a graph of interest using a function with some input and output roles in a different configuration of coordinates. For instance, the surface shown in <xref ref="yfnxz"/> cannot be expressed with the <m>z</m>-coordinate as a function of the <m>x</m>- and <m>y</m>-coordinates because there would be more than one <m>z</m>-coordinate associated to inputs such as <m>(x,y)=(0,1)</m>, as highlighted by the red points in the figure. The points on this surface can be expressed with <m>y</m> as a function of <m>x</m> and <m>z</m>, however! Specifically <m>y=g(x,z) = \frac{x^2}{5}+z^2</m>. We will typically look at examples where <m>z</m> is expressed as a function of <m>x</m> and <m>y</m>, but you should think carefully if it is advantageous to consider a different coordinate view. 
+    </p>
+    <figure xml:id="yfnxz">
+      <caption>The surface given by <m>y=g(x,z) = \frac{x^2}{5}+z^2</m></caption>
+      <interactive label="interactive-yfnxz" platform="sage" width="90%" aspect="1:1">
+        <description><p>A bowl shaped surface is shown opening to the side. A red segment is drawn through this surface changing only in the vertical coordinate. The two points at which this red segment intersects the surface are highlighted in red and the segment is labeled <q>Same <m>(x,y)</m> value </q>.</p></description>
+      <slate surface="sage">
+          var('x,y,z,r,t')
+          g(x,z)=x^2/5+z^2
+          plot11=parametric_plot3d((r*cos(t)/sqrt(5),(r*cos(t))^2+(r*sin(t))^2,r*sin(t)),(r,0,2),(t,0,2*pi),opacity=0.8,mesh=True,plot_points=31,color="lightblue")
+          plot11+=line([(0,1,-2),(0,1,2)],color="red",thickness=2)
+          plot11+=point3d((0,1,1),color="red",size=30)
+          plot11+=point3d((0,1,-1),color="red",size=30)
+          plot11+=text3d("Same (x,y) value",(0,1,2.25),color="red",fontsize=20)
+          plot11+=point((0,1,3),color="white",size=0)
+          show(plot11,aspect_ratio=(1,0.5,0.75),viewpoint=[[-0.1883,-0.5499,-0.8137],148.86],camera_position=[4.4087,7.6827,2.8914])
+        </slate>
+      </interactive>
+    </figure>
+  </paragraphs>
+  </subsection>
+  <subsection xml:id="mvf-trace">
+    <title>Traces</title>
+    <p>
+      When studying functions of several variables, we are often interested in how each individual variable affects the function while the other variable is fixed. In <xref ref="PA-mv_functions">Preview Activity</xref>, we saw that the amount of money in an account depends on the amount initially invested and the duration of the investment. However, if we fix the initial investment, the amount of money in the account depends only on the duration of the investment, and if we fix the duration of the investment, then the amount of money in the account depends only on the initial investment. This idea of keeping one variable constant while we allow the other to change will be an important tool for us when studying functions of several variables.
+      <fn>
+        This will be the first of many times we will employ the following approach <image source="LBmeme.png" width="50%"><description><p>A two panel meme with a picture of a man extending his hand with a stop gesture in the top left and the text<q>Three-dimensional problems</q> in the top right. A picture of the man pointing his finger appears in the bottom left with the text <q>Three One-dimensional Problems</q> to the lower right.</p></description></image>
+      </fn>
+    </p>
+
+    <p>
+      As another example, consider again the projectile distance function <m>f</m> defined by
+      <md>
+        f(x,y) = \frac{x^2 \sin(2y)}{g}
+      </md>,
+      where <m>x</m> is the initial velocity of an object in feet per second, <m>y</m> is the launch angle in radians, and <m>g</m> is the acceleration due to gravity (32 feet per second squared). If we hold the launch angle constant at <m>y=0.6</m> radians, we can consider <m>f</m> a function of the initial velocity alone. In this case we have
+      <md>
+        f(x) = \frac{x^2}{32}\sin(2\cdot 0.6)
+      </md>.
+      Similarly, if we fix the initial velocity at 150 feet per second, we can consider the projectile distance as a function of the launch angle only. In this case we have
+      <md>
+        f(y) = \frac{150^2 \sin(2y)}{32}
+      </md>.
+      In <xref ref="trace2"/>, we show two plots. <xref ref="trace21"/> shows what happens when fixing <m>y=0.6</m>, while <xref ref="trace22"/> shows the two-dimensional graph obtained by fixing <m>x=150</m>.
+    </p>
+    <figure xml:id="trace2">
+      <caption>Plots illustrating values of <m>f</m> when one variable is fixed</caption>
+
+      <sidebyside widths="46% 46%">
+        <figure xml:id="trace21">
+          <caption>A plot of <m>f(x,0.6) = \frac{x^2}{32}\sin(2\cdot 0.6)</m> </caption>
+          <image width="100%">
+            <description><p>A two dimensional plot with the horizontal coordinate labeled <m>x</m> and shown from 0 to 200. The vertical coordinate is labeled <m>z</m> and is shown from 0 to 1200. A parabola is drawn from the bottom left at (0,0) to the top right. </p></description>
+          <sageplot label="img-trace21">
+              var('x,y')
+              g(x,y)=x^2*sin(2*y)/32
+              plot12=plot(g(x,0.6),(x,0,200),color="red",thickness=2,gridlines=True,ymin=0,ymax=1200,axes_labels=["$x$","$z$"],frame=True)
+              plot12
+            </sageplot>
+          </image>
+        </figure>
+        <figure xml:id="trace22">
+          <caption>A plot of <m>f(150,y) = \frac{150^2 \sin(2y)}{32}</m></caption>
+          <image width="100%">
+            <description><p>A two dimensional plot with the horizontal coordinate labeled <m>y</m> and is shown from 0 to 1.6. The vertical coordinate is labeled <m>z</m> and is shown from 0 to 1200. A parabola drawn in blue is facing down with vertex at <m>(\pi/4,700)</m>. </p></description>
+          <sageplot label="img-trace22">
+              var('x,y')
+              g(x,y)=x^2*sin(2*y)/32
+              plot13=plot(g(150,y),(y,0,pi/2),color="blue",thickness=2,gridlines=True,ymin=0,ymax=1200,axes_labels=["$y$","$z$"],frame=True)
+              plot13
+            </sageplot>
+          </image>  
+        </figure>
+      </sidebyside>
+      
+    </figure>
+    <p>
+      We can plot the curve from <xref ref="trace21"/> on the surface by tracing out the points on the surface when <m>y = 0.6</m>, as shown in red in <xref ref="trace1">Figure</xref>. The formula for <m>f(x,0.6)</m> shows that <m>f</m> is quadratic in the <m>x</m>-direction. More descriptively, as we increase the launch velocity while keeping the launch angle constant, the horizontal distance the object travels increases proportional to the square of the initial velocity.
+    </p>
+
+
+    <p>
+      We can plot the curve from <xref ref="trace22"/> on the surface by tracing out the points on the surface when <m>x=150</m>, as shown in blue in <xref ref="trace1">Figure</xref>. The formula for <m>f(150,y)</m> shows that <m>f</m> is sinusoidal in the <m>y</m>-direction. More descriptively, as we increase the launch angle while keeping the initial velocity constant, the horizontal distance traveled by the object is proportional to the sine of twice the launch angle.
+    </p>
+    <figure xml:id="trace1">
+      <caption>The surface given by <m>z=f(x,y) = \frac{x^2 \sin(2y)}{g}</m> with traces <m>y=0.6</m> (in red) and <m>x=150</m> (in blue)</caption>
+      <interactive label="interactive-trace1" platform="sage" width="90%" aspect="1:1">
+        <description><p>A three dimensional plot of a curved surface that this is u-shaped along constant values of one coordinate and increases parabolically as that the other horizontal coordinate is increased. On the lower corner of this curved surface are drawn three mutually perpendicular line segments labeled <m>x</m>, <m>y</m>, and <m>z</m> signifying origin. 
+        In the direction of the segment labeled y from the origin, there is a two dimensional flat grid labeled <m>x</m> horizontally and <m>z</m> vertically. A branch of a parabola is shown in red from the bottom left of this grid to the top right. This red curve is copied along the curved surface along a direction that is parallel to the segment labeled x (from the origin). 
+        In the direction of the segment labeled x from the origin, there is a two dimensional flat grid labeled <m>y</m> horizontally and <m>z</m> vertically. A parabola is shown in blue pointing downward on this grid with a vertex about half way up the grid. This blue curve is copied along the curved surface along a direction that is parallel to the segment labeled y (from the origin).</p> </description>
+      <slate surface="sage">
+          var('x,y,z,t,s')
+          f(x,y)=x^2*sin(2*y)/32
+          param(s,t)=(s,t,f(s,t))
+          #set up grid      n is number of steps in s    m is number of steps in t  
+          #a1 is min s    a2 is max s   b1 is min t    b2 is max t
+          n=10;m=25;a1=0;a2=200;b1=0;b2=pi/2; 
+          #c1 is surface color     o1 is surface opacity
+          #c2 and o2 are for constant t value traces
+          #c3 and o3 are for constant s value traces
+          c1="lightblue"; c2="black"; c3="black"; o1=0.6; o2=0.5; o3=0.5;
+          plot99=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1)
+          for i in range(n+1):
+              sv=a1+i/n*(a2-a1)
+              plot99+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c2,opacity=o2)
+          for i in range(m+1):
+              tv=b1+i/m*(b2-b1)
+              plot99+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
+          d1=150
+          d2=1.5
+          plot11=plot99+parametric_plot3d((x,0.6,f(x,0.6)),(x,0,200),color="red",thickness=3)
+          plot11+=parametric_plot3d((150,y,f(150,y)),(y,0,pi/2),color="blue",thickness=3)
+          plot11+=parametric_plot3d((x,pi/2+d2,f(x,0.6)),(x,0,200),color="red",thickness=3)
+          plot11+=parametric_plot3d((200+d1,y,f(150,y)),(y,0,pi/2),color="blue",thickness=3)
+          plot11+=parametric_plot3d((x,pi/2+d2,z),(x,0,200),(z,0,1250),color="gray",plot_points=5,opacity=0.0,mesh=True)
+          plot11+=parametric_plot3d((200+d1,y,z),(y,0,pi/2),(z,0,1250),color="gray",plot_points=5,opacity=0.0,mesh=True)
+          plot11+=line([(0,pi/2+d2,0),(225,pi/2+d2,0)],thickness=3,color="black")+text3d("x",(100,pi/2+d2,-100),fontsize=30)
+          plot11+=line([(0,pi/2+d2,0),(0,pi/2+d2,1500)],thickness=3,color="black")+text3d("z",(-20,pi/2+d2,750),fontsize=30)
+          plot11+=line([(200+d1,0,0),(200+d1,pi/2+d2,0)],thickness=3,color="black")+text3d("y",(200+d1,pi/4,-100),fontsize=30)
+          plot11+=line([(200+d1,0,0),(200+d1,0,1500)],thickness=3,color="black")+text3d("z",(200+d1,-0.5,750),fontsize=30)
+          plot11+=line([(0,0,0),(100,0,0)],thickness=2,color="black")+line([(0,0,0),(0,1,0)],thickness=2,color="black")+line([(0,0,0),(0,0,500)],thickness=2,color="black")
+          plot11+=text3d("x",(100,0,-100),color="black",fontsize=20)+text3d("y",(0,1,-100),color="black",fontsize=20)+text3d("z",(0,0,600),color="black",fontsize=20)
+          show(plot11,aspect_ratio=[1,100,0.2],viewpoint=[[-0.8798,0.3246,0.3474],93.44],camera_position=[-347.7358,-471.7864,193.733],frame=False)
+        </slate>
+      </interactive>
+    </figure>
+    
+    <!-- <figure xml:id="trace1">
+      <caption>Left: The trace with <m>y = 0.6</m>. Right: The trace with <m>x = 150</m>. </caption>
+      <sidebyside widths="50% 50%" margins="0%">
+        <image source="images/fig_9_1_y_range"/>
+        <image source="images/fig_9_1_x_range"/>
+        </sidebyside>
+    </figure> -->
+    
+    <p>
+      The curves we define when we fix one of the independent variables in our two-variable function are called <term>traces</term>. In <xref ref="trace1"/>, we have made a copy of the trace off to the side of the figure so you can see each trace as a curve on the proper two-dimensional slice. <xref ref="trace2"/> illustrates these traces as two-dimensional plots.
+    </p>
+
+    <definition>
+      <statement>
+        <p>
+          A <term>trace</term><idx><h>trace</h></idx> in the <m>x</m>-direction of a function <m>f</m> of the independent variables <m>x</m> and <m>y</m> is a curve of the form <m>z = f(x,c)</m>, where <m>c</m> is a constant. Similarly, a <term>trace</term> in the <m>y</m>-direction of a function <m>f</m> of the two independent variables <m>x</m> and <m>y</m> is a curve of the form <m>z = f(c,y)</m>, where <m>c</m> is a constant. 
+        </p>
+      </statement>
+    </definition>
+
+    <p>
+      Understanding trends in the behavior of functions of two variables can be challenging, as can sketching their graphs; traces help us with both of these tasks.
+    </p>
+     
+  <activity workspace="0.75in" xml:id="act-mv_functions-draw-trace">
+      <introduction>
+        <p>
+          In this activity, we investigate the use of traces to better understand a function through both tables and graphs.
+        </p>
+      </introduction>
+      <task>
+        <statement>
+          <p>
+            Identify the <m>y = 0.6</m> trace for the distance function <m>f</m> defined by <m>f(x,y) = \frac{x^2 \sin(2y)}{g}</m> by highlighting or circling the appropriate cells in <xref ref="T-mv_functions-range">Table</xref>.  Write a sentence to describe the behavior of the function along this trace.
+          </p>
+        </statement>
+        <answer>
+          <p>
+            The <m>y = 0.6</m> trace is the vertical column in <xref ref="T-mv_functions-range">Table</xref> where <m>y = 0.6</m>. If the launch angle is <m>0.6</m> radians, as the initial velocity increases, the range of the object increases at an increasing rate.
+          </p>
+        </answer>
+        <solution>
+          <p>
+            The <m>y = 0.6</m> trace is the vertical column in <xref ref="T-mv_functions-range">Table</xref> where <m>y = 0.6</m>. If the launch angle is <m>0.6</m> radians, as the initial velocity increases, the range of the object increases at an increasing rate.
+          </p>
+        </solution>
+      </task>
+      <task>
+        <statement>
+          <p>
+            Identify the <m>x = 150</m> trace for the distance function by highlighting or circling the appropriate cells in <xref ref="T-mv_functions-range">Table</xref>.  Write a sentence to describe the behavior of the function along this trace.
+          </p>
+        </statement>
+        <answer>
+          <p>
+            The <m>x = 150</m> trace is the horizontal row in <xref ref="T-mv_functions-range">Table</xref> where <m>x = 150</m>. If the initial velocity is <m>150 \frac{feet}{sec}</m>, as the launch angle increases from <m>0.2</m> radians to <m>0.8</m> radians, the range of the object increases. When the launch angle increases from <m>0.8</m> radians to <m>1.4</m>, the range of the object decreases.
+          </p>
+        </answer>
+        <solution>
+          <p>
+            The <m>x = 150</m> trace is the horizontal row in <xref ref="T-mv_functions-range">Table</xref> where <m>x = 150</m>. If the initial velocity is <m>150 \frac{feet}{sec}</m>, as the launch angle increases from <m>0.2</m> radians to <m>0.8</m> radians, the range of the object increases. When the launch angle increases from <m>0.8</m> radians to <m>1.4</m>, the range of the object decreases.
+          </p>
+        </solution>
+      </task>
+      <task workspace="0in">
+        <statement>
+          <p>
+            In the next several parts, we will be looking at using traces to help us draw an accurate plot of the surface given by <m>z=g(x,y)=yx^2</m>. As a first step, find the equation for the <m>y=1</m> trace of <m>z=g(x,y)=yx^2</m> and draw a graph of the <m>y=1</m> trace on the corresponding face in <xref ref="tracey1"/>.
+          </p>
+          <figure xml:id="tracey1">
+            <caption>A bounding box for the region with <m>-1 \leq x,y,z \leq 1</m></caption>
+            <interactive label="interactive-tracey1" platform="sage" width="91%" aspect="1:1">
+              <description><p>A three dimensional plot of sides of a box shown in gray. The sides of this box are shown with a grid from negative one to one in both the horizontal and vertical coordinates.</p></description>
+              <slate surface="sage">
+                var('t,s')
+                plot15=parametric_plot3d((1,s,t),(s,-1,1),(t,-1,1),color="gray",opacity=0.2,mesh=True,plot_points=5,aspect_ratio=[1,1,0.5])
+                plot15+=parametric_plot3d((-1,s,t),(s,-1,1),(t,-1,1),color="gray",opacity=0.2,mesh=True,plot_points=5)
+                plot15+=parametric_plot3d((s,1,t),(s,-1,1),(t,-1,1),color="gray",opacity=0.2,mesh=True,plot_points=5)
+                plot15+=parametric_plot3d((s,-1,t),(s,-1,1),(t,-1,1),color="gray",opacity=0.2,mesh=True,plot_points=5)
+                show(plot15)
+              </slate>
+            </interactive>
+          </figure>
+        </statement>
+        <solution>
+          <p>
+            The trace with <m>y=1</m> will correspond to the graph of <m>z=x^2</m>, which will be drawn on the right wall of the default viewpoint on our figure. 
+          </p>
+        </solution>
+      </task>
+      <task workspace="1.5in">
+        <statement>
+          <p>
+            Find the equation for each of the following traces and draw a plot of the trace on the corresponding face in <xref ref="tracey1"/>.
+            <ul cols="3">
+              <li> <m>y=-1</m> </li>
+              <li> <m>x=1</m> </li>
+              <li> <m>x=-1</m> </li>
+            </ul>
+          </p>
+        </statement>
+        <solution>
+          <p>
+            <ul>
+              <li>The trace with <m>y=-1</m> will be given by <m>z=-x^2</m>. This will be drawn on the left face of our box.</li>
+              <li>The trace with <m>x=1</m> will be given by <m>z=y</m> and will be drawn on the front face of our box.</li>
+              <li>The trace with <m>x=-1</m> will be given by <m>z=y</m> and will be drawn on the back face of our box.</li>
+            </ul>
+          </p>
+        </solution>
+      </task>
+      <task workspace="0in">
+        <statement>
+          <p>
+            Draw a few traces (at least three more) that correspond to values in the middle of the plot to fill in a plot of the surface given by <m>z=x^2y</m>.
+          </p>
+        </statement>
+        <solution>
+          <image>
+            <interactive label="interactive-traces" platform="sage" width="91%" aspect="1:1">
+              <description><p>A three dimensional plot of sides of a box shown in gray. The sides of this box are shown with a grid from negative one to one in both the horizontal and vertical coordinates. A plot of the traces for <m>z=yx^2</m> is shown with the constant values of x shown in blue and constant values of y shown in red.</p></description>
+              <slate surface="sage">
+                var('t,s,x,y')
+                vs=[-1,-0.5,0,0.5,1]
+                f(x,y)=y*x^2
+                plot15=parametric_plot3d((1,s,t),(s,-1,1),(t,-1,1),color="gray",opacity=0.1,plot_points=5,aspect_ratio=[1,1,0.5])
+                plot15+=parametric_plot3d((-1,s,t),(s,-1,1),(t,-1,1),color="gray",opacity=0.1,plot_points=5)
+                plot15+=parametric_plot3d((s,1,t),(s,-1,1),(t,-1,1),color="gray",opacity=0.1,plot_points=5)
+                plot15+=parametric_plot3d((s,-1,t),(s,-1,1),(t,-1,1),color="gray",opacity=0.1,plot_points=5)
+                for v in vs:
+                  plot15+=parametric_plot3d((s,v,f(s,v)),(s,-1,1),color="red",thickness=2)
+                  plot15+=parametric_plot3d((v,s,f(v,s)),(s,-1,1),color="blue",thickness=2)
+                show(plot15)
+              </slate>
+            </interactive>
+          </image>
+        </solution>
+      </task>
+    </activity>
+ 
+    <p>
+      <xref ref="act-mv_functions-draw-trace"/> shows how drawing traces on a plot of a surface can give the viewer more information about the orientation of the graph. In <xref ref="traceonoff"/> you can see a plot of the surface generated in our projectile motion example. Without any of the traces drawn on the surface, it is difficult to understand the shape of the surface, and it would be even harder if not for the shading on the computer-generated graphics. You can click on the check box at the top of the figure to add traces to the plot. Notice how much easier it is to distinguish the shape of the surface at different points!
+    </p>
+    <figure xml:id="traceonoff">
+      <caption>A plot of the distance surface with or without traces for perspective</caption>
+      <interactive label="interactive-traceonoff" platform="sage" width="100%" aspect="1:1.08">
+        <description><p>An interactive three dimensional plot of a curved surface shown in light gray that this is u-shaped along constant values of one coordinate and increases parabolically as that the other horizontal coordinate is increased. A checkbox at the top of the plot will add a set of grid lines along the surface that allow the user to see the surface through more than shading of the surface. </p></description>
+        <slate surface="sage">
+          var('x,y')
+          g(x,y)=x^2*sin(2*y)/32
+          @interact
+          def traceplot(s=checkbox(False,label="Show traces")):
+              plot16=plot3d(g,(x,0,200),(y,0,pi/2),color="gray",plot_points=21,mesh=s,opacity=0.8)
+              show(plot16,aspect_ratio=[1,100,0.15],viewpoint=[[-0.792,0.3576,0.4949],84.75],camera_position=[-200.2301,-189.6884,234.3567])
+        </slate>
+      </interactive>
+    </figure>
+    <p>
+      When drawing plots by hand, it is important to use parallel structure to make it easier for the viewer to orient the traces as being in a direction parallel to one of the coordinate axes. It may take time for you to feel confident drawing these kinds of features by hand. However, visual representations of surfaces and their features will be very valuable in our work for the next several chapters. We will continue to provide tips and suggestions to help you with your visualizations along the way.
+    </p>
+    <!--  
+  <activity workspace="1.5in" xml:id="A-9-1-6">
+      <statement>
+        <p>
+          In the following questions, we investigate the use of traces to better understand a function through both tables and graphs.
+          <ol marker="a.">
+            <li>
+              <p>
+                Identify the <m>y = 0.6</m> trace for the distance function <m>f</m> defined by <m>f(x,y) = \frac{x^2 \sin(2y)}{g}</m> by highlighting or circling the
+                    appropriate cells in <xref ref="T-mv_functions-range">Table</xref>.  Write a sentence to describe the behavior of the function along this trace.
+              </p>
+            </li>
+
+            <li>
+              <p>
+                Identify the <m>x = 150</m> trace for the distance function by
+                    highlighting or circling the appropriate cells in <xref ref="T-mv_functions-range">Table</xref>.  Write a sentence to describe the behavior of the function along this trace.
+
+                <figure xml:id="F-9-1-traces-activity-1">
+                  <caption>Coordinate axes to sketch traces.</caption>
+                  <image width="50%" source="images/fig_9_1_activity_axes"/>
+                </figure>
+
+              </p>
+            </li>
+
+            <li>
+              <p>
+                For the function <m>g</m> defined by <m>g(x,y) = x^2 + y^2 + 1</m>, explain the type of function that each trace in the <m>x</m> direction will be (keeping <m>y</m> constant). Plot the <m>y=-4</m>, <m>y=-2</m>, <m>y=0</m>, <m>y=2</m>, and <m>y=4</m> traces in 3-dimensional coordinate system provided in <xref ref="F-9-1-traces-activity-1">Figure</xref>.
+              </p>
+            </li>
+
+            <li>
+              <p>
+                For the function <m>g</m> defined by <m>g(x,y) = x^2 + y^2 + 1</m>, explain the type of function that each trace in the <m>y</m> direction will be (keeping <m>x</m> constant). Plot the <m>x=-4</m>, <m>x=-2</m>, <m>x=0</m>, <m>x=2</m>, and <m>x=4</m> traces in 3-dimensional coordinate system in <xref ref="F-9-1-traces-activity-1">Figure</xref>.
+              </p>
+            </li>
+
+            <li>
+              <p>
+                Describe the surface generated by the function <m>g</m>.
+              </p>
+            </li>
+          </ol>
+        </p>
+      </statement>
+
+      <answer>
+        <p>
+          <ol marker="a.">
+            <li>
+              <p>
+                The <m>y = 0.6</m> trace is the vertical column in <xref ref="T-mv_functions-range">Table</xref> where <m>y = 0.6</m>. If the launch angle is <m>0.6</m> radians, as the initial velocity increases, the range of the object increases at an increasing rate.
+              </p>
+            </li>
+  
+            <li>
+              <p>
+                The <m>x = 150</m> trace is the horizontal row in <xref ref="T-mv_functions-range">Table</xref> where <m>x = 150</m>. If the initial velocity is <m>150 \frac{feet}{sec}</m>, as the launch angle increases from <m>0.2</m> radians to <m>0.8</m> radians, the range of the object increases. When the launch angle increases from <m>0.8</m> radians to <m>1.4</m>, the range of the object decreases.
+              </p>
+            </li>
+  
+            <li>
+              <p>
+                If <m>y</m> is a constant, c, <m>g(x,y)=g(x,c)=x^{2}+c^{2}+1</m>. This is a quadratic function with a vertex of <m>(0,c^{2}+1)</m> that opens upwards. These traces are parallel to the xz-plane
+              </p>
+            </li>
+  
+            <li>
+              <p>
+                If <m>x</m> is a constant, c, <m>g(x,y)=g(c,y)=c^{2}+y^{2}+1</m>. This is a quadratic function with a vertex of <m>(c^{2}+1,0)</m> that opens upwards. These traces are parallel to the yz-plane
+              </p>
+            </li>
+  
+            <li>
+              <p>
+                This surface is shaped like a bowl that opens up in the positive z-direction.
+              </p>
+            </li>
+          </ol>
+        </p>
+      </answer>
+<solution>
+    <p>
+      <ol marker="a.">
+        <li>
+          <p>
+            The <m>y = 0.6</m> trace is the vertical column in <xref ref="T-mv_functions-range">Table</xref> where <m>y = 0.6</m>. If the launch angle is <m>0.6</m> radians, as the initial velocity increases, the range of the object increases at an increasing rate.
+          </p>
+        </li>
+
+        <li>
+          <p>
+            The <m>x = 150</m> trace is the horizontal row in <xref ref="T-mv_functions-range">Table</xref> where <m>x = 150</m>. If the initial velocity is <m>150 \frac{feet}{sec}</m>, as the launch angle increases from <m>0.2</m> radians to <m>0.8</m> radians, the range of the object increases. When the launch angle increases from <m>0.8</m> radians to <m>1.4</m>, the range of the object decreases.
+          </p>
+        </li>
+
+        <li>
+          <p>
+            If <m>y</m> is a constant, c, <m>g(x,y)=g(x,c)=x^{2}+c^{2}+1</m>. This is a quadratic function with a vertex of <m>(0,c^{2}+1)</m> that opens upwards. These traces are parallel to the xz-plane
+          </p>
+        </li>
+
+        <li>
+          <p>
+            If <m>x</m> is a constant, c, <m>g(x,y)=g(c,y)=c^{2}+y^{2}+1</m>. This is a quadratic function with a vertex of <m>(c^{2}+1,0)</m> that opens upwards. These traces are parallel to the yz-plane
+          </p>
+        </li>
+
+        <li>
+          <p>
+            This surface is shaped like a bowl that opens up in the positive z-direction.
+          </p>
+        </li>
+      </ol>
+    </p>
+</solution>
+    </activity>
+  -->
+
+  </subsection>
+  <subsection>
+    <title>Contour Maps and Level Curves</title>
+    <p>
+      As you saw earlier in this section, traces give important information about what a slice of a surface looks like when holding one of the inputs constant. This corresponds to looking at the intersection of a fundamental plane of the form <m>x=a</m> or <m>y=b</m> with the surface given by <m>z=f(x,y)</m>. These fundamental planes are oriented vertically when we consider a <xref ref="fig-coord-sys-right-hand" text="custom">conventional right-handed coordinate system</xref>. In this section, we will explore the intersection of a surface given by <m>z=f(x,y)</m> with a fundamental plane of the form <m>z=c</m>. This will correspond to looking at the points on the surface with a fixed height. <!-- Specifically these points will be the intersection of the surface with the fundamental plane <m>z=c</m>.  -->
+    </p>
+    <p>
+      You may have seen topographic maps such as the one of the Porcupine Mountains in the upper peninsula of Michigan shown in <xref ref="act-mv_functions-porcupine"/>.<fn>Map source: Michigan Department of Natural Resources, with permission of the Michigan DNR and Bob Wild.</fn> The curves on these maps show the locations with a particular elevation (as labeled on the curve). The amount of space between these curves also depicts the rate of change in elevation: curves on the topographic map that are close together signify steep ascents or descents, while curves that are far apart indicate slower changes in elevation. Thus, these topographic maps with curves of constant elevation can tell us a lot about three-dimensional surfaces. Mathematically, if <m>f(x,y)</m> represents the elevation at the point <m>(x,y)</m>, then each of the curves with constant elevation is the graph of an equation of the form <m>f(x,y) = k</m>, for some constant <m>k</m>.
+    </p>
+
+    
+
+     
+  <activity workspace="0.5in" xml:id="act-mv_functions-porcupine">
+      <introduction>
+        <p>
+          Use the topographical map of the Porcupine Mountains below to answer the following questions. Note that points of interest are sometimes marked with an X and have their elevation listed.
+        </p>
+        <!-- <figure xml:id="fig-mv_functions-porcupine"> -->
+      <!-- <caption>Topographical map of the Porcupine Mountains.</caption> -->
+      <image width="95%" source="images/9_1_porcupine_crop">
+        <description>
+          <p>A map with many curves indicating locations of constant elevation. There are also some waterways and points of interest marked on the map.
+          </p>
+        </description>
+      </image>
+    <!-- </figure> -->
+      </introduction>
+      <task>
+        <statement>
+          <p>
+            Identify the highest and lowest points you can find.
+          </p>
+        </statement>
+        <solution>
+          <p>
+            The highest point is labeled as Summit Peak with elevation 593 and is just below the center of the map. The points in the top left of the map are below an elevation of 200 feet. 
+          </p>
+        </solution>
+      </task>
+      <task>
+        <statement>
+          <p>
+            Describe how your elevation would change if you walked in a straight line from the lowest to the highest elevation points. You may want to sketch a plot of the elevation along your path. 
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Draw a straight line path on the map from your lowest to highest point and look at the elevation as labeled at points along this path. 
+          </p>
+        </hint>
+        <solution>
+          <p>
+            Going from the top left corner to the location of Summit peak will start at 200 feet go up to around 400 feet (before Big Carp River), then down to around 320 before increasing up to 593 at Summit peak. There are likely many other features to include on your plot but the outline should look something like this
+          </p>
+          <image source="./images/low_to_high.png"/>
+        </solution>
+      </task>
+      <task workspace="1in">
+        <statement>
+          <p>
+            If you walk along the Big Carp River Trail (in the top left part of the image) from the left to the right as shown on the map, describe which parts of the trail will have steep increases in elevation and which parts you think will be the most like level ground. 
+          </p>
+        </statement>
+        <solution>
+          <p>
+            The beginning of this trail follows along the river and does not change elevation much, if at all. The elevation goes up and then down near Miscowawbic Peak. The steepest change in elevation will be just after Miscowawbic Peak where the trail goes up to a ridge near the three red triangles. 
+          </p>
+        </solution>
+      </task>
+      <!--       <statement>
+              <p>
+                On the topographical map of the Porcupine Mountains in <xref ref="fig-mv_functions-porcupine">Figure</xref>,
+                <ol marker="a.">
+                  <li>
+                    <p>
+                      identify the highest and lowest points you can find;
+                    </p>
+                  </li>
+
+                  <li>
+                    <p>
+                      from a point of your choice, determine a path of steepest ascent that leads to the highest point;
+                    </p>
+                  </li>
+
+                  <li>
+                    <p>
+                      from that same initial point, determine the least steep path that leads to the highest point.
+                    </p>
+                  </li>
+                </ol>
+              </p>
+            </statement>
+
+            <answer>
+              <p>
+                <ol marker="a.">
+                  <li>
+                    <p>
+                      The highest point is Summit Peak with an elevation of 593. The lowest point is in the upper left corner of the contour map with an elevation below 200.
+                    </p>
+                  </li>
+        
+                  <li>
+                    <p>
+                      From the chosen point, the steepest ascent will be in the direction perpendicular to the contour line with the next highest elevation.
+                    </p>
+                  </li>
+        
+                  <li>
+                    <p>
+                      From the chosen point, the least steep path will be in the direction that is closest to parallel to the contour line with the next lowest elevation.
+                    </p>
+                  </li>
+                </ol>
+              </p>
+            </answer>
+      <solution>
+        <p>
+          <ol marker="a.">
+            <li>
+              <p>
+                The highest point is Summit Peak with an elevation of 593. The lowest point is in the upper left corner of the contour map with an elevation below 200.
+              </p>
+            </li>
+
+            <li>
+              <p>
+                From the chosen point, the steepest ascent will be in the direction perpendicular to the contour line with the next highest elevation.
+              </p>
+            </li>
+
+            <li>
+              <p>
+                From the chosen point, the least steep path will be in the direction that is closest to parallel to the contour line with the next lowest elevation.
+              </p>
+            </li>
+          </ol>
+        </p>
+      </solution> -->
+    </activity>
+ 
+
+    <p>
+      Curves on a surface that describe points at the same height or level are called <term>level curves</term> and as you saw in the topographic map above, a plot with level curves can be useful for representing information on a surface using just a two dimensional plot. 
+    </p>
+
+    <definition>
+      <statement>
+        <p>
+          A <term>level curve</term><idx><h>level curve</h></idx> (or <term>contour</term>) of a function <m>f</m> of two independent variables <m>x</m> and <m>y</m> is a curve of the form <m>k = f(x,y)</m>, where <m>k</m> is a constant.
+        </p>
+      </statement>
+    </definition>
+
+    <p>
+      Topographical maps can be used to create a three-dimensional surface from the two-dimensional contours or level curves. For example, level curves of the distance function defined by <m>f(x,y) = \frac{x^2 \sin(2y)}{32}</m> plotted in the <m>xy</m>-plane are shown in <xref ref="contour1">Figure</xref>. You can change the number of contours in the plot by moving the slider at the top of <xref ref="contour1">Figure</xref>. Additionally, you will sometimes see a legend for contours shown when different colors are used or a contour plot with different colors and shading filling in the region between contours. <!-- You can toggle these options in the contour plot below by clicking on the checkbox next to the different options.  -->
+    </p>
+    <figure xml:id="contour1">
+      <caption>A contour plot of <m>f(x,y) = \frac{x^2 \sin(2y)}{32}</m></caption>
+      <interactive label="interactive-contour1" platform="sage" width="100%" aspect="1:1.15">
+        <description><p>An interactive two dimensional plot with the horizontal coordinate labeled <m>x</m> and going from 0 to 200. The vertical coordinate is labeled <m>y</m> and goes from o to 1.6. The slider at the top of the figure changes the number of curves drawn in this space. These curves are U-shaped curves that are oriented to the right of the space. The color of these curves go through a rainbow of colors from pink to purple where each curve is labeled with larger numbers as they are nested closer to the middle of the right boundary.</p></description>
+      <slate surface="sage">
+        var('x,y,z')
+        @interact
+        def contourexpanded(n=slider(3,20,1,default=9,label="Number of Contours",display_value=False)):
+            g(x,y)=x^2*sin(2*y)/32
+            c=[1350/n*i for i in range(n)]
+            cm=["pink","red","orange","yellow","green","blue","indigo","violet"]
+            plot17=contour_plot(g(x,y),(x,0,200),(y,0,pi/2),contours=c,aspect_ratio=100,fill=False,labels=True,label_fmt="%1.0f",axes_labels=["$x$","$y$"],label_inline=True,cmap=cm)
+            show(plot17)
+        </slate>
+      </interactive>  
+    </figure>
+    <p>
+      If we lift these contours and plot them at their respective heights, then we get a picture of the surface itself, as illustrated at right in <xref ref="contour2">Figure</xref>.
+    </p>
+    <figure xml:id="contour2">
+      <caption>A plot of the contours of <m>f(x,y) = \frac{x^2 \sin(2y)}{32}</m> at the appropriate heights</caption>
+      <interactive label="interactive-contour2" platform="sage" width="91%" aspect="1:1">
+        <description><p>A three dimensional plot of a curved surface shown faintly in light gray that this is u-shaped along constant values of one coordinate and increases parabolically as that the other horizontal coordinate is increased. There are eight curves shown along this surface at constant heights of 0 through 1050 with steps of size 150. These curves are all U-shaped and the colors go from pink to red to orange to yellow to green to blue to purple to pink. </p></description>
+      <slate surface="sage">
+          var('x,y,z,t,s')
+          g(x,y)=x^2*sin(2*y)/32
+          s=1
+          plot18=plot3d(g,(x,0,200),(y,0,pi/2),color="gray",plot_points=21,opacity=0.1*s)
+          c=["pink","red","orange","yellow","green","blue","indigo","violet"]
+          for i in range(8):
+            h=150*i
+            tv=arcsin(32*h/(200^2))/2
+            plot18+=parametric_plot3d((sqrt(32*h/sin(2*t)),t,h),(t,tv,pi/2-tv),color=c[i],thickness=2)
+            plot18+=text3d(str(h),(sqrt(32*h/1)-25,pi/4,h),color=c[i],fontsize=15)
+          show(plot18,aspect_ratio=[1,100,0.15],viewpoint=[[-0.9811,0.124,0.1483],80.88],camera_position=[-13.4812,-314.7077,166.7816])
+        </slate>
+      </interactive>
+    </figure>
+    <!-- <figure xml:id="F-9-1-contours-1">
+      <caption>Left: Level curves. Right: Level curves at appropriate heights.</caption> 
+      <sidebyside widths="50% 50%">   
+        <image source="images/fig_9_1_contour_1"/>    
+        <image source="images/fig_9_1_contour_2"/>
+        </sidebyside>
+    </figure> -->
+    
+
+    <p>
+      The use of level curves and traces can help us construct the graph of a function of two variables. For the surface defined by <m>z=f(x,y) = \frac{x^2 \sin(2y)}{32}</m>, we can plot a grid of <m>x</m>-traces, <m>y</m>-traces, and contours to get a good idea of what the surface looks like as shown in <xref ref="contour3"/>. If you compare the paths plotted in <xref ref="contour3"/> to <xref ref="zfnxy"/>, you will see that the mesh shown on the surfaces in most plots <em>is</em> a grid of traces and contours and that is how the orientation of surfaces is typically drawn by computer-generated plots.
+    </p>
+    <figure xml:id="contour3">
+      <caption>A plot of the contours and traces of <m>f(x,y) = \frac{x^2 \sin(2y)}{32}</m> at the appropriate values</caption>
+      <interactive label="interactive-contour3" platform="sage" width="91%" aspect="1:1">
+        <description><p>A three dimensional plot of a curved surface shown faintly in light gray that this is u-shaped along constant values of one coordinate and increases parabolically as that the other horizontal coordinate is increased. Three mutually perpendicular segments are drawn from the lower corner of the surface and are labled <m>x</m> and <m>y</m> horizontally and <m>z</m> for the vertical segment. Eight red curves are shown along the surface in a direction parallel to the segment labeled <m>x</m>. Eight green curves are shown along the surface in a direction parallel to the segment labeled <m>y</m>. Eight blue curves are shown along the surface with constant steps in the height.</p> </description>
+      <slate surface="sage">
+          var('x,y,z,t,s')
+          g(x,y)=x^2*sin(2*y)/32
+          s=0
+          plot19=plot3d(g,(x,0,200),(y,0,pi/2),color="gray",plot_points=21,opacity=0.1*s)
+          c=[150*i for i in range(9)]
+          for h in c:
+              tv=arcsin(32*h/(200^2))/2
+              plot19+=parametric_plot3d((sqrt(32*h/sin(2*t)),t,h),(t,tv,pi/2-tv),color="blue",thickness=2)
+          c2=[pi/2*i/8 for i in range(9)]
+          for yv in c2:
+              plot19+=parametric_plot3d((t,yv,g(t,yv)),(t,0,200),color="red",thickness=2)
+          c3=[200*i/8 for i in range(9)]
+          for xv in c3:
+              plot19+=parametric_plot3d((xv,t,g(xv,t)),(t,0,pi/2),color="green",thickness=2)
+          plot19+=line([(0,0,0),(100,0,0)],thickness=2,color="black")+line([(0,0,0),(0,1,0)],thickness=2,color="black")+line([(0,0,0),(0,0,500)],thickness=2,color="black")
+          plot19+=text3d("x",(100,0,-100),color="black",fontsize=30)+text3d("y",(0,1,-100),color="black",fontsize=30)+text3d("z",(0,0,600),color="black",fontsize=30)
+          show(plot19,aspect_ratio=[1,100,0.15],frame=False,viewpoint=[[-0.8982,0.3075,0.314],94.94],camera_position=[-160.2715,-257.0002,95.1452])
+        </slate>
+      </interactive>
+    </figure>
+    
+    <p>
+      Isotherms are another example of where you are likely to encounter level curves. Isotherms are a plot in which the curves on the map connect locations that have the same temperature. A plot with lots of isotherms will allow you to see how the temperature changes over a region. 
+    </p>
+    <!--https://edu.ametsoc.org/dstreme/extras/usr_guide/Temperature.html  -->
+    <figure xml:id="isotherms">
+      <caption>An isotherm map with temperatures at major cities (from NCEP/NWS/NOAA) </caption>
+      <image width="70%" xml:id="img-isotherms" source="isotherms.png">
+        <description><p>A map of the United States of America with numbers at locations of cities corresponding to temperatures. Red curves along the map connect points that have locations with constant values of temperature from 30 to 80 by steps of ten. </p></description>
+      </image>
+    </figure>
+     
+  <activity workspace="0.75in" xml:id="act-mv_functions-draw-contours">
+      <introduction>
+        <p>
+          In this activity, you will make contour plots by hand and look at how the spacing of contours in your plot should give an idea about how different surface shapes can be distinguished. 
+        </p>
+
+      </introduction>
+      <task>
+        <statement>
+          <p>
+            Let <m>f(x,y) = x^2+y^2</m>. Draw the level curves <m>f(x,y) = k</m> for <m>k=1</m>, <m>k=2</m>, <m>k=3</m>, and <m>k=4</m> on the axes below. Be sure to label the scale of the axes. Explain what the surface defined by <m>f</m> looks like.
+          </p>
+          <image width="45%">
+            <sageplot label="img-fig_9_1_activity_empty_1">
+              from matplotlib import ticker
+              var('x,y')
+              tic=[i for i in range(-6,7)]
+              plot21=point((0,0),size=0,color="black",gridlines=True,ymin=-6,ymax=6,xmin=-6,xmax=6,ticks=[tic,tic],axes_labels=["$x$","$y$"],aspect_ratio=1,frame=False,tick_formatter=(ticker.NullFormatter(),ticker.NullFormatter()))
+              plot21
+            </sageplot>
+          <description><p>A blank set of two dimensional axes with an unlabeled grid. The horizontal axis is labeled <m>x</m> and the vertical axis is labeled <m>y</m>.</p></description></image>
+        </statement>
+        <answer>
+          <p>
+            Each level curve will be a circle with a radius of <m>\sqrt{k}</m>. As <m>k</m> increases, the radius of the circle increases but at a decreasing rate. This surface is a bowl with a vertex at <m>(0,0,0)</m> that opens up.
+          </p>
+        </answer>
+        <solution>
+          <p>
+            Each level curve will be a circle with a radius of <m>\sqrt{k}</m>. As <m>k</m> increases, the radius of the circle increases but at a decreasing rate. This surface is a bowl with a vertex at <m>(0,0,0)</m> that opens up.
+          </p>
+        </solution>
+      </task>
+      <task>
+        <statement>
+          <p>
+            Let <m>g(x,y) = \sqrt{x^2+y^2}</m>. Draw the level curves <m>g(x,y) = k</m> for <m>k=1</m>, <m>k=2</m>, <m>k=3</m>, and <m>k=4</m> on the axes below. Use the same scale on these axes as in the previous part. Explain what the surface defined by <m>g</m> looks like.
+          </p>
+          <image width="45%">
+            <sageplot label="img-fig_9_1_activity_empty_2">
+              from matplotlib import ticker
+              var('x,y')
+              tic=[i for i in range(-6,7)]
+              plot21=point((0,0),size=0,color="black",gridlines=True,ymin=-6,ymax=6,xmin=-6,xmax=6,ticks=[tic,tic],axes_labels=["$x$","$y$"],aspect_ratio=1,frame=False,tick_formatter=(ticker.NullFormatter(),ticker.NullFormatter()))
+              plot21
+            </sageplot>
+          <description><p>A blank set of two dimensional axes with an unlabeled grid. The horizontal axis is labeled <m>x</m> and the vertical axis is labeled <m>y</m>.</p></description></image>
+        </statement>
+        <answer>
+          <p>
+            Each level curve will be a circle with a radius of <m>k</m>. As <m>k</m> increases, the radius of the circle increases at a constant rate. This surface is a cone with a vertex at <m>(0,0,0)</m> that opens up.
+          </p>
+        </answer>
+        <solution>
+          <p>
+            Each level curve will be a circle with a radius of <m>k</m>. As <m>k</m> increases, the radius of the circle increases at a constant rate. This surface is a cone with a vertex at <m>(0,0,0)</m> that opens up.
+          </p>
+        </solution>
+      </task>
+      <task>
+        <statement>
+          <p>
+            Compare and contrast the graphs of <m>f</m> and <m>g</m>. How are they alike? How are they different? Use traces for each function to help answer these questions.
+          </p>
+        </statement>
+        <answer>
+          <p>
+            Both of these surfaces have a vertex at <m>(0,0,0)</m> and open up. The radii of the level curves for <m>f(x,y)</m> increase at a decreasing rate as <m>k</m> increases, while the radii of the level curves of <m>g(x,y)</m> increases at a decreasing rate as <m>k</m> increases.
+          </p>
+        </answer>
+        <solution>
+          <p>
+            Both of these surfaces have a vertex at <m>(0,0,0)</m> and open up. The radii of the level curves for <m>f(x,y)</m> increase at a decreasing rate as <m>k</m> increases, while the radii of the level curves of <m>g(x,y)</m> increases at a decreasing rate as <m>k</m> increases.
+          </p>
+        </solution>
+      </task>
+    </activity>
+ 
+    <p>
+      The traces and level curves of a function of two variables are curves in space. Traces are easier to parameterize as a curve in space because one input variable is fixed and the other input variable can act as the parameter. For example, the trace with <m>y=b</m> of the surface given by <m>z=f(x,y)</m> will be parameterized by <m>\vr(t)=\langle t,b,f(t,b)\rangle</m> because the <m>z</m>-coordinate can be expressed in terms of the fixed input value and the other input variable (as the parameter). Parameterizing contours, however, can be difficult and often relies on knowing the particular shape of the contours. Remember that it may not be possible to express a curve of the form <m> k=f(x,y)</m> with one coordinate as a function of the other.
+    </p>
+
+  </subsection>
+
+  <subsection>
+    <title>A gallery of functions</title>
+    <p>
+      We end this section by considering a collection of functions and illustrating their surface graphs and contour plots. Many (but not all) of these surfaces will be familiar to you from <xref ref="S-Precalc-CommonGraphs"/>, so now you will have an opportunity to see how the contour plots relate to the analyses you did in that section.
+    </p>
+    <figure xml:id="contourgallery">
+      <caption>A plot of various functions and their contour plots</caption>
+      <interactive label="interactive-contourgallery" platform="sage" width="100%" aspect="1:1.90">
+        <description><p>An interactive set of plots that consists of a three dimensional plot and a two dimensional plot. A drop down list at the top of the plots allows the user to select from Surface 1 to Surface 7. 
+        For Surface 1, the three dimensional plot shows a circular paraboloid opening toward the axis labeled <m>z</m> and the two dimensional plot shows a collection of concentric circles with rainbow colors that are labeled from 1 to 7 and spaced closer together as the circle's radius increases.
+        For Surface 2, the three dimensional plot shows top half of a cone opening toward the axis labeled <m>z</m> and the two dimensional plot shows a collection of concentric circles with rainbow colors that are labeled from .4 to 2.4 and equally spaced as the circle's radius increases.  
+        For Surface 3, the three dimensional plot shows a circular paraboloid downward or away from the axis labeled <m>z</m> and the two dimensional plot shows a collection of concentric circles with rainbow colors that are labeled from 0 to -6 and spaced closer together as the circle's radius increases. 
+        For Surface 4, the three dimensional plot shows a hyperbolic paraboloid or saddle surface and the two dimensional plot shows a collection of concentric hyperbolas with rainbow colors that are labeled from -.5 to 1.5 and spaced closer together as the hyperbolas appear farther from the origin. The hyperbolas oriented vertically are labeled with negative values and the hyperbolas oriented horizontally are labeled with positive values.  
+        For Surface 5, the three dimensional plot shows a curved surface that has a sinusoidal shape in the directions labeled <m>x</m> and <m>y</m>. The two dimensional plot shows a tilted grid of closed curves that alternate between positive and negative labels going from -1.5 to 1.5.
+        For Surface 6, the three dimensional plot shows a curved surface that increases with a cubic shape along constant values of <m>y</m> and are parabolic facing up for constant values of <m>x</m>. The two dimensional plot shows a collection of curves around the point (-0.5,0) with labeled increasing from 0 to 8 as curves move away from the center of the figure.  
+        For Surface 7, the three dimensional plot shows a curved surface that consists of a single hill above the quadrants with both <m>x</m> and <m>y</m> positive or negative. The curved surface has depressions where <m>x</m> and <m>y</m> have different signs. The two dimensional plot shows a collection of concentric curves in each quadrant with the curves in the first and third quadrants labeled from 0 to 1.2 and the curves in the second and fourth quadrants labeled from 0 to -1.2. </p> </description>
+      <slate surface="sage">
+          <xi:include href="./interacts/contourgallerycode.txt" parse="text"/>
+        </slate>
+      </interactive>
+    </figure>
+    <!-- <figure>
+      <caption><m>z=x^2+y^2</m></caption>
+      <sidebyside widths="43% 43%" margins="0%">
+      <image source="images/zisr2"/>
+      <image source="images/zisr2_contours"/>
+      </sidebyside>
+    </figure>
+
+    <figure>
+      <caption><m>z=4-(x^2+y^2)</m></caption>
+      <sidebyside widths="43% 43%" margins="0%">
+      <image source="images/zis4r2"/>
+      <image source="images/zis4r2_contours"/>
+      </sidebyside>
+    </figure>
+
+    <figure>
+      <caption><m>z=\sqrt{x^2+y^2}</m></caption>
+      <sidebyside widths="43% 43%" margins="0%">
+      <image source="images/cone"/>
+      <image source="images/cone_contours"/>
+      </sidebyside>
+    </figure>
+
+    <figure>
+      <caption><m>z=x^2-y^2</m></caption>
+      <sidebyside widths="43% 43%" margins="0%">
+      <image source="images/saddle"/>
+      <image source="images/saddle_contours"/>
+      </sidebyside>
+    </figure>
+
+    <figure>
+      <caption><m>z=\sin(x)+\sin(y)</m></caption>
+      <sidebyside widths="43% 43%" margins="0%">
+      <image source="images/sinxy"/>
+      <image source="images/sinxy_contours"/>
+      </sidebyside>
+    </figure>
+
+    <figure>
+      <caption><m>z=y^2 - x^3 + x</m></caption>
+      <sidebyside widths="43% 43%" margins="0%">
+      <image source="images/elliptic"/>
+      <image source="images/elliptic_contours"/>
+      </sidebyside>
+    </figure>
+
+    <figure>
+      <caption><m>z=xye^{-x^2-y^2}</m></caption>
+      <sidebyside widths="43% 43%" margins="0%">
+      <image source="images/exp"/>
+      <image source="images/exp_contours"/>
+      </sidebyside>
+    </figure> -->
+
+
+  </subsection>
+
+  <outcomes>
+    <ul>
+      <li>
+        <p>
+          A function <m>f</m> of several variables is a rule that assigns a single number to an ordered collection of independent inputs.  The domain of a function of several variables is the set of all inputs for which the function is defined.
+        </p>
+      </li>
+      <li>
+        <p>
+          A trace of a function <m>f</m> of two independent variables <m>x</m> and <m>y</m> is a curve of the form <m>z = f(x,c)</m> (for an <m>x</m>-trace) or <m>z = f(c,y)</m> (for a <m>y</m>-trace), where <m>c</m> is a constant. A trace tells us how the function depends on a single independent variable if we treat the other independent variable as a constant. 
+        </p>
+      </li>
+      <li>
+        <p>
+          A level curve of a function <m>f</m> of two independent variables <m>x</m> and <m>y</m> is a curve of the form <m>k = f(x,y)</m>, where <m>k</m> is a constant. A level curve describes the set of inputs that lead to a specific output of the function. A level curve is also called a contour.
+        </p>
+      </li>
+    </ul>
+
+  </outcomes>
+<xi:include href="./exercises/ez-S_mv_functions.ptx"/>
+      
+</section>

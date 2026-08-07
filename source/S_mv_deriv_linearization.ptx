@@ -39,10 +39,15 @@
     </ul>
   </objectives>
   <introduction component="instructor">
-    <title>Notes to the Instructor and Dependencies</title>
+    <assemblage>
+      <title>Notes to the Instructor and Dependencies</title>
     <p>
       This section relies on the ideas of planes from <xref ref="S-Precalc-Lines"/> and first partial derivatives as measuring the tilt of a surface plot at a particular location from <xref ref="S-mv_deriv-first_order"/>. Some instructors will only cover a subset of the linearization tools covered here (tangent plane, total differential, linearization for approximation, differentiability, locally linear) but these tools are introduced and defined in such a way that each conceptually flows from the idea of locally linear functions. To cover all the topics in this section will likely take a couple of class meetings. 
     </p>
+    <p>
+      We have moved examples of functions that are not differentiable to the later subsection, <xref ref="differentiability"/>. This subsection does not have activities because we feel that the deeper ideas involved in showing a function is not differentiable are not usually suitable for students at this level. There is an extension of the example function to <xref ref="Ez_10_4_0"/> to show that a function that has partial derivatives existing is NOT the same as the function being differentiable. There are several exercises that work through a more complete definition of differentiability including <xref ref="Ez_10_4_4"/>.
+    </p>
+    </assemblage>
   </introduction>
   <subsection>
     <title>Introduction</title>
@@ -54,7 +59,7 @@
     </p>
     <figure xml:id="LLline2">
       <caption>A plot with the ability to zoom in on a point of <m>y=f(x)</m>, where <m>f</m> is a nonlinear, differentiable function</caption>
-      <interactive title="interactive-LLline" platform="sage" width="100%" aspect="1:1">
+      <interactive label="interactive-LLline" platform="sage" width="100%" aspect="1:1">
         <slate surface="sage">
           @interact
           def LLline(zoom=slider(0,8,1,default=0,label="Zoom"),val=slider(0,2,0.05,default=1.00,label="Location")):
@@ -87,7 +92,7 @@
     </p>
     <figure xml:id="LLline2">
       <caption>A plot with the ability to zoom in on a point of <m>y=f(x)</m>, where <m>f</m> is a nonlinear, differentiable function</caption>
-      <interactive title="interactive-LLline" platform="sage" width="100%" aspect="1:1">
+      <interactive label="interactive-LLline" platform="sage" width="100%" aspect="1:1">
         <slate surface="sage">
           @interact
           def LLline(zoom=slider(0,8,1,default=0,label="Zoom"),val=slider(0,2,0.05,default=1.00,label="Location")):
@@ -280,7 +285,7 @@
         </p>
       </proof>
     </proposition>
-  <worksheet>
+   
   <exploration workspace="1.5in" xml:id="PA-mv_deriv-linearization">
     <introduction>
       <p>
@@ -464,7 +469,7 @@
             </li>
  -->
     </exploration>
-</worksheet>
+ 
   </subsection>
     <subsection xml:id="subsec-tangentplane">
       <title>The Tangent Plane</title>
@@ -502,7 +507,7 @@
         </li>
       </ul>
     </p>
-  <worksheet>
+   
   <activity workspace="1.5in" xml:id="act-mv_deriv-linearization-tanplane">
     <!-- <task>
       <statement>
@@ -598,7 +603,7 @@
       </solution>
     </task>
   </activity>
-  </worksheet>
+   
   <p>
     In single-variable calculus, an important use of the tangent line is to approximate a differentiable function. Near the point <m>x_0</m>, the tangent line to the graph of <m>f</m> at <m>x_0</m> is close to the graph of <m>f</m> for input values close to <m>x_0</m>, as shown in <xref ref="fig-mv_deriv-linearization-LL2">Figure</xref>. Adjust the Zoom slider to examine a small region around the highlighted point to see how the tangent line is a good approximation for a small region around that point. In fact, the smaller the scale around the point, the better the approximation is. 
   </p>
@@ -698,7 +703,7 @@
     <p>
       Because we had an algebraic expression for <m>f</m> in the previous example, we could have evaluated <m>f(0.9,1.2)</m> directly. However, as the next activity shows, many applications of multivariable functions use tables or graphs where it is not possible to have the function's output at every possible input. 
     </p>
-    <worksheet>
+     
   <activity workspace="1.5in" xml:id="act-mv_deriv-linearization-tanplane1">
     <introduction>
       <p>
@@ -921,7 +926,7 @@
       </solution>
     </task>
     </activity>
-</worksheet>
+ 
 <example xml:id="approx-example">
     <p>
       Suppose we have a machine that cuts rectangles of width <m>w=20</m> cm and height <m>h=10</m> cm. However, the machine isn't perfect, and therefore the width could be off by <m>dw = \Delta w = 0.2</m> cm and the height could be off by <m>dh = \Delta h = 0.4</m> cm.
@@ -944,7 +949,7 @@
       That is, we estimate that the area in our rectangles could be off by as much as 10 square centimeters.
     </p>
 </example>
-<worksheet>
+ 
   <activity workspace="1.5in" xml:id="act-mv_deriv-linearization-tanplane2">
       <task>
         <statement>
@@ -1032,7 +1037,7 @@
         </solution>
       </task>
     </activity>
-</worksheet>
+ 
 <p>
   In <xref ref="approx-example"/>, we see how the same form is being used to approximate the change in the output of a multivariable function across very different input values. The total differential is an abstraction of this form, namely that the change in the output of a function of two variables is a linear combination of the changes in the inputs with the coefficients being the values of the partial derivatives.
 </p>
@@ -1103,7 +1108,7 @@
       The linearization of a function approximates the function's output around a particular point, but a total differential, <m>df</m>, shows the algebraic form corresponding to a change in the output of <m>f</m> in terms of linear combinations of the changes in inputs (not just the values at a particular point).
     </p>
     <p>
-      For example, we can apply our differential idea to the example of cutting boxes (<xref ref="approx-example" />) and estimate the area estimate error of a box of a different size as well. If we wanted to make rectangles that are 63 cm wide and 25 cm high and our machines had the same tolerances (<m>dw = \Delta w = 0.2</m> cm and <m>dh = \Delta h = 0.4</m> cm), then our target rectangle would have area 1,575 square centimeters but the uncertainty in the area would be <m>30.2 \. \text{cm}^2</m>:
+      For example, we can apply our differential idea to the example of cutting boxes (<xref ref="approx-example" />) and estimate the area estimate error of a box of a different size as well. If we wanted to make rectangles that are 63 cm wide and 25 cm high and our machines had the same tolerances (<m>dw = \Delta w = 0.2</m> cm and <m>dh = \Delta h = 0.4</m> cm), then our target rectangle would have area 1,575 square centimeters but the uncertainty in the area would be <m>30.2 \text{ cm}^2</m>:
       <md>
         <mrow> \Delta A \approx dA =\amp A_w(63, 25) \enspace dw + A_h(63,25) \enspace dh</mrow>
         <mrow> \amp=  25 dw + 63 dh</mrow>

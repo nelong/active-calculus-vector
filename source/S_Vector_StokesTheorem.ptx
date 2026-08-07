@@ -28,12 +28,20 @@
     </li>
   </ul>
 </objectives>
-<subsection>
+<introduction component="instructor">
+  <assemblage>
+    <title>Notes to the Instructor and Dependencies</title>
+  <p>
+    This section relies heavily on understanding flux integrals <xref ref="S_Vector_FluxInt"/> as well as the calculation of circulation around a closed curve (from <xref ref="S_Vector_GreensTheorem"/> and <xref ref="S_Vector_IdeaLineIntegral"/>).  <xref ref="surfaceboundaries"/> gives some reminders about the different ways to parameterize surfaces, which was first introduced in <xref ref="S_Parametric_Surfaces_Surface_Area"/>.
+  </p>
+  </assemblage>
+</introduction>
+  <subsection>
   <title>Introduction</title>
   <p>
     When we studied <xref ref="thm_Green" text="title"/> in <xref ref="S_Vector_GreensTheorem" text="type-global"/>, we saw how integrating the circulation density over a region in the plane bounded by a simple closed curve is equivalent to calculating the circulation along the boundary curve. When we consider simple closed curves in <m>\R^3</m>, the situation gets more complicated. However, there is an interesting, and perhaps surprising, generalization of <xref ref="thm_Green" text="title"/> for us to examine.
   </p>
-  <worksheet>
+   
   <exploration workspace="1.5in" xml:id="PA_Vector_StokesThm">
     <introduction>
       <p>
@@ -47,7 +55,7 @@
       </p>
       <figure xml:id="fig_Vector_StokesThm_curves_high_line">
         <caption>Three curves in space</caption>
-        <interactive title="int_Vector_StokesThm_curves_high_line" platform="sage" width="100%" aspect="1:1">
+        <interactive label="int_Vector_StokesThm_curves_high_line" platform="sage" width="100%" aspect="1:1">
           <description><p>A three dimensional plot of curves in space. A circular curve that reaches peaks and valleys twice each time around is split into yellow and magenta sections with the boundary occurring at the two maximum values. A blue segment is drawn between the points where the yellow and magenta curves meet. </p></description>
         <slate surface="sage">
             var('t,s,x,y,z,r,theta')
@@ -120,7 +128,7 @@
             Explain how your arguments or equations from any of the parts above would or would not change if you considered the curves depicted in <xref ref="fig_Vector_StokesThm_curves_low_line" text="type-global"/>.</p>
           <figure xml:id="fig_Vector_StokesThm_curves_low_line">
             <caption>Three slightly different curves in space</caption>
-            <interactive title="int_Vector_StokesThm_curves_low_line" platform="sage" width="100%" aspect="1:1">
+            <interactive label="int_Vector_StokesThm_curves_low_line" platform="sage" width="100%" aspect="1:1">
               <description><p>A three dimensional plot of curves in space. A circular curve that reaches peaks and valleys twice each time around is split into yellow and magenta sections with the boundary occurring between the maximum and minimum values. A blue segment is drawn between the points where the yellow and magenta curves meet.</p></description>
             <slate surface="sage">
                 var('t,s,x,y,z,r,theta')
@@ -151,7 +159,7 @@
         </p>
       <figure xml:id="fig_Vector_StokesThm_fill_in_surfaces">
         <caption>Surfaces containing a common simple closed curve</caption>
-        <interactive title="int_Vector_StokesThm_pringle_surfaces" platform="sage" width="100%" aspect="60:65">
+        <interactive label="int_Vector_StokesThm_pringle_surfaces" platform="sage" width="100%" aspect="60:65">
         <description><p>An interactive three dimensional plot with a circular curve that reaches peaks and valleys twice each time around is shown in red. A dropdown box at the top of the figure allows the user to select between three different gray surfaces that go through the red curve.</p></description>
         <slate surface="sage">
           var('t,s,x,y,z,r,theta')
@@ -197,7 +205,7 @@
       </solution>
     </task>
   </exploration>
-</worksheet>
+ 
 </subsection>
 <subsection xml:id="SS_Vector_StokesThm_Development">
   <title>Circulation in three dimensions and Stokes' Theorem</title>
@@ -213,7 +221,7 @@
   <figure xml:id="fig_Vector_StokesThm_surface_boundary">
     <caption>A surface <m>S</m> (and normal vector) bounded by an
     oriented simple closed curve <m>C</m></caption>
-    <interactive title="int_Vector_StokesThm_surface_boundary" platform="sage" width="100%" aspect="1:1">
+    <interactive label="int_Vector_StokesThm_surface_boundary" platform="sage" width="100%" aspect="1:1">
       <description><p>A three dimensional plot of a circular curve that reaches peaks and valleys twice each time around is shown in magenta. A gray surface saddle surface is shown with the magenta curves shown as the boundary of this surface. A blue vector is shown perpendicular to the gray surface. </p>
     </description>
     <slate surface="sage">
@@ -296,7 +304,7 @@
         </p>
         <figure xml:id="fig_stokes_example_12y2">
           <caption>A portion of the surface <m>z=1-2y^2</m> bounded by <m>C</m></caption>
-          <interactive title="int_Vector_StokesThm_verify1" platform="sage" width="100%" aspect="1:1">
+          <interactive label="int_Vector_StokesThm_verify1" platform="sage" width="100%" aspect="1:1">
           <description><p>A three dimensional plot of a circular curve that reaches peaks and valleys twice each time around is shown in red. A parabolic cylinder surface is shown in gray with the red curve as the boundary of the surface.</p>
           </description><slate surface="sage">
             var('t,s,x,y,z,r,theta')
@@ -374,7 +382,7 @@
   <p>
     We close this subsection with a pair of activities. The first focuses on calculating both of the integrals in <xref ref="thm_Stokes" text="title"/>. The second asks you to calculate some line integrals along simple closed curves and gives you the discretion to choose the best method to use for this (as well as the best surface to use, if you choose Stokes' Theorem).
     </p>
-    <worksheet>
+     
   <activity workspace="1.5in" xml:id="act_Vector_StokesThm_verify">
       <introduction>
         <p>
@@ -521,8 +529,8 @@
         </task>
       </task>
     </activity>
-</worksheet>
-    <worksheet>
+ 
+     
   <activity workspace="1.5in" xml:id="act_Vector_StokesThm_use">
       <task xml:id="task_act_Vector_StokesThm_use_cylinder">
         <statement>
@@ -539,8 +547,8 @@
           <p>
             For the vector field <m>\vF = \langle 3yz, xz, -xy\rangle</m>, we get a curl of <m>\langle -x-x,y-3y,z-3z \rangle = -3 \langle 0,y,z\rangle </m>. The surface we will use is parameterized by <m>\vr(s,t)=\langle \cos(t),s,\sin(t) \rangle</m> with <m>s \in [-2,5]</m> and <m>t \in [0,2\pi)</m>. So the flux integral of the curl of <m>\vF</m> through our surface is given by 
             <md>
-              \int_{-2}^5 \int_0^{\frac{\pi}{2}} \langle 0 ,-3s,-3\sin(t)\rangle \cdot \langle \cos(t),0,\sin(t)\rangle \, dt \, ds = 
-              \int_{-2}^5 \int_0^{\frac{\pi}{2}} -3 \sin(t)^2 \, dt \, ds = -frac{21\pi}{4}
+            <mrow>\int_{-2}^5 \int_0^{\frac{\pi}{2}} \langle 0 ,-3s,-3\sin(t)\rangle \cdot \langle \cos(t),0,\sin(t)\rangle \, dt \, ds </mrow>
+            <mrow> \qquad = \int_{-2}^5 \int_0^{\frac{\pi}{2}} -3 \sin(t)^2 \, dt \, ds = -\frac{21\pi}{4}</mrow>
             </md>
           </p>
         </solution>
@@ -563,7 +571,7 @@
         </solution>
       </task>
     </activity>
-</worksheet>
+ 
     <p>
       In part <xref ref="task_act_Vector_StokesThm_use_circle" text="phrase-global"/>, there are two <q>reasonable</q> choices for the surface bounded by the circle. If you did not do so while doing the activity, we encourage you to identify both of them and compare which one makes doing the flux integral easier. In general, this will vary depending on the curl of the vector field in question, so we cannot give a rule for determining what surface or coordinate system to use. However, we do encourage you to think about which surface will make evaluating the flux integral easiest.
     </p>
@@ -573,7 +581,7 @@
   <p>
     When we looked <xref ref="thm_Green" text="title"/>, it was generally most useful when we were given a line integral and we calculated it using a double integral. In fact, except in the circumstances described in <xref ref="ez_Vector_GreensTheorem_AreaViaLineInt" text="type-local"/> and <xref ref="ez_Vector_GreensTheorem_centroid" text="type-local"/> of <xref ref="S_Vector_GreensTheorem"/>, we did not use Green's Theorem to rewrite a double integral as a line integral because of the difficulty of finding a suitable vector field. The situation for <xref ref="thm_Stokes" text="title"/> will be similar, with the exception of <xref ref="ez_Vector_StokesThm_potential" text="type-local"/> in this section. However, Stokes' Theorem gives us an interesting additional piece of freedom: selecting the surface <m>S</m> through which we calculate the flux of <m>\curl(\vF)</m> from amongst possibly several reasonable surfaces with boundary <m>C</m>. The next two activities focus on the relationships between surfaces and their boundary.
   </p>
-  <worksheet>
+   
   <activity workspace="1.5in" xml:id="act_Vector_StokesThm_boundary">
     <introduction>
       <p>
@@ -731,8 +739,8 @@
       </solution> 
     </task>
   </activity>
-</worksheet>
-  <worksheet>
+ 
+   
   <activity workspace="1.5in" xml:id="act_Vector_StokesThm_surface">
     <introduction>
       <p>In some sense, this activity considers the reverse problem of that considered in <xref ref="act_Vector_StokesThm_boundary"/>. Here, each part of the activity gives you an oriented simple closed curve <m>C</m> in <m>\R^3</m>, and your task is to find
@@ -800,11 +808,9 @@
       </solution>
     </task>
   </activity>
-</worksheet>
+ 
 </subsection>
-<subsection>
-  <title>Summary</title>
-  <p>
+<outcomes>
     <ul>
 	    <li>
          <p>
@@ -817,14 +823,8 @@
         </p>
 	    </li>
     </ul>
-  </p>
-</subsection>
+</outcomes>
 
 <xi:include href="exercises/ez-S_Vector_StokesTheorem.ptx"/>
-<subsection component="instructor">
-  <title>Notes to Instructors and Dependencies</title>
-  <p>
-    This section relies heavily on understanding flux integrals <xref ref="S_Vector_FluxInt"/> as well as the calculation of circulation around a closed curve (from <xref ref="S_Vector_GreensTheorem"/> and <xref ref="S_Vector_IdeaLineIntegral"/>).  <xref ref="surfaceboundaries"/> gives some reminders about the different ways to parameterize surfaces, which was first introduced in <xref ref="S_Parametric_Surfaces_Surface_Area"/>.
-  </p>
-</subsection>
+
 </section>

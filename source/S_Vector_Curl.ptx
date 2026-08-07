@@ -33,14 +33,18 @@
     </li>
   </ul>
 </objectives>
-<subsection>
+<introduction component="instructor">
+  <assemblage>
+    <title>Notes to the Instructor and Dependencies</title>
+  <p>
+    This section relies heavily on understanding vector fields from <xref ref="S_Vector_VectorFields"/>. If the calculation of the curl is your primary purpose for using this section, then you can skip many of the details of <xref ref="SS_Vector_Curl_Development"/> and <xref ref="SS_Vector_Curl_Development3D"/>. The details have been made as bite-sized as possible, but the particulars of curl typically aren't easily understood without some of the calculations of circulation density. Additionally, the visualization of vector fields in 3D makes geometric interpretations harder to demonstrate.
+  </p>
+  </assemblage>
+</introduction>
+  <subsection>
   <title>Introduction</title>
   <p>
-    In <xref ref="S_Vector_Div"/>, we examined how the strength of a
-    vector field in two (or more) dimensions changed in different
-    regions. In particular, we developed the <xref ref="defn_Div" text="custom">divergence</xref> of a vector field as a local (or
-    density) measurement for how the strength of the vector field
-    changes. The key ideas when interpreting divergence are:
+    In <xref ref="S_Vector_Div"/>, we examined how the strength of a vector field in two (or more) dimensions changed in different regions. In particular, we developed the <xref ref="defn_Div" text="custom">divergence</xref> of a vector field as a local (or density) measurement for how the strength of the vector field changes. The key ideas when interpreting divergence are:
     <ul>
       <li>A positive divergence means that the vector field is growing in strength.</li>
       <li>A negative divergence means that the vector field is decreasing in strength.</li>
@@ -95,7 +99,7 @@
       </image>
     </sidebyside>
   </figure>
-  <worksheet>
+   
   <exploration workspace="1.5in" xml:id="PA_Vector_Curl">
     <introduction>
       <p>
@@ -106,7 +110,7 @@
       </p>
       <figure xml:id="fig_Vector_Curl_Spinner">
         <caption>A paddle-bladed spinner</caption>
-        <interactive title="sage_spinner_interact1" platform="sage" width="100%" aspect="1:1">
+        <interactive label="sage_spinner_interact1" platform="sage" width="100%" aspect="1:1">
         <description><p>A three dimensional plot of a spinner with a central axis shown by a segment in black. Four planar blades extend perpendicular to the central axis and are shown in with gray rectangles. </p>
         </description><slate surface="sage">
           var('t,s')
@@ -239,7 +243,7 @@
       </solution>
     </task>
   </exploration>
-</worksheet>
+ 
 </subsection>
 <subsection xml:id="SS_Vector_Curl_Development">
   <title>Measuring the Circulation Density of Vector Field in <m>\R^2</m></title>
@@ -256,7 +260,7 @@
   <figure xml:id="fig_Vector_Curl_DevSquare">
     <caption>A square centered at the point <m>(a,b)</m> with side lengths <m>2h</m> traveled counterclockwise</caption>
     <image width="55%" xml:id="Square_with_arrows">
-      <description>A square with sides parallel to the coordinate axes. The center of the square is at the point <m>(a,b)</m>. The upper right corner of the square is labeled <m>(a+h,b+h)</m>. Each edge of the square is oriented so that the overall orientation around the square is counterclockwise.
+      <description><p>A square with sides parallel to the coordinate axes. The center of the square is at the point <m>(a,b)</m>. The upper right corner of the square is labeled <m>(a+h,b+h)</m>. Each edge of the square is oriented so that the overall orientation around the square is counterclockwise.</p>
       </description>
       <sageplot>
         var('x','t');
@@ -361,7 +365,56 @@
   <p>
     We could have used a shape other than a square in the development of the circulation density, but a square allows for calculations that are easier to understand as the area of the shape decreases. <!--Our use of rectangular coordinates made it easiest to use rectangular figures but more general arguments exist.-->
   </p>
-<worksheet>
+<example>
+  <p>
+    In this example, we will look at the circulation density of the vector field given by <m>\vF=\langle \sin(x+y),x-y \rangle</m> which is plotted in <xref ref="fig_Vector_Curl_example1"/>. 
+  </p>
+  <figure xml:id="fig_Vector_Curl_example1">
+    <caption>The vector field <m>\vF=\langle \sin(x+y),x-y \rangle</m></caption>
+    <image width="60%" xml:id="img_Curl_example1">
+    <description><p> A vector field with vectors shortest along the line <m>y=x</m> and longer as distance from that line increases. Vectors in the fourth quadrant point primarily in the positive <m>x</m>-direction, although none are truly vertical. Vectors in the second quadrant point primarily in the negative <m>x</m>-direction, although none are truly vertical. Vectors in the first and third quadrants exhibit a form of counterclockwise rotation. </p> </description>
+    <sageplot>
+      var('x,y,t')
+      final_plot2=plot_vector_field((sin(x+y),(x-y)),(x,-3.1,3.1),(y,-3.1,3.1),headwidth=4,plot_points=15,zorder=-1,color='blue',axes_labels=["$x$","$y$"],frame=False,aspect_ratio=1,ticks=[[],[]])
+      final_plot2           
+    </sageplot>
+    </image>
+  </figure>
+  <p>  
+    We can compute the partial derivatives of our component functions to see that <m>\vF</m> will have a circulation density of 
+    <md>\frac{\partial F_2}{\partial x} -\frac{\partial F_1}{\partial y} = 1- \cos(x+y)</md>.
+    Thus, we will have a positive circulation density at all points except where <m>\cos(x+y)=1</m>. You can look at points in the first or third quadrant of <xref ref="fig_Vector_Curl_example1"/> and see that a spinner will rotate in the counterclockwise direction. In particular, you can see that the strongest rotation will occur near points on the line <m>y=x</m> since those will have a circulation density of 2. 
+  </p>
+  <figure xml:id="fig_Vector_Curl_example12">
+    <caption>The vector field <m>\vF=\langle \sin(x+y),x-y \rangle</m> shown around the point (2,2).</caption>
+    <image width="60%" xml:id="img_Curl_example12">
+    <description><p> A vector field with vectors shortest along the line <m>y=x</m> and longer as distance from that line increases. Vectors in the fourth quadrant point primarily in the positive <m>x</m>-direction, although none are truly vertical. Vectors in the second quadrant point primarily in the negative <m>x</m>-direction, although none are truly vertical. Vectors in the first and third quadrants exhibit a form of counterclockwise rotation. </p> </description>
+    <sageplot>
+      var('x,y,t')
+      final_plot2=plot_vector_field((sin(x+y),(x-y)),(x,2.5,1.5),(y,1.5,2.5),headwidth=4,plot_points=15,zorder=-1,color='blue',axes_labels=["$x$","$y$"],frame=False,aspect_ratio=1,ticks=[[],[]])
+      final_plot2+=point((2,2),color="black",size=30)
+      final_plot2            
+    </sageplot>
+    </image>
+  </figure>
+  
+  <p>
+    If we look at a point where the circulation density is zero, like at <m>(-2,2)</m>, then we can see what appears to be a close to a constant vector field, as shown in <xref ref="fig_Vector_Curl_example13"/>. This means that the amount that any blade would be pushed by our vector field, the blade opposite would be pushed in exactly the same way, yeilding no rotation.
+  </p>
+  <figure xml:id="fig_Vector_Curl_example13">
+    <caption>The vector field <m>\vF=\langle \sin(x+y),x-y \rangle</m> shown around the point (-2,2).</caption>
+    <image width="60%" xml:id="img_Curl_example13">
+    <description><p> A vector field with vectors shortest along the line <m>y=x</m> and longer as distance from that line increases. Vectors in the fourth quadrant point primarily in the positive <m>x</m>-direction, although none are truly vertical. Vectors in the second quadrant point primarily in the negative <m>x</m>-direction, although none are truly vertical. Vectors in the first and third quadrants exhibit a form of counterclockwise rotation. </p> </description>
+    <sageplot>
+      var('x,y,t')
+      final_plot2=plot_vector_field((sin(x+y),(x-y)),(x,-2.5,-1.5),(y,1.5,2.5),headwidth=4,plot_points=15,zorder=-1,color='blue',axes_labels=["$x$","$y$"],frame=False,aspect_ratio=1,ticks=[[],[]])
+      final_plot2+=point((-2,2),color="black",size=30)
+      final_plot2             
+    </sageplot>
+    </image>
+  </figure>
+</example>
+ 
   <activity workspace="1.5in" xml:id="act_Vector_Curl_2D">
   <title>Matching Visual Measurements to Algebraic Calculations</title>
   <introduction>
@@ -374,8 +427,8 @@
     </p>
     <p>
       For each of the vector fields given below, answer the following questions:
-      <ol>
-        <li>What is the formula for the circulation density of the vector field?</li>
+      <ol marker="i.">
+        <li>What is the formula for the circulation density of the given vector field?</li>
         <li>For what points will you have a positive circulation density?</li>
         <li>For what points will you have a negative circulation density?</li>
         <li>For what points will you have a zero circulation density?</li>
@@ -453,7 +506,10 @@
     </solution>
   </task>
 </activity>
-</worksheet>
+ 
+<p>
+  You can check your work from the previous activity with the ideas presented in previous plots and work. In particular, the vector field from part (a) can be seen as the left plot in <xref ref="fig_Vector_Curl_intro_vfs"/>, the vector field from part (b) can be seen as exactly opposite of the field shown in the right plot of <xref ref="fig_Vector_Curl_intro_vfs"/>, and the vector field in part (c) can be seen as the left plot of <xref ref="fig_Vector_Curl_intro_vfs2"/>.
+</p>
 </subsection>
 <subsection xml:id="SS_Vector_Curl_Development3D">
   <title>Measuring Rotation in Three Dimensions</title>
@@ -462,7 +518,7 @@
   </p>
   <figure xml:id="fig_Vector_Curl_RotIn3D">
     <caption>Rotation as a vector on the <m>xy</m>-plane</caption>
-    <interactive title="vec_rotation" platform="sage" width="100%" aspect="1:1">
+    <interactive label="vec_rotation" platform="sage" width="100%" aspect="1:1">
       <description><p>A pink plane is shown through the x and y axes for a three dimensional plot. A blue arrow is drawn parallel to the z axis and extends from a highlighted point on the pink plane. The highlighted point is labeled <m>(a,b,c)</m>. A blue circular arc is drawn around the blue arrow in counteclockwise direction when viewed from the end of the blue arrow toward the pink plane.  </p></description>
     <slate surface="sage">
         var('t,s')
@@ -491,7 +547,7 @@
   </p>
   <figure xml:id="fig_Vector_Curl_3DRotations">
     <caption>Rotation as a vector on each coordinate plane</caption>
-    <interactive title="vec_rotations" platform="sage" width="100%" aspect="1:1">
+    <interactive label="vec_rotations" platform="sage" width="100%" aspect="1:1">
       <description><p>A pink plane is shown through the x and y axes for a three dimensional plot. A blue arrow is drawn parallel to the z axis and extends from a highlighted point on the pink plane. A blue circular arc is drawn around the blue arrow in counterclockwise direction when viewed from the end of the blue arrow toward the pink plane. 
       A yellow plane is shown through the y and z axes for a three dimensional plot. A yellow arrow is drawn parallel to the x axis and extends from a highlighted point on the yellow plane. A yellow circular arc is drawn around the blue arrow in counterclockwise direction when viewed from the end of the yellow arrow toward the pink plane.  
       A green plane is shown through the x and z axes for a three dimensional plot. A magenta arrow is drawn parallel to the z axis and extends from a highlighted point on the green plane. A magenta circular arc is drawn around the magenta arrow in counterclockwise direction when viewed from the end of the magenta arrow toward the green plane.   </p></description>
@@ -620,7 +676,7 @@
     </p>
     <figure xml:id="fig_xyz_plot">
       <caption>The black vector, <m>\langle a,b,c \rangle</m>, is decomposed into parts parallel to <m>\vi</m>, <m>\vj</m>, and <m>\vk</m>.</caption>
-      <interactive title="xyz_vf" platform="sage" width="100%" aspect="1:1">
+      <interactive label="xyz_vf" platform="sage" width="100%" aspect="1:1">
       <description><p>A vector field plotted for a region around the origin with each vector pointing away from the origin and getting longer as the location is farther from the origin. </p></description>
       <slate surface="sage">
         var('x,y,z')
@@ -642,7 +698,7 @@
       Therefore, <m>\curl(\vH)=\langle 0,-2x,1\rangle</m>. This tells us that the vector field <m>\vH</m> will have a non-zero curl for every point. However, it will be quite difficult to <q>see</q> the curl at a particular point. The next activity will take you through the process of trying to visualize and understand the output of curl in three dimensions.
     </p>
   </example>
-  <worksheet>
+   
   <activity workspace="1.5in" xml:id="act_Vector_Curl_3DEstimate">
     <title>Estimating Curl in Three Dimensions</title>
     <task xml:id="task_act_Vector_Curl_3DEstimate_Eyeball">
@@ -693,7 +749,7 @@
         <caption>The trace of <m>\vF</m> in the plane <m>z=-2</m></caption>
         <image width="65%" xml:id="curl_3d_xy">
           <description>
-            A vector field in two dimensions. The horizontal axis is labeled <m>x</m> and ranges from <m>0</m> to <m>2</m>. The vertical axis has the same range and is labeled <m>y</m>. There is a point marked at <m>(1,1)</m>. Vectors point primarily down and are longer when closer to the horizontal axis. In the upper-left of the plot, the vectors point more down and left. In the lower-right of the plot, vectors point more down and right.
+            <p>A vector field in two dimensions. The horizontal axis is labeled <m>x</m> and ranges from <m>0</m> to <m>2</m>. The vertical axis has the same range and is labeled <m>y</m>. There is a point marked at <m>(1,1)</m>. Vectors point primarily down and are longer when closer to the horizontal axis. In the upper-left of the plot, the vectors point more down and left. In the lower-right of the plot, vectors point more down and right.</p>
           </description>
           <sageplot>
             var('x,y')
@@ -723,7 +779,7 @@
         <caption>The trace of <m>\vF</m> in the plane <m>y=1</m></caption>
         <image width="65%" xml:id="curl_3d_xz">
           <description>
-            A vector field in two dimensions. The horizontal axis is labeled <m>x</m> and ranges from <m>0</m> to <m>2</m>. The vertical axis ranges from <m>-3</m> to <m>-1</m> and is labeled <m>z</m>. There is a point marked at <m>(1,-2)</m>. Vectors in the right half of the figure are longer and point primarily up, although slightly to the left. Vectors in the left half of the figure are very short and point primarily right until around <m>x=0.75</m>, where they start to point up but are very short.
+            <p>A vector field in two dimensions. The horizontal axis is labeled <m>x</m> and ranges from <m>0</m> to <m>2</m>. The vertical axis ranges from <m>-3</m> to <m>-1</m> and is labeled <m>z</m>. There is a point marked at <m>(1,-2)</m>. Vectors in the right half of the figure are longer and point primarily up, although slightly to the left. Vectors in the left half of the figure are very short and point primarily right until around <m>x=0.75</m>, where they start to point up but are very short.</p>
           </description>
           <sageplot>
             var('x z')
@@ -826,7 +882,7 @@
       </solution>
     </task>
   </activity>
-</worksheet>
+ 
 </subsection>
 <subsection xml:id="SS_Vector_Curl_Interpretation">
   <title>Interpretation and Usage of Curl</title>
@@ -887,7 +943,7 @@
     </interactive>
     </figure>
   -->
-  <worksheet>
+   
   <activity workspace="1.5in" xml:id="act_Vector_Curl_Calculate">
     <introduction>
       <p>In this activity, we will work on calculating curl algebraically and interpreting it.
@@ -1061,7 +1117,7 @@
     </solution>
   </task>
 </activity>
-</worksheet>
+ 
 <!--  <p>
     Talk about vector potential functions?
   </p>
@@ -1072,9 +1128,7 @@
     Should we have a subsection at the end of each section that shows how to do the relevant graphs and computations in Sage or Calcplot3d?
   </p>-->
 </subsection>
-<subsection>
-  <title>Summary</title>
-  <p>
+<outcomes>
     <ul>
       <li>
         <p>
@@ -1103,12 +1157,10 @@
           For a three-dimensional vector field <m>\vF</m>, the vector <m>\curl(\vF)(a,b,c)</m> points along the axis of rotation with the greatest rotational strength at the point <m>(a,b,c)</m>. The magnitude of <m>\curl(\vF)(a,b,c)</m> measures the strength of the rotation in this maximal direction. The strength of rotation around an axis determined by a unit vector <m>\vv</m> is found by calculating <m>\left(\curl(\vF)(a,b,c)\right)\cdot \vv</m>
         </p>
       </li>
-
     </ul>
-  </p>
-</subsection>
+</outcomes>
 <xi:include href="exercises/ez-S_Vector_Curl.ptx"/>
-<!--<worksheet>
+<!-- 
   <activity workspace="1.5in">
   <introduction>
     <p>This exercise will use the idea of a spinner from <xref ref="PA_Vector_Curl" /></p>
@@ -1240,7 +1292,7 @@
       to recenter the plot on your point by changing <m>x_0</m> and <m>y_0</m>. You may also zoom in on your point by using the slider labeled <q>zoom</q>.</p>
       <figure xml:id="fig_Vector_Curl_PA_Explorer">
         <caption>A SageMath Interact to examine vector fields</caption>
-        <interactive title="sage_curl_interact" platform="sage" width="100%" aspect="1:1.45">
+        <interactive label="sage_curl_interact" platform="sage" width="100%" aspect="1:1.45">
           <slate surface="sage">
             var('x,y,t')
             @interact
@@ -1282,11 +1334,6 @@
     </task>
   </task>
   </activity>
-</worksheet>-->
-<subsection component="instructor">
-  <title>Notes to Instructors and Dependencies</title>
-<p>
-  This section relies heavily on understanding vector fields from <xref ref="S_Vector_VectorFields"/>. If the calculation of the curl is your primary purpose for using this section, then you can skip many of the details of <xref ref="SS_Vector_Curl_Development"/> and <xref ref="SS_Vector_Curl_Development3D"/>. The details have been made as bite-sized as possible, but the particulars of curl typically aren't easily understood without some of the calculations of circulation density. Additionally, the visualization of vector fields in 3D makes geometric interpretations harder to demonstrate.
-</p>
-</subsection>
+ -->
+
 </section>

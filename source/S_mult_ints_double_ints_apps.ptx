@@ -43,22 +43,24 @@
       </ul>
   </objectives>
   <introduction component="instructor">
-    <title>Notes to the Instructor and Dependencies</title>
+    <assemblage>
+      <title>Notes to the Instructor and Dependencies</title>
     <p>
       This section will be given different coverage by different instructors. We have tried to keep the essential elements of double integrals in the first three sections of this chapter and include many applications of double integrals in this section. The idea of double integrals being an accumulation of density functions is mentioned in the first three sections of this chapter but is explored fully in this section. 
     </p>
+    </assemblage>
   </introduction>
   <subsection>
     <title>Introduction</title>
     <p>
-      So far, we have interpreted the double integral of a function <m>f</m> over a region <m>D</m> in three main ways, as described in <xref ref="keyidea-double-int-interp"/>. However, our focus has been primarily on using double integrals to find the volume the surface defined by <m>f</m> bounds above the <m>xy</m>-plane over <m>D</m> minus the volume the surface bounds below the <m>xy</m>-plane over <m>D</m>. In this section, we investigate several other applications of double integrals, using the integration process as seen in <xref ref="PA-mult_ints-apps">Preview Activity</xref>: we partition into small regions, approximate the desired quantity on each small region, then use the integral to sum these values exactly in the limit.
+      So far, we have interpreted the double integral of a function <m>f</m> over a region <m>D</m> in three main ways, as described in <xref ref="keyidea-double-int-interp"/>. However, our focus has been primarily on using double integrals to find the volume the surface defined by <m>z=f(x,y)</m> bounds above the <m>xy</m>-plane over <m>D</m> minus the volume the surface bounds below the <m>xy</m>-plane over <m>D</m>. In this section, we investigate several other applications of double integrals, using the integration process as seen in <xref ref="PA-mult_ints-apps">Preview Activity</xref>: we partition into small regions, approximate the desired quantity on each small region, then use the integral to sum these values exactly in the limit.
     </p>
 
     <p>
       The following preview activity explores the second interpretation of double integrals in <xref ref="keyidea-double-int-interp"/>: a double integral can be used to determine the mass of a thin plate with a density distribution, <m>\delta(x,y)</m>. Recall that in single-variable calculus, we considered a similar problem and computed the mass of a one-dimensional rod with a mass-density distribution. There, as here, the key idea is that if density is constant, mass is the product of density and volume.
     </p>
 
-    <worksheet>
+     
   <exploration workspace="1.5in" xml:id="PA-mult_ints-apps">
       <introduction>
         <p>
@@ -146,7 +148,7 @@
       <task>
         <statement>
           <p>
-            Write an iterated integral which, if evaluated, would give the exact mass of the plate.  Do not actually evaluate the integral. (This integral is considerably easier to evaluate in polar coordinates, which we will learn more about in <xref ref="S-11-5-Double-Integrals-Polar">Section</xref>.)
+            Write an iterated integral which, if evaluated, would give the exact mass of the plate.  Do not actually evaluate the integral. (This integral is considerably easier to evaluate in polar coordinates, which we will learn more about in <xref ref="S-mult_ints-double_ints_polar">Section</xref>.)
           </p>
         </statement>
         <answer>
@@ -165,7 +167,7 @@
         </solution>
       </task> 
     </exploration>
-</worksheet>
+ 
   </subsection>
   <subsection>
     <title>Area</title>
@@ -173,7 +175,7 @@
       The simplest possible density function we could have considered in the Preview Activity would have been <m>\delta(x,y)=1</m>, so we begin by considering what such a double integral represents. In fact, we can do this without needing to think of density at all. If the integrand in a double integral is <m>1</m>, then our volume interpretation tells us that the double integral represents the volume of the solid underneath the plane <m>z=1</m> and above the region <m>D</m> of integration in the <m>xy</m>-plane. Since this solid is cylindrical and has height <m>1</m>, its volume is also the area of the base region <m>D</m>, as we can see in the activity below.
     </p>
 
-    <worksheet>
+     
   <activity workspace="1.5in" xml:id="A_11_4_1">
       <introduction>
         <p>
@@ -259,7 +261,7 @@
         </solution>
       </task>
     </activity>
-</worksheet>
+ 
     <p>
       We now formally state the conclusion from our earlier discussion and <xref ref="A_11_4_1">Activity</xref>.
     </p>
@@ -288,7 +290,7 @@
     </assemblage>
     
 
-    <worksheet>
+     
   <activity workspace="1.5in" xml:id="A_11_4_3">
       <statement>
         <p>
@@ -327,16 +329,16 @@
           <m>0 \leq x \leq \sqrt{9-y^2}</m> for <m>y</m> between <m>-3</m> and <m>3</m>.
           Thus, the mass of the lamina is
           <md>
-            <mrow>\int_{-3}^{3} \int_{0}^{\sqrt{9-y^2}} x \, dx \, dy \amp = \int_{-3}^{3}   \frac{x^2}{2} \restrict{0}^{\sqrt{9-y^2}} \, dy</mrow>
+            <mrow>\int_{-3}^{3} \int_{0}^{\sqrt{9-y^2}} x \, dx \, dy \amp = \int_{-3}^{3}   \frac{x^2}{2} \restrict{0}{\sqrt{9-y^2}} \, dy</mrow>
             <mrow>\amp = \int_{-3}^{3} \frac{1}{2}(9-y^2) \, dy</mrow>
-            <mrow>\amp = \frac{1}{2}   \left[9y - \frac{1}{3}y^3\right]\restrict{-3}^{3}</mrow>
+            <mrow>\amp = \frac{1}{2}   \left[9y - \frac{1}{3}y^3\right]\restrict{-3}{3}</mrow>
             <mrow>\amp = 18</mrow>
           </md>
           Note that the units of the density are grams per cm squared, which will yield units of grams after performing the iterated integrals. 
         </p>
       </solution>
     </activity>
-</worksheet>
+ 
   </subsection>
 
 <subsection>
@@ -403,7 +405,7 @@
         P((x,y)\text{ in }R) = \iint_R f(x,y) \, dA.
       </md>
     </p>
-    <worksheet>
+     
   <activity workspace="1.5in" xml:id="A_11_4_6">
       <introduction>
         <p>
@@ -541,7 +543,7 @@
         </solution>
       </task>
     </activity>
-</worksheet>
+ 
   </subsection>
 
   <subsection>
@@ -655,7 +657,7 @@
       </md>.
     </p>
 
-    <worksheet>
+     
   <activity workspace="1.5in" xml:id="act-mult_ints-double_ints_apps-COM">
       <introduction>
         <p>
@@ -723,11 +725,10 @@
         </solution>
       </task>
     </activity>
-</worksheet>
+ 
   </subsection>
   
   <outcomes>
-    
     <ul>
       <li>
         <p>

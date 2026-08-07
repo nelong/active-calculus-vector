@@ -29,10 +29,18 @@
     </ul>
   </objectives>
   <introduction component="instructor">
-    <title>Notes to the Instructor and Dependencies</title>
+    <assemblage>
+      <title>Notes to the Instructor and Dependencies</title>
     <p>
-      This section heavily relies on students to understand traces as the intersection of the surface plot of <m>z=f(x,y)</m> with a fundamental plane and uses several ideas related to second derivatives from single variable calculus (concavity and increasing/decreasing slopes). This section can be covered in a single class meeting and some instructors pair this with the material on first partial derivatives from <xref ref="S-mv_deriv-first_order"/>. The geometric meaning of the different second derivatives is used in the development of the optimization tools for functions of two variables in <xref ref="S-mv_deriv-optimization"/>.
+      This section heavily relies on students to understand traces as the intersection of the surface plot of <m>z=f(x,y)</m> with a fundamental plane and uses several ideas related to second derivatives from single variable calculus (concavity and increasing/decreasing slopes). This section can be covered in a single class meeting and some instructors pair this with the material on first partial derivatives from <xref ref="S-mv_deriv-first_order"/>. The geometric meaning of the different second derivatives is used in the development of the optimization tools for functions of two variables in <xref ref="S-mv_deriv-optimization"/>. In particular, <xref ref="act-mv_deriv-second_order-shape"/> goes through tasks related to concavity and twisting in a surface that is used to identify saddle points. 
     </p>
+    <p>
+      This section does not appeal to the classic calculus approach because we continue to use our tools from single variable calculus along traces of different kinds. 
+    </p>
+    <p>
+      <xref ref="act-mv_deriv-second_order-shape"/> will be an important activity for helping students to understand the form of the discriminant in <xref ref="S-mv_deriv-optimization"/>. 
+    </p>
+    </assemblage>
   </introduction>
   <subsection>
     <title>Introduction</title>
@@ -45,7 +53,7 @@
     <p>
       In the following preview activity, we will explore how to calculate the four different second-order partial derivatives of a function of two variables as well as what these various derivatives tell us about the function's behavior.
     </p>
-    <worksheet>
+     
   <exploration workspace="1.5in" xml:id="PA-mv_deriv-second_order">
     <introduction>
       <p>
@@ -60,7 +68,7 @@
         </figure> -->
       <!-- <figure xml:id="fig-mv_deriv-second_order-preview">
         <caption>The surface given by <m>z=f(x,y) = \frac{x^2 \sin(2y)}{g}</m> with traces <m>y=0.6</m> (in red) and <m>x=150</m> (in blue)</caption> -->
-        <interactive title="interactive-fig-mv_deriv-second_order-preview" platform="sage" width="95%" aspect="1:1.06">
+        <interactive label="interactive-fig-mv_deriv-second_order-preview" platform="sage" width="95%" aspect="1:1.06">
           <slate surface="sage">
             <xi:include href="./interacts/rangefn_traces.txt" parse="text"/>
           </slate>
@@ -261,7 +269,7 @@
       </solution>
     </task>
   </exploration>
-</worksheet>
+ 
   <p>
     As we saw in the preview activity, we can relate properties of second derivatives from single-variable calculus to the behavior of our trace functions. In this section, we will formalize our definitions of the second partial derivatives for a function of two variables and interpret how these give information about the functions' behavior. Later in this section, we will briefly generalize to functions of more than two variables and higher order derivatives.
   </p>
@@ -307,7 +315,7 @@
       The Leibniz notation and subscript notation for a mixed partial differ in terms of the order in which <m>x</m> and <m>y</m> appear in each notation. However, in both notations, we use the idea of order of operations working from the inside out. With the Leibniz notation, that means our partial derivative operators are written <em>before</em> the function we are taking partial derivatives of, whereas with the subscript notation writes order of derivatives <em>after</em> the function.
     </p>
 
-    <worksheet>
+     
   <activity workspace="1.5in" xml:id="act-mv_deriv-second_order-compute">
     <task>
       <introduction>
@@ -446,7 +454,7 @@
       </solution>
     </task>
   </activity>
-</worksheet>
+ 
   <p>
     In <xref ref="PA-mv_deriv-second_order">Preview Activity</xref> and <xref ref="act-mv_deriv-second_order-compute">Activity</xref>, you may have noticed that the mixed second-order partial derivatives are equal. This observation holds generally and is known as Clairaut's Theorem.
   </p>
@@ -470,7 +478,7 @@
     <sidebyside widths="33% 33% 33%">
       <image>
         <description><p>A plot of a upward sloping curve in the first quadrant shown in blue. Three points along the curve are highlighted and the tangent line to the curve at the highlighted point is shown in red. The slopes of the tangent lines are getting larger when viewed from left to right.</p></description>
-    <sageplot label="img-increasing1">
+        <sageplot label="img-increasing1">
           from matplotlib import ticker
           var('x,y,t')
           tic=[i for i in range(-1,4)]
@@ -478,7 +486,7 @@
           f(x)=(x)^2/3+0.25
           df=diff(f,x)
           plot41=point((0,0),size=0,gridlines=True,ymin=-1,ymax=3,xmin=-1,xmax=3,ticks=[tic,tic],axes=True,frame=False,tick_formatter=(ticker.NullFormatter(),ticker.NullFormatter()))
-          plot41+=plot(f,(x,0.2,2.8),color="blue",aspect_ratio=1,thickness=2)
+          plot41+=plot(f,(x,0.2,2.8),color="blue",aspect_ratio=1,thickness=1)
           for a in xv:
               plot41+=point((a,f(a)),size=20,color="black")
               plot41+=parametric_plot((a+t,f(a)+t*df(a)),(t,-0.25,0.25),color="red",zorder=5,thickness=2)
@@ -487,7 +495,7 @@
       </image>
       <image>
         <description><p>A plot of a line segment moving up and right in the first quadrant shown in blue. Three points along the line are highlighted and the tangent line to the blue line at the highlighted point is shown in red. The slopes of the tangent lines are all the same as the slope of the line.</p></description>
-    <sageplot label="img-increasing2">
+        <sageplot label="img-increasing2">
           from matplotlib import ticker
           var('x,y,t')
           tic=[i for i in range(-1,4)]
@@ -495,7 +503,7 @@
           f(x)=0.8*x+0.25
           df=diff(f,x)
           plot42=point((0,0),size=0,gridlines=True,ymin=-1,ymax=3,xmin=-1,xmax=3,ticks=[tic,tic],axes=True,frame=False,tick_formatter=(ticker.NullFormatter(),ticker.NullFormatter()))
-          plot42+=plot(f,(x,0.2,2.8),color="blue",aspect_ratio=1,thickness=2)
+          plot42+=plot(f,(x,0.2,2.8),color="blue",aspect_ratio=1,thickness=1)
           for a in xv:
               plot42+=point((a,f(a)),size=20,color="black")
               plot42+=parametric_plot((a+t,f(a)+t*df(a)),(t,-0.25,0.25),color="red",zorder=5,thickness=2)
@@ -512,7 +520,7 @@
           f(x)=2.5-(x-3)^2/3+0.25
           df=diff(f,x)
           plot43=point((0,0),size=0,gridlines=True,ymin=-1,ymax=3,xmin=-1,xmax=3,ticks=[tic,tic],axes=True,frame=False,tick_formatter=(ticker.NullFormatter(),ticker.NullFormatter()))
-          plot43+=plot(f,(x,0.2,2.8),color="blue",aspect_ratio=1,thickness=2)
+          plot43+=plot(f,(x,0.2,2.8),color="blue",aspect_ratio=1,thickness=1)
           for a in xv:
               plot43+=point((a,f(a)),size=20,color="black")
               plot43+=parametric_plot((a+t,f(a)+t*df(a)),(t,-0.25,0.25),color="red",zorder=5,thickness=2)
@@ -532,7 +540,7 @@
     <sidebyside widths="33% 33% 33%">
       <image width="100%">
         <description><p>A plot of a downward sloping curve in the first quadrant shown in blue. Three points along the curve are highlighted and the tangent line to the curve at the highlighted point is shown in red. The slopes of the tangent lines are getting smaller when viewed from left to right.</p> </description>
-    <sageplot label="img-decreasing1">
+        <sageplot label="img-decreasing1">
           from matplotlib import ticker
           var('x,y,t')
           tic=[i for i in range(-1,4)]
@@ -540,7 +548,7 @@
           f(x)=(x-3)^2/3+0.25
           df=diff(f,x)
           plot31=point((0,0),size=0,gridlines=True,ymin=-1,ymax=3,xmin=-1,xmax=3,ticks=[tic,tic],axes=True,frame=False,tick_formatter=(ticker.NullFormatter(),ticker.NullFormatter()))
-          plot31+=plot(f,(x,0.2,2.8),color="blue",aspect_ratio=1,thickness=2)
+          plot31+=plot(f,(x,0.2,2.8),color="blue",aspect_ratio=1,thickness=1)
           for a in xv:
             plot31+=point((a,f(a)),size=20,color="black")
             plot31+=parametric_plot((a+t,f(a)+t*df(a)),(t,-0.25,0.25),color="red",zorder=5,thickness=2)
@@ -549,7 +557,7 @@
       </image>
       <image width="100%">
         <description><p>A plot of a line segment moving down and right in the first quadrant shown in blue. Three points along the line are highlighted and the tangent line to the blue line at the highlighted point is shown in red. The slopes of the tangent lines are all the same as the slope of the line.</p></description>
-    <sageplot label="img-decreasing2">
+        <sageplot label="img-decreasing2">
           from matplotlib import ticker
           var('x,y,t')
           tic=[i for i in range(-1,4)]
@@ -557,7 +565,7 @@
           f(x)=2.5-0.8*x
           df=diff(f,x)
           plot32=point((0,0),size=0,gridlines=True,ymin=-1,ymax=3,xmin=-1,xmax=3,ticks=[tic,tic],axes=True,frame=False,tick_formatter=(ticker.NullFormatter(),ticker.NullFormatter()))
-          plot32+=plot(f,(x,0.2,2.8),color="blue",aspect_ratio=1,thickness=2)
+          plot32+=plot(f,(x,0.2,2.8),color="blue",aspect_ratio=1,thickness=1)
           for a in xv:
               plot32+=point((a,f(a)),size=20,color="black")
               plot32+=parametric_plot((a+t,f(a)+t*df(a)),(t,-0.25,0.25),color="red",zorder=5,thickness=2)
@@ -566,7 +574,7 @@
       </image>
       <image width="100%">
         <description><p>A plot of a downward sloping curve in the first quadrant shown in blue. Three points along the curve are highlighted and the tangent line to the curve at the highlighted point is shown in red. The slopes of the tangent lines are getting smaller when viewed from left to right.</p></description>
-    <sageplot label="img-decreasing3">
+        <sageplot label="img-decreasing3">
           from matplotlib import ticker
           var('x,y,t')
           tic=[i for i in range(-1,4)]
@@ -574,7 +582,7 @@
           f(x)=3-(x)^2/3-0.25
           df=diff(f,x)
           plot33=point((0,0),size=0,gridlines=True,ymin=-1,ymax=3,xmin=-1,xmax=3,ticks=[tic,tic],axes=True,frame=False,tick_formatter=(ticker.NullFormatter(),ticker.NullFormatter()))
-          plot33+=plot(f,(x,0.2,2.8),color="blue",aspect_ratio=1,thickness=2)
+          plot33+=plot(f,(x,0.2,2.8),color="blue",aspect_ratio=1,thickness=1)
           for a in xv:
               plot33+=point((a,f(a)),size=20,color="black")
               plot33+=parametric_plot((a+t,f(a)+t*df(a)),(t,-0.25,0.25),color="red",zorder=5,thickness=2)
@@ -618,7 +626,7 @@
     <caption>The surface given by <m>z=f(x,y) = \sin(x)e^{-y}</m> with trace at <m>y=-1.5</m> and tangent line drawn </caption>
     <interactive label="interactive-fig-mv_deriv-second_order-fxx" platform="sage" width="95%" aspect="1:1.15">
       <description><p>An interactive three dimensional plot of a curved surface that this is u-shaped along constant values of one coordinate and increases parabolically as that the other horizontal coordinate is increased. A blue downward facing parabola is drawn along the surface at the constant y-coordinate -1.5. The slider at the top of the figure changes the location of a highlighted point on the blue parabola. The line tangent along the blue parabola at the highlighted point is drawn in black.  </p></description>
-    <slate surface="sage">
+      <slate surface="sage">
         var('x,y,z,t')
         @interact
         def expytrace(a=slider(1,2,0.1,default=1.2,label="x-coordinate")):
@@ -657,7 +665,7 @@
   <p>
     In the following activity, we further explore what second-order partial derivatives tell us about the geometric behavior of a surface.
   </p>
-  <worksheet>
+   
   <activity workspace="1.5in" xml:id="act-mv_deriv-second_order-shape">
   <introduction>
     <p>
@@ -700,7 +708,7 @@
               plot12=plot99+parametric_plot3d((1.75,y,f(1.75,y)+0.05),(y,-2,0),color="blue",thickness=3)
               plot12+=point3d((1.75,a,f(1.75,a)),color="black",size=30)
               plot12+=parametric_plot3d((1.75,a+t,fv+t*fyv+0.05),(t,-0.5,0.5),color="black",thickness=4,zorder=5)
-              show(plot12,viewpoint=[[-0.4995,0.5074,0.7022],110.69],camera_position=[-4.3266,-0.9076,3.4276])
+              show(plot12,viewpoint=[[-0.5268,-0.5508,-0.6474],116.47],camera_position=[7.3902,-0.7407,2.4237])
           </slate>
         <description><p>An interactive three dimensional plot of a curved surface that this is u-shaped along constant values of one coordinate and increases parabolically as that the other horizontal coordinate is increased. A blue concave up arc is drawn along the surface at the constant x-coordinate 1.5. The slider at the top of the figure changes the location of a highlighted point on the blue curve. The line tangent along the blue parabola at the highlighted point is drawn in black. </p></description>
       </interactive> 
@@ -714,6 +722,11 @@
         </sidebyside>
       </figure> -->
     </statement>
+    <solution>
+      <p>
+        As the y-coordinate is increased, the slope of the segment along the constant x-value trace will increase. Remember that a larger negative number is closer to zero. As the y-coordinate is decreased, the slope of the segment will decrease.
+      </p>
+    </solution>
   </task>
   <task>
     <statement>
@@ -887,13 +900,21 @@
       <p>
         The sketches are shown below. Since <m>f_y(x,y) = -\sin(x)e^{-y}</m>, when <m>x</m> exceeds <m>\frac{\pi}{2}</m> and increases, <m>f_y(x,y)</m> increases for fixed <m>y</m>. So we should expect <m>f_{yx}(1.75,-1.5)</m> to be positive. In fact, <m>f_{yx}(1.75,-1.5) = 0.8</m>. The value of <m>f_{yx}(1.75,-1.5)</m> measures how much the surface <q>twists</q> in the <m>x</m> direction when <m>x=1.75</m> as we move along the <m>y=-1.5</m> trace.
       </p>
-      <image width="73%" source="images/fig_10_3_Act_2a_fyx_1.png"><description><p>ADD ALT TEXT TO THIS IMAGE</p></description></image> 
-      <image width="73%" source="images/fig_10_3_Act_2a_fyx_2.png"><description><p>ADD ALT TEXT TO THIS IMAGE</p></description></image> 
-      <image width="73%" source="images/fig_10_3_Act_2a_fyx_3.png"><description><p>ADD ALT TEXT TO THIS IMAGE</p></description></image>
+      <image width="73%" source="images/fig_10_3_Act_2a_fyx_1.png"><description><p>A curved mesh shown with a parabolic shape in one direction and an exponential shape in a perpendicular direction. A downward facing parabola is highlighted in red on the surface with point near the vertex of the parabola highlighted in black. A a downward sloping blue line segment is shown to the right of the highlighted point.</p></description></image> 
+      <image width="73%" source="images/fig_10_3_Act_2a_fyx_2.png"><description><p>A curved mesh shown with a parabolic shape in one direction and an exponential shape in a perpendicular direction. A downward facing parabola is highlighted in red on the surface with point near the vertex of the parabola highlighted in black. A a downward sloping blue line segment is shown through the highlighted point.</p></description></image> 
+      <image width="73%" source="images/fig_10_3_Act_2a_fyx_3.png"><description><p>A curved mesh shown with a parabolic shape in one direction and an exponential shape in a perpendicular direction. A downward facing parabola is highlighted in red on the surface with point near the vertex of the parabola highlighted in black. A a downward sloping blue line segment is shown to the right of the highlighted point.</p></description></image>
     </answer>
+    <solution>
+      <p>
+         The sketches are shown below. Since <m>f_y(x,y) = -\sin(x)e^{-y}</m>, when <m>x</m> exceeds <m>\frac{\pi}{2}</m> and increases, <m>f_y(x,y)</m> increases for fixed <m>y</m>. So we should expect <m>f_{yx}(1.75,-1.5)</m> to be positive. In fact, <m>f_{yx}(1.75,-1.5) = 0.8</m>. The value of <m>f_{yx}(1.75,-1.5)</m> measures how much the surface <q>twists</q> in the <m>x</m> direction when <m>x=1.75</m> as we move along the <m>y=-1.5</m> trace.
+      </p>
+      <image width="73%" source="images/fig_10_3_Act_2a_fyx_1.png"><description><p>A curved mesh shown with a parabolic shape in one direction and an exponential shape in a perpendicular direction. A downward facing parabola is highlighted in red on the surface with point near the vertex of the parabola highlighted in black. A a downward sloping blue line segment is shown to the right of the highlighted point.</p></description></image> 
+      <image width="73%" source="images/fig_10_3_Act_2a_fyx_2.png"><description><p>A curved mesh shown with a parabolic shape in one direction and an exponential shape in a perpendicular direction. A downward facing parabola is highlighted in red on the surface with point near the vertex of the parabola highlighted in black. A a downward sloping blue line segment is shown through the highlighted point.</p></description></image> 
+      <image width="73%" source="images/fig_10_3_Act_2a_fyx_3.png"><description><p>A curved mesh shown with a parabolic shape in one direction and an exponential shape in a perpendicular direction. A downward facing parabola is highlighted in red on the surface with point near the vertex of the parabola highlighted in black. A a downward sloping blue line segment is shown to the right of the highlighted point.</p></description></image>
+    </solution>
   </task>
   </activity>
-</worksheet>
+ 
   <p>
     As we have seen in <xref ref="act-mv_deriv-second_order-shape"/>, we may think of <m>f_{xy}</m> as measuring the <q>twist</q> of the graph as we increase <m>y</m> along a particular trace where <m>x</m> is held constant. In the same way, <m>f_{yx}</m> measures how the graph twists as we increase <m>x</m>. If we remember that <xref ref="thm-clairaut" text="title"/> tells us that since <m>f</m> is continuous, <m>f_{xy} = f_{yx}</m>, we see that the amount of twisting is the same in both directions. This twisting is perhaps more easily seen in <xref ref="fig-mv_deriv-second_order-ruled">Figure</xref>, which shows the graph  of <m>f(x,y) = -xy</m>, for which <m>f_{xy} = -1</m>.
   </p>
@@ -901,7 +922,7 @@
     <caption>The surface given by <m>z=f(x,y) = xy</m> </caption>
     <interactive label="interactive-fig-mv_deriv-second_order-ruled" platform="sage" width="91%" aspect="1:1">
       <description><p>A three dimensional plot of axes labeled <m>x</m>, <m>y</m>, and <m>z</m> with a saddle surface shown going through the origin.  </p></description>
-    <slate surface="sage">
+      <slate surface="sage">
         from sage.plot.plot3d.plot3d import axes
         scale=1.25
         plot5=axes(scale,1,color="black",aspect_ratio=[1,1,1])
@@ -933,140 +954,140 @@
   <p>
     Just as with the first-order partial derivatives, we can approximate second-order partial derivatives in the situation where we have information about the function only at certain inputs, like with tables or contour plots.
   </p>
-  <worksheet>
+   
   <activity workspace="1.5in" xml:id="act-mv_deriv-second_order-windchill">
     <introduction>
       <p>
         As we saw in <xref ref="act-mv_deriv-first_order-table">Activity</xref>, the wind chill <m>w(v,T)</m>, in degrees Fahrenheit, is a function of the wind speed, in miles per hour, and the air temperature, in degrees Fahrenheit. Some values of the wind chill are recorded in the table below.
       </p>
-          <tabular halign="center">
-            <row>
-              <cell><m>v \backslash T</m></cell>
-              <!-- <cell bottom="medium"><m>-30</m></cell>
-              <cell bottom="medium"><m>-25</m></cell> -->
-              <cell bottom="medium"><m>-20</m></cell>
-              <cell bottom="medium"><m>-15</m></cell>
-              <cell bottom="medium"><m>-10</m></cell>
-              <cell bottom="medium"><m>-5</m></cell>
-              <cell bottom="medium"><m>0</m></cell>
-              <cell bottom="medium"><m>5</m></cell>
-              <cell bottom="medium"><m>10</m></cell>
-             <!--  <cell bottom="medium"><m>15</m></cell>
-              <cell bottom="medium"><m>20</m></cell> -->
-            </row>
-            <!-- <row>
-              <cell right="medium"><m>5</m></cell>
-              <cell><m>-46</m></cell>
-              <cell><m>-40</m></cell>
-              <cell><m>-34</m></cell>
-              <cell><m>-28</m></cell>
-              <cell><m>-22</m></cell>
-              <cell><m>-16</m></cell>
-              <cell><m>-11</m></cell>
-              <cell><m>-5</m></cell>
-              <cell><m>1</m></cell>
-              <cell><m>7</m></cell>
-              <cell><m>13</m></cell>
-            </row> -->
-            <row>
-              <cell right="medium"><m>10</m></cell>
-              <!-- <cell><m>-53</m></cell>
-              <cell><m>-47</m></cell> -->
-              <cell><m>-41</m></cell>
-              <cell><m>-35</m></cell>
-              <cell><m>-28</m></cell>
-              <cell><m>-22</m></cell>
-              <cell><m>-16</m></cell>
-              <cell><m>-10</m></cell>
-              <cell><m>-4</m></cell>
-              <!-- <cell><m>3</m></cell>
-              <cell><m>9</m></cell> -->
-            </row>
-            <row>
-              <cell right="medium"><m>15</m></cell>
-              <!-- <cell><m>-58</m></cell>
-              <cell><m>-51</m></cell> -->
-              <cell><m>-45</m></cell>
-              <cell><m>-39</m></cell>
-              <cell><m>-32</m></cell>
-              <cell><m>-26</m></cell>
-              <cell><m>-19</m></cell>
-              <cell><m>-13</m></cell>
-              <cell><m>-7</m></cell>
-              <!-- <cell><m>0</m></cell>
-              <cell><m>6</m></cell> -->
-            </row>
-            <row>
-              <cell right="medium"><m>20</m></cell>
-              <!-- <cell><m>-61</m></cell>
-              <cell><m>-55</m></cell> -->
-              <cell><m>-48</m></cell>
-              <cell><m>-42</m></cell>
-              <cell><m>-35</m></cell>
-              <cell><m>-29</m></cell>
-              <cell><m>-22</m></cell>
-              <cell><m>-15</m></cell>
-              <cell><m>-9</m></cell>
-              <!-- <cell><m>-2</m></cell>
-              <cell><m>4</m></cell> -->
-            </row>
-            <row>
-              <cell right="medium"><m>25</m></cell>
-              <!-- <cell><m>-64</m></cell>
-              <cell><m>-58</m></cell> -->
-              <cell><m>-51</m></cell>
-              <cell><m>-44</m></cell>
-              <cell><m>-37</m></cell>
-              <cell><m>-31</m></cell>
-              <cell><m>-24</m></cell>
-              <cell><m>-17</m></cell>
-              <cell><m>-11</m></cell>
-              <!-- <cell><m>-4</m></cell>
-              <cell><m>3</m></cell> -->
-            </row>
-            <row>
-              <cell right="medium"><m>30</m></cell>
-              <!-- <cell><m>-67</m></cell>
-              <cell><m>-60</m></cell> -->
-              <cell><m>-53</m></cell>
-              <cell><m>-46</m></cell>
-              <cell><m>-39</m></cell>
-              <cell><m>-33</m></cell>
-              <cell><m>-26</m></cell>
-              <cell><m>-19</m></cell>
-              <cell><m>-12</m></cell>
-             <!--  <cell><m>-5</m></cell>
-              <cell><m>1</m></cell> -->
-            </row>
-            <row>
-              <cell right="medium"><m>35</m></cell>
-              <!-- <cell><m>-69</m></cell>
-              <cell><m>-62</m></cell> -->
-              <cell><m>-55</m></cell>
-              <cell><m>-48</m></cell>
-              <cell><m>-41</m></cell>
-              <cell><m>-34</m></cell>
-              <cell><m>-27</m></cell>
-              <cell><m>-21</m></cell>
-              <cell><m>-14</m></cell>
-              <!-- <cell><m>-7</m></cell>
-              <cell><m>0</m></cell> -->
-            </row>
-            <!-- <row>
-              <cell right="medium"><m>40</m></cell>
-              <cell><m>-71</m></cell>
-              <cell><m>-64</m></cell>
-              <cell><m>-57</m></cell>
-              <cell><m>-50</m></cell>
-              <cell><m>-43</m></cell>
-              <cell><m>-36</m></cell>
-              <cell><m>-29</m></cell>
-              <cell><m>-22</m></cell>
-              <cell><m>-15</m></cell>
-              <cell><m>-8</m></cell>
-              <cell><m>-1</m></cell>
-            </row> -->
-          </tabular>
+      <tabular halign="center">
+        <row>
+          <cell><m>v \backslash T</m></cell>
+          <!-- <cell bottom="medium"><m>-30</m></cell>
+          <cell bottom="medium"><m>-25</m></cell> -->
+          <cell bottom="medium"><m>-20</m></cell>
+          <cell bottom="medium"><m>-15</m></cell>
+          <cell bottom="medium"><m>-10</m></cell>
+          <cell bottom="medium"><m>-5</m></cell>
+          <cell bottom="medium"><m>0</m></cell>
+          <cell bottom="medium"><m>5</m></cell>
+          <cell bottom="medium"><m>10</m></cell>
+          <!--  <cell bottom="medium"><m>15</m></cell>
+          <cell bottom="medium"><m>20</m></cell> -->
+        </row>
+        <!-- <row>
+          <cell right="medium"><m>5</m></cell>
+          <cell><m>-46</m></cell>
+          <cell><m>-40</m></cell>
+          <cell><m>-34</m></cell>
+          <cell><m>-28</m></cell>
+          <cell><m>-22</m></cell>
+          <cell><m>-16</m></cell>
+          <cell><m>-11</m></cell>
+          <cell><m>-5</m></cell>
+          <cell><m>1</m></cell>
+          <cell><m>7</m></cell>
+          <cell><m>13</m></cell>
+        </row> -->
+        <row>
+          <cell right="medium"><m>10</m></cell>
+          <!-- <cell><m>-53</m></cell>
+          <cell><m>-47</m></cell> -->
+          <cell><m>-41</m></cell>
+          <cell><m>-35</m></cell>
+          <cell><m>-28</m></cell>
+          <cell><m>-22</m></cell>
+          <cell><m>-16</m></cell>
+          <cell><m>-10</m></cell>
+          <cell><m>-4</m></cell>
+          <!-- <cell><m>3</m></cell>
+          <cell><m>9</m></cell> -->
+        </row>
+        <row>
+          <cell right="medium"><m>15</m></cell>
+          <!-- <cell><m>-58</m></cell>
+          <cell><m>-51</m></cell> -->
+          <cell><m>-45</m></cell>
+          <cell><m>-39</m></cell>
+          <cell><m>-32</m></cell>
+          <cell><m>-26</m></cell>
+          <cell><m>-19</m></cell>
+          <cell><m>-13</m></cell>
+          <cell><m>-7</m></cell>
+          <!-- <cell><m>0</m></cell>
+          <cell><m>6</m></cell> -->
+        </row>
+        <row>
+          <cell right="medium"><m>20</m></cell>
+          <!-- <cell><m>-61</m></cell>
+          <cell><m>-55</m></cell> -->
+          <cell><m>-48</m></cell>
+          <cell><m>-42</m></cell>
+          <cell><m>-35</m></cell>
+          <cell><m>-29</m></cell>
+          <cell><m>-22</m></cell>
+          <cell><m>-15</m></cell>
+          <cell><m>-9</m></cell>
+          <!-- <cell><m>-2</m></cell>
+          <cell><m>4</m></cell> -->
+        </row>
+        <row>
+          <cell right="medium"><m>25</m></cell>
+          <!-- <cell><m>-64</m></cell>
+          <cell><m>-58</m></cell> -->
+          <cell><m>-51</m></cell>
+          <cell><m>-44</m></cell>
+          <cell><m>-37</m></cell>
+          <cell><m>-31</m></cell>
+          <cell><m>-24</m></cell>
+          <cell><m>-17</m></cell>
+          <cell><m>-11</m></cell>
+          <!-- <cell><m>-4</m></cell>
+          <cell><m>3</m></cell> -->
+        </row>
+        <row>
+          <cell right="medium"><m>30</m></cell>
+          <!-- <cell><m>-67</m></cell>
+          <cell><m>-60</m></cell> -->
+          <cell><m>-53</m></cell>
+          <cell><m>-46</m></cell>
+          <cell><m>-39</m></cell>
+          <cell><m>-33</m></cell>
+          <cell><m>-26</m></cell>
+          <cell><m>-19</m></cell>
+          <cell><m>-12</m></cell>
+          <!--  <cell><m>-5</m></cell>
+          <cell><m>1</m></cell> -->
+        </row>
+        <row>
+          <cell right="medium"><m>35</m></cell>
+          <!-- <cell><m>-69</m></cell>
+          <cell><m>-62</m></cell> -->
+          <cell><m>-55</m></cell>
+          <cell><m>-48</m></cell>
+          <cell><m>-41</m></cell>
+          <cell><m>-34</m></cell>
+          <cell><m>-27</m></cell>
+          <cell><m>-21</m></cell>
+          <cell><m>-14</m></cell>
+          <!-- <cell><m>-7</m></cell>
+          <cell><m>0</m></cell> -->
+        </row>
+        <!-- <row>
+          <cell right="medium"><m>40</m></cell>
+          <cell><m>-71</m></cell>
+          <cell><m>-64</m></cell>
+          <cell><m>-57</m></cell>
+          <cell><m>-50</m></cell>
+          <cell><m>-43</m></cell>
+          <cell><m>-36</m></cell>
+          <cell><m>-29</m></cell>
+          <cell><m>-22</m></cell>
+          <cell><m>-15</m></cell>
+          <cell><m>-8</m></cell>
+          <cell><m>-1</m></cell>
+        </row> -->
+      </tabular>
     </introduction>
     <task>
       <statement>
@@ -1236,7 +1257,7 @@
       </solution>
     </task>
   </activity>
-</worksheet>
+ 
   
 </subsection>
 

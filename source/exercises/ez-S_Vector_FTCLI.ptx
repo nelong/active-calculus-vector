@@ -1,17 +1,82 @@
-<exercises>
+<exercises xmlns:xi="http://www.w3.org/2001/XInclude">
   
+  <exercise label="Library__Michigan__Chap18Sec3__Q23__pg" xml:id="FTLI17">
+    <webwork source="Library/Michigan/Chap18Sec3/Q23.pg"/>
+</exercise> 
+
+<exercise label="Library__Michigan__Chap18Sec4__Q02__pg" xml:id="FTLI25">
+    <webwork source="Library/Michigan/Chap18Sec4/Q02.pg"/>
+</exercise> 
+
+  <!-- verify FTCLI -->
   <exercise label="Library__Michigan__Chap18Sec3__Q25__pg">
     <webwork source="Library/Michigan/Chap18Sec3/Q25.pg"/>
   </exercise>
+
+<!-- use FTCLI -->
   <exercise label="Library__ASU-topics__setCalculus__stef16_3p3__pg">
     <webwork source="Library/ASU-topics/setCalculus/stef16_3p3.pg"/>
   </exercise>
-  <!-- MTK: Revise so that it doesn't use ColumnTable and it should work
-       Also ditch the PG graph image and replace with a TikZ image?
-  <exercise>
-<webwork><xi:include href="wwpgfiles/FtLewisHGM4-20-1-09-Divergence.pg" parse="text"/></webwork>    
-    </exercise>
-  -->  
+ 
+ <!-- find potential -->
+    <exercise label="Library__ASU-topics__setCalculus__stef16_3p2__pg" xml:id="FTLI10">
+    <webwork source="Library/ASU-topics/setCalculus/stef16_3p2.pg"/>
+</exercise> 
+
+
+<exercise label="Library__maCalcDB__setVectorCalculus1__UR_VC_11_6__pg" xml:id="FTLI12">
+    <webwork source="Library/maCalcDB/setVectorCalculus1/UR_VC_11_6.pg"/>
+</exercise> 
+
+<exercise label="Library__Rochester__setVectorCalculus2__ur_vc_12_3__pg" xml:id="FTLI13">
+    <webwork source="Library/Rochester/setVectorCalculus2/ur_vc_12_3.pg"/>
+</exercise> 
+
+<exercise label="Library__maCalcDB__setVectorCalculus2__ur_vc_12_15__pg" xml:id="FTLI14">
+    <webwork source="Library/maCalcDB/setVectorCalculus2/ur_vc_12_15.pg"/>
+</exercise> 
+
+<exercise label="Library__Michigan__Chap18Sec3__Q01__pg" xml:id="FTLI15">
+    <webwork source="Library/Michigan/Chap18Sec3/Q01.pg"/>
+</exercise> 
+
+<exercise label="Library__Michigan__Chap18Sec3__Q15__pg" xml:id="FTLI16">
+    <webwork source="Library/Michigan/Chap18Sec3/Q15.pg"/>
+</exercise> 
+
+
+
+
+
+<exercise label="Library__Michigan__Chap18Sec3__Q31__pg" xml:id="FTLI19">
+    <webwork source="Library/Michigan/Chap18Sec3/Q31.pg"/>
+</exercise> 
+
+<exercise label="Library__Michigan__Chap18Sec3__Q37__pg" xml:id="FTLI20">
+    <webwork source="Library/Michigan/Chap18Sec3/Q37.pg"/>
+</exercise> 
+
+
+
+<exercise label="Library__Michigan__Chap18Sec3__Q40__pg" xml:id="FTLI22">
+    <webwork source="Library/Michigan/Chap18Sec3/Q40.pg"/>
+</exercise> 
+
+
+<exercise label="Library__Michigan__Chap18Sec3__Q47__pg" xml:id="FTLI24">
+    <webwork source="Library/Michigan/Chap18Sec3/Q47.pg"/>
+</exercise> 
+
+
+
+<exercise label="Library__Michigan__Chap18Sec4__Q07__pg" xml:id="FTLI26">
+    <webwork source="Library/Michigan/Chap18Sec4/Q07.pg"/>
+</exercise> 
+
+<exercise label="Library__maCalcDB__setVectorCalculus2__ur_vc_12_4__pg" xml:id="vf8">
+    <webwork source="Library/maCalcDB/setVectorCalculus2/ur_vc_12_4.pg"/>
+</exercise> 
+
   <exercise xml:id="ez_Vector_FTCLI_Applies">
     <introduction>
       <p>For each of the following line integrals:
@@ -159,12 +224,12 @@
 	  <caption>Another vector field</caption>
           <image width="50%" xml:id="fig_12_4_ex2_field2">
 	    <description>
-	      A vector field in which vector magnitudes increase as
+	      <p>A vector field in which vector magnitudes increase as
 	      distance from the origin increases. Vectors are oriented
 	      as if they follow hyperbolas with asymptotes <m>y=x</m>
 	      and <m>y=-x</m>. Vectors above both asymptotes or below
 	      both asymptotes result in counterclockwise rotation. The
-	      other vectors result in clockwise rotation.
+	      other vectors result in clockwise rotation.</p>
 	    </description>
       <sageplot>
         var('x,y,t')
@@ -190,4 +255,37 @@
     <m>(1,1,0)</m> to <m>(4,8,1)</m>. The <xref ref="thm_FTCLI" text="title"/> says that this line integral will evaluate to
     <m>f(4,8,1)-f(1,1,0)=32e-1</m>.</p></solution>
   </exercise>
+  <exercise>
+    <introduction>
+      <p>
+        Let <m>\vF(x,y,z)</m> be a vector field such that <m>\vF=\nabla f</m> for a smooth function <m>f(x,y,z)</m>. Let <m>S</m> be a level surface of <m>f</m> and let <m>C_1</m> be curve that stays on the surface <m>S</m>. Let <m>C_2</m> be a curve that begins and ends on <m>S</m> but does have points not on <m>S</m>.
+      </p>
+    </introduction>
+    <task>
+      <statement>
+        <p>
+          What is the value of <m>\int_{C_1} \vF \cdot d\vr</m>?
+        </p>
+      </statement>
+      <solution>
+        <p>
+          By the FTCLI, this line integral will be the difference between the potential function's values at the final and initial points on the curve. Since both the initial and final points (all points really) of the curve are on the same level set of the function <m>f</m>, this line integral will be zero. 
+        </p>
+      </solution>
+    </task>
+    <task>
+      <statement>
+        <p>
+          What is the value of <m>\int_{C_2} \vF \cdot d\vr</m>?
+        </p>
+      </statement>
+      <solution>
+        <p>
+          By the FTCLI, this line integral will be the difference between the potential function's values at the final and initial points on the curve. Since both the initial and final points of the curve are on the same level set of the function <m>f</m>, this line integral will be zero. 
+        </p>
+      </solution>
+    </task>
+  </exercise>
+   
+
 </exercises>

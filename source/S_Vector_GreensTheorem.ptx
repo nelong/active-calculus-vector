@@ -30,12 +30,20 @@
 
     </ul>
   </objectives>
+  <introduction component="instructor">
+	  <assemblage>
+    <title>Notes to the Instructor and Dependencies</title>
+	<p>
+		This section relies on the calculation of circulation around a closed curve from <xref ref="S_Vector_IdeaLineIntegral"/> and <xref ref="S_Vector_ParamLineIntegrals"/> as well as the idea of circulation density that was described in <xref ref="S_Vector_Div"/>. 
+	</p>
+    </assemblage>
+  </introduction>
   <subsection>
     <title>Introduction</title>
     <p>
       We know from <xref ref="S_Vector_FTCLI"/> that a vector field is path-independent if and only if the circulation around every closed curve in its domain is <m>0</m>. It is probably not surprising that, given the multitude of names we have for path-independent vector fields, they are important vector fields that arise frequently. However, not every vector field is path-independent, and many times we will want to calculate the circulation around a closed curve in a vector field that is not path-independent. This section explores a connection between line integrals and double integrals that you may find surprising. It will be the first of three major theorems that connect types of integrals that seem very different on the surface.
     </p>
-    <worksheet>
+     
   <exploration workspace="1.5in" xml:id="PA_Vector_GreensTheorem">
       <introduction>
         <p>
@@ -45,7 +53,7 @@
       <task xml:id="task_PA_Vector_GreensTheorem_Circ">
         <statement>
           <p>
-          	Verify that <m>\vF</m> is not path-independent by calculating the circulation of <m>\vF</m> around the circle <m>C</m>. The SageMath cell below is set up to assist you with this, but you will need to supply a parametrization of <m>C</m> on line 4.
+          	Verify that <m>\vF</m> is not path-independent by calculating the circulation of <m>\vF</m> around the circle <m>C</m> (Use <xref ref="thm_PathIndepZero"/>). The SageMath cell below is set up to assist you with this, but you will need to supply a parametrization of <m>C</m> on line 4.
           </p>
 				<sage>
 				<input>
@@ -158,9 +166,14 @@
 				What do you notice about your results to parts (a) and (d)? Do you think this will happen in general? Write a sentence or two about what you think is happening here.
 			</p>
 		</statement>
+		<solution>
+			<p>
+				The answers to parts (a) and (d) should be the same but this is not obvious. As will be discussed later, the accumulation of the circulation density over small regions will sum to be the circulation on the boundary. 
+			</p>
+		</solution>
 	</task>
 </exploration>
-</worksheet>
+ 
 <p>
 	A natural question after completing the Preview Activity is if there is something special about the vector field <m>\vF</m> or the curve <m>C</m> that led to the results you obtained, and investigating this will be our principal task in this section.
 </p>
@@ -193,26 +206,26 @@
     <figure xml:id="fig_Vector_GreensTheorem_circ_squares2">
       <caption>A square region divided into two smaller squares</caption>
       <image xml:id="img_Vector_GreensTheorem_circ_squares2" width="40%">
-				<description>A rectangular region in the plane that is bounded by a closed curve oriented counterclockwise. The square is divided into two squares of equal size, which are labeled as <m>R_1</m> and <m>R_2</m>. There are circular arrows inside each of the smaller regions indicating counterclockwise orientations.</description>
-				<latex-image>
-					\begin{tikzpicture}
-					\draw [thick,orientation arrows] (0,0) -- (4,0) -- (4,2) -- (0,2) -- (0,0);
-					\draw [thick] (2,0) -- (2,2);
-					\draw [thick] (0,2) -- (2,2);
-					\draw (0.1,0.85) arc (-170:170:0.9cm);
-					\draw (2.1,0.85) arc (-170:170:0.9cm);
-					%\draw (0.1,2.85) arc (-170:170:0.9cm);
-					%\draw (2.1,2.85) arc (-170:170:0.9cm);
-					\draw[arrow at end=&gt;] (0.1,0.85) arc (-170:170:0.9cm);
-					\draw[arrow at end=&gt;] (2.1,0.85) arc (-170:170:0.9cm);
-					%\draw[arrow at end=&gt;] (0.1,2.85) arc (-170:170:0.9cm);
-					%\draw[arrow at end=&gt;] (2.1,2.85) arc (-170:170:0.9cm);
-					\node at (1,1) {$R_1$};
-					\node at (3,1) {$R_2$};
-					%\node at (1,1) {$R_3$};
-					%\node at (3,1) {$R_4$};											
-					\end{tikzpicture}
-				</latex-image>
+			<description><p>A rectangular region in the plane that is bounded by a closed curve oriented counterclockwise. The square is divided into two squares of equal size, which are labeled as <m>R_1</m> and <m>R_2</m>. There are circular arrows inside each of the smaller regions indicating counterclockwise orientations.</p></description>
+			<latex-image>
+				\begin{tikzpicture}
+				\draw [thick,orientation arrows] (0,0) -- (4,0) -- (4,2) -- (0,2) -- (0,0);
+				\draw [thick] (2,0) -- (2,2);
+				\draw [thick] (0,2) -- (2,2);
+				\draw (0.1,0.85) arc (-170:170:0.9cm);
+				\draw (2.1,0.85) arc (-170:170:0.9cm);
+				%\draw (0.1,2.85) arc (-170:170:0.9cm);
+				%\draw (2.1,2.85) arc (-170:170:0.9cm);
+				\draw[arrow at end=&gt;] (0.1,0.85) arc (-170:170:0.9cm);
+				\draw[arrow at end=&gt;] (2.1,0.85) arc (-170:170:0.9cm);
+				%\draw[arrow at end=&gt;] (0.1,2.85) arc (-170:170:0.9cm);
+				%\draw[arrow at end=&gt;] (2.1,2.85) arc (-170:170:0.9cm);
+				\node at (1,1) {$R_1$};
+				\node at (3,1) {$R_2$};
+				%\node at (1,1) {$R_3$};
+				%\node at (3,1) {$R_4$};											
+				\end{tikzpicture}
+			</latex-image>
       </image>
     </figure>
     <p>
@@ -225,7 +238,7 @@
       Returning to <xref ref="fig_Vector_GreensTheorem_circ_cartoon"/>, if we find the circulation along the boundary of each of the smaller regions, the line integrals
       along the boundaries that lie inside the region <m>R</m> will all offset. Thus the value should equal <m>\oint_C\vF\cdot d\vr</m>. If we make our grid fine enough, all of the smaller regions into which <m>R</m> is divided will be very close to rectangular. 
     </p>
-    <!-- <worksheet>
+    <!--  
   <activity workspace="1.5in" xml:id="act_Vector_GreensTheorem_rectangle">
       <introduction>
 	<p>
@@ -433,7 +446,7 @@
 	</p>
       </conclusion>
     </activity>
-</worksheet> -->
+  -->
 
     <!-- <p>
       The phenomenon we verified for rectangular regions in <xref ref="act_Vector_GreensTheorem_rectangle"/>
@@ -463,7 +476,7 @@
 			The restriction that the curve in <xref ref="thm_Green" text="title"/> prohibits curves such as the one below, which crosses itself.
 		</p>
 		<image xml:id="image_Vector_GreensTheorem_FigureEight">
-			<description>A curve in the shape of a figure eight</description>
+			<description><p>A curve in the shape of a figure eight</p></description>
 			<sageplot>
 				var('x,y,t')
 				a=pi/6
@@ -556,7 +569,7 @@
 		</p>
 	</example>
 
-    <worksheet>
+     
   <activity workspace="1.5in" xml:id="act_Vector_GreensTheorem_verify">
       <introduction>
 		<p>
@@ -593,7 +606,7 @@
 		</solution>
       </task>
     </activity>
-</worksheet>
+ 
     <p>
       Generally, <xref ref="thm_Green" text="title"/> is useful for allowing us to calculate line integrals by instead calculating a double integral. Going the other direction is harder, since finding a vector field <m>\langle F_1,F_2\rangle</m> so that <m>\partial F_2/\partial x - \partial F_1/\partial y</m> is equal to the integrand in the double integral can be difficult. However, the exercises will explore some situations where calculating a suitable line integral is a viable
       alternative to the double integral.
@@ -612,7 +625,7 @@
       field <m>\vF</m> is not smooth.
     </p>
 
-    <worksheet>
+     
   <activity workspace="1.5in" xml:id="act_Vector_GreensTheorem_not_smooth">
       <introduction>
 		<p>
@@ -766,23 +779,15 @@
       </task>
 
     </activity>
-</worksheet>
+ 
 
-    <p>We can now see that <xref ref="thm_Green" text="title"/> is a
-    powerful tool. However it cannot be used for all line
-    integrals. In particular, the restriction that the vector field be
-    smooth on the entire region bounded by a simple closed curve
-    <m>C</m> creates limitations. This can occur even in cases where
-    holes in the vector field's domain or points where the vector
-    field is not continuously differentiable lie away from <m>C</m>.
+    <p>
+		We can now see that <xref ref="thm_Green" text="title"/> is a powerful tool. However it cannot be used for all line integrals. In particular, the restriction that the vector field be smooth on the entire region bounded by a simple closed curve <m>C</m> creates limitations. This can occur even in cases where holes in the vector field's domain or points where the vector field is not continuously differentiable lie away from <m>C</m>.
     </p>
   </subsection>
-
-  <subsection>
-    <title>Summary</title>
-    <p>
+<outcomes>
       <ul>
-	<li>
+		<li>
           <p>
             <xref ref="thm_Green" text="title"/> tells us that we can
             calculate the circulation of a smooth vector field along a
@@ -791,25 +796,21 @@
             double integral of the circulation density instead of the
             line integral.
           </p>
-	</li>
+		</li>
 
-	<li>
+		<li>
           <p>
-	  Integrating the circulation density of a smooth vector field
-	  on a region bounded by a simple closed curve gives the same
-	  value as calculating the circulation of the vector field
-	  around the boundary of the region with suitable
-	  orientation.</p>
+	  		Integrating the circulation density of a smooth vector field
+			on a region bounded by a simple closed curve gives the same
+			value as calculating the circulation of the vector field
+			around the boundary of the region with suitable
+			orientation.
+			</p>
 	</li>
 
       </ul>
-    </p>
-  </subsection>
+  </outcomes>
+
   <xi:include href="exercises/ez-S_Vector_Green.ptx"/>
-  <subsection component="instructor">
-	<title>Notes to Instructors and Dependencies</title>
-	<p>
-	  This section relies on the calculation of circulation around a closed curve from <xref ref="S_Vector_IdeaLineIntegral"/> and <xref ref="S_Vector_ParamLineIntegrals"/> as well as the idea of circulation density that was described in <xref ref="S_Vector_Div"/>. 
-	</p>
-  </subsection>
+  
 </section>
