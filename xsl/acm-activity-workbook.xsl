@@ -33,7 +33,7 @@
 <xsl:template match="&PROJECT-LIKE;" mode="tcb-style">
     <xsl:text>enhanced,frame hidden,interior hidden, sharp corners,&#xa;</xsl:text>
     <xsl:text>boxrule=0pt,borderline west={3pt}{0pt}{ActiveBlue}, &#xa;</xsl:text>
-    <xsl:text>runintitlestyle, blockspacingstyle, after title={.\space}, &#xa;</xsl:text>
+    <xsl:text>runintitlestyle, blockspacingstyle, breakable, after title={.\space}, &#xa;</xsl:text>
     <xsl:text>colback=white,&#xa;</xsl:text>
     <xsl:text>coltitle=black,after={\cleardoublepage}</xsl:text>
 </xsl:template>
@@ -46,13 +46,13 @@
   <xsl:text>\tcbset{ activitysolutionstyle/.style={&#xa;</xsl:text>
   <xsl:text>enhanced,frame hidden,interior hidden, sharp corners,&#xa;</xsl:text>
   <xsl:text>boxrule=0pt,borderline west={3pt}{0pt}{ActiveBlue}, &#xa;</xsl:text>
-  <xsl:text>runintitlestyle, blockspacingstyle, after title={.\space}, &#xa;</xsl:text>
+  <xsl:text>runintitlestyle, blockspacingstyle, breakable, after title={.\space}, &#xa;</xsl:text>
   <xsl:text>colback=white,&#xa;</xsl:text>
   <xsl:text>coltitle=black,after={\cleardoublepage}}}</xsl:text>
   <xsl:text>\tcbset{ explorationsolutionstyle/.style={&#xa;</xsl:text>
   <xsl:text>enhanced,frame hidden,interior hidden, sharp corners,&#xa;</xsl:text>
   <xsl:text>boxrule=0pt,borderline west={3pt}{0pt}{ActiveBlue}, &#xa;</xsl:text>
-  <xsl:text>runintitlestyle, blockspacingstyle, after title={.\space}, &#xa;</xsl:text>
+  <xsl:text>runintitlestyle, blockspacingstyle, breakable, after title={.\space}, &#xa;</xsl:text>
   <xsl:text>colback=white,&#xa;</xsl:text>
   <xsl:text>coltitle=black,after={\cleardoublepage}}}</xsl:text>
   <xsl:value-of select="$latex.preamble.late.common" />
