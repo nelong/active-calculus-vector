@@ -19,7 +19,18 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
 <link href="_static/pretext/css/theme.css" rel="stylesheet" type="text/css">
-<link href="_static/pretext/css/ol-markers.css" rel="stylesheet" type="text/css">
+<style>
+@counter-style ptx-marker-1 { system: extends decimal; prefix: ''; suffix: ') '; }
+@counter-style ptx-marker-2 { system: extends decimal; prefix: '('; suffix: ') '; }
+@counter-style ptx-marker-3 { system: extends lower-roman; prefix: ''; suffix: ' '; }
+@counter-style ptx-marker-4 { system: extends lower-roman; prefix: ''; suffix: '. '; }
+@counter-style ptx-marker-5 { system: extends lower-roman; prefix: '('; suffix: ') '; }
+@counter-style ptx-marker-6 { system: extends upper-alpha; prefix: ''; suffix: '. '; }
+@counter-style ptx-marker-7 { system: extends upper-alpha; prefix: ''; suffix: ' '; }
+@counter-style ptx-marker-8 { system: extends decimal; prefix: ''; suffix: '. '; }
+@counter-style ptx-marker-9 { system: extends lower-alpha; prefix: ''; suffix: '. '; }
+@counter-style ptx-marker-0 { system: extends lower-alpha; prefix: '('; suffix: ') '; }
+</style>
 <script type="module">import { startMathJax } from './_static/pretext/js/dist/mathjax_startup.js';
 startMathJax({
 hasWebworkReps: true,
@@ -37,7 +48,7 @@ lang: "en-US",
 <meta name="twitter:description" content="Active Calculus - Multivariable supports an active learning approach to a course involving multivariable and vector calculus. Every section of Active Calculus - Multivariable offers preview activities designed around preparing users for new topics; multiple activities in each section that can be used either in- or out-of-classtime; interactive WeBWorK exercises; other exercises and tasks that foster students' practice of skills and deeper investigation of conceptual material; opportunities for students to refine their effective communication of geometric and algebraic perspectives. The text makes frequent use of interactive three-dimensional graphics embedded in the text to help students with visualizing. This text is free and open-source, available in HTML, PDF, and print formats (2nd edition will be available by January 2028). Ancillary materials for instructors are also available.">
 <meta property="og:description" content="Active Calculus - Multivariable supports an active learning approach to a course involving multivariable and vector calculus. Every section of Active Calculus - Multivariable offers preview activities designed around preparing users for new topics; multiple activities in each section that can be used either in- or out-of-classtime; interactive WeBWorK exercises; other exercises and tasks that foster students' practice of skills and deeper investigation of conceptual material; opportunities for students to refine their effective communication of geometric and algebraic perspectives. The text makes frequent use of interactive three-dimensional graphics embedded in the text to help students with visualizing. This text is free and open-source, available in HTML, PDF, and print formats (2nd edition will be available by January 2028). Ancillary materials for instructors are also available.">
 <meta name="twitter:card" content="summary">
-<script src="_static/pretext/js/jquery.min.js"></script><script src="_static/pretext/js/dist/pretext-core.js?v=2.49"></script><script src="_static/pretext/js/dist/pretext-read-aloud.js?v=2.49"></script><!--** eBookCongig is necessary to configure interactive       **-->
+<script src="_static/pretext/js/jquery.min.js"></script><script src="_static/pretext/js/dist/pretext-core.js?v=2.53"></script><script src="_static/pretext/js/dist/pretext-read-aloud.js?v=2.53"></script><!--** eBookCongig is necessary to configure interactive       **-->
 <!--** Runestone components to run locally in reader's browser **-->
 <!--** No external communication:                              **-->
 <!--**     log level is 0, Runestone Services are disabled     **-->
@@ -59,15 +70,15 @@ eBookConfig.allow_pairs = false;
 eBookConfig.enableScratchAC = false;
 eBookConfig.build_info = "";
 eBookConfig.python3 = null;
-eBookConfig.runestone_version = '8.2.5';
+eBookConfig.runestone_version = '8.3.2';
 eBookConfig.jobehost = '';
 eBookConfig.proxyuri_runs = '';
 eBookConfig.proxyuri_files = '';
 eBookConfig.enable_chatcodes =  false;
 </script>
 <!--*** Runestone Services ***-->
-<script src="_static/prefix-runtime.18d8728f6d56e11d.bundle.js"></script><script src="_static/prefix-926.5c7038c8ef173faf.bundle.js"></script><script src="_static/prefix-runestone.b388362b5f43738a.bundle.js"></script><link rel="stylesheet" type="text/css" href="_static/prefix-926.229729d09512acc9.css">
-<link rel="stylesheet" type="text/css" href="_static/prefix-runestone.8086b62682b271d1.css">
+<script src="_static/prefix-runtime.6ad113829064d43a.bundle.js"></script><script src="_static/prefix-926.5c7038c8ef173faf.bundle.js"></script><script src="_static/prefix-runestone.02090e9f6a81e70e.bundle.js"></script><link rel="stylesheet" type="text/css" href="_static/prefix-926.229729d09512acc9.css">
+<link rel="stylesheet" type="text/css" href="_static/prefix-runestone.347e2ecdeacfed99.css">
 <script src="_static/pretext/js/dist/lti_iframe_resizer.js"></script><script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script src="_static/pretext/js/dist/pretext-webwork.js"></script><script src="https://webwork-ptx.aimath.org/webwork2_files/node_modules/iframe-resizer/js/iframeResizer.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/components/prism-core.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/line-numbers/prism-line-numbers.min.js" integrity="sha512-dubtf8xMHSQlExGRQ5R7toxHLgSDZ0K7AunqPWHXmJQ8XyVIG19S1T95gBxlAeGOK02P4Da2RTnQz0Za0H0ebQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/line-highlight/prism-line-highlight.min.js" integrity="sha512-93uCmm0q+qO5Lb1huDqr7tywS8A2TFA+1/WHvyiWaK6/pvsFl6USnILagntBx8JnVbQH5s3n0vQZY6xNthNfKA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="https://cdn.geogebra.org/apps/deployggb.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js" integrity="sha512-4xUl/d6D6THrAnXAwGajXkoWaeMNwEKK4iNfq5DotEbLPAfk6FSxSP3ydNxqDgCw1c/0Z1Jg6L8h2j+++9BZmg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><script src="lunr-pretext-search-index.js" async=""></script><script src="_static/pretext/js/dist/pretext_search.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
 </script>
 </head>
@@ -755,7 +766,7 @@ let ggbParams = {
 </div></details>
 </div>
 <figcaption><span class="type">Figure</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">9.2.1<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>A 2D plot with point <span class="process-math">\(P\)</span> labeled<div class="autopermalink" aria-hidden="true" data-description="Figure 9.2.1"><a tabindex="-1" href="#coord2d-PA" title="Copy heading and permalink for Figure 9.2.1" aria-label="Copy heading and permalink for Figure 9.2.1">🔗</a></div></figcaption>
-</figure><div class="workspace" data-space="1.5in"></div>
+</figure><div class="workspace" data-space="0.25in"></div>
 <div class="autopermalink" aria-hidden="true" data-description="part 9.2.1.a"><a tabindex="-1" href="#PA-2D-coord-2" title="Copy heading and permalink for part 9.2.1.a" aria-label="Copy heading and permalink for part 9.2.1.a">🔗</a></div>
 </article>
 <article class="task exercise-like" id="PA-2D-coord-3"><h4 class="heading"><span class="codenumber">(b)</span></h4>
@@ -768,13 +779,13 @@ let ggbParams = {
 </div></details>
 </div>
 <figcaption><span class="type">Figure</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">9.2.2<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>Two-dimensional axes for plotting points<div class="autopermalink" aria-hidden="true" data-description="Figure 9.2.2"><a tabindex="-1" href="#coord2d-PA2" title="Copy heading and permalink for Figure 9.2.2" aria-label="Copy heading and permalink for Figure 9.2.2">🔗</a></div></figcaption>
-</figure><div class="workspace" data-space="1.5in"></div>
+</figure><div class="workspace" data-space="0.0in"></div>
 <div class="autopermalink" aria-hidden="true" data-description="part 9.2.1.b"><a tabindex="-1" href="#PA-2D-coord-3" title="Copy heading and permalink for part 9.2.1.b" aria-label="Copy heading and permalink for part 9.2.1.b">🔗</a></div>
 </article>
 <article class="task exercise-like" id="PA-2D-coord-4"><h4 class="heading"><span class="codenumber">(c)</span></h4>
 <div class="para" id="PA-2D-coord-4-1-1">Give the coordinates of four points on the horizontal axis. What aspect do all of the points on the horizontal axis have in common? Use this idea to write an equation for the horizontal axis.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#PA-2D-coord-4-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<div class="workspace" data-space="1.5in"></div>
+<div class="workspace" data-space="0.0in"></div>
 <div class="autopermalink" aria-hidden="true" data-description="part 9.2.1.c"><a tabindex="-1" href="#PA-2D-coord-4" title="Copy heading and permalink for part 9.2.1.c" aria-label="Copy heading and permalink for part 9.2.1.c">🔗</a></div>
 </article>
 <article class="task exercise-like" id="PA-2D-coord-5"><h4 class="heading"><span class="codenumber">(d)</span></h4>
@@ -822,7 +833,7 @@ let ggbParams = {
 <div class="sbsrow" style="margin-left:0%;margin-right:0%;grid-template-columns:50% 50%;column-gap:0%;">
 <div class="sbspanel sbspanel--top top" style="">
 <figure class="figure figure-like" id="fig-coord-sys-left-hand"><div class="image-box">
-<img src="external/images/fig_9_1_left_hand.svg" role="img" class="contained" alt="described in detail following the image" aria-describedby="fig-coord-sys-left-hand-2-description"><details class="image-description" aria-live="polite"><summary title="details"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span></summary><div id="fig-coord-sys-left-hand-2-description">
+<img src="external/fig_9_1_left_hand.svg" role="img" class="contained" alt="described in detail following the image" aria-describedby="fig-coord-sys-left-hand-2-description"><details class="image-description" aria-live="polite"><summary title="details"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span></summary><div id="fig-coord-sys-left-hand-2-description">
 <div class="para" id="fig-coord-sys-left-hand-2-1-1">Three mutually perpendicular line segments labeled <span class="process-math">\(x\text{,}\)</span> <span class="process-math">\(y\text{,}\)</span> and <span class="process-math">\(z\text{.}\)</span> They are arranged so that the segment labeled <span class="process-math">\(z\)</span> points up, the segment labeled <span class="process-math">\(x\)</span> points to the right, and the segment labeled <span class="process-math">\(y\)</span> is coming out of the page.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#fig-coord-sys-left-hand-2-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 </div></details>
@@ -832,7 +843,7 @@ let ggbParams = {
 </div>
 <div class="sbspanel sbspanel--top top" style="">
 <figure class="figure figure-like" id="fig-coord-sys-right-hand"><div class="image-box">
-<img src="external/images/fig_9_1_right_hand.svg" role="img" class="contained" alt="described in detail following the image" aria-describedby="fig-coord-sys-right-hand-2-description"><details class="image-description" aria-live="polite"><summary title="details"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span></summary><div id="fig-coord-sys-right-hand-2-description">
+<img src="external/fig_9_1_right_hand.svg" role="img" class="contained" alt="described in detail following the image" aria-describedby="fig-coord-sys-right-hand-2-description"><details class="image-description" aria-live="polite"><summary title="details"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span></summary><div id="fig-coord-sys-right-hand-2-description">
 <div class="para" id="fig-coord-sys-right-hand-2-1-1">Three mutually perpendicular line segments labeled <span class="process-math">\(x\text{,}\)</span> <span class="process-math">\(y\text{,}\)</span> and <span class="process-math">\(z\text{.}\)</span> They are arranged so that the segment labeled <span class="process-math">\(z\)</span> points up, the segment labeled <span class="process-math">\(y\)</span> points to the right, and the segment labeled <span class="process-math">\(x\)</span> is coming out of the page.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#fig-coord-sys-right-hand-2-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 </div></details>
@@ -853,7 +864,7 @@ let ggbParams = {
 <div class="para" id="S-Precalc-3Dcoord-4-8">In other disciplines or settings you may see the <span class="process-math">\(y\)</span>-axis as being oriented vertically with the <span class="process-math">\(x\)</span>-axis going left/right and the <span class="process-math">\(z\)</span>-axis going in and out of the page like in the figure below. This orientation may be useful for you because you can think of the traditional orientation of the <span class="process-math">\(xy\)</span>-plane (when drawn on paper) with the positive <span class="process-math">\(z\)</span>-axis coming out of the page.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#S-Precalc-3Dcoord-4-8" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <figure class="figure figure-like" id="phy-coord"><div class="image-box" style="width: 55%; margin-left: 22.5%; margin-right: 22.5%;">
-<img src="external/./images/fig_9_1_right_hand_other.png" class="contained" alt="described in detail following the image" aria-describedby="phy-coord-2-description"><details class="image-description" aria-live="polite"><summary title="details"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span></summary><div id="phy-coord-2-description">
+<img src="external/fig_9_1_right_hand_other.png" class="contained" alt="described in detail following the image" aria-describedby="phy-coord-2-description"><details class="image-description" aria-live="polite"><summary title="details"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span></summary><div id="phy-coord-2-description">
 <div class="para" id="phy-coord-2-1-1">Three mutually perpendicular line segments labeled <span class="process-math">\(x\text{,}\)</span> <span class="process-math">\(y\text{,}\)</span> and <span class="process-math">\(z\text{.}\)</span> They are arranged so that the segment labeled <span class="process-math">\(y\)</span> points up, the segment labeled <span class="process-math">\(x\)</span> points to the right, and the segment labeled <span class="process-math">\(z\)</span> is coming out of the page.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#phy-coord-2-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 </div></details>
@@ -883,14 +894,7 @@ let ggbParams = {
 </div>
 <div class="para" id="S-Precalc-3Dcoord-4-17">To rotate a 3D interactable figure, you should left click and hold somewhere on the figure. While holding, you can rotate the figure by moving the point where you clicked up/down/left right. Additionally, you can move the point you are viewing the graph from by right clicking and holding while moving the cursor up/down/left/right. On touchscreen devices, you will need to touch with two fingers to act as a right click. The arrow keys on a keyboard will also move the point at which the figure is being viewed from. You can also zoom in or out having your cursor over the 3D interactable figure and using the scroll wheel on a mouse or using pinching/expanding motions with two fingers on touchscreen devices. Take a few minutes to explore these actions on the figure below and pay attention to how each of these actions will change your view of the graph.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#S-Precalc-3Dcoord-4-17" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<figure class="figure figure-like" id="coor-planes"><div class="interactive-iframe-container">
-<iframe id="interactive-coor-plane" style="width:600px; height:750px; display: block; " src="interactive-coor-plane-if.html" title="described in detail following the image" aria-describedby="interactive-coor-plane-description"></iframe><details class="image-description" aria-live="polite"><summary title="details"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span></summary><div id="interactive-coor-plane-description">
-<div class="para" id="interactive-coor-plane-1-1">An interactive plot that shows planes that contain the x and y axes for the first option, the x and z axes for the second option, and the y and z axes for the third option.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#interactive-coor-plane-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
-</div>
-</div></details>
-</div>
-<div class="interactive-iframe-container__opener"><a href="interactive-coor-plane.html" title="Open in new tab" aria-label="Open in new tab" target="_blank"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe89e;</span></a></div>
-<figcaption><span class="type">Figure</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">9.2.7<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>The coordinate planes in three dimensions<div class="autopermalink" aria-hidden="true" data-description="Figure 9.2.7"><a tabindex="-1" href="#coor-planes" title="Copy heading and permalink for Figure 9.2.7" aria-label="Copy heading and permalink for Figure 9.2.7">🔗</a></div></figcaption>
+<figure class="figure figure-like" id="coor-planes"><figcaption><span class="type">Figure</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">9.2.7<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>The coordinate planes in three dimensions<div class="autopermalink" aria-hidden="true" data-description="Figure 9.2.7"><a tabindex="-1" href="#coor-planes" title="Copy heading and permalink for Figure 9.2.7" aria-label="Copy heading and permalink for Figure 9.2.7">🔗</a></div></figcaption>
 </figure>
 <div class="para" id="S-Precalc-3Dcoord-4-19">In many ways the coordinate planes in three dimensions are analogous to the axes in two dimensions. We will split up three-dimensional space based on whether a location is above or below different coordinate planes and we will measure coordinates in three dimensions as distances from the coordinate planes.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#S-Precalc-3Dcoord-4-19" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
@@ -937,7 +941,7 @@ let ggbParams = {
 <div class="para" id="S-Precalc-3Dcoord-4-30">If you select the “Show Segments” option and turn off the “Show Coordinate Planes” in <a href="S-Precalc-3Dcoord.html#point-in3d" class="xref" data-knowl="./knowl/xref/point-in3d.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 9.2.10">Figure 9.2.10</a>, you can see how it is easier to understand the location of the point <span class="process-math">\((1,-2,3)\)</span> because of the parallel structures that are shown on the plot. In particular, you can see the <span class="process-math">\(x\)</span>- and <span class="process-math">\(y\)</span>-coordinates measured in the <span class="process-math">\(xy\)</span>-plane with the <span class="process-math">\(z\)</span>-coordinate extended up. The segments drawn in this plot are usually reasonable to add to a drawing done by hand as well. Remember that interacting with and exploring different features you notice in the three-dimensional plots is an important part of building your understanding.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#S-Precalc-3Dcoord-4-30" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <article class="activity project-like standalone-printout" id="rect3d_followup" data-margins="13mm 13mm 13mm 13mm"><h3 class="heading">
-<span class="type">Activity</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">9.2.2</span><span class="period heading-divison-mark heading-divison-mark__period">.</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Drawing Points in 3D.</span>
+<span class="type">Activity</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">9.2.2</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="title">Drawing Points in 3D.</span>
 </h3>
 <div class="print-links"><a href="?printpreview=rect3d_followup" class="print-link" title="Print preview"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe8ad;</span></a></div>
 <div class="introduction" id="rect3d_followup-2">
@@ -947,7 +951,7 @@ let ggbParams = {
 <article class="task exercise-like" id="rect3dpart1"><h4 class="heading"><span class="codenumber">(a)</span></h4>
 <div class="para" id="rect3dpart1-1-1">Find the coordinates of the point <span class="process-math">\(A\)</span> where one ends if one starts at point <span class="process-math">\((1,2,3)\)</span> and moves 5 units forward, 4 units to the left, and 2 units up.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#rect3dpart1-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<div class="workspace" data-space="1.5in"></div>
+<div class="workspace" data-space="0.5in"></div>
 <div class="autopermalink" aria-hidden="true" data-description="part 9.2.2.a"><a tabindex="-1" href="#rect3dpart1" title="Copy heading and permalink for part 9.2.2.a" aria-label="Copy heading and permalink for part 9.2.2.a">🔗</a></div>
 </article>
 <article class="task exercise-like" id="rect3d_followup-4"><h4 class="heading"><span class="codenumber">(b)</span></h4>
@@ -959,7 +963,7 @@ let ggbParams = {
 <article class="task exercise-like" id="rect3dpart2"><h4 class="heading"><span class="codenumber">(c)</span></h4>
 <div class="para" id="rect3dpart2-1-1">Find the coordinates of the point <span class="process-math">\(B\)</span> where one ends if one starts at point <span class="process-math">\((3,-4,2)\)</span> and moves 4 units backwards, 4 units to the right, and 4 units down.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#rect3dpart2-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<div class="workspace" data-space="1.5in"></div>
+<div class="workspace" data-space="0.5in"></div>
 <div class="autopermalink" aria-hidden="true" data-description="part 9.2.2.c"><a tabindex="-1" href="#rect3dpart2" title="Copy heading and permalink for part 9.2.2.c" aria-label="Copy heading and permalink for part 9.2.2.c">🔗</a></div>
 </article>
 <article class="task exercise-like" id="rect3d_followup-6"><h4 class="heading"><span class="codenumber">(d)</span></h4>
@@ -993,19 +997,19 @@ let ggbParams = {
 <article class="task exercise-like" id="A-9-1-3-1"><h4 class="heading"><span class="codenumber">(a)</span></h4>
 <div class="para" id="A-9-1-3-1-1-1">Consider the set of points <span class="process-math">\((x,y,z)\)</span> that satisfy the equation <span class="process-math">\(x=2\text{.}\)</span> Write a sentence to describe this set as best as you can.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#A-9-1-3-1-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<div class="workspace" data-space="1.5in"></div>
+<div class="workspace" data-space="0.75in"></div>
 <div class="autopermalink" aria-hidden="true" data-description="part 9.2.3.a"><a tabindex="-1" href="#A-9-1-3-1" title="Copy heading and permalink for part 9.2.3.a" aria-label="Copy heading and permalink for part 9.2.3.a">🔗</a></div>
 </article>
 <article class="task exercise-like" id="A-9-1-3-2"><h4 class="heading"><span class="codenumber">(b)</span></h4>
 <div class="para" id="A-9-1-3-2-1-1">Consider the set of points <span class="process-math">\((x,y,z)\)</span> that satisfy the equation <span class="process-math">\(y=-1\text{.}\)</span> Write a sentence to describe this set as best as you can.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#A-9-1-3-2-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<div class="workspace" data-space="1.5in"></div>
+<div class="workspace" data-space="0.75in"></div>
 <div class="autopermalink" aria-hidden="true" data-description="part 9.2.3.b"><a tabindex="-1" href="#A-9-1-3-2" title="Copy heading and permalink for part 9.2.3.b" aria-label="Copy heading and permalink for part 9.2.3.b">🔗</a></div>
 </article>
 <article class="task exercise-like" id="A-9-1-3-3"><h4 class="heading"><span class="codenumber">(c)</span></h4>
 <div class="para" id="A-9-1-3-3-1-1">Consider the set of points <span class="process-math">\((x,y,z)\)</span> that satisfy the equation <span class="process-math">\(z=0\text{.}\)</span> Write a sentence to describe this set as best as you can.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#A-9-1-3-3-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<div class="workspace" data-space="1.5in"></div>
+<div class="workspace" data-space="0.75in"></div>
 <div class="autopermalink" aria-hidden="true" data-description="part 9.2.3.c"><a tabindex="-1" href="#A-9-1-3-3" title="Copy heading and permalink for part 9.2.3.c" aria-label="Copy heading and permalink for part 9.2.3.c">🔗</a></div>
 </article><div class="autopermalink" aria-hidden="true" data-description="Activity 9.2.3"><a tabindex="-1" href="#A-9-1-3" title="Copy heading and permalink for Activity 9.2.3" aria-label="Copy heading and permalink for Activity 9.2.3">🔗</a></div>
 </article>
@@ -1019,7 +1023,7 @@ let ggbParams = {
 </div></details>
 </div>
 <div class="interactive-iframe-container__opener"><a href="interactive-fundamental-planes.html" title="Open in new tab" aria-label="Open in new tab" target="_blank"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe89e;</span></a></div>
-<figcaption><span class="type">Figure</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">9.2.12<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>A grid of fundamental planes in three dimensions<div class="autopermalink" aria-hidden="true" data-description="Figure 9.2.12"><a tabindex="-1" href="#fundamental-planes" title="Copy heading and permalink for Figure 9.2.12" aria-label="Copy heading and permalink for Figure 9.2.12">🔗</a></div></figcaption>
+<figcaption><span class="type">Figure</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">9.2.12<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>A set of fundamental planes in three dimensions<div class="autopermalink" aria-hidden="true" data-description="Figure 9.2.12"><a tabindex="-1" href="#fundamental-planes" title="Copy heading and permalink for Figure 9.2.12" aria-label="Copy heading and permalink for Figure 9.2.12">🔗</a></div></figcaption>
 </figure>
 <div class="para" id="S-Precalc-3Dcoord-5-8">In a plot like <a href="S-Precalc-3Dcoord.html#coord2d-PA3" class="xref" data-knowl="./knowl/xref/coord2d-PA3.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 9.2.3">Figure 9.2.3</a>, you see a grid that helps measure coordinates of points in 2D. In <a href="S-Precalc-3Dcoord.html#grid3d" class="xref" data-knowl="./knowl/xref/grid3d.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 9.2.13">Figure 9.2.13</a> you can look at how a different number of fundamental planes forming a grid looks. You can use the slider to increase or decrease the number of fundamental planes displayed in the grid. When you have more than one plane in each direction there will be a lot of visual clutter and very hard to distinguish fine features, especially something in the middle of the plot. Contrast this to how helpful the grid in <a href="S-Precalc-3Dcoord.html#coord2d-four-graphs" class="xref" data-knowl="./knowl/xref/coord2d-four-graphs.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 9.2.15">Figure 9.2.15</a> is.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#S-Precalc-3Dcoord-5-8" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
@@ -1056,20 +1060,19 @@ let ggbParams = {
 </div>
 <div class="para" id="act-precalc-3dcoord-Distance-1-2">Let <span class="process-math">\(P=(x_0, y_0, z_0)\)</span> and <span class="process-math">\(Q=(x_1, y_1, z_1)\)</span> be two points in <span class="process-math">\(\R^3\text{.}\)</span> These two points form opposite vertices of a rectangular box whose sides are fundamental planes as illustrated in <a href="S-Precalc-3Dcoord.html#distance-box" class="xref" data-knowl="./knowl/xref/distance-box.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 9.2.14">Figure 9.2.14</a>, and the distance between <span class="process-math">\(P\)</span> and <span class="process-math">\(Q\)</span> is the length of the blue diagonal shown in <a href="S-Precalc-3Dcoord.html#distance-box" class="xref" data-knowl="./knowl/xref/distance-box.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 9.2.14">Figure 9.2.14</a>.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#act-precalc-3dcoord-Distance-1-2" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<figure class="figure figure-like" id="distance-box"><div class="interactive-iframe-container">
-<iframe id="interactive-distance" style="width:546px; height:546px; display: block; " src="interactive-distance-if.html" title="described in detail following the image" aria-describedby="interactive-distance-description"></iframe><details class="image-description" aria-live="polite"><summary title="details"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span></summary><div id="interactive-distance-description">
-<div class="para" id="interactive-distance-1-1">A plot in three dimensions that includes points labeled <span class="process-math">\(P=(x_0, y_0, z_0)\)</span> and <span class="process-math">\(Q=(x_1, y_1, z_1)\)</span> a segment connecting these in blue.Additionally, there is a box of connecting segments each coordinate direction. The point on the box with a change only in the x-coordinate from P is labeled S. The vertex of the box that is below Q and connected to point S is connected by a segment that only changes in the y coordinate.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#interactive-distance-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<figure class="figure figure-like" id="distance-box"><div class="image-box" style="width: 75%; margin-left: 12.5%; margin-right: 12.5%;">
+<iframe width="450" height="450" src="generated/sageplot/interactive-distance.html"></iframe><details class="image-description" aria-live="polite"><summary title="details"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span></summary><div id="distance-box-2-description">
+<div class="para" id="distance-box-2-1-1">A plot in three dimensions that includes points labeled <span class="process-math">\(P=(x_0, y_0, z_0)\)</span> and <span class="process-math">\(Q=(x_1, y_1, z_1)\)</span> a segment connecting these in blue.Additionally, there is a box of connecting segments each coordinate direction. The point on the box with a change only in the x-coordinate from P is labeled S. The vertex of the box that is below Q and connected to point S is connected by a segment that only changes in the y coordinate.<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#distance-box-2-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 </div></details>
 </div>
-<div class="interactive-iframe-container__opener"><a href="interactive-distance.html" title="Open in new tab" aria-label="Open in new tab" target="_blank"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe89e;</span></a></div>
 <figcaption><span class="type">Figure</span><span class="space heading-divison-mark heading-divison-mark__space"> </span><span class="codenumber">9.2.14<span class="period heading-divison-mark heading-divison-mark__period">.</span></span><span class="space heading-divison-mark heading-divison-mark__space"> </span>A plot of <span class="process-math">\(P=(x_0, y_0, z_0)\)</span> and <span class="process-math">\(Q=(x_1, y_1, z_1)\)</span> with connecting segments<div class="autopermalink" aria-hidden="true" data-description="Figure 9.2.14"><a tabindex="-1" href="#distance-box" title="Copy heading and permalink for Figure 9.2.14" aria-label="Copy heading and permalink for Figure 9.2.14">🔗</a></div></figcaption>
 </figure>
 </div>
 <article class="task exercise-like" id="act-precalc-3dcoord-Distance-2"><h4 class="heading"><span class="codenumber">(a)</span></h4>
 <div class="para" id="act-precalc-3dcoord-Distance-2-1-1">Consider the right triangle <span class="process-math">\(PRS\)</span> in the base of the box whose hypotenuse is shown as the red line in <a href="S-Precalc-3Dcoord.html#distance-box" class="xref" data-knowl="./knowl/xref/distance-box.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 9.2.14">Figure 9.2.14</a>. What are the coordinates of <span class="process-math">\(R\)</span> and <span class="process-math">\(S\text{?}\)</span><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#act-precalc-3dcoord-Distance-2-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<div class="workspace" data-space="1.5in"></div>
+<div class="workspace" data-space="0.5in"></div>
 <div class="autopermalink" aria-hidden="true" data-description="part 9.2.4.a"><a tabindex="-1" href="#act-precalc-3dcoord-Distance-2" title="Copy heading and permalink for part 9.2.4.a" aria-label="Copy heading and permalink for part 9.2.4.a">🔗</a></div>
 </article>
 <article class="task exercise-like" id="act-precalc-3dcoord-Distance-3"><h4 class="heading"><span class="codenumber">(b)</span></h4>
@@ -1083,13 +1086,13 @@ let ggbParams = {
 <div class="autopermalink" aria-hidden="true" data-description="Hint 9.2.4.b.1"><a tabindex="-1" href="#act-precalc-3dcoord-Distance-3-2" title="Copy heading and permalink for Hint 9.2.4.b.1" aria-label="Copy heading and permalink for Hint 9.2.4.b.1">🔗</a></div>
 </div></details>
 </div>
-<div class="workspace" data-space="1.5in"></div>
+<div class="workspace" data-space="0.5in"></div>
 <div class="autopermalink" aria-hidden="true" data-description="part 9.2.4.b"><a tabindex="-1" href="#act-precalc-3dcoord-Distance-3" title="Copy heading and permalink for part 9.2.4.b" aria-label="Copy heading and permalink for part 9.2.4.b">🔗</a></div>
 </article>
 <article class="task exercise-like" id="act-precalc-3dcoord-Distance-4"><h4 class="heading"><span class="codenumber">(c)</span></h4>
 <div class="para" id="act-precalc-3dcoord-Distance-4-1-1">Since the right triangle <span class="process-math">\(PRS\)</span> lies in a plane, we can use the Pythagorean Theorem to find a formula for the length of the hypotenuse of this triangle. Find the length of the segment <span class="process-math">\(PR\)</span> in terms of <span class="process-math">\(x_0\text{,}\)</span> <span class="process-math">\(y_0\text{,}\)</span> <span class="process-math">\(x_1\text{,}\)</span> and <span class="process-math">\(y_1\text{.}\)</span><div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#act-precalc-3dcoord-Distance-4-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<div class="workspace" data-space="1.5in"></div>
+<div class="workspace" data-space="1.0in"></div>
 <div class="autopermalink" aria-hidden="true" data-description="part 9.2.4.c"><a tabindex="-1" href="#act-precalc-3dcoord-Distance-4" title="Copy heading and permalink for part 9.2.4.c" aria-label="Copy heading and permalink for part 9.2.4.c">🔗</a></div>
 </article>
 <article class="task exercise-like" id="act-precalc-3dcoord-Distance-5"><h4 class="heading"><span class="codenumber">(d)</span></h4>
@@ -1102,7 +1105,7 @@ let ggbParams = {
 </div>
 <div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#act-precalc-3dcoord-Distance-5-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
-<div class="workspace" data-space="1.5in"></div>
+<div class="workspace" data-space="1.0in"></div>
 <div class="autopermalink" aria-hidden="true" data-description="part 9.2.4.d"><a tabindex="-1" href="#act-precalc-3dcoord-Distance-5" title="Copy heading and permalink for part 9.2.4.d" aria-label="Copy heading and permalink for part 9.2.4.d">🔗</a></div>
 </article><div class="autopermalink" aria-hidden="true" data-description="Activity 9.2.4"><a tabindex="-1" href="#act-precalc-3dcoord-Distance" title="Copy heading and permalink for Activity 9.2.4" aria-label="Copy heading and permalink for Activity 9.2.4">🔗</a></div>
 </article>
@@ -1382,17 +1385,17 @@ let ggbParams = {
 <div class="para">The sphere intersects the yz-plane</div>
 <ul class="square" id="extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-3-1">
 <li id="extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-3-1-1">
-<div class="para" id="extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-3-1-1-1">at zero points<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-3-1-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="para" id="extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-3-1-1-1">in a line<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-3-1-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <div class="autopermalink" aria-hidden="true" data-description="Item"><a tabindex="-1" href="#extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-3-1-1" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
 </li>
 <li id="extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-3-1-2">
-<div class="para" id="extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-3-1-2-1">in a line<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-3-1-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="para" id="extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-3-1-2-1">at two points<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-3-1-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <div class="autopermalink" aria-hidden="true" data-description="Item"><a tabindex="-1" href="#extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-3-1-2" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
 </li>
 <li id="extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-3-1-3">
-<div class="para" id="extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-3-1-3-1">at two points<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-3-1-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="para" id="extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-3-1-3-1">at zero points<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-3-1-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <div class="autopermalink" aria-hidden="true" data-description="Item"><a tabindex="-1" href="#extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-3-1-3" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
 </li>
@@ -1418,7 +1421,7 @@ let ggbParams = {
 <div class="autopermalink" aria-hidden="true" data-description="Item"><a tabindex="-1" href="#extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-4-1-1" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
 </li>
 <li id="extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-4-1-2">
-<div class="para" id="extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-4-1-2-1">in a line<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-4-1-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="para" id="extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-4-1-2-1">in a circle<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-4-1-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <div class="autopermalink" aria-hidden="true" data-description="Item"><a tabindex="-1" href="#extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-4-1-2" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
 </li>
@@ -1433,7 +1436,7 @@ let ggbParams = {
 <div class="autopermalink" aria-hidden="true" data-description="Item"><a tabindex="-1" href="#extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-4-1-4" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
 </li>
 <li id="extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-4-1-5">
-<div class="para" id="extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-4-1-5-1">in a circle<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-4-1-5-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="para" id="extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-4-1-5-1">in a line<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-4-1-5-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <div class="autopermalink" aria-hidden="true" data-description="Item"><a tabindex="-1" href="#extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-4-1-5" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
 </li>
@@ -1444,27 +1447,27 @@ let ggbParams = {
 <div class="para">The sphere intersects the xz-plane</div>
 <ul class="square" id="extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-5-1">
 <li id="extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-5-1-1">
-<div class="para" id="extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-5-1-1-1">at two points<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-5-1-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="para" id="extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-5-1-1-1">in a line<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-5-1-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <div class="autopermalink" aria-hidden="true" data-description="Item"><a tabindex="-1" href="#extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-5-1-1" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
 </li>
 <li id="extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-5-1-2">
-<div class="para" id="extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-5-1-2-1">in a line<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-5-1-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="para" id="extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-5-1-2-1">at zero points<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-5-1-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <div class="autopermalink" aria-hidden="true" data-description="Item"><a tabindex="-1" href="#extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-5-1-2" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
 </li>
 <li id="extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-5-1-3">
-<div class="para" id="extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-5-1-3-1">at zero points<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-5-1-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="para" id="extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-5-1-3-1">in a circle<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-5-1-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <div class="autopermalink" aria-hidden="true" data-description="Item"><a tabindex="-1" href="#extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-5-1-3" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
 </li>
 <li id="extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-5-1-4">
-<div class="para" id="extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-5-1-4-1">at one point<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-5-1-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="para" id="extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-5-1-4-1">at two points<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-5-1-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <div class="autopermalink" aria-hidden="true" data-description="Item"><a tabindex="-1" href="#extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-5-1-4" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
 </li>
 <li id="extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-5-1-5">
-<div class="para" id="extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-5-1-5-1">in a circle<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-5-1-5-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="para" id="extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-5-1-5-1">at one point<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-5-1-5-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <div class="autopermalink" aria-hidden="true" data-description="Item"><a tabindex="-1" href="#extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-5-1-5" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
 </li>
@@ -1477,7 +1480,7 @@ let ggbParams = {
 <div class="para">The sphere intersects the z-axis</div>
 <ul class="square" id="extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-7-1">
 <li id="extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-7-1-1">
-<div class="para" id="extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-7-1-1-1">at one point<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-7-1-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="para" id="extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-7-1-1-1">at zero points<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-7-1-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <div class="autopermalink" aria-hidden="true" data-description="Item"><a tabindex="-1" href="#extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-7-1-1" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
 </li>
@@ -1487,12 +1490,12 @@ let ggbParams = {
 <div class="autopermalink" aria-hidden="true" data-description="Item"><a tabindex="-1" href="#extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-7-1-2" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
 </li>
 <li id="extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-7-1-3">
-<div class="para" id="extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-7-1-3-1">in a line<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-7-1-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="para" id="extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-7-1-3-1">at one point<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-7-1-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <div class="autopermalink" aria-hidden="true" data-description="Item"><a tabindex="-1" href="#extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-7-1-3" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
 </li>
 <li id="extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-7-1-4">
-<div class="para" id="extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-7-1-4-1">at zero points<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-7-1-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="para" id="extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-7-1-4-1">in a line<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-7-1-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <div class="autopermalink" aria-hidden="true" data-description="Item"><a tabindex="-1" href="#extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-7-1-4" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
 </li>
@@ -1513,12 +1516,12 @@ let ggbParams = {
 <div class="autopermalink" aria-hidden="true" data-description="Item"><a tabindex="-1" href="#extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-8-1-2" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
 </li>
 <li id="extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-8-1-3">
-<div class="para" id="extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-8-1-3-1">in a line<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-8-1-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="para" id="extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-8-1-3-1">at zero points<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-8-1-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <div class="autopermalink" aria-hidden="true" data-description="Item"><a tabindex="-1" href="#extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-8-1-3" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
 </li>
 <li id="extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-8-1-4">
-<div class="para" id="extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-8-1-4-1">at zero points<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-8-1-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="para" id="extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-8-1-4-1">in a line<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-8-1-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <div class="autopermalink" aria-hidden="true" data-description="Item"><a tabindex="-1" href="#extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-8-1-4" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
 </li>
@@ -1529,22 +1532,22 @@ let ggbParams = {
 <div class="para">The sphere intersects the y-axis</div>
 <ul class="square" id="extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-9-1">
 <li id="extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-9-1-1">
-<div class="para" id="extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-9-1-1-1">at two points<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-9-1-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="para" id="extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-9-1-1-1">in a line<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-9-1-1-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <div class="autopermalink" aria-hidden="true" data-description="Item"><a tabindex="-1" href="#extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-9-1-1" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
 </li>
 <li id="extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-9-1-2">
-<div class="para" id="extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-9-1-2-1">in a line<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-9-1-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="para" id="extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-9-1-2-1">at one point<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-9-1-2-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <div class="autopermalink" aria-hidden="true" data-description="Item"><a tabindex="-1" href="#extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-9-1-2" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
 </li>
 <li id="extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-9-1-3">
-<div class="para" id="extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-9-1-3-1">at zero points<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-9-1-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="para" id="extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-9-1-3-1">at two points<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-9-1-3-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <div class="autopermalink" aria-hidden="true" data-description="Item"><a tabindex="-1" href="#extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-9-1-3" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
 </li>
 <li id="extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-9-1-4">
-<div class="para" id="extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-9-1-4-1">at one point<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-9-1-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
+<div class="para" id="extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-9-1-4-1">at zero points<div class="autopermalink" aria-hidden="true" data-description="Paragraph"><a tabindex="-1" href="#extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-9-1-4-1" title="Copy heading and permalink for Paragraph" aria-label="Copy heading and permalink for Paragraph">🔗</a></div>
 </div>
 <div class="autopermalink" aria-hidden="true" data-description="Item"><a tabindex="-1" href="#extracted-Library__FortLewis__Calc3__12-1-Two-variable-functions__HGM4-12-1-30-Functions-of-two-variables_pg-1-1-9-1-4" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
 </li>
@@ -1594,11 +1597,13 @@ let ggbParams = {
 </li>
 <li id="yneqfx-1-1-1-3">
 <div class="para" id="p-derived-yneqfx-1-1-1-3">
-<span class="process-math">\(y\)</span> as a function of <span class="process-math">\(x\)</span> and x as a function of y</div>
+<span class="process-math">\(y\)</span> as a function of <span class="process-math">\(x\)</span> and <span class="process-math">\(x\)</span> as a function of <span class="process-math">\(y\)</span>
+</div>
 <div class="autopermalink" aria-hidden="true" data-description="Item"><a tabindex="-1" href="#yneqfx-1-1-1-3" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
 </li>
 <li id="yneqfx-1-1-1-4">
-<div class="para" id="p-derived-yneqfx-1-1-1-4">neither <span class="process-math">\(y\)</span> as a function of <span class="process-math">\(x\)</span> nor x as a function of y</div>
+<div class="para" id="p-derived-yneqfx-1-1-1-4">neither <span class="process-math">\(y\)</span> as a function of <span class="process-math">\(x\)</span> nor <span class="process-math">\(x\)</span> as a function of <span class="process-math">\(y\)</span>
+</div>
 <div class="autopermalink" aria-hidden="true" data-description="Item"><a tabindex="-1" href="#yneqfx-1-1-1-4" title="Copy heading and permalink for Item" aria-label="Copy heading and permalink for Item">🔗</a></div>
 </li>
 </ul>
