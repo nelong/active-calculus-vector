@@ -71,7 +71,7 @@
           </p>
           <figure xml:id="coord2d-PA">
             <caption>A 2D plot with point <m>P</m> labeled</caption>
-            <image width="40%">
+            <image width="50%">
               <description><p>A two-dimensional plot with a point labeled <m>P</m> that is <m>3</m> units right of the vertical axis and <m>1</m> unit above the horizontal axis</p></description>
               <sageplot label="img-coord2d-PA1">
                 plot4=point((3,1),color="black",size=20,axes=True,axes_labels=["$x$","$y$"],gridlines=True)
@@ -99,7 +99,7 @@
           </p>
           <figure xml:id="coord2d-PA2">
             <caption>Two-dimensional axes for plotting points</caption>
-            <image width="55%">
+            <image width="50%">
               <description><p>A blank two-dimensional grid where each coordinate varies from <m>-4</m> to <m>4</m></p></description>
               <sageplot label="img-coord2d-PA2">
                 plot5=point((0,0),color="black",size=0,axes=true,axes_labels=["$x$","$y$"],gridlines=True,xmin=-4,xmax=4,ymin=-4,ymax=4,aspect_ratio=1)
@@ -110,7 +110,7 @@
         </statement>
         <solution>
           <p>
-            <image width="40%">
+            <image width="50%">
               <sageplot>
                 plot99=point((0,1),color="black",size=20,gridlines=True,aspect_ratio=1,axes=true,axes_labels=["$x$","$y$"],xmin=-4,xmax=4,ymin=-4,ymax=4)+text("$P_1$",(0.25,1.25),fontsize=20,color="black")
                 plot99+=point((1,0),color="black",size=20)+text("$P_2$",(1.25,0.25),fontsize=20,color="black")
@@ -143,7 +143,7 @@
           </p>
           <figure xml:id="coord2d-PA3">
             <caption>Two-dimensional axes for plotting equations</caption>
-            <image width="40%">
+            <image width="50%">
               <description><p>A blank two-dimensional grid where each coordinate varies from <m>-4</m> to <m>4</m></p></description>
               <sageplot label="img-coord2d-PA3">
                 plot5=point((0,0),color="black",size=0,axes=true,axes_labels=["$x$","$y$"],gridlines=True,xmin=-4,xmax=4,ymin=-4,ymax=4,aspect_ratio=1)
@@ -153,7 +153,7 @@
           </figure>
         </statement>
         <solution>
-          <image width="40%">
+          <image width="50%">
             <sageplot>
               var('t')
               plot9=parametric_plot((1,t),(t,-4,4),color="green",gridlines=True,aspect_ratio=1,axes=true,axes_labels=["$x$","$y$"],xmin=-4,xmax=4,ymin=-4,ymax=4)
@@ -174,7 +174,7 @@
           </p>
         </statement>
         <solution>
-          <image width="40%">
+          <image width="50%">
             <sageplot>
               var('t')
               plot9=line([(-1,2),(7,-4)],color="black",gridlines=True,aspect_ratio=1,axes=true,axes_labels=["$x$","$y$"])
@@ -219,7 +219,7 @@
     To plot points in three-dimensional space, we will set up a coordinate system with three mutually perpendicular axes<mdash/>the <m>x</m>-axis, the <m>y</m>-axis, and the <m>z</m>-axis (called the <term>coordinate axes</term>). There are essentially two different ways we could set up a 3D coordinate system, as shown in <xref ref="F-9-1-left-right-hand">Figure</xref>, which depicts only the positive portions of the axes. Thus, before we can proceed, we need to establish a convention.
   </p>
   <figure xml:id="F-9-1-left-right-hand">
-    <sidebyside widths="50% 50%">
+    <sidebyside widths="40% 40%">
       <figure xml:id="fig-coord-sys-left-hand">
         <caption>A left hand system</caption>
         <image source="fig_9_1_left_hand">
@@ -255,7 +255,7 @@
     </p>
     <figure xml:id="phy-coord">
       <caption>An alternate orientation of a right handed coordinate system for <m>\mathbb{R}^3</m></caption>
-      <image width="55%" source="fig_9_1_right_hand_other.png">
+      <image width="50%" source="fig_9_1_right_hand_other.png">
         <description>
           <p>Three mutually perpendicular line segments labeled <m>x</m>, <m>y</m>, and <m>z</m>. They are arranged so that the segment labeled <m>y</m> points up, the segment labeled <m>x</m> points to the right, and the segment labeled <m>z</m> is coming out of the page.
           </p>
@@ -270,17 +270,17 @@
     </p>
     <figure xml:id="coord2d-measurement">
       <caption>A plot with the 2D coordinate measurements labeled</caption>
-      <image width="55%" xml:id="img-coord2d-measurement">
+      <image width="50%" xml:id="img-coord2d-measurement">
         <description><p>A plot with the two-dimensional coordinate measurements labeled for a point in the first quadrant and a point in the fourth quadrant</p></description>
         <sageplot>
           var('t')
-          plot11=point((3,1),color="black",size=60,axes=True,zorder=5,axes_labels=["$x$","$y$"],ticks=[[],[]],fontsize=25)
+          plot11=point((3,1),color="black",size=60,axes=True,zorder=5,axes_labels=["$x$","$y$"],ticks=[[],[]],fontsize=20)
           plot11+=line([(0,1),(3,1)],color="red",thickness=3)+line([(3,0),(3,1)],color="blue",thickness=3)
-          plot11+=text("$a$",(1.5,1.3),color="red",fontsize=30)+text("$b$",(3.3,0.5),color="blue",fontsize=30)
-          plot11+=text("$P=(a,b)$",(3.3,1.3),color="black",fontsize=30)+text("$Q=(c,d)$",(2.3,-2.3),color="black",fontsize=30)
+          plot11+=text("$a$",(1.5,1.3),color="red",fontsize=20)+text("$b$",(3.3,0.5),color="blue",fontsize=20)
+          plot11+=text("$P=(a,b)$",(3.3,1.3),color="black",fontsize=20)+text("$Q=(c,d)$",(2.3,-2.3),color="black",fontsize=20)
           plot11+=point((2,-2),color="black",size=60,zorder=5)
           plot11+=line([(0,-2),(2,-2)],color="red",thickness=3)+line([(2,0),(2,-2)],color="blue",thickness=3)
-          plot11+=text("$c$",(1,-1.7),color="red",fontsize=30)+text("$d$",(2.3,-1),color="blue",fontsize=30,xmin=-1,xmax=4.5,ymin=-2,ymax=2.5,aspect_ratio=1)
+          plot11+=text("$c$",(1,-1.7),color="red",fontsize=20)+text("$d$",(2.3,-1),color="blue",fontsize=20,xmin=-1,xmax=4.5,ymin=-2,ymax=2.5,aspect_ratio=1)
           plot11.axes_width(3)
           plot11
         </sageplot>
@@ -302,8 +302,61 @@
       To rotate a 3D interactable figure, you should left click and hold somewhere on the figure. While holding, you can rotate the figure by moving the point where you clicked up/down/left right. Additionally, you can move the point you are viewing the graph from by right clicking and holding while moving the cursor up/down/left/right. On touchscreen devices, you will need to touch with two fingers to act as a right click. The arrow keys on a keyboard will also move the point at which the figure is being viewed from. You can also zoom in or out having your cursor over the 3D interactable figure and using the scroll wheel on a mouse or using pinching/expanding motions with two fingers on touchscreen devices. Take a few minutes to explore these actions on the figure below and pay attention to how each of these actions will change your view of the graph. 
     </p>
     <figure xml:id="coor-planes">
+        <caption>Plots of the three coordinate planes</caption>
+        <sidebyside widths="32% 32% 32%" valign="middle" margins="1%">
+        <image>
+          <description>
+          <p>
+            A three dimensional plot with the plane containing the x and y axes shown in green.
+          </p>
+          </description>
+          <sageplot variant="3d" label="xy-plane">
+            from sage.plot.plot3d.plot3d import axes
+            var('t,s')
+            d=4
+            plot12=axes(3.5,2,color="black")+text3d("x",(4,0,0),fontsize=30)+text3d("y",(0,4,0),fontsize=30)+text3d("z",(0,0,4),fontsize=30)
+            plot12+=parametric_plot3d((s,t,0),(s,-3,3),(t,-3,3),color="green",opacity=.25,frame=False,mesh=True,plot_points=3)
+            plot12+=text3d("xy-plane",(d,-d,0.5),fontsize=25,color="green",viewpoint=[[-0.23,-0.5945,-0.7705],146.8],camera_position=[10.9581,10.2191,5.0001])
+            plot12
+          </sageplot>
+        </image>
+        <image>
+          <description>
+            <p>
+              A three dimensional plot with the plane containing the x and z axes shown in blue.
+            </p>
+          </description>
+          <sageplot variant="3d" label="xz-plane">
+            from sage.plot.plot3d.plot3d import axes
+            var('t,s')
+            d=4
+            plot12=axes(3.5,2,color="black")+text3d("x",(4,0,0),fontsize=30)+text3d("y",(0,4,0),fontsize=30)+text3d("z",(0,0,4),fontsize=30)
+            plot12+=parametric_plot3d((s,0,t),(s,-3,3),(t,-3,3),color="blue",opacity=.25,frame=False,mesh=True,plot_points=3)
+            plot12+=text3d("xz-plane",(-d,0,d),fontsize=25,color="blue",viewpoint=[[-0.23,-0.5945,-0.7705],146.8],camera_position=[11.0009,11.5672,3.8365])
+            plot12
+          </sageplot>
+        </image>
+        <image>
+          <description>
+          <p>
+            A three dimensional plot with the plane containing the y and z axes shown in red.
+          </p>
+          </description>
+          <sageplot variant="3d" label="yz-plane">
+            from sage.plot.plot3d.plot3d import axes
+            var('t,s')
+            d=4
+            plot12=axes(3.5,2,color="black")+text3d("x",(4,0,0),fontsize=30)+text3d("y",(0,4,0),fontsize=30)+text3d("z",(0,0,4),fontsize=30)
+            plot12+=parametric_plot3d((0,t,s),(s,-3,3),(t,-3,3),color="red",opacity=.25,frame=False,mesh=True,plot_points=3)
+            plot12+=text3d("yz-plane",(0,-d,d),fontsize=25,color="red",viewpoint=[[-0.23,-0.5945,-0.7705],146.8],camera_position=[10.4818,11.8444,3.8911])
+            plot12
+          </sageplot>
+        </image>
+      </sidebyside>
+    </figure>
+     <!--<figure xml:id="coor-planes">
       <caption>The coordinate planes in three dimensions</caption>
-      <!-- 
+      
       <image>
         <description><p>An interactive plot that shows planes that contain the x and y axes for the first option, the x and z axes for the second option, and the y and z axes for the third option.</p> </description>
         <sageplot variant="3d" label="interactive-coor-plane">
@@ -348,8 +401,8 @@
               plot12+=text3d("yz-plane",(0,-d,d),fontsize=25,color="red")
             show(plot12,aspect_ratio=1,viewpoint=[[-0.23,-0.5945,-0.7705],146.8],camera_position=[12.3011,13.494,5.4476])
         </slate>
-      </interactive> -->
-    </figure>
+      </interactive> 
+    </figure>-->
     <p>  
       In many ways the coordinate planes in three dimensions are analogous to the axes in two dimensions. We will split up three-dimensional space based on whether a location is above or below different coordinate planes and we will measure coordinates in three dimensions as distances from the coordinate planes.
     </p>
@@ -358,7 +411,7 @@
     </p>
     <figure xml:id="quadrants">
       <caption>The four quadrants</caption>
-      <image width="55%" xml:id="img-quadrants">
+      <image width="50%" xml:id="img-quadrants">
         <description><p>A plot of the four quadrants. Quadrant I lies above the <m>x</m>-axis and to the right of the <m>y</m>-axis. The other quadrants are numbered counterclockwise as II, III, and IV.</p></description>
         <sageplot>
           plot17=text("Quadrant I",(2,2),color="black",fontsize=15,axes=true,axes_labels=["$x$","$y$"])
@@ -774,7 +827,7 @@
       </interactive> -->
     </figure>
     <p>
-      In a plot like <xref ref="coord2d-PA3"/>, you see a grid that helps measure coordinates of points in 2D. In <xref ref="grid3d"/> you can look at how a different number of fundamental planes forming a grid looks. <!-- You can use the slider to increase or decrease the number of fundamental planes displayed in the grid. --> When you have more than one plane in each direction there will be a lot of visual clutter and very hard to distinguish fine features, especially something in the middle of the plot. Contrast this to how helpful the grid in <xref ref="coord2d-four-graphs"/> is. 
+      In a plot like <xref ref="coord2d-PA3"/>, you see a grid that helps measure coordinates of points in 2D. In <xref ref="grid3d"/> you can look at how a similar grid of segments on fundamental planes would work. <!-- You can use the slider to increase or decrease the number of fundamental planes displayed in the grid. --> When you have more than one plane in each direction there will be a lot of visual clutter and very hard to distinguish fine features, especially something in the middle of the plot. Contrast this to how helpful the grid in <xref ref="coord2d-four-graphs"/> is. You should rotate <xref ref="grid3d"/> to look down each of the axes and see how you will get a version of the 2D grid you see on figures like <xref ref="coord2d-PA3"/>.
     </p>
     <figure xml:id="grid3d">
       <caption>A grid of fundamental planes in three dimensions</caption>
