@@ -73,9 +73,35 @@
       </p>
       <!-- TODO Fonts are way too small. Recode in PreFigure and decide if need to use two rows rather than three on one row. -->
       <!-- TODO need to make the step correspond to the algebra in the text. The step should be to the right not the left -->
+      <figure xml:id="secantlines">
+        <caption>A plot of a secant line at the points <m>(a,f(a))</m> and <m>(a+h,f(a+h))</m> </caption>
+        <image width="60%" xml:id="img-secline1">
+          <description><p>A plot of a downward facing parabola with a blue line going between two points on the parabola. The blue line corresponds to more horizontal change than vertical change. The right point on the parabola is labeled <m>P:(a,f(a))</m>. The change in the vertical coordinates between these two points is represented with a vertical segment in yellow and is labeled <m>f(a)-f(a-h)</m>. The change in the horizontal coordinates between two points is represented by a green line segment that is labeled <m>h</m>. </p></description>
+          <sageplot>
+            var('t,x')
+            f(x)=2*(x-1/2)^3-2*(x-1/2)^2-x+1
+            a=0.05
+            f0=f(a)
+            plot2=plot(f(x),(x,0,0.75),color="black",ticks=[[],[]],thickness=3,axes_labels=["$x$","$y$"])
+            plot2+=point((a,f0),color="black",size=50,zorder=5)
+            plot2+=text("$(a,f(a))$",(0.1,0.25),color="black",fontsize=20)
+            h=0.25
+            f1=f(a+h)
+            plot2+=point((a+h,f1),color="blue",size=50,zorder=5)
+            plot2+=plot((f1-f0)/h*(x-a)+f0,(x,0,0.75),color="blue",thickness=2)
+            plot2+=line([(a,f0),(a+h,f0)],color="green",thickness=2)
+            plot2+=line([(a+h,f0),(a+h,f1)],color="red",thickness=2)
+            plot2+=text("$h$",(a+h/1.5,f0+0.05),color="green",fontsize=20)
+            plot2+=text("$f(a+h)-f(a)$",(0.425,0.4),color="red",fontsize=20,ymin=-0.1)
+            plot2
+          </sageplot>
+        </image>
+      </figure>
+
+
       <!-- <figure xml:id="secantlines">
         <caption>Three plots of secant lines with <m>h\rightarrow0</m> </caption> -->
-        <sidebyside widths="33% 33% 33%">
+        <!-- <sidebyside widths="33% 33% 33%">
           <image width="100%" xml:id="img-secline1">
               <sageplot>
                 var('t,x')
@@ -136,7 +162,8 @@
                 plot2
               </sageplot>
             <description><p>A plot of a downward facing parabola with a blue line going between two points on the parabola. The blue line in this plot is slightly steeper than in the previous plot and the two points are close together on the parabola. The right point on the parabola is labeled <m>P:(a,f(a))</m>. The change in the vertical coordinates between these two points is represented with a vertical segment in yellow and is labeled <m>f(a)-f(a-h)</m>. The change in the horizontal coordinates between two points is represented by a green line segment that is labeled <m>h</m>.</p></description></image>
-          </sidebyside>
+          </sidebyside> -->
+
       <!-- </figure> -->
       <p>
         Algebraically, we can view this classic calculus approach as:

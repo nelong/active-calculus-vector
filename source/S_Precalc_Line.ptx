@@ -52,7 +52,7 @@
     </p>
     <figure xml:id="LLline">
       <caption>A plot with the ability to zoom in on a point of <m>y=f(x)</m>, where <m>f</m> is a nonlinear, differentiable function</caption>
-      <interactive label="interactive-LLline" platform="sage" width="100%" aspect="1:1">
+      <interactive label="interactive-LLline1" platform="sage" width="100%" aspect="1:1">
         <description><p>An interactive plot with two sliders. The first slider changes how closely the graph is shown around a featured point. The second slider changed the location on the curve of the featured point. The graph shows a curve with a point shown, unlabeled. As the first slider is moved to the right, the graph is shown in a smaller neighborhood of the shown point.</p></description>
         <slate surface="sage">
           @interact
@@ -335,8 +335,13 @@
     </p>
     <figure xml:id="Lineplot31">
       <caption>A line in 2-space with vector definition</caption>
-        <description><p>An interactive plot with two-dimensional axes showing a line with positive slope and three vectors shown in different colors. The first vector is shown in blue from the origin to the point <m>(1,1.5)</m>. The second vector is shown along the line in red and its length is changing for different values of <m>t</m>. The red vector is labeled <m>t\vv</m> and starts at the point on the line given by <m>(1,1.5)</m>. The last vector is shown in green and goes from the origin to the end of the red vector. The green vector is labeled <m>\overrightarrow{OP} + t \vv</m>.</p></description>
-        <image width="50%" source="./vecline.gif"/>
+        <image width="50%" source="./vecline.gif">
+          <description>
+            <p>
+              An interactive plot with two-dimensional axes showing a line with positive slope and three vectors shown in different colors. The first vector is shown in blue from the origin to the point <m>(1,1.5)</m>. The second vector is shown along the line in red and its length is changing for different values of <m>t</m>. The red vector is labeled <m>t\vv</m> and starts at the point on the line given by <m>(1,1.5)</m>. The last vector is shown in green and goes from the origin to the end of the red vector. The green vector is labeled <m>\overrightarrow{OP} + t \vv</m>.
+            </p>
+          </description>
+        </image>
     </figure>
 
     <!-- <figure xml:id="Lineplot3">
@@ -412,20 +417,22 @@
                 x(t)=1+t
                 y(t)=2+t
                 z(t)=1-t/2
-                @interact
-                def vecline(tval=slider(-2,2,0.1,default=1,label="t=")):
-                    xt=x(tval)
-                    yt=y(tval)
-                    zt=z(tval)
-                    plot5=axes(3,1,color="black")+text3d("x",(3.5,0,0),fontsize=30)+text3d("y",(0,3.5,0),fontsize=30)+text3d("z",(0,0,3.5),fontsize=30)
-                    plot5+=parametric_plot((x(t),y(t),z(t)),(t,-2,2),color="black",aspect_ratio=1,frame=False)
-                    plot5+=arrow((0,0,0),(x(0),y(0),z(0)),color="blue",width=2)
-                    plot5+=arrow((x(0),y(0),z(0)),(xt,yt,zt),color="red",width=2)
-                    plot5+=arrow((0,0,0),(xt,yt,zt),color="green",width=2)
-                    plot5+=point3d((1,2,1),size=30,color="black")+text3d("P",(1.2,2.3,1.1),color="black",fontsize=25)
-                    plot5+=point3d((2,3,0.5),size=30,color="black")+text3d("Q",(2.2,3.3,0.5),color="black",fontsize=25)
-                    plot5+=text3d("t="+str(n(tval,digits=3)),(1,3,3),color="red",fontsize=20)
-                    show(plot5,viewpoint=[[-0.4339,-0.5504,-0.7134],121.3],camera_position=[7.1166,5.128,2.6254])
+                def vecline(tval=slider(-2,2,0.1,default=1,label="$t=$")):
+                  xt=x(tval)
+                  yt=y(tval)
+                  zt=z(tval)
+                  plot5=axes(3,1,color="black")+text3d("x",(3.5,0,0),fontsize=30)+text3d("y",(0,3.5,0),fontsize=30)+text3d("z",(0,0,3.5),fontsize=30)
+                  plot5+=parametric_plot((x(t),y(t),z(t)),(t,-2,2),color="black",aspect_ratio=1,frame=False)
+                  plot5+=arrow((0,0,0),(x(0),y(0),z(0)),color="blue",width=2)
+                  plot5+=arrow((x(0),y(0),z(0)),(xt,yt,zt),color="red",width=2)
+                  plot5+=arrow((0,0,0),(xt,yt,zt),color="green",width=2)
+                  plot5+=point3d((1,2,1),size=40,color="black")+text3d("P",(1.1,2.2,1.3),color="black",fontsize=25)
+                  plot5+=point3d((2,3,0.5),size=40,color="black")+text3d("Q",(2.1,3.2,0.7),color="black",fontsize=25)
+                  plot5+=text3d("t="+str(n(tval,digits=1)),(1,3,3),color="red",fontsize=20,viewpoint=[[-0.4339,-0.5504,-0.7134],121.3],camera_position=[7.1166,5.128,2.6254])
+                  return plot5
+                frames1=[vecline(tval/10) for tval in range(-20,20)]
+                plot123 = animate(frames1).interactive(delay=20,auto_play=False)
+                plot123
               </slate>
             </interactive>
             </figure>
