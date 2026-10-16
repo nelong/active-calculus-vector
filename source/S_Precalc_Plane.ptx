@@ -128,7 +128,7 @@
           </p>
           <figure xml:id="multivecplane">
             <caption>A plot of your vectors that should be orthogonal to <m>\langle 1,2,3 \rangle</m></caption>
-            <interactive label="interactive-multivecplane" platform="sage" width="100%">
+            <interactive label="interactive-multivecplane" platform="sage" width="100%" aspect="1:1.5">
               <description><p>An interactive plot of user-input vectors that are plotting in blue. Three perpendicular axes are shown and labeled as <m>x</m>, <m>y</m>, and <m>z</m>. An arrow from the origin to the point <m>(1,2,3)</m> is shown in red. Up to eight other vectors given by the user are drawn in blue and should be perpendicular to the red arrow. </p></description>
             <slate surface="sage">
                 from sage.plot.plot3d.plot3d import axes
@@ -328,11 +328,13 @@
           <sageplot variant="3d" label="interactive-exampleplane1">
             from sage.plot.plot3d.plot3d import axes
             var('t,s')
-            plot8=axes(3,1,color="black",opacity=0.5)+text3d("x",(3.5,0,0),fontsize=30)+text3d("y",(0,3.5,0),fontsize=30)+text3d("z",(0,0,3.5),fontsize=30,frame=False)
-            plot8+=parametric_plot3d((s,t,1-s-2*t),(s,-2,2),(t,-2,2),color="green",mesh=True,plot_points=4,opacity=0.5,aspect_ratio=1,mesh_opacity=0.25)
-            plot8+=arrow((0,0,1),(0+(1),0+2,1+1),color="red",width=2)
-            plot8+=text3d("&lt;1,2,1&gt;",(1.2,2.5,2.5),color="red",fontsize=25,viewpoint=[[-0.4579,-0.5809,-0.673],124.11],camera_position=[15.3888,4.2661,3.2235])
-            plot8
+            plot12=axes(3,2,color="black",opacity=0.5)+text3d("x",(3.5,0,0),fontsize=30)+text3d("y",(0,3.5,0),fontsize=30)+text3d("z",(0,0,3.5),fontsize=30,frame=False)
+            d=1
+            param1(s,t)=(s,(d-s-t)/2,t)
+            plot12+=parametric_plot3d(param1(s,t),(s,-3,3),(t,-3,3),color="green",mesh=True,opacity=0.5,plot_points=4)
+            plot12+=arrow((0,0,1),(0+(1),0+2,1+1),color="red",width=2)
+            plot12+=text3d("\u27E81,2,1\u27E9",(1.2,2.5,2.5),color="red",fontsize=25,viewpoint=[[-0.4653,-0.5624,-0.6835],121.03])
+            plot12
           </sageplot>
         </image>
         <!-- <interactive label="interactive-exampleplane1" platform="sage" width="100%" aspect="1:1">
@@ -365,17 +367,22 @@
           <sageplot variant="3d" label="interactive-parallelplanes">
             from sage.plot.plot3d.plot3d import axes
             var('t,s')
-            plot11=axes(3,1,color="black",opacity=0.8)+text3d("x",(3.5,0,0),fontsize=30)+text3d("y",(0,3.5,0),fontsize=30)+text3d("z",(0,0,3.5),fontsize=30,frame=False)
-            plot11+=parametric_plot3d((s,t,1-s-2*t),(s,-1.5,1.5),(t,-1.5,1.5),color="pink",mesh=True,plot_points=4,opacity=0.4,aspect_ratio=1,mesh_opacity=0.25)
-            plot11+=arrow((0,0,1),(0+(1),0+2,1+1),color="red",width=2)
-            plot11+=text3d("&lt;1,2,1&gt;",(1.2,2.5,2.5),color="red",fontsize=25)
-            plot11+=parametric_plot3d((s+1,t-1,1-s-2*t-2),(s,-1.5,1.5),(t,-1.5,1.5),color="lightgreen",mesh=True,plot_points=4,opacity=0.4,aspect_ratio=1,mesh_opacity=0.25)
-            plot11+=arrow((1,-1,-1),(1+(1),-1+2,-1+1),color="red",width=2)
-            #plot11+=text3d("&lt;1,2,1&gt;",(1.2,2.5,2.5),color="red",fontsize=25)
-            plot11+=parametric_plot3d((s-3,t-1,1-s-2*t),(s,-1.5,1.5),(t,-1.5,1.5),color="lightblue",mesh=True,plot_points=4,opacity=0.4,aspect_ratio=1,mesh_opacity=0.25)
-            plot11+=arrow((-3,-1,1),(-3+(-2),-1+(-4),1-2),color="red",width=2)
-            plot11+=text3d("&lt;-2,-4,2&gt;",(-5.5,-5.5,2.5),color="red",fontsize=25,viewpoint=[[0.3135,-0.6034,-0.7333],221.71],camera_position=[-18.6475,11.4002,4.2321])
-            plot11
+            plot12=axes(4,2,color="black",opacity=0.5)+text3d("x",(4.5,0,0),fontsize=20)+text3d("y",(0,4.5,0),fontsize=20)+text3d("z",(0,0,4.5),fontsize=20,frame=False)
+            d=1
+            param1(s,t)=(s,(d-s-t)/2,t)
+            plot12+=parametric_plot3d(param1(s,t),(s,-3,3),(t,-3,3),color="green",mesh=True,opacity=0.5,plot_points=3)
+            d=-1
+            param1(s,t)=(s+1,(d-s-t)/2,t-1)
+            plot12+=parametric_plot3d(param1(s,t),(s,-3,3),(t,-3,3),color="pink",mesh=True,opacity=0.5,plot_points=3)
+            d=-5
+            param1(s,t)=(s,(d-s-t)/2,t+1)
+            plot12+=parametric_plot3d(param1(s,t),(s,-3,3),(t,-3,3),color="lightblue",mesh=True,opacity=0.5,plot_points=3)
+            plot12+=arrow((0,0,1),(0+(1),0+2,1+1),color="red",width=2)
+            plot12+=text3d("\u27E81,2,1\u27E9",(1.5,3,2.5),color="red",fontsize=20)
+            plot12+=arrow((2,-2,1),(2+(1),-2+2,1+1),color="red",width=2)
+            plot12+=arrow((-1,-2,1),(-1+(-2),-2+(-4),1-2),color="red",width=2)
+            plot12+=text3d("\u27E8-2,-4,2\u27E9",(-3.5,-3.5,0.5),color="red",fontsize=20,viewpoint=[[-0.5391,-0.5652,-0.6244],118.44])
+            plot12
           </sageplot>
         </image>
         <!-- <interactive label="interactive-parallelplanes" platform="sage" width="100%" aspect="1:1">
@@ -403,20 +410,21 @@
       </p>
       <figure xml:id="planesangle">
         <caption>A plot of planes <m>x+2y+z=1</m> and <m>-2x+y-3z=4</m> with normal vectors</caption>
-        <image width="50%">
+        <image width="60%">
           <description><p>A plot of two planes drawn in blue and green. The blue plane increases the z-coordinate with an increase in y-coordinate or decrease in the x-coordinate. The green plane increases the z-coordinate when either the x or y-coordinate decreases. Along the line where the green and blue planes intersect, there are three arrows starting at the midpoint. The blue arrow moves in the negative x, positive y, and positive z direction and is perpendicular to the blue plane. The blue arrow is labeled <m>\langle -2,1,-3 \rangle</m>. The green arrow moves in the positive x, y, and z directions and is perpendicular to the green plane. The green arrow is labeled <m>\langle 1,2,1 \rangle</m>. The red arrow moves in the positive x, negative y, and negative z direction and is perpendicular to the blue plane. The red arrow is labeled <m>\langle 1,-0.5,1.5 \rangle</m>. </p></description>
           <sageplot variant="3d" label="interactive-planesangle">
             from sage.plot.plot3d.plot3d import axes
             var('t,s')
-            plot12=axes(3,1,color="black",opacity=0.5)+text3d("x",(3.5,0,0),fontsize=30)+text3d("y",(0,3.5,0),fontsize=30)+text3d("z",(0,0,3.5),fontsize=30,frame=False)
-            plot12+=parametric_plot3d((s,t,1-s-2*t),(s,-1,2),(t,-1.5,1.5),color="green",mesh=True,plot_points=4,opacity=0.25,aspect_ratio=1)
-            plot12+=arrow((0,1,-1),(0+(1),1+2,-1+1),color="green",width=2)
-            plot12+=text3d("\u27E81,2,1\u27E9",(1.2,3.5,0.5),color="green",fontsize=15)
-            plot12+=parametric_plot3d((s,t,(4+2*s-t)/-3),(s,-1,2),(t,-2,2),color="blue",mesh=True,plot_points=4,opacity=0.25)
-            plot12+=arrow((0,1,-1),(0+(-2),1+(1),-1+(-3)),color="blue",width=2)
-            plot12+=text3d("\u27E8-2,1,-3\u27E9",(-2.5,2.5,-4.5),color="blue",fontsize=15)
-            plot12+=arrow((0,1,-1),(0+(1),1+(-0.5),-1+(1.5)),color="red",width=2)
-            plot12+=text3d("\u27E81,-0.5,1.5\u27E9",(1.5,2,1),color="red",fontsize=15,viewpoint=[[-0.6347,-0.6448,-0.426],134.51],camera_position=[16.9653,1.0142,-6.1312])
+            a=3;b=1;
+            plot12=axes(3,2,color="black",opacity=0.5)+text3d("x",(3.5,0,0),fontsize=30)+text3d("y",(0,3.5,0),fontsize=30)+text3d("z",(0,0,3.5),fontsize=30,frame=False)
+            plot12+=parametric_plot3d((s+b,t,1-s-2*t+a),(s,-1,1.5),(t,0,1.5),color="green",mesh=True,plot_points=4,opacity=0.25,aspect_ratio=1,mesh_opacity=0.25)
+            plot12+=arrow((0+b,1,-1+a),(0+(1)+b,1+2,-1+1+a),color="green",width=2)
+            plot12+=text3d("\u27E81,2,1\u27E9",(1.2+b,3.5,0.5+a),color="green",fontsize=20)
+            plot12+=parametric_plot3d((s+b,t,(4+2*s-t)/-3+a),(s,-1,2),(t,0,2),color="blue",mesh=True,plot_points=4,opacity=0.25,mesh_opacity=0.25)
+            plot12+=arrow((0+b,1,-1+a),(0+(-2)+b,1+(1),-1+(-3)+a),color="blue",width=2)
+            plot12+=text3d("\u27E81-2,1,-3\u27E9",(-2.5+b,2.5,-4.+a),color="blue",fontsize=20)
+            plot12+=arrow((0+b,1,-1+a),(0+(1)+b,1+(-0.5),-1+(1.5)+a),color="red",width=2)
+            plot12+=text3d("\u27E81,-0.5,1.5\u27E9",(1.5+b,1,1+a),color="red",fontsize=20,viewpoint=[[-0.697,-0.4425,-0.5643],96.74],camera_position=[5.8505,5.8418,1.7395])
             plot12
           </sageplot>
         </image>
@@ -556,7 +564,7 @@
       </figure> -->
       <figure xml:id="exampleplane2">
         <caption>A plane determined by three points <m>P_0</m>, <m>P_1</m>, and <m>P_2</m></caption>
-        <image width="50%">
+        <image width="60%">
         <description><p>A plane drawn in green with four points on the plane labeled <m>Q</m>, <m>P_0</m>, <m>P_1</m>, and <m>P_2</m>. Blue arrows are drawn along the plane from <m>P_0</m> to each of <m>Q</m>, <m>P_1</m>, and <m>P_2</m>. A red arrow that his perpendicular to the green plane is drawn, starting at the point <m>P_0</m> and is labeled <m>\vec{n}</m>. </p></description>
         <sageplot variant="3d" label="interactive-exampleplane2">
           var('s,t')
@@ -570,7 +578,7 @@
           plot9+=text3d("P\u2080",(-.75,-0.85,0.35),color="black",fontsize=25)+text3d("P\u2081",(1,-0.45,0.35),color="black",fontsize=25)
           plot9+=text3d("P\u2082",(-.75,0.75,0.35),color="black",fontsize=25)
           plot9+=arrow(P0,(1,1,0),color="blue")+text3d("Q",(1.1,1.3,0.15),color="black",fontsize=25)+point3d((1,1,0),color="black",size=30)
-          plot9+=text3d("n",(-0.5,-0.5,1.6),color="red",fontsize=25,viewpoint=[[-0.8414,-0.2517,-0.4782],64.05],camera_position=[3.2031,-4.8751,4.9657])
+          plot9+=text3d("n",(-0.5,-0.5,1.6),color="red",fontsize=25,viewpoint=[[-0.7715,-0.2664,-0.5778],61.74],camera_position=[3.2031,-4.8751,4.9657])
           plot9
         </sageplot>
       </image>
