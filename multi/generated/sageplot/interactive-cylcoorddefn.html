@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+<meta charset="utf-8">
+<meta name=viewport content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+<style>
+
+    body { margin: 0px; overflow: hidden; }
+
+    #menu-container { position: absolute; bottom: 30px; right: 40px; cursor: default; }
+
+    #menu-message { position: absolute; bottom: 0px; right: 0px; white-space: nowrap;
+                    display: none; background-color: #F5F5F5; padding: 10px; }
+
+    #menu-content { position: absolute; bottom: 0px; right: 0px;
+                    display: none; background-color: #F5F5F5; border-bottom: 1px solid black;
+                    border-right: 1px solid black; border-left: 1px solid black; }
+
+    #menu-content div { border-top: 1px solid black; padding: 10px; white-space: nowrap; }
+
+    #menu-content div:hover { background-color: #FEFEFE; }
+
+    .dark-theme #menu-container { color: white; }
+
+    .dark-theme #menu-message { background-color: #181818; }
+
+    .dark-theme #menu-content { background-color: #181818; border-color: white; }
+
+    .dark-theme #menu-content div { border-color: white; }
+
+    .dark-theme #menu-content div:hover { background-color: #303030; }
+
+</style>
+
+</head>
+
+<body>
+
+<script src="https://cdn.jsdelivr.net/gh/sagemath/threejs-sage@r122/build/three.min.js"></script>
+            <script>// fat_lines.js
+
+var _fatLines = [];
+
+function _createFatLine( lineStrip, geometry, materialOptions ) {
+
+    var vertexCount = geometry.vertices.length;
+    var positions = [];
+    for ( var i=0 ; i < vertexCount ; i++ ) {
+        var v = geometry.vertices[i];
+        positions.push( v.x, v.y, v.z );
+        // For a line strip, duplicate all but the first and last vertices.
+        if ( lineStrip && i > 0 && i < vertexCount - 1 ) {
+            positions.push( v.x, v.y, v.z );
+        }
+    }
+
+    geometry = new THREE.LineSegmentsGeometry();
+    geometry.setPositions( positions );
+
+    var material = new THREE.LineMaterial( materialOptions );
+    material.resolution = new THREE.Vector2( window.innerWidth, window.innerHeight );
+
+    var line = new THREE.LineSegments2( geometry, material );
+    line.computeLineDistances();
+    line.scale.set( 1, 1, 1 );
+
+    _fatLines.push( line );
+
+    return line;
+
+}
+
+function createFatLineStrip( geometry, materialOptions ) {
+    return _createFatLine( true, geometry, materialOptions );
+}
+
+function createFatLineSegments( geometry, materialOptions ) {
+    return _createFatLine( false, geometry, materialOptions );
+}
+
+function rescaleFatLines() {
+    var res = new THREE.Vector2( window.innerWidth, window.innerHeight );
+    var n = _fatLines.length;
+    for ( var i=0 ; i < n ; i++ ) {
+        _fatLines[i].material.resolution = res;
+    }
+}
+</script>
+<script>
+
+    var options = {"animate": false, "animationControls": true, "aspectRatio": [1.0, 1.0, 1.0], "autoScaling": [false, false, false], "autoPlay": true, "axes": false, "axesLabels": false, "axesLabelsStyle": null, "decimals": 2, "delay": 20, "frame": false, "loop": true, "projection": "perspective", "theme": "light", "viewpoint": [[-0.4306, -0.5735, -0.6969], 124.76]};
+    var animate = options.animate;
+
+    if ( options.theme === 'dark' )
+        document.body.className = 'dark-theme';
+
+    var scene = new THREE.Scene();
+
+    var renderer = new THREE.WebGLRenderer( { antialias: true, preserveDrawingBuffer: true } );
+    renderer.setPixelRatio( window.devicePixelRatio );
+    renderer.setSize( window.innerWidth, window.innerHeight );
+    renderer.setClearColor( options.theme === 'dark' ? 0 : 0xffffff, 1 );
+    document.body.appendChild( renderer.domElement );
+
+    var b = [{"x":-1.0, "y":-1.0, "z":-0.11999999999999982}, {"x":3.75, "y":3.75, "z":3.75}]; // bounds
+
+    if ( b[0].x === b[1].x ) {
+        b[0].x -= 1;
+        b[1].x += 1;
+    }
+    if ( b[0].y === b[1].y ) {
+        b[0].y -= 1;
+        b[1].y += 1;
+    }
+    if ( b[0].z === b[1].z ) {
+        b[0].z -= 1;
+        b[1].z += 1;
+    }
+
+    var rxRange = Math.sqrt( Math.pow( b[1].z - b[0].z, 2 )
+                            + Math.pow( b[1].y - b[0].y, 2 ) );
+    var ryRange = Math.sqrt( Math.pow( b[1].x - b[0].x, 2 )
+                            + Math.pow( b[1].z - b[0].z, 2 ) );
+    var rzRange = Math.sqrt( Math.pow( b[1].x - b[0].x, 2 )
+                            + Math.pow( b[1].y - b[0].y, 2 ) );
+    var xRange = b[1].x - b[0].x;
+    var yRange = b[1].y - b[0].y;
+    var zRange = b[1].z - b[0].z;
+
+    var ar = options.aspectRatio;
+    var a = [ ar[0], ar[1], ar[2] ]; // aspect multipliers
+
+    var autoScaling = options.autoScaling;
+    var autoAspect = 2.5;
+    if ( xRange > autoAspect * rxRange && autoScaling[0] ) a[0] = autoAspect * rxRange / xRange;
+    if ( yRange > autoAspect * ryRange && autoScaling[1] ) a[1] = autoAspect * ryRange / yRange;
+    if ( zRange > autoAspect * rzRange && autoScaling[2] ) a[2] = autoAspect * rzRange / zRange;
+
+    // Distance from (xMid,yMid,zMid) to any corner of the bounding box, after applying aspectRatio
+    var midToCorner = Math.sqrt( a[0]*a[0]*xRange*xRange + a[1]*a[1]*yRange*yRange + a[2]*a[2]*zRange*zRange ) / 2;
+
+    var xMid = ( b[0].x + b[1].x ) / 2;
+    var yMid = ( b[0].y + b[1].y ) / 2;
+    var zMid = ( b[0].z + b[1].z ) / 2;
+
+    var box = new THREE.Geometry();
+    box.vertices.push( new THREE.Vector3( a[0]*b[0].x, a[1]*b[0].y, a[2]*b[0].z ) );
+    box.vertices.push( new THREE.Vector3( a[0]*b[1].x, a[1]*b[1].y, a[2]*b[1].z ) );
+    var boxMesh = new THREE.Line( box );
+    var boxColor = options.theme === 'dark' ? 'white' : 'black';
+    if ( options.frame ) scene.add( new THREE.BoxHelper( boxMesh, boxColor ) );
+
+    if ( options.axesLabels ) {
+
+        var d = options.decimals; // decimals
+        var offsetRatio = 0.1;
+        var al = options.axesLabels;
+        var als = options.axesLabelsStyle || [{}, {}, {}];
+
+        var offset = offsetRatio * a[1]*( b[1].y - b[0].y );
+        var xm = xMid.toFixed(d);
+        if ( /^-0.?0*$/.test(xm) ) xm = xm.substr(1);
+        addLabel( al[0] + '=' + xm, a[0]*xMid, a[1]*b[1].y+offset, a[2]*b[0].z, als[0] );
+        addLabel( ( b[0].x ).toFixed(d), a[0]*b[0].x, a[1]*b[1].y+offset, a[2]*b[0].z, als[0] );
+        addLabel( ( b[1].x ).toFixed(d), a[0]*b[1].x, a[1]*b[1].y+offset, a[2]*b[0].z, als[0] );
+
+        var offset = offsetRatio * a[0]*( b[1].x - b[0].x );
+        var ym = yMid.toFixed(d);
+        if ( /^-0.?0*$/.test(ym) ) ym = ym.substr(1);
+        addLabel( al[1] + '=' + ym, a[0]*b[1].x+offset, a[1]*yMid, a[2]*b[0].z, als[1] );
+        addLabel( ( b[0].y ).toFixed(d), a[0]*b[1].x+offset, a[1]*b[0].y, a[2]*b[0].z, als[1] );
+        addLabel( ( b[1].y ).toFixed(d), a[0]*b[1].x+offset, a[1]*b[1].y, a[2]*b[0].z, als[1] );
+
+        var offset = offsetRatio * a[1]*( b[1].y - b[0].y );
+        var zm = zMid.toFixed(d);
+        if ( /^-0.?0*$/.test(zm) ) zm = zm.substr(1);
+        addLabel( al[2] + '=' + zm, a[0]*b[1].x, a[1]*b[0].y-offset, a[2]*zMid, als[2] );
+        addLabel( ( b[0].z ).toFixed(d), a[0]*b[1].x, a[1]*b[0].y-offset, a[2]*b[0].z, als[2] );
+        addLabel( ( b[1].z ).toFixed(d), a[0]*b[1].x, a[1]*b[0].y-offset, a[2]*b[1].z, als[2] );
+
+    }
+
+    function addLabel( text, x, y, z, style ) {
+
+        var color = style.color || 'black';
+        var fontSize = style.fontSize || 14;
+        var fontFamily = style.fontFamily || 'monospace';
+        var fontStyle = style.fontStyle || 'normal';
+        var fontWeight = style.fontWeight || 'normal';
+        var opacity = style.opacity || 1;
+
+        if ( options.theme === 'dark' )
+            if ( color === 'black' || color === '#000000' )
+                color = 'white';
+
+        if ( Array.isArray( fontStyle ) ) {
+            fontFamily = fontFamily.map( function( f ) {
+                // Need to put quotes around fonts that have whitespace in their names.
+                return /\s/.test( f ) ? '"' + f + '"' : f;
+            }).join(', ');
+        }
+
+        var canvas = document.createElement( 'canvas' );
+        var context = canvas.getContext( '2d' );
+        var pixelRatio = Math.round( window.devicePixelRatio );
+
+        // For example: italic bold 20px "Times New Roman", Georgia, serif
+        var font = [fontStyle, fontWeight, fontSize + 'px', fontFamily].join(' ');
+
+        context.font = font;
+        var width = context.measureText( text ).width;
+        var height = fontSize;
+
+        // The dimensions of the canvas's underlying image data need to be powers
+        // of two in order for the resulting texture to support mipmapping.
+        canvas.width = THREE.MathUtils.ceilPowerOfTwo( width * pixelRatio );
+        canvas.height = THREE.MathUtils.ceilPowerOfTwo( height * pixelRatio );
+
+        // Re-compute the unscaled dimensions after the power of two conversion.
+        width = canvas.width / pixelRatio;
+        height = canvas.height / pixelRatio;
+
+        canvas.style.width = width + 'px';
+        canvas.style.height = height + 'px';
+
+        context.scale( pixelRatio, pixelRatio );
+        context.fillStyle = color;
+        context.font = font; // Must be set again after measureText.
+        context.textAlign = 'center';
+        context.textBaseline = 'middle';
+        context.fillText( text, width/2, height/2 );
+
+        var texture = new THREE.Texture( canvas );
+        texture.needsUpdate = true;
+
+        var materialOptions = { map: texture, sizeAttenuation: false, depthWrite: false };
+        if ( opacity < 1 ) {
+            // Setting opacity=1 would cause the texture's alpha component to be
+            // discarded, giving the text a black background instead of the
+            // background being transparent.
+            materialOptions.opacity = opacity;
+        }
+        var sprite = new THREE.Sprite( new THREE.SpriteMaterial( materialOptions ) );
+        sprite.position.set( x, y, z );
+
+        // Scaling factor, chosen somewhat arbitrarily so that the size of the text
+        // is consistent with previously generated plots.
+        var scale = 1/625;
+        if ( options.projection === 'orthographic' ) {
+            scale = midToCorner/256; // Needs to scale along with the plot itself.
+        }
+        sprite.scale.set( scale * width, scale * height, 1 );
+
+        scene.add( sprite );
+
+        return sprite;
+
+    }
+
+    if ( options.axes ) scene.add( new THREE.AxesHelper( Math.min( a[0]*b[1].x, a[1]*b[1].y, a[2]*b[1].z ) ) );
+
+    var camera = createCamera();
+    camera.up.set( 0, 0, 1 );
+    camera.position.set( a[0]*xMid, a[1]*yMid, a[2]*zMid );
+
+    // camera is positioned so that the line from the camera to the center
+    // of the bounding sphere of the objects makes an angle of 60 degrees with x-axis
+    // and an angle of 30 degrees with z-axis and the field of view of the camera looking
+    // at the center has an angle of 45 degrees.
+    const sin8 = Math.sin(Math.PI / 8);
+    const sin5 = Math.sin(Math.PI / 5);
+    const cos5 = Math.cos(Math.PI / 5);
+    const sin3 = Math.sin(Math.PI / 3);
+    const cos3 = Math.cos(Math.PI / 3);
+    var r = midToCorner / sin8;
+    var offset = new THREE.Vector3( r * sin3 * cos5, r * sin3 * sin5, r * cos3 );
+
+    if ( options.viewpoint ) {
+
+        var aa = options.viewpoint;
+        var axis = new THREE.Vector3( aa[0][0], aa[0][1], aa[0][2] ).normalize();
+        var angle = aa[1] * Math.PI / 180;
+        var q = new THREE.Quaternion().setFromAxisAngle( axis, angle ).inverse();
+
+        offset.set( 0, 0, offset.length() );
+        offset.applyQuaternion( q );
+
+    }
+
+    camera.position.add( offset );
+
+    function createCamera() {
+
+        var aspect = window.innerWidth / window.innerHeight;
+
+        // Scale the near and far clipping planes along with the overall plot size.
+        var nearClip = 0.01 * midToCorner;
+        var farClip = 100 * midToCorner;
+
+        if ( options.projection === 'orthographic' ) {
+            var camera = new THREE.OrthographicCamera( -1, 1, 1, -1, -farClip, farClip );
+            updateCameraAspect( camera, aspect );
+            return camera;
+        }
+
+        return new THREE.PerspectiveCamera( 45, aspect, nearClip, farClip );
+
+    }
+
+    function updateCameraAspect( camera, aspect ) {
+
+        if ( camera.isPerspectiveCamera ) {
+            camera.aspect = aspect;
+        } else if ( camera.isOrthographicCamera ) {
+            // Fit the camera frustum to the bounding box's diagonal so that the entire plot fits
+            // within at the default zoom level and camera position.
+            if ( aspect > 1 ) { // Wide window
+                camera.top = midToCorner;
+                camera.right = midToCorner * aspect;
+            } else { // Tall or square window
+                camera.top = midToCorner / aspect;
+                camera.right = midToCorner;
+            }
+            camera.bottom = -camera.top;
+            camera.left = -camera.right;
+        }
+
+        camera.updateProjectionMatrix();
+
+    }
+
+    var lights = [{"x":-5, "y":3, "z":0, "color":"#7f7f7f", "parent":"camera"}];
+    for ( var i=0 ; i < lights.length ; i++ ) {
+        var light = new THREE.DirectionalLight( lights[i].color, 1 );
+        light.position.set( a[0]*lights[i].x, a[1]*lights[i].y, a[2]*lights[i].z );
+        if ( lights[i].parent === 'camera' ) {
+            light.target.position.set( a[0]*xMid, a[1]*yMid, a[2]*zMid );
+            scene.add( light.target );
+            camera.add( light );
+        } else scene.add( light );
+    }
+    scene.add( camera );
+
+    var ambient = {"color":"#7f7f7f"};
+    scene.add( new THREE.AmbientLight( ambient.color, 1 ) );
+
+    var controls = new THREE.OrbitControls( camera, renderer.domElement );
+    controls.target.set( a[0]*xMid, a[1]*yMid, a[2]*zMid );
+    controls.addEventListener( 'change', function() { if ( !animate ) render(); } );
+
+    window.addEventListener( 'resize', function() {
+
+        renderer.setSize( window.innerWidth, window.innerHeight );
+        updateCameraAspect( camera, window.innerWidth / window.innerHeight );
+        if ( window.rescaleFatLines ) rescaleFatLines();
+        if ( !animate ) render();
+
+    } );
+
+    var texts = [{"color": "#000000", "fontSize": 30.0, "fontFamily": ["monospace"], "fontStyle": "normal", "fontWeight": "normal", "opacity": 1.0, "text": "x", "x": 3.75, "y": 0.0, "z": 0.0}, {"color": "#000000", "fontSize": 30.0, "fontFamily": ["monospace"], "fontStyle": "normal", "fontWeight": "normal", "opacity": 1.0, "text": "y", "x": 0.0, "y": 3.75, "z": 0.0}, {"color": "#000000", "fontSize": 30.0, "fontFamily": ["monospace"], "fontStyle": "normal", "fontWeight": "normal", "opacity": 1.0, "text": "z", "x": 0.0, "y": 0.0, "z": 3.75}, {"color": "#000000", "fontSize": 30.0, "fontFamily": ["monospace"], "fontStyle": "normal", "fontWeight": "normal", "opacity": 1.0, "text": "P=(r,\u03b8,z)", "x": 1.0, "y": 2.0, "z": 3.0}, {"color": "#0000ff", "fontSize": 30.0, "fontFamily": ["monospace"], "fontStyle": "normal", "fontWeight": "normal", "opacity": 1.0, "text": "\u03b8", "x": 1.5, "y": 0.5, "z": 0.0}, {"color": "#ff0000", "fontSize": 30.0, "fontFamily": ["monospace"], "fontStyle": "normal", "fontWeight": "normal", "opacity": 1.0, "text": "r", "x": 0.5, "y": 1.5, "z": 0.75}, {"color": "#008000", "fontSize": 30.0, "fontFamily": ["monospace"], "fontStyle": "normal", "fontWeight": "normal", "opacity": 1.0, "text": "z", "x": 1.25, "y": 2.5, "z": 1.5}];
+    for ( var i=0 ; i < texts.length ; i++ ) addText( texts[i] );
+
+    function addText( json ) {
+        var sprite = addLabel( json.text, a[0]*json.x, a[1]*json.y, a[2]*json.z, json );
+        sprite.userData = json;
+    }
+
+    var points = [];
+    for ( var i=0 ; i < points.length ; i++ ) addPoint( points[i] );
+
+    function addPoint( json ) {
+
+        var geometry = new THREE.Geometry();
+        var v = json.point;
+        geometry.vertices.push( new THREE.Vector3( a[0]*v[0], a[1]*v[1], a[2]*v[2] ) );
+
+        var canvas = document.createElement( 'canvas' );
+        canvas.width = 128;
+        canvas.height = 128;
+
+        var context = canvas.getContext( '2d' );
+        context.arc( 64, 64, 64, 0, 2 * Math.PI );
+        context.fillStyle = json.color;
+        context.fill();
+
+        var texture = new THREE.Texture( canvas );
+        texture.needsUpdate = true;
+
+        var transparent = json.opacity < 1 ? true : false;
+        var size = camera.isOrthographicCamera ? json.size : json.size/100;
+        var material = new THREE.PointsMaterial( { size: size, map: texture,
+                                                   transparent: transparent, opacity: json.opacity,
+                                                   alphaTest: .1 } );
+
+        var c = new THREE.Vector3();
+        geometry.computeBoundingBox();
+        geometry.boundingBox.getCenter( c );
+        geometry.translate( -c.x, -c.y, -c.z );
+
+        var mesh = new THREE.Points( geometry, material );
+        mesh.position.set( c.x, c.y, c.z );
+        mesh.userData = json;
+        scene.add( mesh );
+
+    }
+
+    var lines = [{"points": [[0.5, 0.0, 0.0], [0.49994403965403283, 0.007480455494610621, 0.0], [0.4997761711423726, 0.01495923655371136, 0.0], [0.49949643204093924, 0.0224346691166003, 0.0], [0.4991048849669204, 0.02990507987210754, 0.0], [0.49860161756475496, 0.03736879663315151, 0.0], [0.49798674248651464, 0.0448241487110436, 0.0], [0.49726039736668787, 0.05226946728945748, 0.0], [0.4964227447913715, 0.059703085797979207, 0.0], [0.49547397226187706, 0.0671233402851547, 0.0], [0.49441429215276067, 0.07452856979095085, 0.0], [0.4932439416642843, 0.08191711671854725, 0.0], [0.491963182769321, 0.08928732720537483, 0.0], [0.49057230215471415, 0.09663755149331883, 0.0], [0.48907161115710535, 0.10396614429800288, 0.0], [0.48746144569324423, 0.11127146517707179, 0.0], [0.48574216618479654, 0.11855187889739034, 0.0], [0.48391415747766664, 0.12580575580107628, 0.0], [0.4819778287558533, 0.13303147217028508, 0.0], [0.47993361344985724, 0.14022741059066518, 0.0], [0.4777819691396615, 0.14739196031340238, 0.0], [0.47552337745230594, 0.15452351761577188, 0.0], [0.47315834395407963, 0.161620486160118, 0.0], [0.47068739803735354, 0.16868127735118052, 0.0], [0.4681110928020813, 0.17570431069168801, 0.0], [0.46543000493199194, 0.18268801413613858, 0.0], [0.4626447345655046, 0.18963082444268872, 0.0], [0.4597559051613925, 0.19653118752307142, 0.0], [0.4567641633592273, 0.2033875587904656, 0.0], [0.4536701788346342, 0.21019840350523847, 0.0], [0.45047464414939076, 0.21696219711848372, 0.0], [0.44717827459640314, 0.2236774256132788, 0.0], [0.4437818080395939, 0.23034258584358439, 0.0], [0.4402860047487373, 0.23695618587071088, 0.0], [0.4366916472292797, 0.24351674529727582, 0.0], [0.4329995400471825, 0.2500227955985782, 0.0], [0.42921050964882657, 0.25647288045131506, 0.0], [0.4253254041760199, 0.2628655560595669, 0.0], [0.42134509327614794, 0.269199391477979, 0.0], [0.41727046790751077, 0.275472968932066, 0.0], [0.41310244013988967, 0.2816848841355689, 0.0], [0.4088419429503881, 0.287833746604792, 0.0], [0.40448993001459294, 0.2939181799698509, 0.0], [0.40004737549310243, 0.29993682228276125, 0.0], [0.39551527381346846, 0.3058883263222987, 0.0], [0.3908946394476029, 0.3117713598955628, 0.0], [0.3861865066846965, 0.3175846061361773, 0.0], [0.38139192939970246, 0.32332676379905884, 0.0], [0.3765119808174352, 0.32899654755168983, 0.0], [0.37154775327233863, 0.33459268826182886, 0.0], [0.36650035796397623, 0.340113933281595, 0.0], [0.3613709247082989, 0.3455590467278624, 0.0], [0.3561606016847449, 0.35092680975890184, 0.0], [0.35087055517923027, 0.35621602084720827, 0.0], [0.3455019693230856, 0.36142549604845203, 0.0], [0.34005604582799825, 0.3665540692664949, 0.0], [0.33453400371701986, 0.37160059251441047, 0.0], [0.32893707905169833, 0.3765639361714512, 0.0], [0.3232665246553961, 0.38144298923590425, 0.0], [0.31752360983285666, 0.38623665957377973, 0.0], [0.3117096200860812, 0.39094387416327536, 0.0], [0.30582585682658053, 0.39556357933496333, 0.0], [0.299873637084065, 0.40009474100764497, 0.0], [0.29385429321163875, 0.4045363449198208, 0.0], [0.2877691725875643, 0.40888739685672465, 0.0], [0.28161963731366313, 0.4131469228728696, 0.0], [0.275407063910421, 0.41731396951005756, 0.0], [0.269132843008866, 0.4213876040108027, 0.0], [0.2627983790392874, 0.425366914527121, 0.0], [0.2564050899168661, 0.4292510103246395, 0.0], [0.24995440672428693, 0.43303902198197997, 0.0], [0.2434477733914025, 0.43673010158537084, 0.0], [0.2368866463720224, 0.44032342291844573, 0.0], [0.23027249431789837, 0.44381818164718473, 0.0], [0.22360679774997902, 0.4472135954999579, 0.0]], "color": "#0000ff", "opacity": 1.0, "linewidth": 3.0}, {"points": [[0.0, 0.0, 0.0], [0.013513513513513514, 0.02702702702702703, 0.0], [0.02702702702702703, 0.05405405405405406, 0.0], [0.04054054054054054, 0.08108108108108109, 0.0], [0.05405405405405406, 0.10810810810810811, 0.0], [0.06756756756756757, 0.13513513513513514, 0.0], [0.08108108108108109, 0.16216216216216217, 0.0], [0.0945945945945946, 0.1891891891891892, 0.0], [0.10810810810810811, 0.21621621621621623, 0.0], [0.12162162162162163, 0.24324324324324326, 0.0], [0.13513513513513514, 0.2702702702702703, 0.0], [0.14864864864864866, 0.2972972972972973, 0.0], [0.16216216216216217, 0.32432432432432434, 0.0], [0.17567567567567569, 0.35135135135135137, 0.0], [0.1891891891891892, 0.3783783783783784, 0.0], [0.20270270270270271, 0.40540540540540543, 0.0], [0.21621621621621623, 0.43243243243243246, 0.0], [0.22972972972972974, 0.4594594594594595, 0.0], [0.24324324324324326, 0.4864864864864865, 0.0], [0.2567567567567568, 0.5135135135135136, 0.0], [0.2702702702702703, 0.5405405405405406, 0.0], [0.28378378378378377, 0.5675675675675675, 0.0], [0.29729729729729726, 0.5945945945945945, 0.0], [0.31081081081081074, 0.6216216216216215, 0.0], [0.32432432432432423, 0.6486486486486485, 0.0], [0.3378378378378377, 0.6756756756756754, 0.0], [0.3513513513513512, 0.7027027027027024, 0.0], [0.3648648648648647, 0.7297297297297294, 0.0], [0.3783783783783782, 0.7567567567567564, 0.0], [0.39189189189189166, 0.7837837837837833, 0.0], [0.40540540540540515, 0.8108108108108103, 0.0], [0.41891891891891864, 0.8378378378378373, 0.0], [0.4324324324324321, 0.8648648648648642, 0.0], [0.4459459459459456, 0.8918918918918912, 0.0], [0.4594594594594591, 0.9189189189189182, 0.0], [0.4729729729729726, 0.9459459459459452, 0.0], [0.48648648648648607, 0.9729729729729721, 0.0], [0.49999999999999956, 0.9999999999999991, 0.0], [0.513513513513513, 1.027027027027026, 0.0], [0.5270270270270265, 1.054054054054053, 0.0], [0.54054054054054, 1.08108108108108, 0.0], [0.5540540540540535, 1.108108108108107, 0.0], [0.567567567567567, 1.135135135135134, 0.0], [0.5810810810810805, 1.162162162162161, 0.0], [0.594594594594594, 1.189189189189188, 0.0], [0.6081081081081074, 1.216216216216215, 0.0], [0.6216216216216209, 1.2432432432432419, 0.0], [0.6351351351351344, 1.2702702702702688, 0.0], [0.6486486486486479, 1.2972972972972958, 0.0], [0.6621621621621614, 1.3243243243243228, 0.0], [0.6756756756756749, 1.3513513513513498, 0.0], [0.6891891891891884, 1.3783783783783767, 0.0], [0.7027027027027019, 1.4054054054054037, 0.0], [0.7162162162162153, 1.4324324324324307, 0.0], [0.7297297297297288, 1.4594594594594577, 0.0], [0.7432432432432423, 1.4864864864864846, 0.0], [0.7567567567567558, 1.5135135135135116, 0.0], [0.7702702702702693, 1.5405405405405386, 0.0], [0.7837837837837828, 1.5675675675675655, 0.0], [0.7972972972972963, 1.5945945945945925, 0.0], [0.8108108108108097, 1.6216216216216195, 0.0], [0.8243243243243232, 1.6486486486486465, 0.0], [0.8378378378378367, 1.6756756756756734, 0.0], [0.8513513513513502, 1.7027027027027004, 0.0], [0.8648648648648637, 1.7297297297297274, 0.0], [0.8783783783783772, 1.7567567567567544, 0.0], [0.8918918918918907, 1.7837837837837813, 0.0], [0.9054054054054042, 1.8108108108108083, 0.0], [0.9189189189189176, 1.8378378378378353, 0.0], [0.9324324324324311, 1.8648648648648622, 0.0], [0.9459459459459446, 1.8918918918918892, 0.0], [0.9594594594594581, 1.9189189189189162, 0.0], [0.9729729729729716, 1.9459459459459432, 0.0], [0.9864864864864851, 1.9729729729729701, 0.0], [1.0, 2.0, 0.0]], "color": "#ff0000", "opacity": 1.0, "linewidth": 3.0}, {"points": [[1.0, 2.0, 0.0], [1.0, 2.0, 2.5]], "color": "#008000", "opacity": 1.0, "linewidth": 3.0}];
+    for ( var i=0 ; i < lines.length ; i++ ) addLine( lines[i] );
+
+    function addLine( json ) {
+
+        var geometry = new THREE.Geometry();
+        for ( var i=0 ; i < json.points.length ; i++ ) {
+            var v = json.points[i];
+            geometry.vertices.push( new THREE.Vector3( a[0]*v[0], a[1]*v[1], a[2]*v[2] ) );
+        }
+
+        var c = new THREE.Vector3();
+        geometry.computeBoundingBox();
+        geometry.boundingBox.getCenter( c );
+        geometry.translate( -c.x, -c.y, -c.z );
+
+        var transparent = json.opacity < 1 ? true : false;
+        var materialOptions = { color: json.color, linewidth: json.linewidth,
+                                transparent: transparent, opacity: json.opacity };
+
+        var mesh;
+        if ( json.linewidth > 1 && window.createFatLineStrip ) {
+            mesh = createFatLineStrip( geometry, materialOptions );
+        } else {
+            var material = new THREE.LineBasicMaterial( materialOptions );
+            mesh = new THREE.Line( geometry, material );
+        }
+
+        mesh.position.set( c.x, c.y, c.z );
+        mesh.userData = json;
+        scene.add( mesh );
+
+    }
+
+    var surfaces = [{"vertices": [{"x": 2.89, "y": 0.0, "z": 1.7696146247679255e-16}, {"x": 2.89, "y": 0.012360679774997899, "z": -0.038042260651805965}, {"x": 2.89, "y": 0.04, "z": 1.7696146247679255e-16}, {"x": 2.89, "y": -0.032360679774997896, "z": -0.023511410091698753}, {"x": 2.89, "y": -0.0323606797749979, "z": 0.0235114100916991}, {"x": 2.89, "y": 0.01236067977499789, "z": 0.038042260651806326}, {"x": 2.329416636978185e-18, "y": 0.012360679774997899, "z": -0.038042260651806145}, {"x": 0.0, "y": 0.04, "z": 0.0}, {"x": 1.4396586556119937e-18, "y": -0.032360679774997896, "z": -0.02351141009169893}, {"x": -1.4396586556119933e-18, "y": -0.0323606797749979, "z": 0.023511410091698923}, {"x": -2.329416636978185e-18, "y": 0.01236067977499789, "z": 0.038042260651806145}, {"x": 0.0, "y": 0.0, "z": 0.0}], "faces": [[0, 1, 2], [0, 3, 1], [0, 4, 3], [0, 5, 4], [0, 2, 5], [2, 1, 6, 7], [1, 3, 8, 6], [3, 4, 9, 8], [4, 5, 10, 9], [5, 2, 7, 10], [7, 6, 11], [6, 8, 11], [8, 9, 11], [9, 10, 11], [10, 7, 11]], "color": "#000000", "opacity": 1.0}, {"vertices": [{"x": 3.25, "y": 0.0, "z": 1.990051048614449e-16}, {"x": 2.89, "y": 0.0970820393249937, "z": -0.07053423027509659}, {"x": 2.89, "y": 0.12, "z": 1.7696146247679255e-16}, {"x": 2.89, "y": 0.037082039324993696, "z": -0.11412678195541824}, {"x": 2.89, "y": -0.03708203932499368, "z": -0.11412678195541825}, {"x": 2.89, "y": -0.09708203932499368, "z": -0.0705342302750966}, {"x": 2.89, "y": -0.12, "z": 1.6226570088702432e-16}, {"x": 2.89, "y": -0.09708203932499371, "z": 0.07053423027509693}, {"x": 2.89, "y": -0.0370820393249937, "z": 0.1141267819554186}, {"x": 2.89, "y": 0.03708203932499367, "z": 0.11412678195541862}, {"x": 2.89, "y": 0.09708203932499368, "z": 0.07053423027509698}, {"x": 2.89, "y": 0.0, "z": 1.7696146247679255e-16}], "faces": [[0, 1, 2], [0, 3, 1], [0, 4, 3], [0, 5, 4], [0, 6, 5], [0, 7, 6], [0, 8, 7], [0, 9, 8], [0, 10, 9], [0, 2, 10], [2, 1, 11], [1, 3, 11], [3, 4, 11], [4, 5, 11], [5, 6, 11], [6, 7, 11], [7, 8, 11], [8, 9, 11], [9, 10, 11], [10, 2, 11]], "color": "#000000", "opacity": 1.0}, {"vertices": [{"x": 0.0, "y": 2.89, "z": 1.7696146247679255e-16}, {"x": 0.038042260651806145, "y": 2.89, "z": -0.012360679774997722}, {"x": 0.0, "y": 2.89, "z": -0.03999999999999982}, {"x": 0.02351141009169893, "y": 2.89, "z": 0.032360679774998076}, {"x": -0.023511410091698923, "y": 2.89, "z": 0.03236067977499808}, {"x": -0.038042260651806145, "y": 2.89, "z": -0.012360679774997713}, {"x": 0.038042260651806145, "y": 7.568733460868301e-19, "z": -0.012360679774997899}, {"x": 0.0, "y": 2.4492935982947064e-18, "z": -0.04}, {"x": 0.02351141009169893, "y": -1.981520145234183e-18, "z": 0.032360679774997896}, {"x": -0.023511410091698923, "y": -1.9815201452341834e-18, "z": 0.0323606797749979}, {"x": -0.038042260651806145, "y": 7.568733460868296e-19, "z": -0.01236067977499789}, {"x": 0.0, "y": 0.0, "z": 0.0}], "faces": [[0, 1, 2], [0, 3, 1], [0, 4, 3], [0, 5, 4], [0, 2, 5], [2, 1, 6, 7], [1, 3, 8, 6], [3, 4, 9, 8], [4, 5, 10, 9], [5, 2, 7, 10], [7, 6, 11], [6, 8, 11], [8, 9, 11], [9, 10, 11], [10, 7, 11]], "color": "#000000", "opacity": 1.0}, {"vertices": [{"x": 0.0, "y": 3.25, "z": 1.990051048614449e-16}, {"x": 0.07053423027509677, "y": 2.89, "z": -0.09708203932499351}, {"x": 0.0, "y": 2.89, "z": -0.11999999999999982}, {"x": 0.11412678195541842, "y": 2.89, "z": -0.037082039324993515}, {"x": 0.11412678195541844, "y": 2.89, "z": 0.03708203932499386}, {"x": 0.07053423027509678, "y": 2.89, "z": 0.09708203932499386}, {"x": 1.4695761589768237e-17, "y": 2.89, "z": 0.12000000000000018}, {"x": -0.07053423027509675, "y": 2.89, "z": 0.09708203932499389}, {"x": -0.11412678195541842, "y": 2.89, "z": 0.03708203932499388}, {"x": -0.11412678195541844, "y": 2.89, "z": -0.03708203932499349}, {"x": -0.0705342302750968, "y": 2.89, "z": -0.0970820393249935}, {"x": 0.0, "y": 2.89, "z": 1.7696146247679255e-16}], "faces": [[0, 1, 2], [0, 3, 1], [0, 4, 3], [0, 5, 4], [0, 6, 5], [0, 7, 6], [0, 8, 7], [0, 9, 8], [0, 10, 9], [0, 2, 10], [2, 1, 11], [1, 3, 11], [3, 4, 11], [4, 5, 11], [5, 6, 11], [6, 7, 11], [7, 8, 11], [8, 9, 11], [9, 10, 11], [10, 2, 11]], "color": "#000000", "opacity": 1.0}, {"vertices": [{"x": 0.0, "y": 0.0, "z": 2.89}, {"x": 0.038042260651806145, "y": 0.012360679774997899, "z": 2.89}, {"x": 0.0, "y": 0.04, "z": 2.89}, {"x": 0.02351141009169893, "y": -0.032360679774997896, "z": 2.89}, {"x": -0.023511410091698923, "y": -0.0323606797749979, "z": 2.89}, {"x": -0.038042260651806145, "y": 0.01236067977499789, "z": 2.89}, {"x": 0.038042260651806145, "y": 0.012360679774997899, "z": 0.0}, {"x": 0.0, "y": 0.04, "z": 0.0}, {"x": 0.02351141009169893, "y": -0.032360679774997896, "z": 0.0}, {"x": -0.023511410091698923, "y": -0.0323606797749979, "z": 0.0}, {"x": -0.038042260651806145, "y": 0.01236067977499789, "z": 0.0}, {"x": 0.0, "y": 0.0, "z": 0.0}], "faces": [[0, 1, 2], [0, 3, 1], [0, 4, 3], [0, 5, 4], [0, 2, 5], [2, 1, 6, 7], [1, 3, 8, 6], [3, 4, 9, 8], [4, 5, 10, 9], [5, 2, 7, 10], [7, 6, 11], [6, 8, 11], [8, 9, 11], [9, 10, 11], [10, 7, 11]], "color": "#000000", "opacity": 1.0}, {"vertices": [{"x": 0.0, "y": 0.0, "z": 3.25}, {"x": 0.07053423027509677, "y": 0.0970820393249937, "z": 2.89}, {"x": 0.0, "y": 0.12, "z": 2.89}, {"x": 0.11412678195541842, "y": 0.037082039324993696, "z": 2.89}, {"x": 0.11412678195541844, "y": -0.03708203932499368, "z": 2.89}, {"x": 0.07053423027509678, "y": -0.09708203932499368, "z": 2.89}, {"x": 1.4695761589768237e-17, "y": -0.12, "z": 2.89}, {"x": -0.07053423027509675, "y": -0.09708203932499371, "z": 2.89}, {"x": -0.11412678195541842, "y": -0.0370820393249937, "z": 2.89}, {"x": -0.11412678195541844, "y": 0.03708203932499367, "z": 2.89}, {"x": -0.0705342302750968, "y": 0.09708203932499368, "z": 2.89}, {"x": 0.0, "y": 0.0, "z": 2.89}], "faces": [[0, 1, 2], [0, 3, 1], [0, 4, 3], [0, 5, 4], [0, 6, 5], [0, 7, 6], [0, 8, 7], [0, 9, 8], [0, 10, 9], [0, 2, 10], [2, 1, 11], [1, 3, 11], [3, 4, 11], [4, 5, 11], [5, 6, 11], [6, 7, 11], [7, 8, 11], [8, 9, 11], [9, 10, 11], [10, 2, 11]], "color": "#000000", "opacity": 1.0}, {"vertices": [{"x": -1.0, "y": -1.0, "z": 0.0}, {"x": -1.0, "y": 0.0, "z": 0.0}, {"x": 0.0, "y": 0.0, "z": 0.0}, {"x": 0.0, "y": -1.0, "z": 0.0}, {"x": -1.0, "y": 1.0, "z": 0.0}, {"x": 0.0, "y": 1.0, "z": 0.0}, {"x": -1.0, "y": 2.0, "z": 0.0}, {"x": 0.0, "y": 2.0, "z": 0.0}, {"x": -1.0, "y": 3.0, "z": 0.0}, {"x": 0.0, "y": 3.0, "z": 0.0}, {"x": 1.0, "y": 0.0, "z": 0.0}, {"x": 1.0, "y": -1.0, "z": 0.0}, {"x": 1.0, "y": 1.0, "z": 0.0}, {"x": 1.0, "y": 2.0, "z": 0.0}, {"x": 1.0, "y": 3.0, "z": 0.0}, {"x": 2.0, "y": 0.0, "z": 0.0}, {"x": 2.0, "y": -1.0, "z": 0.0}, {"x": 2.0, "y": 1.0, "z": 0.0}, {"x": 2.0, "y": 2.0, "z": 0.0}, {"x": 2.0, "y": 3.0, "z": 0.0}, {"x": 3.0, "y": 0.0, "z": 0.0}, {"x": 3.0, "y": -1.0, "z": 0.0}, {"x": 3.0, "y": 1.0, "z": 0.0}, {"x": 3.0, "y": 2.0, "z": 0.0}, {"x": 3.0, "y": 3.0, "z": 0.0}], "faces": [[0, 1, 2, 3], [1, 4, 5, 2], [4, 6, 7, 5], [6, 8, 9, 7], [3, 2, 10, 11], [2, 5, 12, 10], [5, 7, 13, 12], [7, 9, 14, 13], [11, 10, 15, 16], [10, 12, 17, 15], [12, 13, 18, 17], [13, 14, 19, 18], [16, 15, 20, 21], [15, 17, 22, 20], [17, 18, 23, 22], [18, 19, 24, 23]], "color": "#808080", "opacity": 0.15, "showMeshGrid": true}, {"vertices": [{"x": 0.223606797749979, "y": 0.447213595499958, "z": 3.0603414835690072e-18}, {"x": 0.2731650426451153, "y": 0.43334178282290897, "z": 0.011270177922140528}, {"x": 0.27426611302519127, "y": 0.4352934905612477, "z": -0.008185878604458149}, {"x": 0.26373280911334296, "y": 0.4166226307079385, "z": 0.015151231619599664}, {"x": 0.2590044385809571, "y": 0.4082413341761458, "z": -0.0019062018098058185}, {"x": 0.26551437841231157, "y": 0.41978056016467674, "z": -0.01632932912747622}, {"x": 0.26713655635538364, "y": 0.42265595968658354, "z": 0.0}], "faces": [[0, 1, 2], [0, 3, 1], [0, 4, 3], [0, 5, 4], [0, 2, 5], [2, 1, 6], [1, 3, 6], [3, 4, 6], [4, 5, 6], [5, 2, 6]], "color": "#0000ff", "opacity": 1.0}, {"vertices": [{"x": 1.0, "y": 2.0, "z": 2.35}, {"x": 1.064951905283833, "y": 2.0375, "z": 2.370096189432334}, {"x": 1.075, "y": 2.0, "z": 2.370096189432334}, {"x": 1.0375, "y": 2.064951905283833, "z": 2.370096189432334}, {"x": 1.0, "y": 2.075, "z": 2.370096189432334}, {"x": 0.9625, "y": 2.064951905283833, "z": 2.370096189432334}, {"x": 0.9350480947161671, "y": 2.0375, "z": 2.370096189432334}, {"x": 0.925, "y": 2.0, "z": 2.370096189432334}, {"x": 0.9350480947161671, "y": 1.9625000000000001, "z": 2.370096189432334}, {"x": 0.9625, "y": 1.9350480947161672, "z": 2.370096189432334}, {"x": 1.0, "y": 1.925, "z": 2.370096189432334}, {"x": 1.0375, "y": 1.935048094716167, "z": 2.370096189432334}, {"x": 1.0649519052838328, "y": 1.9625, "z": 2.370096189432334}, {"x": 1.1125, "y": 2.064951905283833, "z": 2.425}, {"x": 1.1299038105676658, "y": 2.0, "z": 2.425}, {"x": 1.064951905283833, "y": 2.1125, "z": 2.425}, {"x": 1.0, "y": 2.129903810567666, "z": 2.425}, {"x": 0.9350480947161671, "y": 2.1125, "z": 2.425}, {"x": 0.8875, "y": 2.064951905283833, "z": 2.425}, {"x": 0.8700961894323342, "y": 2.0, "z": 2.425}, {"x": 0.8875, "y": 1.9350480947161672, "z": 2.425}, {"x": 0.935048094716167, "y": 1.8875, "z": 2.425}, {"x": 1.0, "y": 1.8700961894323342, "z": 2.425}, {"x": 1.064951905283833, "y": 1.8875, "z": 2.425}, {"x": 1.1125, "y": 1.935048094716167, "z": 2.425}, {"x": 1.1299038105676658, "y": 2.075, "z": 2.5}, {"x": 1.15, "y": 2.0, "z": 2.5}, {"x": 1.075, "y": 2.129903810567666, "z": 2.5}, {"x": 1.0, "y": 2.15, "z": 2.5}, {"x": 0.925, "y": 2.129903810567666, "z": 2.5}, {"x": 0.8700961894323342, "y": 2.075, "z": 2.5}, {"x": 0.85, "y": 2.0, "z": 2.5}, {"x": 0.8700961894323342, "y": 1.925, "z": 2.5}, {"x": 0.9249999999999999, "y": 1.8700961894323342, "z": 2.5}, {"x": 1.0, "y": 1.85, "z": 2.5}, {"x": 1.075, "y": 1.8700961894323342, "z": 2.5}, {"x": 1.1299038105676658, "y": 1.9249999999999998, "z": 2.5}, {"x": 1.1125, "y": 2.064951905283833, "z": 2.575}, {"x": 1.1299038105676658, "y": 2.0, "z": 2.575}, {"x": 1.064951905283833, "y": 2.1125, "z": 2.575}, {"x": 1.0, "y": 2.129903810567666, "z": 2.575}, {"x": 0.9350480947161671, "y": 2.1125, "z": 2.575}, {"x": 0.8875, "y": 2.064951905283833, "z": 2.575}, {"x": 0.8700961894323342, "y": 2.0, "z": 2.575}, {"x": 0.8875, "y": 1.9350480947161672, "z": 2.575}, {"x": 0.935048094716167, "y": 1.8875, "z": 2.575}, {"x": 1.0, "y": 1.8700961894323342, "z": 2.575}, {"x": 1.064951905283833, "y": 1.8875, "z": 2.575}, {"x": 1.1125, "y": 1.935048094716167, "z": 2.575}, {"x": 1.064951905283833, "y": 2.0375, "z": 2.629903810567666}, {"x": 1.075, "y": 2.0, "z": 2.629903810567666}, {"x": 1.0375, "y": 2.064951905283833, "z": 2.629903810567666}, {"x": 1.0, "y": 2.075, "z": 2.629903810567666}, {"x": 0.9625, "y": 2.064951905283833, "z": 2.629903810567666}, {"x": 0.9350480947161671, "y": 2.0375, "z": 2.629903810567666}, {"x": 0.925, "y": 2.0, "z": 2.629903810567666}, {"x": 0.9350480947161671, "y": 1.9625000000000001, "z": 2.629903810567666}, {"x": 0.9625, "y": 1.9350480947161672, "z": 2.629903810567666}, {"x": 1.0, "y": 1.925, "z": 2.629903810567666}, {"x": 1.0375, "y": 1.935048094716167, "z": 2.629903810567666}, {"x": 1.0649519052838328, "y": 1.9625, "z": 2.629903810567666}, {"x": 1.0, "y": 2.0, "z": 2.65}], "faces": [[0, 1, 2], [0, 3, 1], [0, 4, 3], [0, 5, 4], [0, 6, 5], [0, 7, 6], [0, 8, 7], [0, 9, 8], [0, 10, 9], [0, 11, 10], [0, 12, 11], [0, 2, 12], [2, 1, 13, 14], [1, 3, 15, 13], [3, 4, 16, 15], [4, 5, 17, 16], [5, 6, 18, 17], [6, 7, 19, 18], [7, 8, 20, 19], [8, 9, 21, 20], [9, 10, 22, 21], [10, 11, 23, 22], [11, 12, 24, 23], [12, 2, 14, 24], [14, 13, 25, 26], [13, 15, 27, 25], [15, 16, 28, 27], [16, 17, 29, 28], [17, 18, 30, 29], [18, 19, 31, 30], [19, 20, 32, 31], [20, 21, 33, 32], [21, 22, 34, 33], [22, 23, 35, 34], [23, 24, 36, 35], [24, 14, 26, 36], [26, 25, 37, 38], [25, 27, 39, 37], [27, 28, 40, 39], [28, 29, 41, 40], [29, 30, 42, 41], [30, 31, 43, 42], [31, 32, 44, 43], [32, 33, 45, 44], [33, 34, 46, 45], [34, 35, 47, 46], [35, 36, 48, 47], [36, 26, 38, 48], [38, 37, 49, 50], [37, 39, 51, 49], [39, 40, 52, 51], [40, 41, 53, 52], [41, 42, 54, 53], [42, 43, 55, 54], [43, 44, 56, 55], [44, 45, 57, 56], [45, 46, 58, 57], [46, 47, 59, 58], [47, 48, 60, 59], [48, 38, 50, 60], [50, 49, 61], [49, 51, 61], [51, 52, 61], [52, 53, 61], [53, 54, 61], [54, 55, 61], [55, 56, 61], [56, 57, 61], [57, 58, 61], [58, 59, 61], [59, 60, 61], [60, 50, 61]], "color": "#000000", "opacity": 1.0}];
+    for ( var i=0 ; i < surfaces.length ; i++ ) addSurface( surfaces[i] );
+
+    function addSurface( json ) {
+
+        var useFaceColors = 'faceColors' in json ? true : false;
+
+        var geometry = new THREE.Geometry();
+        for ( var i=0 ; i < json.vertices.length ; i++ ) {
+            var v = json.vertices[i];
+            geometry.vertices.push( new THREE.Vector3( a[0]*v.x, a[1]*v.y, a[2]*v.z ) );
+        }
+        for ( var i=0 ; i < json.faces.length ; i++ ) {
+            var f = json.faces[i];
+            for ( var j=0 ; j < f.length - 2 ; j++ ) {
+                var face = new THREE.Face3( f[0], f[j+1], f[j+2] );
+                if ( useFaceColors ) face.color.set( json.faceColors[i] );
+                geometry.faces.push( face );
+            }
+        }
+        geometry.computeVertexNormals();
+
+        var side = json.singleSide ? THREE.FrontSide : THREE.DoubleSide;
+        var transparent = json.opacity < 1 ? true : false;
+        var depthWrite = 'depthWrite' in json ? json.depthWrite : !transparent;
+        var flatShading = json.useFlatShading ? json.useFlatShading : false;
+
+        var material = new THREE.MeshPhongMaterial( { side: side,
+                                     color: useFaceColors ? 'white' : json.color,
+                                     vertexColors: useFaceColors ? THREE.FaceColors : THREE.NoColors,
+                                     transparent: transparent, opacity: json.opacity,
+                                     shininess: 20, flatShading: flatShading,
+                                     depthWrite: depthWrite } );
+
+        var c = new THREE.Vector3();
+        geometry.computeBoundingBox();
+        geometry.boundingBox.getCenter( c );
+        geometry.translate( -c.x, -c.y, -c.z );
+
+        var mesh = new THREE.Mesh( geometry, material );
+        mesh.position.set( c.x, c.y, c.z );
+        if ( transparent && json.renderOrder ) mesh.renderOrder = json.renderOrder;
+        mesh.userData = json;
+        scene.add( mesh );
+
+        if ( json.showMeshGrid ) addSurfaceMeshGrid( json );
+
+    }
+
+    function addSurfaceMeshGrid( json ) {
+
+        var geometry = new THREE.Geometry();
+
+        for ( var i=0 ; i < json.faces.length ; i++ ) {
+            var f = json.faces[i];
+            for ( var j=0 ; j < f.length ; j++ ) {
+                var k = j === f.length-1 ? 0 : j+1;
+                var v1 = json.vertices[f[j]];
+                var v2 = json.vertices[f[k]];
+                // vertices in opposite directions on neighboring faces
+                var nudge = f[j] < f[k] ? .0005*zRange : -.0005*zRange;
+                geometry.vertices.push( new THREE.Vector3( a[0]*v1.x, a[1]*v1.y, a[2]*(v1.z+nudge) ) );
+                geometry.vertices.push( new THREE.Vector3( a[0]*v2.x, a[1]*v2.y, a[2]*(v2.z+nudge) ) );
+            }
+        }
+
+        var c = new THREE.Vector3();
+        geometry.computeBoundingBox();
+        geometry.boundingBox.getCenter( c );
+        geometry.translate( -c.x, -c.y, -c.z );
+
+        var gridColor = options.theme === 'dark' ? 'white' : 'black';
+        var linewidth = json.linewidth || 1;
+        var materialOptions = { color: gridColor, linewidth: linewidth };
+
+        var mesh;
+        if ( linewidth > 1 && window.createFatLineSegments ) {
+            mesh = createFatLineSegments( geometry, materialOptions );
+        } else {
+            var material = new THREE.LineBasicMaterial( materialOptions );
+            mesh = new THREE.LineSegments( geometry, material );
+        }
+
+        mesh.position.set( c.x, c.y, c.z );
+        mesh.userData = json;
+        scene.add( mesh );
+
+    }
+
+    function render() {
+
+        if ( window.updateAnimation ) animate = updateAnimation();
+        if ( animate ) requestAnimationFrame( render );
+
+        renderer.render( scene, camera );
+
+    }
+
+    render();
+    controls.update();
+    if ( !animate ) render();
+
+
+    // menu functions
+
+    function toggleMenu() {
+
+        var m = document.getElementById( 'menu-content' );
+        if ( m.style.display === 'block' ) m.style.display = 'none'
+        else m.style.display = 'block';
+
+    }
+
+
+    function saveAsPNG() {
+
+        var a = document.body.appendChild( document.createElement( 'a' ) );
+        a.href = renderer.domElement.toDataURL( 'image/png' );
+        a.download = 'screenshot';
+        a.click();
+
+    }
+
+    function saveAsHTML() {
+
+        toggleMenu(); // otherwise visible in output
+        event.stopPropagation();
+
+        var blob = new Blob( [ '<!DOCTYPE html>\n' + document.documentElement.outerHTML ] );
+        var a = document.body.appendChild( document.createElement( 'a' ) );
+        a.href = window.URL.createObjectURL( blob );
+        a.download = suggestFilename();
+        a.click();
+
+        function suggestFilename() {
+            if ( !document.title ) {
+                return 'graphic.html';
+            } else if ( /\.html?$/i.test( document.title ) ) {
+                return document.title; // already ends in .htm or .html
+            } else {
+                return document.title + '.html';
+            }
+        }
+
+    }
+
+    function getViewpoint() {
+
+        function roundTo( x, n ) { return +x.toFixed(n); }
+
+        var v = camera.quaternion.inverse();
+        var r = Math.sqrt( v.x*v.x + v.y*v.y + v.z*v.z );
+        var axis = [ roundTo( v.x / r, 4 ), roundTo( v.y / r, 4 ), roundTo( v.z / r, 4 ) ];
+        var angle = roundTo( 2 * Math.atan2( r, v.w ) * 180 / Math.PI, 2 );
+
+        var textArea = document.createElement( 'textarea' );
+        textArea.textContent = JSON.stringify( axis ) + ',' + angle;
+        textArea.style.csstext = 'position: absolute; top: -100%';
+        document.body.append( textArea );
+        textArea.select();
+        document.execCommand( 'copy' );
+
+        var m = document.getElementById( 'menu-message' );
+        m.innerHTML = 'Viewpoint copied to clipboard';
+        m.style.display = 'block';
+        setTimeout( function() { m.style.display = 'none'; }, 2000 );
+
+    }
+
+    function getCamera() {
+
+        function roundTo( x, n ) { return +x.toFixed(n); }
+
+        var pos = camera.position;
+        var pos_r = [ roundTo( pos.x, 4 ), roundTo( pos.y, 4 ), roundTo( pos.z, 4 ) ];
+   //     var up = camera.up; // up is always (0,0,1)
+        var textArea = document.createElement('textarea');
+        var cam_position = JSON.stringify(pos_r);
+        textArea.textContent = ',camera_position=' + cam_position;
+        textArea.style.csstext = 'position: absolute; top: -100%';
+        document.body.append( textArea );
+        textArea.select();
+        document.execCommand( 'copy' );
+
+        var m = document.getElementById( 'menu-message' );
+        m.innerHTML = 'Camera position '+ cam_position+' copied to clipboard';
+        m.style.display = 'block';
+        setTimeout( function() { m.style.display = 'none'; }, 2000 );
+
+    }
+
+</script>
+
+<div id="menu-container" onclick="toggleMenu()">&#x24d8;
+<div id="menu-message"></div>
+<div id="menu-content">
+<div onclick="saveAsPNG()">Save as PNG</div>
+<div onclick="saveAsHTML()">Save as HTML</div>
+<div onclick="getCamera()">Get camera</div>
+<div onclick="getViewpoint()">Get viewpoint</div>
+<div>Close Menu</div>
+</div></div>
+
+
+</body>
+</html>

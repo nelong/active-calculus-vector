@@ -10,7 +10,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
+<link rel="stylesheet" href="_static/pretext/fonts/material-symbols-outlined.css">
 <link href="_static/pretext/css/theme.css" rel="stylesheet" type="text/css">
 <style>
 @counter-style ptx-marker-1 { system: extends decimal; prefix: ''; suffix: ') '; }
@@ -32,7 +32,7 @@ isReact: false,
 htmlPresentation: false,
 lang: "en-US",
 });
-</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script><script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>sagecell.makeSagecell({
+</script><script defer data-pretext-mathjax="true" onerror="this.dataset.loadFailed = 'true';" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script><script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>sagecell.makeSagecell({
   "inputLocation": ".sage-interact",
   "autoeval": true,
   "hide": [
@@ -91,37 +91,40 @@ lang: "en-US",
 \newcommand{\fillinmath}[1]{\mathchoice{\colorbox{fillinmathshade}{$\displaystyle     \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\textstyle        \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptstyle      \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptscriptstyle\phantom{\,#1\,}$}}}
 \)</span></div>
 <div style="aspect-ratio: 0.925925925925926;"><pre class="ptx-sagecell sage-interact"><script type="text/x-sage">var('x,y,z,t')
-@interact
-def expxtrace2(a=slider(-2,-1,0.1,default=-1.5,label="y-coordinate")):
+def expxtrace2(a):
   f(x,y)=sin(x)*exp(-y)
+  xv=2
   param(s,t)=(s,t,f(s,t))
   #set up grid      n is number of steps in s    m is number of steps in t  
   #a1 is min s    a2 is max s   b1 is min t    b2 is max t
-  n=10;m=12;a1=0;a2=pi;b1=-2;b2=0; 
+  n=10;m=12;a1=pi/4;a2=3*pi/4;b1=-2;b2=-1; 
   #c1 is surface color     o1 is surface opacity
   #c2 and o2 are for constant t value traces
   #c3 and o3 are for constant s value traces
   c1="gray"; c2="black"; c3="black"; o1=0.2; o2=0.3; o3=0.3;
-  plot99=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1,aspect_ratio=(1,1,0.4))
+  plot12=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1,aspect_ratio=(1,1,0.4))
   for i in range(n+1):
     sv=a1+i/n*(a2-a1)
-    plot99+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c2,opacity=o2)
+    plot12+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c2,opacity=o2)
   for i in range(m+1):
     tv=b1+i/m*(b2-b1)
-    plot99+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
+    plot12+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
   fx=diff(f,x)
   fy=diff(f,y)
-  fv=f(1.75,a)
-  fxv=fx(1.75,a)
-  fyv=fy(1.75,a)
+  fv=f(xv,a)
+  fxv=fx(xv,a)
+  fyv=fy(xv,a)
   fxy=diff(fx,y)
-  fxyv=fxy(1.75,a)
-  plot12=plot99+parametric_plot3d((1.75,y,f(1.75,y)),(y,-2,0),color="blue",thickness=3,opacity=0.75)
-  plot12+=text3d("x=1.75",(1.75,-2,8),color="blue",fontsize=20)
-  plot12+=point3d((1.75,a,f(1.75,a)),color="black",size=30)
-  plot12+=parametric_plot3d((1.75+t,-1.5,f(1.75,-1.5)+t*fx(1.75,-1.5)+0.05),(t,-0.5,0.5),color="gray",thickness=4,zorder=3)
-  plot12+=parametric_plot3d((1.75+t,a,fv+t*fxv+0.05),(t,-0.5,0.5),color="black",thickness=4,zorder=5)
-  show(plot12,viewpoint=[[-0.095,-0.5444,-0.8334],163.45],camera_position=[3.5605,4.5275,4.1779])
+  fxyv=fxy(xv,a)
+  plot12+=parametric_plot3d((xv,y,f(xv,y)),(y,-2,-1),color="blue",thickness=3,opacity=0.75)
+  plot12+=text3d("x="+str(xv.n(digits=3)),(xv,-2,7),color="blue",fontsize=20)
+  plot12+=point3d((xv,a,f(xv,a)),color="black",size=30,viewpoint=[[-0.095,-0.5444,-0.8334],163.45],camera_position=[3.5605,4.5275,4.1779])
+  plot12+=parametric_plot3d((xv+t,-1.5,f(xv,-1.5)+t*fx(xv,-1.5)+0.05),(t,-0.5,0.5),color="gray",thickness=4,zorder=3)
+  plot12+=parametric_plot3d((xv+t,a,fv+t*fxv+0.05),(t,-0.5,0.5),color="black",thickness=4,zorder=5)
+  return plot12
+frames1=[expxtrace2(-a/10) for a in range(10,20)]
+plot123=animate(frames1).interactive(delay=30,auto_play=False,animation_controls=True)
+plot123
 </script></pre></div>
 </body>
 </html>

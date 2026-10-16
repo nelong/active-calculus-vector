@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+<meta charset="utf-8">
+<meta name=viewport content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+<style>
+
+    body { margin: 0px; overflow: hidden; }
+
+    #menu-container { position: absolute; bottom: 30px; right: 40px; cursor: default; }
+
+    #menu-message { position: absolute; bottom: 0px; right: 0px; white-space: nowrap;
+                    display: none; background-color: #F5F5F5; padding: 10px; }
+
+    #menu-content { position: absolute; bottom: 0px; right: 0px;
+                    display: none; background-color: #F5F5F5; border-bottom: 1px solid black;
+                    border-right: 1px solid black; border-left: 1px solid black; }
+
+    #menu-content div { border-top: 1px solid black; padding: 10px; white-space: nowrap; }
+
+    #menu-content div:hover { background-color: #FEFEFE; }
+
+    .dark-theme #menu-container { color: white; }
+
+    .dark-theme #menu-message { background-color: #181818; }
+
+    .dark-theme #menu-content { background-color: #181818; border-color: white; }
+
+    .dark-theme #menu-content div { border-color: white; }
+
+    .dark-theme #menu-content div:hover { background-color: #303030; }
+
+</style>
+
+</head>
+
+<body>
+
+<script src="https://cdn.jsdelivr.net/gh/sagemath/threejs-sage@r122/build/three.min.js"></script>
+            <script>// fat_lines.js
+
+var _fatLines = [];
+
+function _createFatLine( lineStrip, geometry, materialOptions ) {
+
+    var vertexCount = geometry.vertices.length;
+    var positions = [];
+    for ( var i=0 ; i < vertexCount ; i++ ) {
+        var v = geometry.vertices[i];
+        positions.push( v.x, v.y, v.z );
+        // For a line strip, duplicate all but the first and last vertices.
+        if ( lineStrip && i > 0 && i < vertexCount - 1 ) {
+            positions.push( v.x, v.y, v.z );
+        }
+    }
+
+    geometry = new THREE.LineSegmentsGeometry();
+    geometry.setPositions( positions );
+
+    var material = new THREE.LineMaterial( materialOptions );
+    material.resolution = new THREE.Vector2( window.innerWidth, window.innerHeight );
+
+    var line = new THREE.LineSegments2( geometry, material );
+    line.computeLineDistances();
+    line.scale.set( 1, 1, 1 );
+
+    _fatLines.push( line );
+
+    return line;
+
+}
+
+function createFatLineStrip( geometry, materialOptions ) {
+    return _createFatLine( true, geometry, materialOptions );
+}
+
+function createFatLineSegments( geometry, materialOptions ) {
+    return _createFatLine( false, geometry, materialOptions );
+}
+
+function rescaleFatLines() {
+    var res = new THREE.Vector2( window.innerWidth, window.innerHeight );
+    var n = _fatLines.length;
+    for ( var i=0 ; i < n ; i++ ) {
+        _fatLines[i].material.resolution = res;
+    }
+}
+</script>
+<script>
+
+    var options = {"animate": false, "animationControls": true, "aspectRatio": [1.0, 1.0, 1.0], "autoScaling": [false, false, false], "autoPlay": true, "axes": false, "axesLabels": false, "axesLabelsStyle": null, "decimals": 2, "delay": 20, "frame": false, "loop": true, "projection": "perspective", "theme": "light", "viewpoint": false};
+    var animate = options.animate;
+
+    if ( options.theme === 'dark' )
+        document.body.className = 'dark-theme';
+
+    var scene = new THREE.Scene();
+
+    var renderer = new THREE.WebGLRenderer( { antialias: true, preserveDrawingBuffer: true } );
+    renderer.setPixelRatio( window.devicePixelRatio );
+    renderer.setSize( window.innerWidth, window.innerHeight );
+    renderer.setClearColor( options.theme === 'dark' ? 0 : 0xffffff, 1 );
+    document.body.appendChild( renderer.domElement );
+
+    var b = [{"x":-3.0, "y":-2.98356568610482, "z":-0.059999999999999824}, {"x":3.5, "y":3.5, "z":3.5}]; // bounds
+
+    if ( b[0].x === b[1].x ) {
+        b[0].x -= 1;
+        b[1].x += 1;
+    }
+    if ( b[0].y === b[1].y ) {
+        b[0].y -= 1;
+        b[1].y += 1;
+    }
+    if ( b[0].z === b[1].z ) {
+        b[0].z -= 1;
+        b[1].z += 1;
+    }
+
+    var rxRange = Math.sqrt( Math.pow( b[1].z - b[0].z, 2 )
+                            + Math.pow( b[1].y - b[0].y, 2 ) );
+    var ryRange = Math.sqrt( Math.pow( b[1].x - b[0].x, 2 )
+                            + Math.pow( b[1].z - b[0].z, 2 ) );
+    var rzRange = Math.sqrt( Math.pow( b[1].x - b[0].x, 2 )
+                            + Math.pow( b[1].y - b[0].y, 2 ) );
+    var xRange = b[1].x - b[0].x;
+    var yRange = b[1].y - b[0].y;
+    var zRange = b[1].z - b[0].z;
+
+    var ar = options.aspectRatio;
+    var a = [ ar[0], ar[1], ar[2] ]; // aspect multipliers
+
+    var autoScaling = options.autoScaling;
+    var autoAspect = 2.5;
+    if ( xRange > autoAspect * rxRange && autoScaling[0] ) a[0] = autoAspect * rxRange / xRange;
+    if ( yRange > autoAspect * ryRange && autoScaling[1] ) a[1] = autoAspect * ryRange / yRange;
+    if ( zRange > autoAspect * rzRange && autoScaling[2] ) a[2] = autoAspect * rzRange / zRange;
+
+    // Distance from (xMid,yMid,zMid) to any corner of the bounding box, after applying aspectRatio
+    var midToCorner = Math.sqrt( a[0]*a[0]*xRange*xRange + a[1]*a[1]*yRange*yRange + a[2]*a[2]*zRange*zRange ) / 2;
+
+    var xMid = ( b[0].x + b[1].x ) / 2;
+    var yMid = ( b[0].y + b[1].y ) / 2;
+    var zMid = ( b[0].z + b[1].z ) / 2;
+
+    var box = new THREE.Geometry();
+    box.vertices.push( new THREE.Vector3( a[0]*b[0].x, a[1]*b[0].y, a[2]*b[0].z ) );
+    box.vertices.push( new THREE.Vector3( a[0]*b[1].x, a[1]*b[1].y, a[2]*b[1].z ) );
+    var boxMesh = new THREE.Line( box );
+    var boxColor = options.theme === 'dark' ? 'white' : 'black';
+    if ( options.frame ) scene.add( new THREE.BoxHelper( boxMesh, boxColor ) );
+
+    if ( options.axesLabels ) {
+
+        var d = options.decimals; // decimals
+        var offsetRatio = 0.1;
+        var al = options.axesLabels;
+        var als = options.axesLabelsStyle || [{}, {}, {}];
+
+        var offset = offsetRatio * a[1]*( b[1].y - b[0].y );
+        var xm = xMid.toFixed(d);
+        if ( /^-0.?0*$/.test(xm) ) xm = xm.substr(1);
+        addLabel( al[0] + '=' + xm, a[0]*xMid, a[1]*b[1].y+offset, a[2]*b[0].z, als[0] );
+        addLabel( ( b[0].x ).toFixed(d), a[0]*b[0].x, a[1]*b[1].y+offset, a[2]*b[0].z, als[0] );
+        addLabel( ( b[1].x ).toFixed(d), a[0]*b[1].x, a[1]*b[1].y+offset, a[2]*b[0].z, als[0] );
+
+        var offset = offsetRatio * a[0]*( b[1].x - b[0].x );
+        var ym = yMid.toFixed(d);
+        if ( /^-0.?0*$/.test(ym) ) ym = ym.substr(1);
+        addLabel( al[1] + '=' + ym, a[0]*b[1].x+offset, a[1]*yMid, a[2]*b[0].z, als[1] );
+        addLabel( ( b[0].y ).toFixed(d), a[0]*b[1].x+offset, a[1]*b[0].y, a[2]*b[0].z, als[1] );
+        addLabel( ( b[1].y ).toFixed(d), a[0]*b[1].x+offset, a[1]*b[1].y, a[2]*b[0].z, als[1] );
+
+        var offset = offsetRatio * a[1]*( b[1].y - b[0].y );
+        var zm = zMid.toFixed(d);
+        if ( /^-0.?0*$/.test(zm) ) zm = zm.substr(1);
+        addLabel( al[2] + '=' + zm, a[0]*b[1].x, a[1]*b[0].y-offset, a[2]*zMid, als[2] );
+        addLabel( ( b[0].z ).toFixed(d), a[0]*b[1].x, a[1]*b[0].y-offset, a[2]*b[0].z, als[2] );
+        addLabel( ( b[1].z ).toFixed(d), a[0]*b[1].x, a[1]*b[0].y-offset, a[2]*b[1].z, als[2] );
+
+    }
+
+    function addLabel( text, x, y, z, style ) {
+
+        var color = style.color || 'black';
+        var fontSize = style.fontSize || 14;
+        var fontFamily = style.fontFamily || 'monospace';
+        var fontStyle = style.fontStyle || 'normal';
+        var fontWeight = style.fontWeight || 'normal';
+        var opacity = style.opacity || 1;
+
+        if ( options.theme === 'dark' )
+            if ( color === 'black' || color === '#000000' )
+                color = 'white';
+
+        if ( Array.isArray( fontStyle ) ) {
+            fontFamily = fontFamily.map( function( f ) {
+                // Need to put quotes around fonts that have whitespace in their names.
+                return /\s/.test( f ) ? '"' + f + '"' : f;
+            }).join(', ');
+        }
+
+        var canvas = document.createElement( 'canvas' );
+        var context = canvas.getContext( '2d' );
+        var pixelRatio = Math.round( window.devicePixelRatio );
+
+        // For example: italic bold 20px "Times New Roman", Georgia, serif
+        var font = [fontStyle, fontWeight, fontSize + 'px', fontFamily].join(' ');
+
+        context.font = font;
+        var width = context.measureText( text ).width;
+        var height = fontSize;
+
+        // The dimensions of the canvas's underlying image data need to be powers
+        // of two in order for the resulting texture to support mipmapping.
+        canvas.width = THREE.MathUtils.ceilPowerOfTwo( width * pixelRatio );
+        canvas.height = THREE.MathUtils.ceilPowerOfTwo( height * pixelRatio );
+
+        // Re-compute the unscaled dimensions after the power of two conversion.
+        width = canvas.width / pixelRatio;
+        height = canvas.height / pixelRatio;
+
+        canvas.style.width = width + 'px';
+        canvas.style.height = height + 'px';
+
+        context.scale( pixelRatio, pixelRatio );
+        context.fillStyle = color;
+        context.font = font; // Must be set again after measureText.
+        context.textAlign = 'center';
+        context.textBaseline = 'middle';
+        context.fillText( text, width/2, height/2 );
+
+        var texture = new THREE.Texture( canvas );
+        texture.needsUpdate = true;
+
+        var materialOptions = { map: texture, sizeAttenuation: false, depthWrite: false };
+        if ( opacity < 1 ) {
+            // Setting opacity=1 would cause the texture's alpha component to be
+            // discarded, giving the text a black background instead of the
+            // background being transparent.
+            materialOptions.opacity = opacity;
+        }
+        var sprite = new THREE.Sprite( new THREE.SpriteMaterial( materialOptions ) );
+        sprite.position.set( x, y, z );
+
+        // Scaling factor, chosen somewhat arbitrarily so that the size of the text
+        // is consistent with previously generated plots.
+        var scale = 1/625;
+        if ( options.projection === 'orthographic' ) {
+            scale = midToCorner/256; // Needs to scale along with the plot itself.
+        }
+        sprite.scale.set( scale * width, scale * height, 1 );
+
+        scene.add( sprite );
+
+        return sprite;
+
+    }
+
+    if ( options.axes ) scene.add( new THREE.AxesHelper( Math.min( a[0]*b[1].x, a[1]*b[1].y, a[2]*b[1].z ) ) );
+
+    var camera = createCamera();
+    camera.up.set( 0, 0, 1 );
+    camera.position.set( a[0]*xMid, a[1]*yMid, a[2]*zMid );
+
+    // camera is positioned so that the line from the camera to the center
+    // of the bounding sphere of the objects makes an angle of 60 degrees with x-axis
+    // and an angle of 30 degrees with z-axis and the field of view of the camera looking
+    // at the center has an angle of 45 degrees.
+    const sin8 = Math.sin(Math.PI / 8);
+    const sin5 = Math.sin(Math.PI / 5);
+    const cos5 = Math.cos(Math.PI / 5);
+    const sin3 = Math.sin(Math.PI / 3);
+    const cos3 = Math.cos(Math.PI / 3);
+    var r = midToCorner / sin8;
+    var offset = new THREE.Vector3( r * sin3 * cos5, r * sin3 * sin5, r * cos3 );
+
+    if ( options.viewpoint ) {
+
+        var aa = options.viewpoint;
+        var axis = new THREE.Vector3( aa[0][0], aa[0][1], aa[0][2] ).normalize();
+        var angle = aa[1] * Math.PI / 180;
+        var q = new THREE.Quaternion().setFromAxisAngle( axis, angle ).inverse();
+
+        offset.set( 0, 0, offset.length() );
+        offset.applyQuaternion( q );
+
+    }
+
+    camera.position.add( offset );
+
+    function createCamera() {
+
+        var aspect = window.innerWidth / window.innerHeight;
+
+        // Scale the near and far clipping planes along with the overall plot size.
+        var nearClip = 0.01 * midToCorner;
+        var farClip = 100 * midToCorner;
+
+        if ( options.projection === 'orthographic' ) {
+            var camera = new THREE.OrthographicCamera( -1, 1, 1, -1, -farClip, farClip );
+            updateCameraAspect( camera, aspect );
+            return camera;
+        }
+
+        return new THREE.PerspectiveCamera( 45, aspect, nearClip, farClip );
+
+    }
+
+    function updateCameraAspect( camera, aspect ) {
+
+        if ( camera.isPerspectiveCamera ) {
+            camera.aspect = aspect;
+        } else if ( camera.isOrthographicCamera ) {
+            // Fit the camera frustum to the bounding box's diagonal so that the entire plot fits
+            // within at the default zoom level and camera position.
+            if ( aspect > 1 ) { // Wide window
+                camera.top = midToCorner;
+                camera.right = midToCorner * aspect;
+            } else { // Tall or square window
+                camera.top = midToCorner / aspect;
+                camera.right = midToCorner;
+            }
+            camera.bottom = -camera.top;
+            camera.left = -camera.right;
+        }
+
+        camera.updateProjectionMatrix();
+
+    }
+
+    var lights = [{"x":-5, "y":3, "z":0, "color":"#7f7f7f", "parent":"camera"}];
+    for ( var i=0 ; i < lights.length ; i++ ) {
+        var light = new THREE.DirectionalLight( lights[i].color, 1 );
+        light.position.set( a[0]*lights[i].x, a[1]*lights[i].y, a[2]*lights[i].z );
+        if ( lights[i].parent === 'camera' ) {
+            light.target.position.set( a[0]*xMid, a[1]*yMid, a[2]*zMid );
+            scene.add( light.target );
+            camera.add( light );
+        } else scene.add( light );
+    }
+    scene.add( camera );
+
+    var ambient = {"color":"#7f7f7f"};
+    scene.add( new THREE.AmbientLight( ambient.color, 1 ) );
+
+    var controls = new THREE.OrbitControls( camera, renderer.domElement );
+    controls.target.set( a[0]*xMid, a[1]*yMid, a[2]*zMid );
+    controls.addEventListener( 'change', function() { if ( !animate ) render(); } );
+
+    window.addEventListener( 'resize', function() {
+
+        renderer.setSize( window.innerWidth, window.innerHeight );
+        updateCameraAspect( camera, window.innerWidth / window.innerHeight );
+        if ( window.rescaleFatLines ) rescaleFatLines();
+        if ( !animate ) render();
+
+    } );
+
+    var texts = [{"color": "#000000", "fontSize": 30.0, "fontFamily": ["monospace"], "fontStyle": "normal", "fontWeight": "normal", "opacity": 1.0, "text": "x", "x": 3.5, "y": 0.0, "z": 0.0}, {"color": "#000000", "fontSize": 30.0, "fontFamily": ["monospace"], "fontStyle": "normal", "fontWeight": "normal", "opacity": 1.0, "text": "y", "x": 0.0, "y": 3.5, "z": 0.0}, {"color": "#000000", "fontSize": 30.0, "fontFamily": ["monospace"], "fontStyle": "normal", "fontWeight": "normal", "opacity": 1.0, "text": "z", "x": 0.5, "y": 0.5, "z": 3.5}];
+    for ( var i=0 ; i < texts.length ; i++ ) addText( texts[i] );
+
+    function addText( json ) {
+        var sprite = addLabel( json.text, a[0]*json.x, a[1]*json.y, a[2]*json.z, json );
+        sprite.userData = json;
+    }
+
+    var points = [];
+    for ( var i=0 ; i < points.length ; i++ ) addPoint( points[i] );
+
+    function addPoint( json ) {
+
+        var geometry = new THREE.Geometry();
+        var v = json.point;
+        geometry.vertices.push( new THREE.Vector3( a[0]*v[0], a[1]*v[1], a[2]*v[2] ) );
+
+        var canvas = document.createElement( 'canvas' );
+        canvas.width = 128;
+        canvas.height = 128;
+
+        var context = canvas.getContext( '2d' );
+        context.arc( 64, 64, 64, 0, 2 * Math.PI );
+        context.fillStyle = json.color;
+        context.fill();
+
+        var texture = new THREE.Texture( canvas );
+        texture.needsUpdate = true;
+
+        var transparent = json.opacity < 1 ? true : false;
+        var size = camera.isOrthographicCamera ? json.size : json.size/100;
+        var material = new THREE.PointsMaterial( { size: size, map: texture,
+                                                   transparent: transparent, opacity: json.opacity,
+                                                   alphaTest: .1 } );
+
+        var c = new THREE.Vector3();
+        geometry.computeBoundingBox();
+        geometry.boundingBox.getCenter( c );
+        geometry.translate( -c.x, -c.y, -c.z );
+
+        var mesh = new THREE.Points( geometry, material );
+        mesh.position.set( c.x, c.y, c.z );
+        mesh.userData = json;
+        scene.add( mesh );
+
+    }
+
+    var lines = [{"points": [[0.0, 0.0, 2.0], [0.022936247116183958, 0.03572108843333862, 1.9995494323495389], [0.04586215990139438, 0.07142608209978991, 1.998197932409363], [0.06876740868097296, 0.10709889348424786, 1.995946109121625], [0.09164167309079385, 0.14272344957190164, 1.992794977085053], [0.11447464672728588, 0.17828369909021605, 1.988745956097805], [0.13725604179116463, 0.21376361974111585, 1.983800870517754], [0.15997559372278192, 0.24914722542011483, 1.9779619484404907], [0.18262306582700444, 0.28441857341913734, 1.971231820695417], [0.20518825388553721, 0.3195617716097869, 1.9636135196603783], [0.22766099075461457, 0.354560985603825, 1.9551104778953725], [0.250031150945986, 0.3894004458876344, 1.9457265265959491], [0.27228865518913353, 0.4240644549274517, 1.9354658938669977], [0.29442347497266536, 0.4585373942421683, 1.9243332028176987], [0.31642563706283805, 0.4928037314405124, 1.912333469478502], [0.33828522799717364, 0.526848027219443, 1.8994721005410637], [0.3599923985511449, 0.5606549423205993, 1.8857548909221684], [0.38153736817591705, 0.5942092444416747, 1.8711880211527245], [0.402910429405147, 0.6274958150995995, 1.8557780545930187], [0.4241019522288536, 0.6604996564424409, 1.8395319344754775], [0.44510238843238853, 0.6932058980069487, 1.8224569807762716], [0.46590227589855265, 0.7255998034187053, 1.8045608869171705], [0.4864922428709208, 0.7576667770318607, 1.7858517162991372], [0.5068630121764509, 0.7893923705054564, 1.7663378986692186], [0.5270054054054791, 0.8207622893133816, 1.7460282263223763], [0.5469103470472134, 0.8517623991850236, 1.724931850139961], [0.5665688685788658, 0.8823787324737136, 1.7030582754666226], [0.5859721125065781, 0.9125974944500961, 1.6804173578275086], [0.6051113363563225, 0.9424050695175873, 1.6570192984876841], [0.6239779166129774, 0.9717880273471234, 1.6328746398557712], [0.6425633526058045, 1.0007331289284316, 1.6079942607338809], [0.6608592703385754, 1.0292273325350996, 1.5823893714159765], [0.6788574262626245, 1.0572577996007568, 1.5560715086368786], [0.6965497109911242, 1.0848119005037162, 1.5290525303741846], [0.7139281529529131, 1.1118772202574734, 1.5013446105054482], [0.730984921984228, 1.1384415641044978, 1.4729602333230238], [0.747712332856722, 1.1644929630107963, 1.4439121879090482], [0.76410284874018, 1.1900196790587725, 1.4142135623730943], [0.7801490845983703, 1.2150102107359526, 1.3838777379550915], [0.7958438105165037, 1.239453298117195, 1.3529183829961728], [0.8111799549587986, 1.2633379279380483, 1.3213494467801619], [0.8261506079546865, 1.2866533385569723, 1.289185153248477], [0.8407490242122212, 1.3093890248041846, 1.2564399945912834], [0.8549686261572891, 1.331534742714951, 1.2231287247177816], [0.8688030068972513, 1.3530805141451854, 1.1892663526085718], [0.8822459331076822, 1.3740166312672761, 1.1548681355530948], [0.8952913478409037, 1.3943336609441224, 1.119949572275189], [0.9079333732550504, 1.414022448979398, 1.0845263959498685], [0.9201663132624343, 1.4330741242421376, 1.0486145671144618], [0.931984656096018, 1.4514801026637807, 1.0122302664773106], [0.9433830767928387, 1.4692320911058758, 0.9753898876272673], [0.9543564395932639, 1.4863220910966988, 0.9381100296472721], [0.9648998002549992, 1.502742402435108, 0.9004074896353446], [0.9750084082808032, 1.5184856266600033, 0.8622992551363544], [0.9846777090589081, 1.5335446703838358, 0.8238024964879831], [0.9939033459151808, 1.547912748488656, 0.7849345590843252], [1.0026811620760991, 1.5615833871832705, 0.7457129555606148], [1.011007202541659, 1.574550426920123, 0.706155357902599], [1.0188777158673705, 1.5868080251705852, 0.6662795894841125], [1.0262891558545362, 1.5983506590574135, 0.6261036170364419], [1.033238183148055, 1.6091731278431773, 0.5856455425530979], [1.0397216667410258, 1.6192705552735434, 0.5449235951336427], [1.0457366853854795, 1.6286383917743588, 0.5039561227702473], [1.0512805289085982, 1.637272416501542, 0.4627615840806798], [1.0563506994338308, 1.645168739242857, 0.42135853999144934], [1.0609449125063566, 1.652323802170719, 0.3797656453748532], [1.0650610981223856, 1.658734381445236, 0.33800164064369465], [1.068697401661836, 1.664397588666766, 0.2960853433074592], [1.0718521847239657, 1.669310872177337, 0.2540356394937538], [1.0745240258655824, 1.673472018210342, 0.21187147543882823], [1.076711721241501, 1.6768791518879893, 0.16961184895101444], [1.0784142851469558, 1.6795307380660633, 0.12727580085092846], [1.079630950461728, 1.6814255820256094, 0.08488240639229248], [1.0803611689957857, 1.682562830011237, 0.04245076666724285], [1.0806046117362795, 1.682941969615793, 1.2246467991473532e-16]], "color": "#ff0000", "opacity": 1.0, "linewidth": 3.0}];
+    for ( var i=0 ; i < lines.length ; i++ ) addLine( lines[i] );
+
+    function addLine( json ) {
+
+        var geometry = new THREE.Geometry();
+        for ( var i=0 ; i < json.points.length ; i++ ) {
+            var v = json.points[i];
+            geometry.vertices.push( new THREE.Vector3( a[0]*v[0], a[1]*v[1], a[2]*v[2] ) );
+        }
+
+        var c = new THREE.Vector3();
+        geometry.computeBoundingBox();
+        geometry.boundingBox.getCenter( c );
+        geometry.translate( -c.x, -c.y, -c.z );
+
+        var transparent = json.opacity < 1 ? true : false;
+        var materialOptions = { color: json.color, linewidth: json.linewidth,
+                                transparent: transparent, opacity: json.opacity };
+
+        var mesh;
+        if ( json.linewidth > 1 && window.createFatLineStrip ) {
+            mesh = createFatLineStrip( geometry, materialOptions );
+        } else {
+            var material = new THREE.LineBasicMaterial( materialOptions );
+            mesh = new THREE.Line( geometry, material );
+        }
+
+        mesh.position.set( c.x, c.y, c.z );
+        mesh.userData = json;
+        scene.add( mesh );
+
+    }
+
+    var surfaces = [{"vertices": [{"x": 2.82, "y": 0.0, "z": 1.726751986797768e-16}, {"x": 2.82, "y": 0.006180339887498949, "z": -0.0190211303259029}, {"x": 2.82, "y": 0.02, "z": 1.726751986797768e-16}, {"x": 2.82, "y": -0.016180339887498948, "z": -0.011755705045849291}, {"x": 2.82, "y": -0.01618033988749895, "z": 0.011755705045849635}, {"x": 2.82, "y": 0.006180339887498945, "z": 0.019021130325903246}, {"x": 1.1647083184890924e-18, "y": 0.006180339887498949, "z": -0.019021130325903073}, {"x": 0.0, "y": 0.02, "z": 0.0}, {"x": 7.198293278059968e-19, "y": -0.016180339887498948, "z": -0.011755705045849465}, {"x": -7.198293278059966e-19, "y": -0.01618033988749895, "z": 0.011755705045849461}, {"x": -1.1647083184890924e-18, "y": 0.006180339887498945, "z": 0.019021130325903073}, {"x": 0.0, "y": 0.0, "z": 0.0}], "faces": [[0, 1, 2], [0, 3, 1], [0, 4, 3], [0, 5, 4], [0, 2, 5], [2, 1, 6, 7], [1, 3, 8, 6], [3, 4, 9, 8], [4, 5, 10, 9], [5, 2, 7, 10], [7, 6, 11], [6, 8, 11], [8, 9, 11], [9, 10, 11], [10, 7, 11]], "color": "#000000", "opacity": 1.0}, {"vertices": [{"x": 3.0, "y": 0.0, "z": 1.8369701987210297e-16}, {"x": 2.82, "y": 0.018541019662496848, "z": -0.05706339097770904}, {"x": 2.82, "y": 0.06, "z": 1.726751986797768e-16}, {"x": 2.82, "y": -0.04854101966249684, "z": -0.03526711513754822}, {"x": 2.82, "y": -0.048541019662496854, "z": 0.03526711513754855}, {"x": 2.82, "y": 0.018541019662496834, "z": 0.05706339097770939}, {"x": 2.82, "y": 0.0, "z": 1.726751986797768e-16}], "faces": [[0, 1, 2], [0, 3, 1], [0, 4, 3], [0, 5, 4], [0, 2, 5], [2, 1, 6], [1, 3, 6], [3, 4, 6], [4, 5, 6], [5, 2, 6]], "color": "#000000", "opacity": 1.0}, {"vertices": [{"x": 0.0, "y": 2.82, "z": 1.726751986797768e-16}, {"x": 0.019021130325903073, "y": 2.82, "z": -0.006180339887498777}, {"x": 0.0, "y": 2.82, "z": -0.019999999999999827}, {"x": 0.011755705045849465, "y": 2.82, "z": 0.01618033988749912}, {"x": -0.011755705045849461, "y": 2.82, "z": 0.016180339887499125}, {"x": -0.019021130325903073, "y": 2.82, "z": -0.006180339887498772}, {"x": 0.019021130325903073, "y": 3.7843667304341507e-19, "z": -0.006180339887498949}, {"x": 0.0, "y": 1.2246467991473532e-18, "z": -0.02}, {"x": 0.011755705045849465, "y": -9.907600726170915e-19, "z": 0.016180339887498948}, {"x": -0.011755705045849461, "y": -9.907600726170917e-19, "z": 0.01618033988749895}, {"x": -0.019021130325903073, "y": 3.784366730434148e-19, "z": -0.006180339887498945}, {"x": 0.0, "y": 0.0, "z": 0.0}], "faces": [[0, 1, 2], [0, 3, 1], [0, 4, 3], [0, 5, 4], [0, 2, 5], [2, 1, 6, 7], [1, 3, 8, 6], [3, 4, 9, 8], [4, 5, 10, 9], [5, 2, 7, 10], [7, 6, 11], [6, 8, 11], [8, 9, 11], [9, 10, 11], [10, 7, 11]], "color": "#000000", "opacity": 1.0}, {"vertices": [{"x": 0.0, "y": 3.0, "z": 1.8369701987210297e-16}, {"x": 0.05706339097770921, "y": 2.82, "z": -0.018541019662496674}, {"x": 0.0, "y": 2.82, "z": -0.059999999999999824}, {"x": 0.03526711513754839, "y": 2.82, "z": 0.04854101966249701}, {"x": -0.03526711513754838, "y": 2.82, "z": 0.04854101966249703}, {"x": -0.05706339097770922, "y": 2.82, "z": -0.01854101966249666}, {"x": 0.0, "y": 2.82, "z": 1.726751986797768e-16}], "faces": [[0, 1, 2], [0, 3, 1], [0, 4, 3], [0, 5, 4], [0, 2, 5], [2, 1, 6], [1, 3, 6], [3, 4, 6], [4, 5, 6], [5, 2, 6]], "color": "#000000", "opacity": 1.0}, {"vertices": [{"x": 0.0, "y": 0.0, "z": 2.82}, {"x": 0.019021130325903073, "y": 0.006180339887498949, "z": 2.82}, {"x": 0.0, "y": 0.02, "z": 2.82}, {"x": 0.011755705045849465, "y": -0.016180339887498948, "z": 2.82}, {"x": -0.011755705045849461, "y": -0.01618033988749895, "z": 2.82}, {"x": -0.019021130325903073, "y": 0.006180339887498945, "z": 2.82}, {"x": 0.019021130325903073, "y": 0.006180339887498949, "z": 0.0}, {"x": 0.0, "y": 0.02, "z": 0.0}, {"x": 0.011755705045849465, "y": -0.016180339887498948, "z": 0.0}, {"x": -0.011755705045849461, "y": -0.01618033988749895, "z": 0.0}, {"x": -0.019021130325903073, "y": 0.006180339887498945, "z": 0.0}, {"x": 0.0, "y": 0.0, "z": 0.0}], "faces": [[0, 1, 2], [0, 3, 1], [0, 4, 3], [0, 5, 4], [0, 2, 5], [2, 1, 6, 7], [1, 3, 8, 6], [3, 4, 9, 8], [4, 5, 10, 9], [5, 2, 7, 10], [7, 6, 11], [6, 8, 11], [8, 9, 11], [9, 10, 11], [10, 7, 11]], "color": "#000000", "opacity": 1.0}, {"vertices": [{"x": 0.0, "y": 0.0, "z": 3.0}, {"x": 0.05706339097770921, "y": 0.018541019662496848, "z": 2.82}, {"x": 0.0, "y": 0.06, "z": 2.82}, {"x": 0.03526711513754839, "y": -0.04854101966249684, "z": 2.82}, {"x": -0.03526711513754838, "y": -0.048541019662496854, "z": 2.82}, {"x": -0.05706339097770922, "y": 0.018541019662496834, "z": 2.82}, {"x": 0.0, "y": 0.0, "z": 2.82}], "faces": [[0, 1, 2], [0, 3, 1], [0, 4, 3], [0, 5, 4], [0, 2, 5], [2, 1, 6], [1, 3, 6], [3, 4, 6], [4, 5, 6], [5, 2, 6]], "color": "#000000", "opacity": 1.0}, {"vertices": [{"x": 0.0, "y": 0.0, "z": 0.0}, {"x": 0.1, "y": 0.0, "z": 0.0}, {"x": 0.09781476007338058, "y": 0.02079116908177593, "z": 0.0}, {"x": 0.2, "y": 0.0, "z": 0.0}, {"x": 0.19562952014676116, "y": 0.04158233816355186, "z": 0.0}, {"x": 0.30000000000000004, "y": 0.0, "z": 0.0}, {"x": 0.29344428022014174, "y": 0.0623735072453278, "z": 0.0}, {"x": 0.4, "y": 0.0, "z": 0.0}, {"x": 0.3912590402935223, "y": 0.08316467632710373, "z": 0.0}, {"x": 0.5, "y": 0.0, "z": 0.0}, {"x": 0.48907380036690284, "y": 0.10395584540887966, "z": 0.0}, {"x": 0.6, "y": 0.0, "z": 0.0}, {"x": 0.5868885604402834, "y": 0.12474701449065559, "z": 0.0}, {"x": 0.7, "y": 0.0, "z": 0.0}, {"x": 0.6847033205136639, "y": 0.1455381835724315, "z": 0.0}, {"x": 0.7999999999999999, "y": 0.0, "z": 0.0}, {"x": 0.7825180805870445, "y": 0.16632935265420745, "z": 0.0}, {"x": 0.8999999999999999, "y": 0.0, "z": 0.0}, {"x": 0.880332840660425, "y": 0.18712052173598337, "z": 0.0}, {"x": 0.9999999999999999, "y": 0.0, "z": 0.0}, {"x": 0.9781476007338056, "y": 0.2079116908177593, "z": 0.0}, {"x": 1.0999999999999999, "y": 0.0, "z": 0.0}, {"x": 1.0759623608071862, "y": 0.22870285989953523, "z": 0.0}, {"x": 1.2, "y": 0.0, "z": 0.0}, {"x": 1.1737771208805667, "y": 0.24949402898131118, "z": 0.0}, {"x": 1.3, "y": 0.0, "z": 0.0}, {"x": 1.2715918809539475, "y": 0.2702851980630871, "z": 0.0}, {"x": 1.4000000000000001, "y": 0.0, "z": 0.0}, {"x": 1.369406641027328, "y": 0.29107636714486307, "z": 0.0}, {"x": 1.5000000000000002, "y": 0.0, "z": 0.0}, {"x": 1.4672214011007088, "y": 0.31186753622663904, "z": 0.0}, {"x": 1.6000000000000003, "y": 0.0, "z": 0.0}, {"x": 1.5650361611740895, "y": 0.33265870530841496, "z": 0.0}, {"x": 1.7000000000000004, "y": 0.0, "z": 0.0}, {"x": 1.66285092124747, "y": 0.35344987439019093, "z": 0.0}, {"x": 1.8000000000000005, "y": 0.0, "z": 0.0}, {"x": 1.7606656813208508, "y": 0.37424104347196685, "z": 0.0}, {"x": 1.9000000000000006, "y": 0.0, "z": 0.0}, {"x": 1.8584804413942313, "y": 0.3950322125537428, "z": 0.0}, {"x": 2.0000000000000004, "y": 0.0, "z": 0.0}, {"x": 1.9562952014676118, "y": 0.41582338163551874, "z": 0.0}, {"x": 2.1000000000000005, "y": 0.0, "z": 0.0}, {"x": 2.0541099615409926, "y": 0.43661455071729466, "z": 0.0}, {"x": 2.2000000000000006, "y": 0.0, "z": 0.0}, {"x": 2.1519247216143733, "y": 0.45740571979907063, "z": 0.0}, {"x": 2.3000000000000007, "y": 0.0, "z": 0.0}, {"x": 2.2497394816877536, "y": 0.47819688888084655, "z": 0.0}, {"x": 2.400000000000001, "y": 0.0, "z": 0.0}, {"x": 2.3475542417611344, "y": 0.4989880579626225, "z": 0.0}, {"x": 2.500000000000001, "y": 0.0, "z": 0.0}, {"x": 2.445369001834515, "y": 0.5197792270443985, "z": 0.0}, {"x": 2.600000000000001, "y": 0.0, "z": 0.0}, {"x": 2.543183761907896, "y": 0.5405703961261744, "z": 0.0}, {"x": 2.700000000000001, "y": 0.0, "z": 0.0}, {"x": 2.6409985219812766, "y": 0.5613615652079503, "z": 0.0}, {"x": 2.800000000000001, "y": 0.0, "z": 0.0}, {"x": 2.738813282054657, "y": 0.5821527342897264, "z": 0.0}, {"x": 2.9000000000000012, "y": 0.0, "z": 0.0}, {"x": 2.8366280421280377, "y": 0.6029439033715023, "z": 0.0}, {"x": 3.0, "y": 0.0, "z": 0.0}, {"x": 2.934442802201417, "y": 0.623735072453278, "z": 0.0}, {"x": 0.0913545457642601, "y": 0.040673664307580015, "z": 0.0}, {"x": 0.1827090915285202, "y": 0.08134732861516003, "z": 0.0}, {"x": 0.2740636372927803, "y": 0.12202099292274006, "z": 0.0}, {"x": 0.3654181830570404, "y": 0.16269465723032006, "z": 0.0}, {"x": 0.45677272882130043, "y": 0.20336832153790008, "z": 0.0}, {"x": 0.5481272745855605, "y": 0.2440419858454801, "z": 0.0}, {"x": 0.6394818203498206, "y": 0.2847156501530601, "z": 0.0}, {"x": 0.7308363661140806, "y": 0.3253893144606401, "z": 0.0}, {"x": 0.8221909118783407, "y": 0.3660629787682201, "z": 0.0}, {"x": 0.9135454576426008, "y": 0.4067366430758001, "z": 0.0}, {"x": 1.004900003406861, "y": 0.4474103073833801, "z": 0.0}, {"x": 1.096254549171121, "y": 0.4880839716909602, "z": 0.0}, {"x": 1.1876090949353812, "y": 0.5287576359985402, "z": 0.0}, {"x": 1.2789636406996414, "y": 0.5694313003061202, "z": 0.0}, {"x": 1.3703181864639016, "y": 0.6101049646137003, "z": 0.0}, {"x": 1.4616727322281617, "y": 0.6507786289212804, "z": 0.0}, {"x": 1.553027277992422, "y": 0.6914522932288604, "z": 0.0}, {"x": 1.644381823756682, "y": 0.7321259575364405, "z": 0.0}, {"x": 1.7357363695209422, "y": 0.7727996218440205, "z": 0.0}, {"x": 1.8270909152852022, "y": 0.8134732861516005, "z": 0.0}, {"x": 1.9184454610494623, "y": 0.8541469504591805, "z": 0.0}, {"x": 2.0098000068137223, "y": 0.8948206147667606, "z": 0.0}, {"x": 2.1011545525779827, "y": 0.9354942790743407, "z": 0.0}, {"x": 2.1925090983422426, "y": 0.9761679433819207, "z": 0.0}, {"x": 2.283863644106503, "y": 1.0168416076895008, "z": 0.0}, {"x": 2.375218189870763, "y": 1.0575152719970808, "z": 0.0}, {"x": 2.4665727356350233, "y": 1.0981889363046609, "z": 0.0}, {"x": 2.5579272813992833, "y": 1.1388626006122409, "z": 0.0}, {"x": 2.6492818271635437, "y": 1.1795362649198209, "z": 0.0}, {"x": 2.7406363729278027, "y": 1.2202099292274005, "z": 0.0}, {"x": 0.08090169943749476, "y": 0.058778525229247314, "z": 0.0}, {"x": 0.1618033988749895, "y": 0.11755705045849463, "z": 0.0}, {"x": 0.24270509831248427, "y": 0.17633557568774197, "z": 0.0}, {"x": 0.323606797749979, "y": 0.23511410091698925, "z": 0.0}, {"x": 0.4045084971874737, "y": 0.29389262614623657, "z": 0.0}, {"x": 0.4854101966249684, "y": 0.3526711513754839, "z": 0.0}, {"x": 0.5663118960624631, "y": 0.4114496766047312, "z": 0.0}, {"x": 0.6472135954999579, "y": 0.47022820183397845, "z": 0.0}, {"x": 0.7281152949374526, "y": 0.5290067270632258, "z": 0.0}, {"x": 0.8090169943749473, "y": 0.587785252292473, "z": 0.0}, {"x": 0.889918693812442, "y": 0.6465637775217203, "z": 0.0}, {"x": 0.9708203932499369, "y": 0.7053423027509678, "z": 0.0}, {"x": 1.0517220926874318, "y": 0.7641208279802151, "z": 0.0}, {"x": 1.1326237921249265, "y": 0.8228993532094625, "z": 0.0}, {"x": 1.2135254915624214, "y": 0.8816778784387098, "z": 0.0}, {"x": 1.294427190999916, "y": 0.9404564036679572, "z": 0.0}, {"x": 1.375328890437411, "y": 0.9992349288972046, "z": 0.0}, {"x": 1.4562305898749057, "y": 1.0580134541264519, "z": 0.0}, {"x": 1.5371322893124006, "y": 1.1167919793556993, "z": 0.0}, {"x": 1.6180339887498953, "y": 1.1755705045849465, "z": 0.0}, {"x": 1.69893568818739, "y": 1.234349029814194, "z": 0.0}, {"x": 1.779837387624885, "y": 1.2931275550434413, "z": 0.0}, {"x": 1.8607390870623797, "y": 1.3519060802726885, "z": 0.0}, {"x": 1.9416407864998746, "y": 1.410684605501936, "z": 0.0}, {"x": 2.0225424859373695, "y": 1.4694631307311834, "z": 0.0}, {"x": 2.103444185374864, "y": 1.5282416559604308, "z": 0.0}, {"x": 2.184345884812359, "y": 1.587020181189678, "z": 0.0}, {"x": 2.265247584249854, "y": 1.6457987064189255, "z": 0.0}, {"x": 2.3461492836873488, "y": 1.7045772316481729, "z": 0.0}, {"x": 2.4270509831248424, "y": 1.7633557568774194, "z": 0.0}, {"x": 0.06691306063588583, "y": 0.07431448254773941, "z": 0.0}, {"x": 0.13382612127177165, "y": 0.14862896509547882, "z": 0.0}, {"x": 0.2007391819076575, "y": 0.22294344764321827, "z": 0.0}, {"x": 0.2676522425435433, "y": 0.29725793019095764, "z": 0.0}, {"x": 0.3345653031794291, "y": 0.37157241273869707, "z": 0.0}, {"x": 0.40147836381531493, "y": 0.4458868952864365, "z": 0.0}, {"x": 0.46839142445120074, "y": 0.5202013778341759, "z": 0.0}, {"x": 0.5353044850870865, "y": 0.5945158603819153, "z": 0.0}, {"x": 0.6022175457229724, "y": 0.6688303429296547, "z": 0.0}, {"x": 0.6691306063588581, "y": 0.743144825477394, "z": 0.0}, {"x": 0.736043666994744, "y": 0.8174593080251334, "z": 0.0}, {"x": 0.8029567276306299, "y": 0.891773790572873, "z": 0.0}, {"x": 0.8698697882665157, "y": 0.9660882731206124, "z": 0.0}, {"x": 0.9367828489024016, "y": 1.040402755668352, "z": 0.0}, {"x": 1.0036959095382876, "y": 1.1147172382160913, "z": 0.0}, {"x": 1.0706089701741734, "y": 1.1890317207638308, "z": 0.0}, {"x": 1.1375220308100593, "y": 1.2633462033115703, "z": 0.0}, {"x": 1.2044350914459452, "y": 1.3376606858593099, "z": 0.0}, {"x": 1.271348152081831, "y": 1.4119751684070492, "z": 0.0}, {"x": 1.3382612127177167, "y": 1.4862896509547885, "z": 0.0}, {"x": 1.4051742733536026, "y": 1.560604133502528, "z": 0.0}, {"x": 1.4720873339894884, "y": 1.6349186160502676, "z": 0.0}, {"x": 1.5390003946253745, "y": 1.709233098598007, "z": 0.0}, {"x": 1.6059134552612604, "y": 1.7835475811457464, "z": 0.0}, {"x": 1.6728265158971463, "y": 1.857862063693486, "z": 0.0}, {"x": 1.7397395765330321, "y": 1.9321765462412255, "z": 0.0}, {"x": 1.806652637168918, "y": 2.006491028788965, "z": 0.0}, {"x": 1.8735656978048039, "y": 2.0808055113367043, "z": 0.0}, {"x": 1.9404787584406897, "y": 2.155119993884444, "z": 0.0}, {"x": 2.0073918190765747, "y": 2.2294344764321825, "z": 0.0}, {"x": 0.05000000000000002, "y": 0.08660254037844387, "z": 0.0}, {"x": 0.10000000000000003, "y": 0.17320508075688773, "z": 0.0}, {"x": 0.15000000000000005, "y": 0.2598076211353316, "z": 0.0}, {"x": 0.20000000000000007, "y": 0.34641016151377546, "z": 0.0}, {"x": 0.25000000000000006, "y": 0.4330127018922193, "z": 0.0}, {"x": 0.30000000000000004, "y": 0.5196152422706631, "z": 0.0}, {"x": 0.35000000000000003, "y": 0.606217782649107, "z": 0.0}, {"x": 0.4000000000000001, "y": 0.6928203230275508, "z": 0.0}, {"x": 0.45000000000000007, "y": 0.7794228634059946, "z": 0.0}, {"x": 0.5, "y": 0.8660254037844385, "z": 0.0}, {"x": 0.55, "y": 0.9526279441628823, "z": 0.0}, {"x": 0.6000000000000001, "y": 1.0392304845413263, "z": 0.0}, {"x": 0.6500000000000001, "y": 1.12583302491977, "z": 0.0}, {"x": 0.7000000000000002, "y": 1.2124355652982142, "z": 0.0}, {"x": 0.7500000000000003, "y": 1.299038105676658, "z": 0.0}, {"x": 0.8000000000000004, "y": 1.385640646055102, "z": 0.0}, {"x": 0.8500000000000004, "y": 1.472243186433546, "z": 0.0}, {"x": 0.9000000000000005, "y": 1.55884572681199, "z": 0.0}, {"x": 0.9500000000000005, "y": 1.6454482671904338, "z": 0.0}, {"x": 1.0000000000000004, "y": 1.7320508075688776, "z": 0.0}, {"x": 1.0500000000000005, "y": 1.8186533479473215, "z": 0.0}, {"x": 1.1000000000000005, "y": 1.9052558883257655, "z": 0.0}, {"x": 1.1500000000000006, "y": 1.9918584287042094, "z": 0.0}, {"x": 1.2000000000000006, "y": 2.0784609690826534, "z": 0.0}, {"x": 1.2500000000000007, "y": 2.1650635094610973, "z": 0.0}, {"x": 1.3000000000000007, "y": 2.251666049839541, "z": 0.0}, {"x": 1.3500000000000008, "y": 2.338268590217985, "z": 0.0}, {"x": 1.4000000000000008, "y": 2.4248711305964292, "z": 0.0}, {"x": 1.4500000000000008, "y": 2.511473670974873, "z": 0.0}, {"x": 1.5000000000000004, "y": 2.598076211353316, "z": 0.0}, {"x": 0.030901699437494747, "y": 0.09510565162951536, "z": 0.0}, {"x": 0.06180339887498949, "y": 0.1902113032590307, "z": 0.0}, {"x": 0.09270509831248425, "y": 0.2853169548885461, "z": 0.0}, {"x": 0.12360679774997899, "y": 0.3804226065180614, "z": 0.0}, {"x": 0.15450849718747373, "y": 0.47552825814757677, "z": 0.0}, {"x": 0.18541019662496847, "y": 0.570633909777092, "z": 0.0}, {"x": 0.2163118960624632, "y": 0.6657395614066074, "z": 0.0}, {"x": 0.24721359549995794, "y": 0.7608452130361227, "z": 0.0}, {"x": 0.2781152949374527, "y": 0.8559508646656381, "z": 0.0}, {"x": 0.3090169943749474, "y": 0.9510565162951534, "z": 0.0}, {"x": 0.33991869381244216, "y": 1.0461621679246687, "z": 0.0}, {"x": 0.37082039324993693, "y": 1.141267819554184, "z": 0.0}, {"x": 0.4017220926874317, "y": 1.2363734711836996, "z": 0.0}, {"x": 0.43262379212492647, "y": 1.331479122813215, "z": 0.0}, {"x": 0.46352549156242123, "y": 1.4265847744427305, "z": 0.0}, {"x": 0.494427190999916, "y": 1.521690426072246, "z": 0.0}, {"x": 0.5253288904374108, "y": 1.6167960777017614, "z": 0.0}, {"x": 0.5562305898749056, "y": 1.7119017293312768, "z": 0.0}, {"x": 0.5871322893124004, "y": 1.8070073809607923, "z": 0.0}, {"x": 0.618033988749895, "y": 1.9021130325903075, "z": 0.0}, {"x": 0.6489356881873898, "y": 1.997218684219823, "z": 0.0}, {"x": 0.6798373876248845, "y": 2.092324335849338, "z": 0.0}, {"x": 0.7107390870623793, "y": 2.1874299874788536, "z": 0.0}, {"x": 0.7416407864998741, "y": 2.282535639108369, "z": 0.0}, {"x": 0.7725424859373689, "y": 2.3776412907378845, "z": 0.0}, {"x": 0.8034441853748637, "y": 2.4727469423674, "z": 0.0}, {"x": 0.8343458848123585, "y": 2.5678525939969155, "z": 0.0}, {"x": 0.8652475842498533, "y": 2.662958245626431, "z": 0.0}, {"x": 0.896149283687348, "y": 2.7580638972559464, "z": 0.0}, {"x": 0.9270509831248424, "y": 2.8531695488854605, "z": 0.0}, {"x": 0.010452846326765346, "y": 0.09945218953682733, "z": 0.0}, {"x": 0.02090569265353069, "y": 0.19890437907365466, "z": 0.0}, {"x": 0.031358538980296044, "y": 0.29835656861048204, "z": 0.0}, {"x": 0.04181138530706138, "y": 0.3978087581473093, "z": 0.0}, {"x": 0.05226423163382673, "y": 0.49726094768413664, "z": 0.0}, {"x": 0.06271707796059207, "y": 0.596713137220964, "z": 0.0}, {"x": 0.07316992428735741, "y": 0.6961653267577913, "z": 0.0}, {"x": 0.08362277061412275, "y": 0.7956175162946185, "z": 0.0}, {"x": 0.0940756169408881, "y": 0.8950697058314458, "z": 0.0}, {"x": 0.10452846326765344, "y": 0.9945218953682732, "z": 0.0}, {"x": 0.11498130959441878, "y": 1.0939740849051005, "z": 0.0}, {"x": 0.12543415592118415, "y": 1.193426274441928, "z": 0.0}, {"x": 0.1358870022479495, "y": 1.2928784639787554, "z": 0.0}, {"x": 0.14633984857471485, "y": 1.3923306535155828, "z": 0.0}, {"x": 0.1567926949014802, "y": 1.49178284305241, "z": 0.0}, {"x": 0.16724554122824556, "y": 1.5912350325892375, "z": 0.0}, {"x": 0.1776983875550109, "y": 1.690687222126065, "z": 0.0}, {"x": 0.18815123388177626, "y": 1.7901394116628924, "z": 0.0}, {"x": 0.19860408020854162, "y": 1.8895916011997198, "z": 0.0}, {"x": 0.20905692653530697, "y": 1.989043790736547, "z": 0.0}, {"x": 0.21950977286207232, "y": 2.0884959802733745, "z": 0.0}, {"x": 0.22996261918883767, "y": 2.187948169810202, "z": 0.0}, {"x": 0.24041546551560303, "y": 2.2874003593470293, "z": 0.0}, {"x": 0.2508683118423684, "y": 2.386852548883857, "z": 0.0}, {"x": 0.26132115816913376, "y": 2.4863047384206842, "z": 0.0}, {"x": 0.2717740044958991, "y": 2.5857569279575117, "z": 0.0}, {"x": 0.28222685082266447, "y": 2.685209117494339, "z": 0.0}, {"x": 0.2926796971494298, "y": 2.7846613070311665, "z": 0.0}, {"x": 0.30313254347619517, "y": 2.884113496567994, "z": 0.0}, {"x": 0.31358538980296036, "y": 2.9835656861048196, "z": 0.0}, {"x": -0.010452846326765356, "y": 0.09945218953682733, "z": 0.0}, {"x": -0.020905692653530712, "y": 0.19890437907365466, "z": 0.0}, {"x": -0.03135853898029607, "y": 0.29835656861048204, "z": 0.0}, {"x": -0.041811385307061424, "y": 0.3978087581473093, "z": 0.0}, {"x": -0.05226423163382678, "y": 0.49726094768413664, "z": 0.0}, {"x": -0.06271707796059213, "y": 0.596713137220964, "z": 0.0}, {"x": -0.07316992428735748, "y": 0.6961653267577913, "z": 0.0}, {"x": -0.08362277061412283, "y": 0.7956175162946185, "z": 0.0}, {"x": -0.09407561694088819, "y": 0.8950697058314458, "z": 0.0}, {"x": -0.10452846326765354, "y": 0.9945218953682732, "z": 0.0}, {"x": -0.11498130959441889, "y": 1.0939740849051005, "z": 0.0}, {"x": -0.12543415592118426, "y": 1.193426274441928, "z": 0.0}, {"x": -0.1358870022479496, "y": 1.2928784639787554, "z": 0.0}, {"x": -0.146339848574715, "y": 1.3923306535155828, "z": 0.0}, {"x": -0.15679269490148035, "y": 1.49178284305241, "z": 0.0}, {"x": -0.16724554122824573, "y": 1.5912350325892375, "z": 0.0}, {"x": -0.17769838755501108, "y": 1.690687222126065, "z": 0.0}, {"x": -0.18815123388177646, "y": 1.7901394116628924, "z": 0.0}, {"x": -0.1986040802085418, "y": 1.8895916011997198, "z": 0.0}, {"x": -0.20905692653530716, "y": 1.989043790736547, "z": 0.0}, {"x": -0.21950977286207252, "y": 2.0884959802733745, "z": 0.0}, {"x": -0.2299626191888379, "y": 2.187948169810202, "z": 0.0}, {"x": -0.24041546551560325, "y": 2.2874003593470293, "z": 0.0}, {"x": -0.25086831184236863, "y": 2.386852548883857, "z": 0.0}, {"x": -0.261321158169134, "y": 2.4863047384206842, "z": 0.0}, {"x": -0.27177400449589934, "y": 2.5857569279575117, "z": 0.0}, {"x": -0.2822268508226647, "y": 2.685209117494339, "z": 0.0}, {"x": -0.2926796971494301, "y": 2.7846613070311665, "z": 0.0}, {"x": -0.30313254347619545, "y": 2.884113496567994, "z": 0.0}, {"x": -0.3135853898029607, "y": 2.9835656861048196, "z": 0.0}, {"x": -0.030901699437494757, "y": 0.09510565162951536, "z": 0.0}, {"x": -0.061803398874989514, "y": 0.1902113032590307, "z": 0.0}, {"x": -0.09270509831248429, "y": 0.2853169548885461, "z": 0.0}, {"x": -0.12360679774997903, "y": 0.3804226065180614, "z": 0.0}, {"x": -0.15450849718747378, "y": 0.47552825814757677, "z": 0.0}, {"x": -0.18541019662496852, "y": 0.570633909777092, "z": 0.0}, {"x": -0.2163118960624633, "y": 0.6657395614066074, "z": 0.0}, {"x": -0.24721359549995803, "y": 0.7608452130361227, "z": 0.0}, {"x": -0.2781152949374528, "y": 0.8559508646656381, "z": 0.0}, {"x": -0.3090169943749475, "y": 0.9510565162951534, "z": 0.0}, {"x": -0.3399186938124423, "y": 1.0461621679246687, "z": 0.0}, {"x": -0.37082039324993704, "y": 1.141267819554184, "z": 0.0}, {"x": -0.40172209268743186, "y": 1.2363734711836996, "z": 0.0}, {"x": -0.43262379212492663, "y": 1.331479122813215, "z": 0.0}, {"x": -0.4635254915624214, "y": 1.4265847744427305, "z": 0.0}, {"x": -0.4944271909999162, "y": 1.521690426072246, "z": 0.0}, {"x": -0.5253288904374109, "y": 1.6167960777017614, "z": 0.0}, {"x": -0.5562305898749058, "y": 1.7119017293312768, "z": 0.0}, {"x": -0.5871322893124006, "y": 1.8070073809607923, "z": 0.0}, {"x": -0.6180339887498952, "y": 1.9021130325903075, "z": 0.0}, {"x": -0.64893568818739, "y": 1.997218684219823, "z": 0.0}, {"x": -0.6798373876248849, "y": 2.092324335849338, "z": 0.0}, {"x": -0.7107390870623796, "y": 2.1874299874788536, "z": 0.0}, {"x": -0.7416407864998744, "y": 2.282535639108369, "z": 0.0}, {"x": -0.7725424859373692, "y": 2.3776412907378845, "z": 0.0}, {"x": -0.803444185374864, "y": 2.4727469423674, "z": 0.0}, {"x": -0.8343458848123587, "y": 2.5678525939969155, "z": 0.0}, {"x": -0.8652475842498535, "y": 2.662958245626431, "z": 0.0}, {"x": -0.8961492836873484, "y": 2.7580638972559464, "z": 0.0}, {"x": -0.9270509831248427, "y": 2.8531695488854605, "z": 0.0}, {"x": -0.050000000000000024, "y": 0.08660254037844385, "z": 0.0}, {"x": -0.10000000000000005, "y": 0.1732050807568877, "z": 0.0}, {"x": -0.15000000000000008, "y": 0.25980762113533157, "z": 0.0}, {"x": -0.2000000000000001, "y": 0.3464101615137754, "z": 0.0}, {"x": -0.2500000000000001, "y": 0.43301270189221924, "z": 0.0}, {"x": -0.3000000000000001, "y": 0.519615242270663, "z": 0.0}, {"x": -0.35000000000000014, "y": 0.6062177826491069, "z": 0.0}, {"x": -0.40000000000000013, "y": 0.6928203230275507, "z": 0.0}, {"x": -0.4500000000000002, "y": 0.7794228634059945, "z": 0.0}, {"x": -0.5000000000000001, "y": 0.8660254037844384, "z": 0.0}, {"x": -0.5500000000000002, "y": 0.9526279441628822, "z": 0.0}, {"x": -0.6000000000000002, "y": 1.039230484541326, "z": 0.0}, {"x": -0.6500000000000004, "y": 1.12583302491977, "z": 0.0}, {"x": -0.7000000000000004, "y": 1.212435565298214, "z": 0.0}, {"x": -0.7500000000000004, "y": 1.299038105676658, "z": 0.0}, {"x": -0.8000000000000005, "y": 1.3856406460551018, "z": 0.0}, {"x": -0.8500000000000005, "y": 1.4722431864335457, "z": 0.0}, {"x": -0.9000000000000007, "y": 1.5588457268119897, "z": 0.0}, {"x": -0.9500000000000007, "y": 1.6454482671904336, "z": 0.0}, {"x": -1.0000000000000007, "y": 1.7320508075688774, "z": 0.0}, {"x": -1.0500000000000007, "y": 1.8186533479473213, "z": 0.0}, {"x": -1.1000000000000008, "y": 1.9052558883257653, "z": 0.0}, {"x": -1.1500000000000008, "y": 1.9918584287042091, "z": 0.0}, {"x": -1.2000000000000008, "y": 2.078460969082653, "z": 0.0}, {"x": -1.250000000000001, "y": 2.165063509461097, "z": 0.0}, {"x": -1.3000000000000012, "y": 2.251666049839541, "z": 0.0}, {"x": -1.3500000000000012, "y": 2.338268590217985, "z": 0.0}, {"x": -1.4000000000000012, "y": 2.424871130596429, "z": 0.0}, {"x": -1.4500000000000013, "y": 2.5114736709748726, "z": 0.0}, {"x": -1.5000000000000007, "y": 2.5980762113533156, "z": 0.0}, {"x": -0.06691306063588583, "y": 0.07431448254773942, "z": 0.0}, {"x": -0.13382612127177165, "y": 0.14862896509547885, "z": 0.0}, {"x": -0.2007391819076575, "y": 0.2229434476432183, "z": 0.0}, {"x": -0.2676522425435433, "y": 0.2972579301909577, "z": 0.0}, {"x": -0.3345653031794291, "y": 0.3715724127386971, "z": 0.0}, {"x": -0.40147836381531493, "y": 0.44588689528643655, "z": 0.0}, {"x": -0.46839142445120074, "y": 0.520201377834176, "z": 0.0}, {"x": -0.5353044850870865, "y": 0.5945158603819154, "z": 0.0}, {"x": -0.6022175457229724, "y": 0.6688303429296547, "z": 0.0}, {"x": -0.6691306063588581, "y": 0.7431448254773941, "z": 0.0}, {"x": -0.736043666994744, "y": 0.8174593080251336, "z": 0.0}, {"x": -0.8029567276306299, "y": 0.8917737905728731, "z": 0.0}, {"x": -0.8698697882665157, "y": 0.9660882731206125, "z": 0.0}, {"x": -0.9367828489024016, "y": 1.040402755668352, "z": 0.0}, {"x": -1.0036959095382876, "y": 1.1147172382160915, "z": 0.0}, {"x": -1.0706089701741734, "y": 1.189031720763831, "z": 0.0}, {"x": -1.1375220308100593, "y": 1.2633462033115705, "z": 0.0}, {"x": -1.2044350914459452, "y": 1.33766068585931, "z": 0.0}, {"x": -1.271348152081831, "y": 1.4119751684070494, "z": 0.0}, {"x": -1.3382612127177167, "y": 1.4862896509547887, "z": 0.0}, {"x": -1.4051742733536026, "y": 1.5606041335025282, "z": 0.0}, {"x": -1.4720873339894884, "y": 1.6349186160502678, "z": 0.0}, {"x": -1.5390003946253745, "y": 1.7092330985980073, "z": 0.0}, {"x": -1.6059134552612604, "y": 1.7835475811457469, "z": 0.0}, {"x": -1.6728265158971463, "y": 1.8578620636934862, "z": 0.0}, {"x": -1.7397395765330321, "y": 1.9321765462412257, "z": 0.0}, {"x": -1.806652637168918, "y": 2.0064910287889655, "z": 0.0}, {"x": -1.8735656978048039, "y": 2.0808055113367048, "z": 0.0}, {"x": -1.9404787584406897, "y": 2.155119993884444, "z": 0.0}, {"x": -2.0073918190765747, "y": 2.229434476432183, "z": 0.0}, {"x": -0.08090169943749474, "y": 0.05877852522924733, "z": 0.0}, {"x": -0.16180339887498948, "y": 0.11755705045849466, "z": 0.0}, {"x": -0.24270509831248424, "y": 0.176335575687742, "z": 0.0}, {"x": -0.32360679774997897, "y": 0.2351141009169893, "z": 0.0}, {"x": -0.40450849718747367, "y": 0.2938926261462366, "z": 0.0}, {"x": -0.48541019662496837, "y": 0.35267115137548394, "z": 0.0}, {"x": -0.5663118960624631, "y": 0.41144967660473125, "z": 0.0}, {"x": -0.6472135954999578, "y": 0.47022820183397857, "z": 0.0}, {"x": -0.7281152949374525, "y": 0.5290067270632258, "z": 0.0}, {"x": -0.8090169943749472, "y": 0.5877852522924731, "z": 0.0}, {"x": -0.8899186938124419, "y": 0.6465637775217205, "z": 0.0}, {"x": -0.9708203932499367, "y": 0.7053423027509679, "z": 0.0}, {"x": -1.0517220926874316, "y": 0.7641208279802153, "z": 0.0}, {"x": -1.1326237921249265, "y": 0.8228993532094626, "z": 0.0}, {"x": -1.2135254915624212, "y": 0.88167787843871, "z": 0.0}, {"x": -1.294427190999916, "y": 0.9404564036679574, "z": 0.0}, {"x": -1.3753288904374108, "y": 0.9992349288972048, "z": 0.0}, {"x": -1.4562305898749055, "y": 1.058013454126452, "z": 0.0}, {"x": -1.5371322893124004, "y": 1.1167919793556995, "z": 0.0}, {"x": -1.6180339887498951, "y": 1.1755705045849467, "z": 0.0}, {"x": -1.6989356881873898, "y": 1.2343490298141941, "z": 0.0}, {"x": -1.7798373876248847, "y": 1.2931275550434416, "z": 0.0}, {"x": -1.8607390870623794, "y": 1.351906080272689, "z": 0.0}, {"x": -1.9416407864998744, "y": 1.4106846055019362, "z": 0.0}, {"x": -2.022542485937369, "y": 1.4694631307311836, "z": 0.0}, {"x": -2.103444185374864, "y": 1.528241655960431, "z": 0.0}, {"x": -2.1843458848123585, "y": 1.5870201811896785, "z": 0.0}, {"x": -2.2652475842498534, "y": 1.6457987064189257, "z": 0.0}, {"x": -2.3461492836873483, "y": 1.704577231648173, "z": 0.0}, {"x": -2.427050983124842, "y": 1.7633557568774196, "z": 0.0}, {"x": -0.09135454576426008, "y": 0.04067366430758004, "z": 0.0}, {"x": -0.18270909152852016, "y": 0.08134732861516009, "z": 0.0}, {"x": -0.27406363729278027, "y": 0.12202099292274014, "z": 0.0}, {"x": -0.3654181830570403, "y": 0.16269465723032017, "z": 0.0}, {"x": -0.4567727288213004, "y": 0.20336832153790022, "z": 0.0}, {"x": -0.5481272745855604, "y": 0.24404198584548026, "z": 0.0}, {"x": -0.6394818203498205, "y": 0.2847156501530603, "z": 0.0}, {"x": -0.7308363661140805, "y": 0.32538931446064034, "z": 0.0}, {"x": -0.8221909118783406, "y": 0.36606297876822036, "z": 0.0}, {"x": -0.9135454576426006, "y": 0.4067366430758004, "z": 0.0}, {"x": -1.0049000034068607, "y": 0.44741030738338045, "z": 0.0}, {"x": -1.0962545491711209, "y": 0.4880839716909605, "z": 0.0}, {"x": -1.187609094935381, "y": 0.5287576359985405, "z": 0.0}, {"x": -1.2789636406996412, "y": 0.5694313003061207, "z": 0.0}, {"x": -1.3703181864639014, "y": 0.6101049646137008, "z": 0.0}, {"x": -1.4616727322281615, "y": 0.6507786289212808, "z": 0.0}, {"x": -1.5530272779924217, "y": 0.6914522932288609, "z": 0.0}, {"x": -1.6443818237566818, "y": 0.7321259575364409, "z": 0.0}, {"x": -1.735736369520942, "y": 0.7727996218440211, "z": 0.0}, {"x": -1.827090915285202, "y": 0.8134732861516011, "z": 0.0}, {"x": -1.9184454610494621, "y": 0.8541469504591811, "z": 0.0}, {"x": -2.0098000068137223, "y": 0.8948206147667612, "z": 0.0}, {"x": -2.1011545525779822, "y": 0.9354942790743412, "z": 0.0}, {"x": -2.1925090983422426, "y": 0.9761679433819214, "z": 0.0}, {"x": -2.2838636441065026, "y": 1.0168416076895015, "z": 0.0}, {"x": -2.375218189870763, "y": 1.0575152719970815, "z": 0.0}, {"x": -2.466572735635023, "y": 1.0981889363046615, "z": 0.0}, {"x": -2.5579272813992833, "y": 1.1388626006122418, "z": 0.0}, {"x": -2.649281827163543, "y": 1.1795362649198218, "z": 0.0}, {"x": -2.7406363729278023, "y": 1.2202099292274013, "z": 0.0}, {"x": -0.09781476007338057, "y": 0.020791169081775973, "z": 0.0}, {"x": -0.19562952014676113, "y": 0.041582338163551946, "z": 0.0}, {"x": -0.29344428022014174, "y": 0.062373507245327926, "z": 0.0}, {"x": -0.39125904029352226, "y": 0.08316467632710389, "z": 0.0}, {"x": -0.4890738003669028, "y": 0.10395584540887987, "z": 0.0}, {"x": -0.5868885604402834, "y": 0.12474701449065584, "z": 0.0}, {"x": -0.6847033205136639, "y": 0.1455381835724318, "z": 0.0}, {"x": -0.7825180805870444, "y": 0.16632935265420778, "z": 0.0}, {"x": -0.8803328406604249, "y": 0.18712052173598373, "z": 0.0}, {"x": -0.9781476007338055, "y": 0.2079116908177597, "z": 0.0}, {"x": -1.075962360807186, "y": 0.22870285989953568, "z": 0.0}, {"x": -1.1737771208805667, "y": 0.24949402898131168, "z": 0.0}, {"x": -1.2715918809539473, "y": 0.27028519806308765, "z": 0.0}, {"x": -1.369406641027328, "y": 0.2910763671448636, "z": 0.0}, {"x": -1.4672214011007085, "y": 0.31186753622663965, "z": 0.0}, {"x": -1.5650361611740893, "y": 0.3326587053084156, "z": 0.0}, {"x": -1.6628509212474698, "y": 0.3534498743901916, "z": 0.0}, {"x": -1.7606656813208506, "y": 0.3742410434719676, "z": 0.0}, {"x": -1.858480441394231, "y": 0.3950322125537436, "z": 0.0}, {"x": -1.9562952014676116, "y": 0.4158233816355196, "z": 0.0}, {"x": -2.054109961540992, "y": 0.43661455071729555, "z": 0.0}, {"x": -2.151924721614373, "y": 0.4574057197990715, "z": 0.0}, {"x": -2.2497394816877536, "y": 0.47819688888084755, "z": 0.0}, {"x": -2.3475542417611344, "y": 0.4989880579626235, "z": 0.0}, {"x": -2.4453690018345147, "y": 0.5197792270443995, "z": 0.0}, {"x": -2.5431837619078954, "y": 0.5405703961261755, "z": 0.0}, {"x": -2.640998521981276, "y": 0.5613615652079514, "z": 0.0}, {"x": -2.738813282054657, "y": 0.5821527342897275, "z": 0.0}, {"x": -2.836628042128037, "y": 0.6029439033715035, "z": 0.0}, {"x": -2.9344428022014166, "y": 0.6237350724532792, "z": 0.0}, {"x": -0.1, "y": 5.665538897647979e-17, "z": 0.0}, {"x": -0.2, "y": 1.1331077795295959e-16, "z": 0.0}, {"x": -0.30000000000000004, "y": 1.6996616692943942e-16, "z": 0.0}, {"x": -0.4, "y": 2.2662155590591917e-16, "z": 0.0}, {"x": -0.5, "y": 2.83276944882399e-16, "z": 0.0}, {"x": -0.6, "y": 3.399323338588788e-16, "z": 0.0}, {"x": -0.7, "y": 3.9658772283535854e-16, "z": 0.0}, {"x": -0.7999999999999999, "y": 4.5324311181183835e-16, "z": 0.0}, {"x": -0.8999999999999999, "y": 5.098985007883181e-16, "z": 0.0}, {"x": -0.9999999999999999, "y": 5.665538897647979e-16, "z": 0.0}, {"x": -1.0999999999999999, "y": 6.232092787412777e-16, "z": 0.0}, {"x": -1.2, "y": 6.798646677177576e-16, "z": 0.0}, {"x": -1.3, "y": 7.365200566942373e-16, "z": 0.0}, {"x": -1.4000000000000001, "y": 7.931754456707172e-16, "z": 0.0}, {"x": -1.5000000000000002, "y": 8.49830834647197e-16, "z": 0.0}, {"x": -1.6000000000000003, "y": 9.064862236236769e-16, "z": 0.0}, {"x": -1.7000000000000004, "y": 9.631416126001568e-16, "z": 0.0}, {"x": -1.8000000000000005, "y": 1.0197970015766366e-15, "z": 0.0}, {"x": -1.9000000000000006, "y": 1.0764523905531165e-15, "z": 0.0}, {"x": -2.0000000000000004, "y": 1.1331077795295961e-15, "z": 0.0}, {"x": -2.1000000000000005, "y": 1.189763168506076e-15, "z": 0.0}, {"x": -2.2000000000000006, "y": 1.2464185574825558e-15, "z": 0.0}, {"x": -2.3000000000000007, "y": 1.3030739464590357e-15, "z": 0.0}, {"x": -2.400000000000001, "y": 1.3597293354355155e-15, "z": 0.0}, {"x": -2.500000000000001, "y": 1.4163847244119954e-15, "z": 0.0}, {"x": -2.600000000000001, "y": 1.4730401133884753e-15, "z": 0.0}, {"x": -2.700000000000001, "y": 1.5296955023649551e-15, "z": 0.0}, {"x": -2.800000000000001, "y": 1.586350891341435e-15, "z": 0.0}, {"x": -2.9000000000000012, "y": 1.6430062803179148e-15, "z": 0.0}, {"x": -3.0, "y": 1.6996616692943939e-15, "z": 0.0}, {"x": -0.09781476007338058, "y": -0.020791169081775862, "z": 0.0}, {"x": -0.19562952014676116, "y": -0.041582338163551724, "z": 0.0}, {"x": -0.2934442802201418, "y": -0.06237350724532759, "z": 0.0}, {"x": -0.3912590402935223, "y": -0.08316467632710345, "z": 0.0}, {"x": -0.4890738003669029, "y": -0.10395584540887931, "z": 0.0}, {"x": -0.5868885604402835, "y": -0.12474701449065517, "z": 0.0}, {"x": -0.684703320513664, "y": -0.14553818357243103, "z": 0.0}, {"x": -0.7825180805870445, "y": -0.1663293526542069, "z": 0.0}, {"x": -0.8803328406604252, "y": -0.18712052173598273, "z": 0.0}, {"x": -0.9781476007338057, "y": -0.2079116908177586, "z": 0.0}, {"x": -1.0759623608071862, "y": -0.22870285989953446, "z": 0.0}, {"x": -1.173777120880567, "y": -0.24949402898131035, "z": 0.0}, {"x": -1.2715918809539475, "y": -0.2702851980630862, "z": 0.0}, {"x": -1.3694066410273282, "y": -0.29107636714486207, "z": 0.0}, {"x": -1.467221401100709, "y": -0.311867536226638, "z": 0.0}, {"x": -1.5650361611740895, "y": -0.33265870530841385, "z": 0.0}, {"x": -1.6628509212474702, "y": -0.3534498743901897, "z": 0.0}, {"x": -1.760665681320851, "y": -0.37424104347196563, "z": 0.0}, {"x": -1.8584804413942315, "y": -0.3950322125537415, "z": 0.0}, {"x": -1.956295201467612, "y": -0.41582338163551735, "z": 0.0}, {"x": -2.0541099615409926, "y": -0.4366145507172932, "z": 0.0}, {"x": -2.1519247216143733, "y": -0.4574057197990691, "z": 0.0}, {"x": -2.249739481687754, "y": -0.478196888880845, "z": 0.0}, {"x": -2.347554241761135, "y": -0.49898805796262086, "z": 0.0}, {"x": -2.4453690018345156, "y": -0.5197792270443967, "z": 0.0}, {"x": -2.543183761907896, "y": -0.5405703961261726, "z": 0.0}, {"x": -2.6409985219812766, "y": -0.5613615652079484, "z": 0.0}, {"x": -2.7388132820546573, "y": -0.5821527342897244, "z": 0.0}, {"x": -2.836628042128038, "y": -0.6029439033715003, "z": 0.0}, {"x": -2.9344428022014175, "y": -0.6237350724532759, "z": 0.0}, {"x": -0.09135454576426012, "y": -0.040673664307579946, "z": 0.0}, {"x": -0.18270909152852025, "y": -0.08134732861515989, "z": 0.0}, {"x": -0.2740636372927804, "y": -0.12202099292273985, "z": 0.0}, {"x": -0.3654181830570405, "y": -0.16269465723031978, "z": 0.0}, {"x": -0.4567727288213006, "y": -0.20336832153789972, "z": 0.0}, {"x": -0.5481272745855607, "y": -0.24404198584547965, "z": 0.0}, {"x": -0.6394818203498208, "y": -0.2847156501530596, "z": 0.0}, {"x": -0.7308363661140809, "y": -0.3253893144606395, "z": 0.0}, {"x": -0.822190911878341, "y": -0.36606297876821947, "z": 0.0}, {"x": -0.9135454576426011, "y": -0.4067366430757994, "z": 0.0}, {"x": -1.0049000034068611, "y": -0.44741030738337934, "z": 0.0}, {"x": -1.0962545491711213, "y": -0.4880839716909593, "z": 0.0}, {"x": -1.1876090949353817, "y": -0.5287576359985393, "z": 0.0}, {"x": -1.2789636406996419, "y": -0.5694313003061192, "z": 0.0}, {"x": -1.370318186463902, "y": -0.6101049646136992, "z": 0.0}, {"x": -1.4616727322281622, "y": -0.6507786289212792, "z": 0.0}, {"x": -1.5530272779924224, "y": -0.6914522932288591, "z": 0.0}, {"x": -1.6443818237566825, "y": -0.7321259575364392, "z": 0.0}, {"x": -1.735736369520943, "y": -0.7727996218440192, "z": 0.0}, {"x": -1.8270909152852028, "y": -0.8134732861515991, "z": 0.0}, {"x": -1.918445461049463, "y": -0.854146950459179, "z": 0.0}, {"x": -2.009800006813723, "y": -0.894820614766759, "z": 0.0}, {"x": -2.1011545525779836, "y": -0.935494279074339, "z": 0.0}, {"x": -2.1925090983422435, "y": -0.9761679433819189, "z": 0.0}, {"x": -2.283863644106504, "y": -1.016841607689499, "z": 0.0}, {"x": -2.375218189870764, "y": -1.0575152719970788, "z": 0.0}, {"x": -2.466572735635024, "y": -1.0981889363046589, "z": 0.0}, {"x": -2.5579272813992846, "y": -1.1388626006122389, "z": 0.0}, {"x": -2.6492818271635445, "y": -1.1795362649198189, "z": 0.0}, {"x": -2.7406363729278036, "y": -1.2202099292273982, "z": 0.0}, {"x": -0.08090169943749481, "y": -0.05877852522924723, "z": 0.0}, {"x": -0.16180339887498962, "y": -0.11755705045849446, "z": 0.0}, {"x": -0.24270509831248444, "y": -0.1763355756877417, "z": 0.0}, {"x": -0.32360679774997925, "y": -0.23511410091698892, "z": 0.0}, {"x": -0.404508497187474, "y": -0.2938926261462361, "z": 0.0}, {"x": -0.48541019662496876, "y": -0.3526711513754833, "z": 0.0}, {"x": -0.5663118960624636, "y": -0.41144967660473053, "z": 0.0}, {"x": -0.6472135954999584, "y": -0.47022820183397773, "z": 0.0}, {"x": -0.7281152949374531, "y": -0.5290067270632249, "z": 0.0}, {"x": -0.8090169943749479, "y": -0.5877852522924721, "z": 0.0}, {"x": -0.8899186938124427, "y": -0.6465637775217193, "z": 0.0}, {"x": -0.9708203932499375, "y": -0.7053423027509667, "z": 0.0}, {"x": -1.0517220926874324, "y": -0.764120827980214, "z": 0.0}, {"x": -1.1326237921249274, "y": -0.8228993532094613, "z": 0.0}, {"x": -1.2135254915624223, "y": -0.8816778784387085, "z": 0.0}, {"x": -1.294427190999917, "y": -0.9404564036679558, "z": 0.0}, {"x": -1.375328890437412, "y": -0.9992349288972031, "z": 0.0}, {"x": -1.4562305898749068, "y": -1.0580134541264503, "z": 0.0}, {"x": -1.5371322893124018, "y": -1.1167919793556975, "z": 0.0}, {"x": -1.6180339887498965, "y": -1.1755705045849447, "z": 0.0}, {"x": -1.6989356881873912, "y": -1.2343490298141921, "z": 0.0}, {"x": -1.779837387624886, "y": -1.2931275550434393, "z": 0.0}, {"x": -1.860739087062381, "y": -1.3519060802726866, "z": 0.0}, {"x": -1.941640786499876, "y": -1.410684605501934, "z": 0.0}, {"x": -2.022542485937371, "y": -1.4694631307311812, "z": 0.0}, {"x": -2.1034441853748658, "y": -1.5282416559604284, "z": 0.0}, {"x": -2.1843458848123607, "y": -1.5870201811896758, "z": 0.0}, {"x": -2.265247584249855, "y": -1.645798706418923, "z": 0.0}, {"x": -2.34614928368735, "y": -1.7045772316481702, "z": 0.0}, {"x": -2.427050983124844, "y": -1.7633557568774167, "z": 0.0}, {"x": -0.06691306063588591, "y": -0.07431448254773936, "z": 0.0}, {"x": -0.13382612127177182, "y": -0.1486289650954787, "z": 0.0}, {"x": -0.20073918190765777, "y": -0.22294344764321808, "z": 0.0}, {"x": -0.26765224254354364, "y": -0.2972579301909574, "z": 0.0}, {"x": -0.33456530317942956, "y": -0.37157241273869673, "z": 0.0}, {"x": -0.4014783638153155, "y": -0.44588689528643605, "z": 0.0}, {"x": -0.46839142445120135, "y": -0.5202013778341754, "z": 0.0}, {"x": -0.5353044850870873, "y": -0.5945158603819147, "z": 0.0}, {"x": -0.6022175457229731, "y": -0.668830342929654, "z": 0.0}, {"x": -0.669130606358859, "y": -0.7431448254773934, "z": 0.0}, {"x": -0.736043666994745, "y": -0.8174593080251327, "z": 0.0}, {"x": -0.802956727630631, "y": -0.8917737905728721, "z": 0.0}, {"x": -0.8698697882665168, "y": -0.9660882731206115, "z": 0.0}, {"x": -0.9367828489024028, "y": -1.040402755668351, "z": 0.0}, {"x": -1.003695909538289, "y": -1.1147172382160904, "z": 0.0}, {"x": -1.0706089701741748, "y": -1.1890317207638297, "z": 0.0}, {"x": -1.1375220308100609, "y": -1.2633462033115692, "z": 0.0}, {"x": -1.2044350914459467, "y": -1.3376606858593085, "z": 0.0}, {"x": -1.2713481520818328, "y": -1.411975168407048, "z": 0.0}, {"x": -1.3382612127177185, "y": -1.4862896509547872, "z": 0.0}, {"x": -1.4051742733536046, "y": -1.5606041335025267, "z": 0.0}, {"x": -1.4720873339894904, "y": -1.634918616050266, "z": 0.0}, {"x": -1.5390003946253765, "y": -1.7092330985980055, "z": 0.0}, {"x": -1.6059134552612624, "y": -1.7835475811457449, "z": 0.0}, {"x": -1.6728265158971485, "y": -1.8578620636934844, "z": 0.0}, {"x": -1.7397395765330343, "y": -1.9321765462412237, "z": 0.0}, {"x": -1.8066526371689204, "y": -2.0064910287889632, "z": 0.0}, {"x": -1.8735656978048063, "y": -2.0808055113367026, "z": 0.0}, {"x": -1.9404787584406924, "y": -2.155119993884442, "z": 0.0}, {"x": -2.0073918190765774, "y": -2.2294344764321803, "z": 0.0}, {"x": -0.05000000000000013, "y": -0.0866025403784438, "z": 0.0}, {"x": -0.10000000000000026, "y": -0.1732050807568876, "z": 0.0}, {"x": -0.15000000000000038, "y": -0.2598076211353314, "z": 0.0}, {"x": -0.2000000000000005, "y": -0.3464101615137752, "z": 0.0}, {"x": -0.2500000000000006, "y": -0.43301270189221897, "z": 0.0}, {"x": -0.3000000000000007, "y": -0.5196152422706627, "z": 0.0}, {"x": -0.3500000000000008, "y": -0.6062177826491065, "z": 0.0}, {"x": -0.40000000000000097, "y": -0.6928203230275503, "z": 0.0}, {"x": -0.45000000000000107, "y": -0.7794228634059941, "z": 0.0}, {"x": -0.5000000000000011, "y": -0.8660254037844378, "z": 0.0}, {"x": -0.5500000000000013, "y": -0.9526279441628817, "z": 0.0}, {"x": -0.6000000000000014, "y": -1.0392304845413254, "z": 0.0}, {"x": -0.6500000000000016, "y": -1.1258330249197694, "z": 0.0}, {"x": -0.7000000000000017, "y": -1.2124355652982133, "z": 0.0}, {"x": -0.750000000000002, "y": -1.2990381056766571, "z": 0.0}, {"x": -0.8000000000000022, "y": -1.385640646055101, "z": 0.0}, {"x": -0.8500000000000023, "y": -1.4722431864335448, "z": 0.0}, {"x": -0.9000000000000025, "y": -1.5588457268119886, "z": 0.0}, {"x": -0.9500000000000026, "y": -1.6454482671904325, "z": 0.0}, {"x": -1.0000000000000027, "y": -1.7320508075688763, "z": 0.0}, {"x": -1.050000000000003, "y": -1.8186533479473201, "z": 0.0}, {"x": -1.100000000000003, "y": -1.905255888325764, "z": 0.0}, {"x": -1.1500000000000032, "y": -1.9918584287042078, "z": 0.0}, {"x": -1.2000000000000033, "y": -2.0784609690826517, "z": 0.0}, {"x": -1.2500000000000036, "y": -2.1650635094610955, "z": 0.0}, {"x": -1.3000000000000036, "y": -2.2516660498395393, "z": 0.0}, {"x": -1.3500000000000039, "y": -2.338268590217983, "z": 0.0}, {"x": -1.400000000000004, "y": -2.424871130596427, "z": 0.0}, {"x": -1.4500000000000042, "y": -2.5114736709748713, "z": 0.0}, {"x": -1.5000000000000036, "y": -2.598076211353314, "z": 0.0}, {"x": -0.030901699437494847, "y": -0.09510565162951533, "z": 0.0}, {"x": -0.061803398874989694, "y": -0.19021130325903066, "z": 0.0}, {"x": -0.09270509831248455, "y": -0.285316954888546, "z": 0.0}, {"x": -0.12360679774997939, "y": -0.3804226065180613, "z": 0.0}, {"x": -0.15450849718747423, "y": -0.4755282581475766, "z": 0.0}, {"x": -0.18541019662496908, "y": -0.5706339097770919, "z": 0.0}, {"x": -0.2163118960624639, "y": -0.6657395614066072, "z": 0.0}, {"x": -0.24721359549995875, "y": -0.7608452130361225, "z": 0.0}, {"x": -0.27811529493745357, "y": -0.8559508646656377, "z": 0.0}, {"x": -0.3090169943749484, "y": -0.9510565162951531, "z": 0.0}, {"x": -0.3399186938124433, "y": -1.0461621679246684, "z": 0.0}, {"x": -0.37082039324993815, "y": -1.1412678195541839, "z": 0.0}, {"x": -0.401722092687433, "y": -1.2363734711836991, "z": 0.0}, {"x": -0.43262379212492785, "y": -1.3314791228132146, "z": 0.0}, {"x": -0.46352549156242273, "y": -1.42658477444273, "z": 0.0}, {"x": -0.4944271909999176, "y": -1.5216904260722455, "z": 0.0}, {"x": -0.5253288904374125, "y": -1.616796077701761, "z": 0.0}, {"x": -0.5562305898749074, "y": -1.7119017293312762, "z": 0.0}, {"x": -0.5871322893124022, "y": -1.8070073809607916, "z": 0.0}, {"x": -0.618033988749897, "y": -1.9021130325903068, "z": 0.0}, {"x": -0.6489356881873919, "y": -1.9972186842198223, "z": 0.0}, {"x": -0.6798373876248868, "y": -2.0923243358493377, "z": 0.0}, {"x": -0.7107390870623816, "y": -2.187429987478853, "z": 0.0}, {"x": -0.7416407864998765, "y": -2.2825356391083687, "z": 0.0}, {"x": -0.7725424859373714, "y": -2.3776412907378837, "z": 0.0}, {"x": -0.8034441853748663, "y": -2.472746942367399, "z": 0.0}, {"x": -0.8343458848123612, "y": -2.5678525939969146, "z": 0.0}, {"x": -0.865247584249856, "y": -2.66295824562643, "z": 0.0}, {"x": -0.8961492836873509, "y": -2.7580638972559455, "z": 0.0}, {"x": -0.9270509831248454, "y": -2.8531695488854596, "z": 0.0}, {"x": -0.010452846326765424, "y": -0.09945218953682733, "z": 0.0}, {"x": -0.020905692653530848, "y": -0.19890437907365466, "z": 0.0}, {"x": -0.03135853898029627, "y": -0.29835656861048204, "z": 0.0}, {"x": -0.041811385307061695, "y": -0.3978087581473093, "z": 0.0}, {"x": -0.05226423163382712, "y": -0.49726094768413664, "z": 0.0}, {"x": -0.06271707796059253, "y": -0.596713137220964, "z": 0.0}, {"x": -0.07316992428735795, "y": -0.6961653267577913, "z": 0.0}, {"x": -0.08362277061412338, "y": -0.7956175162946185, "z": 0.0}, {"x": -0.0940756169408888, "y": -0.8950697058314458, "z": 0.0}, {"x": -0.10452846326765422, "y": -0.9945218953682732, "z": 0.0}, {"x": -0.11498130959441964, "y": -1.0939740849051005, "z": 0.0}, {"x": -0.12543415592118506, "y": -1.193426274441928, "z": 0.0}, {"x": -0.1358870022479505, "y": -1.2928784639787554, "z": 0.0}, {"x": -0.14633984857471594, "y": -1.3923306535155828, "z": 0.0}, {"x": -0.15679269490148137, "y": -1.49178284305241, "z": 0.0}, {"x": -0.1672455412282468, "y": -1.5912350325892375, "z": 0.0}, {"x": -0.17769838755501224, "y": -1.690687222126065, "z": 0.0}, {"x": -0.18815123388177768, "y": -1.7901394116628924, "z": 0.0}, {"x": -0.19860408020854312, "y": -1.8895916011997198, "z": 0.0}, {"x": -0.20905692653530852, "y": -1.989043790736547, "z": 0.0}, {"x": -0.21950977286207396, "y": -2.0884959802733745, "z": 0.0}, {"x": -0.22996261918883937, "y": -2.187948169810202, "z": 0.0}, {"x": -0.2404154655156048, "y": -2.2874003593470293, "z": 0.0}, {"x": -0.25086831184237024, "y": -2.386852548883857, "z": 0.0}, {"x": -0.2613211581691357, "y": -2.4863047384206842, "z": 0.0}, {"x": -0.2717740044959011, "y": -2.5857569279575117, "z": 0.0}, {"x": -0.2822268508226665, "y": -2.685209117494339, "z": 0.0}, {"x": -0.292679697149432, "y": -2.7846613070311665, "z": 0.0}, {"x": -0.3031325434761974, "y": -2.884113496567994, "z": 0.0}, {"x": -0.3135853898029627, "y": -2.9835656861048196, "z": 0.0}, {"x": 0.010452846326765299, "y": -0.09945218953682734, "z": 0.0}, {"x": 0.020905692653530598, "y": -0.19890437907365469, "z": 0.0}, {"x": 0.0313585389802959, "y": -0.29835656861048204, "z": 0.0}, {"x": 0.041811385307061195, "y": -0.39780875814730937, "z": 0.0}, {"x": 0.05226423163382649, "y": -0.4972609476841367, "z": 0.0}, {"x": 0.06271707796059178, "y": -0.596713137220964, "z": 0.0}, {"x": 0.07316992428735708, "y": -0.6961653267577913, "z": 0.0}, {"x": 0.08362277061412238, "y": -0.7956175162946186, "z": 0.0}, {"x": 0.09407561694088767, "y": -0.895069705831446, "z": 0.0}, {"x": 0.10452846326765297, "y": -0.9945218953682733, "z": 0.0}, {"x": 0.11498130959441827, "y": -1.0939740849051005, "z": 0.0}, {"x": 0.12543415592118357, "y": -1.193426274441928, "z": 0.0}, {"x": 0.1358870022479489, "y": -1.2928784639787554, "z": 0.0}, {"x": 0.1463398485747142, "y": -1.3923306535155828, "z": 0.0}, {"x": 0.1567926949014795, "y": -1.4917828430524103, "z": 0.0}, {"x": 0.1672455412282448, "y": -1.5912350325892377, "z": 0.0}, {"x": 0.1776983875550101, "y": -1.6906872221260651, "z": 0.0}, {"x": 0.18815123388177543, "y": -1.7901394116628926, "z": 0.0}, {"x": 0.19860408020854073, "y": -1.88959160119972, "z": 0.0}, {"x": 0.20905692653530603, "y": -1.9890437907365472, "z": 0.0}, {"x": 0.21950977286207132, "y": -2.0884959802733745, "z": 0.0}, {"x": 0.22996261918883662, "y": -2.187948169810202, "z": 0.0}, {"x": 0.24041546551560194, "y": -2.2874003593470293, "z": 0.0}, {"x": 0.25086831184236724, "y": -2.386852548883857, "z": 0.0}, {"x": 0.26132115816913254, "y": -2.4863047384206842, "z": 0.0}, {"x": 0.27177400449589784, "y": -2.5857569279575117, "z": 0.0}, {"x": 0.2822268508226632, "y": -2.685209117494339, "z": 0.0}, {"x": 0.2926796971494285, "y": -2.7846613070311665, "z": 0.0}, {"x": 0.3031325434761938, "y": -2.884113496567994, "z": 0.0}, {"x": 0.31358538980295897, "y": -2.98356568610482, "z": 0.0}, {"x": 0.030901699437494726, "y": -0.09510565162951537, "z": 0.0}, {"x": 0.06180339887498945, "y": -0.19021130325903074, "z": 0.0}, {"x": 0.09270509831248418, "y": -0.28531695488854614, "z": 0.0}, {"x": 0.1236067977499789, "y": -0.3804226065180615, "z": 0.0}, {"x": 0.15450849718747361, "y": -0.4755282581475768, "z": 0.0}, {"x": 0.18541019662496833, "y": -0.5706339097770922, "z": 0.0}, {"x": 0.21631189606246304, "y": -0.6657395614066075, "z": 0.0}, {"x": 0.24721359549995775, "y": -0.7608452130361228, "z": 0.0}, {"x": 0.27811529493745246, "y": -0.8559508646656382, "z": 0.0}, {"x": 0.3090169943749472, "y": -0.9510565162951535, "z": 0.0}, {"x": 0.3399186938124419, "y": -1.0461621679246689, "z": 0.0}, {"x": 0.37082039324993665, "y": -1.1412678195541843, "z": 0.0}, {"x": 0.4017220926874314, "y": -1.2363734711836998, "z": 0.0}, {"x": 0.4326237921249262, "y": -1.3314791228132152, "z": 0.0}, {"x": 0.4635254915624209, "y": -1.4265847744427307, "z": 0.0}, {"x": 0.49442719099991567, "y": -1.5216904260722461, "z": 0.0}, {"x": 0.5253288904374104, "y": -1.6167960777017616, "z": 0.0}, {"x": 0.5562305898749051, "y": -1.711901729331277, "z": 0.0}, {"x": 0.5871322893123999, "y": -1.8070073809607925, "z": 0.0}, {"x": 0.6180339887498946, "y": -1.9021130325903077, "z": 0.0}, {"x": 0.6489356881873893, "y": -1.9972186842198232, "z": 0.0}, {"x": 0.6798373876248841, "y": -2.0923243358493386, "z": 0.0}, {"x": 0.7107390870623789, "y": -2.187429987478854, "z": 0.0}, {"x": 0.7416407864998736, "y": -2.2825356391083695, "z": 0.0}, {"x": 0.7725424859373683, "y": -2.377641290737885, "z": 0.0}, {"x": 0.8034441853748631, "y": -2.4727469423674004, "z": 0.0}, {"x": 0.8343458848123578, "y": -2.567852593996916, "z": 0.0}, {"x": 0.8652475842498526, "y": -2.6629582456264314, "z": 0.0}, {"x": 0.8961492836873474, "y": -2.758063897255947, "z": 0.0}, {"x": 0.9270509831248417, "y": -2.853169548885461, "z": 0.0}, {"x": 0.05000000000000002, "y": -0.08660254037844387, "z": 0.0}, {"x": 0.10000000000000003, "y": -0.17320508075688773, "z": 0.0}, {"x": 0.15000000000000005, "y": -0.2598076211353316, "z": 0.0}, {"x": 0.20000000000000007, "y": -0.34641016151377546, "z": 0.0}, {"x": 0.25000000000000006, "y": -0.4330127018922193, "z": 0.0}, {"x": 0.30000000000000004, "y": -0.5196152422706631, "z": 0.0}, {"x": 0.35000000000000003, "y": -0.606217782649107, "z": 0.0}, {"x": 0.4000000000000001, "y": -0.6928203230275508, "z": 0.0}, {"x": 0.45000000000000007, "y": -0.7794228634059946, "z": 0.0}, {"x": 0.5, "y": -0.8660254037844385, "z": 0.0}, {"x": 0.55, "y": -0.9526279441628823, "z": 0.0}, {"x": 0.6000000000000001, "y": -1.0392304845413263, "z": 0.0}, {"x": 0.6500000000000001, "y": -1.12583302491977, "z": 0.0}, {"x": 0.7000000000000002, "y": -1.2124355652982142, "z": 0.0}, {"x": 0.7500000000000003, "y": -1.299038105676658, "z": 0.0}, {"x": 0.8000000000000004, "y": -1.385640646055102, "z": 0.0}, {"x": 0.8500000000000004, "y": -1.472243186433546, "z": 0.0}, {"x": 0.9000000000000005, "y": -1.55884572681199, "z": 0.0}, {"x": 0.9500000000000005, "y": -1.6454482671904338, "z": 0.0}, {"x": 1.0000000000000004, "y": -1.7320508075688776, "z": 0.0}, {"x": 1.0500000000000005, "y": -1.8186533479473215, "z": 0.0}, {"x": 1.1000000000000005, "y": -1.9052558883257655, "z": 0.0}, {"x": 1.1500000000000006, "y": -1.9918584287042094, "z": 0.0}, {"x": 1.2000000000000006, "y": -2.0784609690826534, "z": 0.0}, {"x": 1.2500000000000007, "y": -2.1650635094610973, "z": 0.0}, {"x": 1.3000000000000007, "y": -2.251666049839541, "z": 0.0}, {"x": 1.3500000000000008, "y": -2.338268590217985, "z": 0.0}, {"x": 1.4000000000000008, "y": -2.4248711305964292, "z": 0.0}, {"x": 1.4500000000000008, "y": -2.511473670974873, "z": 0.0}, {"x": 1.5000000000000004, "y": -2.598076211353316, "z": 0.0}, {"x": 0.06691306063588585, "y": -0.07431448254773941, "z": 0.0}, {"x": 0.1338261212717717, "y": -0.14862896509547882, "z": 0.0}, {"x": 0.20073918190765758, "y": -0.22294344764321825, "z": 0.0}, {"x": 0.2676522425435434, "y": -0.29725793019095764, "z": 0.0}, {"x": 0.33456530317942923, "y": -0.371572412738697, "z": 0.0}, {"x": 0.40147836381531504, "y": -0.4458868952864364, "z": 0.0}, {"x": 0.4683914244512009, "y": -0.5202013778341757, "z": 0.0}, {"x": 0.5353044850870867, "y": -0.5945158603819152, "z": 0.0}, {"x": 0.6022175457229726, "y": -0.6688303429296546, "z": 0.0}, {"x": 0.6691306063588583, "y": -0.7431448254773939, "z": 0.0}, {"x": 0.7360436669947442, "y": -0.8174593080251333, "z": 0.0}, {"x": 0.8029567276306301, "y": -0.8917737905728728, "z": 0.0}, {"x": 0.8698697882665161, "y": -0.9660882731206123, "z": 0.0}, {"x": 0.9367828489024019, "y": -1.0404027556683517, "z": 0.0}, {"x": 1.0036959095382878, "y": -1.1147172382160913, "z": 0.0}, {"x": 1.0706089701741737, "y": -1.1890317207638306, "z": 0.0}, {"x": 1.1375220308100598, "y": -1.26334620331157, "z": 0.0}, {"x": 1.2044350914459456, "y": -1.3376606858593096, "z": 0.0}, {"x": 1.2713481520818315, "y": -1.4119751684070492, "z": 0.0}, {"x": 1.3382612127177171, "y": -1.4862896509547883, "z": 0.0}, {"x": 1.4051742733536032, "y": -1.5606041335025278, "z": 0.0}, {"x": 1.472087333989489, "y": -1.6349186160502673, "z": 0.0}, {"x": 1.539000394625375, "y": -1.7092330985980069, "z": 0.0}, {"x": 1.6059134552612608, "y": -1.7835475811457462, "z": 0.0}, {"x": 1.6728265158971467, "y": -1.8578620636934857, "z": 0.0}, {"x": 1.7397395765330326, "y": -1.9321765462412253, "z": 0.0}, {"x": 1.8066526371689187, "y": -2.0064910287889646, "z": 0.0}, {"x": 1.8735656978048045, "y": -2.0808055113367043, "z": 0.0}, {"x": 1.9404787584406904, "y": -2.1551199938844436, "z": 0.0}, {"x": 2.0073918190765756, "y": -2.229434476432182, "z": 0.0}, {"x": 0.08090169943749478, "y": -0.05877852522924726, "z": 0.0}, {"x": 0.16180339887498957, "y": -0.11755705045849452, "z": 0.0}, {"x": 0.24270509831248438, "y": -0.1763355756877418, "z": 0.0}, {"x": 0.32360679774997914, "y": -0.23511410091698903, "z": 0.0}, {"x": 0.4045084971874739, "y": -0.2938926261462363, "z": 0.0}, {"x": 0.48541019662496865, "y": -0.35267115137548355, "z": 0.0}, {"x": 0.5663118960624635, "y": -0.4114496766047308, "z": 0.0}, {"x": 0.6472135954999582, "y": -0.470228201833978, "z": 0.0}, {"x": 0.728115294937453, "y": -0.5290067270632253, "z": 0.0}, {"x": 0.8090169943749477, "y": -0.5877852522924725, "z": 0.0}, {"x": 0.8899186938124425, "y": -0.6465637775217198, "z": 0.0}, {"x": 0.9708203932499373, "y": -0.7053423027509671, "z": 0.0}, {"x": 1.0517220926874322, "y": -0.7641208279802144, "z": 0.0}, {"x": 1.132623792124927, "y": -0.8228993532094617, "z": 0.0}, {"x": 1.2135254915624218, "y": -0.881677878438709, "z": 0.0}, {"x": 1.2944271909999168, "y": -0.9404564036679564, "z": 0.0}, {"x": 1.3753288904374115, "y": -0.9992349288972037, "z": 0.0}, {"x": 1.4562305898749064, "y": -1.058013454126451, "z": 0.0}, {"x": 1.5371322893124013, "y": -1.1167919793556982, "z": 0.0}, {"x": 1.618033988749896, "y": -1.1755705045849454, "z": 0.0}, {"x": 1.6989356881873907, "y": -1.2343490298141928, "z": 0.0}, {"x": 1.7798373876248856, "y": -1.29312755504344, "z": 0.0}, {"x": 1.8607390870623806, "y": -1.3519060802726874, "z": 0.0}, {"x": 1.9416407864998753, "y": -1.4106846055019346, "z": 0.0}, {"x": 2.02254248593737, "y": -1.469463130731182, "z": 0.0}, {"x": 2.103444185374865, "y": -1.5282416559604293, "z": 0.0}, {"x": 2.18434588481236, "y": -1.5870201811896767, "z": 0.0}, {"x": 2.2652475842498547, "y": -1.645798706418924, "z": 0.0}, {"x": 2.3461492836873497, "y": -1.7045772316481713, "z": 0.0}, {"x": 2.4270509831248432, "y": -1.7633557568774179, "z": 0.0}, {"x": 0.09135454576426014, "y": -0.04067366430757993, "z": 0.0}, {"x": 0.18270909152852027, "y": -0.08134732861515986, "z": 0.0}, {"x": 0.27406363729278044, "y": -0.12202099292273981, "z": 0.0}, {"x": 0.36541818305704055, "y": -0.16269465723031973, "z": 0.0}, {"x": 0.45677272882130066, "y": -0.20336832153789966, "z": 0.0}, {"x": 0.5481272745855608, "y": -0.2440419858454796, "z": 0.0}, {"x": 0.6394818203498209, "y": -0.2847156501530595, "z": 0.0}, {"x": 0.730836366114081, "y": -0.32538931446063946, "z": 0.0}, {"x": 0.8221909118783411, "y": -0.36606297876821936, "z": 0.0}, {"x": 0.9135454576426012, "y": -0.40673664307579926, "z": 0.0}, {"x": 1.0049000034068614, "y": -0.4474103073833792, "z": 0.0}, {"x": 1.0962545491711215, "y": -0.4880839716909592, "z": 0.0}, {"x": 1.1876090949353817, "y": -0.5287576359985391, "z": 0.0}, {"x": 1.2789636406996419, "y": -0.5694313003061191, "z": 0.0}, {"x": 1.3703181864639022, "y": -0.6101049646136991, "z": 0.0}, {"x": 1.4616727322281624, "y": -0.650778628921279, "z": 0.0}, {"x": 1.5530272779924226, "y": -0.691452293228859, "z": 0.0}, {"x": 1.6443818237566827, "y": -0.7321259575364389, "z": 0.0}, {"x": 1.7357363695209431, "y": -0.772799621844019, "z": 0.0}, {"x": 1.827090915285203, "y": -0.8134732861515989, "z": 0.0}, {"x": 1.9184454610494632, "y": -0.8541469504591788, "z": 0.0}, {"x": 2.0098000068137236, "y": -0.8948206147667588, "z": 0.0}, {"x": 2.1011545525779836, "y": -0.9354942790743387, "z": 0.0}, {"x": 2.192509098342244, "y": -0.9761679433819187, "z": 0.0}, {"x": 2.283863644106504, "y": -1.0168416076894986, "z": 0.0}, {"x": 2.3752181898707643, "y": -1.0575152719970786, "z": 0.0}, {"x": 2.4665727356350247, "y": -1.0981889363046586, "z": 0.0}, {"x": 2.5579272813992846, "y": -1.1388626006122387, "z": 0.0}, {"x": 2.649281827163545, "y": -1.1795362649198184, "z": 0.0}, {"x": 2.740636372927804, "y": -1.220209929227398, "z": 0.0}, {"x": 0.0978147600733806, "y": -0.020791169081775814, "z": 0.0}, {"x": 0.1956295201467612, "y": -0.04158233816355163, "z": 0.0}, {"x": 0.2934442802201418, "y": -0.06237350724532745, "z": 0.0}, {"x": 0.3912590402935224, "y": -0.08316467632710325, "z": 0.0}, {"x": 0.48907380036690296, "y": -0.10395584540887906, "z": 0.0}, {"x": 0.5868885604402835, "y": -0.12474701449065487, "z": 0.0}, {"x": 0.6847033205136641, "y": -0.14553818357243067, "z": 0.0}, {"x": 0.7825180805870446, "y": -0.16632935265420648, "z": 0.0}, {"x": 0.8803328406604253, "y": -0.1871205217359823, "z": 0.0}, {"x": 0.9781476007338058, "y": -0.2079116908177581, "z": 0.0}, {"x": 1.0759623608071864, "y": -0.2287028598995339, "z": 0.0}, {"x": 1.173777120880567, "y": -0.24949402898130973, "z": 0.0}, {"x": 1.2715918809539477, "y": -0.27028519806308554, "z": 0.0}, {"x": 1.3694066410273285, "y": -0.2910763671448614, "z": 0.0}, {"x": 1.467221401100709, "y": -0.3118675362266372, "z": 0.0}, {"x": 1.5650361611740897, "y": -0.33265870530841307, "z": 0.0}, {"x": 1.6628509212474705, "y": -0.3534498743901889, "z": 0.0}, {"x": 1.7606656813208512, "y": -0.37424104347196474, "z": 0.0}, {"x": 1.8584804413942317, "y": -0.39503221255374055, "z": 0.0}, {"x": 1.9562952014676123, "y": -0.41582338163551635, "z": 0.0}, {"x": 2.054109961540993, "y": -0.43661455071729216, "z": 0.0}, {"x": 2.1519247216143738, "y": -0.457405719799068, "z": 0.0}, {"x": 2.2497394816877545, "y": -0.47819688888084383, "z": 0.0}, {"x": 2.347554241761135, "y": -0.49898805796261964, "z": 0.0}, {"x": 2.4453690018345156, "y": -0.5197792270443955, "z": 0.0}, {"x": 2.5431837619078963, "y": -0.5405703961261713, "z": 0.0}, {"x": 2.640998521981277, "y": -0.5613615652079471, "z": 0.0}, {"x": 2.738813282054658, "y": -0.582152734289723, "z": 0.0}, {"x": 2.8366280421280385, "y": -0.6029439033714988, "z": 0.0}, {"x": 2.934442802201418, "y": -0.6237350724532744, "z": 0.0}, {"x": 0.1, "y": -2.4492935982947065e-17, "z": 0.0}, {"x": 0.2, "y": -4.898587196589413e-17, "z": 0.0}, {"x": 0.30000000000000004, "y": -7.34788079488412e-17, "z": 0.0}, {"x": 0.4, "y": -9.797174393178826e-17, "z": 0.0}, {"x": 0.5, "y": -1.2246467991473532e-16, "z": 0.0}, {"x": 0.6, "y": -1.4695761589768238e-16, "z": 0.0}, {"x": 0.7, "y": -1.7145055188062944e-16, "z": 0.0}, {"x": 0.7999999999999999, "y": -1.959434878635765e-16, "z": 0.0}, {"x": 0.8999999999999999, "y": -2.2043642384652356e-16, "z": 0.0}, {"x": 0.9999999999999999, "y": -2.449293598294706e-16, "z": 0.0}, {"x": 1.0999999999999999, "y": -2.6942229581241765e-16, "z": 0.0}, {"x": 1.2, "y": -2.9391523179536476e-16, "z": 0.0}, {"x": 1.3, "y": -3.1840816777831187e-16, "z": 0.0}, {"x": 1.4000000000000001, "y": -3.4290110376125893e-16, "z": 0.0}, {"x": 1.5000000000000002, "y": -3.6739403974420604e-16, "z": 0.0}, {"x": 1.6000000000000003, "y": -3.918869757271531e-16, "z": 0.0}, {"x": 1.7000000000000004, "y": -4.163799117101002e-16, "z": 0.0}, {"x": 1.8000000000000005, "y": -4.4087284769304726e-16, "z": 0.0}, {"x": 1.9000000000000006, "y": -4.653657836759944e-16, "z": 0.0}, {"x": 2.0000000000000004, "y": -4.898587196589414e-16, "z": 0.0}, {"x": 2.1000000000000005, "y": -5.143516556418885e-16, "z": 0.0}, {"x": 2.2000000000000006, "y": -5.388445916248356e-16, "z": 0.0}, {"x": 2.3000000000000007, "y": -5.633375276077826e-16, "z": 0.0}, {"x": 2.400000000000001, "y": -5.878304635907297e-16, "z": 0.0}, {"x": 2.500000000000001, "y": -6.123233995736768e-16, "z": 0.0}, {"x": 2.600000000000001, "y": -6.368163355566239e-16, "z": 0.0}, {"x": 2.700000000000001, "y": -6.613092715395709e-16, "z": 0.0}, {"x": 2.800000000000001, "y": -6.858022075225181e-16, "z": 0.0}, {"x": 2.9000000000000012, "y": -7.102951435054652e-16, "z": 0.0}, {"x": 3.0, "y": -7.347880794884119e-16, "z": 0.0}], "faces": [[0, 1, 2], [1, 3, 4, 2], [3, 5, 6, 4], [5, 7, 8, 6], [7, 9, 10, 8], [9, 11, 12, 10], [11, 13, 14, 12], [13, 15, 16, 14], [15, 17, 18, 16], [17, 19, 20, 18], [19, 21, 22, 20], [21, 23, 24, 22], [23, 25, 26, 24], [25, 27, 28, 26], [27, 29, 30, 28], [29, 31, 32, 30], [31, 33, 34, 32], [33, 35, 36, 34], [35, 37, 38, 36], [37, 39, 40, 38], [39, 41, 42, 40], [41, 43, 44, 42], [43, 45, 46, 44], [45, 47, 48, 46], [47, 49, 50, 48], [49, 51, 52, 50], [51, 53, 54, 52], [53, 55, 56, 54], [55, 57, 58, 56], [57, 59, 60, 58], [0, 2, 61], [2, 4, 62, 61], [4, 6, 63, 62], [6, 8, 64, 63], [8, 10, 65, 64], [10, 12, 66, 65], [12, 14, 67, 66], [14, 16, 68, 67], [16, 18, 69, 68], [18, 20, 70, 69], [20, 22, 71, 70], [22, 24, 72, 71], [24, 26, 73, 72], [26, 28, 74, 73], [28, 30, 75, 74], [30, 32, 76, 75], [32, 34, 77, 76], [34, 36, 78, 77], [36, 38, 79, 78], [38, 40, 80, 79], [40, 42, 81, 80], [42, 44, 82, 81], [44, 46, 83, 82], [46, 48, 84, 83], [48, 50, 85, 84], [50, 52, 86, 85], [52, 54, 87, 86], [54, 56, 88, 87], [56, 58, 89, 88], [58, 60, 90, 89], [0, 61, 91], [61, 62, 92, 91], [62, 63, 93, 92], [63, 64, 94, 93], [64, 65, 95, 94], [65, 66, 96, 95], [66, 67, 97, 96], [67, 68, 98, 97], [68, 69, 99, 98], [69, 70, 100, 99], [70, 71, 101, 100], [71, 72, 102, 101], [72, 73, 103, 102], [73, 74, 104, 103], [74, 75, 105, 104], [75, 76, 106, 105], [76, 77, 107, 106], [77, 78, 108, 107], [78, 79, 109, 108], [79, 80, 110, 109], [80, 81, 111, 110], [81, 82, 112, 111], [82, 83, 113, 112], [83, 84, 114, 113], [84, 85, 115, 114], [85, 86, 116, 115], [86, 87, 117, 116], [87, 88, 118, 117], [88, 89, 119, 118], [89, 90, 120, 119], [0, 91, 121], [91, 92, 122, 121], [92, 93, 123, 122], [93, 94, 124, 123], [94, 95, 125, 124], [95, 96, 126, 125], [96, 97, 127, 126], [97, 98, 128, 127], [98, 99, 129, 128], [99, 100, 130, 129], [100, 101, 131, 130], [101, 102, 132, 131], [102, 103, 133, 132], [103, 104, 134, 133], [104, 105, 135, 134], [105, 106, 136, 135], [106, 107, 137, 136], [107, 108, 138, 137], [108, 109, 139, 138], [109, 110, 140, 139], [110, 111, 141, 140], [111, 112, 142, 141], [112, 113, 143, 142], [113, 114, 144, 143], [114, 115, 145, 144], [115, 116, 146, 145], [116, 117, 147, 146], [117, 118, 148, 147], [118, 119, 149, 148], [119, 120, 150, 149], [0, 121, 151], [121, 122, 152, 151], [122, 123, 153, 152], [123, 124, 154, 153], [124, 125, 155, 154], [125, 126, 156, 155], [126, 127, 157, 156], [127, 128, 158, 157], [128, 129, 159, 158], [129, 130, 160, 159], [130, 131, 161, 160], [131, 132, 162, 161], [132, 133, 163, 162], [133, 134, 164, 163], [134, 135, 165, 164], [135, 136, 166, 165], [136, 137, 167, 166], [137, 138, 168, 167], [138, 139, 169, 168], [139, 140, 170, 169], [140, 141, 171, 170], [141, 142, 172, 171], [142, 143, 173, 172], [143, 144, 174, 173], [144, 145, 175, 174], [145, 146, 176, 175], [146, 147, 177, 176], [147, 148, 178, 177], [148, 149, 179, 178], [149, 150, 180, 179], [0, 151, 181], [151, 152, 182, 181], [152, 153, 183, 182], [153, 154, 184, 183], [154, 155, 185, 184], [155, 156, 186, 185], [156, 157, 187, 186], [157, 158, 188, 187], [158, 159, 189, 188], [159, 160, 190, 189], [160, 161, 191, 190], [161, 162, 192, 191], [162, 163, 193, 192], [163, 164, 194, 193], [164, 165, 195, 194], [165, 166, 196, 195], [166, 167, 197, 196], [167, 168, 198, 197], [168, 169, 199, 198], [169, 170, 200, 199], [170, 171, 201, 200], [171, 172, 202, 201], [172, 173, 203, 202], [173, 174, 204, 203], [174, 175, 205, 204], [175, 176, 206, 205], [176, 177, 207, 206], [177, 178, 208, 207], [178, 179, 209, 208], [179, 180, 210, 209], [0, 181, 211], [181, 182, 212, 211], [182, 183, 213, 212], [183, 184, 214, 213], [184, 185, 215, 214], [185, 186, 216, 215], [186, 187, 217, 216], [187, 188, 218, 217], [188, 189, 219, 218], [189, 190, 220, 219], [190, 191, 221, 220], [191, 192, 222, 221], [192, 193, 223, 222], [193, 194, 224, 223], [194, 195, 225, 224], [195, 196, 226, 225], [196, 197, 227, 226], [197, 198, 228, 227], [198, 199, 229, 228], [199, 200, 230, 229], [200, 201, 231, 230], [201, 202, 232, 231], [202, 203, 233, 232], [203, 204, 234, 233], [204, 205, 235, 234], [205, 206, 236, 235], [206, 207, 237, 236], [207, 208, 238, 237], [208, 209, 239, 238], [209, 210, 240, 239], [0, 211, 241], [211, 212, 242, 241], [212, 213, 243, 242], [213, 214, 244, 243], [214, 215, 245, 244], [215, 216, 246, 245], [216, 217, 247, 246], [217, 218, 248, 247], [218, 219, 249, 248], [219, 220, 250, 249], [220, 221, 251, 250], [221, 222, 252, 251], [222, 223, 253, 252], [223, 224, 254, 253], [224, 225, 255, 254], [225, 226, 256, 255], [226, 227, 257, 256], [227, 228, 258, 257], [228, 229, 259, 258], [229, 230, 260, 259], [230, 231, 261, 260], [231, 232, 262, 261], [232, 233, 263, 262], [233, 234, 264, 263], [234, 235, 265, 264], [235, 236, 266, 265], [236, 237, 267, 266], [237, 238, 268, 267], [238, 239, 269, 268], [239, 240, 270, 269], [0, 241, 271], [241, 242, 272, 271], [242, 243, 273, 272], [243, 244, 274, 273], [244, 245, 275, 274], [245, 246, 276, 275], [246, 247, 277, 276], [247, 248, 278, 277], [248, 249, 279, 278], [249, 250, 280, 279], [250, 251, 281, 280], [251, 252, 282, 281], [252, 253, 283, 282], [253, 254, 284, 283], [254, 255, 285, 284], [255, 256, 286, 285], [256, 257, 287, 286], [257, 258, 288, 287], [258, 259, 289, 288], [259, 260, 290, 289], [260, 261, 291, 290], [261, 262, 292, 291], [262, 263, 293, 292], [263, 264, 294, 293], [264, 265, 295, 294], [265, 266, 296, 295], [266, 267, 297, 296], [267, 268, 298, 297], [268, 269, 299, 298], [269, 270, 300, 299], [0, 271, 301], [271, 272, 302, 301], [272, 273, 303, 302], [273, 274, 304, 303], [274, 275, 305, 304], [275, 276, 306, 305], [276, 277, 307, 306], [277, 278, 308, 307], [278, 279, 309, 308], [279, 280, 310, 309], [280, 281, 311, 310], [281, 282, 312, 311], [282, 283, 313, 312], [283, 284, 314, 313], [284, 285, 315, 314], [285, 286, 316, 315], [286, 287, 317, 316], [287, 288, 318, 317], [288, 289, 319, 318], [289, 290, 320, 319], [290, 291, 321, 320], [291, 292, 322, 321], [292, 293, 323, 322], [293, 294, 324, 323], [294, 295, 325, 324], [295, 296, 326, 325], [296, 297, 327, 326], [297, 298, 328, 327], [298, 299, 329, 328], [299, 300, 330, 329], [0, 301, 331], [301, 302, 332, 331], [302, 303, 333, 332], [303, 304, 334, 333], [304, 305, 335, 334], [305, 306, 336, 335], [306, 307, 337, 336], [307, 308, 338, 337], [308, 309, 339, 338], [309, 310, 340, 339], [310, 311, 341, 340], [311, 312, 342, 341], [312, 313, 343, 342], [313, 314, 344, 343], [314, 315, 345, 344], [315, 316, 346, 345], [316, 317, 347, 346], [317, 318, 348, 347], [318, 319, 349, 348], [319, 320, 350, 349], [320, 321, 351, 350], [321, 322, 352, 351], [322, 323, 353, 352], [323, 324, 354, 353], [324, 325, 355, 354], [325, 326, 356, 355], [326, 327, 357, 356], [327, 328, 358, 357], [328, 329, 359, 358], [329, 330, 360, 359], [0, 331, 361], [331, 332, 362, 361], [332, 333, 363, 362], [333, 334, 364, 363], [334, 335, 365, 364], [335, 336, 366, 365], [336, 337, 367, 366], [337, 338, 368, 367], [338, 339, 369, 368], [339, 340, 370, 369], [340, 341, 371, 370], [341, 342, 372, 371], [342, 343, 373, 372], [343, 344, 374, 373], [344, 345, 375, 374], [345, 346, 376, 375], [346, 347, 377, 376], [347, 348, 378, 377], [348, 349, 379, 378], [349, 350, 380, 379], [350, 351, 381, 380], [351, 352, 382, 381], [352, 353, 383, 382], [353, 354, 384, 383], [354, 355, 385, 384], [355, 356, 386, 385], [356, 357, 387, 386], [357, 358, 388, 387], [358, 359, 389, 388], [359, 360, 390, 389], [0, 361, 391], [361, 362, 392, 391], [362, 363, 393, 392], [363, 364, 394, 393], [364, 365, 395, 394], [365, 366, 396, 395], [366, 367, 397, 396], [367, 368, 398, 397], [368, 369, 399, 398], [369, 370, 400, 399], [370, 371, 401, 400], [371, 372, 402, 401], [372, 373, 403, 402], [373, 374, 404, 403], [374, 375, 405, 404], [375, 376, 406, 405], [376, 377, 407, 406], [377, 378, 408, 407], [378, 379, 409, 408], [379, 380, 410, 409], [380, 381, 411, 410], [381, 382, 412, 411], [382, 383, 413, 412], [383, 384, 414, 413], [384, 385, 415, 414], [385, 386, 416, 415], [386, 387, 417, 416], [387, 388, 418, 417], [388, 389, 419, 418], [389, 390, 420, 419], [0, 391, 421], [391, 392, 422, 421], [392, 393, 423, 422], [393, 394, 424, 423], [394, 395, 425, 424], [395, 396, 426, 425], [396, 397, 427, 426], [397, 398, 428, 427], [398, 399, 429, 428], [399, 400, 430, 429], [400, 401, 431, 430], [401, 402, 432, 431], [402, 403, 433, 432], [403, 404, 434, 433], [404, 405, 435, 434], [405, 406, 436, 435], [406, 407, 437, 436], [407, 408, 438, 437], [408, 409, 439, 438], [409, 410, 440, 439], [410, 411, 441, 440], [411, 412, 442, 441], [412, 413, 443, 442], [413, 414, 444, 443], [414, 415, 445, 444], [415, 416, 446, 445], [416, 417, 447, 446], [417, 418, 448, 447], [418, 419, 449, 448], [419, 420, 450, 449], [0, 421, 451], [421, 422, 452, 451], [422, 423, 453, 452], [423, 424, 454, 453], [424, 425, 455, 454], [425, 426, 456, 455], [426, 427, 457, 456], [427, 428, 458, 457], [428, 429, 459, 458], [429, 430, 460, 459], [430, 431, 461, 460], [431, 432, 462, 461], [432, 433, 463, 462], [433, 434, 464, 463], [434, 435, 465, 464], [435, 436, 466, 465], [436, 437, 467, 466], [437, 438, 468, 467], [438, 439, 469, 468], [439, 440, 470, 469], [440, 441, 471, 470], [441, 442, 472, 471], [442, 443, 473, 472], [443, 444, 474, 473], [444, 445, 475, 474], [445, 446, 476, 475], [446, 447, 477, 476], [447, 448, 478, 477], [448, 449, 479, 478], [449, 450, 480, 479], [0, 451, 481], [451, 452, 482, 481], [452, 453, 483, 482], [453, 454, 484, 483], [454, 455, 485, 484], [455, 456, 486, 485], [456, 457, 487, 486], [457, 458, 488, 487], [458, 459, 489, 488], [459, 460, 490, 489], [460, 461, 491, 490], [461, 462, 492, 491], [462, 463, 493, 492], [463, 464, 494, 493], [464, 465, 495, 494], [465, 466, 496, 495], [466, 467, 497, 496], [467, 468, 498, 497], [468, 469, 499, 498], [469, 470, 500, 499], [470, 471, 501, 500], [471, 472, 502, 501], [472, 473, 503, 502], [473, 474, 504, 503], [474, 475, 505, 504], [475, 476, 506, 505], [476, 477, 507, 506], [477, 478, 508, 507], [478, 479, 509, 508], [479, 480, 510, 509], [0, 481, 511], [481, 482, 512, 511], [482, 483, 513, 512], [483, 484, 514, 513], [484, 485, 515, 514], [485, 486, 516, 515], [486, 487, 517, 516], [487, 488, 518, 517], [488, 489, 519, 518], [489, 490, 520, 519], [490, 491, 521, 520], [491, 492, 522, 521], [492, 493, 523, 522], [493, 494, 524, 523], [494, 495, 525, 524], [495, 496, 526, 525], [496, 497, 527, 526], [497, 498, 528, 527], [498, 499, 529, 528], [499, 500, 530, 529], [500, 501, 531, 530], [501, 502, 532, 531], [502, 503, 533, 532], [503, 504, 534, 533], [504, 505, 535, 534], [505, 506, 536, 535], [506, 507, 537, 536], [507, 508, 538, 537], [508, 509, 539, 538], [509, 510, 540, 539], [0, 511, 541], [511, 512, 542, 541], [512, 513, 543, 542], [513, 514, 544, 543], [514, 515, 545, 544], [515, 516, 546, 545], [516, 517, 547, 546], [517, 518, 548, 547], [518, 519, 549, 548], [519, 520, 550, 549], [520, 521, 551, 550], [521, 522, 552, 551], [522, 523, 553, 552], [523, 524, 554, 553], [524, 525, 555, 554], [525, 526, 556, 555], [526, 527, 557, 556], [527, 528, 558, 557], [528, 529, 559, 558], [529, 530, 560, 559], [530, 531, 561, 560], [531, 532, 562, 561], [532, 533, 563, 562], [533, 534, 564, 563], [534, 535, 565, 564], [535, 536, 566, 565], [536, 537, 567, 566], [537, 538, 568, 567], [538, 539, 569, 568], [539, 540, 570, 569], [0, 541, 571], [541, 542, 572, 571], [542, 543, 573, 572], [543, 544, 574, 573], [544, 545, 575, 574], [545, 546, 576, 575], [546, 547, 577, 576], [547, 548, 578, 577], [548, 549, 579, 578], [549, 550, 580, 579], [550, 551, 581, 580], [551, 552, 582, 581], [552, 553, 583, 582], [553, 554, 584, 583], [554, 555, 585, 584], [555, 556, 586, 585], [556, 557, 587, 586], [557, 558, 588, 587], [558, 559, 589, 588], [559, 560, 590, 589], [560, 561, 591, 590], [561, 562, 592, 591], [562, 563, 593, 592], [563, 564, 594, 593], [564, 565, 595, 594], [565, 566, 596, 595], [566, 567, 597, 596], [567, 568, 598, 597], [568, 569, 599, 598], [569, 570, 600, 599], [0, 571, 601], [571, 572, 602, 601], [572, 573, 603, 602], [573, 574, 604, 603], [574, 575, 605, 604], [575, 576, 606, 605], [576, 577, 607, 606], [577, 578, 608, 607], [578, 579, 609, 608], [579, 580, 610, 609], [580, 581, 611, 610], [581, 582, 612, 611], [582, 583, 613, 612], [583, 584, 614, 613], [584, 585, 615, 614], [585, 586, 616, 615], [586, 587, 617, 616], [587, 588, 618, 617], [588, 589, 619, 618], [589, 590, 620, 619], [590, 591, 621, 620], [591, 592, 622, 621], [592, 593, 623, 622], [593, 594, 624, 623], [594, 595, 625, 624], [595, 596, 626, 625], [596, 597, 627, 626], [597, 598, 628, 627], [598, 599, 629, 628], [599, 600, 630, 629], [0, 601, 631], [601, 602, 632, 631], [602, 603, 633, 632], [603, 604, 634, 633], [604, 605, 635, 634], [605, 606, 636, 635], [606, 607, 637, 636], [607, 608, 638, 637], [608, 609, 639, 638], [609, 610, 640, 639], [610, 611, 641, 640], [611, 612, 642, 641], [612, 613, 643, 642], [613, 614, 644, 643], [614, 615, 645, 644], [615, 616, 646, 645], [616, 617, 647, 646], [617, 618, 648, 647], [618, 619, 649, 648], [619, 620, 650, 649], [620, 621, 651, 650], [621, 622, 652, 651], [622, 623, 653, 652], [623, 624, 654, 653], [624, 625, 655, 654], [625, 626, 656, 655], [626, 627, 657, 656], [627, 628, 658, 657], [628, 629, 659, 658], [629, 630, 660, 659], [0, 631, 661], [631, 632, 662, 661], [632, 633, 663, 662], [633, 634, 664, 663], [634, 635, 665, 664], [635, 636, 666, 665], [636, 637, 667, 666], [637, 638, 668, 667], [638, 639, 669, 668], [639, 640, 670, 669], [640, 641, 671, 670], [641, 642, 672, 671], [642, 643, 673, 672], [643, 644, 674, 673], [644, 645, 675, 674], [645, 646, 676, 675], [646, 647, 677, 676], [647, 648, 678, 677], [648, 649, 679, 678], [649, 650, 680, 679], [650, 651, 681, 680], [651, 652, 682, 681], [652, 653, 683, 682], [653, 654, 684, 683], [654, 655, 685, 684], [655, 656, 686, 685], [656, 657, 687, 686], [657, 658, 688, 687], [658, 659, 689, 688], [659, 660, 690, 689], [0, 661, 691], [661, 662, 692, 691], [662, 663, 693, 692], [663, 664, 694, 693], [664, 665, 695, 694], [665, 666, 696, 695], [666, 667, 697, 696], [667, 668, 698, 697], [668, 669, 699, 698], [669, 670, 700, 699], [670, 671, 701, 700], [671, 672, 702, 701], [672, 673, 703, 702], [673, 674, 704, 703], [674, 675, 705, 704], [675, 676, 706, 705], [676, 677, 707, 706], [677, 678, 708, 707], [678, 679, 709, 708], [679, 680, 710, 709], [680, 681, 711, 710], [681, 682, 712, 711], [682, 683, 713, 712], [683, 684, 714, 713], [684, 685, 715, 714], [685, 686, 716, 715], [686, 687, 717, 716], [687, 688, 718, 717], [688, 689, 719, 718], [689, 690, 720, 719], [0, 691, 721], [691, 692, 722, 721], [692, 693, 723, 722], [693, 694, 724, 723], [694, 695, 725, 724], [695, 696, 726, 725], [696, 697, 727, 726], [697, 698, 728, 727], [698, 699, 729, 728], [699, 700, 730, 729], [700, 701, 731, 730], [701, 702, 732, 731], [702, 703, 733, 732], [703, 704, 734, 733], [704, 705, 735, 734], [705, 706, 736, 735], [706, 707, 737, 736], [707, 708, 738, 737], [708, 709, 739, 738], [709, 710, 740, 739], [710, 711, 741, 740], [711, 712, 742, 741], [712, 713, 743, 742], [713, 714, 744, 743], [714, 715, 745, 744], [715, 716, 746, 745], [716, 717, 747, 746], [717, 718, 748, 747], [718, 719, 749, 748], [719, 720, 750, 749], [0, 721, 751], [721, 722, 752, 751], [722, 723, 753, 752], [723, 724, 754, 753], [724, 725, 755, 754], [725, 726, 756, 755], [726, 727, 757, 756], [727, 728, 758, 757], [728, 729, 759, 758], [729, 730, 760, 759], [730, 731, 761, 760], [731, 732, 762, 761], [732, 733, 763, 762], [733, 734, 764, 763], [734, 735, 765, 764], [735, 736, 766, 765], [736, 737, 767, 766], [737, 738, 768, 767], [738, 739, 769, 768], [739, 740, 770, 769], [740, 741, 771, 770], [741, 742, 772, 771], [742, 743, 773, 772], [743, 744, 774, 773], [744, 745, 775, 774], [745, 746, 776, 775], [746, 747, 777, 776], [747, 748, 778, 777], [748, 749, 779, 778], [749, 750, 780, 779], [0, 751, 781], [751, 752, 782, 781], [752, 753, 783, 782], [753, 754, 784, 783], [754, 755, 785, 784], [755, 756, 786, 785], [756, 757, 787, 786], [757, 758, 788, 787], [758, 759, 789, 788], [759, 760, 790, 789], [760, 761, 791, 790], [761, 762, 792, 791], [762, 763, 793, 792], [763, 764, 794, 793], [764, 765, 795, 794], [765, 766, 796, 795], [766, 767, 797, 796], [767, 768, 798, 797], [768, 769, 799, 798], [769, 770, 800, 799], [770, 771, 801, 800], [771, 772, 802, 801], [772, 773, 803, 802], [773, 774, 804, 803], [774, 775, 805, 804], [775, 776, 806, 805], [776, 777, 807, 806], [777, 778, 808, 807], [778, 779, 809, 808], [779, 780, 810, 809], [0, 781, 811], [781, 782, 812, 811], [782, 783, 813, 812], [783, 784, 814, 813], [784, 785, 815, 814], [785, 786, 816, 815], [786, 787, 817, 816], [787, 788, 818, 817], [788, 789, 819, 818], [789, 790, 820, 819], [790, 791, 821, 820], [791, 792, 822, 821], [792, 793, 823, 822], [793, 794, 824, 823], [794, 795, 825, 824], [795, 796, 826, 825], [796, 797, 827, 826], [797, 798, 828, 827], [798, 799, 829, 828], [799, 800, 830, 829], [800, 801, 831, 830], [801, 802, 832, 831], [802, 803, 833, 832], [803, 804, 834, 833], [804, 805, 835, 834], [805, 806, 836, 835], [806, 807, 837, 836], [807, 808, 838, 837], [808, 809, 839, 838], [809, 810, 840, 839], [0, 811, 841], [811, 812, 842, 841], [812, 813, 843, 842], [813, 814, 844, 843], [814, 815, 845, 844], [815, 816, 846, 845], [816, 817, 847, 846], [817, 818, 848, 847], [818, 819, 849, 848], [819, 820, 850, 849], [820, 821, 851, 850], [821, 822, 852, 851], [822, 823, 853, 852], [823, 824, 854, 853], [824, 825, 855, 854], [825, 826, 856, 855], [826, 827, 857, 856], [827, 828, 858, 857], [828, 829, 859, 858], [829, 830, 860, 859], [830, 831, 861, 860], [831, 832, 862, 861], [832, 833, 863, 862], [833, 834, 864, 863], [834, 835, 865, 864], [835, 836, 866, 865], [836, 837, 867, 866], [837, 838, 868, 867], [838, 839, 869, 868], [839, 840, 870, 869], [0, 841, 871], [841, 842, 872, 871], [842, 843, 873, 872], [843, 844, 874, 873], [844, 845, 875, 874], [845, 846, 876, 875], [846, 847, 877, 876], [847, 848, 878, 877], [848, 849, 879, 878], [849, 850, 880, 879], [850, 851, 881, 880], [851, 852, 882, 881], [852, 853, 883, 882], [853, 854, 884, 883], [854, 855, 885, 884], [855, 856, 886, 885], [856, 857, 887, 886], [857, 858, 888, 887], [858, 859, 889, 888], [859, 860, 890, 889], [860, 861, 891, 890], [861, 862, 892, 891], [862, 863, 893, 892], [863, 864, 894, 893], [864, 865, 895, 894], [865, 866, 896, 895], [866, 867, 897, 896], [867, 868, 898, 897], [868, 869, 899, 898], [869, 870, 900, 899], [0, 871, 901], [871, 872, 902, 901], [872, 873, 903, 902], [873, 874, 904, 903], [874, 875, 905, 904], [875, 876, 906, 905], [876, 877, 907, 906], [877, 878, 908, 907], [878, 879, 909, 908], [879, 880, 910, 909], [880, 881, 911, 910], [881, 882, 912, 911], [882, 883, 913, 912], [883, 884, 914, 913], [884, 885, 915, 914], [885, 886, 916, 915], [886, 887, 917, 916], [887, 888, 918, 917], [888, 889, 919, 918], [889, 890, 920, 919], [890, 891, 921, 920], [891, 892, 922, 921], [892, 893, 923, 922], [893, 894, 924, 923], [894, 895, 925, 924], [895, 896, 926, 925], [896, 897, 927, 926], [897, 898, 928, 927], [898, 899, 929, 928], [899, 900, 930, 929]], "color": "#add8e6", "opacity": 0.5, "showMeshGrid": true}];
+    for ( var i=0 ; i < surfaces.length ; i++ ) addSurface( surfaces[i] );
+
+    function addSurface( json ) {
+
+        var useFaceColors = 'faceColors' in json ? true : false;
+
+        var geometry = new THREE.Geometry();
+        for ( var i=0 ; i < json.vertices.length ; i++ ) {
+            var v = json.vertices[i];
+            geometry.vertices.push( new THREE.Vector3( a[0]*v.x, a[1]*v.y, a[2]*v.z ) );
+        }
+        for ( var i=0 ; i < json.faces.length ; i++ ) {
+            var f = json.faces[i];
+            for ( var j=0 ; j < f.length - 2 ; j++ ) {
+                var face = new THREE.Face3( f[0], f[j+1], f[j+2] );
+                if ( useFaceColors ) face.color.set( json.faceColors[i] );
+                geometry.faces.push( face );
+            }
+        }
+        geometry.computeVertexNormals();
+
+        var side = json.singleSide ? THREE.FrontSide : THREE.DoubleSide;
+        var transparent = json.opacity < 1 ? true : false;
+        var depthWrite = 'depthWrite' in json ? json.depthWrite : !transparent;
+        var flatShading = json.useFlatShading ? json.useFlatShading : false;
+
+        var material = new THREE.MeshPhongMaterial( { side: side,
+                                     color: useFaceColors ? 'white' : json.color,
+                                     vertexColors: useFaceColors ? THREE.FaceColors : THREE.NoColors,
+                                     transparent: transparent, opacity: json.opacity,
+                                     shininess: 20, flatShading: flatShading,
+                                     depthWrite: depthWrite } );
+
+        var c = new THREE.Vector3();
+        geometry.computeBoundingBox();
+        geometry.boundingBox.getCenter( c );
+        geometry.translate( -c.x, -c.y, -c.z );
+
+        var mesh = new THREE.Mesh( geometry, material );
+        mesh.position.set( c.x, c.y, c.z );
+        if ( transparent && json.renderOrder ) mesh.renderOrder = json.renderOrder;
+        mesh.userData = json;
+        scene.add( mesh );
+
+        if ( json.showMeshGrid ) addSurfaceMeshGrid( json );
+
+    }
+
+    function addSurfaceMeshGrid( json ) {
+
+        var geometry = new THREE.Geometry();
+
+        for ( var i=0 ; i < json.faces.length ; i++ ) {
+            var f = json.faces[i];
+            for ( var j=0 ; j < f.length ; j++ ) {
+                var k = j === f.length-1 ? 0 : j+1;
+                var v1 = json.vertices[f[j]];
+                var v2 = json.vertices[f[k]];
+                // vertices in opposite directions on neighboring faces
+                var nudge = f[j] < f[k] ? .0005*zRange : -.0005*zRange;
+                geometry.vertices.push( new THREE.Vector3( a[0]*v1.x, a[1]*v1.y, a[2]*(v1.z+nudge) ) );
+                geometry.vertices.push( new THREE.Vector3( a[0]*v2.x, a[1]*v2.y, a[2]*(v2.z+nudge) ) );
+            }
+        }
+
+        var c = new THREE.Vector3();
+        geometry.computeBoundingBox();
+        geometry.boundingBox.getCenter( c );
+        geometry.translate( -c.x, -c.y, -c.z );
+
+        var gridColor = options.theme === 'dark' ? 'white' : 'black';
+        var linewidth = json.linewidth || 1;
+        var materialOptions = { color: gridColor, linewidth: linewidth };
+
+        var mesh;
+        if ( linewidth > 1 && window.createFatLineSegments ) {
+            mesh = createFatLineSegments( geometry, materialOptions );
+        } else {
+            var material = new THREE.LineBasicMaterial( materialOptions );
+            mesh = new THREE.LineSegments( geometry, material );
+        }
+
+        mesh.position.set( c.x, c.y, c.z );
+        mesh.userData = json;
+        scene.add( mesh );
+
+    }
+
+    function render() {
+
+        if ( window.updateAnimation ) animate = updateAnimation();
+        if ( animate ) requestAnimationFrame( render );
+
+        renderer.render( scene, camera );
+
+    }
+
+    render();
+    controls.update();
+    if ( !animate ) render();
+
+
+    // menu functions
+
+    function toggleMenu() {
+
+        var m = document.getElementById( 'menu-content' );
+        if ( m.style.display === 'block' ) m.style.display = 'none'
+        else m.style.display = 'block';
+
+    }
+
+
+    function saveAsPNG() {
+
+        var a = document.body.appendChild( document.createElement( 'a' ) );
+        a.href = renderer.domElement.toDataURL( 'image/png' );
+        a.download = 'screenshot';
+        a.click();
+
+    }
+
+    function saveAsHTML() {
+
+        toggleMenu(); // otherwise visible in output
+        event.stopPropagation();
+
+        var blob = new Blob( [ '<!DOCTYPE html>\n' + document.documentElement.outerHTML ] );
+        var a = document.body.appendChild( document.createElement( 'a' ) );
+        a.href = window.URL.createObjectURL( blob );
+        a.download = suggestFilename();
+        a.click();
+
+        function suggestFilename() {
+            if ( !document.title ) {
+                return 'graphic.html';
+            } else if ( /\.html?$/i.test( document.title ) ) {
+                return document.title; // already ends in .htm or .html
+            } else {
+                return document.title + '.html';
+            }
+        }
+
+    }
+
+    function getViewpoint() {
+
+        function roundTo( x, n ) { return +x.toFixed(n); }
+
+        var v = camera.quaternion.inverse();
+        var r = Math.sqrt( v.x*v.x + v.y*v.y + v.z*v.z );
+        var axis = [ roundTo( v.x / r, 4 ), roundTo( v.y / r, 4 ), roundTo( v.z / r, 4 ) ];
+        var angle = roundTo( 2 * Math.atan2( r, v.w ) * 180 / Math.PI, 2 );
+
+        var textArea = document.createElement( 'textarea' );
+        textArea.textContent = JSON.stringify( axis ) + ',' + angle;
+        textArea.style.csstext = 'position: absolute; top: -100%';
+        document.body.append( textArea );
+        textArea.select();
+        document.execCommand( 'copy' );
+
+        var m = document.getElementById( 'menu-message' );
+        m.innerHTML = 'Viewpoint copied to clipboard';
+        m.style.display = 'block';
+        setTimeout( function() { m.style.display = 'none'; }, 2000 );
+
+    }
+
+    function getCamera() {
+
+        function roundTo( x, n ) { return +x.toFixed(n); }
+
+        var pos = camera.position;
+        var pos_r = [ roundTo( pos.x, 4 ), roundTo( pos.y, 4 ), roundTo( pos.z, 4 ) ];
+   //     var up = camera.up; // up is always (0,0,1)
+        var textArea = document.createElement('textarea');
+        var cam_position = JSON.stringify(pos_r);
+        textArea.textContent = ',camera_position=' + cam_position;
+        textArea.style.csstext = 'position: absolute; top: -100%';
+        document.body.append( textArea );
+        textArea.select();
+        document.execCommand( 'copy' );
+
+        var m = document.getElementById( 'menu-message' );
+        m.innerHTML = 'Camera position '+ cam_position+' copied to clipboard';
+        m.style.display = 'block';
+        setTimeout( function() { m.style.display = 'none'; }, 2000 );
+
+    }
+
+</script>
+
+<div id="menu-container" onclick="toggleMenu()">&#x24d8;
+<div id="menu-message"></div>
+<div id="menu-content">
+<div onclick="saveAsPNG()">Save as PNG</div>
+<div onclick="saveAsHTML()">Save as HTML</div>
+<div onclick="getCamera()">Get camera</div>
+<div onclick="getViewpoint()">Get viewpoint</div>
+<div>Close Menu</div>
+</div></div>
+
+
+</body>
+</html>
