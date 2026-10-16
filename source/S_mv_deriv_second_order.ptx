@@ -830,41 +830,41 @@
   <task>
     <statement>
       <p>
-        Compute <m>f_{xy}(x,y)</m> algebraically and evaluate <m>f_{xy}(1.75, -1.5)</m>.  Write a couple of sentences about how this value compares with your observations in the previous part.
+        Compute <m>f_{xy}(x,y)</m> algebraically and evaluate <m>f_{xy}(2, -1.5)</m>.  Write a couple of sentences about how this value compares with your observations in the previous part.
       </p>
     </statement>
     <answer>
       <p>
-        Since <m>f_x(x,y) = \cos(x)e^{-y}</m>, we have <m>f_{xy} = -\cos(x)e^{-y}</m>. So <m>f_{xy}(1.75,-1.5) \approx 0.8</m>. This number is positive, as we discussed in the previous part.
+        Since <m>f_x(x,y) = \cos(x)e^{-y}</m>, we have <m>f_{xy} = -\cos(x)e^{-y}</m>. So <m>f_{xy}(2,-1.5) \approx 0.093</m>. This number is positive, as we discussed in the previous part.
       </p>
     </answer>
     <solution>
       <p>
-        Since <m>f_x(x,y) = \cos(x)e^{-y}</m>, we have <m>f_{xy} = -\cos(x)e^{-y}</m>. So <m>f_{xy}(1.75,-1.5) \approx 0.8</m>. This number is positive, as we discussed in the previous part.
+        Since <m>f_x(x,y) = \cos(x)e^{-y}</m>, we have <m>f_{xy} = -\cos(x)e^{-y}</m>. So <m>f_{xy}(2,-1.5) \approx 0.093</m>. This number is positive, as we discussed in the previous part.
       </p>
     </solution>
   </task>    
   <task>
     <statement>
       <p>
-        We know that <m>f_{xx}(1.75, -1.5)</m> measures the concavity of the <m>y = -1.5</m> trace, and that <m>f_{yy}(1.75, -1.5)</m> measures the concavity of the <m>x = 1.75</m> trace.  What do you think the quantity <m>f_{xy}(1.75, -1.5)</m> measures?
+        We know that <m>f_{xx}(1.75, -1.5)</m> measures the concavity of the <m>y = -1.5</m> trace, and that <m>f_{yy}(2, -1.5)</m> measures the concavity of the <m>x = 1.75</m> trace.  What do you think the quantity <m>f_{xy}(2, -1.5)</m> measures?
       </p>
     </statement>
     <answer>
       <p>
-        The quantity <m>f_{xy}(1.75,-1.5)</m> tells us how much the slopes of the <m>x=1.75</m> trace change as we increase <m>y</m> from <m>-1.5</m>. Geometrically, we could describe <m>f_{xy}(1.75,-1.5)</m> as telling us how much the surface <q>twists</q> in the <m>y</m> direction when <m>y=-1.5</m> as we move along the <m>x=1.75</m> trace.
+        The quantity <m>f_{xy}(2,-1.5)</m> tells us how much the slopes of the <m>x=2</m> trace change as we increase <m>y</m> from <m>-1.5</m>. Geometrically, we could describe <m>f_{xy}(2,-1.5)</m> as telling us how much the surface <q>twists</q> in the <m>y</m> direction when <m>y=-1.5</m> as we move along the <m>x=2</m> trace.
       </p>
     </answer>
     <solution>
       <p>
-        The quantity <m>f_{xy}(1.75,-1.5)</m> tells us how much the slopes of the <m>x=1.75</m> trace change as we increase <m>y</m> from <m>-1.5</m>. Geometrically, we could describe <m>f_{xy}(1.75,-1.5)</m> as telling us how much the surface <q>twists</q> in the <m>y</m> direction when <m>y=-1.5</m> as we move along the <m>x=1.75</m> trace.
+        The quantity <m>f_{xy}(2,-1.5)</m> tells us how much the slopes of the <m>x=2</m> trace change as we increase <m>y</m> from <m>-1.5</m>. Geometrically, we could describe <m>f_{xy}(2,-1.5)</m> as telling us how much the surface <q>twists</q> in the <m>y</m> direction when <m>y=-1.5</m> as we move along the <m>x=2</m> trace.
       </p>
     </solution>
   </task>
   <task>
     <statement>
       <p>
-        In the interactive image below, the trace with <m>y = -1.5</m> is highlighted with the point <m>(1.75,-1.5,f(1.75,-1.5))</m> drawn in black. Sketch three tangent lines to this trace whose slopes correspond to the value of <m>f_{yx}(x,-1.5)</m> for three different values of <m>x</m> near <m>x=1.75</m>. Use your tangent lines to state whether <m>f_{yx}(1.75, -1.5)</m> is positive or negative. Justify your reasoning and describe what you think <m>f_{yx}(1.75, -1.5)</m> measures.
+        In the interactive image below, the trace with <m>y = -1.5</m> is highlighted with the point <m>(2,-1.5,f(2,-1.5))</m> drawn in black. Sketch three tangent lines to this trace whose slopes correspond to the value of <m>f_{yx}(x,-1.5)</m> for three different values of <m>x</m> near <m>x=2</m>. Use your tangent lines to state whether <m>f_{yx}(2, -1.5)</m> is positive or negative. Justify your reasoning and describe what you think <m>f_{yx}(2, -1.5)</m> measures.
       </p>
       <!-- <figure xml:id="F_10_3_fyx">
         <caption>The surface given by <m>z=f(x,y) = \sin(x)e^{-y}</m> with trace at <m>y=-1.5</m> </caption> -->
@@ -880,33 +880,25 @@
           #c2 and o2 are for constant t value traces
           #c3 and o3 are for constant s value traces
           c1="gray"; c2="black"; c3="black"; o1=0.2; o2=0.3; o3=0.3;
-          plot99=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1,aspect_ratio=(1,1,0.4))
+          plo13=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1,aspect_ratio=(1,1,0.4))
           for i in range(n+1):
             sv=a1+i/n*(a2-a1)
-            plot99+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c2,opacity=o2)
+            plot13+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c2,opacity=o2)
           for i in range(m+1):
             tv=b1+i/m*(b2-b1)
-            plot99+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
-          a=-1.5
-          fx=diff(f,x)
-          fy=diff(f,y)
-          fv=f(1.75,a)
-          fxv=fx(1.75,a)
-          fyv=fy(1.75,a)
-          fxy=diff(fx,y)
-          fxyv=fxy(1.75,a)
-          plot13=plot99+parametric_plot3d((x,-1.5,f(x,-1.5)),(x,0,pi),color="blue",thickness=3,opacity=0.5)
+            plot13+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
+          plot13+=parametric_plot3d((x,-1.5,f(x,-1.5)),(x,0,pi),color="blue",thickness=3,opacity=0.5)
           plot13+=text3d("y=-1.5",(-0.5,-1.5,1),color="blue",fontsize=20)
-          plot13+=point3d((1.75,-1.5,f(1.75,-1.5)),color="black",size=30,viewpoint=[[-0.095,-0.5444,-0.8334],163.45],camera_position=[3.5605,4.5275,4.1779])
-          #plot13+=parametric_plot3d((1.75+t,-1.5,f(1.75,-1.5)+t*fx(1.75,-1.5)+0.05),(t,-0.5,0.5),color="gray",thickness=4,zorder=3)
-          #plot13+=parametric_plot3d((1.75+t,a,fv+t*fxv+0.05),(t,-0.5,0.5),color="red",thickness=4,zorder=5)
+          plot13+=point3d((2,-1.5,f(2,-1.5)),color="black",size=30,viewpoint=[[-0.095,-0.5444,-0.8334],163.45],camera_position=[3.5605,4.5275,4.1779])
+          #plot13+=parametric_plot3d((2+t,-1.5,f(2,-1.5)+t*fx(2,-1.5)+0.05),(t,-0.5,0.5),color="gray",thickness=4,zorder=3)
+          #plot13+=parametric_plot3d((2+t,a,fv+t*fxv+0.05),(t,-0.5,0.5),color="red",thickness=4,zorder=5)
           plot13
         </sageplot>
       </image>
     </statement>
     <answer>
       <p>
-        The sketches are shown below. Since <m>f_y(x,y) = -\sin(x)e^{-y}</m>, when <m>x</m> exceeds <m>\frac{\pi}{2}</m> and increases, <m>f_y(x,y)</m> increases for fixed <m>y</m>. So we should expect <m>f_{yx}(1.75,-1.5)</m> to be positive. In fact, <m>f_{yx}(1.75,-1.5) = 0.8</m>. The value of <m>f_{yx}(1.75,-1.5)</m> measures how much the surface <q>twists</q> in the <m>x</m> direction when <m>x=1.75</m> as we move along the <m>y=-1.5</m> trace.
+        The sketches are shown below. Since <m>f_y(x,y) = -\sin(x)e^{-y}</m>, when <m>x</m> exceeds <m>\frac{\pi}{2}</m> and increases, <m>f_y(x,y)</m> increases for fixed <m>y</m>. So we should expect <m>f_{yx}(2,-1.5)</m> to be positive. In fact, <m>f_{yx}(2,-1.5) = 0.8</m>. The value of <m>f_{yx}(2,-1.5)</m> measures how much the surface <q>twists</q> in the <m>x</m> direction when <m>x=2</m> as we move along the <m>y=-1.5</m> trace.
       </p>
       <image width="73%" source="fig_10_3_Act_2a_fyx_1.png"><description><p>A curved mesh shown with a parabolic shape in one direction and an exponential shape in a perpendicular direction. A downward facing parabola is highlighted in red on the surface with point near the vertex of the parabola highlighted in black. A a downward sloping blue line segment is shown to the right of the highlighted point.</p></description></image> 
       <image width="73%" source="fig_10_3_Act_2a_fyx_2.png"><description><p>A curved mesh shown with a parabolic shape in one direction and an exponential shape in a perpendicular direction. A downward facing parabola is highlighted in red on the surface with point near the vertex of the parabola highlighted in black. A a downward sloping blue line segment is shown through the highlighted point.</p></description></image> 
@@ -914,7 +906,7 @@
     </answer>
     <solution>
       <p>
-         The sketches are shown below. Since <m>f_y(x,y) = -\sin(x)e^{-y}</m>, when <m>x</m> exceeds <m>\frac{\pi}{2}</m> and increases, <m>f_y(x,y)</m> increases for fixed <m>y</m>. So we should expect <m>f_{yx}(1.75,-1.5)</m> to be positive. In fact, <m>f_{yx}(1.75,-1.5) = 0.8</m>. The value of <m>f_{yx}(1.75,-1.5)</m> measures how much the surface <q>twists</q> in the <m>x</m> direction when <m>x=1.75</m> as we move along the <m>y=-1.5</m> trace.
+         The sketches are shown below. Since <m>f_y(x,y) = -\sin(x)e^{-y}</m>, when <m>x</m> exceeds <m>\frac{\pi}{2}</m> and increases, <m>f_y(x,y)</m> increases for fixed <m>y</m>. So we should expect <m>f_{yx}(2,-1.5)</m> to be positive. In fact, <m>f_{yx}(2,-1.5) = 0.8</m>. The value of <m>f_{yx}(2,-1.5)</m> measures how much the surface <q>twists</q> in the <m>x</m> direction when <m>x=2</m> as we move along the <m>y=-1.5</m> trace.
       </p>
       <image width="73%" source="fig_10_3_Act_2a_fyx_1.png"><description><p>A curved mesh shown with a parabolic shape in one direction and an exponential shape in a perpendicular direction. A downward facing parabola is highlighted in red on the surface with point near the vertex of the parabola highlighted in black. A a downward sloping blue line segment is shown to the right of the highlighted point.</p></description></image> 
       <image width="73%" source="fig_10_3_Act_2a_fyx_2.png"><description><p>A curved mesh shown with a parabolic shape in one direction and an exponential shape in a perpendicular direction. A downward facing parabola is highlighted in red on the surface with point near the vertex of the parabola highlighted in black. A a downward sloping blue line segment is shown through the highlighted point.</p></description></image> 
@@ -943,7 +935,7 @@
         #c1 is surface color     o1 is surface opacity
         #c2 and o2 are for constant t value traces
         #c3 and o3 are for constant s value traces
-        c1="gray"; c2="black"; c3="black"; o1=0.3; o2=0.7; o3=0.7;
+        c1="lightblue"; c2="black"; c3="black"; o1=0.4; o2=0.5; o3=0.5;
         plot5+=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1,frame=False,viewpoint=[[-0.4417,-0.5254,-0.7272],117.13],camera_position=[5.5415,1.1735,2.0264])
         for i in range(n+1):
           sv=a1+i/n*(a2-a1)
