@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+<meta charset="utf-8">
+<meta name=viewport content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+<style>
+
+    body { margin: 0px; overflow: hidden; }
+
+    #menu-container { position: absolute; bottom: 30px; right: 40px; cursor: default; }
+
+    #menu-message { position: absolute; bottom: 0px; right: 0px; white-space: nowrap;
+                    display: none; background-color: #F5F5F5; padding: 10px; }
+
+    #menu-content { position: absolute; bottom: 0px; right: 0px;
+                    display: none; background-color: #F5F5F5; border-bottom: 1px solid black;
+                    border-right: 1px solid black; border-left: 1px solid black; }
+
+    #menu-content div { border-top: 1px solid black; padding: 10px; white-space: nowrap; }
+
+    #menu-content div:hover { background-color: #FEFEFE; }
+
+    .dark-theme #menu-container { color: white; }
+
+    .dark-theme #menu-message { background-color: #181818; }
+
+    .dark-theme #menu-content { background-color: #181818; border-color: white; }
+
+    .dark-theme #menu-content div { border-color: white; }
+
+    .dark-theme #menu-content div:hover { background-color: #303030; }
+
+</style>
+
+</head>
+
+<body>
+
+<script src="https://cdn.jsdelivr.net/gh/sagemath/threejs-sage@r122/build/three.min.js"></script>
+            <script>// fat_lines.js
+
+var _fatLines = [];
+
+function _createFatLine( lineStrip, geometry, materialOptions ) {
+
+    var vertexCount = geometry.vertices.length;
+    var positions = [];
+    for ( var i=0 ; i < vertexCount ; i++ ) {
+        var v = geometry.vertices[i];
+        positions.push( v.x, v.y, v.z );
+        // For a line strip, duplicate all but the first and last vertices.
+        if ( lineStrip && i > 0 && i < vertexCount - 1 ) {
+            positions.push( v.x, v.y, v.z );
+        }
+    }
+
+    geometry = new THREE.LineSegmentsGeometry();
+    geometry.setPositions( positions );
+
+    var material = new THREE.LineMaterial( materialOptions );
+    material.resolution = new THREE.Vector2( window.innerWidth, window.innerHeight );
+
+    var line = new THREE.LineSegments2( geometry, material );
+    line.computeLineDistances();
+    line.scale.set( 1, 1, 1 );
+
+    _fatLines.push( line );
+
+    return line;
+
+}
+
+function createFatLineStrip( geometry, materialOptions ) {
+    return _createFatLine( true, geometry, materialOptions );
+}
+
+function createFatLineSegments( geometry, materialOptions ) {
+    return _createFatLine( false, geometry, materialOptions );
+}
+
+function rescaleFatLines() {
+    var res = new THREE.Vector2( window.innerWidth, window.innerHeight );
+    var n = _fatLines.length;
+    for ( var i=0 ; i < n ; i++ ) {
+        _fatLines[i].material.resolution = res;
+    }
+}
+</script>
+<script>
+
+    var options = {"animate": false, "animationControls": true, "aspectRatio": [1.0, 1.0, 1.0], "autoScaling": [false, false, false], "autoPlay": true, "axes": false, "axesLabels": false, "axesLabelsStyle": null, "decimals": 2, "delay": 20, "frame": false, "loop": true, "projection": "perspective", "theme": "light", "viewpoint": [[-0.4122, -0.4982, -0.7628], 115.49]};
+    var animate = options.animate;
+
+    if ( options.theme === 'dark' )
+        document.body.className = 'dark-theme';
+
+    var scene = new THREE.Scene();
+
+    var renderer = new THREE.WebGLRenderer( { antialias: true, preserveDrawingBuffer: true } );
+    renderer.setPixelRatio( window.devicePixelRatio );
+    renderer.setSize( window.innerWidth, window.innerHeight );
+    renderer.setClearColor( options.theme === 'dark' ? 0 : 0xffffff, 1 );
+    document.body.appendChild( renderer.domElement );
+
+    var b = [{"x":-0.11412678195541844, "y":-5.0, "z":-5.0}, {"x":5.5, "y":5.5, "z":5.5}]; // bounds
+
+    if ( b[0].x === b[1].x ) {
+        b[0].x -= 1;
+        b[1].x += 1;
+    }
+    if ( b[0].y === b[1].y ) {
+        b[0].y -= 1;
+        b[1].y += 1;
+    }
+    if ( b[0].z === b[1].z ) {
+        b[0].z -= 1;
+        b[1].z += 1;
+    }
+
+    var rxRange = Math.sqrt( Math.pow( b[1].z - b[0].z, 2 )
+                            + Math.pow( b[1].y - b[0].y, 2 ) );
+    var ryRange = Math.sqrt( Math.pow( b[1].x - b[0].x, 2 )
+                            + Math.pow( b[1].z - b[0].z, 2 ) );
+    var rzRange = Math.sqrt( Math.pow( b[1].x - b[0].x, 2 )
+                            + Math.pow( b[1].y - b[0].y, 2 ) );
+    var xRange = b[1].x - b[0].x;
+    var yRange = b[1].y - b[0].y;
+    var zRange = b[1].z - b[0].z;
+
+    var ar = options.aspectRatio;
+    var a = [ ar[0], ar[1], ar[2] ]; // aspect multipliers
+
+    var autoScaling = options.autoScaling;
+    var autoAspect = 2.5;
+    if ( xRange > autoAspect * rxRange && autoScaling[0] ) a[0] = autoAspect * rxRange / xRange;
+    if ( yRange > autoAspect * ryRange && autoScaling[1] ) a[1] = autoAspect * ryRange / yRange;
+    if ( zRange > autoAspect * rzRange && autoScaling[2] ) a[2] = autoAspect * rzRange / zRange;
+
+    // Distance from (xMid,yMid,zMid) to any corner of the bounding box, after applying aspectRatio
+    var midToCorner = Math.sqrt( a[0]*a[0]*xRange*xRange + a[1]*a[1]*yRange*yRange + a[2]*a[2]*zRange*zRange ) / 2;
+
+    var xMid = ( b[0].x + b[1].x ) / 2;
+    var yMid = ( b[0].y + b[1].y ) / 2;
+    var zMid = ( b[0].z + b[1].z ) / 2;
+
+    var box = new THREE.Geometry();
+    box.vertices.push( new THREE.Vector3( a[0]*b[0].x, a[1]*b[0].y, a[2]*b[0].z ) );
+    box.vertices.push( new THREE.Vector3( a[0]*b[1].x, a[1]*b[1].y, a[2]*b[1].z ) );
+    var boxMesh = new THREE.Line( box );
+    var boxColor = options.theme === 'dark' ? 'white' : 'black';
+    if ( options.frame ) scene.add( new THREE.BoxHelper( boxMesh, boxColor ) );
+
+    if ( options.axesLabels ) {
+
+        var d = options.decimals; // decimals
+        var offsetRatio = 0.1;
+        var al = options.axesLabels;
+        var als = options.axesLabelsStyle || [{}, {}, {}];
+
+        var offset = offsetRatio * a[1]*( b[1].y - b[0].y );
+        var xm = xMid.toFixed(d);
+        if ( /^-0.?0*$/.test(xm) ) xm = xm.substr(1);
+        addLabel( al[0] + '=' + xm, a[0]*xMid, a[1]*b[1].y+offset, a[2]*b[0].z, als[0] );
+        addLabel( ( b[0].x ).toFixed(d), a[0]*b[0].x, a[1]*b[1].y+offset, a[2]*b[0].z, als[0] );
+        addLabel( ( b[1].x ).toFixed(d), a[0]*b[1].x, a[1]*b[1].y+offset, a[2]*b[0].z, als[0] );
+
+        var offset = offsetRatio * a[0]*( b[1].x - b[0].x );
+        var ym = yMid.toFixed(d);
+        if ( /^-0.?0*$/.test(ym) ) ym = ym.substr(1);
+        addLabel( al[1] + '=' + ym, a[0]*b[1].x+offset, a[1]*yMid, a[2]*b[0].z, als[1] );
+        addLabel( ( b[0].y ).toFixed(d), a[0]*b[1].x+offset, a[1]*b[0].y, a[2]*b[0].z, als[1] );
+        addLabel( ( b[1].y ).toFixed(d), a[0]*b[1].x+offset, a[1]*b[1].y, a[2]*b[0].z, als[1] );
+
+        var offset = offsetRatio * a[1]*( b[1].y - b[0].y );
+        var zm = zMid.toFixed(d);
+        if ( /^-0.?0*$/.test(zm) ) zm = zm.substr(1);
+        addLabel( al[2] + '=' + zm, a[0]*b[1].x, a[1]*b[0].y-offset, a[2]*zMid, als[2] );
+        addLabel( ( b[0].z ).toFixed(d), a[0]*b[1].x, a[1]*b[0].y-offset, a[2]*b[0].z, als[2] );
+        addLabel( ( b[1].z ).toFixed(d), a[0]*b[1].x, a[1]*b[0].y-offset, a[2]*b[1].z, als[2] );
+
+    }
+
+    function addLabel( text, x, y, z, style ) {
+
+        var color = style.color || 'black';
+        var fontSize = style.fontSize || 14;
+        var fontFamily = style.fontFamily || 'monospace';
+        var fontStyle = style.fontStyle || 'normal';
+        var fontWeight = style.fontWeight || 'normal';
+        var opacity = style.opacity || 1;
+
+        if ( options.theme === 'dark' )
+            if ( color === 'black' || color === '#000000' )
+                color = 'white';
+
+        if ( Array.isArray( fontStyle ) ) {
+            fontFamily = fontFamily.map( function( f ) {
+                // Need to put quotes around fonts that have whitespace in their names.
+                return /\s/.test( f ) ? '"' + f + '"' : f;
+            }).join(', ');
+        }
+
+        var canvas = document.createElement( 'canvas' );
+        var context = canvas.getContext( '2d' );
+        var pixelRatio = Math.round( window.devicePixelRatio );
+
+        // For example: italic bold 20px "Times New Roman", Georgia, serif
+        var font = [fontStyle, fontWeight, fontSize + 'px', fontFamily].join(' ');
+
+        context.font = font;
+        var width = context.measureText( text ).width;
+        var height = fontSize;
+
+        // The dimensions of the canvas's underlying image data need to be powers
+        // of two in order for the resulting texture to support mipmapping.
+        canvas.width = THREE.MathUtils.ceilPowerOfTwo( width * pixelRatio );
+        canvas.height = THREE.MathUtils.ceilPowerOfTwo( height * pixelRatio );
+
+        // Re-compute the unscaled dimensions after the power of two conversion.
+        width = canvas.width / pixelRatio;
+        height = canvas.height / pixelRatio;
+
+        canvas.style.width = width + 'px';
+        canvas.style.height = height + 'px';
+
+        context.scale( pixelRatio, pixelRatio );
+        context.fillStyle = color;
+        context.font = font; // Must be set again after measureText.
+        context.textAlign = 'center';
+        context.textBaseline = 'middle';
+        context.fillText( text, width/2, height/2 );
+
+        var texture = new THREE.Texture( canvas );
+        texture.needsUpdate = true;
+
+        var materialOptions = { map: texture, sizeAttenuation: false, depthWrite: false };
+        if ( opacity < 1 ) {
+            // Setting opacity=1 would cause the texture's alpha component to be
+            // discarded, giving the text a black background instead of the
+            // background being transparent.
+            materialOptions.opacity = opacity;
+        }
+        var sprite = new THREE.Sprite( new THREE.SpriteMaterial( materialOptions ) );
+        sprite.position.set( x, y, z );
+
+        // Scaling factor, chosen somewhat arbitrarily so that the size of the text
+        // is consistent with previously generated plots.
+        var scale = 1/625;
+        if ( options.projection === 'orthographic' ) {
+            scale = midToCorner/256; // Needs to scale along with the plot itself.
+        }
+        sprite.scale.set( scale * width, scale * height, 1 );
+
+        scene.add( sprite );
+
+        return sprite;
+
+    }
+
+    if ( options.axes ) scene.add( new THREE.AxesHelper( Math.min( a[0]*b[1].x, a[1]*b[1].y, a[2]*b[1].z ) ) );
+
+    var camera = createCamera();
+    camera.up.set( 0, 0, 1 );
+    camera.position.set( a[0]*xMid, a[1]*yMid, a[2]*zMid );
+
+    // camera is positioned so that the line from the camera to the center
+    // of the bounding sphere of the objects makes an angle of 60 degrees with x-axis
+    // and an angle of 30 degrees with z-axis and the field of view of the camera looking
+    // at the center has an angle of 45 degrees.
+    const sin8 = Math.sin(Math.PI / 8);
+    const sin5 = Math.sin(Math.PI / 5);
+    const cos5 = Math.cos(Math.PI / 5);
+    const sin3 = Math.sin(Math.PI / 3);
+    const cos3 = Math.cos(Math.PI / 3);
+    var r = midToCorner / sin8;
+    var offset = new THREE.Vector3( r * sin3 * cos5, r * sin3 * sin5, r * cos3 );
+
+    if ( options.viewpoint ) {
+
+        var aa = options.viewpoint;
+        var axis = new THREE.Vector3( aa[0][0], aa[0][1], aa[0][2] ).normalize();
+        var angle = aa[1] * Math.PI / 180;
+        var q = new THREE.Quaternion().setFromAxisAngle( axis, angle ).inverse();
+
+        offset.set( 0, 0, offset.length() );
+        offset.applyQuaternion( q );
+
+    }
+
+    camera.position.add( offset );
+
+    function createCamera() {
+
+        var aspect = window.innerWidth / window.innerHeight;
+
+        // Scale the near and far clipping planes along with the overall plot size.
+        var nearClip = 0.01 * midToCorner;
+        var farClip = 100 * midToCorner;
+
+        if ( options.projection === 'orthographic' ) {
+            var camera = new THREE.OrthographicCamera( -1, 1, 1, -1, -farClip, farClip );
+            updateCameraAspect( camera, aspect );
+            return camera;
+        }
+
+        return new THREE.PerspectiveCamera( 45, aspect, nearClip, farClip );
+
+    }
+
+    function updateCameraAspect( camera, aspect ) {
+
+        if ( camera.isPerspectiveCamera ) {
+            camera.aspect = aspect;
+        } else if ( camera.isOrthographicCamera ) {
+            // Fit the camera frustum to the bounding box's diagonal so that the entire plot fits
+            // within at the default zoom level and camera position.
+            if ( aspect > 1 ) { // Wide window
+                camera.top = midToCorner;
+                camera.right = midToCorner * aspect;
+            } else { // Tall or square window
+                camera.top = midToCorner / aspect;
+                camera.right = midToCorner;
+            }
+            camera.bottom = -camera.top;
+            camera.left = -camera.right;
+        }
+
+        camera.updateProjectionMatrix();
+
+    }
+
+    var lights = [{"x":-5, "y":3, "z":0, "color":"#7f7f7f", "parent":"camera"}];
+    for ( var i=0 ; i < lights.length ; i++ ) {
+        var light = new THREE.DirectionalLight( lights[i].color, 1 );
+        light.position.set( a[0]*lights[i].x, a[1]*lights[i].y, a[2]*lights[i].z );
+        if ( lights[i].parent === 'camera' ) {
+            light.target.position.set( a[0]*xMid, a[1]*yMid, a[2]*zMid );
+            scene.add( light.target );
+            camera.add( light );
+        } else scene.add( light );
+    }
+    scene.add( camera );
+
+    var ambient = {"color":"#7f7f7f"};
+    scene.add( new THREE.AmbientLight( ambient.color, 1 ) );
+
+    var controls = new THREE.OrbitControls( camera, renderer.domElement );
+    controls.target.set( a[0]*xMid, a[1]*yMid, a[2]*zMid );
+    controls.addEventListener( 'change', function() { if ( !animate ) render(); } );
+
+    window.addEventListener( 'resize', function() {
+
+        renderer.setSize( window.innerWidth, window.innerHeight );
+        updateCameraAspect( camera, window.innerWidth / window.innerHeight );
+        if ( window.rescaleFatLines ) rescaleFatLines();
+        if ( !animate ) render();
+
+    } );
+
+    var texts = [{"color": "#000000", "fontSize": 30.0, "fontFamily": ["monospace"], "fontStyle": "normal", "fontWeight": "normal", "opacity": 1.0, "text": "x", "x": 5.5, "y": 0.0, "z": 0.0}, {"color": "#000000", "fontSize": 30.0, "fontFamily": ["monospace"], "fontStyle": "normal", "fontWeight": "normal", "opacity": 1.0, "text": "y", "x": 0.0, "y": 5.5, "z": 0.0}, {"color": "#000000", "fontSize": 30.0, "fontFamily": ["monospace"], "fontStyle": "normal", "fontWeight": "normal", "opacity": 1.0, "text": "z", "x": 0.0, "y": 0.0, "z": 5.5}];
+    for ( var i=0 ; i < texts.length ; i++ ) addText( texts[i] );
+
+    function addText( json ) {
+        var sprite = addLabel( json.text, a[0]*json.x, a[1]*json.y, a[2]*json.z, json );
+        sprite.userData = json;
+    }
+
+    var points = [];
+    for ( var i=0 ; i < points.length ; i++ ) addPoint( points[i] );
+
+    function addPoint( json ) {
+
+        var geometry = new THREE.Geometry();
+        var v = json.point;
+        geometry.vertices.push( new THREE.Vector3( a[0]*v[0], a[1]*v[1], a[2]*v[2] ) );
+
+        var canvas = document.createElement( 'canvas' );
+        canvas.width = 128;
+        canvas.height = 128;
+
+        var context = canvas.getContext( '2d' );
+        context.arc( 64, 64, 64, 0, 2 * Math.PI );
+        context.fillStyle = json.color;
+        context.fill();
+
+        var texture = new THREE.Texture( canvas );
+        texture.needsUpdate = true;
+
+        var transparent = json.opacity < 1 ? true : false;
+        var size = camera.isOrthographicCamera ? json.size : json.size/100;
+        var material = new THREE.PointsMaterial( { size: size, map: texture,
+                                                   transparent: transparent, opacity: json.opacity,
+                                                   alphaTest: .1 } );
+
+        var c = new THREE.Vector3();
+        geometry.computeBoundingBox();
+        geometry.boundingBox.getCenter( c );
+        geometry.translate( -c.x, -c.y, -c.z );
+
+        var mesh = new THREE.Points( geometry, material );
+        mesh.position.set( c.x, c.y, c.z );
+        mesh.userData = json;
+        scene.add( mesh );
+
+    }
+
+    var lines = [{"points": [[5.5, -5.0, 0.0], [5.260043827611395, -4.918918918918919, 0.0], [5.026661796932067, -4.837837837837838, 0.0], [4.7998539079620155, -4.756756756756756, 0.0], [4.579620160701241, -4.675675675675675, 0.0], [4.365960555149743, -4.594594594594595, 0.0], [4.158875091307523, -4.513513513513513, 0.0], [3.958363769174579, -4.432432432432432, 0.0], [3.764426588750912, -4.351351351351351, 0.0], [3.577063550036522, -4.27027027027027, 0.0], [3.3962746530314085, -4.189189189189189, 0.0], [3.222059897735572, -4.108108108108107, 0.0], [3.0544192841490125, -4.027027027027026, 0.0], [2.8933528122717296, -3.945945945945945, 0.0], [2.738860482103724, -3.864864864864864, 0.0], [2.5909422936449946, -3.783783783783783, 0.0], [2.4495982468955426, -3.7027027027027017, 0.0], [2.3148283418553675, -3.6216216216216206, 0.0], [2.1866325785244687, -3.5405405405405395, 0.0], [2.065010956902847, -3.4594594594594583, 0.0], [1.9499634769905023, -3.378378378378377, 0.0], [1.8414901387874345, -3.297297297297296, 0.0], [1.7395909422936433, -3.216216216216215, 0.0], [1.6442658875091292, -3.1351351351351338, 0.0], [1.5555149744338919, -3.0540540540540526, 0.0], [1.4733382030679314, -2.9729729729729715, 0.0], [1.3977355734112478, -2.8918918918918903, 0.0], [1.328707085463841, -2.810810810810809, 0.0], [1.266252739225711, -2.729729729729728, 0.0], [1.210372534696858, -2.648648648648647, 0.0], [1.1610664718772816, -2.5675675675675658, 0.0], [1.1183345507669824, -2.4864864864864846, 0.0], [1.0821767713659598, -2.4054054054054035, 0.0], [1.0525931336742143, -2.3243243243243223, 0.0], [1.0295836376917453, -2.243243243243241, 0.0], [1.0131482834185535, -2.1621621621621605, 0.0], [1.0032870708546382, -2.0810810810810794, 0.0], [1.0, -1.9999999999999982, 0.0], [1.0032870708546386, -1.918918918918917, 0.0], [1.013148283418554, -1.837837837837836, 0.0], [1.0295836376917462, -1.7567567567567548, 0.0], [1.0525931336742154, -1.6756756756756739, 0.0], [1.0821767713659614, -1.5945945945945927, 0.0], [1.1183345507669842, -1.5135135135135116, 0.0], [1.1610664718772838, -1.4324324324324307, 0.0], [1.2103725346968601, -1.3513513513513495, 0.0], [1.2662527392257137, -1.2702702702702684, 0.0], [1.3287070854638439, -1.1891891891891873, 0.0], [1.3977355734112509, -1.1081081081081061, 0.0], [1.4733382030679347, -1.027027027027025, 0.0], [1.5555149744338954, -0.9459459459459438, 0.0], [1.6442658875091332, -0.8648648648648627, 0.0], [1.7395909422936477, -0.7837837837837816, 0.0], [1.8414901387874392, -0.7027027027027004, 0.0], [1.9499634769905072, -0.6216216216216193, 0.0], [2.065010956902852, -0.5405405405405381, 0.0], [2.186632578524474, -0.459459459459457, 0.0], [2.314828341855373, -0.37837837837837585, 0.0], [2.4495982468955484, -0.2972972972972947, 0.0], [2.590942293645001, -0.21621621621621356, 0.0], [2.73886048210373, -0.13513513513513242, 0.0], [2.8933528122717367, -0.05405405405405128, 0.0], [3.0544192841490196, 0.02702702702702986, 0.0], [3.2220598977355794, 0.108108108108111, 0.0], [3.396274653031416, 0.18918918918919214, 0.0], [3.57706355003653, 0.2702702702702733, 0.0], [3.7644265887509203, 0.3513513513513544, 0.0], [3.9583637691745874, 0.43243243243243557, 0.0], [4.158875091307532, 0.5135135135135167, 0.0], [4.365960555149753, 0.5945945945945978, 0.0], [4.579620160701251, 0.675675675675679, 0.0], [4.799853907962025, 0.7567567567567601, 0.0], [5.026661796932077, 0.8378378378378413, 0.0], [5.260043827611406, 0.9189189189189224, 0.0], [5.5, 1.0, 0.0]], "color": "#0000ff", "opacity": 1.0, "linewidth": 2.0}, {"points": [[3.0, -4.0, 5.0], [3.0, -4.0, -5.0]], "color": "#008000", "opacity": 0.75, "linewidth": 2.0}, {"points": [[1.5, -3.0, 5.0], [1.5, -3.0, -5.0]], "color": "#008000", "opacity": 0.75, "linewidth": 2.0}, {"points": [[1.0, -2.0, 5.0], [1.0, -2.0, -5.0]], "color": "#008000", "opacity": 0.75, "linewidth": 2.0}, {"points": [[1.125, -1.5, 5.0], [1.125, -1.5, -5.0]], "color": "#008000", "opacity": 0.75, "linewidth": 2.0}, {"points": [[2.388888888888889, -0.3333333333333333, 5.0], [2.388888888888889, -0.3333333333333333, -5.0]], "color": "#008000", "opacity": 0.75, "linewidth": 2.0}];
+    for ( var i=0 ; i < lines.length ; i++ ) addLine( lines[i] );
+
+    function addLine( json ) {
+
+        var geometry = new THREE.Geometry();
+        for ( var i=0 ; i < json.points.length ; i++ ) {
+            var v = json.points[i];
+            geometry.vertices.push( new THREE.Vector3( a[0]*v[0], a[1]*v[1], a[2]*v[2] ) );
+        }
+
+        var c = new THREE.Vector3();
+        geometry.computeBoundingBox();
+        geometry.boundingBox.getCenter( c );
+        geometry.translate( -c.x, -c.y, -c.z );
+
+        var transparent = json.opacity < 1 ? true : false;
+        var materialOptions = { color: json.color, linewidth: json.linewidth,
+                                transparent: transparent, opacity: json.opacity };
+
+        var mesh;
+        if ( json.linewidth > 1 && window.createFatLineStrip ) {
+            mesh = createFatLineStrip( geometry, materialOptions );
+        } else {
+            var material = new THREE.LineBasicMaterial( materialOptions );
+            mesh = new THREE.Line( geometry, material );
+        }
+
+        mesh.position.set( c.x, c.y, c.z );
+        mesh.userData = json;
+        scene.add( mesh );
+
+    }
+
+    var surfaces = [{"vertices": [{"x": 4.64, "y": 0.0, "z": 2.841180574021859e-16}, {"x": 4.64, "y": 0.012360679774997899, "z": -0.03804226065180586}, {"x": 4.64, "y": 0.04, "z": 2.841180574021859e-16}, {"x": 4.64, "y": -0.032360679774997896, "z": -0.023511410091698645}, {"x": 4.64, "y": -0.0323606797749979, "z": 0.023511410091699207}, {"x": 4.64, "y": 0.01236067977499789, "z": 0.03804226065180643}, {"x": 2.329416636978185e-18, "y": 0.012360679774997899, "z": -0.038042260651806145}, {"x": 0.0, "y": 0.04, "z": 0.0}, {"x": 1.4396586556119937e-18, "y": -0.032360679774997896, "z": -0.02351141009169893}, {"x": -1.4396586556119933e-18, "y": -0.0323606797749979, "z": 0.023511410091698923}, {"x": -2.329416636978185e-18, "y": 0.01236067977499789, "z": 0.038042260651806145}, {"x": 0.0, "y": 0.0, "z": 0.0}], "faces": [[0, 1, 2], [0, 3, 1], [0, 4, 3], [0, 5, 4], [0, 2, 5], [2, 1, 6, 7], [1, 3, 8, 6], [3, 4, 9, 8], [4, 5, 10, 9], [5, 2, 7, 10], [7, 6, 11], [6, 8, 11], [8, 9, 11], [9, 10, 11], [10, 7, 11]], "color": "#000000", "opacity": 1.0}, {"vertices": [{"x": 5.0, "y": 0.0, "z": 3.0616169978683826e-16}, {"x": 4.64, "y": 0.0970820393249937, "z": -0.07053423027509649}, {"x": 4.64, "y": 0.12, "z": 2.841180574021859e-16}, {"x": 4.64, "y": 0.037082039324993696, "z": -0.11412678195541814}, {"x": 4.64, "y": -0.03708203932499368, "z": -0.11412678195541816}, {"x": 4.64, "y": -0.09708203932499368, "z": -0.0705342302750965}, {"x": 4.64, "y": -0.12, "z": 2.6942229581241765e-16}, {"x": 4.64, "y": -0.09708203932499371, "z": 0.07053423027509703}, {"x": 4.64, "y": -0.0370820393249937, "z": 0.1141267819554187}, {"x": 4.64, "y": 0.03708203932499367, "z": 0.11412678195541871}, {"x": 4.64, "y": 0.09708203932499368, "z": 0.07053423027509707}, {"x": 4.64, "y": 0.0, "z": 2.841180574021859e-16}], "faces": [[0, 1, 2], [0, 3, 1], [0, 4, 3], [0, 5, 4], [0, 6, 5], [0, 7, 6], [0, 8, 7], [0, 9, 8], [0, 10, 9], [0, 2, 10], [2, 1, 11], [1, 3, 11], [3, 4, 11], [4, 5, 11], [5, 6, 11], [6, 7, 11], [7, 8, 11], [8, 9, 11], [9, 10, 11], [10, 2, 11]], "color": "#000000", "opacity": 1.0}, {"vertices": [{"x": 0.0, "y": 4.64, "z": 2.841180574021859e-16}, {"x": 0.038042260651806145, "y": 4.64, "z": -0.012360679774997614}, {"x": 0.0, "y": 4.64, "z": -0.039999999999999716}, {"x": 0.02351141009169893, "y": 4.64, "z": 0.03236067977499818}, {"x": -0.023511410091698923, "y": 4.64, "z": 0.03236067977499819}, {"x": -0.038042260651806145, "y": 4.64, "z": -0.012360679774997605}, {"x": 0.038042260651806145, "y": 7.568733460868301e-19, "z": -0.012360679774997899}, {"x": 0.0, "y": 2.4492935982947064e-18, "z": -0.04}, {"x": 0.02351141009169893, "y": -1.981520145234183e-18, "z": 0.032360679774997896}, {"x": -0.023511410091698923, "y": -1.9815201452341834e-18, "z": 0.0323606797749979}, {"x": -0.038042260651806145, "y": 7.568733460868296e-19, "z": -0.01236067977499789}, {"x": 0.0, "y": 0.0, "z": 0.0}], "faces": [[0, 1, 2], [0, 3, 1], [0, 4, 3], [0, 5, 4], [0, 2, 5], [2, 1, 6, 7], [1, 3, 8, 6], [3, 4, 9, 8], [4, 5, 10, 9], [5, 2, 7, 10], [7, 6, 11], [6, 8, 11], [8, 9, 11], [9, 10, 11], [10, 7, 11]], "color": "#000000", "opacity": 1.0}, {"vertices": [{"x": 0.0, "y": 5.0, "z": 3.0616169978683826e-16}, {"x": 0.07053423027509677, "y": 4.64, "z": -0.09708203932499342}, {"x": 0.0, "y": 4.64, "z": -0.11999999999999972}, {"x": 0.11412678195541842, "y": 4.64, "z": -0.03708203932499341}, {"x": 0.11412678195541844, "y": 4.64, "z": 0.037082039324993966}, {"x": 0.07053423027509678, "y": 4.64, "z": 0.09708203932499396}, {"x": 1.4695761589768237e-17, "y": 4.64, "z": 0.12000000000000027}, {"x": -0.07053423027509675, "y": 4.64, "z": 0.09708203932499399}, {"x": -0.11412678195541842, "y": 4.64, "z": 0.03708203932499399}, {"x": -0.11412678195541844, "y": 4.64, "z": -0.037082039324993384}, {"x": -0.0705342302750968, "y": 4.64, "z": -0.0970820393249934}, {"x": 0.0, "y": 4.64, "z": 2.841180574021859e-16}], "faces": [[0, 1, 2], [0, 3, 1], [0, 4, 3], [0, 5, 4], [0, 6, 5], [0, 7, 6], [0, 8, 7], [0, 9, 8], [0, 10, 9], [0, 2, 10], [2, 1, 11], [1, 3, 11], [3, 4, 11], [4, 5, 11], [5, 6, 11], [6, 7, 11], [7, 8, 11], [8, 9, 11], [9, 10, 11], [10, 2, 11]], "color": "#000000", "opacity": 1.0}, {"vertices": [{"x": 0.0, "y": 0.0, "z": 4.64}, {"x": 0.038042260651806145, "y": 0.012360679774997899, "z": 4.64}, {"x": 0.0, "y": 0.04, "z": 4.64}, {"x": 0.02351141009169893, "y": -0.032360679774997896, "z": 4.64}, {"x": -0.023511410091698923, "y": -0.0323606797749979, "z": 4.64}, {"x": -0.038042260651806145, "y": 0.01236067977499789, "z": 4.64}, {"x": 0.038042260651806145, "y": 0.012360679774997899, "z": 0.0}, {"x": 0.0, "y": 0.04, "z": 0.0}, {"x": 0.02351141009169893, "y": -0.032360679774997896, "z": 0.0}, {"x": -0.023511410091698923, "y": -0.0323606797749979, "z": 0.0}, {"x": -0.038042260651806145, "y": 0.01236067977499789, "z": 0.0}, {"x": 0.0, "y": 0.0, "z": 0.0}], "faces": [[0, 1, 2], [0, 3, 1], [0, 4, 3], [0, 5, 4], [0, 2, 5], [2, 1, 6, 7], [1, 3, 8, 6], [3, 4, 9, 8], [4, 5, 10, 9], [5, 2, 7, 10], [7, 6, 11], [6, 8, 11], [8, 9, 11], [9, 10, 11], [10, 7, 11]], "color": "#000000", "opacity": 1.0}, {"vertices": [{"x": 0.0, "y": 0.0, "z": 5.0}, {"x": 0.07053423027509677, "y": 0.0970820393249937, "z": 4.64}, {"x": 0.0, "y": 0.12, "z": 4.64}, {"x": 0.11412678195541842, "y": 0.037082039324993696, "z": 4.64}, {"x": 0.11412678195541844, "y": -0.03708203932499368, "z": 4.64}, {"x": 0.07053423027509678, "y": -0.09708203932499368, "z": 4.64}, {"x": 1.4695761589768237e-17, "y": -0.12, "z": 4.64}, {"x": -0.07053423027509675, "y": -0.09708203932499371, "z": 4.64}, {"x": -0.11412678195541842, "y": -0.0370820393249937, "z": 4.64}, {"x": -0.11412678195541844, "y": 0.03708203932499367, "z": 4.64}, {"x": -0.0705342302750968, "y": 0.09708203932499368, "z": 4.64}, {"x": 0.0, "y": 0.0, "z": 4.64}], "faces": [[0, 1, 2], [0, 3, 1], [0, 4, 3], [0, 5, 4], [0, 6, 5], [0, 7, 6], [0, 8, 7], [0, 9, 8], [0, 10, 9], [0, 2, 10], [2, 1, 11], [1, 3, 11], [3, 4, 11], [4, 5, 11], [5, 6, 11], [6, 7, 11], [7, 8, 11], [8, 9, 11], [9, 10, 11], [10, 2, 11]], "color": "#000000", "opacity": 1.0}, {"vertices": [{"x": 3.0, "y": -4.0, "z": -0.15}, {"x": 3.064951905283833, "y": -3.9625, "z": -0.1299038105676658}, {"x": 3.075, "y": -4.0, "z": -0.1299038105676658}, {"x": 3.0375, "y": -3.935048094716167, "z": -0.1299038105676658}, {"x": 3.0, "y": -3.925, "z": -0.1299038105676658}, {"x": 2.9625, "y": -3.935048094716167, "z": -0.1299038105676658}, {"x": 2.935048094716167, "y": -3.9625, "z": -0.1299038105676658}, {"x": 2.925, "y": -4.0, "z": -0.1299038105676658}, {"x": 2.935048094716167, "y": -4.0375, "z": -0.1299038105676658}, {"x": 2.9625, "y": -4.0649519052838325, "z": -0.1299038105676658}, {"x": 3.0, "y": -4.075, "z": -0.1299038105676658}, {"x": 3.0375, "y": -4.0649519052838325, "z": -0.1299038105676658}, {"x": 3.064951905283833, "y": -4.0375, "z": -0.1299038105676658}, {"x": 3.1125, "y": -3.935048094716167, "z": -0.075}, {"x": 3.129903810567666, "y": -4.0, "z": -0.075}, {"x": 3.064951905283833, "y": -3.8875, "z": -0.075}, {"x": 3.0, "y": -3.870096189432334, "z": -0.075}, {"x": 2.935048094716167, "y": -3.8875, "z": -0.075}, {"x": 2.8875, "y": -3.935048094716167, "z": -0.075}, {"x": 2.870096189432334, "y": -4.0, "z": -0.075}, {"x": 2.8875, "y": -4.0649519052838325, "z": -0.075}, {"x": 2.935048094716167, "y": -4.1125, "z": -0.075}, {"x": 3.0, "y": -4.129903810567666, "z": -0.075}, {"x": 3.064951905283833, "y": -4.1125, "z": -0.075}, {"x": 3.1125, "y": -4.0649519052838325, "z": -0.075}, {"x": 3.129903810567666, "y": -3.925, "z": 0.0}, {"x": 3.15, "y": -4.0, "z": 0.0}, {"x": 3.075, "y": -3.870096189432334, "z": 0.0}, {"x": 3.0, "y": -3.85, "z": 0.0}, {"x": 2.925, "y": -3.870096189432334, "z": 0.0}, {"x": 2.870096189432334, "y": -3.925, "z": 0.0}, {"x": 2.85, "y": -4.0, "z": 0.0}, {"x": 2.870096189432334, "y": -4.075, "z": 0.0}, {"x": 2.925, "y": -4.129903810567666, "z": 0.0}, {"x": 3.0, "y": -4.15, "z": 0.0}, {"x": 3.075, "y": -4.129903810567666, "z": 0.0}, {"x": 3.129903810567666, "y": -4.075, "z": 0.0}, {"x": 3.1125, "y": -3.935048094716167, "z": 0.07499999999999997}, {"x": 3.129903810567666, "y": -4.0, "z": 0.07499999999999997}, {"x": 3.064951905283833, "y": -3.8875, "z": 0.07499999999999997}, {"x": 3.0, "y": -3.870096189432334, "z": 0.07499999999999997}, {"x": 2.935048094716167, "y": -3.8875, "z": 0.07499999999999997}, {"x": 2.8875, "y": -3.935048094716167, "z": 0.07499999999999997}, {"x": 2.870096189432334, "y": -4.0, "z": 0.07499999999999997}, {"x": 2.8875, "y": -4.0649519052838325, "z": 0.07499999999999997}, {"x": 2.935048094716167, "y": -4.1125, "z": 0.07499999999999997}, {"x": 3.0, "y": -4.129903810567666, "z": 0.07499999999999997}, {"x": 3.064951905283833, "y": -4.1125, "z": 0.07499999999999997}, {"x": 3.1125, "y": -4.0649519052838325, "z": 0.07499999999999997}, {"x": 3.064951905283833, "y": -3.9625, "z": 0.1299038105676658}, {"x": 3.075, "y": -4.0, "z": 0.1299038105676658}, {"x": 3.0375, "y": -3.935048094716167, "z": 0.1299038105676658}, {"x": 3.0, "y": -3.925, "z": 0.1299038105676658}, {"x": 2.9625, "y": -3.935048094716167, "z": 0.1299038105676658}, {"x": 2.935048094716167, "y": -3.9625, "z": 0.1299038105676658}, {"x": 2.925, "y": -4.0, "z": 0.1299038105676658}, {"x": 2.935048094716167, "y": -4.0375, "z": 0.1299038105676658}, {"x": 2.9625, "y": -4.0649519052838325, "z": 0.1299038105676658}, {"x": 3.0, "y": -4.075, "z": 0.1299038105676658}, {"x": 3.0375, "y": -4.0649519052838325, "z": 0.1299038105676658}, {"x": 3.064951905283833, "y": -4.0375, "z": 0.1299038105676658}, {"x": 3.0, "y": -4.0, "z": 0.15}], "faces": [[0, 1, 2], [0, 3, 1], [0, 4, 3], [0, 5, 4], [0, 6, 5], [0, 7, 6], [0, 8, 7], [0, 9, 8], [0, 10, 9], [0, 11, 10], [0, 12, 11], [0, 2, 12], [2, 1, 13, 14], [1, 3, 15, 13], [3, 4, 16, 15], [4, 5, 17, 16], [5, 6, 18, 17], [6, 7, 19, 18], [7, 8, 20, 19], [8, 9, 21, 20], [9, 10, 22, 21], [10, 11, 23, 22], [11, 12, 24, 23], [12, 2, 14, 24], [14, 13, 25, 26], [13, 15, 27, 25], [15, 16, 28, 27], [16, 17, 29, 28], [17, 18, 30, 29], [18, 19, 31, 30], [19, 20, 32, 31], [20, 21, 33, 32], [21, 22, 34, 33], [22, 23, 35, 34], [23, 24, 36, 35], [24, 14, 26, 36], [26, 25, 37, 38], [25, 27, 39, 37], [27, 28, 40, 39], [28, 29, 41, 40], [29, 30, 42, 41], [30, 31, 43, 42], [31, 32, 44, 43], [32, 33, 45, 44], [33, 34, 46, 45], [34, 35, 47, 46], [35, 36, 48, 47], [36, 26, 38, 48], [38, 37, 49, 50], [37, 39, 51, 49], [39, 40, 52, 51], [40, 41, 53, 52], [41, 42, 54, 53], [42, 43, 55, 54], [43, 44, 56, 55], [44, 45, 57, 56], [45, 46, 58, 57], [46, 47, 59, 58], [47, 48, 60, 59], [48, 38, 50, 60], [50, 49, 61], [49, 51, 61], [51, 52, 61], [52, 53, 61], [53, 54, 61], [54, 55, 61], [55, 56, 61], [56, 57, 61], [57, 58, 61], [58, 59, 61], [59, 60, 61], [60, 50, 61]], "color": "#008000", "opacity": 1.0}, {"vertices": [{"x": 1.5, "y": -3.0, "z": -0.15}, {"x": 1.564951905283833, "y": -2.9625, "z": -0.1299038105676658}, {"x": 1.575, "y": -3.0, "z": -0.1299038105676658}, {"x": 1.5375, "y": -2.935048094716167, "z": -0.1299038105676658}, {"x": 1.5, "y": -2.925, "z": -0.1299038105676658}, {"x": 1.4625, "y": -2.935048094716167, "z": -0.1299038105676658}, {"x": 1.435048094716167, "y": -2.9625, "z": -0.1299038105676658}, {"x": 1.425, "y": -3.0, "z": -0.1299038105676658}, {"x": 1.435048094716167, "y": -3.0375, "z": -0.1299038105676658}, {"x": 1.4625, "y": -3.064951905283833, "z": -0.1299038105676658}, {"x": 1.5, "y": -3.075, "z": -0.1299038105676658}, {"x": 1.5375, "y": -3.064951905283833, "z": -0.1299038105676658}, {"x": 1.5649519052838328, "y": -3.0375, "z": -0.1299038105676658}, {"x": 1.6125, "y": -2.935048094716167, "z": -0.075}, {"x": 1.6299038105676658, "y": -3.0, "z": -0.075}, {"x": 1.564951905283833, "y": -2.8875, "z": -0.075}, {"x": 1.5, "y": -2.870096189432334, "z": -0.075}, {"x": 1.4350480947161672, "y": -2.8875, "z": -0.075}, {"x": 1.3875, "y": -2.935048094716167, "z": -0.075}, {"x": 1.3700961894323342, "y": -3.0, "z": -0.075}, {"x": 1.3875, "y": -3.064951905283833, "z": -0.075}, {"x": 1.435048094716167, "y": -3.1125, "z": -0.075}, {"x": 1.5, "y": -3.129903810567666, "z": -0.075}, {"x": 1.564951905283833, "y": -3.1125, "z": -0.075}, {"x": 1.6125, "y": -3.064951905283833, "z": -0.075}, {"x": 1.6299038105676658, "y": -2.925, "z": 0.0}, {"x": 1.65, "y": -3.0, "z": 0.0}, {"x": 1.575, "y": -2.870096189432334, "z": 0.0}, {"x": 1.5, "y": -2.85, "z": 0.0}, {"x": 1.425, "y": -2.870096189432334, "z": 0.0}, {"x": 1.3700961894323342, "y": -2.925, "z": 0.0}, {"x": 1.35, "y": -3.0, "z": 0.0}, {"x": 1.3700961894323342, "y": -3.075, "z": 0.0}, {"x": 1.4249999999999998, "y": -3.129903810567666, "z": 0.0}, {"x": 1.5, "y": -3.15, "z": 0.0}, {"x": 1.575, "y": -3.129903810567666, "z": 0.0}, {"x": 1.6299038105676658, "y": -3.075, "z": 0.0}, {"x": 1.6125, "y": -2.935048094716167, "z": 0.07499999999999997}, {"x": 1.6299038105676658, "y": -3.0, "z": 0.07499999999999997}, {"x": 1.564951905283833, "y": -2.8875, "z": 0.07499999999999997}, {"x": 1.5, "y": -2.870096189432334, "z": 0.07499999999999997}, {"x": 1.435048094716167, "y": -2.8875, "z": 0.07499999999999997}, {"x": 1.3875, "y": -2.935048094716167, "z": 0.07499999999999997}, {"x": 1.3700961894323342, "y": -3.0, "z": 0.07499999999999997}, {"x": 1.3875, "y": -3.064951905283833, "z": 0.07499999999999997}, {"x": 1.435048094716167, "y": -3.1125, "z": 0.07499999999999997}, {"x": 1.5, "y": -3.129903810567666, "z": 0.07499999999999997}, {"x": 1.564951905283833, "y": -3.1125, "z": 0.07499999999999997}, {"x": 1.6125, "y": -3.064951905283833, "z": 0.07499999999999997}, {"x": 1.564951905283833, "y": -2.9625, "z": 0.1299038105676658}, {"x": 1.575, "y": -3.0, "z": 0.1299038105676658}, {"x": 1.5375, "y": -2.935048094716167, "z": 0.1299038105676658}, {"x": 1.5, "y": -2.925, "z": 0.1299038105676658}, {"x": 1.4625, "y": -2.935048094716167, "z": 0.1299038105676658}, {"x": 1.435048094716167, "y": -2.9625, "z": 0.1299038105676658}, {"x": 1.425, "y": -3.0, "z": 0.1299038105676658}, {"x": 1.435048094716167, "y": -3.0375, "z": 0.1299038105676658}, {"x": 1.4625, "y": -3.064951905283833, "z": 0.1299038105676658}, {"x": 1.5, "y": -3.075, "z": 0.1299038105676658}, {"x": 1.5375, "y": -3.064951905283833, "z": 0.1299038105676658}, {"x": 1.5649519052838328, "y": -3.0375, "z": 0.1299038105676658}, {"x": 1.5, "y": -3.0, "z": 0.15}], "faces": [[0, 1, 2], [0, 3, 1], [0, 4, 3], [0, 5, 4], [0, 6, 5], [0, 7, 6], [0, 8, 7], [0, 9, 8], [0, 10, 9], [0, 11, 10], [0, 12, 11], [0, 2, 12], [2, 1, 13, 14], [1, 3, 15, 13], [3, 4, 16, 15], [4, 5, 17, 16], [5, 6, 18, 17], [6, 7, 19, 18], [7, 8, 20, 19], [8, 9, 21, 20], [9, 10, 22, 21], [10, 11, 23, 22], [11, 12, 24, 23], [12, 2, 14, 24], [14, 13, 25, 26], [13, 15, 27, 25], [15, 16, 28, 27], [16, 17, 29, 28], [17, 18, 30, 29], [18, 19, 31, 30], [19, 20, 32, 31], [20, 21, 33, 32], [21, 22, 34, 33], [22, 23, 35, 34], [23, 24, 36, 35], [24, 14, 26, 36], [26, 25, 37, 38], [25, 27, 39, 37], [27, 28, 40, 39], [28, 29, 41, 40], [29, 30, 42, 41], [30, 31, 43, 42], [31, 32, 44, 43], [32, 33, 45, 44], [33, 34, 46, 45], [34, 35, 47, 46], [35, 36, 48, 47], [36, 26, 38, 48], [38, 37, 49, 50], [37, 39, 51, 49], [39, 40, 52, 51], [40, 41, 53, 52], [41, 42, 54, 53], [42, 43, 55, 54], [43, 44, 56, 55], [44, 45, 57, 56], [45, 46, 58, 57], [46, 47, 59, 58], [47, 48, 60, 59], [48, 38, 50, 60], [50, 49, 61], [49, 51, 61], [51, 52, 61], [52, 53, 61], [53, 54, 61], [54, 55, 61], [55, 56, 61], [56, 57, 61], [57, 58, 61], [58, 59, 61], [59, 60, 61], [60, 50, 61]], "color": "#008000", "opacity": 1.0}, {"vertices": [{"x": 1.0, "y": -2.0, "z": -0.15}, {"x": 1.064951905283833, "y": -1.9625, "z": -0.1299038105676658}, {"x": 1.075, "y": -2.0, "z": -0.1299038105676658}, {"x": 1.0375, "y": -1.935048094716167, "z": -0.1299038105676658}, {"x": 1.0, "y": -1.925, "z": -0.1299038105676658}, {"x": 0.9625, "y": -1.935048094716167, "z": -0.1299038105676658}, {"x": 0.9350480947161671, "y": -1.9625, "z": -0.1299038105676658}, {"x": 0.925, "y": -2.0, "z": -0.1299038105676658}, {"x": 0.9350480947161671, "y": -2.0375, "z": -0.1299038105676658}, {"x": 0.9625, "y": -2.064951905283833, "z": -0.1299038105676658}, {"x": 1.0, "y": -2.075, "z": -0.1299038105676658}, {"x": 1.0375, "y": -2.064951905283833, "z": -0.1299038105676658}, {"x": 1.0649519052838328, "y": -2.0375, "z": -0.1299038105676658}, {"x": 1.1125, "y": -1.935048094716167, "z": -0.075}, {"x": 1.1299038105676658, "y": -2.0, "z": -0.075}, {"x": 1.064951905283833, "y": -1.8875, "z": -0.075}, {"x": 1.0, "y": -1.8700961894323342, "z": -0.075}, {"x": 0.9350480947161671, "y": -1.8875, "z": -0.075}, {"x": 0.8875, "y": -1.935048094716167, "z": -0.075}, {"x": 0.8700961894323342, "y": -2.0, "z": -0.075}, {"x": 0.8875, "y": -2.064951905283833, "z": -0.075}, {"x": 0.935048094716167, "y": -2.1125, "z": -0.075}, {"x": 1.0, "y": -2.129903810567666, "z": -0.075}, {"x": 1.064951905283833, "y": -2.1125, "z": -0.075}, {"x": 1.1125, "y": -2.064951905283833, "z": -0.075}, {"x": 1.1299038105676658, "y": -1.925, "z": 0.0}, {"x": 1.15, "y": -2.0, "z": 0.0}, {"x": 1.075, "y": -1.8700961894323342, "z": 0.0}, {"x": 1.0, "y": -1.85, "z": 0.0}, {"x": 0.925, "y": -1.8700961894323342, "z": 0.0}, {"x": 0.8700961894323342, "y": -1.925, "z": 0.0}, {"x": 0.85, "y": -2.0, "z": 0.0}, {"x": 0.8700961894323342, "y": -2.075, "z": 0.0}, {"x": 0.9249999999999999, "y": -2.129903810567666, "z": 0.0}, {"x": 1.0, "y": -2.15, "z": 0.0}, {"x": 1.075, "y": -2.129903810567666, "z": 0.0}, {"x": 1.1299038105676658, "y": -2.075, "z": 0.0}, {"x": 1.1125, "y": -1.935048094716167, "z": 0.07499999999999997}, {"x": 1.1299038105676658, "y": -2.0, "z": 0.07499999999999997}, {"x": 1.064951905283833, "y": -1.8875, "z": 0.07499999999999997}, {"x": 1.0, "y": -1.8700961894323342, "z": 0.07499999999999997}, {"x": 0.9350480947161671, "y": -1.8875, "z": 0.07499999999999997}, {"x": 0.8875, "y": -1.935048094716167, "z": 0.07499999999999997}, {"x": 0.8700961894323342, "y": -2.0, "z": 0.07499999999999997}, {"x": 0.8875, "y": -2.064951905283833, "z": 0.07499999999999997}, {"x": 0.935048094716167, "y": -2.1125, "z": 0.07499999999999997}, {"x": 1.0, "y": -2.129903810567666, "z": 0.07499999999999997}, {"x": 1.064951905283833, "y": -2.1125, "z": 0.07499999999999997}, {"x": 1.1125, "y": -2.064951905283833, "z": 0.07499999999999997}, {"x": 1.064951905283833, "y": -1.9625, "z": 0.1299038105676658}, {"x": 1.075, "y": -2.0, "z": 0.1299038105676658}, {"x": 1.0375, "y": -1.935048094716167, "z": 0.1299038105676658}, {"x": 1.0, "y": -1.925, "z": 0.1299038105676658}, {"x": 0.9625, "y": -1.935048094716167, "z": 0.1299038105676658}, {"x": 0.9350480947161671, "y": -1.9625, "z": 0.1299038105676658}, {"x": 0.925, "y": -2.0, "z": 0.1299038105676658}, {"x": 0.9350480947161671, "y": -2.0375, "z": 0.1299038105676658}, {"x": 0.9625, "y": -2.064951905283833, "z": 0.1299038105676658}, {"x": 1.0, "y": -2.075, "z": 0.1299038105676658}, {"x": 1.0375, "y": -2.064951905283833, "z": 0.1299038105676658}, {"x": 1.0649519052838328, "y": -2.0375, "z": 0.1299038105676658}, {"x": 1.0, "y": -2.0, "z": 0.15}], "faces": [[0, 1, 2], [0, 3, 1], [0, 4, 3], [0, 5, 4], [0, 6, 5], [0, 7, 6], [0, 8, 7], [0, 9, 8], [0, 10, 9], [0, 11, 10], [0, 12, 11], [0, 2, 12], [2, 1, 13, 14], [1, 3, 15, 13], [3, 4, 16, 15], [4, 5, 17, 16], [5, 6, 18, 17], [6, 7, 19, 18], [7, 8, 20, 19], [8, 9, 21, 20], [9, 10, 22, 21], [10, 11, 23, 22], [11, 12, 24, 23], [12, 2, 14, 24], [14, 13, 25, 26], [13, 15, 27, 25], [15, 16, 28, 27], [16, 17, 29, 28], [17, 18, 30, 29], [18, 19, 31, 30], [19, 20, 32, 31], [20, 21, 33, 32], [21, 22, 34, 33], [22, 23, 35, 34], [23, 24, 36, 35], [24, 14, 26, 36], [26, 25, 37, 38], [25, 27, 39, 37], [27, 28, 40, 39], [28, 29, 41, 40], [29, 30, 42, 41], [30, 31, 43, 42], [31, 32, 44, 43], [32, 33, 45, 44], [33, 34, 46, 45], [34, 35, 47, 46], [35, 36, 48, 47], [36, 26, 38, 48], [38, 37, 49, 50], [37, 39, 51, 49], [39, 40, 52, 51], [40, 41, 53, 52], [41, 42, 54, 53], [42, 43, 55, 54], [43, 44, 56, 55], [44, 45, 57, 56], [45, 46, 58, 57], [46, 47, 59, 58], [47, 48, 60, 59], [48, 38, 50, 60], [50, 49, 61], [49, 51, 61], [51, 52, 61], [52, 53, 61], [53, 54, 61], [54, 55, 61], [55, 56, 61], [56, 57, 61], [57, 58, 61], [58, 59, 61], [59, 60, 61], [60, 50, 61]], "color": "#008000", "opacity": 1.0}, {"vertices": [{"x": 1.125, "y": -1.5, "z": -0.15}, {"x": 1.189951905283833, "y": -1.4625, "z": -0.1299038105676658}, {"x": 1.2, "y": -1.5, "z": -0.1299038105676658}, {"x": 1.1625, "y": -1.435048094716167, "z": -0.1299038105676658}, {"x": 1.125, "y": -1.425, "z": -0.1299038105676658}, {"x": 1.0875, "y": -1.435048094716167, "z": -0.1299038105676658}, {"x": 1.060048094716167, "y": -1.4625, "z": -0.1299038105676658}, {"x": 1.05, "y": -1.5, "z": -0.1299038105676658}, {"x": 1.060048094716167, "y": -1.5374999999999999, "z": -0.1299038105676658}, {"x": 1.0875, "y": -1.5649519052838328, "z": -0.1299038105676658}, {"x": 1.125, "y": -1.575, "z": -0.1299038105676658}, {"x": 1.1625, "y": -1.564951905283833, "z": -0.1299038105676658}, {"x": 1.1899519052838328, "y": -1.5375, "z": -0.1299038105676658}, {"x": 1.2375, "y": -1.435048094716167, "z": -0.075}, {"x": 1.2549038105676658, "y": -1.5, "z": -0.075}, {"x": 1.189951905283833, "y": -1.3875, "z": -0.075}, {"x": 1.125, "y": -1.3700961894323342, "z": -0.075}, {"x": 1.0600480947161672, "y": -1.3875, "z": -0.075}, {"x": 1.0125, "y": -1.435048094716167, "z": -0.075}, {"x": 0.9950961894323342, "y": -1.5, "z": -0.075}, {"x": 1.0125, "y": -1.5649519052838328, "z": -0.075}, {"x": 1.060048094716167, "y": -1.6125, "z": -0.075}, {"x": 1.125, "y": -1.6299038105676658, "z": -0.075}, {"x": 1.189951905283833, "y": -1.6125, "z": -0.075}, {"x": 1.2375, "y": -1.564951905283833, "z": -0.075}, {"x": 1.2549038105676658, "y": -1.425, "z": 0.0}, {"x": 1.275, "y": -1.5, "z": 0.0}, {"x": 1.2, "y": -1.3700961894323342, "z": 0.0}, {"x": 1.125, "y": -1.35, "z": 0.0}, {"x": 1.05, "y": -1.3700961894323342, "z": 0.0}, {"x": 0.9950961894323342, "y": -1.425, "z": 0.0}, {"x": 0.975, "y": -1.5, "z": 0.0}, {"x": 0.9950961894323342, "y": -1.575, "z": 0.0}, {"x": 1.0499999999999998, "y": -1.6299038105676658, "z": 0.0}, {"x": 1.125, "y": -1.65, "z": 0.0}, {"x": 1.2, "y": -1.6299038105676658, "z": 0.0}, {"x": 1.2549038105676658, "y": -1.5750000000000002, "z": 0.0}, {"x": 1.2375, "y": -1.435048094716167, "z": 0.07499999999999997}, {"x": 1.2549038105676658, "y": -1.5, "z": 0.07499999999999997}, {"x": 1.189951905283833, "y": -1.3875, "z": 0.07499999999999997}, {"x": 1.125, "y": -1.3700961894323342, "z": 0.07499999999999997}, {"x": 1.060048094716167, "y": -1.3875, "z": 0.07499999999999997}, {"x": 1.0125, "y": -1.435048094716167, "z": 0.07499999999999997}, {"x": 0.9950961894323342, "y": -1.5, "z": 0.07499999999999997}, {"x": 1.0125, "y": -1.5649519052838328, "z": 0.07499999999999997}, {"x": 1.060048094716167, "y": -1.6125, "z": 0.07499999999999997}, {"x": 1.125, "y": -1.6299038105676658, "z": 0.07499999999999997}, {"x": 1.189951905283833, "y": -1.6125, "z": 0.07499999999999997}, {"x": 1.2375, "y": -1.564951905283833, "z": 0.07499999999999997}, {"x": 1.189951905283833, "y": -1.4625, "z": 0.1299038105676658}, {"x": 1.2, "y": -1.5, "z": 0.1299038105676658}, {"x": 1.1625, "y": -1.435048094716167, "z": 0.1299038105676658}, {"x": 1.125, "y": -1.425, "z": 0.1299038105676658}, {"x": 1.0875, "y": -1.435048094716167, "z": 0.1299038105676658}, {"x": 1.060048094716167, "y": -1.4625, "z": 0.1299038105676658}, {"x": 1.05, "y": -1.5, "z": 0.1299038105676658}, {"x": 1.060048094716167, "y": -1.5374999999999999, "z": 0.1299038105676658}, {"x": 1.0875, "y": -1.5649519052838328, "z": 0.1299038105676658}, {"x": 1.125, "y": -1.575, "z": 0.1299038105676658}, {"x": 1.1625, "y": -1.564951905283833, "z": 0.1299038105676658}, {"x": 1.1899519052838328, "y": -1.5375, "z": 0.1299038105676658}, {"x": 1.125, "y": -1.5, "z": 0.15}], "faces": [[0, 1, 2], [0, 3, 1], [0, 4, 3], [0, 5, 4], [0, 6, 5], [0, 7, 6], [0, 8, 7], [0, 9, 8], [0, 10, 9], [0, 11, 10], [0, 12, 11], [0, 2, 12], [2, 1, 13, 14], [1, 3, 15, 13], [3, 4, 16, 15], [4, 5, 17, 16], [5, 6, 18, 17], [6, 7, 19, 18], [7, 8, 20, 19], [8, 9, 21, 20], [9, 10, 22, 21], [10, 11, 23, 22], [11, 12, 24, 23], [12, 2, 14, 24], [14, 13, 25, 26], [13, 15, 27, 25], [15, 16, 28, 27], [16, 17, 29, 28], [17, 18, 30, 29], [18, 19, 31, 30], [19, 20, 32, 31], [20, 21, 33, 32], [21, 22, 34, 33], [22, 23, 35, 34], [23, 24, 36, 35], [24, 14, 26, 36], [26, 25, 37, 38], [25, 27, 39, 37], [27, 28, 40, 39], [28, 29, 41, 40], [29, 30, 42, 41], [30, 31, 43, 42], [31, 32, 44, 43], [32, 33, 45, 44], [33, 34, 46, 45], [34, 35, 47, 46], [35, 36, 48, 47], [36, 26, 38, 48], [38, 37, 49, 50], [37, 39, 51, 49], [39, 40, 52, 51], [40, 41, 53, 52], [41, 42, 54, 53], [42, 43, 55, 54], [43, 44, 56, 55], [44, 45, 57, 56], [45, 46, 58, 57], [46, 47, 59, 58], [47, 48, 60, 59], [48, 38, 50, 60], [50, 49, 61], [49, 51, 61], [51, 52, 61], [52, 53, 61], [53, 54, 61], [54, 55, 61], [55, 56, 61], [56, 57, 61], [57, 58, 61], [58, 59, 61], [59, 60, 61], [60, 50, 61]], "color": "#008000", "opacity": 1.0}, {"vertices": [{"x": 2.388888888888889, "y": -0.3333333333333333, "z": -0.15}, {"x": 2.453840794172722, "y": -0.29583333333333334, "z": -0.1299038105676658}, {"x": 2.463888888888889, "y": -0.3333333333333333, "z": -0.1299038105676658}, {"x": 2.426388888888889, "y": -0.26838142804950044, "z": -0.1299038105676658}, {"x": 2.388888888888889, "y": -0.2583333333333333, "z": -0.1299038105676658}, {"x": 2.3513888888888888, "y": -0.26838142804950044, "z": -0.1299038105676658}, {"x": 2.323936983605056, "y": -0.29583333333333334, "z": -0.1299038105676658}, {"x": 2.3138888888888887, "y": -0.3333333333333333, "z": -0.1299038105676658}, {"x": 2.323936983605056, "y": -0.3708333333333333, "z": -0.1299038105676658}, {"x": 2.3513888888888888, "y": -0.3982852386171662, "z": -0.1299038105676658}, {"x": 2.388888888888889, "y": -0.4083333333333333, "z": -0.1299038105676658}, {"x": 2.426388888888889, "y": -0.3982852386171662, "z": -0.1299038105676658}, {"x": 2.453840794172722, "y": -0.37083333333333335, "z": -0.1299038105676658}, {"x": 2.5013888888888887, "y": -0.26838142804950044, "z": -0.075}, {"x": 2.518792699456555, "y": -0.3333333333333333, "z": -0.075}, {"x": 2.453840794172722, "y": -0.22083333333333333, "z": -0.075}, {"x": 2.388888888888889, "y": -0.20342952276566753, "z": -0.075}, {"x": 2.323936983605056, "y": -0.22083333333333333, "z": -0.075}, {"x": 2.276388888888889, "y": -0.26838142804950044, "z": -0.075}, {"x": 2.258985078321223, "y": -0.3333333333333333, "z": -0.075}, {"x": 2.276388888888889, "y": -0.39828523861716614, "z": -0.075}, {"x": 2.323936983605056, "y": -0.4458333333333333, "z": -0.075}, {"x": 2.388888888888889, "y": -0.4632371439009991, "z": -0.075}, {"x": 2.453840794172722, "y": -0.4458333333333333, "z": -0.075}, {"x": 2.5013888888888887, "y": -0.39828523861716625, "z": -0.075}, {"x": 2.518792699456555, "y": -0.2583333333333333, "z": 0.0}, {"x": 2.5388888888888888, "y": -0.3333333333333333, "z": 0.0}, {"x": 2.463888888888889, "y": -0.20342952276566753, "z": 0.0}, {"x": 2.388888888888889, "y": -0.18333333333333332, "z": 0.0}, {"x": 2.3138888888888887, "y": -0.2034295227656675, "z": 0.0}, {"x": 2.258985078321223, "y": -0.2583333333333333, "z": 0.0}, {"x": 2.238888888888889, "y": -0.3333333333333333, "z": 0.0}, {"x": 2.258985078321223, "y": -0.40833333333333327, "z": 0.0}, {"x": 2.3138888888888887, "y": -0.46323714390099907, "z": 0.0}, {"x": 2.388888888888889, "y": -0.4833333333333333, "z": 0.0}, {"x": 2.463888888888889, "y": -0.4632371439009991, "z": 0.0}, {"x": 2.5187926994565544, "y": -0.4083333333333334, "z": 0.0}, {"x": 2.5013888888888887, "y": -0.26838142804950044, "z": 0.07499999999999997}, {"x": 2.518792699456555, "y": -0.3333333333333333, "z": 0.07499999999999997}, {"x": 2.453840794172722, "y": -0.22083333333333333, "z": 0.07499999999999997}, {"x": 2.388888888888889, "y": -0.2034295227656675, "z": 0.07499999999999997}, {"x": 2.323936983605056, "y": -0.2208333333333333, "z": 0.07499999999999997}, {"x": 2.276388888888889, "y": -0.26838142804950044, "z": 0.07499999999999997}, {"x": 2.258985078321223, "y": -0.3333333333333333, "z": 0.07499999999999997}, {"x": 2.276388888888889, "y": -0.3982852386171662, "z": 0.07499999999999997}, {"x": 2.323936983605056, "y": -0.4458333333333333, "z": 0.07499999999999997}, {"x": 2.388888888888889, "y": -0.4632371439009991, "z": 0.07499999999999997}, {"x": 2.453840794172722, "y": -0.4458333333333333, "z": 0.07499999999999997}, {"x": 2.5013888888888887, "y": -0.39828523861716625, "z": 0.07499999999999997}, {"x": 2.453840794172722, "y": -0.29583333333333334, "z": 0.1299038105676658}, {"x": 2.463888888888889, "y": -0.3333333333333333, "z": 0.1299038105676658}, {"x": 2.426388888888889, "y": -0.26838142804950044, "z": 0.1299038105676658}, {"x": 2.388888888888889, "y": -0.2583333333333333, "z": 0.1299038105676658}, {"x": 2.3513888888888888, "y": -0.26838142804950044, "z": 0.1299038105676658}, {"x": 2.323936983605056, "y": -0.29583333333333334, "z": 0.1299038105676658}, {"x": 2.3138888888888887, "y": -0.3333333333333333, "z": 0.1299038105676658}, {"x": 2.323936983605056, "y": -0.3708333333333333, "z": 0.1299038105676658}, {"x": 2.3513888888888888, "y": -0.3982852386171662, "z": 0.1299038105676658}, {"x": 2.388888888888889, "y": -0.4083333333333333, "z": 0.1299038105676658}, {"x": 2.426388888888889, "y": -0.3982852386171662, "z": 0.1299038105676658}, {"x": 2.453840794172722, "y": -0.37083333333333335, "z": 0.1299038105676658}, {"x": 2.388888888888889, "y": -0.3333333333333333, "z": 0.15}], "faces": [[0, 1, 2], [0, 3, 1], [0, 4, 3], [0, 5, 4], [0, 6, 5], [0, 7, 6], [0, 8, 7], [0, 9, 8], [0, 10, 9], [0, 11, 10], [0, 12, 11], [0, 2, 12], [2, 1, 13, 14], [1, 3, 15, 13], [3, 4, 16, 15], [4, 5, 17, 16], [5, 6, 18, 17], [6, 7, 19, 18], [7, 8, 20, 19], [8, 9, 21, 20], [9, 10, 22, 21], [10, 11, 23, 22], [11, 12, 24, 23], [12, 2, 14, 24], [14, 13, 25, 26], [13, 15, 27, 25], [15, 16, 28, 27], [16, 17, 29, 28], [17, 18, 30, 29], [18, 19, 31, 30], [19, 20, 32, 31], [20, 21, 33, 32], [21, 22, 34, 33], [22, 23, 35, 34], [23, 24, 36, 35], [24, 14, 26, 36], [26, 25, 37, 38], [25, 27, 39, 37], [27, 28, 40, 39], [28, 29, 41, 40], [29, 30, 42, 41], [30, 31, 43, 42], [31, 32, 44, 43], [32, 33, 45, 44], [33, 34, 46, 45], [34, 35, 47, 46], [35, 36, 48, 47], [36, 26, 38, 48], [38, 37, 49, 50], [37, 39, 51, 49], [39, 40, 52, 51], [40, 41, 53, 52], [41, 42, 54, 53], [42, 43, 55, 54], [43, 44, 56, 55], [44, 45, 57, 56], [45, 46, 58, 57], [46, 47, 59, 58], [47, 48, 60, 59], [48, 38, 50, 60], [50, 49, 61], [49, 51, 61], [51, 52, 61], [52, 53, 61], [53, 54, 61], [54, 55, 61], [55, 56, 61], [56, 57, 61], [57, 58, 61], [58, 59, 61], [59, 60, 61], [60, 50, 61]], "color": "#008000", "opacity": 1.0}];
+    for ( var i=0 ; i < surfaces.length ; i++ ) addSurface( surfaces[i] );
+
+    function addSurface( json ) {
+
+        var useFaceColors = 'faceColors' in json ? true : false;
+
+        var geometry = new THREE.Geometry();
+        for ( var i=0 ; i < json.vertices.length ; i++ ) {
+            var v = json.vertices[i];
+            geometry.vertices.push( new THREE.Vector3( a[0]*v.x, a[1]*v.y, a[2]*v.z ) );
+        }
+        for ( var i=0 ; i < json.faces.length ; i++ ) {
+            var f = json.faces[i];
+            for ( var j=0 ; j < f.length - 2 ; j++ ) {
+                var face = new THREE.Face3( f[0], f[j+1], f[j+2] );
+                if ( useFaceColors ) face.color.set( json.faceColors[i] );
+                geometry.faces.push( face );
+            }
+        }
+        geometry.computeVertexNormals();
+
+        var side = json.singleSide ? THREE.FrontSide : THREE.DoubleSide;
+        var transparent = json.opacity < 1 ? true : false;
+        var depthWrite = 'depthWrite' in json ? json.depthWrite : !transparent;
+        var flatShading = json.useFlatShading ? json.useFlatShading : false;
+
+        var material = new THREE.MeshPhongMaterial( { side: side,
+                                     color: useFaceColors ? 'white' : json.color,
+                                     vertexColors: useFaceColors ? THREE.FaceColors : THREE.NoColors,
+                                     transparent: transparent, opacity: json.opacity,
+                                     shininess: 20, flatShading: flatShading,
+                                     depthWrite: depthWrite } );
+
+        var c = new THREE.Vector3();
+        geometry.computeBoundingBox();
+        geometry.boundingBox.getCenter( c );
+        geometry.translate( -c.x, -c.y, -c.z );
+
+        var mesh = new THREE.Mesh( geometry, material );
+        mesh.position.set( c.x, c.y, c.z );
+        if ( transparent && json.renderOrder ) mesh.renderOrder = json.renderOrder;
+        mesh.userData = json;
+        scene.add( mesh );
+
+        if ( json.showMeshGrid ) addSurfaceMeshGrid( json );
+
+    }
+
+    function addSurfaceMeshGrid( json ) {
+
+        var geometry = new THREE.Geometry();
+
+        for ( var i=0 ; i < json.faces.length ; i++ ) {
+            var f = json.faces[i];
+            for ( var j=0 ; j < f.length ; j++ ) {
+                var k = j === f.length-1 ? 0 : j+1;
+                var v1 = json.vertices[f[j]];
+                var v2 = json.vertices[f[k]];
+                // vertices in opposite directions on neighboring faces
+                var nudge = f[j] < f[k] ? .0005*zRange : -.0005*zRange;
+                geometry.vertices.push( new THREE.Vector3( a[0]*v1.x, a[1]*v1.y, a[2]*(v1.z+nudge) ) );
+                geometry.vertices.push( new THREE.Vector3( a[0]*v2.x, a[1]*v2.y, a[2]*(v2.z+nudge) ) );
+            }
+        }
+
+        var c = new THREE.Vector3();
+        geometry.computeBoundingBox();
+        geometry.boundingBox.getCenter( c );
+        geometry.translate( -c.x, -c.y, -c.z );
+
+        var gridColor = options.theme === 'dark' ? 'white' : 'black';
+        var linewidth = json.linewidth || 1;
+        var materialOptions = { color: gridColor, linewidth: linewidth };
+
+        var mesh;
+        if ( linewidth > 1 && window.createFatLineSegments ) {
+            mesh = createFatLineSegments( geometry, materialOptions );
+        } else {
+            var material = new THREE.LineBasicMaterial( materialOptions );
+            mesh = new THREE.LineSegments( geometry, material );
+        }
+
+        mesh.position.set( c.x, c.y, c.z );
+        mesh.userData = json;
+        scene.add( mesh );
+
+    }
+
+    function render() {
+
+        if ( window.updateAnimation ) animate = updateAnimation();
+        if ( animate ) requestAnimationFrame( render );
+
+        renderer.render( scene, camera );
+
+    }
+
+    render();
+    controls.update();
+    if ( !animate ) render();
+
+
+    // menu functions
+
+    function toggleMenu() {
+
+        var m = document.getElementById( 'menu-content' );
+        if ( m.style.display === 'block' ) m.style.display = 'none'
+        else m.style.display = 'block';
+
+    }
+
+
+    function saveAsPNG() {
+
+        var a = document.body.appendChild( document.createElement( 'a' ) );
+        a.href = renderer.domElement.toDataURL( 'image/png' );
+        a.download = 'screenshot';
+        a.click();
+
+    }
+
+    function saveAsHTML() {
+
+        toggleMenu(); // otherwise visible in output
+        event.stopPropagation();
+
+        var blob = new Blob( [ '<!DOCTYPE html>\n' + document.documentElement.outerHTML ] );
+        var a = document.body.appendChild( document.createElement( 'a' ) );
+        a.href = window.URL.createObjectURL( blob );
+        a.download = suggestFilename();
+        a.click();
+
+        function suggestFilename() {
+            if ( !document.title ) {
+                return 'graphic.html';
+            } else if ( /\.html?$/i.test( document.title ) ) {
+                return document.title; // already ends in .htm or .html
+            } else {
+                return document.title + '.html';
+            }
+        }
+
+    }
+
+    function getViewpoint() {
+
+        function roundTo( x, n ) { return +x.toFixed(n); }
+
+        var v = camera.quaternion.inverse();
+        var r = Math.sqrt( v.x*v.x + v.y*v.y + v.z*v.z );
+        var axis = [ roundTo( v.x / r, 4 ), roundTo( v.y / r, 4 ), roundTo( v.z / r, 4 ) ];
+        var angle = roundTo( 2 * Math.atan2( r, v.w ) * 180 / Math.PI, 2 );
+
+        var textArea = document.createElement( 'textarea' );
+        textArea.textContent = JSON.stringify( axis ) + ',' + angle;
+        textArea.style.csstext = 'position: absolute; top: -100%';
+        document.body.append( textArea );
+        textArea.select();
+        document.execCommand( 'copy' );
+
+        var m = document.getElementById( 'menu-message' );
+        m.innerHTML = 'Viewpoint copied to clipboard';
+        m.style.display = 'block';
+        setTimeout( function() { m.style.display = 'none'; }, 2000 );
+
+    }
+
+    function getCamera() {
+
+        function roundTo( x, n ) { return +x.toFixed(n); }
+
+        var pos = camera.position;
+        var pos_r = [ roundTo( pos.x, 4 ), roundTo( pos.y, 4 ), roundTo( pos.z, 4 ) ];
+   //     var up = camera.up; // up is always (0,0,1)
+        var textArea = document.createElement('textarea');
+        var cam_position = JSON.stringify(pos_r);
+        textArea.textContent = ',camera_position=' + cam_position;
+        textArea.style.csstext = 'position: absolute; top: -100%';
+        document.body.append( textArea );
+        textArea.select();
+        document.execCommand( 'copy' );
+
+        var m = document.getElementById( 'menu-message' );
+        m.innerHTML = 'Camera position '+ cam_position+' copied to clipboard';
+        m.style.display = 'block';
+        setTimeout( function() { m.style.display = 'none'; }, 2000 );
+
+    }
+
+</script>
+
+<div id="menu-container" onclick="toggleMenu()">&#x24d8;
+<div id="menu-message"></div>
+<div id="menu-content">
+<div onclick="saveAsPNG()">Save as PNG</div>
+<div onclick="saveAsHTML()">Save as HTML</div>
+<div onclick="getCamera()">Get camera</div>
+<div onclick="getViewpoint()">Get viewpoint</div>
+<div>Close Menu</div>
+</div></div>
+
+
+</body>
+</html>

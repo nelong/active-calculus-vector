@@ -1,0 +1,103 @@
+<?xml version='1.0' encoding='utf-8'?>
+<webwork-reps version="2" webwork2_major_version="2" webwork2_minor_version="20" xml:id="extracted-Library__Michigan__Chap14Sec2__Q43__pg" assembly-id="Library__Michigan__Chap14Sec2__Q43__pg">
+  <static seed="341" source="Library/Michigan/Chap14Sec2/Q43.pg">
+    <statement><p>A one-meter long bar is heated unevenly, with temperature in
+<m>{}^\circ</m>C at a distance <m>x</m> meters from one end at
+time <m>t</m> given by
+<me>H(x,t) = 140e^{-0.15t}\sin\mathopen{}\left(\pi x\right)</me>
+<m>0\le x\le 1</m>.  On a sheet of paper, sketch a graph of
+<m>H</m> against <m>x</m> for <m>t=0</m> and <m>t=1</m>.  Think about why
+your graphs make sense.</p>
+<p><alert>(a)</alert>
+Calculate  each of:</p>
+<p><m>H_x(0.2,t) =</m> <fillin characters="35" name="AnSwEr0001"/></p>
+<p><m>H_x(0.8,t) =</m> <fillin characters="35" name="AnSwEr0002"/>.</p>
+<p><em>(Be sure that you can say in words what the practical
+interpretation (in terms of temperature) of these two partial
+derivatives is, and why each has the sign that it does.)</em></p>
+<p><alert>(b)</alert>
+Calculate:</p>
+<p><m>H_t(x,t) =</m> <fillin characters="35" name="AnSwEr0003"/>.</p>
+<p><em>(Again, be sure that you understand why it has the sign
+that it does, and what its interpretation in terms of temperature
+is.)</em></p>
+</statement>
+    <answer>
+      <p>
+        <m>140e^{-0.15t}\pi \cos\mathopen{}\left(\pi \cdot 0.2\right)</m>
+      </p>
+    </answer>
+    <answer>
+      <p>
+        <m>140e^{-0.15t}\pi \cos\mathopen{}\left(\pi \cdot 0.8\right)</m>
+      </p>
+    </answer>
+    <answer>
+      <p>
+        <m>-21e^{-0.15t}\sin\mathopen{}\left(\pi x\right)</m>
+      </p>
+    </answer>
+    <solution><m>t=0</m> and <m>t=1</m> into the formula for <m>H</m> gives:
+<me>H(x,0) = 140e^{0}\sin\mathopen{}\left(\pi x\right),</me>
+and
+<me>H(x,1) = 140e^{-0.15}\sin\mathopen{}\left(\pi x\right).</me>
+The graphs of these are shown below (with <m>H(x,0)</m> in red and
+<m>H(x,1)</m> in blue).
+
+
+
+
+<image xmlns:pi="http://pretextbook.org/2020/pretext/internal" pi:generated="webwork/images/Library__Michigan__Chap14Sec2__Q43__pg-image-1.png" width="41%"/>
+
+
+
+
+Note that this makes sense: it says that the bar starts with a varying
+temperature distribution, and that as time goes on the temperature
+decays at all points on the bar towards a temperature of zero.
+
+
+
+<alert>(a)</alert>
+To calculate <m>H_x(x,t)</m>, we hold <m>t</m> constant and differentiate with
+respect to <m>x</m>:
+<me>H_x(x,t) = \frac{\partial}{\partial x}H(x,t) = \frac{\partial}{\partial x}
+ 140e^{-0.15t}\sin\mathopen{}\left(\pi x\right) = 140e^{-0.15t}\pi \cos\mathopen{}\left(\pi x\right).</me>
+Thus
+<me>H_x(0.2,t) = 140\pi e^{-0.15 t}\cos(0.2 \pi) = 140e^{-0.15t}\pi \cos\mathopen{}\left(\pi \cdot 0.2\right)\quad
+    {}^\circ\hbox{C/meter},</me>
+and
+<me>H_x(0.8,t) = 140\pi e^{-0.15 t}\cos(0.8 \pi) = 140e^{-0.15t}\pi \cos\mathopen{}\left(\pi \cdot 0.8\right)\quad
+    {}^\circ\hbox{C/meter}.</me>
+The practical interpretation of these partial derivatives is the rate of
+change in temperature at <m>x=0.2</m> and <m>x=0.8</m> as we increase the
+distance from the end <m>x=0</m>.  Notice that <m>e^{-0.15 t}</m> is positive for
+all <m>t</m>. Given the formula for <m>H(x,t)</m>, we see
+that the closer the position to the center of the rod, the hotter the
+temperature.  The partial derivative <m>H_x(0.2,t)</m> has a positive sign
+because, at <m>x=0.2</m> as we increase <m>x</m>, we get closer to the center of
+the rod, which is hottest.  The partial derivative <m>H_x(0.8,t)</m> has a
+negative sign because, at <m>x=0.8</m>, as we increase <m>x</m>, we get further away
+from the center of the rod which is hottest.
+
+
+
+<alert>(b)</alert>
+To calculate <m>H_t(x,t)</m>, we hold <m>x</m> constant and differentiate
+with respect to <m>t</m>:
+<me>\frac{\partial H}{\partial t}=\frac{\partial}{\partial
+    t}(140e^{-0.15t}\sin\mathopen{}\left(\pi x\right)) = -21e^{-0.15t}\sin\mathopen{}\left(\pi x\right)\quad {}^\circ\hbox{C/second}.</me>
+For all <m>t</m>, and for <m>0\lt x\lt 1</m> (that is, for all <m>t</m> and all <m>x</m> inside
+the rod), the partial derivative <m>H_t(x,t)</m> is negative. In terms of
+heat, <m>H_t(x,t)</m> represents the rate at which the
+temperature of the rod is changing as time passes at position
+<m>x</m> and time <m>t</m>. Thus, the temperature
+inside the rod is always decreasing.
+
+
+
+</solution>
+  </static>
+  <rendering-data sourceFilePath="Library/Michigan/Chap14Sec2/Q43.pg" origin="webwork2" domain="https://webwork-ptx.aimath.org" course-id="anonymous" user-id="anonymous" passwd="anonymous" language="en-US"/>
+  <pg source="Library/Michigan/Chap14Sec2/Q43.pg"/>
+</webwork-reps>
