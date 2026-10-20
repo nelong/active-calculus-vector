@@ -214,8 +214,64 @@
       <m>(x_0,y_0) = (0,0)</m>.
     </p>
     <figure xml:id="F_10_7_extrema">
-      <caption>An local maxima and a local minima</caption>
-      <interactive label="interactive-F_10_7_extrema" platform="sage" width="100%" aspect="1:1.1">
+      <caption>An local maxima (left) and a local minima (right)</caption>
+      <sidebyside>
+        <image width="60%">
+          <description><p>A three dimensional plot with axes labeled <m>x</m>, <m>y</m>, and <m>z</m> and a coordinate grid shown on the xy-plane. A downward facing circular paraboloid is shown above the xy-plane.  </p></description>
+          <sageplot variant="3d" label="interactive-F_10_7_maximum">
+            from sage.plot.plot3d.plot3d import axes
+            var('x,y,z,t,s')
+            scale=3
+            param(s,t)=(1.5*s*cos(t),1.2*s*sin(t),2-s^2)
+            plot5=axes(scale,1,color="gray",frame=False,aspect_ratio=1,opacity=0.8)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
+            #plot5+=parametric_plot3d(param(s,t),(s,0,1.5),(t,0,2*pi),color="blue",opacity=0.6,mesh=True,plot_points=31)
+            n=7;m=7;a1=0;a2=1;b1=0;b2=2*pi; 
+            #c1 is surface color     o1 is surface opacity
+            #c2 and o2 are for constant t value traces
+            #c3 and o3 are for constant s value traces
+            c1="lightblue"; c2="gray"; c3="gray"; o1=0.8; o2=0.8; o3=0.8;
+            plot5+=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1,plot_points=100,viewpoint=[[-0.2888,-0.5668,-0.7716],137.08],camera_position=[10.2151,7.49,5.5501])
+            for i in range(n+1):
+              sv=a1+i/n*(a2-a1)
+              plot5+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c3,opacity=o3)
+            for i in range(m+1):
+              tv=b1+i/m*(b2-b1)
+              plot5+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
+            #plot5+=parametric_plot3d((s,t,0),(s,-3,3),(t,-3,3),color="gray",opacity=0.05,mesh=True,plot_points=7)
+            for i in range(-3,4):
+              plot5+=line([(-3,i,0),(3,i,0)],color="gray",opacity=0.5)+line([(i,-3,0),(i,3,0)],color="gray",opacity=0.5)
+            plot5
+          </sageplot>
+        </image>
+        <image width="60%">
+          <description><p>A three dimensional plot with axes labeled <m>x</m>, <m>y</m>, and <m>z</m> and a coordinate grid shown on the xy-plane with an upward facing circular paraboloid is shown above the xy-plane. </p></description>
+          <sageplot variant="3d" label="interactive-F_10_7_minimum">
+            from sage.plot.plot3d.plot3d import axes
+            var('x,y,z,t,s')
+            scale=3
+            param(s,t)=(1.75*s*cos(t),1.25*s*sin(t),1+s^2)
+            plot5=axes(scale,1,color="gray",frame=False,aspect_ratio=1,opacity=0.8)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
+            #plot5+=parametric_plot3d(param(s,t),(s,0,1.5),(t,0,2*pi),color="blue",opacity=0.6,mesh=True,plot_points=31)
+            n=7;m=7;a1=0;a2=1;b1=0;b2=2*pi; 
+            #c1 is surface color     o1 is surface opacity
+            #c2 and o2 are for constant t value traces
+            #c3 and o3 are for constant s value traces
+            c1="lightblue"; c2="gray"; c3="gray"; o1=0.8; o2=0.8; o3=0.8;
+            plot5+=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1,plot_points=100,viewpoint=[[-0.2782,-0.6161,-0.7369],143.2],camera_position=[10.2151,7.49,5.5501])
+            for i in range(n+1):
+              sv=a1+i/n*(a2-a1)
+              plot5+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c3,opacity=o3)
+            for i in range(m+1):
+              tv=b1+i/m*(b2-b1)
+              plot5+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
+            #plot5+=parametric_plot3d((s,t,0),(s,-3,3),(t,-3,3),color="gray",opacity=0.05,mesh=True,plot_points=7)
+            for i in range(-3,4):
+              plot5+=line([(-3,i,0),(3,i,0)],color="gray",opacity=0.5)+line([(i,-3,0),(i,3,0)],color="gray",opacity=0.5)
+            plot5
+          </sageplot>
+        </image>
+      </sidebyside>
+      <!-- <interactive label="interactive-F_10_7_extrema" platform="sage" width="100%" aspect="1:1.1">
         <description><p>An interactive three dimensional plot with axes labeled <m>x</m>, <m>y</m>, and <m>z</m> and a coordinate grid shown on the xy-plane. A dropdown box allows the user to select <q>Local Minimum</q> or <q>Local Maximum</q>. For the <q>Local Minimum</q> option, an upward facing circular paraboloid is shown above the xy-plane. For the <q>Local Maximum</q> option, a downward facing circular paraboloid is shown above the xy-plane. </p></description>
       <slate surface="sage">
           from sage.plot.plot3d.plot3d import axes
@@ -246,7 +302,7 @@
               plot5+=line([(-3,i,0),(3,i,0)],color="gray",opacity=0.5)+line([(i,-3,0),(i,3,0)],color="gray",opacity=0.5)
             show(plot5,viewpoint=[[-0.2888,-0.5668,-0.7716],137.08],camera_position=[10.2151,7.49,5.5501])
         </slate>
-      </interactive>
+      </interactive> -->
     </figure>
     <!-- <figure xml:id="F_10_7_extrema">
       <caption>An absolute maximum and an absolute minimum</caption>
@@ -303,24 +359,24 @@
         For each point above, you can use <xref ref="critvals1"/> to show a plot of <m>z=f(x,y)</m> for a small region around the critical point by selecting from the selector. Pay attention to how the coordinate values on the axes change in each case!
       </p>
       <figure xml:id="critvals1">
-      <caption>Plots of <m>z=f(x,y)</m> around each of the critical points</caption>
-      <interactive label="interactive-critvals1" platform="sage" width="100%" aspect="1:1.1">
-        <description><p>An interactive three dimensional plot is shown with a dropdown box giving the options <q>Critical Point 1</q>, <q>Critical Point 2</q>, and <q>Critical Point 3</q>. For the Critical Point 1 option, a saddle surface is shown with a point highlighted at middle of the saddle. For the Critical Point 2 option, an upward curving surface is shown with a point highlighted at the bottom of the surface. For the Critical Point 3 option, an upward curving surface is shown with a point highlighted at the bottom of the surface.</p></description>
-      <slate surface="sage">
-          var('x,y,z')
-          f(x,y)=4*x^4+y^2-16*x*y
-          @interact(layout={'top': [['sb','auto_update']]})
-          def critvals1(sb=selector(['Critical Point 1','Critical Point 2','Critical Point 3'],default='Critical Point 3',label="Critical Point Options:")):
-            if(sb=='Critical Point 1'):
-              a=0;b=0;fv=f(x=a,y=b);
-            if(sb=='Critical Point 2'):
-              a=sqrt(8);b=8*sqrt(8);fv=f(x=a,y=b);
-            if(sb=='Critical Point 3'):
-              a=-sqrt(8);b=-8*sqrt(8);fv=f(x=a,y=b);
-            d=0.25;q=5
-            plot1=implicit_plot3d(f(x,y)==z,(x,a-d/q,a+d/q),(y,b-d,b+d),(z,fv-d,fv+d),plot_points=21,color="gray",opacity=0.7)
-            plot1+=point3d((a,b,fv),color="black",size=5)
-            show(plot1,aspect_ratio=(q,0.75,1))
+        <caption>Plots of <m>z=f(x,y)</m> around each of the critical points</caption>
+        <interactive label="interactive-critvals1" platform="sage" width="100%" aspect="1:1.1">
+          <description><p>An interactive three dimensional plot is shown with a dropdown box giving the options <q>Critical Point 1</q>, <q>Critical Point 2</q>, and <q>Critical Point 3</q>. For the Critical Point 1 option, a saddle surface is shown with a point highlighted at middle of the saddle. For the Critical Point 2 option, an upward curving surface is shown with a point highlighted at the bottom of the surface. For the Critical Point 3 option, an upward curving surface is shown with a point highlighted at the bottom of the surface.</p></description>
+          <slate surface="sage">
+            var('x,y,z')
+            f(x,y)=4*x^4+y^2-16*x*y
+            @interact(layout={'top': [['sb','auto_update']]})
+            def critvals1(sb=selector(['Critical Point 1','Critical Point 2','Critical Point 3'],default='Critical Point 3',label="Critical Point Options:")):
+              if(sb=='Critical Point 1'):
+                a=0;b=0;fv=f(x=a,y=b);
+              if(sb=='Critical Point 2'):
+                a=sqrt(8);b=8*sqrt(8);fv=f(x=a,y=b);
+              if(sb=='Critical Point 3'):
+                a=-sqrt(8);b=-8*sqrt(8);fv=f(x=a,y=b);
+              d=0.25;q=5
+              plot1=implicit_plot3d(f(x,y)==z,(x,a-d/q,a+d/q),(y,b-d,b+d),(z,fv-d,fv+d),plot_points=21,color="gray",opacity=0.7)
+              plot1+=point3d((a,b,fv),color="black",size=5)
+              show(plot1,aspect_ratio=(q,0.75,1))
           </slate>
         </interactive>
       </figure>
