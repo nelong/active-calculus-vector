@@ -94,7 +94,8 @@ lang: "en-US",
 var('x,y,z,t,s')
 scale=5;
 @interact
-def spheregrad(k=slider(0.5,9,0.1,default=2,label="level surface value, k="),g=checkbox(default=False,label="Show Gradient Vectors")):
+def spheregrad(g=checkbox(default=False,label="Show Gradient Vectors")):
+  def makesphereplot(k):
     R=sqrt(k);
     param(s,t)=(R*sin(s)*cos(t),R*sin(s)*sin(t),R*cos(s))
     grad(s,t)=(2*R*sin(s)*cos(t),2*R*sin(s)*sin(t),2*R*cos(s))
@@ -107,19 +108,22 @@ def spheregrad(k=slider(0.5,9,0.1,default=2,label="level surface value, k="),g=c
     c1="lightblue"; c2="gray"; c3="gray"; o1=0.5; o2=0.5; o3=0.5;
     plot3+=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1,plot_points=200)
     for i in range(n+1):
-        sv=a1+i/n*(a2-a1)
-        plot3+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c3,opacity=o3)
+      sv=a1+i/n*(a2-a1)
+      plot3+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c3,opacity=o3)
     for i in range(m+1):
-        tv=b1+i/m*(b2-b1)
-        plot3+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
-    n=6;m=9;
+      tv=b1+i/m*(b2-b1)
+      plot3+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
+    n=4;m=4;
     if(g):
-        for i in range(n):
-            sv=i*pi/n;
-            for j in range(m):
-                tv=j*2*pi/m;
-                plot3+=arrow(param(sv,tv),param(sv,tv)+grad(sv,tv)/2,color="red",opacity=0.5,width=2)
-    show(plot3)
+      for i in range(n):
+        sv=i*pi/n;
+        for j in range(m):
+          tv=j*2*pi/m;
+          plot3+=arrow(param(sv,tv),param(sv,tv)+grad(sv,tv)/2,color="red",opacity=0.5,width=2)
+    return plot3
+  frames1=[makesphereplot(k/4) for k in range(2,20)]
+  plot123=animate(frames1).interactive(delay=30,auto_play=False)
+  show(plot123)
 </script></pre></div>
 </body>
 </html>
