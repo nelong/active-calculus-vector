@@ -368,7 +368,7 @@
               f(x,y)=4*x^4+y^2-16*x*y
               a=0;b=0;fv=f(x=a,y=b);
               d=0.25;q=5
-              plot1=implicit_plot3d(f(x,y)==z,(x,a-d/q,a+d/q),(y,b-d,b+d),(z,fv-d,fv+d),plot_points=21,color="gray",opacity=0.7)
+              plot1=implicit_plot3d(f(x,y)==z,(x,a-d/q,a+d/q),(y,b-d,b+d),(z,fv-d,fv+d),plot_points=21,color="lightblue",opacity=0.7)
               plot1+=point3d((a,b,fv),color="black",size=5,aspect_ratio=(q,0.75,1))
               plot1
             </sageplot>
@@ -380,7 +380,7 @@
               f(x,y)=4*x^4+y^2-16*x*y
               a=sqrt(8);b=8*sqrt(8);fv=f(x=a,y=b);
               d=0.25;q=5
-              plot1=implicit_plot3d(f(x,y)==z,(x,a-d/q,a+d/q),(y,b-d,b+d),(z,fv-d,fv+d),plot_points=21,color="gray",opacity=0.7)
+              plot1=implicit_plot3d(f(x,y)==z,(x,a-d/q,a+d/q),(y,b-d,b+d),(z,fv-d,fv+d),plot_points=21,color="lightblue",opacity=0.7)
               plot1+=point3d((a,b,fv),color="black",size=5,aspect_ratio=(q,0.75,1))
               plot1
             </sageplot>
@@ -392,7 +392,7 @@
               f(x,y)=4*x^4+y^2-16*x*y
               a=-sqrt(8);b=-8*sqrt(8);fv=f(x=a,y=b);
               d=0.25;q=5
-              plot1=implicit_plot3d(f(x,y)==z,(x,a-d/q,a+d/q),(y,b-d,b+d),(z,fv-d,fv+d),plot_points=21,color="lightblue",opacity=0.7,mesh=True)
+              plot1=implicit_plot3d(f(x,y)==z,(x,a-d/q,a+d/q),(y,b-d,b+d),(z,fv-d,fv+d),plot_points=21,color="lightblue",opacity=0.7)
               plot1+=point3d((a,b,fv),color="black",size=5,aspect_ratio=(q,0.75,1))
               plot1
             </sageplot>
@@ -605,7 +605,7 @@
     </p>
     <figure xml:id="critptx3">
       <caption>A plot of <m>y=x^3</m> with the horizontal tangent line at <m>x_0=0</m></caption>
-      <image width="60%" xml:id="img-PA-critptx3">
+      <image width="50%" xml:id="img-PA-critptx3">
         <description><p>A two dimensional plot with horizontal and vertical coordinates going from -1 to 1. A cubic or s-curve is drawn in black from the bottom left to the top right going through the origin. As the curve approaches the origin, the curve flattens out to be horizontal. A blue line segment through the origin is drawn to show the horizontal tangent line at the origin.</p></description>
       <sageplot>
           var('x,y')
@@ -764,10 +764,44 @@
     </p>
     <figure xml:id="critpoints2">
     <caption>Possible critical inputs and concavity</caption>
-      <interactive label="interactive-critpoints2" platform="sage" width="93%" aspect="1:1.25">
+      <interactive label="interactive-critpoints2" platform="sage">
         <description><p>An interactive three dimensional plot with axes labeled <m>x</m>, <m>y</m>, and <m>z</m> and a coordinate grid shown on the xy-plane. A dropdown box allows the user to select <q>Local Minimum</q>, <q>Local Maximum</q>, or <q>Saddle Point</q>. For the <q>Local Minimum</q> option, an upward facing circular paraboloid is shown above the xy-plane. For the <q>Local Maximum</q> option, a downward facing circular paraboloid is shown above the xy-plane. For the <q>Saddle Point</q> option, a saddle surface centered at the origin is shown. There is a slider above the figure that allows the user to change the direction of a red curve along the selected surface. For the <q>Local Maximum</q> option, the red curve is concave down for any direction. For the <q>Local Minimum</q> option, the red curve is concave up for any direction. For the <q>Saddle Point</q> option, the red curve is concave down for some directions and concave up for others.  </p></description>
       <slate surface="sage">
-          from sage.plot.plot3d.plot3d import axes
+        from sage.plot.plot3d.plot3d import axes
+        var('x,y,z,t,s')
+        scale=3
+        @interact
+        def maxmin(sb=selector(['Local Maximum','Local Minimum','Saddle Point'],label="Surface Options:")):
+          def makesurf(d):
+            plot20=axes(scale,2,color="black",frame=False,aspect_ratio=1)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
+            if(sb=='Local Maximum'):
+              param(s,t)=(s*cos(t),s*sin(t),s^2+0.5); h=0.5;
+            if(sb=='Local Minimum'):
+              param(s,t)=(s*cos(t),s*sin(t),1.25-s^2); h =1.25;
+            if(sb=='Saddle Point'):
+              param(s,t)=(s*cos(t),s*sin(t),s^2*cos(2*t)); h =0;
+            #param(s,t)=(s,t,f(s,t))
+            #set up grid      n is number of steps in s    m is number of steps in t  
+            #a1 is min s    a2 is max s   b1 is min t    b2 is max t
+            n=7;m=7;a1=0;a2=1.5;b1=0;b2=2*pi; 
+            #c1 is surface color     o1 is surface opacity
+            #c2 and o2 are for constant t value traces
+            #c3 and o3 are for constant s value traces
+            c1="lightblue"; c2="black"; c3="black"; o1=0.6; o2=0.5; o3=0.5;
+            plot20+=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1)
+            for i in range(n+1):
+              sv=a1+i/n*(a2-a1)
+              plot20+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c2,opacity=o2)
+            for i in range(m+1):
+              tv=b1+i/m*(b2-b1)
+              plot20+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)  
+            plot20+=parametric_plot3d(param(s,t=d),(s,-1,1),color="red",thickness=3)
+            plot20+=parametric_plot3d((s,t,h),(s,-1,1),(t,-1,1),color="gray",opacity=0.4,mesh=True,plot_points=3,thickness=3,viewpoint=[[-0.2888,-0.5668,-0.7716],137.08],camera_position=[10.2151,7.49,5.5501])
+            return plot20
+          frames1=[makesurf(d/5) for d in range(0,32)]
+          plot123=animate(frames1).interactive(delay=20,auto_play=False)
+          show(plot123)
+          <!-- from sage.plot.plot3d.plot3d import axes
           var('x,y,z,t,s')
           scale=2
           @interact
@@ -797,7 +831,7 @@
             plot20+=plot99    
             plot20+=parametric_plot3d(param(s,t=d),(s,-1,1),color="red",thickness=3)
             plot20+=parametric_plot3d((s,t,h),(s,-1,1),(t,-1,1),color="blue",opacity=0.4,mesh=True,plot_points=3)
-            show(plot20)
+            show(plot20) -->
         </slate>
       </interactive>
     </figure>
@@ -838,9 +872,9 @@
     </p>
     <figure xml:id="critpoints3">
     <caption>A surface plot where <m>f_{xx} \gt 0</m> and <m>f_{yy} \gt 0</m> at the origin.</caption>
-      <interactive label="interactive-critpoints3" platform="sage" width="91%" aspect="1:1">
+      <image width="60%">
         <description><p>A three dimensional plot with axes labeled <m>x</m>, <m>y</m>, and <m>z</m> and a grid on the xy-plane. A curved surface is shown in light blue. The surface curves up along the directions given by the x and y axes and down in directions where <m>x=\pm y</m>. The upward curved path of the surface above the x and y axes is highlighted in red. </p></description>
-      <slate surface="sage">
+        <sageplot variant="3d" label="interactive-critpoints3">
           var('x,y,z,t,s')
           from sage.plot.plot3d.plot3d import axes
           scale=2.5
@@ -856,18 +890,18 @@
           #c2 and o2 are for constant t value traces
           #c3 and o3 are for constant s value traces
           c1="lightblue"; c2="black"; c3="black"; o1=1; o2=0.8; o3=0.8;
-          plot99=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1,plot_points=200)
+          plot6=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1,plot_points=200)
           for i in range(n+1):
             sv=a1+i/n*(a2-a1)
-            plot99+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c2,opacity=o2,plot_points=200)
+            plot6+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c2,opacity=o2,plot_points=200)
           for i in range(m+1):
             tv=b1+i/m*(b2-b1)
-            plot99+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3,plot_points=200)
+            plot6+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3,plot_points=200)
           plot6+=parametric_plot3d((s,0,s^2),(s,-1,1),color="red",thickness=5)
-          plot6+=parametric_plot3d((0,s,s^2),(s,-1,1),color="red",thickness=5)
-          show(plot6+plot99,aspect_ratio=(1,1,0.6),viewpoint=[[-0.1958,-0.5867,-0.7858],150.62],camera_position=[6.2458,8.2356,2.958])
-        </slate>
-      </interactive>
+          plot6+=parametric_plot3d((0,s,s^2),(s,-1,1),color="red",thickness=5,aspect_ratio=(1,1,0.6),viewpoint=[[-0.1958,-0.5867,-0.7858],150.62],camera_position=[6.2458,8.2356,2.958])
+          plot6
+        </sageplot>
+      </image>
     </figure>
     <p>
       As the plot in <xref ref="critpoints3"/> shows, we must look at the concavity in more than the directions corresponding to the coordinate axes. Recall from <xref ref="act-mv_deriv-second_order-shape">Activities</xref> and <xref ref="act-mv_deriv-second_order-windchill"/> that the mixed second partial derivative <m>f_{xy}</m> measures the <q>twist</q> of the graph as <m>y</m> varies along a particular trace where <m>x</m> is held constant. In the same way, <m>f_{yx}</m> measures how the graph twists as <m>x</m> varies along a trace with <m>y</m> fixed. For most functions of interest, remember that Clairaut's theorem tells us that <m>f_{xy} = f_{yx}</m>. Hence, the amount of twisting is the same in both directions. These mixed second partial derivatives are used to see if there is enough twist to change the concavity in the directions between the coordinate axes. 
@@ -1107,8 +1141,32 @@
         <p>
           A graph of <m>R</m> as a function of <m>p_1</m> and <m>p_2</m> is shown in below.
         </p>
-      <!-- <figure xml:id="fig-mv_deriv-opt-optimize1">
-      <caption>A plot of the revenue function <m>R(p_1,p_2)</m></caption> -->
+        <image width="60%">
+          <caption>A plot of the revenue function <m>R(p_1,p_2)</m></caption>
+          <description><p> </p></description>
+          <sageplot variant="3d" label="fig-mv_deriv-opt-optimize1">
+            var('x,y,z,t,s')
+            f(x,y)=150*x+200*y-2*x*y-2*x^2-3*y^2
+            param(s,t)=(s,t,f(s,t))
+            #set up grid      n is number of steps in s    m is number of steps in t  
+            #a1 is min s    a2 is max s   b1 is min t    b2 is max t
+            n=21;m=21;a1=0;a2=60;b1=0;b2=60; 
+            #c1 is surface color     o1 is surface opacity
+            #c2 and o2 are for constant t value traces
+            #c3 and o3 are for constant s value traces
+            c1="gray"; c2="black"; c3="black"; o1=0.5; o2=0.3; o3=0.3;
+            plot99=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1,aspect_ratio=(1,1,100/14000),viewpoint=[[-0.1958,-0.5867,-0.7858],150.62],camera_position=[6.2458,8.2356,2.958])
+            for i in range(n+1):
+              sv=a1+i/n*(a2-a1)
+              plot99+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c2,opacity=o2)
+            for i in range(m+1):
+              tv=b1+i/m*(b2-b1)
+              plot99+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
+            plot99
+          </sageplot>
+        </image>
+      <!-- <figure xml:id="">
+      <caption>A plot of the revenue function <m>R(p_1,p_2)</m></caption> 
         <interactive label="interactive-fig-mv_deriv-opt-optimize1" platform="sage" width="91%" aspect="1:1">
           <slate surface="sage">
             var('x,y,z,t,s')
@@ -1130,7 +1188,7 @@
               plot99+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
             show(plot99,aspect_ratio=(1,1,100/14000),viewpoint=[[-0.1958,-0.5867,-0.7858],150.62],camera_position=[6.2458,8.2356,2.958])
           </slate>
-        <description><p>A curved surface drawn in gray with horizontal coordinates drawn from 0 to 60. The surface has its highest point at the center of the region and curves down in each direction moving away from the center of the figure. </p></description></interactive>
+        <description><p>A curved surface drawn in gray with horizontal coordinates drawn from 0 to 60. The surface has its highest point at the center of the region and curves down in each direction moving away from the center of the figure. </p></description></interactive>-->
       <!-- </figure> -->
        <!--  <figure xml:id="fig-mv_deriv-opt-optimize1">
           <caption>A revenue function.</caption>
@@ -1261,7 +1319,7 @@
         </p>
         <figure xml:id="plate1">
           <caption>A plot of the circular plate as the domain of our temperature function</caption>
-          <image width="60%" xml:id="img-plate1">
+          <image width="50%" xml:id="img-plate1">
             <description><p>A two dimensional plot of a solid disk of radius one centered at the origin highlighted in teal with a gray border. </p></description>
           <sageplot>
               var('x,y,t,s')
@@ -1283,9 +1341,9 @@
         </p>
         <figure xml:id="fig-mv_deriv-opt-temperature">
           <caption>A plot of the temperature across the circular metal plate</caption>
-          <interactive label="interactive-fig-mv_deriv-opt-temperature" platform="sage" width="91%" aspect="1:1">
-            <description><p>A three dimensional plot of a surface with lowest point to the positive side of the y-coordinates and circular boundary highlighted in light blue. The surface connects this minimum to the boundary where there are two relative minimum and two relative maximums on the boundary.  </p></description>
-          <slate surface="sage">
+          <image width="60%">
+            <description><p>A three dimensional plot of a surface with lowest point to the positive side of the y-coordinates and circular boundary highlighted in light blue. The surface connects this minimum to the boundary where there are two relative minimum and two relative maximums on the boundary.   </p></description>
+            <sageplot variant="3d" label="interactive-fig-mv_deriv-opt-temperature">
               var('x,y,z,t,s')
               f(x,y)=2*x^2+y^2-y
               param(s,t)=(s*cos(t),s*sin(t),f(s*cos(t),s*sin(t)))
@@ -1303,10 +1361,10 @@
               for i in range(m+1):
                 tv=b1+i/m*(b2-b1)
                 plot99+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
-              plot99+=parametric_plot3d(param(1,t),(t,0,2*pi),color="mediumturquoise",thickness=3)
-              show(plot99,viewpoint=[[-0.0928,-0.691,-0.7169],169],camera_position=[1.3005,4.752,1.1816])
-            </slate>
-          </interactive>
+              plot99+=parametric_plot3d(param(1,t),(t,0,2*pi),color="mediumturquoise",thickness=3,viewpoint=[[-0.0928,-0.691,-0.7169],169],camera_position=[1.3005,4.752,1.1816])
+              plot99
+            </sageplot>
+          </image>
         </figure>
         <!-- <figure xml:id="fig-mv_deriv-opt-temperature">
           <caption>Domain of the temperature <m>T(x,y) = 2x^2+y^2-y</m> and its graph.</caption>
@@ -1414,7 +1472,7 @@
         </p>
         <!-- <figure xml:id="triangleregion1">
           <caption> A plot of <m>R</m>, the domain of <m>f(x,y) = x^2-3y^2-4x+6y</m></caption> -->
-            <image width="60%">
+            <image width="50%">
               <sageplot label="img-triangleregion1">
                 var('x,y,t,s')
                 plot22=polygon([(0,0),(4,0),(0,4),(0,0)],edgecolor="gray",fill=True,color="mediumturquoise",gridlines=True,xmin=0,xmax=4.5,ymin=0,ymax=4.5,thickness=2,axes_labels=["$x$","$y$"])
@@ -1537,32 +1595,32 @@
           </p>
           <!-- <figure xml:id="surface-triangle1">
             <caption> </caption> -->
-              <interactive label="interactive-surface-triangle1" platform="sage" width="91%" aspect="1:1">
-                <slate surface="sage">
-                  var('x,y,z,t,s')
-                  f(x,y)=x^2-3*y^2-4*x+6*y
-                  param(s,t)=(t,s*(4-t),f(t,s*(4-t)))
-                  #set up grid      n is number of steps in s    m is number of steps in t  
-                  #a1 is min s    a2 is max s   b1 is min t    b2 is max t
-                  n=21;m=21;a1=0;a2=1;b1=0;b2=4; 
-                  #c1 is surface color     o1 is surface opacity
-                  #c2 and o2 are for constant t value traces
-                  #c3 and o3 are for constant s value traces
-                  c1="gray"; c2="black"; c3="black"; o1=0.5; o2=0.3; o3=0.3;
-                  plot99=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1)
-                  for i in range(n+1):
-                    sv=a1+i/n*(a2-a1)
-                    plot99+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c2,opacity=o2)
-                  for i in range(m+1):
-                    tv=b1+i/m*(b2-b1)
-                    plot99+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
-                  plot99+=parametric_plot3d(param(1,t),(t,b1,b2),color="mediumturquoise",thickness=3)
-                  plot99+=parametric_plot3d(param(0,t),(t,b1,b2),color="mediumturquoise",thickness=3)
-                  plot99+=parametric_plot3d(param(s,0),(s,a1,a2),color="mediumturquoise",thickness=3)
-                  show(plot99,aspect_ratio=(1,1,5/25),viewpoint=[[-0.0928,-0.691,-0.7169],169],camera_position=[1.3005,4.752,1.1816]) 
-                </slate>
-              <description><p>A three dimensional plot that shows a curved surface above a triangle with vertices at (0,0), (4,0), and (0,4). This curved surface has its lowest value approaching the vertex at (0,4) and has a relative maximum on each of the sides connecting (0,4) to the other vertices. The boundary of the surface along the edge from (0,0) to (4,0) is an upward pointing U-shape. The border of the surface is highlighted in teal. </p></description></interactive>
-          <!-- </figure> -->
+          <image width="60%">
+            <description><p>A three dimensional plot that shows a curved surface above a triangle with vertices at (0,0), (4,0), and (0,4). This curved surface has its lowest value approaching the vertex at (0,4) and has a relative maximum on each of the sides connecting (0,4) to the other vertices. The boundary of the surface along the edge from (0,0) to (4,0) is an upward pointing U-shape. The border of the surface is highlighted in teal.  </p></description>
+            <sageplot variant="3d" label="interactive-surface-triangle1">
+              var('x,y,z,t,s')
+              f(x,y)=x^2-3*y^2-4*x+6*y
+              param(s,t)=(t,s*(4-t),f(t,s*(4-t)))
+              #set up grid      n is number of steps in s    m is number of steps in t  
+              #a1 is min s    a2 is max s   b1 is min t    b2 is max t
+              n=21;m=21;a1=0;a2=1;b1=0;b2=4; 
+              #c1 is surface color     o1 is surface opacity
+              #c2 and o2 are for constant t value traces
+              #c3 and o3 are for constant s value traces
+              c1="gray"; c2="black"; c3="black"; o1=0.5; o2=0.3; o3=0.3;
+              plot99=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1)
+              for i in range(n+1):
+                sv=a1+i/n*(a2-a1)
+                plot99+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c2,opacity=o2)
+              for i in range(m+1):
+                tv=b1+i/m*(b2-b1)
+                plot99+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
+              plot99+=parametric_plot3d(param(1,t),(t,b1,b2),color="mediumturquoise",thickness=3)
+              plot99+=parametric_plot3d(param(0,t),(t,b1,b2),color="mediumturquoise",thickness=3)
+              plot99+=parametric_plot3d(param(s,0),(s,a1,a2),color="mediumturquoise",thickness=3,aspect_ratio=(1,1,5/25),viewpoint=[[-0.0928,-0.691,-0.7169],169],camera_position=[1.3005,4.752,1.1816])
+              plot99
+            </sageplot>
+          </image>
         </statement>
         <answer>
           <p>
