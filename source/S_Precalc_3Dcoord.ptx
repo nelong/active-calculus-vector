@@ -217,23 +217,33 @@
     To plot points in three-dimensional space, we will set up a coordinate system with three mutually perpendicular axes<mdash/>the <m>x</m>-axis, the <m>y</m>-axis, and the <m>z</m>-axis (called the <term>coordinate axes</term>). There are essentially two different ways we could set up a 3D coordinate system, as shown in <xref ref="F-9-1-left-right-hand">Figure</xref>, which depicts only the positive portions of the axes. Thus, before we can proceed, we need to establish a convention.
   </p>
   <figure xml:id="F-9-1-left-right-hand">
-    <sidebyside widths="40% 40%">
+    <sidebyside widths="45% 45%">
       <figure xml:id="fig-coord-sys-left-hand">
         <caption>A left hand system</caption>
-        <image source="fig_9_1_left_hand">
+        <image>
           <description>
             <p>Three mutually perpendicular line segments labeled <m>x</m>, <m>y</m>, and <m>z</m>. They are arranged so that the segment labeled <m>z</m> points up, the segment labeled <m>x</m> points to the right, and the segment labeled <m>y</m> is coming out of the page.
             </p>
           </description>
+          <sageplot>
+            plot1=arrow((0,0),(0,1),color="black",axes=False)+arrow((0,0),(1,0),color="black")+arrow((0,0),(-0.707,-0.707),color="black",aspect_ratio=1)
+            plot1+=text("$x$",(1,0.1),color="black",fontsize=20)+text("$z$",(0.1,1),color="black",fontsize=20)+text("$y$",(-.7,-.55),color="black",fontsize=20)
+            plot1
+          </sageplot>
         </image>
       </figure>
       <figure xml:id="fig-coord-sys-right-hand">
         <caption>A right hand system</caption>
-        <image source="fig_9_1_right_hand">
+        <image>
           <description>
             <p>Three mutually perpendicular line segments labeled <m>x</m>, <m>y</m>, and <m>z</m>. They are arranged so that the segment labeled <m>z</m> points up, the segment labeled <m>y</m> points to the right, and the segment labeled <m>x</m> is coming out of the page.
             </p>
           </description>
+          <sageplot>
+            plot1=arrow((0,0),(0,1),color="black",axes=False)+arrow((0,0),(1,0),color="black")+arrow((0,0),(-0.707,-0.707),color="black",aspect_ratio=1)
+            plot1+=text("$y$",(1,0.1),color="black",fontsize=20)+text("$z$",(0.1,1),color="black",fontsize=20)+text("$x$",(-.7,-.55),color="black",fontsize=20)
+            plot1
+          </sageplot>
         </image>
       </figure>
     </sidebyside>
@@ -253,11 +263,16 @@
     </p>
     <figure xml:id="phy-coord">
       <caption>An alternate orientation of a right handed coordinate system for <m>\mathbb{R}^3</m></caption>
-      <image width="40%" source="fig_9_1_right_hand_other.png">
+      <image width="45%" >
         <description>
           <p>Three mutually perpendicular line segments labeled <m>x</m>, <m>y</m>, and <m>z</m>. They are arranged so that the segment labeled <m>y</m> points up, the segment labeled <m>x</m> points to the right, and the segment labeled <m>z</m> is coming out of the page.
           </p>
         </description>
+        <sageplot>
+          plot1=arrow((0,0),(0,1),color="black",axes=False)+arrow((0,0),(1,0),color="black")+arrow((0,0),(-0.707,-0.707),color="black",aspect_ratio=1)
+          plot1+=text("$x$",(1,0.1),color="black",fontsize=20)+text("$y$",(0.1,1),color="black",fontsize=20)+text("$z$",(-.7,-.55),color="black",fontsize=20)
+          plot1
+        </sageplot>
       </image>
     </figure>
     <p>
@@ -272,13 +287,13 @@
         <description><p>A plot with the two-dimensional coordinate measurements labeled for a point in the first quadrant and a point in the fourth quadrant</p></description>
         <sageplot>
           var('t')
-          plot11=point((3,1),color="black",size=60,axes=True,zorder=5,axes_labels=["$x$","$y$"],ticks=[[],[]],fontsize=20)
+          plot11=point((3,1),color="black",size=60,axes=True,zorder=5)
           plot11+=line([(0,1),(3,1)],color="red",thickness=3)+line([(3,0),(3,1)],color="blue",thickness=3)
-          plot11+=text("$a$",(1.5,1.3),color="red",fontsize=20)+text("$b$",(3.3,0.5),color="blue",fontsize=20)
-          plot11+=text("$P=(a,b)$",(3.3,1.3),color="black",fontsize=20)+text("$Q=(c,d)$",(2.3,-2.3),color="black",fontsize=20)
+          plot11+=text("$a$",(1.5,1.3),color="red",fontsize=20)+text("$b$",(3.3,0.5),color="blue",fontsize=20,axes_labels=["$x$","$y$"],ticks=[[],[]])
+          plot11+=text("$P:(a,b)$",(3.3,1.3),color="black",fontsize=20)+text("$Q:(c,d)$",(2.3,-2.3),color="black",fontsize=20)
           plot11+=point((2,-2),color="black",size=60,zorder=5)
           plot11+=line([(0,-2),(2,-2)],color="red",thickness=3)+line([(2,0),(2,-2)],color="blue",thickness=3)
-          plot11+=text("$c$",(1,-1.7),color="red",fontsize=20)+text("$d$",(2.3,-1),color="blue",fontsize=20,xmin=-1,xmax=4.5,ymin=-2,ymax=2.5,aspect_ratio=1)
+          plot11+=text("$c$",(1,-1.7),color="red",fontsize=20)+text("$d$",(2.3,-1),color="blue",fontsize=20,xmin=-0.5,xmax=3.5,ymin=-2,ymax=2,aspect_ratio=1)
           plot11.axes_width(3)
           plot11
         </sageplot>
@@ -402,7 +417,7 @@
       </interactive> 
     </figure>-->
     <p>  
-      In many ways the coordinate planes in three dimensions are analogous to the axes in two dimensions. We will split up three-dimensional space based on whether a location is above or below different coordinate planes and we will measure coordinates in three dimensions as distances from the coordinate planes.
+      In many ways, the coordinate planes in three dimensions are analogous to the axes in two dimensions. We will split up three-dimensional space based on whether a location is above or below different coordinate planes and we will measure coordinates in three dimensions as distances from the coordinate planes.
     </p>
     <p> 
       In two dimensions, the four regions that are separated by the coordinate axes are called <term>quadrants</term> and are typically labeled as in the plot below.
@@ -425,7 +440,7 @@
      </p>
      <figure xml:id="octants">
        <caption>A plot of the eight octants </caption>
-       <image width="70%">
+       <image width="60%">
         <description>
           <p>
             A plot with the plane through the x and y axes shown in green, the plane through the x and z axes in blue, and the plane through the y and z axes shown in red. Additionally, in the direction of points with positive x, y, and z coordinates, the first octant is labeled. An option to show labels for the second through eight octants shown moving counterclockwise around the z-axis. 
@@ -509,7 +524,7 @@
             plot14+=parametric_plot3d((1,-2,t),(t,0,3),color="green",thickness=3)
             plot14+=text3d("-2",(1.5,-1,2.75),color="blue",fontsize=25)
             plot14+=text3d("1",(0.5,-1.5,3.5),color="red",fontsize=25)
-            plot14+=text3d("3",(1.25,-2.25,1.5),color="green",fontsize=25,viewpoint=[[-0.4007,-0.4767,-0.7824],113.33],camera_position=[13.4605,2.0255,6.9743])
+            plot14+=text3d("3",(1.25,-2.25,1.5),color="green",fontsize=25,viewpoint=[[-0.3776,-0.5088,-0.7736],120.28],camera_position=[13.4605,2.0255,6.9743])
             plot14
           </sageplot>
         </image>
@@ -694,7 +709,7 @@
     </p> 
     <figure xml:id="x2plot">
       <caption>A 2D plot of <m>x=2</m></caption>
-      <image width="55%">
+      <image width="50%">
         <description><p>A two-dimensional plot with the vertical line two units to the right of the vertical axis and points <m>(2,1)</m>, <m>(2,\pi)</m>, and <m>(2,-e)</m> labeled</p></description>
         <sageplot label="img-x2plot">
           var('t')
@@ -829,21 +844,24 @@
     </p>
     <figure xml:id="grid3d">
       <caption>A grid of fundamental planes in three dimensions</caption>
-      <image>
+      <image width="60%">
         <description><p>A grid of planes that are parallel to the xy-plane in green, parallel to the xz-plane in blue, and parallel to the yz-plane in red.</p></description>
         <sageplot variant="3d" label="interactive-grid3d">
           from sage.plot.plot3d.plot3d import axes
           var('t,s')
-          n=2; d=3.5;
-          plot16=axes(4,1,color="black",frame=False)#+text3d("x",(4.5,0,0),fontsize=30)+text3d("y",(0,4.5,0),fontsize=30)+text3d("z",(0,0,4.5),fontsize=30)
+          n=2
+          plot16=axes(3,1,color="black",frame=False,aspect_ratio=1,viewpoint=[[-0.1794,-0.4235,-0.888],138.78],camera_position=[5.406,9.6134,9.0631])
           vals=[i for i in range(-n,n+1)]
+          d=2.5
           for c in vals:
-              plot16+=parametric_plot3d((s,t,c),(s,-3,3),(t,-3,3),color="green",opacity=0,mesh=True,plot_points=5)
-              plot16+=parametric_plot3d((c,t,s),(s,-3,3),(t,-3,3),color="red",opacity=0,mesh=True,plot_points=5)
-              plot16+=parametric_plot3d((s,c,t),(s,-3,3),(t,-3,3),color="blue",opacity=0,mesh=True,plot_points=5)
-              plot16+=text3d("z="+str(c),(-d,d,c),fontsize=20,color="green")
-              plot16+=text3d("y="+str(c),(-d,c,d),fontsize=20,color="blue")
-              plot16+=text3d("x="+str(c),(c,-d,d),fontsize=20,color="red",aspect_ratio=1,viewpoint=[[-0.1794,-0.4235,-0.888],138.78],camera_position=[5.406,9.6134,9.0631])
+            plot16+=text3d("z="+str(c),(-d,d,c),fontsize=20,color="green")
+            plot16+=text3d("y="+str(c),(-d,c,d),fontsize=20,color="blue")
+            plot16+=text3d("x="+str(c),(c,-d,d),fontsize=20,color="red")
+          for i in range(-2,3):
+            for j in range(-2,3):
+              plot16+=parametric_plot3d((i,j,t),(t,-2,2),color="black",plot_points=2)
+              plot16+=parametric_plot3d((i,t,j),(t,-2,2),color="black",plot_points=2)
+              plot16+=parametric_plot3d((t,j,i),(t,-2,2),color="black",plot_points=2)
           plot16
         </sageplot>
       </image>
@@ -888,7 +906,7 @@
         </p>
         <figure xml:id="distance-box">
           <caption>A plot of <m>P=(x_0, y_0, z_0)</m> and <m>Q=(x_1, y_1, z_1)</m> with connecting segments</caption>
-          <image width="75%">
+          <image width="65%">
             <description><p>A plot in three dimensions that includes points labeled <m>P=(x_0, y_0, z_0)</m> and <m>Q=(x_1, y_1, z_1)</m> a segment connecting these in blue.Additionally, there is a box of connecting segments each coordinate direction. The point on the box with a change only in the x-coordinate from P is labeled S. The vertex of the box that is below Q and connected to point S is connected by a segment that only changes in the y coordinate. </p></description>
             <sageplot variant="3d" label="interactive-distance">
               var('t')
