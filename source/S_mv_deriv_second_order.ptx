@@ -57,7 +57,7 @@
   <exploration workspace="1.5in" xml:id="PA-mv_deriv-second_order">
     <introduction>
       <p>
-         Once again, we consider the function <m>f</m> defined by <m>f(x,y) = \frac{x^2\sin(2y)}{32}</m> that measures a projectile's range as a function of its initial speed <m>x</m> and launch angle <m>y</m>. The graph of this function, including traces with <m>x=150</m> and <m>y=0.6</m>, is shown in the interactive graph below.
+         Once again, we consider the function <m>f</m> defined by <m>f(x,y) = \frac{x^2\sin(2y)}{32}</m> that measures a projectile's range as a function of its initial speed <m>x</m> and launch angle <m>y</m>. The graph of this function, including traces with <m>x=150</m> and <m>y=0.6</m>, is shown in the graphs below.
       </p>
       <!-- <figure xml:id="fig-mv_deriv-second_order-preview">
           <caption>The distance function with traces <m>x=150</m> and <m>y=0.6</m>.</caption>
@@ -68,14 +68,96 @@
         </figure> -->
       <!-- <figure xml:id="fig-mv_deriv-second_order-preview">
         <caption>The surface given by <m>z=f(x,y) = \frac{x^2 \sin(2y)}{g}</m> with traces <m>y=0.6</m> (in red) and <m>x=150</m> (in blue)</caption> -->
-        <interactive label="interactive-fig-mv_deriv-second_order-preview" platform="sage" width="95%" aspect="1:1.06">
+        <sidebyside>
+          <image width="60%">
+            <description><p>An interactive three dimensional plot with three axes labeled <m>x</m> and <m>y</m> horizontally and <m>z</m> vertically. A surface is shown in gray with a grid of lines along the surface. The surface is shown for a patch above the first quadrant and the surface increases vertically as either <m>x</m> or <m>y</m> decreases. The <q>x-trace only </q> plots a plane in red that is parallel to the yz-plane, is labeled <m>y=0.6</m>, and highlights the curve along the surface and on the red plane in red. 
+          </p></description>
+            <sageplot variant="3d" label="interactive-fig-mv_deriv-second_order-preview1">
+              var('x,y,z,s,t')
+              from sage.plot.plot3d.plot3d import axes
+              g(x,y)=x^2*sin(2*y)/9.8
+              a=150;b=0.6;a1=0;a2=200;b1=0;b2=pi/2;
+              d1=50; d2=0.25;zm=4200;
+              gx=diff(g,x)
+              gy=diff(g,y)
+              gv=g(a,b)
+              gxv=gx(a,b)
+              gyv=gy(a,b)
+              param(s,t)=(s,t,g(x=s,y=t))
+              #set up grid      n is number of steps in s    m is number of steps in t  
+              #a1 is min s    a2 is max s   b1 is min t    b2 is max t
+              n=7;m=7;
+              #c1 is surface color     o1 is surface opacity
+              #c2 and o2 are for constant t value traces
+              #c3 and o3 are for constant s value traces
+              c1="gray"; c2="black"; c3="black"; o1=0.5; o2=0.5; o3=0.5;
+              plot11=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1,aspect_ratio=[1,100,0.05],viewpoint=[[-0.8046,0.2969,0.5142],71.32],camera_position=[-144.7188,-207.9636,325.0889],frame=False)
+              plot11+=point3d((a,b,g(a,b)),color="black",size=2000)
+              for i in range(n+1):
+                  sv=a1+i/n*(a2-a1)
+                  plot11+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c2,opacity=o2)
+              for i in range(m+1):
+                  tv=b1+i/m*(b2-b1)
+                  plot11+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
+              #scale=3
+              #plot11=axes(scale,1,color="black",frame=False,aspect_ratio=1)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
+              #plot11+=plot3d(g,(x,a1,a2),(y,b1,b2),color="gray",plot_points=31,mesh=False,opacity=0.4,frame=False)
+              plot11+=parametric_plot3d((a,y,g(a,y)),(y,b1,b2),color="blue",thickness=2)
+              plot11+=parametric_plot3d((a,b+t,gv+t*gyv),(t,-d2,d2),color="black",thickness=3,zorder=5)
+              plot11+=parametric_plot3d((a,y,z),(y,b1,b2),(z,0,zm),color="blue",plot_points=2,opacity=0.1,mesh=True)
+              plot11+=text3d("x=150",(a,b2,zm+100),color="blue",fontsize=25)
+              plot11
+            </sageplot>
+          </image>
+          <image width="60%">
+            <description><p>An interactive three dimensional plot with three axes labeled <m>x</m> and <m>y</m> horizontally and <m>z</m> vertically. A surface is shown in gray with a grid of lines along the surface. The surface is shown for a patch above the first quadrant and the surface increases vertically as either <m>x</m> or <m>y</m> decreases. The <q>y-trace only </q> plots a plane in blue that is parallel to the xz-plane, is labeled <m>x=150</m>, and highlights the curve along the surface and on the blue plane in blue. </p></description>
+            <sageplot variant="3d" label="interactive-fig-mv_deriv-second_order-preview2">
+              selctions=["x-trace only","y-trace only","both traces"];
+              var('x,y,z,s,t')
+              from sage.plot.plot3d.plot3d import axes
+              g(x,y)=x^2*sin(2*y)/9.8
+              a=150;b=0.6;a1=0;a2=200;b1=0;b2=pi/2;
+              d1=50; d2=0.25;zm=4200;
+              gx=diff(g,x)
+              gy=diff(g,y)
+              gv=g(a,b)
+              gxv=gx(a,b)
+              gyv=gy(a,b)
+              param(s,t)=(s,t,g(x=s,y=t))
+              #set up grid      n is number of steps in s    m is number of steps in t  
+              #a1 is min s    a2 is max s   b1 is min t    b2 is max t
+              n=7;m=7;
+              #c1 is surface color     o1 is surface opacity
+              #c2 and o2 are for constant t value traces
+              #c3 and o3 are for constant s value traces
+              c1="gray"; c2="black"; c3="black"; o1=0.5; o2=0.5; o3=0.5;
+              plot11=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1,aspect_ratio=[1,100,0.05],viewpoint=[[-0.8046,0.2969,0.5142],71.32],camera_position=[-144.7188,-207.9636,325.0889],frame=False)
+              plot11+=point3d((a,b,g(a,b)),color="black",size=2000)
+              for i in range(n+1):
+                  sv=a1+i/n*(a2-a1)
+                  plot11+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c2,opacity=o2)
+              for i in range(m+1):
+                  tv=b1+i/m*(b2-b1)
+                  plot11+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
+              #scale=3
+              #plot11=axes(scale,1,color="black",frame=False,aspect_ratio=1)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
+              #plot11+=plot3d(g,(x,a1,a2),(y,b1,b2),color="gray",plot_points=31,mesh=False,opacity=0.4,frame=False)
+              plot11+=parametric_plot3d((x,b,g(x,b)),(x,a1,a2),color="red",thickness=2)
+              plot11+=parametric_plot3d((t+a,b,gv+t*gxv),(t,-d1,d1),color="black",thickness=3,zorder=5)
+              plot11+=parametric_plot3d((x,b,z),(x,a1,a2),(z,0,zm),color="red",plot_points=2,opacity=0.1,mesh=True)
+              plot11+=text3d("y=0.6",(a2,b,zm+100),color="red",fontsize=25)
+              plot11
+            </sageplot>
+          </image>
+        </sidebyside>
+        <!-- <interactive label="interactive-fig-mv_deriv-second_order-preview" platform="sage" width="95%" aspect="1:1.06">
           <slate surface="sage">
             <xi:include href="./interacts/rangefn_traces.txt" parse="text"/>
           </slate>
           <description><p>An interactive three dimensional plot with three axes labeled <m>x</m> and <m>y</m> horizontally and <m>z</m> vertically. A surface is shown in gray with a grid of lines along the surface. The surface is shown for a patch above the first quadrant and the surface increases vertically as either <m>x</m> or <m>y</m> decreases. A dropdown option at the top of the figure allows for three options. The <q>x-trace only </q> plots a plane in red that is parallel to the yz-plane, is labeled <m>y=0.6</m>, and highlights the curve along the surface and on the red plane in red. 
           The <q>y-trace only </q> plots a plane in blue that is parallel to the xz-plane, is labeled <m>x=150</m>, and highlights the curve along the surface and on the blue plane in blue. 
           The <q>both traces</q> option shows both of the plots described above.</p></description>
-        </interactive>
+        </interactive> -->
       <!-- </figure> -->
     </introduction>
     <task>

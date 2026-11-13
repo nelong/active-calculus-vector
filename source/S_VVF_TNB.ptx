@@ -647,9 +647,9 @@
     </p>
     <figure xml:id="helix-plot4">
       <caption> A plot of the helix with the TNB frame plotted</caption>
-      <interactive label="interactive-helix-plot4" platform="sage">
-        <description><p> An interactive three dimensional plot of a helical path of radius one and change of height of 3 with a slider above the plot that changes where the highlighted point on the path appears. At the highlighted point, there is a red arrow pointing in the tangent direction and is labeled <m>\vT</m>. At the highlighted point, there is a blue arrow pointing toward the inside of the turn and is labeled <m>/vN</m>. At the highlighted point, a green arrow is drawn perpendicular to the red and blue arrows. The green arrow is labeled <m>\vB</m>.</p></description>
-        <slate surface="sage">
+      <image width="60%">
+        <description><p>An interactive three dimensional plot of a helical path of radius one and change of height of 3 with a slider above the plot that changes where the highlighted point on the path appears. At the highlighted point, there is a red arrow pointing in the tangent direction and is labeled <m>\vT</m>. At the highlighted point, there is a blue arrow pointing toward the inside of the turn and is labeled <m>/vN</m>. At the highlighted point, a green arrow is drawn perpendicular to the red and blue arrows. The green arrow is labeled <m>\vB</m>. </p></description>
+        <sageplot variant="3d" label="interactive-helix-plot4">
           var('t')
           r2(t)=(cos(t),sin(t),t/pi)
           rescale=1/3
@@ -679,8 +679,8 @@
           frames1=[TNBhelix(tval*pi/30) for tval in range(0,60)]
           plot123=animate(frames1).interactive(delay=20,auto_play=False,animation_controls=True)
           plot123
-        </slate>
-      </interactive>
+        </sageplot>
+      </image>
     </figure>
     <p>
       Note that as you change the <m>t</m>-value and move around the helix, the unit tangent points in the direction of travel, the unit normal points in the direction the object is turning (always to the left while going up the helix), and the binormal vector is the axis of rotation for the <m>\vT</m> and <m>\vN</m> vectors. If you curl the fingers on your right hand from the direction of <m>\vT</m> toward the direction of <m>\vN</m>, notice that your thumb will point in the direction of <m>\vB</m>. This sets up the TNB frame as a right-handed coordinate system that changes relative to the motion of the object. 

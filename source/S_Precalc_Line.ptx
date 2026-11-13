@@ -408,10 +408,10 @@
             To look at a line that is less familiar, we now consider the line <m>\mathcal{L}_1</m> in <m>\R^3</m> passing through <m>(1,2,1)</m> and in the direction <m>\langle 1,1,-\frac{1}{2} \rangle </m>. The corresponding vector form is <m>\vr(t)= \langle 1,2,1 \rangle + \langle 1,1,-\frac{1}{2} \rangle t</m>. <xref ref="Lineplot3d"/> shows a plot of this line with a slider that you can use to change the value for <m>t</m> and examine how the different aspects of this vector form look. Notice that when <m>t=1</m>, we have <m>\vr(1) = \langle 2,3,1/2\rangle</m>, so the point <m>P=(2,3,1/2)</m> lies on <m>\mathcal{L}_1</m>.
           </p>
           <figure xml:id="Lineplot3d">
-            <caption>A line in 2-space with vector definition</caption>
-            <interactive label="interactive-Lineplot3d" platform="sage">
-              <description><p>An interactive plot with three-dimensional axes showing a line and three vectors shown in different colors. The first vector is shown in blue from the origin to a point labeled <m>P</m>. The second vector is shown along the line in red and its length is changed by a slider at the top of the figure. The red vector is starts at the point on the line given by <m>P</m> and ends at the point on the line labeled <m>Q</m>. The last vector is shown in green and goes from the origin to the end of the red vector, labeled as point <m>Q</m>. The length of the red vector is shown as a label in red as <m>t=1</m>.</p></description>
-              <slate surface="sage">
+            <caption>A line in 3-space with vector definition</caption>
+            <image width="60%">
+              <description><p>An interactive plot with three-dimensional axes showing a line and three vectors shown in different colors. The first vector is shown in blue from the origin to a point labeled <m>P</m>. The second vector is shown along the line in red and its length is changed by a slider at the top of the figure. The red vector is starts at the point on the line given by <m>P</m> and ends at the point on the line labeled <m>Q</m>. The last vector is shown in green and goes from the origin to the end of the red vector, labeled as point <m>Q</m>. The length of the red vector is shown as a label in red as <m>t=1</m>. </p></description>
+              <sageplot variant="3d" label="interactive-Lineplot3d">
                 from sage.plot.plot3d.plot3d import axes
                 var('t,s')
                 x(t)=1+t
@@ -433,8 +433,8 @@
                 frames1=[vecline(tval/10) for tval in range(-20,20)]
                 plot123 = animate(frames1).interactive(delay=20,auto_play=False)
                 plot123
-              </slate>
-            </interactive>
+              </sageplot>
+            </image>
             </figure>
         </statement>
       </task>

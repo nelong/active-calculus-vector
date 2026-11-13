@@ -545,12 +545,12 @@
           plot11=axes(scale,1,color="black",frame=False,aspect_ratio=1)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
           var('x,y,z,s,t')
           g(x,z)=x^2/5+z^2
-          param(s,t)=(s*cos(t)/sqrt(5),(s*cos(t))^2+(s*sin(t))^2,s*sin(t))
+          param(s,t)=(s*cos(t)/sqrt(5)+1,(s*cos(t))^2+(s*sin(t))^2,s*sin(t)+1)
           plot11+=parametric_plot3d(param(s,t),(s,0,2),(t,0,2*pi),opacity=0.6,plot_points=31,color="lightblue",frame=False,axes_labels=['x','y','z'])
-          plot11+=line([(0,1,-2),(0,1,2)],color="red",thickness=2,aspect_ratio=1,viewpoint=[[-0.2046,-0.5544,-0.8067],146.85],camera_position=[4.4087,7.6827,2.8914])
-          plot11+=point3d((0,1,1),color="red",size=30)
-          plot11+=point3d((0,1,-1),color="red",size=30)
-          plot11+=text3d("Same (x,y) value",(0,1,2.25),color="red",fontsize=20)
+          plot11+=line([(1,1,-1),(1,1,3)],color="red",thickness=2,aspect_ratio=1,viewpoint=[[-0.1107,-0.5565,-0.8235],161.39],camera_position=[4.4087,7.6827,2.8914])
+          plot11+=point3d((1,1,2),color="red",size=30)
+          plot11+=point3d((1,1,0),color="red",size=30)
+          plot11+=text3d("Same (x,y) value",(1,1,3.25),color="red",fontsize=20)
           plot11+=point((0,1,3),color="white",size=0)
           #set up grid      n is number of steps in s    m is number of steps in t  
           #a1 is min s    a2 is max s   b1 is min t    b2 is max t
@@ -756,7 +756,7 @@
                 plot15=parametric_plot3d((1,s,t),(s,-1,1),(t,-1,1),color="gray",opacity=0.2,mesh=True,plot_points=5,aspect_ratio=[1,1,0.5])
                 plot15+=parametric_plot3d((-1,s,t),(s,-1,1),(t,-1,1),color="gray",opacity=0.2,mesh=True,plot_points=5)
                 plot15+=parametric_plot3d((s,1,t),(s,-1,1),(t,-1,1),color="gray",opacity=0.2,mesh=True,plot_points=5)
-                plot15+=parametric_plot3d((s,-1,t),(s,-1,1),(t,-1,1),color="gray",opacity=0.2,mesh=True,plot_points=5)
+                plot15+=parametric_plot3d((s,-1,t),(s,-1,1),(t,-1,1),color="gray",opacity=0.2,mesh=True,plot_points=5,viewpoint=[[-0.2469,-0.4845,-0.8392],133.7])
                 plot15
               </sageplot>
             </image>
@@ -821,7 +821,27 @@
     </p>
     <figure xml:id="traceonoff">
       <caption>A plot of the distance surface with or without traces for perspective</caption>
-      <interactive label="interactive-traceonoff" platform="sage" width="100%" aspect="1:1.08">
+      <sidebyside>
+      <image width="50%">
+        <description><p>An interactive three dimensional plot of a curved surface shown in light gray that this is u-shaped along constant values of one coordinate and increases parabolically as that the other horizontal coordinate is increased with a set of grid lines along the surface along the surface.  </p></description>
+        <sageplot variant="3d" label="interactive-traceonoff1">
+          var('x,y')
+          g(x,y)=x^2*sin(2*y)/32
+          plot16=plot3d(g,(x,0,200),(y,0,pi/2),color="gray",plot_points=21,mesh=True,opacity=0.7,aspect_ratio=[1,100,0.15],viewpoint=[[-0.792,0.3576,0.4949],84.75],camera_position=[-200.2301,-189.6884,234.3567])
+          plot16
+        </sageplot>
+      </image>
+      <image width="50%">
+        <description><p>An interactive three dimensional plot of a curved surface shown in light gray that this is u-shaped along constant values of one coordinate and increases parabolically as that the other horizontal coordinate is increased. </p></description>
+        <sageplot variant="3d" label="interactive-traceonoff2">
+          var('x,y')
+          g(x,y)=x^2*sin(2*y)/32
+          plot16=plot3d(g,(x,0,200),(y,0,pi/2),color="gray",plot_points=21,mesh=False,opacity=0.7,aspect_ratio=[1,100,0.15],viewpoint=[[-0.792,0.3576,0.4949],84.75],camera_position=[-200.2301,-189.6884,234.3567])
+          plot16
+        </sageplot>
+      </image>
+      </sidebyside>
+      <!-- <interactive label="interactive-traceonoff" platform="sage" width="100%" aspect="1:1.08">
         <description><p>An interactive three dimensional plot of a curved surface shown in light gray that this is u-shaped along constant values of one coordinate and increases parabolically as that the other horizontal coordinate is increased. A checkbox at the top of the plot will add a set of grid lines along the surface that allow the user to see the surface through more than shading of the surface. </p></description>
         <slate surface="sage">
           var('x,y')
@@ -831,7 +851,7 @@
             plot16=plot3d(g,(x,0,200),(y,0,pi/2),color="gray",plot_points=21,mesh=s,opacity=0.8)
             show(plot16,aspect_ratio=[1,100,0.15],viewpoint=[[-0.792,0.3576,0.4949],84.75],camera_position=[-200.2301,-189.6884,234.3567])
         </slate>
-      </interactive>
+      </interactive> -->
     </figure>
     <p>
       When drawing plots by hand, it is important to use parallel structure to make it easier for the viewer to orient the traces as being in a direction parallel to one of the coordinate axes. It may take time for you to feel confident drawing these kinds of features by hand. However, visual representations of surfaces and their features will be very valuable in our work for the next several chapters. We will continue to provide tips and suggestions to help you with your visualizations along the way.
@@ -1142,7 +1162,7 @@
           var('x,y,z,t,s')
           g(x,y)=x^2*sin(2*y)/32
           s=1
-          plot18=plot3d(g,(x,0,200),(y,0,pi/2),color="gray",plot_points=21,opacity=0.1*s,aspect_ratio=[1,100,0.15],viewpoint=[[-0.9811,0.124,0.1483],80.88],camera_position=[-13.4812,-314.7077,166.7816])
+          plot18=plot3d(g,(x,0,200),(y,0,pi/2),color="gray",plot_points=21,opacity=0.2,aspect_ratio=[1,100,0.15],viewpoint=[[-0.9811,0.124,0.1483],80.88],camera_position=[-13.4812,-314.7077,166.7816])
           c=["pink","red","orange","yellow","green","blue","indigo","violet"]
           for i in range(8):
             h=150*i

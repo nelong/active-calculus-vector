@@ -212,9 +212,9 @@
     </p>
     <figure xml:id="vvf-example1">
       <caption>A plot of a curve in space with a position vector shown</caption>
-      <interactive label="interactive-vvf-example1" platform="sage">
-        <description><p>An interactive three dimensional plot with axes labeled <m>x</m>, and <m>y</m>, and <m>z</m>. A red curve is plotted that is centered and the origin, moves around the z-axis, and has two maximums and two minimums as the curve completes one rotation around the z-axis. The slider at the top of the figure changes the location of a highlighted point on the red curve. There is a blue arrow from the arrow to the highlighted point.</p></description>
-        <slate surface="sage">
+      <image width="60%">
+        <description><p>An interactive three dimensional plot with axes labeled <m>x</m>, and <m>y</m>, and <m>z</m>. A red curve is plotted that is centered and the origin, moves around the z-axis, and has two maximums and two minimums as the curve completes one rotation around the z-axis. The slider at the top of the figure changes the location of a highlighted point on the red curve. There is a blue arrow from the arrow to the highlighted point. </p></description>
+        <sageplot variant="3d" label="interactive-vvf-example1">
           from sage.plot.plot3d.plot3d import axes
           var('t')
           scale=2;
@@ -228,8 +228,8 @@
           frames1=[basic3dcurveplot1(tval*2*pi/50) for tval in range(0,50)]
           plot123 = animate(frames1).interactive(delay=20,auto_play=True,animation_controls=True)
           plot123
-        </slate>
-      </interactive>
+        </sageplot>
+      </image>
     </figure>
     <p>
       This correspondence between a location and a vector starting at the origin will allow us to think of a curve as a collection of terminal points of vectors emanating from the origin. We can describe an object traveling along this curve by defining a function <m>\vr</m> whose input is the variable <m>t</m> and whose output is the vector from the origin to the point on the curve at time <m>t</m>. In so doing, we have introduced a new type of function, one whose input is a scalar and whose output is a vector.
