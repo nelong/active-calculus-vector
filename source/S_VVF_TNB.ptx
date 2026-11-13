@@ -50,10 +50,18 @@
       In <xref ref="S-VVF-Plotting"/>, we saw how a vector-valued function of one variable will graphically correspond to a curve in space. While the application of derivatives, integrals, and limits apply to these functions componentwise, we will need to apply our calculus and vector tools <em>together</em> to measure  important properties of these curves. Conceptually, you should think about the parameterization of the curve in space as a description on how to travel through those points in space. Remember that parameterizations are not unique: there is more than one way to walk the same path!
     </p>
     <figure xml:id="rc-plot1">
-      <caption> A plot of a racetrack</caption>
+      <caption> A 2D plot of a racetrack</caption>
       <image width="50%">
         <description><p>A plot of the a race track with a long straightaway, followed by a gentle curve, then several back and forth turns and another gentle turn. </p></description>
-        <sageplot variant="3d" label="interactive-rc-plot1">
+        <sageplot>
+          var('t')
+          scale=175;tval=1.25;pos=r2(tval);
+          r2(t)=(scale*(3 + 2*sin(t))*cos(t)+700, scale*(3 - ((t - 2)*sin(4*t)))*sin(t)+900)
+          plot5=parametric_plot(r2(t),(t,0,2*pi),aspect_ratio=1,color="black",thickness=2,gridlines=True)
+          plot5+=point(pos,color="black",size=40)
+          plot5
+        </sageplot>
+        <!-- <sageplot variant="3d" label="interactive-rc-plot1">
           var('t')
           r2(t)=((3 + 2*sin(t))*cos(t), (3 - ((t - 2)*sin(4*t)))*sin(t), 1/40*t^2 *sin(3*t))
           tval=1.25
@@ -62,7 +70,7 @@
           plot5=parametric_plot(r2(t),(t,0,2*pi),aspect_ratio=1,color="black",thickness=3)
           plot5+=sphere(pos,color="black",size=0.15,viewpoint=[[-0.0028,-0.3535,-0.9354],179.16],frame=False)
           plot5
-        </sageplot>
+        </sageplot> -->
       </image>
     </figure>
     <p>
