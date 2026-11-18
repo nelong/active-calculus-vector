@@ -95,10 +95,9 @@ from sage.plot.plot3d.plot3d import axes
 from sage.plot.plot3d.shapes import Box
 from sage.plot.plot3d.shapes import ColorCube
 scale=2.5
-@interact
-def dblRS(nx=slider(2,15,1,default=3,label="\\(m=\\)"),ny=slider(2,15,1,default=2,label="\\(n=\\)")):
+def dblRS(n):
     plot3=axes(scale,1,color="black",frame=False,aspect_ratio=1,opacity=0.8)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
-    f(x,y)=2-x/1.5+y^2/4;
+    f(x,y)=2-x/1.5+y^2/4;nx=n;ny=n;
     total=0;
     x1=0.5;x2=2; y1=0.5;y2=2;
     dx=(x2-x1)/nx; dy=(y2-y1)/ny;
@@ -118,16 +117,19 @@ def dblRS(nx=slider(2,15,1,default=3,label="\\(m=\\)"),ny=slider(2,15,1,default=
     #c2 and o2 are for constant t value traces
     #c3 and o3 are for constant s value traces
     c1="gray"; c2="black"; c3="black"; o1=0.3; o2=0.2; o3=0.2;
-    plot3+=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1)
+    plot3+=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1,viewpoint=[[-0.423,-0.5604,-0.712],123.49],camera_position=[7.0129,3.055,2.8624])
     for i in range(n+1):
         sv=a1+i/n*(a2-a1)
         plot3+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c2,opacity=o2)
     for i in range(m+1):
         tv=b1+i/m*(b2-b1)
         plot3+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
-    show(plot3,viewpoint=[[-0.423,-0.5604,-0.712],123.49],camera_position=[7.0129,3.055,2.8624])
-    RS=total*1.5*1.5/nx/ny
-    print(" The value of the Riemann sum corresponding the volume of the\n rectangular prisms shown is "+str(RS))
+    RS=(total*1.5*1.5/nx/ny).n(digits=6)
+    plot3+=text3d("The Riemann sum shown is "+str(RS),(1,1,-1),color="black")
+    return plot3
+frames=[dblRS(n) for n in range(2,20)]
+plot123=animate(frames).interactive(delay=150,auto_play=False)
+plot123
 </script></pre></div>
 </body>
 </html>

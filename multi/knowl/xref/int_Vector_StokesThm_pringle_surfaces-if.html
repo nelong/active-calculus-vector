@@ -90,17 +90,26 @@ lang: "en-US",
 \definecolor{fillinmathshade}{gray}{0.9}
 \newcommand{\fillinmath}[1]{\mathchoice{\colorbox{fillinmathshade}{$\displaystyle     \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\textstyle        \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptstyle      \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptscriptstyle\phantom{\,#1\,}$}}}
 \)</span></div>
-<div style="aspect-ratio: 0.923076923076923;"><pre class="ptx-sagecell sage-interact"><script type="text/x-sage">var('t,s,x,y,z,r,theta')
-@interact
-def _(s=selector(['Surface1', 'Surface2','Surface3'],label="Surface Selection:")):
-  plot1=parametric_plot3d((cos(t),sin(t),cos(2*t)),(t,0,2*pi),color="red",thickness=5)
-  if s=='Surface1':
-    surface=parametric_plot3d((r*cos(t),r*sin(t),r^2*(cos(t)^2-sin(t)^2)),(t,0,2*pi),(r,0,2),color="gray",opacity=.75)
-  if s=='Surface2':
-    surface=parametric_plot3d((r*cos(t),r*sin(t),(-cos(pi*r))*(cos(t)^2-sin(t)^2)),(t,0,2*pi),(r,0,2),color="gray",opacity=.75)
-  if s=='Surface3':
-    surface=parametric_plot3d((r*cos(t),r*sin(t),(r^6)*(cos(t)^2-sin(t)^2)),(t,0,2*pi),(r,0,1.5), color="gray",opacity=.75,aspect_ratio=(1,1,.1))
-  show(plot1+surface)
+<div style="aspect-ratio: 0.923076923076923;"><pre class="ptx-sagecell sage-interact"><script type="text/x-sage">var('q,t,s,x,y,z,r,theta')
+def asdf6(q):
+  plot1=parametric_plot3d((cos(t),sin(t),cos(2*t)),(t,0,2*pi),color="red",thickness=3)
+  if(sign(q-1)==-1):
+    param(s,t)=(s*cos(t),s*sin(t),q*s^2*(cos(t)^2-sin(t)^2)+(1-q)*(-cos(pi*s))*(cos(2*t)));
+  else:
+    q=q-1;param(s,t)=(s*cos(t),s*sin(t),q*(-cos(pi*s))*(cos(2*t))+(1-q)*(s^2)*(cos(2*t)));
+  n=6;m=9;a1=0;b1=0;b2=2*pi;asp=[1,1,1];a2=1.5;
+  c1="lightblue"; c2="gray"; c3="gray"; o1=0.6; o2=0.5; o3=0.5;
+  plot1+=parametric_plot3d(param(s,t),(s,a1,a2),(t,b1,b2),color=c1,opacity=o1,aspect_ratio=asp)
+  for i in range(n+1):
+    sv=a1+i/n*(a2-a1)
+    plot1+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c2,opacity=o2)
+  for i in range(m+1):
+    tv=b1+i/m*(b2-b1)
+    plot1+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
+  return plot1
+frames=[asdf6(i/10) for i in range(0,21)]
+plot123=animate(frames).interactive(delay=50,auto_play=False)
+plot123
 </script></pre></div>
 </body>
 </html>

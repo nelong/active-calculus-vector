@@ -97,18 +97,24 @@ c=0
 d=3
 w=d
 F=(-y,x,0)
-@interact
-def _(beta=slider(0,1.5,0.25,0,label="Angle of Plane"),vectors_to_plot=slider(5,10,1,7,label="Density")):
+def asdf(beta):
   plot1=parametric_plot3d((t,0,0),(t,-d,d),color="black")
   plot1+=parametric_plot3d((0,t,0),(t,-d,d),color="black")+parametric_plot3d((0,0,t),(t,-d,d),color="black",frame=False, aspect_ratio=1,ticks=[[],[]])
   plot1+=text3d("x",(d+.5,0,0))+text3d("y",(0,d+.5,0))+text3d("z",(0,0,d+.5))
   alpha=tan(beta)
-  plot1+=plot_vector_field3d(F,(x,a-w,a+w),(y,b-w,b+w),(z,c-w,c+w),plot_points=(vectors_to_plot))
-  plot1+=plot3d(alpha*y,(x,-d,d),(y,-d,d),opacity=.4,color="yellow")
-  plot1+=arrow3d((1,1,alpha),(1,-alpha+1,1+alpha))
-  show(plot1)
+  plot1+=plot_vector_field3d(F,(x,a-w,a+w),(y,b-w,b+w),(z,c-w,c+w),plot_points=7)
+  if alpha>1:
+    plot1+=plot3d(alpha*y,(x,-d,d),(y,-d/alpha,d/alpha),opacity=.4,color="yellow")
+    plot1+=arrow3d((1/alpha,1/alpha,1),(1/alpha,1/alpha-1,1+1/alpha))
+  else:
+    plot1+=plot3d(alpha*y,(x,-d,d),(y,-d,d),opacity=.4,color="yellow")
+    plot1+=arrow3d((1,1,alpha),(1,-alpha+1,1+alpha))
+  #plot1+=arrow3d((1,1,alpha),(1,-alpha+1,1+alpha))
   plot2=plot_vector_field(((t),-s*(1/(1+alpha^2))),(s,-d,d),(t,-d,d),frame=False,aspect_ratio=1,color="blue",ticks=[[],[]])
-  show(plot2)
+  return plot1
+frames=[asdf(beta/10) for beta in range(0,15)]
+plot123=animate(frames).interactive(auto_play=False,delay=40)
+plot123
 </script></pre></div>
 </body>
 </html>

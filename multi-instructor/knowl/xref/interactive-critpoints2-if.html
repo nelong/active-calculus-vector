@@ -90,37 +90,40 @@ lang: "en-US",
 \definecolor{fillinmathshade}{gray}{0.9}
 \newcommand{\fillinmath}[1]{\mathchoice{\colorbox{fillinmathshade}{$\displaystyle     \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\textstyle        \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptstyle      \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptscriptstyle\phantom{\,#1\,}$}}}
 \)</span></div>
-<div style="aspect-ratio: 0.8;"><pre class="ptx-sagecell sage-interact"><script type="text/x-sage">from sage.plot.plot3d.plot3d import axes
+<div style="aspect-ratio: ;"><pre class="ptx-sagecell sage-interact"><script type="text/x-sage">from sage.plot.plot3d.plot3d import axes
 var('x,y,z,t,s')
-scale=2
+scale=3
 @interact
-def maxmin(sb=selector(['Local Maximum','Local Minimum','Saddle Point'],label="Surface Options:"),d=slider(0,6.2,0.1,default=0.8,display_value=False,label="direction")):
-  plot20=axes(scale,1,color="black",frame=False,aspect_ratio=1)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
-  if(sb=='Local Minimum'):
-    param(s,t)=(s*cos(t),s*sin(t),s^2+0.5); h=0.5;
-  elif(sb=='Local Maximum'):
-    param(s,t)=(s*cos(t),s*sin(t),1.25-s^2); h =1.25;
-  elif(sb=='Saddle Point'):
-    param(s,t)=(s*cos(t),s*sin(t),s^2*cos(2*t)); h =0;
-  #param(s,t)=(s,t,f(s,t))
-  #set up grid      n is number of steps in s    m is number of steps in t  
-  #a1 is min s    a2 is max s   b1 is min t    b2 is max t
-  n=7;m=7;a1=0;a2=1.5;b1=0;b2=2*pi; 
-  #c1 is surface color     o1 is surface opacity
-  #c2 and o2 are for constant t value traces
-  #c3 and o3 are for constant s value traces
-  c1="gray"; c2="gray"; c3="gray"; o1=0.4; o2=0.5; o3=0.5;
-  plot99=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1)
-  for i in range(n+1):
-    sv=a1+i/n*(a2-a1)
-    plot99+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c2,opacity=o2)
-  for i in range(m+1):
-    tv=b1+i/m*(b2-b1)
-    plot99+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)
-  plot20+=plot99    
-  plot20+=parametric_plot3d(param(s,t=d),(s,-1,1),color="red",thickness=3)
-  plot20+=parametric_plot3d((s,t,h),(s,-1,1),(t,-1,1),color="blue",opacity=0.4,mesh=True,plot_points=3)
-  show(plot20)
+def maxmin(sb=selector(['Local Maximum','Local Minimum','Saddle Point'],label="Surface Options:")):
+  def makesurf(d):
+    plot20=axes(scale,2,color="black",frame=False,aspect_ratio=1)+text3d("x",(scale+0.5,0,0),fontsize=30)+text3d("y",(0,scale+0.5,0),fontsize=30)+text3d("z",(0,0,scale+0.5),fontsize=30)
+    if(sb=='Local Maximum'):
+      param(s,t)=(s*cos(t),s*sin(t),s^2+0.5); h=0.5;
+    if(sb=='Local Minimum'):
+      param(s,t)=(s*cos(t),s*sin(t),1.25-s^2); h =1.25;
+    if(sb=='Saddle Point'):
+      param(s,t)=(s*cos(t),s*sin(t),s^2*cos(2*t)); h =0;
+    #param(s,t)=(s,t,f(s,t))
+    #set up grid      n is number of steps in s    m is number of steps in t  
+    #a1 is min s    a2 is max s   b1 is min t    b2 is max t
+    n=7;m=7;a1=0;a2=1.5;b1=0;b2=2*pi; 
+    #c1 is surface color     o1 is surface opacity
+    #c2 and o2 are for constant t value traces
+    #c3 and o3 are for constant s value traces
+    c1="lightblue"; c2="black"; c3="black"; o1=0.6; o2=0.5; o3=0.5;
+    plot20+=parametric_plot3d(param,(s,a1,a2),(t,b1,b2),color=c1,opacity=o1)
+    for i in range(n+1):
+      sv=a1+i/n*(a2-a1)
+      plot20+=parametric_plot3d(param(sv,t),(t,b1,b2),color=c2,opacity=o2)
+    for i in range(m+1):
+      tv=b1+i/m*(b2-b1)
+      plot20+=parametric_plot3d(param(s,tv),(s,a1,a2),color=c3,opacity=o3)  
+    plot20+=parametric_plot3d(param(s,t=d),(s,-1,1),color="red",thickness=3)
+    plot20+=parametric_plot3d((s,t,h),(s,-1,1),(t,-1,1),color="gray",opacity=0.4,mesh=True,plot_points=3,thickness=3,viewpoint=[[-0.2888,-0.5668,-0.7716],137.08],camera_position=[10.2151,7.49,5.5501])
+    return plot20
+  frames1=[makesurf(d/5) for d in range(0,32)]
+  plot123=animate(frames1).interactive(delay=20,auto_play=False)
+  show(plot123)
 </script></pre></div>
 </body>
 </html>

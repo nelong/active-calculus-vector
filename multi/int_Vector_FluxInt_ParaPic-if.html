@@ -90,10 +90,10 @@ lang: "en-US",
 \definecolor{fillinmathshade}{gray}{0.9}
 \newcommand{\fillinmath}[1]{\mathchoice{\colorbox{fillinmathshade}{$\displaystyle     \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\textstyle        \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptstyle      \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptscriptstyle\phantom{\,#1\,}$}}}
 \)</span></div>
-<div style="aspect-ratio: 0.909090909090909;"><pre class="ptx-sagecell sage-interact"><script type="text/x-sage">var('t,s,u,v,z,y,z')
+<div style="aspect-ratio: ;"><pre class="ptx-sagecell sage-interact"><script type="text/x-sage">var('t,s,u,v,z,y,z')
 f=-x^2/2-3*y^3/3
 @interact
-def _(a=slider(-1,1,.5,0,label="s value"),b=slider(-1,1,.5,.5,label="t value")):
+def _(a=slider(-1,1,.5,0,label="s value",display_value=False),b=slider(-1,1,.5,.5,label="t value",display_value=False)):
   plot1=plot3d(f,(x,-1,1),(y,-1,1),frame=False,opacity=.3)+sphere((a,b,f(x=a,y=b)),size=.05,color="black")
   for i in range(0,5):
     plot1+=parametric_plot3d((s,-1+i/2,f(x=s,y=-1+i/2)),(s,-1,1),color="#D81B60")

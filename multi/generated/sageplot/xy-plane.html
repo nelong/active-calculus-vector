@@ -41,7 +41,7 @@
             
 <script>
 
-    var options = {"animate": false, "animationControls": true, "aspectRatio": [1.0, 1.0, 1.0], "autoScaling": [false, false, false], "autoPlay": true, "axes": false, "axesLabels": false, "axesLabelsStyle": null, "decimals": 2, "delay": 20, "frame": false, "loop": true, "projection": "perspective", "theme": "light", "viewpoint": [[-0.23, -0.5945, -0.7705], 146.8]};
+    var options = {"animate": false, "animationControls": true, "aspectRatio": [1.0, 1.0, 1.0], "autoScaling": [false, false, false], "autoPlay": true, "axes": false, "axesLabels": false, "axesLabelsStyle": null, "decimals": 2, "delay": 20, "frame": false, "loop": true, "projection": "perspective", "theme": "light", "viewpoint": [[-0.202, -0.5222, -0.8285], 144.45]};
     var animate = options.animate;
 
     if ( options.theme === 'dark' )
@@ -55,7 +55,7 @@
     renderer.setClearColor( options.theme === 'dark' ? 0 : 0xffffff, 1 );
     document.body.appendChild( renderer.domElement );
 
-    var b = [{"x":-3.0, "y":-4.0, "z":-0.1199999999999998}, {"x":4.0, "y":4.0, "z":4.0}]; // bounds
+    var b = [{"x":-3.0, "y":-3.0, "z":-0.1199999999999998}, {"x":4.0, "y":4.0, "z":4.0}]; // bounds
 
     if ( b[0].x === b[1].x ) {
         b[0].x -= 1;
@@ -310,7 +310,7 @@
 
     } );
 
-    var texts = [{"color": "#000000", "fontSize": 30.0, "fontFamily": ["monospace"], "fontStyle": "normal", "fontWeight": "normal", "opacity": 1.0, "text": "x", "x": 4.0, "y": 0.0, "z": 0.0}, {"color": "#000000", "fontSize": 30.0, "fontFamily": ["monospace"], "fontStyle": "normal", "fontWeight": "normal", "opacity": 1.0, "text": "y", "x": 0.0, "y": 4.0, "z": 0.0}, {"color": "#000000", "fontSize": 30.0, "fontFamily": ["monospace"], "fontStyle": "normal", "fontWeight": "normal", "opacity": 1.0, "text": "z", "x": 0.0, "y": 0.0, "z": 4.0}, {"color": "#008000", "fontSize": 25.0, "fontFamily": ["monospace"], "fontStyle": "normal", "fontWeight": "normal", "opacity": 1.0, "text": "xy-plane", "x": 4.0, "y": -4.0, "z": 0.5}];
+    var texts = [{"color": "#000000", "fontSize": 30.0, "fontFamily": ["monospace"], "fontStyle": "normal", "fontWeight": "normal", "opacity": 1.0, "text": "x", "x": 4.0, "y": 0.0, "z": 0.0}, {"color": "#000000", "fontSize": 30.0, "fontFamily": ["monospace"], "fontStyle": "normal", "fontWeight": "normal", "opacity": 1.0, "text": "y", "x": 0.0, "y": 4.0, "z": 0.0}, {"color": "#000000", "fontSize": 30.0, "fontFamily": ["monospace"], "fontStyle": "normal", "fontWeight": "normal", "opacity": 1.0, "text": "z", "x": 0.0, "y": 0.0, "z": 4.0}, {"color": "#008000", "fontSize": 25.0, "fontFamily": ["monospace"], "fontStyle": "normal", "fontWeight": "normal", "opacity": 1.0, "text": "xy-plane", "x": 2.0, "y": -2.0, "z": 2.0}];
     for ( var i=0 ; i < texts.length ; i++ ) addText( texts[i] );
 
     function addText( json ) {
